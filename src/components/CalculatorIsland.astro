@@ -4,6 +4,7 @@
  * the /embed/ skin so the two always render the identical component.
  * client:load — the calculator IS the page's primary content.
  */
+import BmiCalculator from './calculators/BmiCalculator';
 import CdCalculator from './calculators/CdCalculator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
@@ -17,6 +18,7 @@ interface Props {
 const { slug } = Astro.props;
 ---
 
+{slug === 'bmi-calculator' && <BmiCalculator client:load />}
 {slug === 'cd-calculator' && <CdCalculator client:load />}
 {slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
 {slug === 'stair-calculator' && <StairCalculator client:load />}

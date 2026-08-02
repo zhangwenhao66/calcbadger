@@ -185,6 +185,14 @@ h3 {
 	background: rgb(248 113 113 / 0.14);
 	color: var(--warn);
 }
+.calc-badge.caution {
+	background: rgb(234 88 12 / 0.14);
+	color: var(--op);
+}
+.calc-badge.info {
+	background: rgb(161 161 170 / 0.16);
+	color: var(--chassis-muted);
+}
 
 /* ---------- Key caps: pressable cards and buttons on the light page ---------- */
 .keycap {

@@ -536,4 +536,115 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 700,
 	},
+	{
+		slug: 'bmi-calculator',
+		category: 'Health',
+		title: 'BMI Calculator',
+		shortTitle: 'BMI Calculator',
+		description:
+			'Calculate body mass index from weight and height in either US or metric units, see your CDC/WHO weight category, and find the healthy-weight range for your exact height, with an optional Asian-population cutoff standard.',
+		updated: '2026-08-02',
+		coreSummary:
+			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity.',
+		queries: ['bmi calculator', 'bmi calculator for women', 'bmi chart', 'body mass index calculator'],
+		sections: [
+			{
+				heading: 'The formula, and why two unit systems don’t match exactly',
+				body: [
+					'BMI is defined as weight divided by height squared, using kilograms and meters: **BMI = kg ÷ m²**. A 70 kg adult who is 1.75 m tall has a BMI of 70 ÷ 1.75² = 22.9.',
+					'CDC’s US-units shortcut is **BMI = 703 × lb ÷ in²**, where 703 is a rounded conversion factor (the exact value is closer to 703.07). Run the same person through both formulas and the results differ by a few thousandths of a point. That gap is the rounding at work, and it never moves anyone across a category boundary.',
+					'The formula does not change for sex or age past 20; CDC states plainly that adults use "standard BMI categories regardless of age, sex, or race." What differs between a BMI calculator "for men" and "for women" online is almost always just which example numbers the page uses, not the math underneath.',
+				],
+			},
+			{
+				heading: 'What the categories mean',
+				body: [
+					'CDC and WHO split adult BMI into four bands: **underweight** below 18.5, **healthy weight** 18.5–24.9, **overweight** 25–29.9, and **obesity** at 30 and above. Obesity is further split into Class 1 (30–34.9), Class 2 (35–39.9), and Class 3 or "severe obesity" (40 and above), which is the breakdown clinicians use to decide how urgently weight-related risk needs addressing.',
+					'These bands come from population studies linking BMI to the risk of conditions like type 2 diabetes and cardiovascular disease, rather than from any single ideal number. CDC is explicit that BMI is "a screening measure" and "not intended to diagnose disease." It flags who might benefit from a closer look, without passing judgment on any one person’s health.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					"**5'9\", 160 lb**: total height is 69 in, so BMI = 703 × 160 ÷ 69² = 703 × 160 ÷ 4,761 ≈ 23.6, healthy weight and comfortably inside the 18.5–24.9 band.",
+					'**175 cm, 95 kg**: BMI = 95 ÷ 1.75² = 95 ÷ 3.0625 ≈ 31.0, Class 1 obesity, just past the 30 threshold. The healthy-weight range for that same height is about 56.7–76.3 kg, so getting back into that range would take a loss of roughly 19 kg at minimum, more if the target is the middle of the band rather than its upper edge.',
+					"**5'0\", 95 lb**: 60 in tall, BMI = 703 × 95 ÷ 3,600 ≈ 18.6, just inside healthy weight and only a tenth of a point above the underweight cutoff.",
+				],
+			},
+			{
+				heading: 'Where BMI gets the wrong answer',
+				body: [
+					'BMI cannot tell fat from muscle or bone, because it never measures either; it only relates total mass to height. CDC’s own FAQ says this outright: BMI "cannot distinguish fat mass from lean body mass." A muscular adult with low body fat can score "overweight" or "obese" on BMI while being metabolically healthy, and the reverse also happens: a sedentary adult with normal BMI but high visceral fat ("normal weight obesity") can carry real metabolic risk that BMI misses entirely.',
+					'BMI also says nothing about where fat is stored, and abdominal fat carries more cardiovascular risk than fat carried elsewhere at the same total BMI. Waist circumference or waist-to-height ratio catch this distinction; a BMI number by itself does not. For adults under 20, pregnant women, and older adults with age-related muscle loss, CDC directs people to age-specific tools instead of the adult calculator.',
+				],
+			},
+			{
+				heading: 'Asian population cutoffs: a real distinction, backed by a specific study',
+				body: [
+					'In 2004 a WHO expert consultation reviewed evidence that Asian populations develop diabetes and cardiovascular risk at lower BMIs than the original WHO cutoffs assumed. At a given BMI, Asian adults tend to carry more body fat than European adults, which is the underlying reason the cutoffs shift. Published in *The Lancet* (2004;363:157–63), the consultation set out additional "public health action points" at BMI 23.0 and 27.5, plus 32.5 and 37.5 further along the same continuum, while keeping the original WHO/CDC cutoffs as the international default.',
+					'This calculator defaults to the standard WHO/CDC bands and offers the Asian cutoffs as an explicit toggle instead of picking one silently. Which standard fits best depends on the population being assessed, and several national health agencies, including Singapore’s and Japan’s, have adopted the lower thresholds for exactly that reason.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'BMI chart: weight ranges by height (WHO/CDC standard)',
+				headers: ['Height', 'Underweight', 'Healthy weight', 'Overweight', 'Obese'],
+				rows: [
+					["4'10\"", 'below 89 lb', '89–120 lb', '120–144 lb', 'above 144 lb'],
+					["5'0\"", 'below 95 lb', '95–128 lb', '128–154 lb', 'above 154 lb'],
+					["5'2\"", 'below 101 lb', '101–137 lb', '137–164 lb', 'above 164 lb'],
+					["5'4\"", 'below 108 lb', '108–146 lb', '146–175 lb', 'above 175 lb'],
+					["5'6\"", 'below 115 lb', '115–155 lb', '155–186 lb', 'above 186 lb'],
+					["5'8\"", 'below 122 lb', '122–164 lb', '164–197 lb', 'above 197 lb'],
+					["5'10\"", 'below 129 lb', '129–174 lb', '174–209 lb', 'above 209 lb'],
+					["6'0\"", 'below 136 lb', '136–184 lb', '184–221 lb', 'above 221 lb'],
+					["6'2\"", 'below 144 lb', '144–195 lb', '195–234 lb', 'above 234 lb'],
+				],
+				note: 'Boundaries computed at BMI 18.5 / 25.0 / 30.0 using 703 × lb ÷ in² (rounded to the nearest pound). Use the calculator above for metric or exact heights.',
+			},
+		],
+		faq: [
+			{
+				question: 'Is BMI calculated differently for men and women?',
+				answer:
+					'No. The formula and the CDC/WHO category cutoffs are identical for adult men and women. Body fat percentage does differ by sex at the same BMI, but standard BMI itself does not adjust for it.',
+			},
+			{
+				question: 'What is a normal BMI for my height?',
+				answer:
+					"Healthy weight is a BMI of 18.5–24.9. Enter your height in the calculator above to see the exact weight range that falls in that band; for example, a healthy weight at 5'9\" is roughly 125–169 lb.",
+			},
+			{
+				question: 'Is BMI an accurate measure of health?',
+				answer:
+					'It is a useful population-level screening tool, not an individual diagnosis. CDC describes it as "one potential indicator" to be weighed alongside blood pressure, blood sugar, and other findings, since BMI cannot distinguish muscle from fat or account for where fat is stored.',
+			},
+			{
+				question: 'Why does this calculator have an "Asian population" option?',
+				answer:
+					'A 2004 WHO expert consultation found that Asian populations face elevated diabetes and cardiovascular risk at lower BMIs than the original WHO cutoffs assumed, and proposed overweight starting at 23 and obesity at 27.5 instead of 25 and 30. Several Asian countries have adopted these lower thresholds in national guidelines.',
+			},
+			{
+				question: 'Does BMI account for muscle mass?',
+				answer:
+					'No. BMI only relates total body weight to height, so it cannot separate muscle from fat. Very muscular people are routinely classified "overweight" or "obese" by BMI despite low body fat, which is the formula’s best-known limitation.',
+			},
+		],
+		sources: [
+			{
+				label: 'CDC: About Adult BMI',
+				url: 'https://www.cdc.gov/bmi/adult-calculator/index.html',
+			},
+			{
+				label: 'CDC: BMI Frequently Asked Questions',
+				url: 'https://www.cdc.gov/bmi/faq/index.html',
+			},
+			{
+				label: 'WHO Expert Consultation, "Appropriate body-mass index for Asian populations and its implications for policy and intervention strategies," The Lancet 2004;363:157-63',
+				url: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(03)15268-3/abstract',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
