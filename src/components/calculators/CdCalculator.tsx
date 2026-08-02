@@ -133,7 +133,7 @@ export default function CdCalculator() {
 			<p class="calc-note">
 				Assumes interest stays in the CD until maturity, with no early withdrawal. Formula: A =
 				P(1&nbsp;+&nbsp;r/n)<sup>nt</sup>{rateType === 'apr' && result
-					? ` — at this compounding the effective APY is ${(apyFromApr(parseFloat(rate) / 100 || 0, compounds) * 100).toFixed(3)}%`
+					? `. At this compounding the effective APY is ${(apyFromApr(parseFloat(rate) / 100 || 0, compounds) * 100).toFixed(3)}%`
 					: ''}. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>

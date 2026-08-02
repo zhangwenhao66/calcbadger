@@ -6,12 +6,14 @@ import BadgerLogo from './BadgerLogo.astro';
 const categories = [...new Set(tools.map((t) => t.category))];
 ---
 
+<!-- Light chrome: the page stays paper throughout, so the only dark object
+     on any page is the calculator itself. The instrument owns the dark. -->
 <header class="border-b border-[var(--rule)] bg-white">
 	<nav class="mx-auto flex h-15 max-w-5xl items-center justify-between gap-2 px-4">
 		<a href="/" class="flex shrink-0 items-center gap-2 no-underline" aria-label={`${SITE_TITLE} home`}>
 			<BadgerLogo />
 			<span class="font-display text-[1.25rem] font-bold tracking-tight text-[var(--ink)]"
-				>Calc<span class="text-[var(--flag-dark)]">Badger</span></span
+				>Calc<span class="text-[var(--op)]">Badger</span></span
 			>
 		</a>
 
@@ -20,13 +22,13 @@ const categories = [...new Set(tools.map((t) => t.category))];
 				categories.map((cat) => (
 					<a
 						href={`/category/${categorySlug(cat)}/`}
-						class="text-[0.88rem] font-medium text-[var(--ink)]/70 no-underline hover:text-[var(--flag-dark)] hover:underline"
+						class="text-[0.88rem] font-medium text-[var(--ink)]/65 no-underline transition-colors duration-150 hover:text-[var(--op-dark)]"
 					>
 						{cat}
 					</a>
 				))
 			}
-			<a href="/about/" class="text-[0.88rem] font-medium text-[var(--ink)]/70 no-underline hover:text-[var(--flag-dark)] hover:underline">About</a>
+			<a href="/about/" class="text-[0.88rem] font-medium text-[var(--ink)]/65 no-underline transition-colors duration-150 hover:text-[var(--op-dark)]">About</a>
 		</div>
 
 		<button

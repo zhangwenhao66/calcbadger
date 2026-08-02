@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BadgerLogo from '../components/BadgerLogo.astro';
 import WebSite from '../../vendor/site-toolkit/packages/schema/src/WebSite.astro';
 import { categorySlug, tools } from '../data/tools';
 import { SITE_DESCRIPTION, SITE_ORIGIN, SITE_TITLE } from '../consts';
@@ -11,25 +10,24 @@ const categories = [...new Set(tools.map((t) => t.category))];
 <Layout>
 	<WebSite slot="head" name={SITE_TITLE} url={`${SITE_ORIGIN}/`} description={SITE_DESCRIPTION} />
 
-	<section class="mx-auto max-w-[760px] py-6 text-center">
-		<div class="flex justify-center"><BadgerLogo size={64} /></div>
-		<h1 class="font-display mt-4 text-4xl font-bold tracking-tight text-[var(--ink)]">
+	<section class="mx-auto max-w-[760px] pt-4 pb-10 md:pt-8">
+		<h1 class="font-display text-4xl font-bold tracking-tight text-[var(--ink)] md:text-5xl">
 			Calculators that show their work
 		</h1>
-		<p class="mx-auto mt-3 max-w-[560px] text-[1.05rem] leading-relaxed text-[var(--ink)]/60">
+		<p class="mt-4 max-w-[560px] text-[1.05rem] leading-relaxed text-[var(--ink)]/60">
 			Every CalcBadger tool explains its formula, cites the standard it follows, and runs entirely
-			in your browser — nothing you type leaves the page.
+			in your browser. Nothing you type leaves the page.
 		</p>
 	</section>
 
 	{
 		categories.map((cat) => (
-			<section class="mx-auto mt-8 max-w-[760px]">
-				<div class="mb-3 flex items-baseline justify-between">
+			<section class="mx-auto mt-8 max-w-[760px] first-of-type:mt-0">
+				<div class="mb-3 flex items-baseline justify-between border-b-2 border-[var(--ink)] pb-2">
 					<h2 class="font-display m-0 text-xl font-bold text-[var(--ink)]">{cat}</h2>
 					<a
 						href={`/category/${categorySlug(cat)}/`}
-						class="text-sm text-[var(--flag-dark)] no-underline hover:underline"
+						class="text-sm font-medium text-[var(--op-dark)] no-underline hover:underline"
 					>
 						All {cat.toLowerCase()} tools
 					</a>
@@ -38,11 +36,8 @@ const categories = [...new Set(tools.map((t) => t.category))];
 					{tools
 						.filter((t) => t.category === cat)
 						.map((t) => (
-							<a
-								href={`/${t.slug}/`}
-								class="rounded-xl border border-[var(--rule)] bg-white p-4 no-underline hover:border-[var(--flag)]"
-							>
-								<p class="m-0 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
+							<a href={`/${t.slug}/`} class="keycap block p-4 no-underline">
+								<p class="font-display m-0 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
 								<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/55">
 									{t.description.length > 120 ? t.description.slice(0, 117) + '…' : t.description}
 								</p>

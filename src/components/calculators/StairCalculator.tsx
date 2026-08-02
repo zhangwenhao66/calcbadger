@@ -23,7 +23,7 @@ export default function StairCalculator() {
 		<div class="calc">
 			<div class="calc-grid">
 				<label class="calc-field">
-					<span class="calc-label">Total rise — feet</span>
+					<span class="calc-label">Total rise (feet)</span>
 					<input
 						class="calc-input"
 						type="number"
@@ -83,7 +83,7 @@ export default function StairCalculator() {
 							<p class="calc-result-label">Riser height</p>
 							<p class="calc-result-value">
 								{fraction(s.riserHeightIn)}
-								<span style="font-size:0.8rem;font-weight:400;color:rgb(35 39 31 / 0.5)">
+								<span style="font-size:0.8rem;font-weight:400;color:var(--chassis-muted)">
 									{' '}
 									({s.riserHeightIn.toFixed(3)}")
 								</span>
@@ -110,7 +110,7 @@ export default function StairCalculator() {
 						{s.ircCompliant ? (
 							<span class="calc-badge ok">Meets IRC R311.7.5 riser/tread limits</span>
 						) : (
-							<span class="calc-badge bad">Outside IRC R311.7.5 limits — check riser/tread values</span>
+							<span class="calc-badge bad">Outside IRC R311.7.5 limits: check riser/tread values</span>
 						)}
 					</p>
 				</>
@@ -121,7 +121,7 @@ export default function StairCalculator() {
 			<p class="calc-note">
 				Defaults follow the 2021 IRC residential limits: riser height ≤ {IRC_MAX_RISER_IN}", tread
 				depth ≥ {IRC_MIN_TREAD_IN}". Measure total rise finished floor to finished floor. Always
-				confirm with your local building department — amendments vary. Calculations run in your
+				confirm with your local building department, since amendments vary. Calculations run in your
 				browser; nothing you type is sent anywhere.
 			</p>
 		</div>

@@ -64,28 +64,28 @@ export const tools: Tool[] = [
 			{
 				heading: 'How CD interest actually compounds',
 				body: [
-					'A certificate of deposit pays compound interest: each time the bank credits interest, the next round of interest is calculated on the bigger balance. The standard formula is **A = P(1 + r/n)^(nt)** — P is your deposit, r the nominal annual rate as a decimal, n the number of compounding periods per year, and t the term in years.',
-					"Banks compound daily, monthly, or quarterly depending on the product. The differences are smaller than people expect. On a $10,000 deposit at a 4.5% nominal rate for one year, daily compounding earns $460.25 and monthly compounding earns $459.40 — about 85 cents apart. The rate itself matters far more than the compounding schedule, which is exactly why banks advertise APY instead of the nominal rate.",
+					'A certificate of deposit pays compound interest: each time the bank credits interest, the next round of interest is calculated on the bigger balance. The standard formula is **A = P(1 + r/n)^(nt)**: P is your deposit, r the nominal annual rate as a decimal, n the number of compounding periods per year, and t the term in years.',
+					"Banks compound daily, monthly, or quarterly depending on the product. The differences are smaller than people expect. On a $10,000 deposit at a 4.5% nominal rate for one year, daily compounding earns $460.25 and monthly compounding earns $459.40, about 85 cents apart. The rate itself matters far more than the compounding schedule, which is exactly why banks advertise APY instead of the nominal rate.",
 				],
 			},
 			{
 				heading: 'APY vs. APR: which number did your bank give you?',
 				body: [
-					'Almost every CD ad in the US quotes an **APY** (annual percentage yield). APY already includes the effect of compounding — it is defined in Regulation DD (12 CFR 1030, Appendix A) as (1 + r/n)^n − 1, and it is the number banks must disclose under the Truth in Savings Act. If you have an APY, the balance after t years is just P(1 + APY)^t; picking a compounding frequency on top of it would double-count.',
+					'Almost every CD ad in the US quotes an **APY** (annual percentage yield). APY already includes the effect of compounding; it is defined in Regulation DD (12 CFR 1030, Appendix A) as (1 + r/n)^n − 1, and it is the number banks must disclose under the Truth in Savings Act. If you have an APY, the balance after t years is just P(1 + APY)^t; picking a compounding frequency on top of it would double-count.',
 					'The nominal rate (sometimes loosely called APR) is the raw annual rate before compounding. A 4.5% nominal rate compounded monthly works out to a 4.594% APY. This calculator has a toggle for which one you were quoted, so the math matches the disclosure instead of quietly inflating it.',
 				],
 			},
 			{
 				heading: 'Worked example: $10,000 in a 3-year CD at 4.50% APY',
 				body: [
-					'Deposit $10,000 into a 36-month CD paying 4.50% APY. Balance at maturity = 10,000 × (1.045)³ = 10,000 × 1.141166 = **$11,411.66**, so the CD earns $1,411.66 in interest. Note that it beats the naive 3 × $450 = $1,350 estimate by about $62 — that gap is the compounding, interest earning interest in years two and three.',
+					'Deposit $10,000 into a 36-month CD paying 4.50% APY. Balance at maturity = 10,000 × (1.045)³ = 10,000 × 1.141166 = **$11,411.66**, so the CD earns $1,411.66 in interest. Note that it beats the naive 3 × $450 = $1,350 estimate by about $62. That gap is the compounding, interest earning interest in years two and three.',
 					'One thing the formula will not tell you: that $1,411.66 is taxable as ordinary income in the years the bank credits it, not when the CD matures. On a multi-year CD you will get a 1099-INT each year even though you cannot touch the money yet.',
 				],
 			},
 			{
 				heading: 'Early withdrawal penalties change the math',
 				body: [
-					'Pull money out before maturity and the bank charges a penalty, most commonly several months of interest (90 days is typical on short CDs, 180 days or more on longer terms — it is set by the bank and printed in the account disclosure). A penalty can eat into principal if you withdraw very early, since it can exceed the interest earned so far.',
+					'Pull money out before maturity and the bank charges a penalty, most commonly several months of interest (90 days is typical on short CDs, 180 days or more on longer terms; it is set by the bank and printed in the account disclosure). A penalty can eat into principal if you withdraw very early, since it can exceed the interest earned so far.',
 					'If there is a real chance you will need the cash, compare the after-penalty result against a high-yield savings account before committing. A CD paying 0.5 percentage points more than a savings account stops being the better deal the moment a 6-month interest penalty lands on it.',
 				],
 			},
@@ -132,15 +132,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Regulation DD (12 CFR Part 1030), Appendix A — APY calculation',
+				label: 'Regulation DD (12 CFR Part 1030), Appendix A: APY calculation',
 				url: 'https://www.ecfr.gov/current/title-12/chapter-X/part-1030/appendix-Appendix%20A%20to%20Part%201030',
 			},
 			{
-				label: 'Investor.gov (SEC) — compound interest calculator and formula',
+				label: 'Investor.gov (SEC): compound interest calculator and formula',
 				url: 'https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator',
 			},
 			{
-				label: 'FDIC — deposit insurance coverage',
+				label: 'FDIC: deposit insurance coverage',
 				url: 'https://www.fdic.gov/resources/deposit-insurance/',
 			},
 		],
@@ -152,7 +152,7 @@ export const tools: Tool[] = [
 		title: 'Square Footage Calculator',
 		shortTitle: 'Square Footage',
 		description:
-			'Calculate the square footage of a room or area from its measurements — rectangles, L-shapes, circles, and triangles — with automatic conversion to square meters, square yards, and acres, plus a cost estimate.',
+			'Calculate the square footage of a room or area from its measurements (rectangles, L-shapes, circles, and triangles), with automatic conversion to square meters, square yards, and acres, plus a cost estimate.',
 		updated: '2026-08-02',
 		coreSummary:
 			'Square footage is length × width measured in feet. A 12 ft × 10 ft room is 120 sq ft. For L-shaped rooms, split the floor into two rectangles and add them; for circles use π × (diameter/2)²; for triangles use base × height ÷ 2. One square meter equals 10.764 sq ft.',
@@ -166,7 +166,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Measuring a room without lying to yourself',
 				body: [
-					'Run a tape measure along the two walls at floor level, not across furniture, and write the numbers down in one unit. A room that measures 12 ft 6 in is 12.5 ft — divide the inches by 12 before multiplying, because 12 ft 6 in × 10 ft is 125 sq ft, not 126. Mixed-unit slips like that are the single most common way people end up a box short of flooring.',
+					'Run a tape measure along the two walls at floor level, not across furniture, and write the numbers down in one unit. A room that measures 12 ft 6 in is 12.5 ft: divide the inches by 12 before multiplying, because 12 ft 6 in × 10 ft is 125 sq ft, not 126. Mixed-unit slips like that are the single most common way people end up a box short of flooring.',
 					'Measure each room separately rather than pacing off the whole floor plan. Walls, closets and hallways make "the whole upstairs" much harder to estimate in one go than three rooms added together.',
 				],
 			},
@@ -182,14 +182,14 @@ export const tools: Tool[] = [
 			{
 				heading: 'Converting between units',
 				body: [
-					'The foot is defined as exactly 0.3048 meters, which makes one square meter 10.7639 sq ft and one square foot 0.0929 m². A square yard is exactly 9 sq ft, and an acre is exactly 43,560 sq ft — a 100 ft × 100 ft lot is 10,000 sq ft, just under a quarter acre.',
+					'The foot is defined as exactly 0.3048 meters, which makes one square meter 10.7639 sq ft and one square foot 0.0929 m². A square yard is exactly 9 sq ft, and an acre is exactly 43,560 sq ft: a 100 ft × 100 ft lot is 10,000 sq ft, just under a quarter acre.',
 					'Carpet in the US is often priced per square yard while tile and laminate are priced per square foot. Divide sq ft by 9 for sq yd before comparing quotes, or a $30/yd² carpet will look nine times pricier than a $3.30/ft² one that costs the same.',
 				],
 			},
 			{
 				heading: 'From area to a shopping list',
 				body: [
-					'Flooring is not bought at exactly the room area. Cuts, breakage, and pattern matching waste material, so the working rule is to order 5–10% extra — closer to 10% for tile laid diagonally or planks in a small room with many doorways. For a 288 sq ft floor, that means ordering 300–320 sq ft and keeping the leftovers for repairs.',
+					'Flooring is not bought at exactly the room area. Cuts, breakage, and pattern matching waste material, so the working rule is to order 5-10% extra, closer to 10% for tile laid diagonally or planks in a small room with many doorways. For a 288 sq ft floor, that means ordering 300–320 sq ft and keeping the leftovers for repairs.',
 					'Paint works from wall area instead: perimeter × wall height, minus windows and doors. A gallon of interior paint covers roughly 350–400 sq ft per coat, per the coverage figure printed on the can.',
 				],
 			},
@@ -227,21 +227,21 @@ export const tools: Tool[] = [
 			{
 				question: 'How much extra flooring should I buy?',
 				answer:
-					'Add 5–10% to the measured area for cutting waste — the low end for straightforward plank layouts in big rooms, the high end for tile, diagonal patterns, or rooms with lots of corners and doorways.',
+					'Add 5–10% to the measured area for cutting waste: the low end for straightforward plank layouts in big rooms, the high end for tile, diagonal patterns, or rooms with lots of corners and doorways.',
 			},
 			{
 				question: 'Is square footage measured from inside or outside the walls?',
 				answer:
-					'For flooring and paint, measure the inside of the room — that is the surface you are covering. Real-estate listing conventions differ (they often use exterior dimensions and follow standards like ANSI Z765), which is why a listed home size rarely matches the sum of its rooms.',
+					'For flooring and paint, measure the inside of the room, since that is the surface you are covering. Real-estate listing conventions differ (they often use exterior dimensions and follow standards like ANSI Z765), which is why a listed home size rarely matches the sum of its rooms.',
 			},
 		],
 		sources: [
 			{
-				label: 'NIST Special Publication 811 — unit definitions and conversion factors',
+				label: 'NIST Special Publication 811: unit definitions and conversion factors',
 				url: 'https://www.nist.gov/pml/special-publication-811',
 			},
 			{
-				label: 'ANSI Z765 — square footage method for calculating residential area',
+				label: 'ANSI Z765: square footage method for calculating residential area',
 				url: 'https://www.homeinnovation.com/services/accreditation/ansi_z765_square_footage_standard',
 			},
 		],
@@ -256,35 +256,35 @@ export const tools: Tool[] = [
 			'Lay out a straight run of stairs from the total rise: number of risers and treads, exact riser height in carpenter-friendly fractions, total run, stringer length, and stair angle, checked against IRC limits.',
 		updated: '2026-08-02',
 		coreSummary:
-			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up — that is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each.',
+			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up. That is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each.',
 		queries: ['stair calculator', 'stair stringer calculator', 'stair rise and run calculator'],
 		sections: [
 			{
 				heading: 'What the code lets you build',
 				body: [
 					'For US residential stairs, the 2021 International Residential Code sets the two numbers everything else follows from: riser height no more than **7¾ in** (R311.7.5.1) and tread depth no less than **10 in** (R311.7.5.2). The same section caps the variation between the tallest and shortest riser in a flight at 3/8 in, which in practice means every riser gets cut identical.',
-					'Commercial work under the IBC is stricter — 7 in maximum risers and 11 in minimum treads. The calculator defaults to the residential limits and lets you type in the commercial ones. Either way, local amendments override the model codes, so the number that finally matters is the one your building department enforces.',
+					'Commercial work under the IBC is stricter: 7 in maximum risers and 11 in minimum treads. The calculator defaults to the residential limits and lets you type in the commercial ones. Either way, local amendments override the model codes, so the number that finally matters is the one your building department enforces.',
 				],
 			},
 			{
 				heading: 'The riser-first method, worked through',
 				body: [
 					'Say the finished floor to finished floor rise is 9 ft, or 108 in. Divide by the 7.75 in maximum: 108 ÷ 7.75 = 13.94, round **up** to 14 risers. Rounding down would leave risers over the legal limit, which is why the direction of rounding is not a style choice.',
-					'Each riser is then 108 ÷ 14 = 7.714 in ≈ **7 11/16 in**. A standard mount puts the top "tread" level with the upper floor, so a 14-riser stair has 13 treads. At a 10 in tread depth the total run is 130 in, and the stringer diagonal is √(108² + 130²) ≈ 169 in — call it 14 ft 1 in of 2×12 before waste, so you are buying 16-footers.',
+					'Each riser is then 108 ÷ 14 = 7.714 in ≈ **7 11/16 in**. A standard mount puts the top "tread" level with the upper floor, so a 14-riser stair has 13 treads. At a 10 in tread depth the total run is 130 in, and the stringer diagonal is √(108² + 130²) ≈ 169 in. Call it 14 ft 1 in of 2×12 before waste, so you are buying 16-footers.',
 					'The angle comes out to arctan(108/130) ≈ 39.7°, on the steep side of comfortable but fully legal. Deeper treads flatten the stair at the cost of run length.',
 				],
 			},
 			{
 				heading: 'Marking and cutting stringers',
 				body: [
-					'Set a framing square to riser height on one leg and tread depth on the other (stair gauges make this repeatable), then step it down the stringer once per tread. Two details catch first-timers: drop the bottom of the stringer by one tread-material thickness so the first step is not taller than the rest once treads go on, and keep the notches shallow enough that solid wood remains behind them — over-notched stringers are the classic wobbly-stair failure, and span tables assume the uncut depth.',
+					'Set a framing square to riser height on one leg and tread depth on the other (stair gauges make this repeatable), then step it down the stringer once per tread. Two details catch first-timers: drop the bottom of the stringer by one tread-material thickness so the first step is not taller than the rest once treads go on, and keep the notches shallow enough that solid wood remains behind them; over-notched stringers are the classic wobbly-stair failure, and span tables assume the uncut depth.',
 					'Cut one stringer, test-fit it against the actual floors, and only then use it as the template for the rest. A stringer that is 1/4 in off multiplies its error across every step.',
 				],
 			},
 			{
 				heading: 'Legal is not the same as comfortable',
 				body: [
-					'Carpenters have used the rule attributed to François Blondel since the 1600s: twice the riser plus the tread should land near 24–25 in, matching a natural walking gait. The 7 11/16 in riser with a 10 in tread from the example gives 2(7.71) + 10 = 25.4 in — acceptable, slightly steep. A 7 in riser with an 11 in tread hits exactly 25 in and is noticeably easier to climb.',
+					'Carpenters have used the rule attributed to François Blondel since the 1600s: twice the riser plus the tread should land near 24–25 in, matching a natural walking gait. The 7 11/16 in riser with a 10 in tread from the example gives 2(7.71) + 10 = 25.4 in, acceptable but slightly steep. A 7 in riser with an 11 in tread hits exactly 25 in and is noticeably easier to climb.',
 					'If the run space allows it, aim below the code maximums rather than at them. Stairs cut to the legal limit are the steepest stairs anyone is allowed to build, and they feel like it.',
 				],
 			},
@@ -310,36 +310,36 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the maximum riser height for residential stairs?',
 				answer:
-					'7¾ inches under IRC R311.7.5.1, with no more than 3/8 in variation between risers in a flight. Some states amend this — Massachusetts, for example, has used different limits — so check the locally adopted code.',
+					'7¾ inches under IRC R311.7.5.1, with no more than 3/8 in variation between risers in a flight. Some states amend this (Massachusetts, for example, has used different limits), so check the locally adopted code.',
 			},
 			{
 				question: 'How many steps do I need for a 9 ft ceiling?',
 				answer:
-					'Floor-to-floor rise for a 9 ft ceiling is more than 108 in once joists and subfloor are added — measure the actual rise. At exactly 108 in you need 14 risers (13 treads); at a typical 119 in floor-to-floor you need 16.',
+					'Floor-to-floor rise for a 9 ft ceiling is more than 108 in once joists and subfloor are added, so measure the actual rise. At exactly 108 in you need 14 risers (13 treads); at a typical 119 in floor-to-floor you need 16.',
 			},
 			{
 				question: 'Why does a stair have one more riser than treads?',
 				answer:
-					'The top riser lands on the upper floor itself, which acts as the final tread. Fourteen risers therefore stand on thirteen treads in a standard mount. A flush mount (stringer hung below the upper floor) uses equal counts — the calculator assumes standard.',
+					'The top riser lands on the upper floor itself, which acts as the final tread. Fourteen risers therefore stand on thirteen treads in a standard mount. A flush mount (stringer hung below the upper floor) uses equal counts; the calculator assumes standard.',
 			},
 			{
 				question: 'What size lumber do stringers need?',
 				answer:
-					'2×12 is the standard stringer stock, because notching a smaller board leaves too little continuous wood. How far a cut stringer can span depends on the remaining (throat) depth — check the span guidance in your code or with your inspector rather than eyeballing it.',
+					'2×12 is the standard stringer stock, because notching a smaller board leaves too little continuous wood. How far a cut stringer can span depends on the remaining (throat) depth, so check the span guidance in your code or with your inspector rather than eyeballing it.',
 			},
 			{
 				question: 'Do these numbers work for deck stairs?',
 				answer:
-					'Yes — same IRC limits. Measure total rise from the deck surface to where the stair lands (which may be a pad poured after the fact; account for its height), and remember treads built from two 5.5 in deck boards give an 11 in tread that beats the 10 in minimum comfortably.',
+					'Yes, same IRC limits. Measure total rise from the deck surface to where the stair lands (which may be a pad poured after the fact; account for its height), and remember treads built from two 5.5 in deck boards give an 11 in tread that beats the 10 in minimum comfortably.',
 			},
 		],
 		sources: [
 			{
-				label: '2021 IRC R311.7.5 — stair risers, treads and dimensional limits (ICC)',
+				label: '2021 IRC R311.7.5: stair risers, treads and dimensional limits (ICC)',
 				url: 'https://codes.iccsafe.org/content/IRC2021P2/chapter-3-building-planning#IRC2021P2_Pt03_Ch03_SecR311.7',
 			},
 			{
-				label: 'ICC — International Residential Code overview',
+				label: 'ICC: International Residential Code overview',
 				url: 'https://www.iccsafe.org/products-and-services/i-codes/2021-i-codes/irc/',
 			},
 		],
@@ -361,13 +361,13 @@ export const tools: Tool[] = [
 				heading: 'How the digital SAT is actually scored',
 				body: [
 					'The digital SAT gives two section scores, Reading & Writing and Math, each on a 200–800 scale, summing to a 400–1600 total. Each section runs in two modules, and the test adapts: how you do on the first module decides whether the second module is the harder or easier set. Your scaled score depends on both how many questions you got right and which questions they were.',
-					'That is why no single raw-to-scaled table can exactly reproduce an official digital score. The number of correct answers alone genuinely does not contain enough information — two students with the same raw count on different module routes can earn different scaled scores.',
+					'That is why no single raw-to-scaled table can exactly reproduce an official digital score. The number of correct answers alone genuinely does not contain enough information: two students with the same raw count on different module routes can earn different scaled scores.',
 				],
 			},
 			{
 				heading: 'Where this estimate comes from',
 				body: [
-					'College Board publishes paper versions of its digital practice tests, and those come with an official self-scoring worksheet: count correct answers per section, then look the raw score up in a conversion table that maps it to a lower and upper scaled score. This calculator implements the table from the scoring guide for **Practice Test #4** exactly as published — 67 Reading & Writing rows and 55 Math rows, nothing interpolated.',
+					'College Board publishes paper versions of its digital practice tests, and those come with an official self-scoring worksheet: count correct answers per section, then look the raw score up in a conversion table that maps it to a lower and upper scaled score. This calculator implements the table from the scoring guide for **Practice Test #4** exactly as published: 67 Reading & Writing rows and 55 Math rows, nothing interpolated.',
 					'The paper tests are linear rather than adaptive, which is also why they are longer: 66 Reading & Writing questions and 54 Math questions, against 54 and 44 on the adaptive digital test taken in the Bluebook app. If you practiced in Bluebook, the app scores you itself; this page is for the printable tests, or for getting a feel of how raw performance maps to the 1600 scale.',
 				],
 			},
@@ -411,7 +411,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How many questions is the digital SAT?',
 				answer:
-					'The adaptive digital SAT in Bluebook has 54 Reading & Writing questions and 44 Math questions across two modules per section. The paper practice tests this calculator scores are longer — 66 and 54 — because a non-adaptive test needs more questions to measure the same range.',
+					'The adaptive digital SAT in Bluebook has 54 Reading & Writing questions and 44 Math questions across two modules per section. The paper practice tests this calculator scores are longer (66 and 54) because a non-adaptive test needs more questions to measure the same range.',
 			},
 			{
 				question: 'Why do I get a score range instead of one number?',
@@ -421,7 +421,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Can I score a Bluebook practice test with this?',
 				answer:
-					'No — Bluebook tests have different question counts and are scored in the app, which knows your module route. This calculator matches the printable paper practice tests.',
+					'No. Bluebook tests have different question counts and are scored in the app, which knows your module route. This calculator matches the printable paper practice tests.',
 			},
 			{
 				question: 'What raw score do I need for a 1400?',
@@ -431,11 +431,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'College Board — Scoring Your Paper SAT Practice Test #4 (PDF, © 2023)',
+				label: 'College Board: Scoring Your Paper SAT Practice Test #4 (PDF, © 2023)',
 				url: 'https://satsuite.collegeboard.org/media/pdf/scoring-sat-practice-test-4-digital.pdf',
 			},
 			{
-				label: 'College Board — SAT practice tests',
+				label: 'College Board: SAT practice tests',
 				url: 'https://satsuite.collegeboard.org/sat/practice-preparation/practice-tests',
 			},
 		],
@@ -447,7 +447,7 @@ export const tools: Tool[] = [
 		title: 'Molarity Calculator',
 		shortTitle: 'Molarity',
 		description:
-			'Convert between mass, molar mass, volume, and molar concentration — solve for molarity, grams of solute, solution volume, or molar mass, with common compound values built in.',
+			'Convert between mass, molar mass, volume, and molar concentration: solve for molarity, grams of solute, solution volume, or molar mass, with common compound values built in.',
 		updated: '2026-08-02',
 		coreSummary:
 			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass.',
@@ -457,20 +457,20 @@ export const tools: Tool[] = [
 				heading: 'One formula, four unknowns',
 				body: [
 					'Molar concentration is defined as the amount of substance per volume of solution, c = n/V (IUPAC), and the amount in moles is mass divided by molar mass, n = m/M. Put together: **molarity = mass ÷ (molar mass × volume)**. Every question this calculator answers is that one relation solved for a different variable.',
-					'Units matter more than the algebra. Mass goes in grams, molar mass in g/mol, and volume in liters of final solution. The most common slip in a lab notebook is using 250 instead of 0.250 for a 250 mL flask — a factor-of-1000 error that survives dimensional analysis only because nobody wrote the units down.',
+					'Units matter more than the algebra. Mass goes in grams, molar mass in g/mol, and volume in liters of final solution. The most common slip in a lab notebook is using 250 instead of 0.250 for a 250 mL flask, a factor-of-1000 error that survives dimensional analysis only because nobody wrote the units down.',
 				],
 			},
 			{
 				heading: 'Worked example: 500 mL of 0.5 M NaCl',
 				body: [
 					'How much salt do you weigh out? Mass = molarity × molar mass × volume = 0.5 mol/L × 58.44 g/mol × 0.5 L = **14.61 g**. Dissolve it in less water than the target, then top up to the 500 mL line in a volumetric flask.',
-					'The order matters: dissolving 14.61 g of NaCl in 500 mL of water gives slightly more than 500 mL of solution, and therefore slightly less than 0.5 M. Molarity is per liter of solution, not per liter of solvent added — that distinction is the whole reason volumetric flasks exist.',
+					'The order matters: dissolving 14.61 g of NaCl in 500 mL of water gives slightly more than 500 mL of solution, and therefore slightly less than 0.5 M. Molarity is per liter of solution, not per liter of solvent added; that distinction is the whole reason volumetric flasks exist.',
 				],
 			},
 			{
 				heading: 'Molarity, molality, percent: not interchangeable',
 				body: [
-					'Molarity (mol per liter of solution) is convenient because volumes are easy to measure with glassware, but it shifts slightly with temperature as the solution expands or contracts. Molality — moles per kilogram of *solvent*, written m — ignores volume entirely and stays constant with temperature, which is why colligative-property calculations (freezing point depression, boiling point elevation) use it.',
+					'Molarity (mol per liter of solution) is convenient because volumes are easy to measure with glassware, but it shifts slightly with temperature as the solution expands or contracts. Molality, moles per kilogram of *solvent* written m, ignores volume entirely and stays constant with temperature, which is why colligative-property calculations (freezing point depression, boiling point elevation) use it.',
 					'Mass percent (g of solute per 100 g of solution) is how concentrated stock chemicals are usually labeled. Converting a bottle labeled "37% HCl" to molarity requires its density; the conversion is routine but not automatic, and it is a separate calculation from the one on this page.',
 				],
 			},
@@ -506,7 +506,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between molarity and moles?',
 				answer:
-					'Moles measure an amount of substance; molarity measures how concentrated it is — moles per liter of solution. Half a mole in half a liter and one mole in one liter are different amounts at the same 1 M concentration.',
+					'Moles measure an amount of substance; molarity measures how concentrated it is: moles per liter of solution. Half a mole in half a liter and one mole in one liter are different amounts at the same 1 M concentration.',
 			},
 			{
 				question: 'Is molarity affected by temperature?',
@@ -516,7 +516,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Why use a volumetric flask instead of a beaker?',
 				answer:
-					'Because molarity is defined per liter of final solution. A volumetric flask lets you dissolve the solute first and then fill to a calibrated line, so the final volume — not the added water — is exactly right. Beaker graduations are far less accurate.',
+					'Because molarity is defined per liter of final solution. A volumetric flask lets you dissolve the solute first and then fill to a calibrated line, so the final volume, not the added water, is exactly right. Beaker graduations are far less accurate.',
 			},
 			{
 				question: 'What does a 1 M solution mean in practice?',
@@ -526,11 +526,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'IUPAC Gold Book — amount concentration',
+				label: 'IUPAC Gold Book: amount concentration',
 				url: 'https://goldbook.iupac.org/terms/view/A00295',
 			},
 			{
-				label: 'PubChem (NIH) — compound molar masses',
+				label: 'PubChem (NIH): compound molar masses',
 				url: 'https://pubchem.ncbi.nlm.nih.gov/',
 			},
 		],

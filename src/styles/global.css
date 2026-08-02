@@ -1,14 +1,42 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/rubik';
 
+/*
+ * "The calculator is a device" redesign (2026-08-02, ui-ux-pro-max +
+ * emil-design-eng).
+ *
+ * The page stays a light, readable document; every calculator renders as a
+ * dark instrument sitting on it: cool charcoal chassis (cold black plastic, the way real calculators are built; MythCairn's dark blocks are warm basalt by contrast), recessed inputs,
+ * results on a display strip in tabular mono digits, and operation orange
+ * reserved for interactive/operational elements only (the classic
+ * dark-body/orange-operator-key calculator language; it is also badger
+ * coloring: dark device, light page).
+ *
+ * Motion rules (emil-design-eng): results update instantly with no animation
+ * (high-frequency), pressables get scale(0.97) at 160ms ease-out, hover
+ * effects gated behind (hover:hover), transitions name exact properties.
+ */
 :root {
-	--paper: #fbfaf7;
+	--paper: #fafafa;
 	--card: #ffffff;
-	--ink: #23271f;
-	--rule: #e4e1d8;
-	--flag: #d9821f;
-	--flag-dark: #a85f10;
-	--good: #2e7d32;
-	--warn: #c62828;
+	--ink: #1f2126;
+	--rule: #e4e4e7;
+	/* Operation orange: interactive + primary-result only, never decoration. */
+	--op: #ea580c;
+	--op-dark: #c2410c;
+	/* Legacy aliases so existing accent references pick up the new orange. */
+	--flag: #ea580c;
+	--flag-dark: #c2410c;
+	--chassis: #18181b;
+	--chassis-raised: #26262b;
+	--chassis-rule: #3c3c44;
+	--chassis-text: #e4e4e7;
+	--chassis-muted: #a1a1aa;
+	--good: #4ade80;
+	--good-ink: #2e7d32;
+	--warn: #f87171;
+	--warn-ink: #c62828;
+	--ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 html {
@@ -26,23 +54,29 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
-.font-display {
-	font-family:
-		ui-rounded,
-		'SF Pro Rounded',
-		ui-sans-serif,
-		system-ui,
-		sans-serif;
+.font-display,
+h1,
+h2,
+h3 {
+	font-family: 'Rubik Variable', ui-sans-serif, system-ui, sans-serif;
 	letter-spacing: -0.015em;
 }
 
-/* Shared calculator widget styles (used by the Preact islands). */
+.font-digits {
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---------- The instrument: shared calculator widget styles ---------- */
 .calc {
-	background: var(--card);
-	border: 1px solid var(--rule);
-	border-radius: 12px;
+	background: var(--chassis);
+	border: 1px solid var(--chassis-rule);
+	border-radius: 14px;
 	padding: 1.25rem;
-	box-shadow: 0 1px 2px rgb(35 39 31 / 0.04);
+	color: var(--chassis-text);
+	box-shadow:
+		inset 0 1px 0 rgb(255 255 255 / 0.04),
+		0 10px 30px -12px rgb(24 24 27 / 0.45);
 }
 .calc-grid {
 	display: grid;
@@ -52,76 +86,161 @@ html {
 .calc-field {
 	display: flex;
 	flex-direction: column;
-	gap: 0.3rem;
+	gap: 0.35rem;
 }
 .calc-label {
-	font-size: 0.78rem;
+	font-size: 0.72rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	color: rgb(35 39 31 / 0.6);
+	letter-spacing: 0.07em;
+	color: var(--chassis-muted);
 }
 .calc-input,
 .calc-select {
 	width: 100%;
-	border: 1px solid var(--rule);
-	border-radius: 8px;
-	background: #fff;
+	border: 1px solid var(--chassis-rule);
+	border-radius: 9px;
+	background: var(--chassis-raised);
 	padding: 0.55rem 0.65rem;
 	font-size: 1rem;
-	color: var(--ink);
+	color: var(--chassis-text);
 	min-height: 44px; /* touch target */
+	transition:
+		border-color 150ms ease,
+		background-color 150ms ease;
+}
+.calc-input {
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	font-variant-numeric: tabular-nums;
+}
+.calc-select {
+	accent-color: var(--op);
+}
+.calc-select option {
+	background: var(--chassis-raised);
+	color: var(--chassis-text);
 }
 .calc-input:focus,
 .calc-select:focus {
-	outline: 2px solid var(--flag);
+	outline: 2px solid var(--op);
 	outline-offset: 1px;
-	border-color: var(--flag);
+	border-color: var(--op);
 }
+.calc-input::placeholder {
+	color: var(--chassis-muted);
+	opacity: 0.7;
+}
+
+/* The display strip: results read like a calculator readout. */
 .calc-results {
 	margin-top: 1.1rem;
-	border-top: 2px solid var(--flag);
-	padding-top: 0.9rem;
+	border-top: 1px solid var(--chassis-rule);
+	padding-top: 1rem;
 	display: grid;
-	gap: 0.65rem;
+	gap: 0.7rem;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 .calc-result-label {
-	font-size: 0.75rem;
+	font-size: 0.68rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	color: rgb(35 39 31 / 0.55);
+	letter-spacing: 0.07em;
+	color: var(--chassis-muted);
 	margin: 0;
 }
 .calc-result-value {
-	font-size: 1.35rem;
-	font-weight: 700;
-	margin: 0.1rem 0 0;
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 	font-variant-numeric: tabular-nums;
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin: 0.15rem 0 0;
+	color: var(--chassis-text);
 }
 .calc-result-value.primary {
-	color: var(--flag-dark);
-	font-size: 1.7rem;
+	color: var(--op);
+	font-size: 1.65rem;
+	font-weight: 700;
 }
 .calc-note {
-	margin-top: 0.85rem;
-	font-size: 0.8rem;
-	color: rgb(35 39 31 / 0.55);
-	line-height: 1.5;
+	margin-top: 0.9rem;
+	font-size: 0.78rem;
+	color: var(--chassis-muted);
+	line-height: 1.55;
+}
+.calc-note sup {
+	font-size: 0.6em;
 }
 .calc-badge {
 	display: inline-block;
 	border-radius: 999px;
-	padding: 0.15rem 0.6rem;
+	padding: 0.18rem 0.65rem;
 	font-size: 0.75rem;
 	font-weight: 600;
 }
 .calc-badge.ok {
-	background: rgb(46 125 50 / 0.12);
+	background: rgb(74 222 128 / 0.14);
 	color: var(--good);
 }
 .calc-badge.bad {
-	background: rgb(198 40 40 / 0.12);
+	background: rgb(248 113 113 / 0.14);
 	color: var(--warn);
+}
+
+/* ---------- Key caps: pressable cards and buttons on the light page ---------- */
+.keycap {
+	background: var(--card);
+	border: 1px solid var(--rule);
+	border-bottom-width: 3px;
+	border-radius: 10px;
+	transition:
+		transform 160ms var(--ease-out-strong),
+		border-color 160ms ease,
+		border-bottom-width 160ms ease;
+}
+.keycap:active {
+	transform: translateY(1px) scale(0.99);
+	border-bottom-width: 1px;
+}
+@media (hover: hover) and (pointer: fine) {
+	.keycap:hover {
+		border-color: var(--op);
+	}
+}
+
+.op-button {
+	cursor: pointer;
+	background: var(--op);
+	color: #fff;
+	border: none;
+	border-radius: 9px;
+	padding: 0.55rem 1.1rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	min-height: 44px;
+	transition:
+		transform 160ms var(--ease-out-strong),
+		background-color 160ms ease;
+}
+.op-button:active {
+	transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+	.op-button:hover {
+		background: var(--op-dark);
+	}
+}
+.op-button:focus-visible {
+	outline: 2px solid var(--op-dark);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.keycap,
+	.op-button {
+		transition: none;
+	}
+	.keycap:active,
+	.op-button:active {
+		transform: none;
+	}
 }

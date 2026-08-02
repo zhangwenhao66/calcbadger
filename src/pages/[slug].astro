@@ -171,11 +171,7 @@ function md(text: string): string {
 				class="w-full rounded-lg border border-[var(--rule)] bg-[var(--paper)] p-3 font-mono text-xs leading-relaxed text-[var(--ink)]/80"
 				>{embedSnippet}</textarea
 			>
-			<button
-				id="copy-embed"
-				class="mt-2 cursor-pointer rounded-lg bg-[var(--flag)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--flag-dark)]"
-				>Copy embed code</button
-			>
+			<button id="copy-embed" class="op-button mt-2">Copy embed code</button>
 		</div>
 
 		{
@@ -212,7 +208,7 @@ function md(text: string): string {
 						{relatedFinal.map((t) => (
 							<a
 								href={`/${t.slug}/`}
-								class="rounded-lg border border-[var(--rule)] bg-white px-4 py-3 no-underline hover:border-[var(--flag)]"
+								class="keycap block px-4 py-3 no-underline"
 							>
 								<p class="m-0 text-[0.92rem] font-semibold text-[var(--ink)]">{t.shortTitle}</p>
 								<p class="mt-1 mb-0 text-xs text-[var(--ink)]/50">{t.category}</p>

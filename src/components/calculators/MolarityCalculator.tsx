@@ -11,12 +11,12 @@ type SolveFor = 'molarity' | 'mass' | 'volume' | 'molarMass';
 
 /** Molar masses from PubChem compound records. */
 const COMPOUNDS: { label: string; mw: number }[] = [
-	{ label: 'NaCl — 58.44 g/mol', mw: 58.44 },
-	{ label: 'NaOH — 40.00 g/mol', mw: 40.0 },
-	{ label: 'KCl — 74.55 g/mol', mw: 74.55 },
-	{ label: 'Glucose (C₆H₁₂O₆) — 180.16 g/mol', mw: 180.16 },
-	{ label: 'NaHCO₃ — 84.01 g/mol', mw: 84.01 },
-	{ label: 'CaCO₃ — 100.09 g/mol', mw: 100.09 },
+	{ label: 'NaCl · 58.44 g/mol', mw: 58.44 },
+	{ label: 'NaOH · 40.00 g/mol', mw: 40.0 },
+	{ label: 'KCl · 74.55 g/mol', mw: 74.55 },
+	{ label: 'Glucose (C₆H₁₂O₆) · 180.16 g/mol', mw: 180.16 },
+	{ label: 'NaHCO₃ · 84.01 g/mol', mw: 84.01 },
+	{ label: 'CaCO₃ · 100.09 g/mol', mw: 100.09 },
 ];
 
 const MASS_UNITS = { g: 1, mg: 0.001, kg: 1000 } as const;
