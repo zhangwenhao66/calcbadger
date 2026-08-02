@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { tools } from '../data/tools';
+---
+
+<Layout
+	title="Page Not Found"
+	description="This page doesn't exist on CalcBadger. Head back to the homepage to find the calculator you were after."
+>
+	<meta slot="head" name="robots" content="noindex, follow" />
+
+	<div class="mx-auto max-w-[720px]">
+		<p class="mb-3 text-[0.7rem] font-semibold tracking-[0.25em] text-[var(--flag)] uppercase">404</p>
+		<h1 class="font-display text-3xl font-bold text-[var(--ink)] md:text-4xl">Page not found</h1>
+
+		<div class="mt-7 max-w-[640px] text-[0.9375rem] leading-[1.85] text-[var(--ink)]/70">
+			<p class="mb-4">
+				There's no calculator at this address. The link may be mistyped, or it may point to a tool
+				that hasn't been built yet.
+			</p>
+			<p class="m-0">
+				Try the <a class="text-[var(--flag-dark)] underline underline-offset-2" href="/">homepage</a>,
+				or jump straight to one of these:
+			</p>
+			<ul class="mt-3 mb-0 list-disc pl-5">
+				{
+					tools.slice(0, 5).map((t) => (
+						<li class="py-0.5">
+							<a class="text-[var(--flag-dark)] underline underline-offset-2" href={`/${t.slug}/`}>
+								{t.title}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,252 @@
+---
+import CalculatorIsland from '../components/CalculatorIsland.astro';
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbList from '../../vendor/site-toolkit/packages/schema/src/BreadcrumbList.astro';
+import FAQPage from '../../vendor/site-toolkit/packages/schema/src/FAQPage.astro';
+import { jsonLdStringify } from '../../vendor/site-toolkit/packages/schema/src/jsonLdStringify';
+import { pickRelatedGuides } from '../../vendor/site-toolkit/packages/related-guides/src/index.ts';
+import { categorySlug, tools, type Tool } from '../data/tools';
+import { AUTHOR_NAME, SITE_ORIGIN, SITE_TITLE } from '../consts';
+
+export function getStaticPaths() {
+	return tools.map((tool) => ({
+		params: { slug: tool.slug },
+		props: { tool },
+	}));
+}
+
+interface Props {
+	tool: Tool;
+}
+
+const { tool } = Astro.props;
+// Rotating-window selection from site-toolkit — never a fixed .slice(0, N)
+// (that bug starved most of a category of any inbound link; see CLAUDE.md).
+const related = pickRelatedGuides(tools, tool, 6);
+// With only a handful of tools per category early on, pad the sidebar with
+// tools from other categories so every page cross-links the whole young site.
+const crossCategory = tools.filter((t) => t.slug !== tool.slug && !related.includes(t));
+const relatedFinal = [...related, ...crossCategory].slice(0, 6);
+
+const catPath = `/category/${categorySlug(tool.category)}/`;
+const pageUrl = `${SITE_ORIGIN}/${tool.slug}/`;
+const embedUrl = `${SITE_ORIGIN}/embed/${tool.slug}/`;
+
+const breadcrumbItems = [
+	{ name: 'Home', item: `${SITE_ORIGIN}/` },
+	{ name: tool.category, item: `${SITE_ORIGIN}${catPath}` },
+	{ name: tool.title, item: pageUrl },
+];
+
+// Schema: the page is a WebApplication (a working tool), not an Article.
+const webAppSchema = jsonLdStringify({
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: tool.title,
+	url: pageUrl,
+	description: tool.description,
+	applicationCategory: 'UtilitiesApplication',
+	operatingSystem: 'Any',
+	browserRequirements: 'Requires JavaScript',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	publisher: { '@type': 'Organization', name: SITE_TITLE, url: `${SITE_ORIGIN}/` },
+	dateModified: tool.updated,
+});
+
+const embedSnippet = `<iframe src="${embedUrl}" width="100%" height="${tool.embedHeight}" style="border:1px solid #ddd;border-radius:8px" title="${tool.title}" loading="lazy"></iframe>
+<p><a href="${pageUrl}">${tool.title}</a> by CalcBadger</p>`;
+
+function md(text: string): string {
+	return text
+		.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+		.replace(/\*(.*?)\*/g, '<em>$1</em>')
+		.replace(/\[([^\]]+)\]\(((?:[^()]|\([^()]*\))*)\)/g, '<a href="$2">$1</a>');
+}
+---
+
+<Layout title={tool.title} description={tool.description}>
+	<script type="application/ld+json" set:html={webAppSchema} slot="head" is:inline />
+	{tool.faq.length > 0 && <FAQPage items={tool.faq} slot="head" />}
+	<BreadcrumbList slot="head" items={breadcrumbItems} />
+
+	<div class="mx-auto max-w-[760px]">
+		<nav class="mb-4 flex flex-wrap items-center gap-1.5 text-sm text-[var(--ink)]/40">
+			<a href="/" class="no-underline hover:text-[var(--ink)] hover:underline">Home</a>
+			<span>/</span>
+			<a href={catPath} class="no-underline hover:text-[var(--ink)] hover:underline">{tool.category}</a>
+		</nav>
+
+		<h1 class="font-display text-3xl font-bold leading-tight text-[var(--ink)] md:text-4xl">
+			{tool.title}
+		</h1>
+		<p class="mt-2 mb-5 text-[1.02rem] leading-relaxed text-[var(--ink)]/60">{tool.description}</p>
+
+		<CalculatorIsland slug={tool.slug} />
+
+		<div class="mt-8 border-l-4 border-[var(--flag)] bg-white p-4">
+			<p class="m-0 text-[0.7rem] font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
+				In short
+			</p>
+			<p class="mt-2 mb-0 text-[1rem] leading-relaxed text-[var(--ink)]">{tool.coreSummary}</p>
+		</div>
+
+		<article class="mt-9">
+			{
+				tool.sections.map((section) => (
+					<section class="mb-8 border-b border-[var(--rule)] pb-8 last:mb-0 last:border-b-0 last:pb-0">
+						<h2 class="font-display mb-3 text-xl font-bold text-[var(--ink)]">{section.heading}</h2>
+						{section.body.map((paragraph) => (
+							<p
+								class="mb-3.5 text-[0.95rem] leading-[1.8] text-[var(--ink)]/75 last:mb-0"
+								set:html={md(paragraph)}
+							/>
+						))}
+					</section>
+				))
+			}
+		</article>
+
+		{
+			tool.referenceTables?.map((table) => (
+				<div class="mt-8">
+					<h2 class="font-display mb-3 text-xl font-bold text-[var(--ink)]">{table.title}</h2>
+					<div class="overflow-x-auto">
+						<table class="w-full border-collapse bg-white text-[0.9rem]">
+							<thead>
+								<tr>
+									{table.headers.map((h) => (
+										<th class="border border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-left font-semibold">
+											{h}
+										</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								{table.rows.map((row) => (
+									<tr>
+										{row.map((cell) => (
+											<td class="border border-[var(--rule)] px-3 py-2 tabular-nums">{cell}</td>
+										))}
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					{table.note && <p class="mt-2 text-xs text-[var(--ink)]/50">{table.note}</p>}
+				</div>
+			))
+		}
+
+		{
+			tool.faq.length > 0 && (
+				<div class="mt-9">
+					<h2 class="font-display mb-4 text-xl font-bold text-[var(--ink)]">
+						Frequently asked questions
+					</h2>
+					<div class="flex flex-col">
+						{tool.faq.map((item) => (
+							<div class="border-b border-[var(--rule)] py-4 first:pt-0 last:border-b-0">
+								<h3 class="m-0 text-[1rem] font-semibold text-[var(--ink)]">{item.question}</h3>
+								<p
+									class="mt-2 mb-0 text-sm leading-relaxed text-[var(--ink)]/70"
+									set:html={md(item.answer)}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			)
+		}
+
+		<div id="embed" class="mt-9 rounded-xl border border-[var(--rule)] bg-white p-5">
+			<h2 class="font-display m-0 text-lg font-bold text-[var(--ink)]">Embed this calculator</h2>
+			<p class="mt-2 mb-3 text-sm leading-relaxed text-[var(--ink)]/65">
+				Paste this snippet into any blog post or web page to get the working {tool.title.toLowerCase()}
+				— free to use, and the attribution link stays in place.
+			</p>
+			<textarea
+				id="embed-code"
+				readonly
+				rows="3"
+				class="w-full rounded-lg border border-[var(--rule)] bg-[var(--paper)] p-3 font-mono text-xs leading-relaxed text-[var(--ink)]/80"
+				>{embedSnippet}</textarea
+			>
+			<button
+				id="copy-embed"
+				class="mt-2 cursor-pointer rounded-lg bg-[var(--flag)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--flag-dark)]"
+				>Copy embed code</button
+			>
+		</div>
+
+		{
+			tool.sources.length > 0 && (
+				<div class="mt-9 border-t border-[var(--ink)] pt-4">
+					<p class="m-0 text-[0.7rem] font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
+						Sources &amp; standards
+					</p>
+					<ul class="mt-2 mb-0 list-none pl-0 text-sm text-[var(--ink)]/65">
+						{tool.sources.map((s) => (
+							<li class="py-1">
+								<a
+									href={s.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-[var(--ink)]/70 no-underline hover:text-[var(--ink)] hover:underline"
+								>
+									{s.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			)
+		}
+
+		{
+			relatedFinal.length > 0 && (
+				<div class="mt-10">
+					<h2 class="mb-3.5 text-xs font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
+						More calculators
+					</h2>
+					<div class="grid gap-3 sm:grid-cols-2">
+						{relatedFinal.map((t) => (
+							<a
+								href={`/${t.slug}/`}
+								class="rounded-lg border border-[var(--rule)] bg-white px-4 py-3 no-underline hover:border-[var(--flag)]"
+							>
+								<p class="m-0 text-[0.92rem] font-semibold text-[var(--ink)]">{t.shortTitle}</p>
+								<p class="mt-1 mb-0 text-xs text-[var(--ink)]/50">{t.category}</p>
+							</a>
+						))}
+					</div>
+				</div>
+			)
+		}
+
+		<div class="mt-10 border-t border-[var(--rule)] pt-5 text-sm text-[var(--ink)]/55">
+			<p class="m-0">
+				Built and maintained by <a
+					href="/about/"
+					class="text-[var(--ink)]/70 no-underline hover:text-[var(--ink)] hover:underline"
+					>{AUTHOR_NAME}</a
+				>. Formulas verified against the sources above; last reviewed {tool.updated}.
+			</p>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	const btn = document.getElementById('copy-embed');
+	const code = document.getElementById('embed-code') as HTMLTextAreaElement | null;
+	btn?.addEventListener('click', async () => {
+		if (!code) return;
+		try {
+			await navigator.clipboard.writeText(code.value);
+		} catch {
+			code.select();
+			document.execCommand('copy');
+		}
+		btn.textContent = 'Copied!';
+		setTimeout(() => (btn.textContent = 'Copy embed code'), 1500);
+	});
+</script>

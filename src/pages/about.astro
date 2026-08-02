@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { AUTHOR_NAME } from '../consts';
+---
+
+<Layout
+	title="About"
+	description="What CalcBadger is, how the calculators are verified, and how to get in touch."
+>
+	<div class="mx-auto max-w-[680px]">
+		<h1 class="font-display text-3xl font-bold text-[var(--ink)]">About CalcBadger</h1>
+
+		<div class="mt-6 text-[0.95rem] leading-[1.85] text-[var(--ink)]/75">
+			<p class="mb-4">
+				CalcBadger is a collection of free online calculators built around one rule: <strong
+					>show the work</strong
+				>. Every tool states the formula it uses, names the standard or source the formula comes
+				from, and walks through an example you can check by hand. If a calculation has competing
+				conventions — tax years, building codes, test curves — the page says which one it follows.
+			</p>
+			<p class="mb-4">
+				Each calculator's math lives in a small, isolated function with unit tests whose expected
+				values were worked out from authoritative sources (government tables, published standards,
+				textbook formulas) rather than from the code itself. When a tool depends on data that
+				changes annually, the page is dated and reviewed on that cycle.
+			</p>
+			<p class="mb-4">
+				Everything runs in your browser. There are no accounts, and nothing you type into a
+				calculator is transmitted or stored — the numbers never leave the page.
+			</p>
+			<p class="mb-4">
+				The site is built and maintained by {AUTHOR_NAME}. For corrections, suggestions, or
+				anything else: <a
+					href="mailto:contact@calcbadger.com"
+					class="text-[var(--flag-dark)] underline underline-offset-2">contact@calcbadger.com</a
+				>. Found a number that looks wrong? Please say so — accuracy reports get fixed first.
+			</p>
+		</div>
+	</div>
+</Layout>

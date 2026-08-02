@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BreadcrumbList from '../../../vendor/site-toolkit/packages/schema/src/BreadcrumbList.astro';
+import { categorySlug, tools } from '../../data/tools';
+import { SITE_ORIGIN } from '../../consts';
+
+export function getStaticPaths() {
+	const categories = [...new Set(tools.map((t) => t.category))];
+	return categories.map((category) => ({
+		params: { category: categorySlug(category) },
+		props: { category },
+	}));
+}
+
+interface Props {
+	category: string;
+}
+
+const { category } = Astro.props;
+const categoryTools = tools.filter((t) => t.category === category);
+
+const breadcrumbItems = [
+	{ name: 'Home', item: `${SITE_ORIGIN}/` },
+	{ name: category, item: `${SITE_ORIGIN}/category/${categorySlug(category)}/` },
+];
+---
+
+<Layout
+	title={`${category} Calculators`}
+	description={`Free ${category.toLowerCase()} calculators with explained formulas and cited sources: ${categoryTools.map((t) => t.shortTitle).join(', ')}.`}
+>
+	<BreadcrumbList slot="head" items={breadcrumbItems} />
+
+	<div class="mx-auto max-w-[760px]">
+		<nav class="mb-4 flex items-center gap-1.5 text-sm text-[var(--ink)]/40">
+			<a href="/" class="no-underline hover:text-[var(--ink)] hover:underline">Home</a>
+			<span>/</span>
+			<span>{category}</span>
+		</nav>
+
+		<h1 class="font-display text-3xl font-bold text-[var(--ink)]">{category} calculators</h1>
+
+		<div class="mt-6 grid gap-3 sm:grid-cols-2">
+			{
+				categoryTools.map((t) => (
+					<a
+						href={`/${t.slug}/`}
+						class="rounded-xl border border-[var(--rule)] bg-white p-4 no-underline hover:border-[var(--flag)]"
+					>
+						<p class="m-0 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
+						<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/55">{t.description}</p>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</Layout>

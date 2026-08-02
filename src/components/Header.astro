@@ -1,0 +1,69 @@
+---
+import { SITE_TITLE } from '../consts';
+import { categorySlug, tools } from '../data/tools';
+import BadgerLogo from './BadgerLogo.astro';
+
+const categories = [...new Set(tools.map((t) => t.category))];
+---
+
+<header class="border-b border-[var(--rule)] bg-white">
+	<nav class="mx-auto flex h-15 max-w-5xl items-center justify-between gap-2 px-4">
+		<a href="/" class="flex shrink-0 items-center gap-2 no-underline" aria-label={`${SITE_TITLE} home`}>
+			<BadgerLogo />
+			<span class="font-display text-[1.25rem] font-bold tracking-tight text-[var(--ink)]"
+				>Calc<span class="text-[var(--flag-dark)]">Badger</span></span
+			>
+		</a>
+
+		<div class="hidden items-center gap-6 md:flex">
+			{
+				categories.map((cat) => (
+					<a
+						href={`/category/${categorySlug(cat)}/`}
+						class="text-[0.88rem] font-medium text-[var(--ink)]/70 no-underline hover:text-[var(--flag-dark)] hover:underline"
+					>
+						{cat}
+					</a>
+				))
+			}
+			<a href="/about/" class="text-[0.88rem] font-medium text-[var(--ink)]/70 no-underline hover:text-[var(--flag-dark)] hover:underline">About</a>
+		</div>
+
+		<button
+			id="menu-toggle"
+			class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+			aria-label="Open menu"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+		>
+			<span class="h-px w-5 bg-[var(--ink)]"></span>
+			<span class="h-px w-5 bg-[var(--ink)]"></span>
+			<span class="h-px w-5 bg-[var(--ink)]"></span>
+		</button>
+	</nav>
+
+	<div id="mobile-menu" class="hidden border-t border-[var(--rule)] bg-white md:hidden">
+		<nav class="flex flex-col px-4 py-2">
+			{
+				categories.map((cat) => (
+					<a
+						href={`/category/${categorySlug(cat)}/`}
+						class="border-b border-[var(--rule)] py-3 text-sm text-[var(--ink)]/80 no-underline"
+					>
+						{cat}
+					</a>
+				))
+			}
+			<a href="/about/" class="py-3 text-sm text-[var(--ink)]/80 no-underline">About</a>
+		</nav>
+	</div>
+</header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle')!;
+	const menu = document.getElementById('mobile-menu')!;
+	toggle.addEventListener('click', () => {
+		const open = menu.classList.toggle('hidden');
+		toggle.setAttribute('aria-expanded', String(!open));
+	});
+</script>

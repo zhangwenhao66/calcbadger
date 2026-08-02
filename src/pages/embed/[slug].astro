@@ -1,0 +1,47 @@
+---
+/**
+ * Embed skin: the identical calculator island with no site chrome and no ads,
+ * meant to be iframed by third-party pages. Canonical points at the full tool
+ * page so the embed never competes with it in search; the page itself stays
+ * crawlable because the "Powered by" attribution link is this site's
+ * structural backlink channel.
+ */
+import '../../styles/global.css';
+import CalculatorIsland from '../../components/CalculatorIsland.astro';
+import { tools, type Tool } from '../../data/tools';
+import { SITE_ORIGIN } from '../../consts';
+
+export function getStaticPaths() {
+	return tools.map((tool) => ({
+		params: { slug: tool.slug },
+		props: { tool },
+	}));
+}
+
+interface Props {
+	tool: Tool;
+}
+
+const { tool } = Astro.props;
+const pageUrl = `${SITE_ORIGIN}/${tool.slug}/`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="canonical" href={pageUrl} />
+		<title>{tool.title} — CalcBadger</title>
+		<meta name="description" content={tool.description} />
+	</head>
+	<body style="background:transparent;margin:0;padding:0.5rem">
+		<CalculatorIsland slug={tool.slug} />
+		<p style="margin:0.6rem 0 0;font-size:0.78rem;color:rgb(35 39 31 / 0.55);text-align:right">
+			Powered by
+			<a href={pageUrl} target="_blank" style="color:var(--flag-dark);font-weight:600"
+				>CalcBadger {tool.title}</a
+			>
+		</p>
+	</body>
+</html>

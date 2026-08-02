@@ -1,0 +1,24 @@
+---
+/**
+ * Maps a tool slug to its Preact island. Used by both the full tool page and
+ * the /embed/ skin so the two always render the identical component.
+ * client:load — the calculator IS the page's primary content.
+ */
+import CdCalculator from './calculators/CdCalculator';
+import MolarityCalculator from './calculators/MolarityCalculator';
+import SatScoreCalculator from './calculators/SatScoreCalculator';
+import SquareFootageCalculator from './calculators/SquareFootageCalculator';
+import StairCalculator from './calculators/StairCalculator';
+
+interface Props {
+	slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+{slug === 'cd-calculator' && <CdCalculator client:load />}
+{slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
+{slug === 'stair-calculator' && <StairCalculator client:load />}
+{slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}
+{slug === 'molarity-calculator' && <MolarityCalculator client:load />}

@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+:root {
+	--paper: #fbfaf7;
+	--card: #ffffff;
+	--ink: #23271f;
+	--rule: #e4e1d8;
+	--flag: #d9821f;
+	--flag-dark: #a85f10;
+	--good: #2e7d32;
+	--warn: #c62828;
+}
+
+html {
+	background: var(--paper);
+	color: var(--ink);
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif;
+	-webkit-text-size-adjust: 100%;
+}
+
+.font-display {
+	font-family:
+		ui-rounded,
+		'SF Pro Rounded',
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
+	letter-spacing: -0.015em;
+}
+
+/* Shared calculator widget styles (used by the Preact islands). */
+.calc {
+	background: var(--card);
+	border: 1px solid var(--rule);
+	border-radius: 12px;
+	padding: 1.25rem;
+	box-shadow: 0 1px 2px rgb(35 39 31 / 0.04);
+}
+.calc-grid {
+	display: grid;
+	gap: 0.9rem;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.calc-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+.calc-label {
+	font-size: 0.78rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: rgb(35 39 31 / 0.6);
+}
+.calc-input,
+.calc-select {
+	width: 100%;
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	background: #fff;
+	padding: 0.55rem 0.65rem;
+	font-size: 1rem;
+	color: var(--ink);
+	min-height: 44px; /* touch target */
+}
+.calc-input:focus,
+.calc-select:focus {
+	outline: 2px solid var(--flag);
+	outline-offset: 1px;
+	border-color: var(--flag);
+}
+.calc-results {
+	margin-top: 1.1rem;
+	border-top: 2px solid var(--flag);
+	padding-top: 0.9rem;
+	display: grid;
+	gap: 0.65rem;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.calc-result-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: rgb(35 39 31 / 0.55);
+	margin: 0;
+}
+.calc-result-value {
+	font-size: 1.35rem;
+	font-weight: 700;
+	margin: 0.1rem 0 0;
+	font-variant-numeric: tabular-nums;
+}
+.calc-result-value.primary {
+	color: var(--flag-dark);
+	font-size: 1.7rem;
+}
+.calc-note {
+	margin-top: 0.85rem;
+	font-size: 0.8rem;
+	color: rgb(35 39 31 / 0.55);
+	line-height: 1.5;
+}
+.calc-badge {
+	display: inline-block;
+	border-radius: 999px;
+	padding: 0.15rem 0.6rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+.calc-badge.ok {
+	background: rgb(46 125 50 / 0.12);
+	color: var(--good);
+}
+.calc-badge.bad {
+	background: rgb(198 40 40 / 0.12);
+	color: var(--warn);
+}

@@ -1,0 +1,20 @@
+---
+import { SITE_TITLE } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--rule)] bg-white">
+	<div
+		class="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-7 text-sm text-[var(--ink)]/55 md:flex-row md:items-center md:justify-between"
+	>
+		<p class="m-0">
+			&copy; {year}
+			{SITE_TITLE} — every calculation runs in your browser.
+		</p>
+		<nav class="flex flex-wrap gap-5">
+			<a href="/about/" class="text-[var(--ink)]/55 no-underline hover:text-[var(--flag-dark)] hover:underline">About</a>
+			<a href="/privacy/" class="text-[var(--ink)]/55 no-underline hover:text-[var(--flag-dark)] hover:underline">Privacy</a>
+			<a href="/terms/" class="text-[var(--ink)]/55 no-underline hover:text-[var(--flag-dark)] hover:underline">Terms</a>
+		</nav>
+	</div>
+</footer>
