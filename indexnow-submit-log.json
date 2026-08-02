@@ -28,5 +28,10 @@
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
     "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+  },
+  "https://calcbadger.com/bmi-calculator/": {
+    "submitted_date": "2026-08-02",
+    "verified_status": "pending",
+    "note": "daily tool #6 (2026-08-02); Bing 200 / Yandex 202"
   }
 }
