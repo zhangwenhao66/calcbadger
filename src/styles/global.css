@@ -95,41 +95,10 @@ h3 {
 	letter-spacing: 0.07em;
 	color: var(--chassis-muted);
 }
-.calc-input,
-.calc-select {
-	width: 100%;
-	border: 1px solid var(--chassis-rule);
-	border-radius: 9px;
-	background: var(--chassis-raised);
-	padding: 0.55rem 0.65rem;
-	font-size: 1rem;
-	color: var(--chassis-text);
-	min-height: 44px; /* touch target */
-	transition:
-		border-color 150ms ease,
-		background-color 150ms ease;
-}
-.calc-input {
-	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
-	font-variant-numeric: tabular-nums;
-}
-.calc-select {
-	accent-color: var(--op);
-}
-.calc-select option {
-	background: var(--chassis-raised);
-	color: var(--chassis-text);
-}
-.calc-input:focus,
-.calc-select:focus {
-	outline: 2px solid var(--op);
-	outline-offset: 1px;
-	border-color: var(--op);
-}
-.calc-input::placeholder {
-	color: var(--chassis-muted);
-	opacity: 0.7;
-}
+/* .calc-input / .calc-select were removed on 2026-08-03: nothing uses them
+   any more, and leaving them styled would let a future tool quietly fall back
+   to native controls. Number entry, key rows and menus come from
+   src/components/ui. */
 
 /* ---------- Instrument controls (src/components/ui) ----------
    Native form controls are the one thing a page cannot restyle: a <select>
