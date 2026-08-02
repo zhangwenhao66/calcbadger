@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
 import { IRC_MAX_RISER_IN, IRC_MIN_TREAD_IN, stairLayout, toNearestFraction } from '../../lib/stairs';
+import NumberField from '../ui/NumberField';
 
 function fraction(inches: number): string {
 	const f = toNearestFraction(inches);
@@ -22,54 +23,17 @@ export default function StairCalculator() {
 	return (
 		<div class="calc">
 			<div class="calc-grid">
-				<label class="calc-field">
-					<span class="calc-label">Total rise (feet)</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="decimal"
-						min="0"
-						step="1"
-						value={riseFt}
-						onInput={(e) => setRiseFt((e.target as HTMLInputElement).value)}
-					/>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">+ inches</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="decimal"
-						min="0"
-						step="0.25"
-						value={riseIn}
-						onInput={(e) => setRiseIn((e.target as HTMLInputElement).value)}
-					/>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">Tread depth (in)</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="decimal"
-						min="0"
-						step="0.25"
-						value={tread}
-						onInput={(e) => setTread((e.target as HTMLInputElement).value)}
-					/>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">Max riser height (in)</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="decimal"
-						min="0"
-						step="0.25"
-						value={maxRiser}
-						onInput={(e) => setMaxRiser((e.target as HTMLInputElement).value)}
-					/>
-				</label>
+				<NumberField label="Total rise" unit="ft" value={riseFt} onChange={setRiseFt} min={0} step={1} />
+				<NumberField label="plus" unit="in" value={riseIn} onChange={setRiseIn} min={0} step={0.25} />
+				<NumberField label="Tread depth" unit="in" value={tread} onChange={setTread} min={0} step={0.25} />
+				<NumberField
+					label="Max riser height"
+					unit="in"
+					value={maxRiser}
+					onChange={setMaxRiser}
+					min={0}
+					step={0.25}
+				/>
 			</div>
 
 			{s ? (

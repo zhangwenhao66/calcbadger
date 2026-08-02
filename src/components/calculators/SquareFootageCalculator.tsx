@@ -9,15 +9,25 @@ import {
 	triangleAreaSqFt,
 	type LengthUnit,
 } from '../../lib/squareFootage';
+import NumberField from '../ui/NumberField';
+import Segmented from '../ui/Segmented';
+import Select from '../ui/Select';
 
 type Shape = 'rectangle' | 'lshape' | 'circle' | 'triangle';
 
-const UNITS: { label: string; value: LengthUnit }[] = [
-	{ label: 'feet', value: 'ft' },
-	{ label: 'inches', value: 'in' },
-	{ label: 'yards', value: 'yd' },
-	{ label: 'meters', value: 'm' },
-	{ label: 'centimeters', value: 'cm' },
+const SHAPES = [
+	{ value: 'rectangle' as Shape, label: 'Rectangle' },
+	{ value: 'lshape' as Shape, label: 'L-shape' },
+	{ value: 'circle' as Shape, label: 'Circle' },
+	{ value: 'triangle' as Shape, label: 'Triangle' },
+];
+
+const UNITS = [
+	{ value: 'ft' as LengthUnit, label: 'ft', title: 'feet' },
+	{ value: 'in' as LengthUnit, label: 'in', title: 'inches' },
+	{ value: 'yd' as LengthUnit, label: 'yd', title: 'yards' },
+	{ value: 'm' as LengthUnit, label: 'm', title: 'meters' },
+	{ value: 'cm' as LengthUnit, label: 'cm', title: 'centimeters' },
 ];
 
 const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
@@ -44,82 +54,47 @@ export default function SquareFootageCalculator() {
 	if (shape === 'rectangle' && n1 > 0 && n2 > 0) sqFt = rectangleAreaSqFt(n1, n2);
 	if (shape === 'circle' && n1 > 0) sqFt = circleAreaSqFt(n1);
 	if (shape === 'triangle' && n1 > 0 && n2 > 0) sqFt = triangleAreaSqFt(n1, n2);
-	if (shape === 'lshape' && n1 > 0 && n2 > 0 && n3 > 0 && n4 > 0)
-		sqFt = lShapeAreaSqFt(n1, n2, n3, n4);
+	if (shape === 'lshape' && n1 > 0 && n2 > 0 && n3 > 0 && n4 > 0) sqFt = lShapeAreaSqFt(n1, n2, n3, n4);
 
 	const conv = sqFt !== null ? convertArea(sqFt) : null;
 	const priceNum = parseFloat(price);
-	const cost = sqFt !== null && Number.isFinite(priceNum) && priceNum > 0 ? costEstimate(sqFt, priceNum) : null;
+	const cost =
+		sqFt !== null && Number.isFinite(priceNum) && priceNum > 0 ? costEstimate(sqFt, priceNum) : null;
 
-	const labels: Record<Shape, [string, string?, string?, string?]> = {
+	const dims: Record<Shape, string[]> = {
 		rectangle: ['Length', 'Width'],
 		circle: ['Diameter'],
 		triangle: ['Base', 'Height'],
 		lshape: ['Rectangle 1 length', 'Rectangle 1 width', 'Rectangle 2 length', 'Rectangle 2 width'],
 	};
-	const dims = labels[shape];
 	const values = [d1, d2, d3, d4];
 	const setters = [setD1, setD2, setD3, setD4];
 
 	return (
 		<div class="calc">
 			<div class="calc-grid">
-				<label class="calc-field">
-					<span class="calc-label">Shape</span>
-					<select
-						class="calc-select"
-						value={shape}
-						onChange={(e) => setShape((e.target as HTMLSelectElement).value as Shape)}
-					>
-						<option value="rectangle">Rectangle / square</option>
-						<option value="lshape">L-shape</option>
-						<option value="circle">Circle</option>
-						<option value="triangle">Triangle</option>
-					</select>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">Measured in</span>
-					<select
-						class="calc-select"
-						value={unit}
-						onChange={(e) => setUnit((e.target as HTMLSelectElement).value as LengthUnit)}
-					>
-						{UNITS.map((u) => (
-							<option value={u.value}>{u.label}</option>
-						))}
-					</select>
-				</label>
-				{dims.map((label, i) =>
-					label ? (
-						<label class="calc-field">
-							<span class="calc-label">
-								{label} ({unit})
-							</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="decimal"
-								min="0"
-								step="0.1"
-								value={values[i]}
-								onInput={(e) => setters[i]!((e.target as HTMLInputElement).value)}
-							/>
-						</label>
-					) : null,
-				)}
-				<label class="calc-field">
-					<span class="calc-label">Price per sq ft ($, optional)</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="decimal"
-						min="0"
-						step="0.25"
-						value={price}
-						placeholder="e.g. 3.50"
-						onInput={(e) => setPrice((e.target as HTMLInputElement).value)}
+				<Select label="Shape" value={shape} onChange={setShape} options={SHAPES} />
+				<Segmented label="Measured in" value={unit} onChange={setUnit} options={UNITS} wide />
+				{dims[shape].map((label, i) => (
+					<NumberField
+						key={`${shape}-${i}`}
+						label={label}
+						unit={unit}
+						value={values[i]!}
+						onChange={setters[i]!}
+						min={0}
+						step={0.5}
 					/>
-				</label>
+				))}
+				<NumberField
+					label="Price per sq ft (optional)"
+					unit="$"
+					value={price}
+					onChange={setPrice}
+					min={0}
+					step={0.25}
+					placeholder="e.g. 3.50"
+				/>
 			</div>
 
 			{conv ? (

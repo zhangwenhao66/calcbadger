@@ -7,6 +7,9 @@ import {
 	healthyWeightRangeLb,
 	type Standard,
 } from '../../lib/bmi';
+import NumberField from '../ui/NumberField';
+import Segmented from '../ui/Segmented';
+import Select from '../ui/Select';
 
 const BADGE_CLASS: Record<string, string> = {
 	underweight: 'info',
@@ -58,95 +61,36 @@ export default function BmiCalculator() {
 	return (
 		<div class="calc">
 			<div class="calc-grid">
-				<label class="calc-field">
-					<span class="calc-label">Units</span>
-					<select
-						class="calc-select"
-						value={units}
-						onChange={(e) => setUnits((e.target as HTMLSelectElement).value as 'metric' | 'imperial')}
-					>
-						<option value="imperial">US (lb, ft/in)</option>
-						<option value="metric">Metric (kg, cm)</option>
-					</select>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">Cutoffs</span>
-					<select
-						class="calc-select"
-						value={standard}
-						onChange={(e) => setStandard((e.target as HTMLSelectElement).value as Standard)}
-					>
-						<option value="who">Standard (WHO / CDC)</option>
-						<option value="asian">Asian population (WHO 2004)</option>
-					</select>
-				</label>
+				<Segmented
+					label="Units"
+					value={units}
+					onChange={setUnits}
+					options={[
+						{ value: 'imperial', label: 'US', title: 'US units: pounds, feet and inches' },
+						{ value: 'metric', label: 'Metric', title: 'Metric units: kilograms and centimeters' },
+					]}
+				/>
+				<Select
+					label="Cutoffs"
+					value={standard}
+					onChange={setStandard}
+					options={[
+						{ value: 'who' as Standard, label: 'Standard (WHO / CDC)' },
+						{ value: 'asian' as Standard, label: 'Asian population (WHO 2004)' },
+					]}
+					wide
+				/>
 
 				{units === 'imperial' ? (
 					<>
-						<label class="calc-field">
-							<span class="calc-label">Weight (lb)</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="decimal"
-								min="0"
-								step="1"
-								value={weightLb}
-								onInput={(e) => setWeightLb((e.target as HTMLInputElement).value)}
-							/>
-						</label>
-						<label class="calc-field">
-							<span class="calc-label">Height — feet</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="numeric"
-								min="0"
-								step="1"
-								value={heightFt}
-								onInput={(e) => setHeightFt((e.target as HTMLInputElement).value)}
-							/>
-						</label>
-						<label class="calc-field">
-							<span class="calc-label">Height — inches</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="decimal"
-								min="0"
-								max="11.9"
-								step="0.5"
-								value={heightIn}
-								onInput={(e) => setHeightIn((e.target as HTMLInputElement).value)}
-							/>
-						</label>
+						<NumberField label="Weight" unit="lb" value={weightLb} onChange={setWeightLb} min={0} step={1} />
+						<NumberField label="Height" unit="ft" value={heightFt} onChange={setHeightFt} min={0} step={1} inputMode="numeric" />
+						<NumberField label="plus" unit="in" value={heightIn} onChange={setHeightIn} min={0} max={11.9} step={0.5} />
 					</>
 				) : (
 					<>
-						<label class="calc-field">
-							<span class="calc-label">Weight (kg)</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="decimal"
-								min="0"
-								step="0.5"
-								value={weightKg}
-								onInput={(e) => setWeightKg((e.target as HTMLInputElement).value)}
-							/>
-						</label>
-						<label class="calc-field">
-							<span class="calc-label">Height (cm)</span>
-							<input
-								class="calc-input"
-								type="number"
-								inputMode="decimal"
-								min="0"
-								step="1"
-								value={heightCm}
-								onInput={(e) => setHeightCm((e.target as HTMLInputElement).value)}
-							/>
-						</label>
+						<NumberField label="Weight" unit="kg" value={weightKg} onChange={setWeightKg} min={0} step={0.5} />
+						<NumberField label="Height" unit="cm" value={heightCm} onChange={setHeightCm} min={0} step={1} />
 					</>
 				)}
 			</div>
@@ -177,10 +121,10 @@ export default function BmiCalculator() {
 			)}
 
 			<p class="calc-note">
-				BMI is weight ÷ height² and does not distinguish fat from muscle; it is a screening
-				number, not a diagnosis, and CDC's adult categories apply from age 20 up (not to
-				children, pregnant women, or highly muscular adults). Calculations run in your browser;
-				nothing you type is sent anywhere.
+				BMI is weight ÷ height² and does not distinguish fat from muscle; it is a screening number,
+				not a diagnosis, and CDC's adult categories apply from age 20 up (not to children, pregnant
+				women, or highly muscular adults). Calculations run in your browser; nothing you type is
+				sent anywhere.
 			</p>
 		</div>
 	);

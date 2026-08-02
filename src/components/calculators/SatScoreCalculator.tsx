@@ -6,6 +6,7 @@ import {
 	rwScoreRange,
 	totalScoreRange,
 } from '../../lib/satScore';
+import NumberField from '../ui/NumberField';
 
 function clampInt(value: string, max: number): number | null {
 	const n = Math.round(parseFloat(value));
@@ -30,32 +31,24 @@ export default function SatScoreCalculator() {
 	return (
 		<div class="calc">
 			<div class="calc-grid">
-				<label class="calc-field">
-					<span class="calc-label">Reading &amp; Writing — # correct (0–{RW_MAX_RAW})</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="numeric"
-						min="0"
-						max={RW_MAX_RAW}
-						step="1"
-						value={rwRaw}
-						onInput={(e) => setRwRaw((e.target as HTMLInputElement).value)}
-					/>
-				</label>
-				<label class="calc-field">
-					<span class="calc-label">Math — # correct (0–{MATH_MAX_RAW})</span>
-					<input
-						class="calc-input"
-						type="number"
-						inputMode="numeric"
-						min="0"
-						max={MATH_MAX_RAW}
-						step="1"
-						value={mathRaw}
-						onInput={(e) => setMathRaw((e.target as HTMLInputElement).value)}
-					/>
-				</label>
+				<NumberField
+					label={`Reading & Writing correct (0–${RW_MAX_RAW})`}
+					value={rwRaw}
+					onChange={setRwRaw}
+					min={0}
+					max={RW_MAX_RAW}
+					step={1}
+					inputMode="numeric"
+				/>
+				<NumberField
+					label={`Math correct (0–${MATH_MAX_RAW})`}
+					value={mathRaw}
+					onChange={setMathRaw}
+					min={0}
+					max={MATH_MAX_RAW}
+					step={1}
+					inputMode="numeric"
+				/>
 			</div>
 
 			{rwRange && mathRange && total ? (
@@ -80,9 +73,9 @@ export default function SatScoreCalculator() {
 			<p class="calc-note">
 				Uses the official raw-score conversion table from College Board's scoring guide for paper
 				SAT Practice Test #4 (66 Reading &amp; Writing questions, 54 Math questions). Scores come
-				out as a range because the real digital SAT is adaptive — treat this as an estimate, not a
-				score report. Bluebook digital practice tests are scored in the app itself. Calculations
-				run in your browser; nothing you type is sent anywhere.
+				out as a range because the real digital SAT is adaptive, so treat this as an estimate, not a
+				score report. Bluebook digital practice tests are scored in the app itself. Calculations run
+				in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>
 	);
