@@ -23,6 +23,9 @@
     "tailwindcss": "4.2.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/preact": "^3.2.4",
+    "happy-dom": "^20.11.1",
     "vitest": "^3.2.4"
   },
   "overrides": {

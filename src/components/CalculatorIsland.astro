@@ -6,6 +6,7 @@
  */
 import BmiCalculator from './calculators/BmiCalculator';
 import CdCalculator from './calculators/CdCalculator';
+import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
@@ -20,6 +21,7 @@ const { slug } = Astro.props;
 
 {slug === 'bmi-calculator' && <BmiCalculator client:load />}
 {slug === 'cd-calculator' && <CdCalculator client:load />}
+{slug === 'coin-flip-simulator' && <CoinFlipCalculator client:load />}
 {slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
 {slug === 'stair-calculator' && <StairCalculator client:load />}
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}

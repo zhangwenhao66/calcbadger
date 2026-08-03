@@ -647,4 +647,116 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'coin-flip-simulator',
+		category: 'Games',
+		title: 'Coin Flip Simulator & Probability Calculator',
+		shortTitle: 'Coin Flip',
+		description:
+			'Flip 1 to 500 virtual coins at once (fair or weighted) and see the heads/tails split and longest streaks, or switch to the probability calculator to get the exact chance of any heads count using the binomial distribution.',
+		updated: '2026-08-03',
+		coreSummary:
+			'A single fair coin flip is 50/50, but the chance of an exact result over many flips follows the binomial distribution: P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k), where C(n,k) is the number of ways to choose which k flips landed heads. Flipping 10 fair coins and getting exactly 5 heads happens 24.6% of the time, not 50%, because there are many more ways to land close to half-and-half than to land on all heads or all tails.',
+		queries: [
+			'flip a coin',
+			'coin flip',
+			'coin flip simulator',
+			'coin toss probability',
+			'binomial probability calculator',
+		],
+		sections: [
+			{
+				heading: 'A fair flip is 50/50, but a run of flips is not',
+				body: [
+					'Any single flip of a fair coin has a 50% chance of heads and a 50% chance of tails, full stop. What surprises people is that flipping several coins and getting an even split is not itself a 50/50 event. Flip 10 fair coins and the chance of landing exactly 5 heads and 5 tails is 24.6%, not 50%. The reason is combinatorial: there is only one way to get all 10 heads, but there are 252 different sequences of heads and tails that add up to exactly 5 heads, so that outcome is far more likely to occur even though no individual sequence is more likely than any other.',
+					'That count of sequences is the binomial coefficient C(n,k) = n! / (k!(n−k)!), read "n choose k." Multiply it by the probability of one specific sequence with k heads, p^k × (1−p)^(n−k), and the result is the binomial probability mass function: **P(x; p, n) = C(n,x) × p^x × (1−p)^(n−x)**, the formula published in the NIST/SEMATECH Engineering Statistics Handbook. It applies to any fixed number of independent yes/no trials at a constant success probability, not just coins: free throws, quality-control pass rates, and A/B test conversions all follow the same shape.',
+				],
+			},
+			{
+				heading: 'Worked example: exactly 5 heads in 10 flips',
+				body: [
+					'n = 10, k = 5, p = 0.5. C(10,5) = 10!/(5!5!) = 252. P = 252 × 0.5⁵ × 0.5⁵ = 252 × (1/1024) = **24.6%**. Compare that to exactly 0 heads (all tails): C(10,0) = 1, so P = 1/1024 ≈ 0.10%, about 250 times rarer than the 5-heads outcome despite both being single, equally-likely coefficients away from a "special" result. This is why casino and lottery intuition about "streaks evening out" is subtly wrong: the evening-out is a fact about the count of nearby outcomes, not a force pulling future flips toward balance.',
+				],
+			},
+			{
+				heading: 'Worked example: is this coin actually fair?',
+				body: [
+					'Flip a coin 20 times and count 15 heads. Suspicious? Assume the coin is fair (p = 0.5) and ask how likely 15-or-more heads would be anyway: P(at least 15 of 20) = Σ, summing the binomial probability for k = 15 through 20, comes to 21,700⁄1,048,576 ≈ **2.07%**. That is well under the common 5% significance threshold researchers use to call a result "statistically significant," so 15-of-20 is mild evidence the coin is biased toward heads, though it would take considerably more flips (or a starker split) to be confident rather than merely suspicious. A single run of 15 heads out of 20 is unusual for a fair coin, but at 2% odds it still happens about 1 time in every 48 sittings: evidence, not proof.',
+				],
+			},
+			{
+				heading: 'Weighted coins and loaded dice logic',
+				body: [
+					'Everything above assumes p = 0.5, but the same formula works for any constant probability: a coin bent to land heads 60% of the time, a basketball player who makes 70% of free throws, or a manufacturing line with a 2% defect rate. Set p to whatever the per-trial probability actually is and C(n,x) × p^x × (1−p)^(n−x) still gives the exact chance of x successes in n trials. The calculator above accepts any chance of heads from 0% to 100%, which is what makes it useful beyond novelty coin flips: the same math answers "what are the odds of 3 or more defects in a batch of 50 at a 2% defect rate" (swap "heads" for "defect").',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Exact probability of each outcome, 10 fair coin flips',
+				headers: ['Heads', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+				rows: [
+					[
+						'Probability',
+						'0.10%',
+						'0.98%',
+						'4.39%',
+						'11.72%',
+						'20.51%',
+						'24.61%',
+						'20.51%',
+						'11.72%',
+						'4.39%',
+						'0.98%',
+						'0.10%',
+					],
+				],
+				note: 'C(10,k) × 0.5^10 for k = 0…10. The distribution peaks at 5 (the middle), not because 5 is "favored," but because more sequences produce it.',
+			},
+			{
+				title: 'Chance of at least one head, fair coin, by number of flips',
+				headers: ['Flips', '1', '2', '3', '5', '10', '20'],
+				rows: [['P(at least one head)', '50%', '75%', '87.5%', '96.9%', '99.90%', '99.9999%']],
+				note: 'P(at least one head in n flips) = 1 − 0.5^n: the only way to get zero heads is all-tails, which shrinks fast as flips add up.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the probability of flipping heads 10 times in a row?',
+				answer:
+					'0.5^10 = 1/1024 ≈ 0.098%. Each flip is independent, so the probabilities of a specific sequence multiply. That is the chance of one exact all-heads sequence, not the chance of "getting some result": every other specific 10-flip sequence is exactly as unlikely as that one.',
+			},
+			{
+				question: 'Why is it not 50/50 to get an even split of heads and tails?',
+				answer:
+					'A single flip is 50/50, but a set of flips landing exactly half-and-half is a different question: it depends on how many distinct sequences produce that count. There are 252 ten-flip sequences with exactly 5 heads versus only 1 with all 10 heads, which is why 5-5 (24.6%) is far more likely than 10-0 (0.098%) even though no single sequence is favored over another.',
+			},
+			{
+				question: 'How do I calculate the odds of a weighted or biased coin?',
+				answer:
+					'Use the same binomial formula P(x) = C(n,x) × p^x × (1−p)^(n−x), substituting the actual chance of heads for p instead of 0.5. This calculator accepts any probability from 0% to 100%, so the same math answers a weighted coin, a biased die face, or any other fixed-probability trial.',
+			},
+			{
+				question: 'How many coin flips does it take to prove a coin is unfair?',
+				answer:
+					'There is no fixed number: it comes down to how unlikely the observed result would be under a fair coin. 15 heads out of 20 has about a 2% chance under fairness (mild evidence); to get below the stricter 1-in-1,000 threshold often used in quality control, you would need either a larger sample or a more lopsided split. More flips shrink the probability of a fair coin producing an extreme result by chance.',
+			},
+			{
+				question: 'What is the longest heads streak I should expect in 100 flips?',
+				answer:
+					'Long streaks are far more common in a long run of flips than intuition suggests. A run of 5+ heads in a row shows up in most 100-flip sessions purely by chance. This calculator reports the actual longest streak from each simulated run rather than a single "expected" number, since streak length varies a lot from session to session even at the same flip count.',
+			},
+		],
+		sources: [
+			{
+				label: 'NIST/SEMATECH e-Handbook of Statistical Methods: Binomial Distribution',
+				url: 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm',
+			},
+			{
+				label: 'NIST/SEMATECH e-Handbook: Are the Data Consistent with the Assumed Process Mean? (binomial significance testing)',
+				url: 'https://www.itl.nist.gov/div898/handbook/prc/section2/prc23.htm',
+			},
+		],
+		embedHeight: 780,
+	},
 ];
