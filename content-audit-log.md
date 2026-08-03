@@ -153,3 +153,96 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "bmi-calculator",
+  "last_audited": "2026-08-03",
+  "published_date": "2026-08-02",
+  "checklist": [
+    "公式正确性（最高优先级，YMYL-adjacent）：BMI = kg÷m² 与 703×lb÷in² 两条路径是否与CDC官方定义一致，两条路径给出的结果差异是否确实只是703舍入误差而非实现bug",
+    "CDC/WHO成人四档分类阈值（underweight<18.5/healthy 18.5-24.9/overweight 25-29.9/obesity≥30，Class 1/2/3=30-34.9/35-39.9/≥40）是否与cdc.gov现行页面逐字一致——错了就是主动误导用户的健康信息",
+    "WHO 2004亚裔人群下调阈值（23超重/27.5肥胖）的引用来源（Lancet 2004;363:157-63）是否真实存在且数字未被篡改",
+    "时效性：CDC/WHO是否已修订成人BMI分类指导（含检索中出现的第三方博客声称的老年人阈值上调说法，需辨别是否权威）",
+    "页面内9组身高体重参考表边界值与3条worked examples数值是否仍然正确",
+    "组件功能：单位切换（US/Metric）、亚裔标准切换是否正确联动分类结果与健康体重范围计算",
+    "合规：页面/组件是否明确声明BMI只是screening工具而非医疗诊断，是否与全站/terms/页No professional advice条款衔接"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：70kg/175cm=22.857、45kg/170cm=15.571、120kg/165cm=44.077（均与tests/bmi.test.ts一致）；203lb/69in=29.975、154lb/68in与69.853kg/172.72cm的metric等价值在CDC 703舍入误差范围内一致。src/lib/bmi.ts的bmiMetric/bmiImperial两个函数分别对应两条报价路径，无重复换算或单位混淆。页面3条worked examples独立复算：5'9\"/160lb=703×160÷69²≈23.6（页面写≈23.6，一致）；175cm/95kg=95÷1.75²≈31.0（页面写≈31.0，Class 1肥胖，一致）；5'0\"/95lb=703×95÷60²≈18.6（页面写≈18.6，一致）。9组身高体重参考表（4'10\"到6'2\"，underweight/healthy上限/obese三个边界）逐一用Python独立重算，全部与页面数值吻合，无一处误差。"
+    },
+    {
+      "dimension": "CDC/WHO分类阈值真实性（YMYL核心）",
+      "status": "未发现问题",
+      "detail": "用WebSearch独立核对cdc.gov/bmi/adult-calculator/bmi-categories.html与cdc.gov/bmi/faq/index.html现行公开内容（非记忆）：underweight<18.5、healthy 18.5-<25、overweight 25-<30、obesity≥30（Class 1 30-<35/Class 2 35-<40/Class 3即severe obesity ≥40），'adults 20 and older...regardless of age, sex, or race'——与站内src/lib/bmi.ts的WHO_CUTOFFS表、tools.ts正文/FAQ/参考表逐字一致，未发现任何阈值错误或篡改。WHO 2004亚裔人群阈值（23超重/27.5肥胖）同样独立核对（WebSearch多方来源交叉确认，含该共识声明的'23.0, 27.5, 32.5, 37.5'四个action point数字），与src/lib/bmi.ts的ASIAN_CUTOFFS表及tools.ts引用一致。Lancet引用（2004;363:157-63）期刊卷页信息核对无误。这是一个YMYL-adjacent健康计算器，阈值全部通过独立复核，未发现需要按'推翻核心结论'流程升级给Owen处理的情形。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "未发现问题（含一项排除误报的说明）",
+      "detail": "检索'CDC BMI guidance update 2026'等关键词时，出现第三方博客（bmicalculatorweb.com等，本身是BMI计算器竞品内容站）声称'CDC guidelines just changed'、'老年人健康BMI区间上调到23-27'。进一步核实：这些说法均非cdc.gov官方来源，cdc.gov/bmi/adult-calculator/bmi-categories.html官方页面现行内容仍是统一阈值（'regardless of age, sex, or race'），学术界确有'obesity paradox'讨论老年人群体差异化健康BMI区间（PMC等同行评议文献），但这是研究议题不是CDC/WHO已发布的官方分类修订，不构成需要更新页面阈值的时效性问题。页面正文已恰当地把'older adults with age-related muscle loss'列为CDC建议使用年龄专属工具而非成人计算器的三类人群之一，未做过度声明，判定无需改动。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：8个测试文件、160个测试全部通过（tests/bmi.test.ts 14个：bmiMetric 3个、bmiImperial 2个、classifyBmi who/asian各4+2个、healthyWeightRangeKg 2个、healthyWeightRangeLb 1个）。14条期望值逐条用独立Python复算比对，全部一致；测试注释声明期望值'hand-computed and cross-checked with an independent Python calculation'，非从实现输出反推，核实属实。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/calculators/BmiCalculator.tsx逐行核对：units切换（imperial/metric）正确路由到bmiImperial/bmiMetric，standard切换（who/asian）正确传入classifyBmi与healthyWeightRange函数，两个维度可独立组合无耦合bug；无效输入（非数字、≤0）正确判定为validMetric/validImperial=false，不会显示垃圾结果。CalculatorIsland.astro正确分发到该组件，build成功生成/bmi-calculator/与/embed/bmi-calculator/，无报错。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题（含一项反爬网关说明）",
+      "detail": "cdc.gov两条链接（adult-calculator/index.html、faq/index.html）curl实测200，内容与文中引用对应。Lancet摘要页链接curl -sIL返回403，但响应头含`cf-mitigated: challenge`（Cloudflare人机验证网关标记），与此前cd-calculator审计发现的eCFR反爬模式相同——不是真实死链，人类浏览器可正常访问，未计入'失效'。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/bmi-calculator/ 200，title'BMI Calculator | CalcBadger'27字符正常；canonical自指正确；单一h1，7个h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt为'Allow: /'；sitemap-0.xml含本页。**meta description 220字符**（同时复用为og/twitter description、JSON-LD description、页面首屏可见导语），比此前square-footage-calculator审计中207字符（超出约30-33%）幅度更大（超出约38-42%），独立agent复核确认应修，非借鉴cd-calculator审计中'仅超4字符不改'的先例。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用cd-calculator/square-footage-calculator审计确立的人工核对方法（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的公式与四档阈值；5个小节均以直接陈述开头；含3条真实数字worked example与1个9行参考表；5组FAQ配FAQPage schema；'updated 2026-08-02'时效信号明确；robots.txt放行AI爬虫。综合判定明显高于80分门槛，无需改动。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "用get_serp_results拉取'bmi calculator'当前真实排名：头部为NIH/NHLBI、calculator.net、CDC、Cancer.org、Harvard Health、Mayo Clinic等高权威医疗/机构域名。本页相比calculator.net等纯计算器页，多出公式推导讲解、3条真实数字worked examples、9组参考表、亚裔人群阈值可切换选项（多数竞品没有此细分）、'BMI gets the wrong answer'局限性章节，构成真实增量而非同质化复制，判定无需改动。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上HTML核对'More calculators'区块含指向其余6个工具（cd/square-footage/stair/sat-score/molarity/coin-flip）的全部链接，无孤儿风险；首页/分类页遍历tools数组渲染，同此前两次审计的结论。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-02'与页面'updated 2026-08-02'一致；FAQPage 5条FAQ与页面渲染逐一对应；BreadcrumbList三级（Home/Health/BMI Calculator）与面包屑一致。meta description修改不影响schema字段本身的结构（WebApplication.description字段已同步更新为新文案）。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "工具正文明确声明'a screening number, not a diagnosis'，并列出CDC建议使用年龄专属工具的三类人群（20岁以下/孕妇/肌肉量因年龄下降的老年人）；FAQ中CDC原话'one potential indicator'与'cannot distinguish fat mass from lean body mass'均有引用；全站/terms/页'No professional advice'条款明确覆盖medical场景，footer在每页可达。未发现工具自我定位为医疗诊断的表述。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "1. meta description从220字符精简到153字符，同步更新页面首屏可见导语段落与JSON-LD WebApplication.description（src/data/tools.ts第544-545行，同一字段多处复用）",
+    "定点修改，未做大范围重写；先经独立fresh-context agent复核确认为真问题后才动手",
+    "npm test 160/160通过、npm run build 26页成功生成后，git status确认只有src/data/tools.ts被修改（其余为其他并发会话的未跟踪文件，未纳入本次commit），直接git add该文件提交（commit 096aeee）",
+    "push后轮询线上URL（跨CDN边缘节点连续10次一致命中新内容后确认部署稳定生效，中途观察到短暂的边缘缓存新旧内容并存窗口），node tools/submit-indexnow.mjs重新提交该URL（Bing 200/Yandex 202），indexnow-submit-log.json已更新（覆盖2026-08-02首发记录并注明supersede关系），内容发布日志.md已追加记录"
+  ],
+  "seo_score": "修复前：静态审计除meta description 220字符超长外全部健康；修复后：description缩短到153字符，其余维度（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）保持无异常",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，估计等效90/99左右，明显超过≥80门槛，无需修复",
+  "escalation": null
+}
+```
