@@ -152,7 +152,7 @@ export const tools: Tool[] = [
 		title: 'Square Footage Calculator',
 		shortTitle: 'Square Footage',
 		description:
-			'Calculate the square footage of a room or area from its measurements (rectangles, L-shapes, circles, and triangles), with automatic conversion to square meters, square yards, and acres, plus a cost estimate.',
+			'Calculate the square footage of a room or area from its measurements, with conversions to square meters, square yards, and acres, plus a cost estimate.',
 		updated: '2026-08-02',
 		coreSummary:
 			'Square footage is length × width measured in feet. A 12 ft × 10 ft room is 120 sq ft. For L-shaped rooms, split the floor into two rectangles and add them; for circles use π × (diameter/2)²; for triangles use base × height ÷ 2. One square meter equals 10.764 sq ft.',
@@ -242,7 +242,7 @@ export const tools: Tool[] = [
 			},
 			{
 				label: 'ANSI Z765: square footage method for calculating residential area',
-				url: 'https://www.homeinnovation.com/services/accreditation/ansi_z765_square_footage_standard',
+				url: 'https://www.homeinnovation.com/services/national_standards/square_footage_method_for_calculating',
 			},
 		],
 		embedHeight: 700,
