@@ -16,11 +16,41 @@
  * a site-wide URL structure change).
  */
 
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const LOG_PATH = join(__dirname, '..', 'indexnow-submit-log.json');
+
 const SITE = {
   host: 'calcbadger.com',
   key: '419085fa3951a77b16411ed44e5ea74c',
   sitemap: 'https://calcbadger.com/sitemap-0.xml',
 };
+
+// submitted_date is the first-ever submission and must never be overwritten by a
+// resubmit -- trafficsite-bing-indexnow-verify gates its 3-day wait on this field.
+// last_submitted_date tracks the most recent resubmit for reference only.
+function updateSubmitLog(urls, note) {
+  const log = existsSync(LOG_PATH) ? JSON.parse(readFileSync(LOG_PATH, 'utf8')) : {};
+  const today = new Date().toISOString().slice(0, 10);
+  for (const url of urls) {
+    const entry = log[url];
+    if (entry) {
+      entry.last_submitted_date = today;
+      if (note) entry.note = entry.note ? `${entry.note} | ${note}` : note;
+    } else {
+      log[url] = {
+        submitted_date: today,
+        last_submitted_date: today,
+        verified_status: 'pending',
+        ...(note ? { note } : {}),
+      };
+    }
+  }
+  writeFileSync(LOG_PATH, JSON.stringify(log, null, 2) + '\n');
+}
 
 async function fetchSitemapUrls(sitemapUrl) {
   const res = await fetch(sitemapUrl);
@@ -80,7 +110,11 @@ async function submitToIndexNow(site, urls) {
 async function run() {
   const args = process.argv.slice(2);
   const fullMode = args.includes('--full');
-  const explicitPaths = args.filter(a => a !== '--full');
+  const noteIdx = args.indexOf('--note');
+  const note = noteIdx !== -1 ? args[noteIdx + 1] : undefined;
+  const explicitPaths = args.filter((a, i) =>
+    a !== '--full' && a !== '--note' && !(noteIdx !== -1 && i === noteIdx + 1)
+  );
 
   console.log(`\n📤 Submitting ${SITE.host}...`);
 
@@ -97,7 +131,8 @@ async function run() {
   }
 
   await submitToIndexNow(SITE, urls);
-  console.log(`  ✅ Done`);
+  updateSubmitLog(urls, note);
+  console.log(`  ✅ Done (indexnow-submit-log.json updated)`);
 }
 
 run().catch(console.error);
