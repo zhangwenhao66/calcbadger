@@ -389,6 +389,12 @@ h3 {
 	gap: 0.7rem;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
+.calc-results > div {
+	/* Grid items default to min-width: auto, which lets a long unbroken
+	   number (e.g. a converter fed an absurdly large value) overflow its
+	   column and overlap the next one instead of wrapping. */
+	min-width: 0;
+}
 .calc-result-label {
 	font-size: 0.68rem;
 	font-weight: 600;
@@ -404,6 +410,7 @@ h3 {
 	font-weight: 600;
 	margin: 0.15rem 0 0;
 	color: var(--chassis-text);
+	overflow-wrap: anywhere;
 }
 .calc-result-value.primary {
 	color: var(--op);

@@ -922,4 +922,153 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 420,
 	},
+	{
+		slug: 'length-converter',
+		category: 'Conversion',
+		title: 'Length Converter',
+		shortTitle: 'Length Converter',
+		description:
+			'Convert between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles instantly, with reference tables for heights, tool sizes, and race distances.',
+		updated: '2026-08-04',
+		coreSummary:
+			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once.',
+		queries: [
+			'cm to inches',
+			'inches to cm',
+			'mm to inches',
+			'length converter',
+			'km to miles',
+			'miles to km',
+			'meters to feet',
+			'feet to meters',
+			'inches to mm',
+			'how many feet in a mile',
+			'how many inches in a foot',
+			'convert cm to inches',
+			'30 cm in inches',
+		],
+		sections: [
+			{
+				heading: 'Two systems, one exact bridge',
+				body: [
+					"Metric length units scale by powers of ten from the meter (a millimeter is a thousandth, a kilometer is a thousand of them), so converting within the metric system is just moving a decimal point. Imperial units evolved separately, from body parts and land-measurement customs (a foot, a pace, the distance a team of oxen could plow before resting), which is why 12 inches make a foot but 3 feet make a yard and 1,760 yards make a mile. There was no consistent base, because none was designed in.",
+					"Until 1959, the exact size of an inch even differed slightly between the US and UK, since each country had calibrated its own physical standard bar over time and the two had drifted apart by a few parts per million. The 1959 International Yard and Pound Agreement, signed by the US, UK, Canada, Australia, New Zealand, and South Africa, ended that by redefining the yard as exactly 0.9144 meters. That legal fix, not a new measurement, is where every imperial-to-metric length conversion used today ultimately comes from.",
+				],
+			},
+			{
+				heading: 'The exact factors this converter uses',
+				body: [
+					'Millimeters, centimeters, meters, and kilometers convert to each other by exact powers of ten (1 m = 1,000 mm = 100 cm = 0.001 km), since that is how the SI system is built. The imperial-to-metric bridge is exact by legal definition rather than by measurement: 1 in = 2.54 cm, 1 ft = 0.3048 m, 1 yd = 0.9144 m, and 1 mi = 1,609.344 m (NIST Handbook 44, Appendix C, marks each of these "exact"). Within the imperial system itself, 1 ft = 12 in, 1 yd = 3 ft, and 1 mi = 5,280 ft are also exact, unchanged since well before 1959.',
+					'Because none of those factors is a round number in the other system, converted results almost never land on a clean decimal (1 cm is 0.393701 in, not 0.4). This tool shows results to 6 significant figures so the display is precise without turning into a wall of digits; the underlying arithmetic carries full floating-point precision regardless of what is shown.',
+				],
+			},
+			{
+				heading: 'Worked example: a height measurement',
+				body: [
+					'A form asks for height in centimeters, and the only figure on hand is 5 feet 9 inches. Converting: 5 ft 9 in is 69 inches total (5 × 12 + 9), and 69 × 2.54 = 175.26 cm. Going the other way, a doctor\'s chart reading of 175 cm converts to 175 ÷ 2.54 = 68.9 inches, or 5 feet 8.9 inches, which most height charts round to 5\'9" since a tenth of an inch is smaller than typical measurement error anyway.',
+				],
+			},
+			{
+				heading: 'Worked example: a race distance',
+				body: [
+					'A 10K race is defined as exactly 10 kilometers. In miles: 10 × 1,000 ÷ 1,609.344 = 6.2137 miles, which is why 10K races are sometimes advertised as "6.2 miles" in the US. A full marathon, defined as 42.195 km, works out to 26.2188 miles. The "26.2" bumper-sticker number is that value rounded to one decimal place, not a separately defined distance.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Centimeters to inches — quick reference',
+				headers: ['cm', 'in'],
+				rows: [
+					['1 cm', '0.3937 in'],
+					['2 cm', '0.7874 in'],
+					['3 cm', '1.1811 in'],
+					['4 cm', '1.5748 in'],
+					['5 cm', '1.9685 in'],
+					['6 cm', '2.3622 in'],
+					['7 cm', '2.7559 in'],
+					['8 cm', '3.1496 in'],
+					['9 cm', '3.5433 in'],
+					['10 cm', '3.9370 in'],
+					['11 cm', '4.3307 in'],
+					['12 cm', '4.7244 in'],
+				],
+				note: 'Exact conversion via 1 in = 2.54 cm. Useful for ruler/tape-measure readings and paper or screen sizes given in centimeters.',
+			},
+			{
+				title: 'Height chart: feet & inches to centimeters',
+				headers: ['ft/in', 'total inches', 'cm'],
+				rows: [
+					["5'0\"", '60 in', '152.4 cm'],
+					["5'2\"", '62 in', '157.5 cm'],
+					["5'4\"", '64 in', '162.6 cm'],
+					["5'6\"", '66 in', '167.6 cm'],
+					["5'8\"", '68 in', '172.7 cm'],
+					["5'9\"", '69 in', '175.3 cm'],
+					["5'10\"", '70 in', '177.8 cm'],
+					["6'0\"", '72 in', '182.9 cm'],
+					["6'2\"", '74 in', '188.0 cm'],
+					["6'4\"", '76 in', '193.0 cm'],
+					["6'6\"", '78 in', '198.1 cm'],
+				],
+				note: 'Exact conversion via 1 in = 2.54 cm, rounded to one decimal place.',
+			},
+			{
+				title: 'Common race distances: kilometers vs. miles',
+				headers: ['Distance', 'km', 'mi'],
+				rows: [
+					['400 m', '0.4 km', '0.2485 mi'],
+					['1 mile', '1.6093 km', '1 mi'],
+					['5K', '5 km', '3.1069 mi'],
+					['10K', '10 km', '6.2137 mi'],
+					['Half marathon', '21.0975 km', '13.1094 mi'],
+					['Marathon', '42.195 km', '26.2188 mi'],
+				],
+				note: 'The mile row shows 1 mile in km for comparison; every other row starts from the km distance and converts to miles via 1 mi = 1,609.344 m.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many inches are in a centimeter?',
+				answer:
+					'1 centimeter equals 0.393701 inches (1 ÷ 2.54). To convert centimeters to inches, divide by 2.54; to go the other way, multiply inches by 2.54.',
+			},
+			{
+				question: 'How many centimeters are in an inch?',
+				answer: '1 inch equals exactly 2.54 centimeters. This has been the legal, exact definition since the 1959 International Yard and Pound Agreement.',
+			},
+			{
+				question: 'How many feet are in a mile?',
+				answer: 'There are exactly 5,280 feet in a mile (1 mile = 1,760 yards = 5,280 feet), a relationship that predates and is unchanged by the 1959 metric redefinition.',
+			},
+			{
+				question: 'How do you convert kilometers to miles?',
+				answer:
+					'Divide the kilometer value by 1.609344, or multiply by roughly 0.621371 for a quick estimate. For example, 10 km ÷ 1.609344 ≈ 6.2137 miles.',
+			},
+			{
+				question: 'How many millimeters are in an inch?',
+				answer: '1 inch equals exactly 25.4 millimeters. This is the same 1959-defined exact relationship as the centimeter conversion, just expressed at a finer scale (2.54 cm × 10).',
+			},
+			{
+				question: 'Is a mile longer than a kilometer?',
+				answer: 'Yes. 1 mile equals 1.609344 kilometers, so a mile is about 60% longer than a kilometer. A "10K" race (10 kilometers) is shorter than a 10-mile race.',
+			},
+			{
+				question: 'How many yards are in a mile?',
+				answer: 'There are exactly 1,760 yards in a mile (5,280 feet ÷ 3 feet per yard).',
+			},
+		],
+		sources: [
+			{
+				label: 'NIST — SI Units: Length (1959 Federal Register Notice, inch = 25.4 mm exactly)',
+				url: 'https://www.nist.gov/pml/owm/si-units-length',
+			},
+			{
+				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
+			},
+		],
+		embedHeight: 720,
+	},
 ];
