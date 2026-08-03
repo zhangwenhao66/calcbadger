@@ -542,7 +542,7 @@ export const tools: Tool[] = [
 		title: 'BMI Calculator',
 		shortTitle: 'BMI Calculator',
 		description:
-			'Calculate body mass index from weight and height in either US or metric units, see your CDC/WHO weight category, and find the healthy-weight range for your exact height, with an optional Asian-population cutoff standard.',
+			'Calculate BMI from weight and height in US or metric units, see your CDC/WHO category and healthy-weight range, plus an optional Asian-population cutoff.',
 		updated: '2026-08-02',
 		coreSummary:
 			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity.',
