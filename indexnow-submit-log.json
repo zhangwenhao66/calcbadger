@@ -2,41 +2,49 @@
   "https://calcbadger.com/cd-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202",
+    "last_submitted_date": "2026-08-02"
   },
   "https://calcbadger.com/square-footage-calculator/": {
-    "submitted_date": "2026-08-03",
+    "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "content-quality-audit fix resubmit (2026-08-03): dead ANSI Z765 source link + long meta description fixed; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202"
+    "note": "content-quality-audit fix resubmit (2026-08-03): dead ANSI Z765 source link + long meta description fixed; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202",
+    "last_submitted_date": "2026-08-03"
   },
   "https://calcbadger.com/stair-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202",
+    "last_submitted_date": "2026-08-02"
   },
   "https://calcbadger.com/sat-score-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202",
+    "last_submitted_date": "2026-08-02"
   },
   "https://calcbadger.com/molarity-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202",
+    "last_submitted_date": "2026-08-02"
   },
   "https://calcbadger.com/": {
     "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202"
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202",
+    "last_submitted_date": "2026-08-02"
   },
   "https://calcbadger.com/bmi-calculator/": {
-    "submitted_date": "2026-08-03",
+    "submitted_date": "2026-08-02",
     "verified_status": "pending",
-    "note": "content-quality-audit fix resubmit (2026-08-03): meta description shortened from 220 to 153 chars; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202"
+    "note": "content-quality-audit fix resubmit (2026-08-03): meta description shortened from 220 to 153 chars; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202",
+    "last_submitted_date": "2026-08-03"
   },
   "https://calcbadger.com/coin-flip-simulator/": {
     "submitted_date": "2026-08-03",
     "verified_status": "pending",
-    "note": "daily tool #7 (2026-08-03), run 1/3 of the day; Bing 200 / Yandex 202"
+    "note": "daily tool #7 (2026-08-03), run 1/3 of the day; Bing 200 / Yandex 202",
+    "last_submitted_date": "2026-08-03"
   }
 }
