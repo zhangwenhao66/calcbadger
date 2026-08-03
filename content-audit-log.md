@@ -76,3 +76,80 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "square-footage-calculator",
+  "last_audited": "2026-08-03",
+  "published_date": "2026-08-02",
+  "checklist": [
+    "公式正确性：矩形 L×W、L 形拆两矩形相加、圆 π×(d/2)²、三角形 底×高÷2 四条路径是否与初等几何定义一致",
+    "单位换算是否符合 NIST SP 811 精确系数（1 ft = 0.3048 m 精确值；1 acre = 43,560 sq ft 精确值；1 sq yd = 9 sq ft 精确值）",
+    "页面内硬编码的示例与参考表（12ft6in×10ft=125非126、L形20×12+8×6=288、10ft直径圆≈78.5sqft、6格房间尺寸换算表）数值是否仍然正确",
+    "外部信源链接（NIST SP811、ANSI Z765）是否仍然可正常访问，ANSI Z765 是否仍是引用该机构目前有效的现行页面",
+    "地板/油漆购料损耗经验值（5-10%损耗、每加仑350-400平方英尺）是否仍是行业惯常口径，不是编造的精确数字"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：12ft6in×10ft=125sqft（页面强调'not 126'，正确）；L形20×12+8×6=288sqft（与tests/squareFootage.test.ts一致）；10ft直径圆=π×5²=78.5398sqft（页面写'≈78.5 sq ft'一致）；1 sqm=10.7639sqft、1sqft=0.09290304sqm，均与NIST精确定义（1ft=0.3048m精确值）一致；100×100ft地块=0.2296英亩，页面写'just under a quarter acre'（quarter acre=10,890sqft，10,000<10,890），正确。参考表6组数值（100/120/144/180/300/400 sqft对应9.3/11.1/13.4/16.7/27.9/37.2 m²）逐一复算全部吻合。src/lib/squareFootage.ts的rectangleAreaSqFt/circleAreaSqFt/triangleAreaSqFt/lShapeAreaSqFt四个函数分别对应页面四种形状的讲解，toFeet的TO_FEET换算表用NIST精确系数（含in=1/12、yd=3、m=1/0.3048、cm=1/30.48），无近似值误用。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：squareFootage.test.ts 13个测试全部通过（areas 5个、toFeet 4个、convertArea 3个、costEstimate 1个）。测试注释声明期望值来自'elementary geometry, hand-computed'与'exact NIST SP 811 factors'，逐条用独立Python复算比对全部一致，核实属实，非从实现输出反推。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/calculators/SquareFootageCalculator.tsx逐行核对：四种形状分支正确调用对应lib函数，所有输入先经toFeet统一转换到英尺再计算（避免混合单位错误），cost仅在price>0时计算。CalculatorIsland.astro按slug正确分发到该组件。npm run build成功生成dist/square-footage-calculator/与dist/embed/square-footage-calculator/，无报错。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "发现1个真问题（已修复）",
+      "detail": "NIST SP811链接curl 200且正文含'Special Publication 811'/'Conversion Factors'字样，内容对应，健康。ANSI Z765链接（`homeinnovation.com/services/accreditation/ansi_z765_square_footage_standard`）curl -sIL返回**HTTP 410 Gone**，页面标题'Not Found'，确认已失效——不是反爬网关（无302跳转到验证页），是真实下线。独立agent复核确认（沙箱内curl+WebSearch双重核实）。已替换为该机构现行页面`homeinnovation.com/services/national_standards/square_footage_method_for_calculating`（200，正文确认仍在讲ANSI Z765-2021标准现行版本与下次复审周期）。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/square-footage-calculator/ 200，title'Square Footage Calculator | CalcBadger'38字符，正常；canonical自指正确；单一h1，6个h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt为'Allow: /'。**meta description 207字符**，超出Google SERP安全长度（~155-160）约30-35%，有较高截断风险（cd-calculator此前审计的164字符仅超4字符判定不改，本次207字符幅度显著更大，独立agent复核确认应修）。该description同时是页面首屏可见导语段落，精简为151字符时保留了核心含义（房间/区域测量、换算、成本估算），只删去了已在正文'The formulas, shape by shape'一节详述的形状清单细节，未造成信息丢失。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用cd-calculator审计确立的人工核对方法（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的公式与换算；4个小节均以直接陈述开头；含2条真实数字worked example（L形、100×100地块）与2个参考表；5组FAQ配FAQPage schema；'last reviewed 2026-08-02'时效信号明确；robots.txt放行AI爬虫。综合判定明显高于80分门槛，无需改动（meta description修复属SEO维度非GEO维度，但客观上也提升了AI摘要引用时的信息密度）。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上HTML核对：'More calculators'区块含指向其余5个工具（cd/stair/sat-score/molarity/bmi）的全部链接，无孤儿风险；首页/分类页遍历tools数组渲染，同cd-calculator审计时的结论。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-02'与页面'last reviewed 2026-08-02'一致；FAQPage 5条FAQ与页面渲染一致；BreadcrumbList三级（Home/Home Improvement/Square Footage Calculator）与面包屑一致。meta description修改不影响schema字段（schema未单独存储description）。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "工具本身是几何计算，无需额外风险提示；全站/terms/页'No professional advice'条款已覆盖construction场景（本工具涉及地板/油漆购料估算）。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "1. sources中ANSI Z765链接从已410的accreditation旧页改为该机构现行的national_standards页（src/data/tools.ts第245行）",
+    "2. meta description从207字符精简到151字符，同步更新页面首屏可见导语段落（src/data/tools.ts第155行，同一字段两处复用）",
+    "两处均为定点修改，未做大范围重写；均先经独立fresh-context agent复核确认为真问题后才动手",
+    "npm test 156/156通过（含并发会话新增的coin-flip-simulator 26个测试）、npm run build通过后，用git hash-object+update-index做blob级暂存只提交这两处改动（commit 60f610c），未影响同仓库另一会话正在进行中的coin-flip-simulator未提交改动",
+    "push后轮询线上URL确认两处修复均已生效部署，node tools/submit-indexnow.mjs重新提交该URL（Bing 200/Yandex 202），内容发布日志.md已追加记录"
+  ],
+  "seo_score": "修复前：静态审计除meta description 207字符超长外全部健康；修复后：description缩短到151字符，其余维度（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）保持无异常",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，估计等效90/99左右，明显超过≥80门槛，无需修复",
+  "escalation": null
+}
+```
