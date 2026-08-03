@@ -759,4 +759,167 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 780,
 	},
+	{
+		slug: 'temperature-converter',
+		category: 'Science',
+		title: 'Temperature Converter',
+		shortTitle: 'Temperature Converter',
+		description:
+			'Convert between Celsius, Fahrenheit, and Kelvin instantly, with reference tables for oven temperatures, fever/body-temperature readings, and everyday weather values.',
+		updated: '2026-08-04',
+		coreSummary:
+			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations — so there is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two.',
+		queries: [
+			'celsius to fahrenheit',
+			'fahrenheit to celsius',
+			'temperature converter',
+			'c to f',
+			'f to c',
+			'celsius to kelvin',
+			'kelvin to celsius',
+			'180 c to f',
+			'40 c to f',
+			'37 c to f',
+			'what is normal body temperature in fahrenheit',
+		],
+		sections: [
+			{
+				heading: 'Why three temperature scales exist',
+				body: [
+					'Celsius, Fahrenheit, and Kelvin were built for three different jobs, which is why none of them lines up neatly with the others. Celsius (originally proposed in 1742) was defined so that water freezes at 0° and boils at 100° at standard atmospheric pressure — a scale built around a lab reference. Fahrenheit predates it by about three decades and uses a finer-grained scale where water freezes at 32° and boils at 212°, still the everyday standard in the US for weather and cooking.',
+					'Kelvin is different in kind, not just in offset: it is the SI base unit for temperature, and 0 K is absolute zero — the point where a substance has the least thermal energy physically possible. Celsius and Fahrenheit both allow negative numbers because they are anchored to arbitrary reference points (water\'s freezing point); Kelvin never goes negative because it is anchored to a physical floor. Scientists default to Kelvin specifically to avoid negative temperatures breaking formulas like the ideal gas law, which require an absolute scale.',
+				],
+			},
+			{
+				heading: 'The conversion formulas',
+				body: [
+					'All three conversions are exact definitions, not measured constants: **°F = °C × 9/5 + 32**, **°C = (°F − 32) × 5/9**, and **K = °C + 273.15**. Because the offset between Celsius and Kelvin is fixed at exactly 273.15, a Kelvin reading is just a Celsius reading with the negative numbers pushed out of the way — a 1-degree change means the same amount of thermal energy on both scales, only the zero point moves.',
+					'Fahrenheit and Celsius also change at different rates: a 1°C change equals a 1.8°F change (the 9/5 factor), so converting a *difference* between two temperatures uses a different multiplication than converting a single reading. A day that warms up "by 10°C" gets 18°F warmer, not 10°F warmer — a common mix-up between converting a point on the scale and converting a change along it.',
+				],
+			},
+			{
+				heading: 'Worked example: converting an oven temperature',
+				body: [
+					"A recipe from a European or Australian source calls for a 180°C oven. Converting: 180 × 9/5 + 32 = 324 + 32 = 356°F. Most US ovens dial in 25°F increments, so 356°F rounds to the nearest common setting — typically down to 350°F, which most bakers treat as close enough for the recipe to work, since a home oven's actual cavity temperature already swings several degrees around its setpoint during a bake.",
+					"That rounding is a kitchen convention, not part of the math: this calculator always shows the exact converted value (356°F, not the rounded 350°F) so you can decide how much precision your oven and recipe actually need.",
+				],
+			},
+			{
+				heading: 'Worked example: reading a fever off a Celsius thermometer',
+				body: [
+					'A digital thermometer reads 38.5°C. Converting: 38.5 × 9/5 + 32 = 69.3 + 32 = 101.3°F. The CDC defines fever as a measured temperature of 100.4°F (38°C) or greater, so 38.5°C/101.3°F is above that threshold. Normal body temperature is commonly cited as 37°C/98.6°F, though individual baseline temperature varies by about ±0.5°C through the day and between people, which is why a single reading a few tenths above 37°C is not automatically a fever.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Oven temperatures: Celsius, Fahrenheit, Kelvin',
+				headers: ['°C', '°F', 'K'],
+				rows: [
+					['120°C', '248°F', '393.15 K'],
+					['140°C', '284°F', '413.15 K'],
+					['150°C', '302°F', '423.15 K'],
+					['160°C', '320°F', '433.15 K'],
+					['170°C', '338°F', '443.15 K'],
+					['180°C', '356°F', '453.15 K'],
+					['190°C', '374°F', '463.15 K'],
+					['200°C', '392°F', '473.15 K'],
+					['210°C', '410°F', '483.15 K'],
+					['220°C', '428°F', '493.15 K'],
+					['230°C', '446°F', '503.15 K'],
+					['240°C', '464°F', '513.15 K'],
+					['250°C', '482°F', '523.15 K'],
+				],
+				note: 'Exact conversions via °F = °C×9/5+32. Home ovens are usually dialed in 25°F steps, so recipes round the converted value to the nearest common setting.',
+			},
+			{
+				title: 'Body temperature and fever reference',
+				headers: ['°C', '°F', 'Note'],
+				rows: [
+					['35.0°C', '95.0°F', 'Hypothermia range'],
+					['36.0°C', '96.8°F', ''],
+					['36.5°C', '97.7°F', ''],
+					['36.6°C', '97.9°F', ''],
+					['37.0°C', '98.6°F', 'Commonly cited normal temperature'],
+					['37.2°C', '99.0°F', ''],
+					['37.5°C', '99.5°F', ''],
+					['37.8°C', '100.0°F', ''],
+					['38.0°C', '100.4°F', 'CDC fever threshold'],
+					['38.5°C', '101.3°F', ''],
+					['39.0°C', '102.2°F', ''],
+					['39.5°C', '103.1°F', ''],
+					['40.0°C', '104.0°F', 'High fever'],
+					['41.0°C', '105.8°F', ''],
+					['42.0°C', '107.6°F', 'Hyperpyrexia — seek care'],
+				],
+				note: 'Exact conversions via °F = °C×9/5+32. Fever threshold per CDC (cdc.gov/port-health); "normal" varies by person, time of day, and measurement site (oral/rectal/tympanic/axillary).',
+			},
+			{
+				title: 'Everyday reference points',
+				headers: ['°C', '°F', 'K', 'Reference'],
+				rows: [
+					['-273.15°C', '-459.67°F', '0 K', 'Absolute zero'],
+					['-40°C', '-40°F', '233.15 K', 'The one point where the scales cross'],
+					['-20°C', '-4°F', '253.15 K', 'Deep freezer'],
+					['-10°C', '14°F', '263.15 K', 'Cold winter day'],
+					['0°C', '32°F', '273.15 K', 'Water freezes'],
+					['10°C', '50°F', '283.15 K', 'Cool day'],
+					['20°C', '68°F', '293.15 K', 'Room temperature'],
+					['25°C', '77°F', '298.15 K', 'Mild/warm day'],
+					['30°C', '86°F', '303.15 K', 'Hot day'],
+					['37°C', '98.6°F', '310.15 K', 'Human body temperature'],
+					['100°C', '212°F', '373.15 K', 'Water boils (at sea level)'],
+				],
+				note: 'Boiling and freezing points are for pure water at standard atmospheric pressure (1 atm); both shift at altitude.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do you convert Celsius to Fahrenheit?',
+				answer:
+					'Multiply the Celsius value by 9/5 (1.8) and add 32: °F = °C × 9/5 + 32. For example, 20°C × 1.8 = 36, plus 32 = 68°F. This is an exact conversion, not an approximation.',
+			},
+			{
+				question: 'How do you convert Fahrenheit to Celsius?',
+				answer:
+					'Subtract 32 from the Fahrenheit value, then multiply by 5/9: °C = (°F − 32) × 5/9. For example, (68°F − 32) × 5/9 = 36 × 5/9 = 20°C.',
+			},
+			{
+				question: 'What is 180°C in Fahrenheit?',
+				answer:
+					'180°C = 356°F exactly (180 × 9/5 + 32 = 356). It is a common oven-temperature conversion; most US ovens round it to the nearest dial setting, typically 350°F.',
+			},
+			{
+				question: 'Is 38°C a fever?',
+				answer:
+					'Yes. The CDC defines fever as a measured temperature of 100.4°F (38°C) or greater. Normal body temperature is commonly cited around 37°C/98.6°F, but it varies somewhat by person and time of day, so a reading in between (37.5–37.9°C) is sometimes called a low-grade fever depending on the source.',
+			},
+			{
+				question: 'What is absolute zero in Fahrenheit and Celsius?',
+				answer:
+					'Absolute zero is 0 Kelvin, which equals −273.15°C and −459.67°F. It is the coldest temperature theoretically possible — the point at which a system has minimum thermal energy — and is the reason the Kelvin scale never has negative numbers.',
+			},
+			{
+				question: 'Why does Kelvin not use the degree symbol?',
+				answer:
+					'Kelvin is an absolute scale tied to a physical zero point rather than an arbitrary reference like water freezing, so the SI convention writes it as a plain unit ("300 K"), not a degree ("300°K"). Celsius and Fahrenheit keep the degree symbol because they are relative scales built around chosen reference points.',
+			},
+			{
+				question: 'Does a 1-degree change mean the same thing on every scale?',
+				answer:
+					'No — this trips people up specifically when converting a *change* in temperature rather than a single reading. A 1°C change equals a 1.8°F change (or 1 K, since Kelvin and Celsius move at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
+			},
+		],
+		sources: [
+			{
+				label: 'NIST Special Publication 811 — Guide for the Use of the International System of Units (SI)',
+				url: 'https://physics.nist.gov/cuu/pdf/sp811.pdf',
+			},
+			{
+				label: 'CDC — Definitions of Signs, Symptoms, and Conditions of Ill Travelers (fever threshold)',
+				url: 'https://www.cdc.gov/port-health/php/definitions-symptoms-reportable-illness/index.html',
+			},
+		],
+		embedHeight: 420,
+	},
 ];

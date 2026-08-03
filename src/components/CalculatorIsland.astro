@@ -11,6 +11,7 @@ import MolarityCalculator from './calculators/MolarityCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
+import TemperatureConverter from './calculators/TemperatureConverter';
 
 interface Props {
 	slug: string;
@@ -26,3 +27,4 @@ const { slug } = Astro.props;
 {slug === 'stair-calculator' && <StairCalculator client:load />}
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}
 {slug === 'molarity-calculator' && <MolarityCalculator client:load />}
+{slug === 'temperature-converter' && <TemperatureConverter client:load />}
