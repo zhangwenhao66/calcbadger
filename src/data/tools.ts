@@ -1360,4 +1360,148 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'time-converter',
+		category: 'Conversion',
+		title: 'Time Converter',
+		shortTitle: 'Time Converter',
+		description:
+			'Convert between seconds, minutes, hours, days, weeks, months, and years instantly, with reference tables for "how many hours/minutes/seconds in a year" and worked examples for ages, projects, and countdowns.',
+		updated: '2026-08-05',
+		coreSummary:
+			'A day is exactly 24 hours (86,400 seconds) and a week is exactly 7 days, both fixed by definition. A calendar month or year has no single fixed length (28-31 days per month, 365 or 366 days per year), so this converter uses the mean Gregorian month (30.436875 days) and mean Gregorian year (365.2425 days), the exact average over the calendar\'s 400-year leap cycle, not an estimate. Enter a duration in any of seven units and this tool converts it to the other six at once.',
+		queries: [
+			'time converter',
+			'time unit converter',
+			'how many weeks in a year',
+			'how many seconds in a day',
+			'how many days in a year',
+			'how many hours in a year',
+			'how many hours in a week',
+			'how many minutes in a day',
+			'how many seconds in a year',
+			'how many weeks in a month',
+			'how many minutes in a year',
+			'convert days to weeks',
+			'convert hours to days',
+			'convert minutes to hours',
+		],
+		sections: [
+			{
+				heading: 'Exact units, and units with no fixed length',
+				body: [
+					'Seconds through weeks convert by whole, unchanging numbers: an hour is always 60 minutes, a day is always 24 hours, and a week is always 7 days. The BIPM SI Brochure (the document that defines the modern metric system) lists minute, hour, and day among the non-SI units "accepted for use with the SI," fixed at exactly those ratios. There is nothing to average or estimate here.',
+					'Months and years are different: a calendar month runs anywhere from 28 to 31 days, and a calendar year is 365 days most of the time but 366 in a leap year, so "1 month" or "1 year" is not a single number of seconds the way "1 week" is. This converter uses the *mean* Gregorian month and year instead of picking one calendar year arbitrarily. The Gregorian calendar\'s own leap-year rule (a year divisible by 4 is a leap year, except century years, which are leap years only if divisible by 400) produces exactly 97 leap years in every 400-year span, per the US Naval Observatory\'s leap-year explainer, so 400 years always contain exactly 146,097 days. Dividing that cycle evenly gives a mean year of 365.2425 days and a mean month (one-twelfth of that) of 30.436875 days. Both are exact arithmetic consequences of the calendar\'s own rule, not estimates or rounded guesses.',
+				],
+			},
+			{
+				heading: 'The seconds-per-unit behind this converter',
+				body: [
+					'1 minute = 60 s, 1 hour = 3,600 s, 1 day = 86,400 s, and 1 week = 604,800 s, all exact. The mean month is 2,629,746 s (30.436875 days) and the mean year is 31,556,952 s (365.2425 days), both derived from the 146,097-day, 400-year Gregorian cycle. Because months and years don\'t divide evenly into whole days, converting "1 year" to days gives 365.2425 rather than a round 365. That 0.2425-day remainder is exactly what leap days exist to correct for, spread out as one extra day roughly every four years instead of applied all at once.',
+					'Where an exact conversion isn\'t possible (there is no whole number of weeks in a month, for instance), this tool reports the mean-calendar figure to six significant figures rather than rounding to a convenient but less accurate number like "4 weeks."',
+				],
+			},
+			{
+				heading: 'Worked example: a project timeline',
+				body: [
+					'A project is quoted as taking "8 months." Converting: 8 × 4.348125 = 34.785 weeks, or roughly 34 weeks and 5-6 days depending on which actual calendar months the project spans. Because real calendar months vary in length, a project that starts on a long-month boundary (like starting in a 31-day month) will run slightly longer in calendar days than one measured purely by the mean-month figure. Treat it as a rough estimate, not a substitute for counting the actual calendar dates involved.',
+				],
+			},
+			{
+				heading: "Worked example: someone's age in seconds",
+				body: [
+					'A person turning 30 today has been alive for roughly 30 × 31,556,952 = 946,708,560 seconds, or 30 × 365.2425 = 10,957.275 days. The extra 0.2425 days per year is the accumulated effect of the roughly 7 or 8 leap days they lived through. This is why "how many seconds old am I" calculators that just multiply by a plain 365 will drift off by about 7.3 days worth of seconds (around 628,560 seconds) by age 30, versus the mean-year figure used here.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Exact conversions (no averaging)',
+				headers: ['Unit', 'Equals'],
+				rows: [
+					['1 minute', '60 seconds'],
+					['1 hour', '60 minutes = 3,600 seconds'],
+					['1 day', '24 hours = 1,440 minutes = 86,400 seconds'],
+					['1 week', '7 days = 168 hours = 10,080 minutes = 604,800 seconds'],
+				],
+				note: 'Minute, hour, and day are fixed by definition (BIPM SI Brochure); a week\'s 7 days is a near-universal calendar convention rather than a BIPM-listed unit. All four ratios above are exact and unchanging, with no calendar involved.',
+			},
+			{
+				title: '"How many X in a year" — three conventions compared',
+				headers: ['Basis', 'Days', 'Hours', 'Minutes', 'Seconds'],
+				rows: [
+					['Common (non-leap) calendar year', '365', '8,760', '525,600', '31,536,000'],
+					['Leap calendar year', '366', '8,784', '527,040', '31,622,400'],
+					['Mean Gregorian year (this converter)', '365.2425', '8,765.82', '525,949.2', '31,556,952'],
+				],
+				note: 'The "quick fact" figures most searches expect (e.g. 8,760 hours) use the plain 365-day count; the mean Gregorian figure accounts for leap years averaged over the calendar\'s 400-year cycle.',
+			},
+			{
+				title: 'Months and weeks',
+				headers: ['Duration', 'In weeks'],
+				rows: [
+					['1 mean month (30.436875 days)', '4.348125 weeks'],
+					['3 mean months (1 quarter)', '13.04 weeks'],
+					['6 mean months', '26.09 weeks'],
+					['1 mean year', '52.1775 weeks'],
+				],
+				note: 'A calendar year has 52 weeks plus 1 extra day (2 in a leap year), not an even 52; that\'s why the weeks-per-year figure isn\'t a round number.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many seconds are in a day?',
+				answer: 'Exactly 86,400, from 24 hours × 60 minutes × 60 seconds. This is fixed by definition and never varies.',
+			},
+			{
+				question: 'How many hours are in a week?',
+				answer: 'Exactly 168 (7 days × 24 hours), the same fixed relationship used for seconds in a day.',
+			},
+			{
+				question: 'How many minutes are in a day?',
+				answer: 'Exactly 1,440, from 24 hours × 60 minutes.',
+			},
+			{
+				question: 'How many days are in a year?',
+				answer:
+					'365 in a common calendar year, 366 in a leap year. Averaged over the Gregorian calendar\'s 400-year leap cycle, the mean works out to 365.2425 days. That\'s the figure this converter uses for "1 year."',
+			},
+			{
+				question: 'How many hours are in a year?',
+				answer:
+					'8,760 in a 365-day year, 8,784 in a leap year (366 days). Using the mean Gregorian year (365.2425 days), it works out to 8,765.82 hours.',
+			},
+			{
+				question: 'How many seconds are in a year?',
+				answer:
+					'31,536,000 in a 365-day year, 31,622,400 in a leap year. The mean Gregorian year (365.2425 days) works out to 31,556,952 seconds.',
+			},
+			{
+				question: 'How many minutes are in a year?',
+				answer:
+					'525,600 in a 365-day year, 527,040 in a leap year. The mean Gregorian year works out to 525,949.2 minutes.',
+			},
+			{
+				question: 'How many weeks are in a year?',
+				answer:
+					'52 weeks plus 1 extra day in a common year (2 extra days in a leap year), since 365 ÷ 7 = 52.14. ISO 8601\'s week-numbering calendar assigns most years 52 weeks but designates certain years as 53-week "long years."',
+			},
+			{
+				question: 'How many weeks are in a month?',
+				answer:
+					'About 4.3, or precisely 4.348125 weeks using the mean Gregorian month (30.436875 days). Individual calendar months range from exactly 4 weeks (28-day February) to 4 weeks and 3 days (31-day months).',
+			},
+		],
+		sources: [
+			{
+				label: 'BIPM SI Brochure — Annex 1: Units of time accepted for use with the SI',
+				url: 'https://www.bipm.org/en/publications/si-brochure/annex-1/time',
+			},
+			{
+				label: 'US Naval Observatory — Leap Years FAQ',
+				url: 'https://aa.usno.navy.mil/faq/leap_years',
+			},
+		],
+		embedHeight: 740,
+	},
 ];
