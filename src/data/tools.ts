@@ -1235,4 +1235,129 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 720,
 	},
+	{
+		slug: 'mortgage-calculator',
+		category: 'Finance',
+		title: 'Mortgage Calculator',
+		shortTitle: 'Mortgage Calculator',
+		description:
+			'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI and HOA) plus total interest over the life of the loan, for any home price, down payment, rate and term.',
+		updated: '2026-08-05',
+		coreSummary:
+			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment.',
+		queries: [
+			'mortgage calculator',
+			'home loan calculator',
+			'monthly mortgage payment calculator',
+			'how much is my mortgage payment',
+			'mortgage payment calculator with taxes and insurance',
+			'amortization calculator',
+			'30 year mortgage calculator',
+			'15 year mortgage calculator',
+		],
+		sections: [
+			{
+				heading: 'Why the payment never changes (but what it buys does)',
+				body: [
+					'A fixed-rate mortgage is "amortized": every payment is the same size, but the mix behind it shifts every month. On the first payment of a 30-year loan, the overwhelming majority of the check is interest on the full remaining balance; on the last payment, almost all of it is principal, because there is almost no balance left to charge interest on. This is not a lender trick; it falls straight out of the algebra of a level payment against a shrinking balance, consistent with the actuarial method Regulation Z (12 CFR Part 1026, Appendix J) prescribes for closed-end credit.',
+					'The formula itself, M = P[r(1+r)ⁿ]/[(1+r)ⁿ−1], only produces the principal & interest (P&I) portion. It has no idea what your county charges in property tax or what your insurer charges for a policy. Those get added on afterward as flat monthly amounts, which is why this calculator asks for them separately rather than folding them into the rate.',
+				],
+			},
+			{
+				heading: 'Worked example: $400,000 home, 20% down, 6.5%, 30 years',
+				body: [
+					'Down payment: $400,000 × 20% = $80,000. Loan amount: $400,000 − $80,000 = $320,000. Plugging P = $320,000, r = 6.5%/12 = 0.0054167, n = 360 into the formula gives a principal & interest payment of $2,022.62/month. Over 360 payments that totals $728,142.36, of which $408,142.36 (more than the original loan amount) is interest, not principal.',
+					'After exactly one year of on-time payments, the balance has dropped only to $316,423.28, barely 1.1% of the original loan, even though $24,271.44 has been paid in that year. That gap is the amortization curve at its steepest: interest still dominates every payment in year one. By year 15 (halfway through the term) the balance is $232,189.25, still 72.6% of the original loan, and it does not fall below half until shortly after year 20.',
+				],
+			},
+			{
+				heading: '15-year vs. 30-year: the same loan, two different trades',
+				body: [
+					'Take that same $320,000 loan and compare terms at rates typical of each (lenders generally price shorter terms lower, since they carry the loan for less time and less rate risk). At 30 years and 6.5%, the payment is $2,022.62/month with $408,142 in lifetime interest. At 15 years and a representative 5.85%, the payment rises to $2,674.48/month, about $652 more, but lifetime interest drops to $161,406, a savings of roughly $246,700 versus the 30-year loan.',
+					"There is no universally correct choice here: the 15-year path builds equity faster and costs far less in total, but only if the higher payment fits the budget with room for emergencies. The 30-year path is more forgiving month to month, and the difference can be invested or used to pay down higher-interest debt instead. Some borrowers split the difference by taking a 30-year loan and voluntarily paying extra toward principal, which shortens the effective term without the higher payment being contractually required.",
+				],
+			},
+			{
+				heading: 'PMI: what it is, and when it goes away automatically',
+				body: [
+					'Private mortgage insurance (PMI) protects the lender, not the borrower, and typically applies to conventional loans with a down payment under 20%. It is usually priced as an annual percentage of the loan (roughly 0.5–1.5%, driven by credit score and down payment size) and billed monthly, which is why this calculator treats it as a flat monthly add-on rather than computing it.',
+					'PMI is not permanent. Under the Homeowners Protection Act of 1998 (Public Law 105-216), a lender must automatically terminate PMI on a conventional loan once the balance is first scheduled to reach 78% of the home\'s original value, with no request required as long as the borrower is current on payments. A borrower can also request cancellation earlier, once the balance reaches 80% of original value, subject to the servicer\'s conditions. Extra principal payments reach that threshold sooner than the amortization schedule alone would.',
+				],
+			},
+			{
+				heading: 'Property tax, insurance and HOA: why they are flat, not amortized',
+				body: [
+					'Unlike principal & interest, property tax and homeowners insurance are not loan terms. They are recurring local-government and insurance-market costs that a lender typically collects monthly into an escrow account and pays on the borrower\'s behalf when the annual bills come due. This calculator simply divides whatever annual figures are entered by 12 and adds them to the P&I payment; it does not attempt to project future tax reassessments or insurance premium increases, both of which are common over a 30-year term and are the usual reason a "fixed" mortgage payment still changes year to year.',
+					'HOA dues, where they apply, are billed directly by the association rather than through the lender\'s escrow account in most cases, but they still belong in a realistic monthly budget figure, which is why the calculator includes them in the total payment even though they never touch the amortization schedule itself.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Remaining balance by year: $320,000 loan at 6.5%, 30-year term',
+				headers: ['End of year', 'Remaining balance', '% of original loan'],
+				rows: [
+					['1', '$316,423.28', '98.9%'],
+					['5', '$299,555.13', '93.6%'],
+					['10', '$271,283.60', '84.8%'],
+					['15', '$232,189.25', '72.6%'],
+					['20', '$178,128.90', '55.7%'],
+					['25', '$103,373.32', '32.3%'],
+					['30', '$0.00', '0%'],
+				],
+				note: 'Computed from the standard amortization formula; assumes every payment is made on time with no extra principal.',
+			},
+			{
+				title: '15-year vs. 30-year term, same $320,000 loan',
+				headers: ['Term', 'Rate', 'Monthly P&I', 'Total interest'],
+				rows: [
+					['30 years', '6.5%', '$2,022.62', '$408,142.36'],
+					['15 years', '5.85%', '$2,674.48', '$161,406.06'],
+				],
+				note: 'Rates are illustrative: 15-year loans are typically priced lower than 30-year loans for the same borrower. Enter your own quoted rate for each term to compare precisely.',
+			},
+		],
+		faq: [
+			{
+				question: 'How is a monthly mortgage payment calculated?',
+				answer:
+					'Principal & interest use the level-payment amortization formula M = P[r(1+r)ⁿ]/[(1+r)ⁿ−1], where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of monthly payments. Property tax, homeowners insurance, PMI and HOA dues are added on top as flat monthly amounts; they are not part of the amortization formula itself.',
+			},
+			{
+				question: 'What down payment do I need to avoid PMI?',
+				answer:
+					'On a conventional loan, putting down at least 20% of the home price generally avoids private mortgage insurance. Below 20%, PMI is standard, but the Homeowners Protection Act requires it to be automatically canceled once the loan balance is first scheduled to reach 78% of the home\'s original value, provided payments are current.',
+			},
+			{
+				question: 'Should I choose a 15-year or 30-year mortgage?',
+				answer:
+					'A 30-year term has a lower required monthly payment and more flexibility; a 15-year term has a higher payment but typically a lower rate and dramatically less total interest, since less time means less interest accrues and more of each payment is principal from the start. On a $320,000 loan, the difference in lifetime interest can exceed $240,000.',
+			},
+			{
+				question: 'Why does my total payment include more than principal and interest?',
+				answer:
+					'Most US lenders collect property tax and homeowners insurance monthly through an escrow account and pay the annual bills on your behalf, and PMI (if required) and HOA dues are billed on the same monthly cycle. Principal & interest is fixed by the loan terms; the escrow and PMI portions can change if tax assessments, insurance premiums, or PMI eligibility change.',
+			},
+			{
+				question: 'Does paying extra toward principal actually save money?',
+				answer:
+					'Yes. Because interest is charged on the outstanding balance each month, any extra amount applied directly to principal reduces every subsequent month\'s interest charge for the rest of the loan, which is why voluntary extra payments shorten a loan\'s effective payoff time without refinancing.',
+			},
+		],
+		sources: [
+			{
+				label: 'Regulation Z, 12 CFR Part 1026, Appendix J — actuarial method for closed-end credit',
+				url: 'https://www.consumerfinance.gov/rules-policy/regulations/1026/j/',
+			},
+			{
+				label: 'CFPB — How do mortgage lenders calculate monthly payments?',
+				url: 'https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/',
+			},
+			{
+				label: 'CFPB — Homeowners Protection Act (HPA / PMI Cancellation Act) examination procedures',
+				url: 'https://www.consumerfinance.gov/compliance/supervision-examinations/homeowners-protection-act-hpa-or-pmi-cancellation-act-examination-procedures/',
+			},
+		],
+		embedHeight: 900,
+	},
 ];
