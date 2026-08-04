@@ -253,7 +253,7 @@ export const tools: Tool[] = [
 		title: 'Stair Calculator',
 		shortTitle: 'Stair Calculator',
 		description:
-			'Lay out a straight run of stairs from the total rise: number of risers and treads, exact riser height in carpenter-friendly fractions, total run, stringer length, and stair angle, checked against IRC limits.',
+			'Calculate stair layout from total rise: riser count, riser height in carpenter fractions, tread run, stringer length, and angle — checked against IRC limits.',
 		updated: '2026-08-02',
 		coreSummary:
 			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up. That is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each.',

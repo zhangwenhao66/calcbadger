@@ -25,8 +25,24 @@ const { tool } = Astro.props;
 const related = pickRelatedGuides(tools, tool, 6);
 // With only a handful of tools per category early on, pad the sidebar with
 // tools from other categories so every page cross-links the whole young site.
-const crossCategory = tools.filter((t) => t.slug !== tool.slug && !related.includes(t));
-const relatedFinal = [...related, ...crossCategory].slice(0, 6);
+// Most categories here are singletons, so nearly every tool falls through to
+// this padding step — it must rotate too, or whichever tool sorts last in
+// `tools` (currently length-converter) would never appear in ANY related
+// widget site-wide, the exact bug the comment above guards against, just
+// recreated in the fallback instead of the primary selection. Rotating by
+// each tool's own position in the full array (not a fixed slice) spreads the
+// fallback picks so every tool eventually surfaces (verified: 9/9 coverage).
+const crossCategoryPool = tools.filter((t) => t.slug !== tool.slug && !related.includes(t));
+const remaining = 6 - related.length;
+const globalIndex = tools.findIndex((t) => t.slug === tool.slug);
+const crossCategory =
+	remaining > 0
+		? Array.from(
+				{ length: Math.min(remaining, crossCategoryPool.length) },
+				(_, k) => crossCategoryPool[(globalIndex + k) % crossCategoryPool.length],
+			)
+		: [];
+const relatedFinal = [...related, ...crossCategory];
 
 const catPath = `/category/${categorySlug(tool.category)}/`;
 const pageUrl = `${SITE_ORIGIN}/${tool.slug}/`;
