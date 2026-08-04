@@ -1071,4 +1071,168 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 720,
 	},
+	{
+		slug: 'weight-converter',
+		category: 'Conversion',
+		title: 'Weight Converter',
+		shortTitle: 'Weight Converter',
+		description:
+			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, and US tons instantly, with reference tables for body weight, cooking, newborn weight, and dosing.',
+		updated: '2026-08-04',
+		coreSummary:
+			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. Enter a weight in any of seven units and this tool converts it to the other six at once.',
+		queries: [
+			'kg to lbs',
+			'lbs to kg',
+			'weight converter',
+			'how many ounces in a pound',
+			'how many grams in an ounce',
+			'grams to lbs',
+			'oz to lbs',
+			'how many grams in a pound',
+			'lbs to oz',
+			'oz to grams',
+			'grams to oz',
+			'mg to g',
+			'mcg to mg',
+			'tons to lbs',
+			'how many grams in a kilogram',
+			'how many mg in a gram',
+			'70 kg to lbs',
+			'150 lbs to kg',
+			'convert kg to lbs',
+		],
+		sections: [
+			{
+				heading: 'Two systems, one exact bridge',
+				body: [
+					'The metric side of this converter is pure arithmetic: a milligram is a thousandth of a gram and a kilogram is a thousand of them, so moving between mcg, mg, g, and kg is just sliding a decimal point. The pound and ounce come from a different lineage entirely: the avoirdupois system (from the French "aveir de pois," roughly "goods of weight"), which English wool and produce merchants adopted in the late Middle Ages for everyday trade goods. It is a separate system from troy weight, the older standard still used today only for precious metals: a troy ounce (31.1034768 g) is about 9.7% heavier than the avoirdupois ounce this converter uses, which is why a "one-ounce" gold coin is not the same mass as a "one-ounce" bag of flour. Avoirdupois displaced troy for general commerce partly because its 16-ounce pound splits evenly into halves, quarters, and eighths, where troy\'s 12-ounce pound does not.',
+					'The 1959 International Yard and Pound Agreement (US, UK, Canada, Australia, New Zealand, and South Africa) is why this converter can treat "pound" as one unambiguous number: it fixed the avoirdupois pound at exactly 0.45359237 kg in all six countries, replacing figures each had previously calibrated to its own physical standard weight. That agreement did not erase every US/UK mass difference, though: a US "short ton" (2,000 lb, the one this tool uses) and a British "long ton" (2,240 lb) remain genuinely different units today, and neither equals a metric tonne (1,000 kg). Mixing them up is a real source of errors in freight and shipping paperwork.',
+				],
+			},
+			{
+				heading: 'The exact factors this converter uses',
+				body: [
+					'Micrograms, milligrams, grams, and kilograms convert to each other by exact powers of ten (1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg), since that is how the SI system is built. The imperial bridge is fixed by legal definition rather than by measurement: 1 lb = 453.59237 g exactly (NIST Handbook 44, Appendix C, marks this "exact"). Neither the ounce nor the US ton has its own independent definition — both are derived arithmetically from that same fixed pound: 1 oz = 1 lb ÷ 16 = 28.349523125 g, and 1 US ton = 2,000 lb = 907,184.74 g.',
+					"Because grams and pounds share no common round factor, most conversions land on a long decimal rather than a clean number (1 kg is 2.204623 lb, not 2.2). That matters more here than it might for a length or volume conversion: a nurse converting a dose between mg and mcg, or a lab weighing a reagent in g versus oz, is working with a figure where a rounding shortcut can shift the result by a meaningful margin. This tool carries the full floating-point calculation internally and rounds only for display, to 6 significant figures, so the number you copy is accurate even though the underlying arithmetic never actually stops at that many digits.",
+				],
+			},
+			{
+				heading: 'Worked example: body weight',
+				body: [
+					'A gym scale reads 68 kg, and a US fitness app wants pounds. Converting: 68 × (1,000 ÷ 453.59237) = 149.914 lb, which most trackers round to 149.9 lb. Going the other way, a US doctor\'s chart listing 150 lb converts to 150 × 0.45359237 = 68.0389 kg, close to but not exactly the 68 kg the scale first showed. The two figures were never meant to round-trip to the same decimal.',
+				],
+			},
+			{
+				heading: 'Worked example: a newborn\'s weight',
+				body: [
+					'A US hospital records a birth weight as 8 lb 6 oz, and a family abroad wants it in metric. Converting: 8 lb 6 oz is 134 oz total (8 × 16 + 6), and 134 × 28.349523125 = 3,798.84 g, or 3.799 kg. Baby-weight trackers usually show this as "3.8 kg," which is that figure rounded to one decimal place.',
+				],
+			},
+			{
+				heading: 'Worked example: a medication dose',
+				body: [
+					'A prescription label reads "levothyroxine 200 mcg," and a pharmacy reference lists the same drug in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams instead of micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly rather than assuming the number carries over.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Kilograms to pounds: body weight range',
+				headers: ['kg', 'lb'],
+				rows: [
+					['40 kg', '88.18 lb'],
+					['50 kg', '110.23 lb'],
+					['60 kg', '132.28 lb'],
+					['70 kg', '154.32 lb'],
+					['80 kg', '176.37 lb'],
+					['90 kg', '198.42 lb'],
+					['100 kg', '220.46 lb'],
+				],
+				note: 'Exact conversion via 1 lb = 0.45359237 kg, rounded to two decimal places.',
+			},
+			{
+				title: 'Pounds to kilograms: body weight range',
+				headers: ['lb', 'kg'],
+				rows: [
+					['100 lb', '45.36 kg'],
+					['120 lb', '54.43 kg'],
+					['140 lb', '63.50 kg'],
+					['150 lb', '68.04 kg'],
+					['160 lb', '72.57 kg'],
+					['180 lb', '81.65 kg'],
+					['200 lb', '90.72 kg'],
+				],
+				note: 'Exact conversion via 1 lb = 0.45359237 kg, rounded to two decimal places.',
+			},
+			{
+				title: 'Ounces to grams: cooking measures',
+				headers: ['oz', 'g'],
+				rows: [
+					['1 oz', '28.35 g'],
+					['2 oz', '56.70 g'],
+					['4 oz', '113.40 g'],
+					['8 oz', '226.80 g'],
+					['12 oz', '340.19 g'],
+					['16 oz (1 lb)', '453.59 g'],
+				],
+				note: 'Exact conversion via 1 oz = 28.349523125 g, rounded to two decimal places. Common in recipes that mix US and metric measures.',
+			},
+			{
+				title: 'Newborn weight: ounces to pounds & ounces',
+				headers: ['Total oz', 'lb / oz'],
+				rows: [
+					['96 oz', '6 lb 0 oz'],
+					['112 oz', '7 lb 0 oz'],
+					['120 oz', '7 lb 8 oz'],
+					['128 oz', '8 lb 0 oz'],
+					['134 oz', '8 lb 6 oz'],
+					['144 oz', '9 lb 0 oz'],
+					['160 oz', '10 lb 0 oz'],
+				],
+				note: 'Splits total ounces into whole pounds plus remaining ounces, the format most US birth records use.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many pounds are in a kilogram?',
+				answer: '1 kilogram equals approximately 2.204623 pounds. To convert kilograms to pounds, divide by 0.45359237; to go the other way, multiply pounds by 0.45359237.',
+			},
+			{
+				question: 'How many kilograms are in a pound?',
+				answer: '1 pound equals exactly 0.45359237 kilograms. This has been the legal, exact definition since the 1959 International Yard and Pound Agreement.',
+			},
+			{
+				question: 'How many ounces are in a pound?',
+				answer: 'There are exactly 16 ounces in an avoirdupois pound, a relationship that predates and is unchanged by the 1959 metric redefinition.',
+			},
+			{
+				question: 'How do you convert kilograms to pounds?',
+				answer: 'Multiply the kilogram value by 2.204623, or divide by 0.45359237 for the exact figure. For example, 70 kg × 2.204623 ≈ 154.32 lb.',
+			},
+			{
+				question: 'How many grams are in an ounce?',
+				answer: '1 ounce equals exactly 28.349523125 grams (1 pound ÷ 16, and 1 pound is fixed at 453.59237 g by the 1959 agreement).',
+			},
+			{
+				question: 'Is a US ton the same as a metric tonne?',
+				answer: 'No. A US (short) ton is exactly 2,000 pounds, or 907.18474 kg. A metric tonne is exactly 1,000 kg, about 10% heavier than a US ton. This converter uses the US short ton, the one used in US freight, agriculture, and construction contexts.',
+			},
+			{
+				question: 'How many milligrams are in a gram?',
+				answer: 'There are exactly 1,000 milligrams in a gram, and 1,000 micrograms in a milligram. Both are SI decimal prefixes, not measured relationships.',
+			},
+		],
+		sources: [
+			{
+				label: 'NIST — SI Units: Mass',
+				url: 'https://www.nist.gov/pml/owm/si-units-mass',
+			},
+			{
+				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
+			},
+		],
+		embedHeight: 720,
+	},
 ];

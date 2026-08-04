@@ -13,6 +13,7 @@ import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import TemperatureConverter from './calculators/TemperatureConverter';
+import WeightConverter from './calculators/WeightConverter';
 
 interface Props {
 	slug: string;
@@ -30,3 +31,4 @@ const { slug } = Astro.props;
 {slug === 'molarity-calculator' && <MolarityCalculator client:load />}
 {slug === 'temperature-converter' && <TemperatureConverter client:load />}
 {slug === 'length-converter' && <LengthConverter client:load />}
+{slug === 'weight-converter' && <WeightConverter client:load />}
