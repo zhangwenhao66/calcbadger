@@ -1,0 +1,77 @@
+[
+  {
+    "date": "2026-08-04",
+    "site": "calcbadger",
+    "niche_focus": "calculator/converter tool site (construction, home improvement, education/test-prep, science, finance) — first-ever outreach run, no prior log",
+    "channels_researched": [
+      {
+        "name": "Effortless Math — Guest Blogging Guidelines",
+        "url": "https://effortlessmath.com/effortless-math-guest-blogging-guidelines/",
+        "status": "real-but-poor-fit — rejected (paid link scheme)",
+        "notes": "页面真实且活跃，主题为SAT/ACT/GRE数学备考、教师/学生内容，本可与SAT Score Calculator对应。但核实全文后发现第4步明确要求'Send the Payment via PayPal'，FAQ里承认'Paid links will be dofollow'且'will not be marked'为sponsored——这是未标注的付费dofollow链接方案，违反Google付费链接指南，且涉及付款（本任务禁止执行金钱交易），故不采取任何行动，仅记录跳过。"
+      },
+      {
+        "name": "Math Sharpeners — Write for Us",
+        "url": "https://mathsharpeners.com/write-for-us/",
+        "status": "sent — 2026-08-04",
+        "notes": "真实开放的投稿栏目，先邮件pro@Mathsharpeners.com提案选题获批后再投全文（.doc），要求原创1000字+，声称月访问30万+，'contextual, non-promotional的dofollow链接'被允许。主题(education/study tips/e-learning/technology in education)跟计算器工具关联度中等，可用'免费在线工具帮助学生学习'角度切入，提及SAT Score Calculator和Molarity Calculator。2026-08-04积压处理：渠道复核仍有效（curl 200，页面正文确认投稿流程未变）→过humanizer→独立复核agent判定APPROVED（重复联系/事实核对/投稿规则符合/语气/AI味五项全过）→已用gmail_send.py --from calcbadger发出，Message ID 19fcb785e15c9300，From头确认为CalcBadger <contact@calcbadger.com>。"
+      },
+      {
+        "name": "WriteForUsArchitecture.com — Write For Us Construction",
+        "url": "https://writeforusarchitecture.com/write-for-us-construction/",
+        "status": "real-but-low-quality — not pursued",
+        "notes": "页面存在且提供联系邮箱heart@writeforusarchitecture.com，24小时回复承诺，但页面内容单薄(仅两段+一个邮箱)，无字数/格式/编辑标准，域名模式('writeforus'+行业词)是常见的泛化多行业guest-post模板站/疑似PBN网络特征，缺乏可验证的编辑把关，锚点权威性存疑。判定为存在但质量可疑，本轮不投入精力起草pitch。"
+      },
+      {
+        "name": "Nedes Estimating — Write for Us (Construction Estimating Services)",
+        "url": "https://nedesestimating.com/write-for-us/",
+        "status": "unable to verify — automated/geo access blocked",
+        "notes": "WebFetch返回HTTP 418(bot拦截)，Browser pane直接显示'Country Blocked'。无法核实页面真实内容和投稿流程是否仍然开放，不排除是正常的反爬虫策略，但也可能是低质量/停运站点的伪装。未采取行动，标记为需要后续换网络环境或人工核实。"
+      },
+      {
+        "name": "Ranch Roofing — 25 Best Home Improvement Websites (Submit Yours)",
+        "url": "https://ranchroofing.com/blog/best-home-improvement-websites/",
+        "status": "sent — 2026-08-04",
+        "notes": "文章内注明'If you'd like us to add your website...email us at ranchroof@gmail.com and send us a website to consider'，作者为站主Bob O'Sullivan本人，页面近期(2024年6月)更新过，是真实、简单的非敏感邮件提交(仅需网站名+URL+简介)。2026-08-04积压处理：渠道复核仍有效（curl 200，页面正文确认征集依然有效、收件邮箱未变）→过humanizer→独立复核agent判定APPROVED（重复联系/事实核对/投稿规则符合/语气/AI味五项全过，确认收件人为站主Bob O'Sullivan本人）→已用gmail_send.py --from calcbadger发出，Message ID 19fcb786d59de619，From头确认为CalcBadger <contact@calcbadger.com>。"
+      },
+      {
+        "name": "Best Homeschool Buys — Resources (link exchange)",
+        "url": "https://besthomeschoolbuys.com/blog/resources/",
+        "status": "real-but-poor-fit — not pursued",
+        "notes": "真实活跃站点，但要求'先在自己网站上加对方链接，再邮件申请对方加回链接'的互链模式(reciprocal link exchange)，这类互链在Google眼中属较低质量的链接建设手法且需要在calcbadger.com上放出站链接作为交换条件，niche(homeschool curriculum)跟通用计算器工具的相关性也弱，判定跳过。"
+      },
+      {
+        "name": "Design Your Homeschool — Free Homeschooling Resources (Maths)",
+        "url": "https://www.design-your-homeschool.com/free-homeschooling-resources-maths.html",
+        "status": "real-but-poor-fit — not pursued",
+        "notes": "页面提供开放的资源分享表单(网站标题/简介/URL/图片)，机制真实存在，但页面内容明显陈旧('2021-2022'排课表、版权到2022年、多条目标注'Not rated yet')，权威度和活跃度存疑，且homeschool课程类受众跟通用/多行业计算器工具的匹配度较弱，不作为优先渠道。"
+      }
+    ],
+    "actions_taken": "0 forms submitted, 0 emails sent this round. 本次为CalcBadger首次outreach调研，7个渠道中2个判定viable：(1) Math Sharpeners，已起草选题提案邮件草稿（发往pro@Mathsharpeners.com，主题'Free Online Tools That Make Homework and Test Prep Easier'，引用真实已发布工具SAT Score Calculator和Molarity Calculator）；(2) Ranch Roofing，已起草简单提交邮件草稿（发往ranchroof@gmail.com，请求把calcbadger.com加入其home improvement网站列表，附Square Footage Calculator/Stair Calculator作为具体亮点）。两份草稿均未发送——根据本次运行的安全规则，发送邮件/代表用户联系第三方属于需要在聊天中获得Owen明确许可的动作，子任务run无法获取该许可，故只完成调研+起草，发送动作留给Owen决定。其余5个渠道（Effortless Math付费链接方案、WriteForUsArchitecture疑似PBN、Nedes Estimating无法访问核实、Best Homeschool Buys互链模式、Design Your Homeschool陈旧内容）均判定不采取行动。",
+    "result_summary": "7 channels researched, 2 viable (pitches/submissions drafted but not sent — pending Owen approval), 1 real-but-rejected due to paid-link scheme, 2 real-but-poor-fit, 1 low-quality/PBN-suspect, 1 unable to verify (bot/geo-blocked). 本站作为工具站，'guest post'渠道天然不如calculators/converter widget attribution模式匹配，命中率偏低符合预期。后续可尝试的方向：直接搜索具体已发布工具对应的垂直resource页(如'stair calculator' resource roundup、'BMI calculator' health resource lists)而非泛化'write for us'搜索，可能命中率更高。"
+  },
+  {
+    "date": "2026-08-04",
+    "site": "calcbadger",
+    "run_type": "backlog processing — 2026-08-04政策变更后首次执行「过humanizer+独立复核+自动发送」流程",
+    "backlog_processed": [
+      {
+        "channel": "Math Sharpeners — Write for Us",
+        "recipient": "pro@Mathsharpeners.com",
+        "channel_recheck": "curl -A <browser UA> HTTP 200，正文确认投稿邮箱与流程未变",
+        "humanizer": "已过Skill(humanizer)去AI味",
+        "independent_review": "APPROVED — 全新独立agent复核，五项检查全过：14天内无重复联系记录、SAT Score Calculator/Molarity Calculator事实核对与src/data/tools.ts一致、符合对方'先pitch topic再投全文'流程、语气具体不像模板、无AI写作痕迹",
+        "action": "已发送，gmail_send.py send --from calcbadger，Message ID 19fcb785e15c9300，From头核实为CalcBadger <contact@calcbadger.com>"
+      },
+      {
+        "channel": "Ranch Roofing — 25 Best Home Improvement Websites",
+        "recipient": "ranchroof@gmail.com",
+        "channel_recheck": "curl -A <browser UA> HTTP 200，正文确认征集依然有效、收件邮箱未变",
+        "humanizer": "已过Skill(humanizer)去AI味",
+        "independent_review": "APPROVED — 全新独立agent复核，五项检查全过，并确认收件人为站主Bob O'Sullivan本人",
+        "action": "已发送，gmail_send.py send --from calcbadger，Message ID 19fcb786d59de619，From头核实为CalcBadger <contact@calcbadger.com>"
+      }
+    ],
+    "result_summary": "2条积压草稿全部核实渠道未过期、过humanizer、经独立复核agent判定APPROVED后实际发送，无跳过、无复核未通过。草稿全文见仓库根目录outreach-drafts.md。"
+  }
+]
