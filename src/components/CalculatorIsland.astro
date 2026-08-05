@@ -11,6 +11,7 @@ import ConcreteCalculator from './calculators/ConcreteCalculator';
 import LengthConverter from './calculators/LengthConverter';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
+import PercentageCalculator from './calculators/PercentageCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
@@ -34,6 +35,7 @@ const { slug } = Astro.props;
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}
 {slug === 'molarity-calculator' && <MolarityCalculator client:load />}
 {slug === 'mortgage-calculator' && <MortgageCalculator client:load />}
+{slug === 'percentage-calculator' && <PercentageCalculator client:load />}
 {slug === 'temperature-converter' && <TemperatureConverter client:load />}
 {slug === 'length-converter' && <LengthConverter client:load />}
 {slug === 'weight-converter' && <WeightConverter client:load />}
