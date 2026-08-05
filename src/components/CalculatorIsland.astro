@@ -17,6 +17,7 @@ import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
+import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
 
 interface Props {
@@ -40,3 +41,4 @@ const { slug } = Astro.props;
 {slug === 'length-converter' && <LengthConverter client:load />}
 {slug === 'weight-converter' && <WeightConverter client:load />}
 {slug === 'time-converter' && <TimeConverter client:load />}
+{slug === 'volume-converter' && <VolumeConverter client:load />}

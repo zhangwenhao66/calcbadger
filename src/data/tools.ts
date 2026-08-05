@@ -1749,4 +1749,180 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'volume-converter',
+		category: 'Conversion',
+		title: 'Volume Converter',
+		shortTitle: 'Volume Converter',
+		description:
+			'Convert between teaspoons, tablespoons, fluid ounces, cups, pints, quarts, gallons, milliliters, and liters instantly, with reference tables for cooking measures, bottle and can sizes, and larger volumes.',
+		updated: '2026-08-06',
+		coreSummary:
+			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here — quart, pint, cup, fluid ounce, tablespoon, teaspoon — is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once.',
+		queries: [
+			'volume converter',
+			'how many ounces in a cup',
+			'how many tablespoons in a cup',
+			'how many teaspoons in a tablespoon',
+			'how many cups in a quart',
+			'how many cups in a gallon',
+			'how many ounces in a gallon',
+			'ml to oz',
+			'oz to ml',
+			'cups to ml',
+			'liters to gallons',
+			'gallons to liters',
+			'how many ml in a cup',
+			'how many cups in a liter',
+			'how many ounces in a liter',
+			'how many pints in a gallon',
+			'how many quarts in a gallon',
+			'how many ounces in a wine bottle',
+			'how many gallons in a barrel',
+			'fluid oz to cups',
+		],
+		sections: [
+			{
+				heading: 'A 1707 wine gallon, still exact today',
+				body: [
+					"The US gallon this converter uses traces back to England's 1707 \"Queen Anne\" wine gallon, fixed at exactly 231 cubic inches — a figure the standard-makers reportedly reached by taking a cylinder 6 inches tall and 7 inches across and approximating π as 22/7, which multiplies out to a clean 231. The United States kept that number after independence: the Weights and Measures Act of 1836 legally adopted 231 cubic inches as the US liquid gallon, and NIST still enforces that exact definition for US trade today. Britain, meanwhile, replaced its own wine gallon with the larger Imperial gallon in 1824, which is why a US gallon (3.785 L) and a UK/Imperial gallon (4.546 L) are genuinely different units — about 20% apart — despite sharing a name and a common ancestor.",
+					"That 231-cubic-inch figure only became an exact metric value once the inch itself was pinned down: the 1959 International Yard and Pound Agreement fixed 1 inch at exactly 2.54 cm. Multiply 231 in³ by (2.54 cm)³ and the result is 3785.411784 cm³, or 3.785411784 liters — the exact conversion this tool runs on, inherited from two separate legal definitions three centuries and an ocean apart, not from a modern re-measurement of an actual gallon container.",
+				],
+			},
+			{
+				heading: 'The exact chain this converter uses',
+				body: [
+					'Every other US customary volume unit here is defined as a whole-number fraction or multiple of the gallon, so once the gallon is exact, they all are: 1 gallon = 4 quarts, 1 quart = 2 pints, 1 pint = 2 cups, 1 cup = 8 fluid ounces, 1 fluid ounce = 2 tablespoons, 1 tablespoon = 3 teaspoons. Multiplying those ratios through gives 1 US fluid ounce = 29.5735295625 mL exactly — the number this tool, and every other US-to-metric kitchen conversion, ultimately rests on.',
+					"Metric liters and milliliters need no such chain: a liter is 1,000 mL by definition, since both are SI units related by a power of ten. The only genuinely uncertain step in the whole system is rounding for display — this converter carries full floating-point precision internally and rounds to 6 significant figures only when showing you a result, so copying a number for a recipe or a lab measurement doesn't compound a rounding error the underlying math never made.",
+				],
+			},
+			{
+				heading: "Fluid ounces measure volume, not weight — and that's where recipes go wrong",
+				body: [
+					'This is the single most common mix-up this converter exists to prevent. A "fluid ounce" (fl oz) is a unit of volume — 1/128 of a gallon — while a plain "ounce" (oz) is a unit of weight, 1/16 of a pound. They only agree for a substance with the same density as water, where 1 fl oz of water happens to weigh almost exactly 1 oz. That coincidence breaks down for anything else: 1 cup (8 fl oz) of all-purpose flour weighs roughly 4.25 oz, not 8, because flour is far less dense than water and packs with air between the grains. A recipe that says "8 oz flour" almost always means weight (usually from a scale-based, often UK-influenced recipe), while "1 cup flour" means volume — and converting one to the other by treating "oz" and "fl oz" as interchangeable will throw off a baking recipe\'s flour-to-liquid ratio. This tool only converts volume-to-volume (fl oz, cup, mL, etc.) — it does not convert to or from weight ounces, because that conversion depends on the specific ingredient\'s density and has no single universal answer.',
+				],
+			},
+			{
+				heading: 'Worked example: scaling a recipe',
+				body: [
+					'A recipe calls for 2/3 cup of milk and needs to be scaled using tablespoon measures because the cook only has a tablespoon on hand. Since 1 cup = 16 tablespoons exactly, 2/3 cup = 2/3 × 16 = 10.667 tbsp, which most cooks round to 10 tbsp + 2 tsp (since the remaining 0.667 tbsp × 3 tsp/tbsp = 2 tsp). Converting the same 2/3 cup to milliliters: 2/3 × 236.5882365 mL = 157.73 mL, a figure a metric kitchen scale would show directly.',
+				],
+			},
+			{
+				heading: 'Worked example: bottle and can sizes',
+				body: [
+					'A standard wine bottle holds 750 mL, which converts to 750 ÷ 29.5735295625 = 25.36 fl oz — not the "26 oz" figure sometimes seen, which is simply rounded more loosely. A standard US soda or beer can holds 12 fl oz, or 12 × 29.5735295625 = 354.88 mL, which is why cans are commonly labeled "355 mL" (rounded up) outside the US. A single bar "shot" is commonly poured at 1.5 fl oz in the US (44.4 mL) — this is a bartending convention, not a federal standard, and both the exact pour size and its name vary by state law and establishment.',
+				],
+			},
+			{
+				heading: 'Worked example: a 42-gallon oil barrel',
+				body: [
+					"The US Energy Information Administration defines a barrel of crude oil as exactly 42 US gallons — a unit from the 19th-century oil industry, unrelated to the wine-gallon lineage above except in sharing the same gallon. Converting: 42 × 3.785411784 = 158.99 liters per barrel. This is a fixed volume measure used for pricing and accounting; it has no connection to the gallon you'd use at a gas pump for the resulting refined fuel.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Kitchen measurement chain',
+				headers: ['Unit', 'Equals'],
+				rows: [
+					['1 tablespoon', '3 teaspoons'],
+					['1 fluid ounce', '2 tablespoons (6 teaspoons)'],
+					['1 cup', '8 fluid ounces (16 tablespoons)'],
+					['1 pint', '2 cups (16 fluid ounces)'],
+					['1 quart', '2 pints (4 cups)'],
+					['1 gallon', '4 quarts (16 cups)'],
+				],
+				note: 'Each relationship is an exact legal definition, not a rounded approximation.',
+			},
+			{
+				title: 'Cups to milliliters and fluid ounces',
+				headers: ['Cups', 'mL', 'fl oz'],
+				rows: [
+					['1/4 cup', '59.15 mL', '2 fl oz'],
+					['1/3 cup', '78.86 mL', '2.67 fl oz'],
+					['1/2 cup', '118.29 mL', '4 fl oz'],
+					['2/3 cup', '157.73 mL', '5.33 fl oz'],
+					['3/4 cup', '177.44 mL', '6 fl oz'],
+					['1 cup', '236.59 mL', '8 fl oz'],
+					['2 cups', '473.18 mL', '16 fl oz'],
+				],
+				note: 'Exact conversion via 1 cup = 236.5882365 mL, rounded to two decimal places.',
+			},
+			{
+				title: 'Common bottle and can sizes',
+				headers: ['Container', 'Volume', 'Fluid ounces'],
+				rows: [
+					['Standard soda/beer can', '355 mL (12 fl oz nominal)', '12.00 fl oz'],
+					['Standard wine bottle', '750 mL', '25.36 fl oz'],
+					['Magnum wine bottle', '1.5 L', '50.72 fl oz'],
+					['Standard bar shot (US convention)', '44.4 mL', '1.5 fl oz'],
+					['2-liter soda bottle', '2 L', '67.63 fl oz'],
+				],
+				note: 'Container sizes are manufacturer/industry conventions, not unit definitions — the mL-to-fl-oz math itself is exact.',
+			},
+			{
+				title: 'Liters and gallons: larger volumes',
+				headers: ['Liters', 'US gallons'],
+				rows: [
+					['1 L', '0.264 gal'],
+					['5 L', '1.321 gal'],
+					['10 L', '2.642 gal'],
+					['20 L', '5.283 gal'],
+					['158.99 L', '42 gal (1 oil barrel)'],
+					['1,000 L', '264.17 gal'],
+				],
+				note: 'Exact conversion via 1 gallon = 3.785411784 liters, rounded to two/three decimal places.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many teaspoons are in a tablespoon?',
+				answer: 'There are exactly 3 teaspoons in 1 US tablespoon.',
+			},
+			{
+				question: 'How many tablespoons are in a cup?',
+				answer: 'There are exactly 16 tablespoons in 1 US cup (8 fluid ounces × 2 tablespoons per fluid ounce).',
+			},
+			{
+				question: 'How many ounces are in a cup?',
+				answer: 'There are exactly 8 fluid ounces in 1 US cup. This is a volume measurement — it does not apply to weight ounces, which vary by ingredient density.',
+			},
+			{
+				question: 'How many cups are in a gallon?',
+				answer: 'There are exactly 16 cups in 1 US gallon (4 quarts × 4 cups per quart).',
+			},
+			{
+				question: 'How many milliliters are in a cup?',
+				answer: '1 US cup equals exactly 236.5882365 milliliters, derived from the exact 3.785411784-liter US gallon.',
+			},
+			{
+				question: 'How many fluid ounces are in a liter?',
+				answer: '1 liter equals approximately 33.814 US fluid ounces. To convert, divide the milliliter value by 29.5735295625.',
+			},
+			{
+				question: "What's the difference between a fluid ounce and a regular ounce?",
+				answer: 'A fluid ounce (fl oz) measures volume — 1/128 of a US gallon. A regular ounce (oz) measures weight — 1/16 of a pound. They only roughly coincide for water; for other substances (like flour or sugar), 1 cup by volume and 8 oz by weight are different amounts.',
+			},
+			{
+				question: 'How many gallons are in an oil barrel?',
+				answer: 'Exactly 42 US gallons, per the US Energy Information Administration — a standard fixed by the 19th-century petroleum industry, unrelated to gas-pump gallons.',
+			},
+		],
+		sources: [
+			{
+				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
+			},
+			{
+				label: 'U.S. Energy Information Administration — Glossary (Barrel)',
+				url: 'https://www.eia.gov/tools/glossary/index.php?id=b',
+			},
+			{
+				label: 'Sizes, Inc. — "English wine gallon" (1707 231 in³ standard; US 1836 adoption; UK 1824 Imperial gallon split)',
+				url: 'https://www.sizes.com/units/gallon_english_wine.htm',
+			},
+		],
+		embedHeight: 780,
+	},
 ];
