@@ -333,3 +333,93 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "sat-score-calculator",
+  "last_audited": "2026-08-05",
+  "published_date": "2026-08-02",
+  "checklist": [
+    "数据表真实性（最高优先级）：src/lib/satScore.ts的RW_TABLE（67行，raw 0-66）与MATH_TABLE（55行，raw 0-54）是否与College Board官方PDF《Scoring Your Paper SAT Practice Test #4》第5页'Raw Score Conversion Table: Section Scores'逐格一致——这不是可推导的公式而是一张需要逐格核对的官方查找表，最容易在机器提取时出现录入误差",
+    "totalScoreRange的求和方法（lower相加、upper相加）是否与官方worksheet'Add each of your lower and upper values...to calculate your total SAT score range'的说明一致",
+    "页面正文/FAQ/参考表里的具体worked example（raw50 RW→610-630、raw40 Math→590-620、raw58/46→1370-1420、满分66/54→1580-1600）数值是否与官方表吻合",
+    "数字SAT（Bluebook）与纸质练习测试的题量对照（54+44 vs 66+54）、'2016年起取消猜错倒扣分'两条事实性陈述是否真实",
+    "sources链接（College Board PDF原文+练习测试列表页）是否仍可访问",
+    "内链健康度：8/4 stair-calculator审计修复的crossCategory轮转兜底逻辑，在工具数从9个增长到13个后是否仍然全站零孤儿"
+  ],
+  "findings": [
+    {
+      "dimension": "数据表/公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "本次审计未依赖WebSearch转述或记忆，而是直接curl下载了College Board官方PDF原文（satsuite.collegeboard.org/media/pdf/scoring-sat-practice-test-4-digital.pdf，950KB，200状态码），用pdftotext -layout独立提取第5页'Raw Score Conversion Table: Section Scores'完整表格（左栏raw 0-33、右栏raw 34-66，两栏均含RW与Math的lower/upper四列），逐格与src/lib/satScore.ts的RW_TABLE全部67行、MATH_TABLE全部55行比对，**全部220个数值（67×2 RW + 55×2 Math）无一处偏差**。PDF第1页确认RW两模块各33题合计66题、Math两模块各27题合计54题，与satScore.ts文件头注释'two 33-question modules'/'two 27-question modules'一致。totalScoreRange函数（lower相加、upper相加）与PDF worksheet原文'Add each of your lower and upper values for the test sections separately'的求和方法完全一致。页面正文/FAQ worked examples独立复算：raw50 RW→[610,630]（PDF第50行确认）；raw40 Math→[590,620]（PDF第40行确认）；raw58 RW→[680,700]、raw46 Math→[690,720]，两者相加得[1370,1420]（与FAQ'1370-1420'一致）；raw66 RW→[790,800]、raw54 Math→[790,800]，相加得[1580,1600]（与tests及FAQ'1580-1600'一致）；raw0/0→[400,400]一致。参考表8行（raw 20/30/40/45/50/54/60/66）逐一核对全部吻合，包括'54 (max raw)'/'66 (max raw)'两处标注准确（Math表止于54，RW表止于66）。"
+    },
+    {
+      "dimension": "事实性陈述真实性核查",
+      "status": "未发现问题",
+      "detail": "WebSearch独立核实两条非表格类事实陈述：(1) 数字SAT（Bluebook）结构为RW 54题（两模块各27题）+ Math 44题（两模块各22题），与页面'the adaptive digital SAT in Bluebook has 54 Reading & Writing questions and 44 Math questions'一致，多个独立信源（Test Ninjas、EdisonOS、Makon AI等）交叉确认；(2) SAT自2016年起取消猜错倒扣1/4分的做法，页面'The SAT stopped deducting points for wrong answers in 2016'表述准确，与多信源交叉确认一致。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：14个测试文件、298个测试全部通过，其中tests/satScore.test.ts 72个测试（67行全表交叉核对+3条totalScoreRange+2条输入校验）。测试文件自带的COLLEGE_BOARD_TABLE fixture声明'extracted verbatim with pdftotext -layout on 2026-08-02, an independent copy of the authoritative table, NOT derived from the implementation'——本次审计独立重新下载PDF并重新提取，与测试fixture及实现代码三方比对完全一致，核实测试注释的'独立提取'声明属实，非从实现反推。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/calculators/SatScoreCalculator.tsx逐行核对：clampInt对RW/Math原始输入分别按各自MAX_RAW做边界钳制与取整，rwScoreRange/mathScoreRange/totalScoreRange三个调用无重复换算；showRange对lower===upper的边界（如满分1600的上下限均800时）正确显示单一数字而非'800–800'。CalculatorIsland.astro正确分发到该组件。npm run build成功生成39个页面，dist/sat-score-calculator/与dist/embed/sat-score-calculator/均生成且含SatScoreCalculator组件标记；线上/embed/sat-score-calculator/ curl 200。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题",
+      "detail": "两条sources链接curl -sIL实测：College Board PDF原文200（本次审计实际下载使用的就是这份文件，内容与文中引用逐字对应）；College Board练习测试列表页200。均为College Board一级域名，无反爬网关或死链。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题（一项6字符的meta description超长，沿用cd-calculator先例判定不构成问题）",
+      "detail": "线上https://calcbadger.com/sat-score-calculator/ 200，title'SAT Score Calculator | CalcBadger'33字符正常；meta description 166字符，超出理想上限160仅6字符（3.75%），幅度与cd-calculator审计中'164字符/4字符超出，判定不改'的先例相当，显著小于square-footage/bmi/stair三次审计中被判定应修的207-220字符（30-42%超出）区间，沿用同一判定口径不修改；canonical自指正确；单一h1，8个h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt为'Allow: /'含AI爬虫显式规则；sitemap-index.xml正常收录。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用既有人工核对方法（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的定义与'满分66/54对应1580-1600'具体数字；4个小节均以直接陈述开头；含4条真实数字worked example（正文2条+FAQ 2条）与1个8行参考表；FAQPage 5条FAQ与页面渲染逐一对应；'last reviewed 2026-08-02'时效信号明确；robots.txt放行GPTBot/ClaudeBot/PerplexityBot等。综合判定明显高于80分门槛，无需改动。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题（含一项站点级回归验证）",
+      "detail": "本站自8/4 stair-calculator审计修复crossCategory轮转兜底逻辑以来，工具数已从9个增长到13个（新增mortgage/time-converter/concrete-calculator）。用node独立模拟当前13个工具的完整pickRelatedGuides+crossCategory逻辑（Education/Health/Games三个类目仍是单工具类目，全部落入兜底轮转路径），验证结果**13/13工具零孤儿**，每个工具获得4-8条不等的站内引荐链接；线上sat-score-calculator页面实测侧栏链接（bmi-calculator/coin-flip-simulator/length-converter/molarity-calculator/temperature-converter/weight-converter）与模拟结果完全一致。8/4的修复在工具数增长44%后仍然成立，未发现新的slice(0,N)类回归。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-02'与页面'last reviewed 2026-08-02'一致；description字段与meta description同步；FAQPage 5条FAQ的question文案与tools.ts faq数组逐一对应；BreadcrumbList三级（Home/Education/SAT Score Calculator）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "页面反复明确'not an official score report'/'treat this as an estimate, not a score report'，未暗示能替代官方评分；全站/terms/页'No professional advice'条款的举例清单已包含'official score reports'这一Education场景，覆盖到位。未发现工具自我定位为官方评分工具的表述。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "WebSearch核实同类工具（Magoosh、NUM8ERS、Testbook、Albert、Galvanize等SAT分数计算器）多数用滑块给出单点估分，暗示比实际可行更高的精度。本页反其道而行——用'Reading the range honestly'整节说明为何范围本身就是诚实的答案，且明确注明数据来自哪一份具体的官方PDF文档（多数竞品未标注具体来源文档版本），构成真实的方法论差异化而非同质化复制。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；Privacy/About/Terms三个页面均curl 200可达；页面标题与内容无误导性/诱导点击设计；工具本身是教育类分数换算，不涉及暴力/赌博/武器/毒品等敏感类目。"
+    }
+  ],
+  "actions_taken": [
+    "本次审计13个维度均未发现需要修复的问题，未做任何代码改动，未触发npm run build之外的部署/IndexNow/内容发布日志流程（Step 5仅在有改动时执行，本次跳过）",
+    "本次审计的数据表核对方式优于此前三次审计（cd/square-footage/bmi/stair均用WebSearch转述或第三方引用核实常量）——直接curl下载了College Board官方PDF原文并用pdftotext独立提取表格，实现了对全部220个查找表数值的逐格核对，而非抽样或转述"
+  ],
+  "seo_score": "静态审计全部通过（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap均无异常）；meta description 166字符轻微超长但幅度与已有'不修'先例（cd-calculator 164字符）相当，判定无需改动",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，估计等效90/99左右，明显超过≥80门槛，无需修复",
+  "escalation": null
+}
+```
