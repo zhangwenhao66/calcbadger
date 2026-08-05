@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+# AI / LLM crawlers — explicitly allowed for search visibility and citation (reviewed 2026-08-05)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://calcbadger.com/sitemap-index.xml
