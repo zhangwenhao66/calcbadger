@@ -1,0 +1,65 @@
+[
+  {
+    "date": "2026-08-02",
+    "action": "submitted_first_run_quota_hit",
+    "reason": "trafficsite-gsc-index-requests首次处理本站。calcbadger.com此前无gsc-index-submit-log.json，第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表，确认calcbadger.com（sc-domain:，DNS TXT验证）已是已验证property（内容发布日志.md提到的'sitemap-index.xml已提交，即时状态Couldn't fetch是新域名常态'）。本站首批5个工具已达'累计4篇上线'首次提交门槛类比标准（工具站以'工具'为发布单元，5个远超4篇门槛）。按发布顺序总表逐一用URL Inspection检查：cd-calculator提交成功（绿色'Indexing requested'弹窗）；square-footage-calculator提交时遇'Quota Exceeded'——本次运行across全部6站（hollowvane 1 + factcrumbs 2 + warcrumbs 2 + umberlore 5 + calcbadger 1 = 11）已耗尽共享账号级每日配额，本站排在处理顺序最后，仅赶上1个请求额度。",
+    "submitted_urls": [
+      "https://calcbadger.com/cd-calculator/"
+    ],
+    "index_status_before": "URL is not on Google (Discovered - currently not indexed)",
+    "quota_blocked": [
+      {
+        "url": "https://calcbadger.com/square-footage-calculator/",
+        "status_before": "Discovered - currently not indexed",
+        "submit_result": "Quota Exceeded（明确文字提示，非静默失败）"
+      }
+    ],
+    "not_yet_checked_carried_over": [
+      "https://calcbadger.com/stair-calculator/",
+      "https://calcbadger.com/sat-score-calculator/",
+      "https://calcbadger.com/molarity-calculator/"
+    ],
+    "quota_used": "1 successful of shared account-wide daily quota (11th request across all sites this run), then quota exhausted",
+    "quota_remaining": "0 — 下次运行需优先处理本站剩余4个工具（square-footage/stair/sat-score/molarity-calculator），因本站在处理顺序中排最后，历次配额耗尽风险最高，可考虑调整站点处理顺序轮换起点"
+  },
+  {
+    "date": "2026-08-03",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行。第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表确认calcbadger.com已是已验证property。今日新发布：coin-flip-simulator（第7个工具，当天3次节奏第1次）。本次运行首次采用两轮制配额稀缺模式（每站round1只取1个最高优先级页面），处理顺序按day-of-year(215) mod 7站=5=calcbadger轮换起点，本站排第1个。URL Inspection显示'URL is not on Google'（URL is unknown to Google），提交后清晰看到绿色'Indexing requested'弹窗成功标志。",
+    "submitted_urls": [
+      "https://calcbadger.com/coin-flip-simulator/"
+    ],
+    "index_status_before": "URL is not on Google (URL is unknown to Google)",
+    "quota_used": "1 of shared account-wide daily quota (1st request this run)",
+    "chrome_disconnect_note": "第二轮尝试提交carried-over的square-footage-calculator时Claude in Chrome扩展连接中断（'not connected'），重试2次未恢复；连接恢复后复核发现该URL已显示'URL is on Google'/'Page is indexed'（自然收录，未消耗配额，无需提交），并非配额问题导致的失败。连接恢复后继续清理本站剩余backlog：stair-calculator提交成功（绿色'Indexing requested'）；sat-score-calculator已自然收录无需提交；molarity-calculator提交成功（绿色'Indexing requested'）。本站5工具+coin-flip-simulator共6个页面backlog本次运行全部清空（3个成功提交+3个已自然收录）。",
+    "already_indexed_no_action": [
+      "https://calcbadger.com/square-footage-calculator/",
+      "https://calcbadger.com/sat-score-calculator/"
+    ],
+    "submitted_urls_round2": [
+      "https://calcbadger.com/stair-calculator/",
+      "https://calcbadger.com/molarity-calculator/"
+    ],
+    "quota_used_total_this_run": "3 of shared account-wide daily quota (1st, 9th, 10th requests this run)"
+  },
+  {
+    "date": "2026-08-04",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行，跨天连续游标机制首次运行。今日新发布2个工具（当天3次节奏中的temperature-converter/length-converter），取第1个temperature-converter（URL is not on Google）提交成功。第二轮取length-converter（同样未收录）提交成功。",
+    "submitted_urls": [
+      "https://calcbadger.com/temperature-converter/",
+      "https://calcbadger.com/length-converter/"
+    ],
+    "quota_used": "2 of shared account-wide daily quota (6th and 16th requests this run)"
+  },
+  {
+    "date": "2026-08-05",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行。今日新发布2个工具（mortgage-calculator/time-converter）。第一轮取mortgage-calculator（URL is not on Google）提交成功，第二轮取time-converter（同样未收录）提交成功。",
+    "submitted_urls": [
+      "https://calcbadger.com/mortgage-calculator/",
+      "https://calcbadger.com/time-converter/"
+    ],
+    "quota_used": "2 requests this run (round 1 and round 2)"
+  }
+]

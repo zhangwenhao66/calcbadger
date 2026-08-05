@@ -1,0 +1,12 @@
+{
+  "quora": [
+    {
+      "date": "2026-08-03",
+      "target_page": "https://calcbadger.com/stair-calculator/",
+      "question_url": "https://www.quora.com/How-do-you-calculate-the-rise-and-tread-on-stairs/answer/Owen-Zhang-161",
+      "question_title": "How do you calculate the rise and tread on stairs?",
+      "notes": "CalcBadger首次外链建设，也是工具站（无guides.ts，用tools.ts里的Stair Calculator页面）首次尝试Quora渠道。发布时该问题仅2个真实答案(另有5条被折叠标记低质量)，均是粗略经验值(11.5-12in踏步、7-7.5in踢面)，没有具体规范条文号、没有实际算例、没有舒适度公式。以站内Stair Calculator页面的骨架撰写(2021 IRC R311.7.5.1踢面≤7¾in、R311.7.5.2踏步≥10in、商业IBC更严的7in/11in、9ft层高的完整算例108÷7.75=13.94→14级踢面)。额外用WebSearch找到站内原文没有的真实增量事实：Blondel舒适度公式(2×踢面+踏步≈24-25in)不只是'17世纪以来沿用的经验法则'，而是法国皇家建筑学院(Académie royale d'architecture)在1675年正式批准的比例关系，Blondel本人是该学院院长，通过实测人的平常步幅(约24法寸)得出。过humanizer skill检查，确认无破折号、无三段式列举。用Quora Add Link功能(Cmd+K)插入真实超链接，锚文本'here'，指向stair-calculator页面。已直接发布成功(非Space类问题，credential默认Business Communications Researcher未再弹确认框)，发布后用javascript_tool核实渲染页面上确实是<a href>真实超链接。"
+    }
+  ],
+  "reddit": []
+}
