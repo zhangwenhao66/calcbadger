@@ -73,5 +73,36 @@
       }
     ],
     "result_summary": "2条积压草稿全部核实渠道未过期、过humanizer、经独立复核agent判定APPROVED后实际发送，无跳过、无复核未通过。草稿全文见仓库根目录outreach-drafts.md。"
+  },
+  {
+    "date": "2026-08-06",
+    "site": "calcbadger",
+    "run_type": "weekly trafficsite-guest-post-outreach — backlog verification + new-round research",
+    "backlog_verification": {
+      "note": "本轮任务简报误以为Math Sharpeners和Ranch Roofing两条2026-08-04积压草稿尚未发送，需要本轮重新走发送流程。经实际核查（gmail_send.py list --query \"to:<收件人>\" 全账号搜索，非仅查日志），两封邮件其实已经在2026-08-04当次运行内实际发出（Message ID 19fcb785e15c9300 / 19fcb786d59de619，From头均为CalcBadger <contact@calcbadger.com>，正文与outreach-drafts.md记录完全一致）。本轮未重复发送，仅确认历史记录准确，不构成新的处理。"
+    },
+    "channels_researched": [
+      {
+        "name": "The Free Tools Directory",
+        "url": "https://thefreetoolsdirectory.com/submit",
+        "status": "submitted — 2026-08-06",
+        "notes": "简单目录式表单（Site Name/URL/Description/Category可选/Email可选），无CAPTCHA，页面明确说明'我们的团队会审核，符合标准会收录'。通过claude-in-chrome实际填写并提交：Site Name=CalcBadger，URL=https://calcbadger.com，Description列举Mortgage/Concrete/Square Footage/Stair/SAT Score/Molarity/BMI等真实已上线工具及单位换算器，Email=contact@calcbadger.com。提交后页面返回'Submission received! Thank you for your submission. We will review it and add it to the directory if it meets our criteria.'，视觉确认成功。"
+      },
+      {
+        "name": "nologin.tools — Submit a Tool",
+        "url": "https://nologin.tools/submit",
+        "status": "real-and-viable — not completed this round (tooling failure)",
+        "notes": "curl复核确认页面真实存在（HTTP 200），表单结构简单（Tool Name/Tool URL/Description/隐私相关分类勾选/可选联系邮箱），无CAPTCHA，明确'无需注册登录即可使用'的工具目录，niche与CalcBadger高度吻合（计算器类工具天然无需登录）。尝试通过Browser pane实际填表提交时，本次运行环境的浏览器分页池被并发运行的其他矩阵站子任务共享/互相顶替（同一tabId在若干次工具调用之间自动跳转到不相关网站如cognitivebiaslab.com/mentalfloss.com），且后续鼠标点击+输入未能正确聚焦到目标输入框（截图显示表单仍为空白占位符状态）。同时claude-in-chrome工具在流程中途因'检测到多个已连接的Chrome浏览器且本次会话未选定'而报错，此为自动化运行且无人值守场景，无法交互式选择浏览器解决。未提交任何数据（未点击过Submit，避免误提交空白/错误内容）。该渠道判定为下一轮可直接重试的候选，不属于需要Owen介入的事项（纯工具稳定性问题）。"
+      },
+      {
+        "name": "Ask a Tech Teacher — \"17 Websites for Chemistry\"",
+        "url": "https://askatechteacher.com/websites-for-chemistry/",
+        "status": "sent — 2026-08-06",
+        "notes": "resource-roundup定向搜索命中：真实教育科技博主Jacqui Murray（K-18技术教学30年，多本教材编者），页面curl复核HTTP 200，列表本身已收录一条'Online Toolkit — science calculators and reference tools'，证明该榜单本来就接受计算器类工具，且页面标注'Click here for updates to this list'说明仍在维护。Contact Me页确认真实联系邮箱askatechteacher@gmail.com（非付费栏目，'Advertise with AATT'是独立广告位未涉及）。事实核对：Molarity Calculator（https://calcbadger.com/molarity-calculator/）与src/data/tools.ts一致，真实已上线工具。查重：gmail_send.py list全账号搜索该邮箱返回空，guest-post-outreach.json历史记录无此渠道。过Skill(humanizer)（草稿本身已基本干净）。独立复核agent判定'can send'（五项检查：查重风险/事实核对/语气/AI味/是否符合对方低压力建议邮件的定位，全部通过）。已发送，Message ID 19fd72a30a07b2d1，From头核实为CalcBadger <contact@calcbadger.com>，正文经gmail_send.py list回读核对与草稿完全一致（首行为称呼'Hi Jacqui,'，无泄漏的Subject行）。"
+      }
+    ],
+    "environment_notes": "本轮研究阶段发现两处基础设施限制：(1) Browser pane（mcp__Claude_Browser__*）的浏览器分页在本次运行中被其他并发的矩阵站子任务共享/互相顶替，导致表单填写不可靠，已改用claude-in-chrome完成成功案例后该工具也因多浏览器连接问题在无人值守场景下不可用；(2) WebSearch本会话配额（200次/session）在研究阶段后期耗尽，可能是与其他并发矩阵站子任务共享同一会话配额，导致本轮未能挖到第4/5个候选渠道即被迫收尾。均记录在案，非本站可修复的问题，供跨站汇总时留意。",
+    "actions_taken": "1个简单目录表单直接提交完成（The Free Tools Directory）；1个真实可行渠道因浏览器工具在并发环境下失效未能提交，留待下轮重试（nologin.tools）；1条pitch邮件走完整流程（核实→事实核对→查重→humanizer→独立复核agent判定can send→实际发送）成功发出（Ask a Tech Teacher）。2026-08-04的2条积压草稿经核实其实早已发送完毕，本轮未重复处理。",
+    "result_summary": "3 new channels researched this round: 1 submitted (directory form), 1 sent (pitch email, independent-review approved), 1 real-and-viable but blocked by shared-environment tooling failures (browser pane contention + WebSearch quota exhaustion), carried to next round. No paid-link schemes or PBN-suspect channels encountered this round."
   }
 ]

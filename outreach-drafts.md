@@ -55,3 +55,29 @@ Thanks,
 Owen Zhang
 CalcBadger
 ```
+
+## 2026-08-06 — Ask a Tech Teacher (askatechteacher@gmail.com)
+
+- 来源：2026-08-06本轮新研究，resource-roundup定向搜索命中
+- 渠道核实：`https://askatechteacher.com/websites-for-chemistry/`（"17 Websites for Chemistry"）2026-08-06 curl复核HTTP 200，页面正文确认列表内已有一条"Online Toolkit — science calculators and reference tools"条目，说明该榜单本身就收录计算器类工具，且页面标注"Click here for updates to this list"（榜单仍在维护）。作者Jacqui Murray为真实教育科技从业者（K-18技术教学30年，多本教材编者），Contact Me页确认真实联系邮箱`askatechteacher@gmail.com`。非付费栏目（"Advertise with AATT"是独立的广告位，未在本次pitch中涉及）。
+- 事实核对：Molarity Calculator（`https://calcbadger.com/molarity-calculator/`）与`src/data/tools.ts`一致，真实已上线工具，链接308重定向至带斜杠版本确认200
+- 已过`Skill(humanizer)`去AI味（草稿原本已基本干净，无破折号/AI高频词/三连排比/填充语）
+- 查重：`gmail_send.py list --query "to:askatechteacher@gmail.com"` 全账号范围返回空，guest-post-outreach.json历史记录中无此渠道
+- 独立复核结果：见guest-post-outreach.json本条记录
+- 邮件正文：
+
+```
+Subject: Addition for your "17 Websites for Chemistry" list
+
+Hi Jacqui,
+
+I came across your "17 Websites for Chemistry" post and noticed you already point teachers to an "Online Toolkit" entry for science calculators. I run CalcBadger (calcbadger.com), a small site of free calculators, and we have a Molarity Calculator that might fit alongside it.
+
+It walks through the mass, molar mass, and volume relationship (moles = mass / molar mass, then molarity = moles / volume), so students can check their work step by step instead of just getting a final number. Here's the link if you want to take a look: https://calcbadger.com/molarity-calculator/
+
+No pressure either way, just thought it was worth flagging given the list already covers this kind of tool.
+
+Thanks for keeping the list updated,
+Owen Zhang
+CalcBadger
+```

@@ -6,6 +6,13 @@
       "question_url": "https://www.quora.com/How-do-you-calculate-the-rise-and-tread-on-stairs/answer/Owen-Zhang-161",
       "question_title": "How do you calculate the rise and tread on stairs?",
       "notes": "CalcBadger首次外链建设，也是工具站（无guides.ts，用tools.ts里的Stair Calculator页面）首次尝试Quora渠道。发布时该问题仅2个真实答案(另有5条被折叠标记低质量)，均是粗略经验值(11.5-12in踏步、7-7.5in踢面)，没有具体规范条文号、没有实际算例、没有舒适度公式。以站内Stair Calculator页面的骨架撰写(2021 IRC R311.7.5.1踢面≤7¾in、R311.7.5.2踏步≥10in、商业IBC更严的7in/11in、9ft层高的完整算例108÷7.75=13.94→14级踢面)。额外用WebSearch找到站内原文没有的真实增量事实：Blondel舒适度公式(2×踢面+踏步≈24-25in)不只是'17世纪以来沿用的经验法则'，而是法国皇家建筑学院(Académie royale d'architecture)在1675年正式批准的比例关系，Blondel本人是该学院院长，通过实测人的平常步幅(约24法寸)得出。过humanizer skill检查，确认无破折号、无三段式列举。用Quora Add Link功能(Cmd+K)插入真实超链接，锚文本'here'，指向stair-calculator页面。已直接发布成功(非Space类问题，credential默认Business Communications Researcher未再弹确认框)，发布后用javascript_tool核实渲染页面上确实是<a href>真实超链接。"
+    },
+    {
+      "date": "2026-08-06",
+      "target_page": "https://calcbadger.com/concrete-calculator/",
+      "question_url": "https://www.quora.com/How-many-80lb-bags-of-concrete-do-I-need-for-a-10x10-slab/answer/Owen-Zhang-161",
+      "question_title": "How many 80lb bags of concrete do I need for a 10x10 slab?",
+      "notes": "发布时该问题已有4个真实答案，但全是粗略猜测或方向偏离：一条直接承认'我猜的，先买40包'，一条按6in厚度+错误的水泥/骨料换算算出无关数字，一条假设5in厚'折中'给出95包这种既非4in也非6in标准厚度的答案，只有Jon Anders一条方法正确(33cuft/0.6=55包)但没有加损耗、也没有给driveway等6in场景的对照。判定为方向普遍不准/缺乏权威依据的真实空白。以站内Concrete Calculator页面骨架撰写(QUIKRETE Concrete Mix Product No. 1101官方公布的精确出料量：80磅包0.60立方英尺；10x10ft x 4in标准人行道/露台厚度=33.33立方英尺，除以0.60=55.6，向上取整56包为裸体积；加10%浇筑损耗后需要62包；6in车行道厚度按1.5倍换算约92包；60磅包出料量0.45立方英尺低于80磅包的0.60，同体积需要更多60磅包而非更少，直接指出其他答案里'60磅包更省'的隐含误解)。过humanizer skill检查，确认无破折号、无三段式列举、无负向排比结构。用Quora Add Link功能(Cmd+K)插入真实超链接，锚文本'here'，指向目标页面。该问题不属于任何Space，提交后直接发布成功，credential选择默认'Business Communications Researcher'。发布后用javascript_tool核实DOM中确实是<a href>真实超链接指向https://calcbadger.com/concrete-calculator/。"
     }
   ],
   "reddit": []
