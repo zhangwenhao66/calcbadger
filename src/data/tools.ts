@@ -1925,4 +1925,142 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 780,
 	},
+	{
+		slug: 'date-calculator',
+		category: 'Date & Time',
+		title: 'Date Calculator',
+		shortTitle: 'Date Calculator',
+		description:
+			'Find the number of days between two dates, add or subtract days from a date, or count down to New Year\'s Day, Halloween, Thanksgiving, and Christmas.',
+		updated: '2026-08-06',
+		coreSummary:
+			'Every mode here runs on the proleptic Gregorian calendar — the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4) — with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function.',
+		queries: [
+			'date calculator',
+			'days between two dates',
+			'days from today',
+			'add days to a date',
+			'how many days until christmas',
+			'how many days until halloween',
+			'how many days until thanksgiving',
+			'30 days from today',
+			'90 days from today',
+		],
+		sections: [
+			{
+				heading: 'Three date-math questions, one calculator',
+				body: [
+					'"Difference" answers *how far apart are these two dates* — pick a start and end date and it returns the exact day count plus a years/months/days breakdown. "Shift date" answers *what date is N days from this one* — the calculation behind every "30 days from today," "90 days from today," or "45 days before this date" search. "Days until" answers a narrower, very common question on its own: a live countdown to the next New Year\'s Day, Halloween, Thanksgiving, and Christmas, automatically rolling to next year the moment each one passes.',
+					'All three share the same underlying date arithmetic, so switching modes never produces a different answer for the same pair of dates — "Difference" from today to next Christmas and "Days until → Christmas" always agree.',
+				],
+			},
+			{
+				heading: 'Total days and the years/months/days breakdown can tell different stories',
+				body: [
+					'The "Total days" figure is unambiguous: a straight count of calendar days between two dates, the same number you would get counting boxes on a calendar. The "Calendar span" (Ny Nm Nd) figure is a different, more human convention: it answers "how many full years, then full months, then full days" separate the two dates, the way people describe an age or an anniversary.',
+					'These two can diverge by exactly one day in a specific, well-documented edge case: an anniversary of February 29 measured against February 28 in a non-leap year. From Feb 29, 2024 to Feb 28, 2025 is 365 total days, but the calendar breakdown reads 11 months and 30 days, not a clean 1 year — because the month-and-day pair (Feb, 28) has not yet reached (Feb, 29), the same "has the anniversary date been reached" rule Microsoft documents for Excel\'s DATEDIF function. A different, equally common convention (used by Python\'s dateutil library, among others) instead clamps to the nearest valid day and calls that same pair exactly 1 year — there is no single universal answer for this specific edge case, only different documented rules for handling a date that does not exist in the target year.',
+				],
+			},
+			{
+				heading: 'Why "N days from today" has to be calculated live',
+				body: [
+					'A search like "30 days from today" or "90 days from today" does not have one fixed answer; it depends entirely on what day it is when you ask. The "Shift date" mode defaults to today\'s date (read from your browser) plus 30 days specifically so the calculator is useful the instant it loads, and the "Days until" mode works the same way: it reads today\'s date locally and calculates each holiday\'s distance from there, with no server round-trip and no risk of showing yesterday\'s countdown.',
+					'The reference table below shows what these additions look like from one fixed anchor date (January 1, 2026) instead of "today," so the worked examples stay accurate no matter when you read this page. Enter your own start date in the calculator above for a live answer.',
+				],
+			},
+			{
+				heading: 'Where the fourth Thursday of November comes from',
+				body: [
+					'Christmas (December 25), Halloween (October 31), and New Year\'s Day (January 1) are fixed calendar dates that need no calculation: they land on the same month and day every year. Thanksgiving in the United States is different: it is defined not by a fixed date but by a rule. A 1941 joint resolution of Congress, now codified at 5 U.S.C. § 6103, fixes Thanksgiving as "the fourth Thursday in November," which is why it moves around the calendar (November 22 through 28) from year to year while always landing on the same weekday. This calculator applies that rule directly rather than looking up a stored date, so it works correctly for any year.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: "Holiday dates, 2026–2030",
+				headers: ["Year", "New Year's Day", 'Halloween', 'Thanksgiving (US)', 'Christmas'],
+				rows: [
+					['2026', 'Jan 1', 'Oct 31', 'Nov 26', 'Dec 25'],
+					['2027', 'Jan 1', 'Oct 31', 'Nov 25', 'Dec 25'],
+					['2028', 'Jan 1', 'Oct 31', 'Nov 23', 'Dec 25'],
+					['2029', 'Jan 1', 'Oct 31', 'Nov 22', 'Dec 25'],
+					['2030', 'Jan 1', 'Oct 31', 'Nov 28', 'Dec 25'],
+				],
+				note: 'Thanksgiving is calculated as the fourth Thursday of November (5 U.S.C. § 6103); the other three are fixed calendar dates.',
+			},
+			{
+				title: 'Adding days to a fixed start date (January 1, 2026)',
+				headers: ['Days added', 'Result date'],
+				rows: [
+					['7', 'Jan 8, 2026'],
+					['14', 'Jan 15, 2026'],
+					['30', 'Jan 31, 2026'],
+					['45', 'Feb 15, 2026'],
+					['60', 'Mar 2, 2026'],
+					['90', 'Apr 1, 2026'],
+					['120', 'May 1, 2026'],
+					['180', 'Jun 30, 2026'],
+					['365', 'Jan 1, 2027'],
+				],
+				note: 'A fixed anchor date, not "today" — use the calculator above for a live result from any start date, including today.',
+			},
+			{
+				title: 'Example calendar-span breakdowns',
+				headers: ['From', 'To', 'Total days', 'Years, months, days'],
+				rows: [
+					['Jan 1, 2000', 'Mar 1, 2000', '60', '0y 2m 0d'],
+					['Jan 1, 1970', 'Jan 1, 2000', '10,957', '30y 0m 0d'],
+					['Mar 15, 1990', 'Jan 1, 2026', '13,076', '35y 9m 17d'],
+				],
+				note: 'Total days is an exact count; years/months/days is the calendar-style breakdown described above — the two measure the same span differently, not disagree.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do I find the number of days between two dates?',
+				answer:
+					'Use "Difference" mode and enter the start and end dates. The calculator returns the exact total day count and a calendar-style years/months/days breakdown — both measure the same span, just in different units.',
+			},
+			{
+				question: 'How do I add or subtract days from a date?',
+				answer:
+					'Use "Shift date" mode, enter a date and a number of days, and choose Add or Subtract. Adding 30 days to January 1, 2026 gives January 31, 2026; the mode defaults to today\'s date so it is ready to use immediately.',
+			},
+			{
+				question: 'Why does "days until Christmas" show a different number tomorrow?',
+				answer:
+					'The countdown is calculated from today\'s date in your browser, so it changes by exactly 1 every day. The moment a holiday passes, the countdown automatically rolls forward to next year\'s date instead of going negative.',
+			},
+			{
+				question: 'How is the date of Thanksgiving calculated?',
+				answer:
+					'US Thanksgiving is fixed by law (5 U.S.C. § 6103) as the fourth Thursday in November, not a fixed calendar date, which is why it falls anywhere from November 22 to November 28 depending on the year. This calculator computes it from that rule rather than a stored list of dates.',
+			},
+			{
+				question: "What's the difference between 'total days' and 'years, months, days'?",
+				answer:
+					'Total days is a plain count of calendar days between two dates. Years/months/days is a calendar-aware breakdown — full years, then full months, then remaining days — the same convention used to describe someone\'s age. They can disagree by a day for an anniversary of February 29 measured in a non-leap year, a documented edge case with more than one accepted convention.',
+			},
+			{
+				question: 'Does this account for time zones or daylight saving time?',
+				answer:
+					'No — every calculation here works with plain calendar dates and has no time-of-day component, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
+			},
+		],
+		sources: [
+			{
+				label: '5 U.S.C. § 6103 — Thanksgiving Day fixed as the fourth Thursday in November (Cornell Legal Information Institute)',
+				url: 'https://www.law.cornell.edu/uscode/text/5/6103',
+			},
+			{
+				label: 'ECMA-262, the ECMAScript Language Specification — §21.4 "Date Objects" (proleptic Gregorian calendar convention)',
+				url: 'https://tc39.es/ecma262/#sec-date-objects',
+			},
+			{
+				label: 'Microsoft Support — "DATEDIF function," Excel (the year/month/day breakdown convention this calculator follows)',
+				url: 'https://support.microsoft.com/en-us/office/datedif-function-25dba1a4-2812-480b-84dd-8b32a451b35c',
+			},
+		],
+		embedHeight: 820,
+	},
 ];
