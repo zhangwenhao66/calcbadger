@@ -423,3 +423,95 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "molarity-calculator",
+  "last_audited": "2026-08-09",
+  "published_date": "2026-08-02",
+  "note": "本站首批6个工具（8/2发布：cd/square-footage/stair/sat-score/molarity/bmi）中最后一个才轮到的，此前一直是全站唯一从未被审计过的工具（其余5个已在8/2-8/5期间各审过一轮），选取顺序按SKILL.md规则的last_audited最早/缺失优先。",
+  "checklist": [
+    "公式正确性（最高优先级）：src/lib/molarity.ts的molarity/massForMolarity/volumeForMolarity/molarMassFromMolarity/molesOfSolute/dilutionStockVolume六个函数是否与IUPAC c=n/V、n=m/M定义及c1V1=c2V2稀释关系一致，四个'solve for'模式（molarity/mass/volume/molarMass）在组件里选用的输入字段是否与各自公式所需变量匹配（无循环依赖或用错变量）",
+    "参考表六种化合物摩尔质量（NaCl 58.44/NaOH 40.00/KCl 74.55/葡萄糖180.16/NaHCO₃ 84.01/CaCO₃ 100.09 g/mol）是否与IUPAC标准原子量算出的真实值一致，而不是随手编的近似数",
+    "worked example（500 mL 0.5M NaCl需称14.61g）、稀释example（6M原液配500mL 0.5M需41.7mL）、FAQ例（20g NaOH/500mL=1.0M）三处数值是否可独立复算通过",
+    "单位换算：组件里MASS_UNITS(g/mg/kg)与VOL_UNITS(L/mL)两套换算系数是否正确，四种solve-for模式下needsMass/needsMw/needsVol/needsConc四个条件显示逻辑是否与各自公式所需输入完全匹配",
+    "'seawater大约0.5M NaCl'这类带'roughly'限定词的软性类比是否落在真实取值范围内（非编造的精确数字）"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码，只用IUPAC c=n/V、n=m/M定义）：molarity(58.44,58.44,1)=1.0、molarity(20,40,0.5)=1.0、molarity(90.08,180.16,2)=0.25、massForMolarity(0.1,58.44,0.25)=1.461、volumeForMolarity(20,40,2)=0.25、molarMassFromMolarity(58.44,1,1)=58.44、molesOfSolute(0.5,2)=1、dilutionStockVolume(6,0.5,0.5)=0.041667、dilutionStockVolume(2,2,1)=1，与tests/molarity.test.ts全部9条期望值逐一一致。页面worked example独立复算：500mL 0.5M NaCl需mass=0.5×58.44×0.5=14.61g（页面写14.61g，一致）；6M原液配500mL 0.5M需V1=(0.5×500)/6=41.667mL（页面写'41.7 mL'，四舍五入一致）；FAQ例20g NaOH/500mL=20/40=0.5mol，0.5/0.5=1.0M（一致）。src/components/calculators/MolarityCalculator.tsx逐行核对：needsMass/needsMw/needsVol/needsConc四个条件与solveFor四种模式（molarity/mass/volume/molarMass）逐一匹配各自公式所需变量，无循环依赖（如molarMass模式下moles用molesOfSolute(concNum,volL)=c×V，这是两个直接给定量，不依赖待求的molarMass本身，非循环）；MASS_UNITS={g:1,mg:0.001,kg:1000}与VOL_UNITS={L:1,mL:0.001}换算系数均正确（1kg=1000g、1mg=0.001g、1mL=0.001L）。"
+    },
+    {
+      "dimension": "参考表数值真实性",
+      "status": "未发现问题",
+      "detail": "用IUPAC 2021标准原子量（Na=22.990/Cl=35.45/O=15.999/H=1.008/K=39.098/C=12.011/Ca=40.078）独立重算六种化合物摩尔质量：NaCl=58.440、NaOH=39.997≈40.00、KCl=74.548≈74.55、C₆H₁₂O₆=180.156≈180.16、NaHCO₃=84.006≈84.01、CaCO₃=100.086≈100.09，与页面参考表及组件COMPOUNDS下拉列表逐一一致，均为真实PubChem/IUPAC数值而非编造近似数。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：本次审计时17个测试文件、402个测试全部通过（molarity.test.ts 9个：molarity 3个/inverse solvers 4个/dilution 2个）。9条期望值逐条用独立Python复算比对，全部一致，测试注释声明'hand-worked from the IUPAC definition'，核实属实。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/CalculatorIsland.astro正确分发'molarity-calculator'到MolarityCalculator（client:load）；npm run build成功生成/molarity-calculator/与/embed/molarity-calculator/，线上curl实测/embed/molarity-calculator/ 200且astro-island组件标记为MolarityCalculator.BueHPKvp.js/component-export=default，与主页面复用同一组件（非另一份分叉实现）。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题（含一项反爬网关说明）",
+      "detail": "IUPAC Gold Book链接（goldbook.iupac.org/terms/view/A00295）curl -sI返回403且响应头含'cf-mitigated: challenge'，与此前eCFR/Lancet审计发现的Cloudflare人机验证网关模式相同，非真实死链；WebSearch独立核实该term ID确实对应'amount concentration'词条本身（非其他术语），URL与页面引用一致。PubChem链接（NIH主域名首页）curl 200。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/molarity-calculator/ 200，title'Molarity Calculator | CalcBadger'32字符正常；canonical自指正确；单一h1，8个h2无跳级、无空标题（用Python提取nested innerText校验，非regex误判）；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt为'Allow: /'含AI爬虫显式规则；sitemap-0.xml含本页。**description字段173字符**（复用为meta description/og/twitter/JSON-LD WebApplication.description/页面首屏可见导语共5处），超出理想上限160约13字符（8.1%），落在本站既有先例的'不修'区间（cd 164/+4/2.5%、sat-score 166/+6/3.75%）与'应修'区间（square-footage/stair 207/+47/29%、bmi 220/+60/37.5%）之间的空档。独立agent复核后判定为真实问题应修（而非套用cd-calculator先例不改）：主因是155-160字符截断点恰好落在'compoun[d]'一词中间（非优雅截断），且'built-in compound values'是真实差异化功能点而非填充词，截断代价高于其余'不修'案例；同时存在低成本、不损语义的精简方案。已将description从173字符精简到147字符，同步更新meta description/og/twitter/JSON-LD description/页面首屏导语（同一字段5处复用），保留全部四个可求解量（molarity/mass of solute/solution volume/molar mass）与'compound values built in'功能点，'molar concentration'一词的关键词覆盖仍完整保留在正文首节（'Molar concentration is defined as...'），未造成实质信息或关键词覆盖损失。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用既有人工核对方法（本站无适用于长文的99分制自动打分器，已用Skill(ai-seo)的Content Extractability Check逐项核对）：coreSummary首屏给出可独立引用的定义与公式；4个小节均以直接陈述开头；含3条真实数字worked example与1个6行参考表；5组FAQ配FAQPage schema；'updated 2026-08-02'时效信号明确；robots.txt放行GPTBot/ClaudeBot/PerplexityBot等AI爬虫。综合判定明显高于80分门槛，description精简未改变GEO可提取性（正文内容未变动）。"
+    },
+    {
+      "dimension": "中文/英文双重去AI味检查（本站首次执行此项，此前5次审计均未覆盖，2026-08-07新规）",
+      "status": "未发现问题",
+      "detail": "molarity-calculator的updated='2026-08-02'早于8/7规则生效日且含4节实质性正文，按规则需过Skill(humanizer)+Skill(avoid-ai-writing)。逐段核对：全文本无em/en dash、无弯引号（Python逐字符扫描确认0命中）；无Tier1/Tier2 AI高频词（delve/robust/leverage/crucial/testament/underscore等）；仅2处加粗（公式与关键数值），未见inline-header列表/机械三连排比/'Despite challenges'套路句/信心校准短语（Notably/Importantly等）。段落结构和句长与本站其余5个已审计工具页一致（同一模板作者风格，非新引入的AI腔），判定文本已足够干净，未做改写。此项发现记入教训库：此前5次审计（cd/square-footage/bmi/stair/sat-score）均未执行这一步，是流程缺口而非这几篇文章本身有问题，后续审计需持续执行。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题（含一项全站回归验证）",
+      "detail": "本站工具数已从stair-calculator审计时的9个、sat-score-calculator审计时的13个，增长到本次审计时的16个（新增mortgage/time-converter/concrete-calculator已被纳入sat-score审计范围，本次新增percentage-calculator/volume-converter/date-calculator）。用node独立复现src/pages/[slug].astro的pickRelatedGuides+crossCategory完整逻辑（对16个工具的slug/category跑一遍），验证结果**16/16工具零孤儿覆盖**；线上molarity-calculator页面实测侧栏链接（temperature-converter/bmi-calculator/coin-flip-simulator/length-converter/weight-converter/mortgage-calculator）与模拟结果完全一致；首页与/category/science/分类页均curl确认含指向/molarity-calculator/的链接；sitemap-0.xml含本页。8/4 stair-calculator审计修复的轮转兜底逻辑在工具数增长78%（9→16）后依然成立。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-02'与页面'updated 2026-08-02'一致，description字段已同步为精简后的147字符版本；FAQPage 5条FAQ与tools.ts faq数组及页面渲染逐一对应；BreadcrumbList三级（Home/Science/Molarity Calculator）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "工具本身是化学计算，涉及'add concentrated acid to water, never water to acid'安全提示（真实、准确的实验室安全常识，非编造），未暗示计算器可替代实验室安全培训；全站/terms/页'No professional advice'条款覆盖范围未明确列出化学/实验室场景，但该工具不涉及需要专业资质判断的场景（不同于BMI/SAT等YMYL-adjacent工具），判定无需额外声明。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；/privacy/、/terms/、/about/三页curl均200可达；页面标题与内容无误导性设计；工具是教育/化学计算，不涉及暴力/赌博/武器/毒品等敏感类目。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "1. description字段从173字符精简到147字符，同步更新meta description/og/twitter/JSON-LD WebApplication.description/页面首屏可见导语（src/data/tools.ts第450行，同一字段5处复用）",
+    "定点修改，未做大范围重写；先经独立fresh-context agent复核确认为真问题（含独立核对本站既有先例的字符数/百分比是否属实、独立数出173字符、独立提出147字符替代文案）后才动手",
+    "npm test 421/421通过（其中molarity.test.ts 9/9，其余19个新增测试属并发会话正在添加的calorie-calculator功能，未纳入本次改动范围）、npm run build 47页成功生成后，git diff确认src/data/tools.ts只有本行改动，git add该单一文件提交（未暂存并发会话正在修改的CalculatorIsland.astro/gsc-index-submit-log.json/新增的calorie相关文件），commit 4b85723",
+    "push后轮询线上/molarity-calculator/的meta description，第3次尝试（约40秒后）确认新文案已生效部署，node tools/submit-indexnow.mjs提交该URL（Bing 200/Yandex 202，indexnow-submit-log.json已更新），内容发布日志.md已追加记录"
+  ],
+  "seo_score": "修复前：静态审计除description 173字符超长外全部健康；修复后：description缩短到147字符，其余维度（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）保持无异常",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对（含Content Extractability Check逐项过一遍），估计等效90/99左右，明显超过≥80门槛，description精简未影响GEO（正文未变），无需进一步修复",
+  "escalation": null
+}
+```
