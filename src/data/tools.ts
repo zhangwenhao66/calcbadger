@@ -2202,4 +2202,158 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'world-clock',
+		category: 'Date & Time',
+		title: 'World Clock & Time Zone Converter',
+		shortTitle: 'World Clock',
+		description:
+			'See the current time in dozens of cities worldwide, or convert a specific date and time from one time zone to another, including the day-of-week shift and daylight-saving status.',
+		updated: '2026-08-09',
+		coreSummary:
+			'Every offset and daylight-saving transition here is read live from the IANA time zone database built into your browser (the same source every major OS uses) rather than a stored table of UTC offsets, so results stay correct through DST changes in either zone. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day.',
+		queries: [
+			'world clock',
+			'time zone converter',
+			'what time is it in',
+			'time in india',
+			'time in tokyo',
+			'time in london',
+			'time in new york',
+			'time in sydney',
+			'time in dubai',
+			'time in hawaii',
+			'convert time between time zones',
+			'meeting time zone converter',
+		],
+		sections: [
+			{
+				heading: 'Two questions, one tool',
+				body: [
+					'Two different questions live under "what time is it in Tokyo." The first is simple: right now, this second, what does a clock on the wall in Tokyo read. The second comes up more often in practice: if a meeting starts at 3pm in Chicago, what time does that land in Tokyo, and is it even the same day there. World clock mode answers the first question with a live, ticking display. Convert mode answers the second: pick a date and time in one city, pick a second city, and see the exact result, including whether the date shifts forward or back a day.',
+				],
+			},
+			{
+				heading: 'Where the numbers come from',
+				body: [
+					"Every offset and daylight-saving transition on this page comes from your browser's IANA time zone database (the Olson database), the same source Windows, macOS, iOS, Android, and every major browser read from. That's a different approach from storing a table of UTC offsets. A stored table goes stale the moment a country changes its daylight-saving rule, which happens most years somewhere in the world. Reading the offset live from the same database the operating system uses avoids that, with nothing to update by hand.",
+				],
+			},
+			{
+				heading: 'A country name is not a time zone',
+				body: [
+					'"Time in Brazil" or "time in Russia" reads like one query with one answer, but both countries span multiple official time zones (Brazil has four, Russia has eleven). This page\'s country-level entries use whichever zone the large majority of that country\'s population and searches for that country actually mean: Brasília time for Brazil, Moscow time for Russia. That matches the convention most world-clock sites use, since a page trying to force one answer to cover every zone in a large country would be answering a question nobody actually asked.',
+				],
+			},
+			{
+				heading: "Daylight saving doesn't run on the same calendar everywhere",
+				body: [
+					"Clocks in the Northern Hemisphere spring forward around March and fall back around November, because that's when their summer falls. South of the equator the seasons are reversed, so Sydney, Auckland, and Santiago spring forward around September or October and fall back around March or April. For part of the year that makes the gap between, say, London and Sydney smaller than it is the rest of the year, simply because the two cities are adjusting their clocks in opposite directions at opposite times. The reference table below shows this directly: Sydney sits at UTC+11 in January and UTC+10 in July, the reverse pattern of New York's UTC-5 in January and UTC-4 in July.",
+				],
+			},
+			{
+				heading: "Not every offset is a whole hour",
+				body: [
+					'India Standard Time is UTC+5:30, fixed year-round with no daylight saving. The half-hour offset dates to 1906, when colonial authorities rejected an earlier proposal for two separate one-hour zones (GMT+5 and GMT+6) and picked the offset exactly between them instead. Nepal goes further, at UTC+5:45, and the Chatham Islands, a small New Zealand territory, sit at a standard offset of UTC+12:45 that shifts to UTC+13:45 during daylight saving. Newfoundland, Canada uses a half-hour offset too: UTC-3:30 standard, UTC-2:30 during daylight saving, a full 90 minutes off the rest of Atlantic Canada. Lord Howe Island, a small Australian island, goes further still. It\'s one of the very few daylight-saving regions anywhere that shifts its clocks by only 30 minutes instead of a full hour, moving from UTC+10:30 standard to UTC+11 during daylight saving.',
+				],
+			},
+			{
+				heading: 'Daylight-saving rules can change',
+				body: [
+					'Iran ended its use of daylight saving time in September 2022 and has kept a single fixed offset of UTC+3:30 year round since, after decades of switching clocks twice a year like most of its neighbors. A government sets a zone\'s daylight-saving rule and can change it whenever it wants, which is why this page reads the rule live instead of storing it.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Standard vs. daylight-saving offset by zone, 2026',
+				headers: ['City / zone', 'Standard offset', 'Daylight-saving offset'],
+				rows: [
+					['New York', 'UTC-5', 'UTC-4'],
+					['London', 'UTC+0', 'UTC+1'],
+					['Sydney', 'UTC+10', 'UTC+11'],
+					['Auckland', 'UTC+12', 'UTC+13'],
+					['Santiago', 'UTC-4', 'UTC-3'],
+				],
+				note: 'Sydney, Auckland, and Santiago are in the Southern Hemisphere, so their daylight-saving period falls in the Northern Hemisphere winter (roughly October to March), the reverse of New York and London.',
+			},
+			{
+				title: 'Non-whole-hour time zones',
+				headers: ['Zone', 'Standard offset', 'Daylight-saving offset'],
+				rows: [
+					['India (year-round)', 'UTC+5:30', 'no DST'],
+					['Nepal (year-round)', 'UTC+5:45', 'no DST'],
+					['Iran (year-round, since Sept. 2022)', 'UTC+3:30', 'no DST'],
+					['Newfoundland, Canada', 'UTC-3:30', 'UTC-2:30'],
+					['Chatham Islands, New Zealand', 'UTC+12:45', 'UTC+13:45'],
+					['Lord Howe Island, Australia', 'UTC+10:30', 'UTC+11:00 (a 30-minute shift, not a full hour)'],
+				],
+			},
+			{
+				title: 'Worked conversion examples',
+				headers: ['From', 'To', 'Result'],
+				rows: [
+					['New York, 9:00 AM, Mar 10, 2026', 'Tokyo', '10:00 PM, same day (13-hour gap)'],
+					['Los Angeles, 10:00 PM, Jun 1, 2026', 'Sydney', '3:00 PM, Jun 2, 2026 (next day)'],
+					['Auckland, 12:30 AM, Jan 1, 2026', 'Honolulu', '1:30 AM, Dec 31, 2025 (previous day)'],
+				],
+				note: 'The last two rows cross the International Date Line: the local time of day can look similar while the calendar date shifts by a full day in either direction.',
+			},
+		],
+		faq: [
+			{
+				question: 'What time is it in a specific city right now?',
+				answer:
+					"Switch to World clock mode above and pick the city. The display updates every second from your device's clock combined with that city's current IANA time zone rule, including whether daylight saving is currently in effect there.",
+			},
+			{
+				question: 'How do I convert a meeting time to another time zone?',
+				answer:
+					'Switch to Convert a time, enter the date and time in the "From" city, and pick the "To" city. The result shows the exact local time there, plus whether the date shifts forward or back a day and how many hours apart the two zones currently are.',
+			},
+			{
+				question: 'Why does the time difference between two cities change throughout the year?',
+				answer:
+					"Whenever one or both cities observe daylight saving, the gap between them shifts by an hour twice a year as each city's clocks move independently. Northern and Southern Hemisphere zones observe daylight saving in opposite seasons, so the size of that shift, and sometimes its direction, depends on which two zones you're comparing.",
+			},
+			{
+				question: "Why isn't \"time in Brazil\" or \"time in Russia\" a single simple answer?",
+				answer:
+					"Both countries span several official time zones. This page's country-level entries use the zone that the large majority of that country's population and searches for it actually mean, Brasília time for Brazil and Moscow time for Russia, rather than trying to force one answer to cover zones most searchers weren't asking about.",
+			},
+			{
+				question: 'Are half-hour and 45-minute time zones a mistake?',
+				answer:
+					'No. India (UTC+5:30), Nepal (UTC+5:45), and the Chatham Islands (UTC+12:45/+13:45) all use non-whole-hour offsets on purpose, usually the result of a historical decision to split the difference between neighboring whole-hour zones rather than adopt one of them outright.',
+			},
+			{
+				question: 'Does this tool account for the International Date Line?',
+				answer:
+					'Yes. Converting a time near midnight between zones on opposite sides of the date line can shift the calendar date by a full day in either direction. The "day difference" result reflects that automatically instead of only showing a clock face with no date.',
+			},
+		],
+		sources: [
+			{
+				label: 'IANA Time Zone Database (tzdata) — the authoritative source for UTC offset and daylight-saving rules this page reads live via the browser\'s Intl API',
+				url: 'https://www.iana.org/time-zones',
+			},
+			{
+				label: 'ECMA-402, the ECMAScript Internationalization API Specification — defines Intl.DateTimeFormat\'s time-zone-aware formatting behavior',
+				url: 'https://tc39.es/ecma402/',
+			},
+			{
+				label: 'Wikipedia — "Daylight saving time in Iran" (Iran\'s abolition of DST, effective September 2022)',
+				url: 'https://en.wikipedia.org/wiki/Daylight_saving_time_in_Iran',
+			},
+			{
+				label: 'Wikipedia — "Time in India" (the 1906 adoption of UTC+5:30 as a compromise between two proposed one-hour zones)',
+				url: 'https://en.wikipedia.org/wiki/Time_in_India',
+			},
+			{
+				label: 'timeanddate.com — "Time Zone & Clock Changes in Lord Howe Island" (the island\'s 30-minute daylight-saving shift)',
+				url: 'https://www.timeanddate.com/time/zone/australia/lord-howe-island',
+			},
+		],
+		embedHeight: 860,
+	},
 ];

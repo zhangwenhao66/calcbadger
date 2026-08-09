@@ -21,6 +21,7 @@ import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
+import WorldClockConverter from './calculators/WorldClockConverter';
 
 interface Props {
 	slug: string;
@@ -46,3 +47,4 @@ const { slug } = Astro.props;
 {slug === 'weight-converter' && <WeightConverter client:load />}
 {slug === 'time-converter' && <TimeConverter client:load />}
 {slug === 'volume-converter' && <VolumeConverter client:load />}
+{slug === 'world-clock' && <WorldClockConverter client:load />}
