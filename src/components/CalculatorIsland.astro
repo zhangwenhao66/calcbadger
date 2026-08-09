@@ -19,6 +19,7 @@ import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
+import TipCalculator from './calculators/TipCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
 import WorldClockConverter from './calculators/WorldClockConverter';
@@ -48,3 +49,4 @@ const { slug } = Astro.props;
 {slug === 'time-converter' && <TimeConverter client:load />}
 {slug === 'volume-converter' && <VolumeConverter client:load />}
 {slug === 'world-clock' && <WorldClockConverter client:load />}
+{slug === 'tip-calculator' && <TipCalculator client:load />}

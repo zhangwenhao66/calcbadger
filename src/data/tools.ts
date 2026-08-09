@@ -2374,4 +2374,151 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 860,
 	},
+	{
+		slug: 'tip-calculator',
+		category: 'Finance',
+		title: 'Tip Calculator',
+		shortTitle: 'Tip Calculator',
+		description:
+			'Work out the tip and per-person total on a restaurant bill, with a toggle for tipping on the pre-tax subtotal vs. the tax-inclusive total and an even split across the table.',
+		updated: '2026-08-10',
+		published: '2026-08-10',
+		coreSummary:
+			'Tip = base amount × (tip percent / 100). The "base amount" is where most tip calculators quietly guess wrong: etiquette authorities like the Emily Post Institute recommend tipping on the pre-tax subtotal, not the tax-inclusive total printed at the bottom of the receipt, since sales tax is a government charge that has nothing to do with the service. This calculator backs the subtotal out of a tax-inclusive total, computes the tip both ways so you can see the actual dollar gap, and splits the resulting total evenly across the table.',
+		queries: ['tip calculator', 'how much to tip', 'tip calculator split bill', 'do you tip before or after tax'],
+		sections: [
+			{
+				heading: 'How the tip is actually calculated',
+				body: [
+					'The math itself is one line: **tip = base × (tip percent / 100)**, then **grand total = bill + tip**, then **per person = grand total / number of people**. The arithmetic is trivial. What actually causes confusion is which number counts as the "base."',
+					'The total printed at the bottom of a US restaurant receipt almost always already includes sales tax. This calculator treats the number you enter as that tax-inclusive total, then uses the sales tax rate you supply to back out the pre-tax subtotal: **subtotal = total / (1 + tax rate / 100)**. Leave the tax rate at 0% and the subtotal and total collapse to the same number, which is the right answer if you already know you are looking at a pre-tax subtotal or your state charges no sales tax on restaurant meals.',
+				],
+			},
+			{
+				heading: 'Pre-tax or post-tax: which base is correct',
+				body: [
+					"The etiquette convention favors tipping on the pre-tax subtotal. The Emily Post Institute's tipping guide treats sales tax as a government charge that has nothing to do with the quality of service, so it should not inflate the tip base. Servers themselves often prefer the opposite, tipping on the tax-inclusive total, since it pays out slightly more, though the published guidance still sides with the pre-tax convention over the server's preference.",
+					"In practice the dollar difference is small at typical US sales tax rates. Combined state and local rates run from 0% (five states charge no statewide sales tax at all) up to just over 10% in the highest-tax states, with a population-weighted national average around 7.5% (Tax Foundation). On a $106 tax-inclusive total with a 6% tax rate and a 20% tip, pre-tax tipping comes to $20.00 and post-tax tipping comes to $21.20, a $1.20 gap. It grows with the tax rate and the bill size, which is why this calculator shows both numbers instead of picking one silently.",
+				],
+			},
+			{
+				heading: 'Worked example: $106 bill, 6% tax, 20% tip, split two ways',
+				body: [
+					'Start from a $106.00 total already including 6% sales tax. Backing out the tax: subtotal = 106 / 1.06 = $100.00, so $6.00 of the $106.00 was tax. A 20% tip on that $100.00 subtotal is $20.00 (versus $21.20 on the full $106.00 total). Using the pre-tax tip, the grand total is $106.00 + $20.00 = $126.00, and split evenly two ways that is $63.00 each.',
+					'If the table decides to round each share up to the next $5 instead of paying the exact $63.00, that adds $2.00 more per person ($4.00 total) beyond the calculated tip, which the calculator reports separately so it is clear how much of the extra came from rounding rather than from the tip percentage itself.',
+				],
+			},
+			{
+				heading: 'How much to tip, by service',
+				body: [
+					"There is no legal minimum tip percentage in the US the way there is a minimum wage. The figures below are the Emily Post Institute's published conventions, the closest thing to a US etiquette standard, not a rule anyone can enforce.",
+				],
+			},
+			{
+				heading: 'Tipping customs outside the US',
+				body: [
+					'Tipping norms are not universal, and applying US percentages abroad can misfire in either direction, undertipping where a service charge is legally already included, or overtipping in a country where it reads as awkward rather than generous.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'US tipping conventions by service (Emily Post Institute)',
+				headers: ['Service', 'Typical tip'],
+				rows: [
+					['Sit-down restaurant, wait service', '15-20% of the bill'],
+					['Food delivery', '10-15% of the bill'],
+					['Takeout / counter service', 'Discretionary, often ~10% or a few dollars'],
+					['Bar / bartender', '$1-2 per drink, or 15-20% of the tab'],
+					['Rideshare / taxi', '15-20% of the fare, plus $1 per bag handled'],
+					['Hair salon, spa, massage, personal training', '15-20% of the service price'],
+					['Hotel housekeeping', '$2-5 per day, left daily rather than only at checkout'],
+				],
+			},
+			{
+				title: 'Tipping customs by country',
+				headers: ['Country', 'Convention'],
+				rows: [
+					['United States', 'Expected: 15-20% at sit-down restaurants; base pay for many servers assumes tips'],
+					['United Kingdom', 'A ~10-12.5% service charge is often already on the bill; by law, all tips and service charges must be passed to staff in full'],
+					['France', 'Service is included in the menu price by law (service compris, in effect since 1987); tipping further is optional, not expected'],
+					['Japan', 'Not customary and can come across as odd rather than generous; excellent service is standard, not tip-incentivized'],
+					['China (mainland)', 'Generally not customary at restaurants; tour guides for foreign visitors are a common exception'],
+					['Australia', 'Not expected; a national minimum wage covers hospitality staff, so a tip reads as a bonus, not a wage top-up'],
+				],
+				note: 'Conventions, not laws (except where noted for the UK and France). Always check for an already-included service charge before adding a tip on top of it.',
+			},
+		],
+		faq: [
+			{
+				question: 'Do you tip before or after tax?',
+				answer:
+					'Etiquette authorities including the Emily Post Institute recommend tipping on the pre-tax subtotal, since sales tax is a government charge unrelated to the service. The dollar difference is usually small at typical US sales tax rates, but it grows with the bill size and the tax rate, so this calculator shows both numbers.',
+			},
+			{
+				question: 'How much should I tip at a restaurant?',
+				answer:
+					'15-20% of the bill for standard sit-down service is the conventional US range (Emily Post Institute). Delivery runs 10-15%, and takeout tipping is discretionary, often around 10% or a few dollars.',
+			},
+			{
+				question: 'Is tipping required by law in the US?',
+				answer:
+					"No. There is no federal or state law requiring a customer to tip a set percentage. What US law does regulate is who the tip belongs to once given: employers generally cannot keep tips that customers intend for staff. The tip percentage itself is a social convention, not a legal requirement.",
+			},
+			{
+				question: "Do I have to tip if the bill already includes a service charge?",
+				answer:
+					"Check the receipt before adding more. In the UK, a service charge (commonly around 10-12.5%) is frequently already added, and by law it must be passed on to staff in full, so an extra tip on top is optional. France legally bakes service into the listed menu price, so no further tip is expected. Adding a full second tip on top of an included service charge over-tips the staff without meaning to.",
+			},
+			{
+				question: 'Is it rude to tip in Japan?',
+				answer:
+					"It is not considered rude exactly, but it is unusual and can create an awkward moment; staff may try to return the money. Japan's tourism authority describes tipping as simply not customary there, since excellent service is treated as standard rather than something extra payment buys.",
+			},
+			{
+				question: 'How do I split a tip evenly among a group?',
+				answer:
+					'Enter the total party size and this calculator divides the grand total (bill plus tip) evenly across everyone. If the group prefers clean per-person amounts instead of exact cents, the round-up option bumps each share to the next $1 or $5 and reports how much extra that adds on top of the calculated tip.',
+			},
+		],
+		sources: [
+			{
+				label: 'The Emily Post Institute — "Tipping Etiquette 101: A Comprehensive Guide on Tipping" (US tip percentages by service)',
+				url: 'https://emilypost.com/advice/general-tipping-guide',
+			},
+			{
+				label: "UK Government legislation — Employment (Allocation of Tips) Act 2023 (legal requirement to pass tips to workers in full)",
+				url: 'https://www.legislation.gov.uk/ukpga/2023/13',
+			},
+			{
+				label: 'French Ministry for the Economy (DGCCRF) — "Pourboire" (service compris legally included in menu prices since 1987)',
+				url: 'https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pourboire',
+			},
+			{
+				label: 'Japan Travel (official Japan National Tourism Organization site) — "Tipping in Japan"',
+				url: 'https://www.japan.travel/en/plan/tipping-in-japan/',
+			},
+			{
+				label: 'Fair Work Ombudsman (Australian Government) — national minimum wage rates',
+				url: 'https://www.fairwork.gov.au/pay-and-wages/minimum-wages',
+			},
+			{
+				label: 'Lonely Planet — "Tipping customs in Asia" (mainland China conventions)',
+				url: 'https://www.lonelyplanet.com/articles/tipping-customs-asia',
+			},
+			{
+				label: 'Cathay Pacific — "A complete guide to tipping in the Chinese Mainland" (tour guides as the common exception)',
+				url: 'https://www.cathaypacific.com/cx/en_ID/inspiration/travel/tipping-in-china.html',
+			},
+			{
+				label: 'U.S. Department of Labor, Wage and Hour Division — Fact Sheet #15A: Ownership of Tips Under the FLSA',
+				url: 'https://www.dol.gov/agencies/whd/fact-sheets/15a-flsa-tip-ownership',
+			},
+			{
+				label: 'Tax Foundation — 2026 State Sales Tax Rates (range and population-weighted average)',
+				url: 'https://taxfoundation.org/data/all/state/2026-sales-tax-rates-midyear/',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
