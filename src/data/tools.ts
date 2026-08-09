@@ -57,6 +57,7 @@ export const tools: Tool[] = [
 		description:
 			'Work out what a certificate of deposit will be worth at maturity: final balance, total interest, and the effective APY for any rate, compounding schedule, and term.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity.',
 		queries: ['cd calculator', 'certificate of deposit calculator', 'cd interest calculator'],
@@ -154,6 +155,7 @@ export const tools: Tool[] = [
 		description:
 			'Calculate the square footage of a room or area from its measurements, with conversions to square meters, square yards, and acres, plus a cost estimate.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'Square footage is length × width measured in feet. A 12 ft × 10 ft room is 120 sq ft. For L-shaped rooms, split the floor into two rectangles and add them; for circles use π × (diameter/2)²; for triangles use base × height ÷ 2. One square meter equals 10.764 sq ft.',
 		queries: [
@@ -255,6 +257,7 @@ export const tools: Tool[] = [
 		description:
 			'Calculate stair layout from total rise: riser count, riser height in carpenter fractions, tread run, stringer length, and angle — checked against IRC limits.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up. That is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each.',
 		queries: ['stair calculator', 'stair stringer calculator', 'stair rise and run calculator'],
@@ -353,6 +356,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert raw scores on a paper SAT practice test into scaled section scores and a 400–1600 total, using College Board’s official conversion table for Practice Test #4.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'Count correct answers in each section of a paper SAT practice test (Reading & Writing out of 66, Math out of 54), then read the scaled score off College Board’s published conversion table. Answering everything right converts to 1580–1600; the scores come out as ranges because the real digital SAT is adaptive and a raw count alone cannot pin down one exact score.',
 		queries: ['sat score calculator', 'sat raw score conversion', 'digital sat score calculator'],
@@ -449,6 +453,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between mass, molar mass, and volume to solve for molarity, grams of solute, solution volume, or molar mass, with compound values built in.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass.',
 		queries: ['molarity calculator', 'molar concentration calculator', 'grams to moles to molarity'],
@@ -544,6 +549,7 @@ export const tools: Tool[] = [
 		description:
 			'Calculate BMI from weight and height in US or metric units, see your CDC/WHO category and healthy-weight range, plus an optional Asian-population cutoff.',
 		updated: '2026-08-02',
+		published: '2026-08-02',
 		coreSummary:
 			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity.',
 		queries: ['bmi calculator', 'bmi calculator for women', 'bmi chart', 'body mass index calculator'],
@@ -655,6 +661,7 @@ export const tools: Tool[] = [
 		description:
 			'Flip 1 to 500 virtual coins at once (fair or weighted) and see the heads/tails split and longest streaks, or switch to the probability calculator to get the exact chance of any heads count using the binomial distribution.',
 		updated: '2026-08-03',
+		published: '2026-08-03',
 		coreSummary:
 			'A single fair coin flip is 50/50, but the chance of an exact result over many flips follows the binomial distribution: P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k), where C(n,k) is the number of ways to choose which k flips landed heads. Flipping 10 fair coins and getting exactly 5 heads happens 24.6% of the time, not 50%, because there are many more ways to land close to half-and-half than to land on all heads or all tails.',
 		queries: [
@@ -767,6 +774,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between Celsius, Fahrenheit, and Kelvin instantly, with reference tables for oven temperatures, fever/body-temperature readings, and everyday weather values.',
 		updated: '2026-08-04',
+		published: '2026-08-04',
 		coreSummary:
 			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations — so there is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two.',
 		queries: [
@@ -930,6 +938,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles instantly, with reference tables for heights, tool sizes, and race distances.',
 		updated: '2026-08-04',
+		published: '2026-08-04',
 		coreSummary:
 			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once.',
 		queries: [
@@ -1079,6 +1088,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, and US tons instantly, with reference tables for body weight, cooking, newborn weight, and dosing.',
 		updated: '2026-08-04',
+		published: '2026-08-04',
 		coreSummary:
 			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. Enter a weight in any of seven units and this tool converts it to the other six at once.',
 		queries: [
@@ -1243,6 +1253,7 @@ export const tools: Tool[] = [
 		description:
 			'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI and HOA) plus total interest over the life of the loan, for any home price, down payment, rate and term.',
 		updated: '2026-08-05',
+		published: '2026-08-05',
 		coreSummary:
 			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment.',
 		queries: [
@@ -1368,6 +1379,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between seconds, minutes, hours, days, weeks, months, and years instantly, with reference tables for "how many hours/minutes/seconds in a year" and worked examples for ages, projects, and countdowns.',
 		updated: '2026-08-05',
+		published: '2026-08-05',
 		coreSummary:
 			'A day is exactly 24 hours (86,400 seconds) and a week is exactly 7 days, both fixed by definition. A calendar month or year has no single fixed length (28-31 days per month, 365 or 366 days per year), so this converter uses the mean Gregorian month (30.436875 days) and mean Gregorian year (365.2425 days), the exact average over the calendar\'s 400-year leap cycle, not an estimate. Enter a duration in any of seven units and this tool converts it to the other six at once.',
 		queries: [
@@ -1512,6 +1524,7 @@ export const tools: Tool[] = [
 		description:
 			'Calculate how much concrete a slab, footing, wall, column, or post hole needs in cubic feet and cubic yards, plus how many 40, 50, 60, or 80 lb bags to buy.',
 		updated: '2026-08-05',
+		published: '2026-08-05',
 		coreSummary:
 			'Concrete volume is just geometry: a slab, footing, or wall is length × width × thickness; a column, tube, or post hole is π × (diameter/2)² × depth. Divide cubic feet by 27 to get cubic yards for a ready-mix order. For bagged mix, QUIKRETE Concrete Mix (Product No. 1101) publishes exact yields — 40 lb bags give 0.30 ft³, 50 lb give 0.375 ft³, 60 lb give 0.45 ft³, and 80 lb give 0.60 ft³ — so bags needed = volume ÷ yield, rounded up.',
 		queries: [
@@ -1633,6 +1646,7 @@ export const tools: Tool[] = [
 		description:
 			'Find a percentage of a number, work out what percent one number is of another, calculate percentage increase or decrease, apply a discount, or compare two values with percent difference.',
 		updated: '2026-08-06',
+		published: '2026-08-06',
 		coreSummary:
 			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one — (new − old) ÷ |old| × 100 — and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula — |a − b| ÷ ((a + b) ÷ 2) × 100 — used when comparing two values where neither one is the reference.',
 		queries: [
@@ -1757,6 +1771,7 @@ export const tools: Tool[] = [
 		description:
 			'Convert between teaspoons, tablespoons, fluid ounces, cups, pints, quarts, gallons, milliliters, and liters instantly, with reference tables for cooking measures, bottle and can sizes, and larger volumes.',
 		updated: '2026-08-06',
+		published: '2026-08-06',
 		coreSummary:
 			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here — quart, pint, cup, fluid ounce, tablespoon, teaspoon — is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once.',
 		queries: [
@@ -1933,6 +1948,7 @@ export const tools: Tool[] = [
 		description:
 			'Find the number of days between two dates, add or subtract days from a date, or count down to New Year\'s Day, Halloween, Thanksgiving, and Christmas.',
 		updated: '2026-08-06',
+		published: '2026-08-06',
 		coreSummary:
 			'Every mode here runs on the proleptic Gregorian calendar — the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4) — with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function.',
 		queries: [
@@ -2071,6 +2087,7 @@ export const tools: Tool[] = [
 		description:
 			'Find your BMR, maintenance calories (TDEE), and a daily calorie target to lose, maintain, or gain weight, using the Mifflin-St Jeor equation.',
 		updated: '2026-08-09',
+		published: '2026-08-09',
 		coreSummary:
 			'Daily calorie needs break down into three separate numbers: basal metabolic rate (BMR) from the Mifflin-St Jeor equation (Am J Clin Nutr 1990;51:241-247), maintenance calories (TDEE) after multiplying BMR by an activity factor, and a goal calorie target after applying the conventional "3,500 kcal per pound" adjustment for weight loss or gain. The activity multiplier is a rough estimate of weekly movement, self-reported rather than measured, and the 500-calorie-per-pound-per-week rule is a linear approximation that runs faster than real weight change tends to, since the body\'s energy needs shift as weight changes (NIH/NIDDK Body Weight Planner research). Targets under about 1,200 cal/day for women or 1,500 cal/day for men are flagged separately, following the 2013 AHA/ACC/TOS obesity guideline\'s threshold for diets that call for medical supervision.',
 		queries: [
@@ -2210,6 +2227,7 @@ export const tools: Tool[] = [
 		description:
 			'See the current time in dozens of cities worldwide, or convert a specific date and time from one time zone to another, including the day-of-week shift and daylight-saving status.',
 		updated: '2026-08-09',
+		published: '2026-08-09',
 		coreSummary:
 			'Every offset and daylight-saving transition here is read live from the IANA time zone database built into your browser (the same source every major OS uses) rather than a stored table of UTC offsets, so results stay correct through DST changes in either zone. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day.',
 		queries: [
