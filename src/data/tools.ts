@@ -447,7 +447,7 @@ export const tools: Tool[] = [
 		title: 'Molarity Calculator',
 		shortTitle: 'Molarity',
 		description:
-			'Convert between mass, molar mass, volume, and molar concentration: solve for molarity, grams of solute, solution volume, or molar mass, with common compound values built in.',
+			'Convert between mass, molar mass, and volume to solve for molarity, grams of solute, solution volume, or molar mass, with compound values built in.',
 		updated: '2026-08-02',
 		coreSummary:
 			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass.',
