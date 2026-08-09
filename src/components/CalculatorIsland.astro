@@ -5,6 +5,7 @@
  * client:load — the calculator IS the page's primary content.
  */
 import BmiCalculator from './calculators/BmiCalculator';
+import CalorieCalculator from './calculators/CalorieCalculator';
 import CdCalculator from './calculators/CdCalculator';
 import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import ConcreteCalculator from './calculators/ConcreteCalculator';
@@ -29,6 +30,7 @@ const { slug } = Astro.props;
 ---
 
 {slug === 'bmi-calculator' && <BmiCalculator client:load />}
+{slug === 'calorie-calculator' && <CalorieCalculator client:load />}
 {slug === 'cd-calculator' && <CdCalculator client:load />}
 {slug === 'coin-flip-simulator' && <CoinFlipCalculator client:load />}
 {slug === 'concrete-calculator' && <ConcreteCalculator client:load />}

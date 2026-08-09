@@ -2063,4 +2063,143 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'calorie-calculator',
+		category: 'Health',
+		title: 'Calorie Calculator',
+		shortTitle: 'Calorie Calculator',
+		description:
+			'Find your BMR, maintenance calories (TDEE), and a daily calorie target to lose, maintain, or gain weight, using the Mifflin-St Jeor equation.',
+		updated: '2026-08-09',
+		coreSummary:
+			'Daily calorie needs break down into three separate numbers: basal metabolic rate (BMR) from the Mifflin-St Jeor equation (Am J Clin Nutr 1990;51:241-247), maintenance calories (TDEE) after multiplying BMR by an activity factor, and a goal calorie target after applying the conventional "3,500 kcal per pound" adjustment for weight loss or gain. The activity multiplier is a rough estimate of weekly movement, self-reported rather than measured, and the 500-calorie-per-pound-per-week rule is a linear approximation that runs faster than real weight change tends to, since the body\'s energy needs shift as weight changes (NIH/NIDDK Body Weight Planner research). Targets under about 1,200 cal/day for women or 1,500 cal/day for men are flagged separately, following the 2013 AHA/ACC/TOS obesity guideline\'s threshold for diets that call for medical supervision.',
+		queries: [
+			'calorie calculator',
+			'how many calories should I eat',
+			'calories to lose weight',
+			'BMR calculator',
+			'TDEE calculator',
+			'daily calorie needs',
+			'how many calories to lose 1 pound a week',
+			'maintenance calories',
+		],
+		sections: [
+			{
+				heading: 'Three numbers, one calculator',
+				body: [
+					'Type "calorie calculator" into a search bar and three different questions come back bundled into one: how many calories do you burn just existing (BMR), how many do you burn on an average day once activity is added (TDEE, also called maintenance calories), and how many should you eat to hit a specific goal. This tool answers all three in sequence: BMR feeds into TDEE, and TDEE feeds into the goal target, so changing your activity level or your goal updates the whole chain instead of one isolated number.',
+					"The Lose, Maintain, and Gain buttons don't touch the math that produces BMR or TDEE. They only decide what happens after TDEE is calculated. Maintenance is the same number no matter which goal you pick; it describes your body at rest and in motion, and the three buttons just decide what you do with it.",
+				],
+			},
+			{
+				heading: 'Why Mifflin-St Jeor and not Harris-Benedict',
+				body: [
+					"Harris-Benedict, published in 1919 and revised in 1984, was the default resting-metabolism formula for most of the 20th century, and plenty of older calculators still run on it. Mifflin-St Jeor came out of a 1990 study of 498 people measured by indirect calorimetry, the lab method of measuring actual gas exchange, and it was built specifically because Harris-Benedict tends to overestimate resting energy needs in a more sedentary modern population. Since then, comparison studies have repeatedly found Mifflin-St Jeor lands within about 10% of measured resting energy expenditure more often than the alternatives, which is why dietitians and most current calculators default to it.",
+					"The imperial inputs here (pounds, feet, inches) don't run through a separate imperial formula. They convert to kilograms and centimeters first, using the exact international conversion factors, then go through the same equation as the metric path. That keeps the two unit systems in agreement to the decimal instead of drifting apart the way some rounded-constant shortcuts do.",
+				],
+			},
+			{
+				heading: 'The activity multiplier is a starting point, not a wearable',
+				body: [
+					'BMR measures your body at complete rest. TDEE adds everything else: walking, working, exercising, fidgeting. No government body sets an official conversion from a description like "moderately active" to an exact number; the 1.2 to 1.9 range used here is a long-running convention in sports-nutrition references, nothing more official than that. Two people who both call themselves lightly active can burn very different amounts of real-world energy, so treat this number as a starting point to adjust after a few weeks of tracking.',
+					"If your actual weight trend after two or three weeks doesn't match what the target predicted, check the activity level first. It's usually the input that's off; the BMR formula is standard math and rarely the problem.",
+				],
+			},
+			{
+				heading: "Why a 500-calorie deficit doesn't produce exactly a pound a week, every week",
+				body: [
+					'The "3,500 kcal equals one pound of fat" figure goes back to a 1958 calculation by Max Wishnofsky that treats calorie deficit and weight loss as a straight line: cut 500 calories a day, lose one pound a week, indefinitely. Kevin Hall\'s group at the NIH\'s National Institute of Diabetes and Digestive and Kidney Diseases, the team behind the NIH Body Weight Planner, has since shown that relationship isn\'t actually linear. As you lose weight, your body needs fewer calories to maintain the smaller version of itself, so the same 500-calorie deficit produces less and less loss the longer you stay on it.',
+					"This calculator still uses the 3,500-kcal rule because it's simple, transparent, and close enough for a short-term estimate. Just don't treat week 1's math as a promise about week 12.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'BMR by profile (Mifflin-St Jeor)',
+				headers: ['Sex', 'Age', 'Weight', 'Height', 'BMR'],
+				rows: [
+					['Female', '25', '65 kg (143 lb)', "165 cm (5'5\")", '1,395 cal/day'],
+					['Male', '30', '80 kg (176 lb)', "180 cm (5'11\")", '1,780 cal/day'],
+					['Female', '45', '70 kg (154 lb)', "160 cm (5'3\")", '1,314 cal/day'],
+					['Male', '50', '90 kg (198 lb)', "175 cm (5'9\")", '1,749 cal/day'],
+				],
+				note: 'Weight and height are rounded to the nearest pound or inch for reference; the calculator above works directly in either unit system without rounding through the other.',
+			},
+			{
+				title: 'Maintenance calories (TDEE) by activity level, for a fixed BMR of 1,600',
+				headers: ['Activity level', 'Multiplier', 'TDEE'],
+				rows: [
+					['Sedentary', '×1.2', '1,920 cal/day'],
+					['Lightly active', '×1.375', '2,200 cal/day'],
+					['Moderately active', '×1.55', '2,480 cal/day'],
+					['Very active', '×1.725', '2,760 cal/day'],
+					['Extra active', '×1.9', '3,040 cal/day'],
+				],
+				note: 'Same BMR, five different maintenance numbers. Activity level alone can shift the estimate by more than 1,100 calories a day.',
+			},
+			{
+				title: 'Goal calories from a fixed TDEE of 2,400',
+				headers: ['Goal', 'Rate', 'Daily adjustment', 'Target'],
+				rows: [
+					['Lose', '0.5 lb/week', '-250 cal', '2,150 cal/day'],
+					['Lose', '1 lb/week', '-500 cal', '1,900 cal/day'],
+					['Lose', '1.5 lb/week', '-750 cal', '1,650 cal/day'],
+					['Lose', '2 lb/week', '-1,000 cal', '1,400 cal/day'],
+					['Maintain', 'n/a', '0 cal', '2,400 cal/day'],
+					['Gain', '0.5 lb/week', '+250 cal', '2,650 cal/day'],
+					['Gain', '1 lb/week', '+500 cal', '2,900 cal/day'],
+				],
+				note: "Adjustment equals rate times 3,500 kcal, divided by 7 days. CDC's general guidance favors the 1-2 lb/week range for weight loss over faster rates, on the grounds that gradual loss holds up better over time.",
+			},
+		],
+		faq: [
+			{
+				question: 'How many calories should I eat to lose weight?',
+				answer:
+					'Start from your maintenance calories (TDEE) and subtract 250 to 1,000 per day depending on how fast you want to lose weight. 500 fewer calories a day works out to roughly 1 lb/week under the standard 3,500-kcal estimate. This calculator does that subtraction for you once you pick a target rate.',
+			},
+			{
+				question: "What's the difference between BMR and TDEE?",
+				answer:
+					'BMR is the energy your body uses at complete rest: organs, temperature regulation, basic function. TDEE, or maintenance calories, is BMR multiplied by an activity factor to account for movement and exercise. TDEE is always higher than BMR, since the activity multipliers used here start at 1.2.',
+			},
+			{
+				question: 'Is eating 1,200 calories a day safe?',
+				answer:
+					'The 2013 AHA/ACC/TOS obesity guideline frames 1,200-1,500 cal/day for women and 1,500-1,800 cal/day for men as reduced-calorie diets meant to run under medical supervision, not as a default starting point. This calculator flags any "Lose" target under 1,200 cal/day for women or 1,500 cal/day for men for that reason.',
+			},
+			{
+				question: 'Why do different calculators give me different calorie numbers?',
+				answer:
+					'Most of the gap comes from two places: which BMR formula is used (Mifflin-St Jeor and the older Harris-Benedict typically differ by 5-10%) and which activity multiplier you pick, since "moderately active" isn\'t a precisely defined amount of movement. Two calculators using the same formula and the same activity level should land close together.',
+			},
+			{
+				question: 'Does this account for muscle mass or body fat percentage?',
+				answer:
+					"No. Mifflin-St Jeor uses weight, height, age, and sex only. Formulas that also factor in body composition, like Katch-McArdle, which uses lean body mass, can be more precise for people who are unusually muscular or lean, but they need a body-fat measurement this calculator doesn't ask for.",
+			},
+			{
+				question: 'Why does the deficit rule "run out" over time?',
+				answer:
+					"The 3,500-kcal-per-pound figure assumes a fixed relationship between deficit and fat loss, and that relationship doesn't hold as your weight actually changes. A lighter body needs fewer calories to maintain itself, so the same calorie deficit produces a shrinking amount of weekly loss instead of a constant pound a week. NIH researchers built the Body Weight Planner specifically to model that curve instead of the straight line.",
+			},
+		],
+		sources: [
+			{
+				label:
+					'Mifflin MD, St Jeor ST, et al., "A new predictive equation for resting energy expenditure in healthy individuals," American Journal of Clinical Nutrition 1990;51(2):241-247',
+				url: 'https://doi.org/10.1093/ajcn/51.2.241',
+			},
+			{
+				label:
+					'2013 AHA/ACC/TOS Guideline for the Management of Overweight and Obesity in Adults (Circulation)',
+				url: 'https://www.ahajournals.org/doi/10.1161/01.cir.0000437739.71477.ee',
+			},
+			{
+				label: 'NIDDK: NIH Body Weight Planner (Diabetes Discoveries & Practice Blog, Kevin D. Hall)',
+				url: 'https://www.niddk.nih.gov/health-information/professionals/diabetes-discoveries-practice/nih-body-weight-planner',
+			},
+		],
+		embedHeight: 900,
+	},
 ];
