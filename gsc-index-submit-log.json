@@ -81,5 +81,49 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 request (round 2, continuation after Chrome extension reconnect)"
+  },
+  {
+    "date": "2026-08-07",
+    "action": "no_action_all_indexed",
+    "reason": "trafficsite-gsc-index-requests例行运行。队列候选URL逐个检查（收入代理排序前8个）全部已'URL is on Google'（自然收录），未找到未收录候选，本站两轮均未消耗提交配额。",
+    "submitted_urls": [],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/bmi-calculator/",
+      "https://calcbadger.com/date-calculator/",
+      "https://calcbadger.com/concrete-calculator/",
+      "https://calcbadger.com/square-footage-calculator/",
+      "https://calcbadger.com/sat-score-calculator/",
+      "https://calcbadger.com/molarity-calculator/",
+      "https://calcbadger.com/stair-calculator/",
+      "https://calcbadger.com/weight-converter/"
+    ],
+    "quota_used": "0 requests (全部候选已自然收录)"
+  },
+  {
+    "date": "2026-08-08",
+    "action": "skipped_all_indexed",
+    "reason": "trafficsite-gsc-index-requests例行运行。队列内8个候选（收入代理排序前8）全部已'URL is on Google'（自然收录），未消耗提交配额，延续此前几轮该站的自然收录趋势。",
+    "submitted_urls": [],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/bmi-calculator/",
+      "https://calcbadger.com/date-calculator/",
+      "https://calcbadger.com/concrete-calculator/",
+      "https://calcbadger.com/square-footage-calculator/",
+      "https://calcbadger.com/sat-score-calculator/",
+      "https://calcbadger.com/molarity-calculator/",
+      "https://calcbadger.com/stair-calculator/",
+      "https://calcbadger.com/weight-converter/"
+    ],
+    "quota_used": "0 requests (全部候选已自然收录)"
+  },
+  {
+    "date": "2026-08-09",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行。今日有第17个工具calorie-calculator新发布 + molarity-calculator审计更新，本次仅处理calorie-calculator以控制单站单轮配额：URL Inspection确认'URL is not on Google'，REQUEST INDEXING后确认'Indexing requested'。molarity-calculator留待下次运行处理。",
+    "submitted_urls": [
+      "https://calcbadger.com/calorie-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 request"
   }
 ]
