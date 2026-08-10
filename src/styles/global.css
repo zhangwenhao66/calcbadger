@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/rubik';
+/* Cursive Alphabet Generator only — unicode-range scoping means other pages
+   never fetch this file, they just carry a few extra inert @font-face bytes
+   in the inlined stylesheet. */
+@import '@fontsource-variable/dancing-script';
 
 /*
  * "The calculator is a device" redesign (2026-08-02, ui-ux-pro-max +
@@ -618,4 +622,62 @@ h3 {
 	.rt-box:active {
 		transform: none;
 	}
+}
+
+/* ---------- Cursive Alphabet Generator ---------- */
+.cursive-text-input {
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-size: 1.05rem;
+}
+.cursive-preview-box {
+	margin-top: 1.1rem;
+	border-top: 1px solid var(--chassis-rule);
+	padding-top: 1rem;
+}
+.cursive-preview {
+	margin: 0.2rem 0 0;
+	font-family: 'Dancing Script Variable', cursive;
+	font-weight: 600;
+	font-size: clamp(2rem, 8vw, 3.4rem);
+	line-height: 1.3;
+	color: var(--op);
+	overflow-wrap: anywhere;
+}
+.cursive-chart {
+	margin-top: 1.3rem;
+	border-top: 1px solid var(--chassis-rule);
+	padding-top: 1.1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.1rem;
+}
+.cursive-row-label {
+	margin-bottom: 0.5rem;
+}
+.cursive-alphabet-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+	gap: 0.5rem;
+}
+.cursive-cell {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: var(--chassis-raised);
+	border: 1px solid var(--chassis-rule);
+	border-radius: 8px;
+	padding: 0.35rem 0.2rem 0.3rem;
+}
+.cursive-cell-glyph {
+	font-family: 'Dancing Script Variable', cursive;
+	font-weight: 600;
+	font-size: 1.7rem;
+	line-height: 1.2;
+	color: var(--chassis-text);
+}
+.cursive-cell-print {
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-size: 0.62rem;
+	color: var(--chassis-muted);
+	margin-top: 0.1rem;
 }

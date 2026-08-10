@@ -2731,4 +2731,143 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 620,
 	},
+	{
+		slug: 'cursive-alphabet',
+		category: 'Reference',
+		title: 'Cursive Alphabet',
+		shortTitle: 'Cursive Alphabet',
+		description:
+			'See every uppercase and lowercase letter in a cursive display font, preview any word or name in cursive, and learn the basic strokes cursive letters are built from.',
+		updated: '2026-08-10',
+		published: '2026-08-10',
+		coreSummary:
+			'This tool renders all 26 uppercase and 26 lowercase letters in a cursive display font, and previews any word or name you type the same way. Cursive letters within a word are typically joined in one continuous stroke built from a small set of basic connecting strokes (under-curves, over-curves, and ascending or descending loops); capital letters usually start a word without connecting to whatever came before them.',
+		queries: [
+			'cursive alphabet',
+			'cursive alphabet chart',
+			'cursive letters',
+			'cursive abc',
+			'how to write in cursive',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					"Type a word, name, or short phrase into the box and it previews instantly below in a cursive display font (letters, spaces, apostrophes, and hyphens only, up to 24 characters). The full alphabet chart underneath shows every uppercase and lowercase letter the same way, each one labeled with its ordinary print letter so it's easy to match up.",
+					"This is a display font standing in for handwritten cursive, not a stroke-by-stroke tracing guide: it won't show you the pen-lift order or exact loop shapes a teacher would demonstrate. The practical use is as a model. See what a word looks like in a cursive style, then copy it out by hand on paper, the same way you'd copy a model word from a worksheet.",
+				],
+			},
+			{
+				heading: 'How cursive letters connect',
+				body: [
+					"Cursive letters within a word are normally joined in one continuous, flowing stroke rather than lifted and placed separately the way printed (manuscript) letters are. Those connections are built from a handful of basic strokes reused across many letters: an under-curve, which starts low and curves upward, like the beginning of a lowercase i, and an over-curve, which starts high and curves downward, like the top of a lowercase u. Letters with tall stems (b, d, h, k, l, t) rise above the midline in an ascending stroke, and letters with tails (g, j, p, q, y) drop below the baseline in a descending stroke.",
+					"Capital letters are the exception to the joining rule: they typically don't connect to whatever letter came before them, since a capital usually starts a fresh word, but they're shaped so the pen can flow smoothly into the lowercase letter that follows.",
+				],
+			},
+			{
+				heading: 'There is no single official cursive alphabet',
+				body: [
+					"Cursive charts vary a little from book to book because there's no single federally mandated cursive alphabet in the US. Schools and publishers choose from several long-running teaching styles, each shaping letters a bit differently (see the comparison table below). If you're matching a specific worksheet or a teacher's handwriting, use that source as the reference rather than assuming every cursive chart online agrees letter-for-letter.",
+				],
+			},
+			{
+				heading: 'Is cursive still taught in schools?',
+				body: [
+					"It depends on the state and the school. The Common Core State Standards, adopted by most US states starting in 2010, don't specifically require cursive instruction, and many schools scaled it back or dropped it after adopting Common Core. Since the mid-2010s, though, a growing number of states have passed their own laws adding a cursive-writing requirement back into their standards, and that list keeps changing year to year, so it's worth checking your own state's or district's current requirement rather than assuming either way.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Common cursive teaching styles',
+				headers: ['Style', 'Background', 'What makes it different'],
+				rows: [
+					[
+						'Palmer Method',
+						'Developed around 1888',
+						'Simplified the more ornate Spencerian style of the 1800s for faster, everyday handwriting',
+					],
+					[
+						'Zaner-Bloser',
+						'One of the longest-running commercial handwriting programs in the US',
+						'Teaches print letters first, then introduces cursive forms built from matching strokes',
+					],
+					[
+						"D'Nealian",
+						'Developed by educator Donald Thurber in the 1960s',
+						'Manuscript letters are shaped to already resemble cursive, so the jump to joined writing is smaller',
+					],
+					[
+						'Getty-Dubay (Italic)',
+						'An italic-based teaching model',
+						'Uses simpler, less looped letterforms than traditional cursive',
+					],
+					[
+						'New American Cursive',
+						'Created by handwriting specialist Iris Hatfield',
+						'Marketed as simplified, with fewer pen strokes than the most widely used traditional cursive programs',
+					],
+				],
+				note: "Schools and publishers pick their own curriculum, so exact letterforms vary by source; this table is background on the major styles in circulation, not a ranking. Each style is individually cited in Sources & Standards.",
+			},
+		],
+		faq: [
+			{
+				question: 'Is this real handwritten cursive?',
+				answer:
+					"No. The preview and chart use a cursive-style display font rendered in your browser, not a record of actual pen strokes. It's meant as a model to look at (what does this word look like in a cursive style?) before writing it out by hand on paper, similar to how a worksheet shows a printed model word to copy.",
+			},
+			{
+				question: "Why don't the capital letters connect to the rest of the word?",
+				answer:
+					"In most cursive teaching styles, capital letters don't connect to whatever letter came before them, since a capital typically starts a new word rather than continuing one. They're still shaped to flow smoothly into the lowercase letter that follows, so the pen doesn't have to lift again right away.",
+			},
+			{
+				question: 'Is cursive still taught in schools?',
+				answer:
+					"It varies by state. Common Core, adopted by most states starting in 2010, doesn't require cursive instruction, and many schools cut back on it afterward. Since the mid-2010s, a number of states have passed their own laws reinstating a cursive requirement, and the list of which states require it keeps changing, so check your own state's or district's current standards rather than assuming.",
+			},
+			{
+				question: "What's the difference between cursive and print handwriting?",
+				answer:
+					'Print (manuscript) letters are written as separate, disconnected strokes, lifting the pen between letters. Cursive letters within a word are normally joined into one continuous, flowing stroke. Many US handwriting programs teach print first and introduce cursive later, once basic letterforms are established.',
+			},
+			{
+				question: 'Which cursive style should I learn?',
+				answer:
+					"There's no single official standard: Palmer, Zaner-Bloser, D'Nealian, Getty-Dubay, and newer styles like New American Cursive all shape letters a little differently. If you're a student, match whatever your teacher or textbook uses; if you're learning on your own, any style is fine as long as you're consistent with it.",
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Cursive"',
+				url: 'https://en.wikipedia.org/wiki/Cursive',
+			},
+			{
+				label: 'Wikipedia — "Cursive handwriting instruction in the United States"',
+				url: 'https://en.wikipedia.org/wiki/Cursive_handwriting_instruction_in_the_United_States',
+			},
+			{
+				label: 'Wikipedia — "Zaner-Bloser (teaching script)"',
+				url: 'https://en.wikipedia.org/wiki/Zaner-Bloser_(teaching_script)',
+			},
+			{
+				label: 'Wikipedia — "Palmer Method"',
+				url: 'https://en.wikipedia.org/wiki/Palmer_Method',
+			},
+			{
+				label: "Wikipedia — \"D'Nealian\"",
+				url: "https://en.wikipedia.org/wiki/D'Nealian",
+			},
+			{
+				label: 'Wikipedia — "Getty-Dubay Italic"',
+				url: 'https://en.wikipedia.org/wiki/Getty-Dubay_Italic',
+			},
+			{
+				label: 'New American Cursive — official program site (Iris Hatfield)',
+				url: 'https://www.newamericancursive.com/',
+			},
+		],
+		embedHeight: 1080,
+	},
 ];
