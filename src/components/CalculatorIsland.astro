@@ -15,6 +15,7 @@ import LengthConverter from './calculators/LengthConverter';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
+import ReactionTimeTest from './calculators/ReactionTimeTest';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
@@ -52,3 +53,4 @@ const { slug } = Astro.props;
 {slug === 'world-clock' && <WorldClockConverter client:load />}
 {slug === 'tip-calculator' && <TipCalculator client:load />}
 {slug === 'gpa-calculator' && <GpaCalculator client:load />}
+{slug === 'reaction-time-test' && <ReactionTimeTest client:load />}

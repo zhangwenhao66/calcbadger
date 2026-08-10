@@ -2626,4 +2626,109 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 980,
 	},
+	{
+		slug: 'reaction-time-test',
+		category: 'Games',
+		title: 'Reaction Time Test',
+		shortTitle: 'Reaction Time Test',
+		description:
+			'Test your simple reaction time over several trials, then compare your average, best, median, and consistency against reaction-time figures from published research.',
+		updated: '2026-08-10',
+		published: '2026-08-10',
+		coreSummary:
+			"Simple reaction time measures how fast you can respond to a single expected signal, no choice involved, just detect and click. Published averages vary by measurement method: a Clemson University literature review cites roughly 190 ms as the accepted non-computer figure for over a century, and cites a further study putting computer-measured results around 268 ms. Woods et al. (2015) separately measured a 231 ms raw average (213 ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. This tool runs a short series of trials, times each one with the browser's performance clock from stimulus onset to click, and compares your average against those documented figures.",
+		queries: [
+			'reaction time test',
+			'reaction time',
+			'simple reaction time test',
+			'how fast are your reflexes',
+			'reflex test',
+		],
+		sections: [
+			{
+				heading: 'What "simple reaction time" actually measures',
+				body: [
+					'Reaction time research splits into a few distinct tasks, and this tool measures the simplest one. Simple reaction time is the gap between a single, expected stimulus and a single response: one signal, one action, no decision to make. That is different from choice reaction time (respond differently depending on which of several signals appears) and further still from the kind of split-second decisions a driver or athlete makes mid-play, which layer judgment on top of raw detection speed.',
+					'That narrower definition is exactly why simple reaction time is useful as a baseline: there is nothing to think about, so the number mostly reflects how fast a signal travels from your eye through your nervous system to your finger. It is also, as the next section explains, a number that depends heavily on exactly how it gets measured.',
+				],
+			},
+			{
+				heading: 'How the test times each trial',
+				body: [
+					"Each trial waits a random 1.2 to 3.5 seconds before the box turns green, so there is nothing to count down and anticipate. Click before the box turns green and it counts as a false start: the trial resets and does not count toward your average, but it is tallied separately so you can see how many times you jumped the gun. Click after the box turns green and the elapsed time is measured with the browser's performance clock (performance.now()), which reports sub-millisecond timestamps, from the moment the color changes to the moment your click registers.",
+					'Running several trials instead of one matters because a single click is noisy: attention lapses, a finger already mid-motion, or a moment of hesitation can all swing one result by 50 ms or more. Averaging trials, and separately reporting the best, the median, and the spread (standard deviation) between them, gives a steadier picture than any single click.',
+				],
+			},
+			{
+				heading: 'Why the "right" number depends on how you measure it',
+				body: [
+					"A literature review by Robert Kosinski at Clemson University notes that for roughly 120 years, the textbook figure for simple visual reaction time in college-age adults was about 190 ms, a number tracing back to Francis Galton's studies in the 1800s. The same review cites Eckner et al. (2010), who timed the same NCAA football players two ways: 203 ms on a falling-meter-stick test and 268 ms on a computer test, and notes that computer-measured results at Clemson typically land close to that higher figure. The gap is not really about people getting slower. It is about the test.",
+					"Woods et al. (2015) tested a community sample of 1,469 people ages 18 to 65 with a calibrated computer-based test and measured a 231 ms average, or 213 ms once they subtracted the delay their own hardware and software introduced. Their paper's conclusion is direct: processing speed in a modern sample is not slower than a century ago, once you account for the fact that computer equipment, theirs included, adds its own lag on top of a person's true reaction time. This tool runs in a browser, on whatever device you happen to be using, so it inherits that same kind of measurement lag, and then some.",
+				],
+			},
+			{
+				heading: 'Why your own trials vary, and what to do about it',
+				body: [
+					'Fatigue, a distracting notification, or simply not being warmed up can each add tens of milliseconds to a single trial, which is exactly why the tool reports median and best alongside the average: the median is less pulled around by one slow outlier, and the best trial shows what you are capable of when everything lines up. A large gap between your best and worst trial (a high standard deviation) says more about how consistent your attention was during the test than a single average ever could.',
+					"Reaction time is also known to change with age. Woods et al. (2015) measured it lengthening by about 0.55 ms per year of age across their 1,469-person sample, and traced most of that increase to slower motor output rather than slower mental processing. This tool has no way to know your age and does not attempt to adjust for it.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'How this tool classifies your average',
+				headers: ['Average', 'Band', 'What it means'],
+				rows: [
+					['Under 190 ms', 'Faster than the historic baseline', "Below the ~190ms figure Kosinski's review cites as the pre-computer-testing baseline; could also mean a click landed right as the screen changed"],
+					['190-213 ms', 'Faster than the modern computer-measured average', "At or below Woods et al. (2015)'s hardware-corrected 213ms mean"],
+					['214-268 ms', 'Within the range of modern computer-based studies', "Between Woods et al.'s ~213-231ms average and the 268ms figure Kosinski's review cites from computer-based testing"],
+					['Over 268 ms', 'Slower than the studies cited here', 'Above the 268ms figure, often from fatigue, distraction, or hardware lag'],
+				],
+				note: 'These are the actual figures reported in the sources below, not a single agreed-on "normal range." Different measurement methods produce meaningfully different numbers, and a browser test adds its own timing jitter on top of any of them.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a good reaction time?',
+				answer:
+					"It depends on how the test measures it. A Clemson University literature review cites roughly 190ms as the century-old, non-computer baseline for college-age adults, and cites a further study putting computer-measured results around 268ms. Woods et al. (2015) separately measured a 231ms average (213ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. A browser-based score anywhere in that range is ordinary; the reaction-time literature does not agree on one single number.",
+			},
+			{
+				question: 'What is the difference between simple and choice reaction time?',
+				answer:
+					'Simple reaction time is one expected signal and one response, which is what this tool measures. Choice reaction time adds a decision (click one button for a red light, a different button for a blue one) and is consistently slower, because the brain has to identify which stimulus appeared before it can select the matching response.',
+			},
+			{
+				question: 'Why does my reaction time change every time I take the test?',
+				answer:
+					"Trial-to-trial variation is normal, not a sign the test is broken. Attention drifts, small motor delays, and momentary distraction all add noise to any single click. That's why this tool reports an average, median, best, and standard deviation across several trials rather than a single number.",
+			},
+			{
+				question: 'Does age affect reaction time?',
+				answer:
+					'Yes. Woods et al. (2015) measured simple reaction time lengthening by about 0.55ms per year of age across a 1,469-person sample spanning ages 18 to 65, and found the increase was mainly due to slower motor output rather than slower mental processing. This tool does not ask for or adjust by age.',
+			},
+			{
+				question: 'Why might a browser-based test run slower than a lab study?',
+				answer:
+					"Woods et al. (2015) found that measured reaction times differ across laboratories partly because of timing delays introduced by the specific computer hardware and software used to measure them, not because the people being tested are actually slower. A browser test adds its own hardware and software on top of whatever device you happen to be using, so a slower-than-expected result may say more about your setup than about your actual reaction speed.",
+			},
+			{
+				question: 'Can this test diagnose ADHD, concussion, or a neurological condition?',
+				answer:
+					'No. This is a descriptive comparison against figures from published research, run on uncontrolled consumer hardware, not a validated clinical instrument. Reaction time is one symptom clinicians consider, but only inside a controlled, calibrated testing environment. A single browser-based score cannot diagnose anything.',
+			},
+		],
+		sources: [
+			{
+				label: 'Kosinski, R.J. "A Literature Review on Reaction Time," Clemson University (last updated September 2013)',
+				url: 'https://facultypsy.hope.edu/psychlabs/exp/reactiontime/docs/RT_Literature_Review.pdf',
+			},
+			{
+				label: 'Woods, D.L. et al. (2015). "Factors influencing the latency of simple reaction time," Frontiers in Human Neuroscience 9:131',
+				url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4374455/',
+			},
+		],
+		embedHeight: 620,
+	},
 ];
