@@ -2521,4 +2521,109 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'gpa-calculator',
+		category: 'Education',
+		title: 'GPA Calculator',
+		shortTitle: 'GPA Calculator',
+		description:
+			'Calculate your unweighted or weighted GPA from letter grades and credit hours, using the standard 4.0-scale grade-point chart and the common Honors/AP weighting convention.',
+		updated: '2026-08-10',
+		published: '2026-08-10',
+		coreSummary:
+			"This calculator converts each course's letter grade to grade points on the standard 4.0 scale, multiplies by credit hours, and averages the total across all credits. Switching to weighted mode adds a level boost (Honors +0.5, AP/IB +1.0) to each course before averaging, which is why a weighted GPA can climb past 4.0.",
+		queries: [
+			'gpa calculator',
+			'how to calculate gpa',
+			'weighted gpa calculator',
+			'unweighted gpa calculator',
+			'high school gpa calculator',
+			'college gpa calculator',
+		],
+		sections: [
+			{
+				heading: 'How this calculator works',
+				body: [
+					"Add one row per course: pick the letter grade you earned, enter the credit hours it's worth, and the calculator converts that grade to points on the standard 4.0 scale shown in the table below. Each course's points get multiplied by its credit hours, those totals are added up, and the sum is divided by your total credit hours. That's the same credit-weighted average method most registrars use, so a 4-credit class counts more than a 1-credit one.",
+					"Use \"Add course\" to build out a full semester or year, and the trash-can button to drop a row you added by mistake. Every field updates the result immediately; there's no submit button because nothing here leaves your browser.",
+				],
+			},
+			{
+				heading: 'Weighted vs. unweighted GPA',
+				body: [
+					"Unweighted GPA treats every course the same regardless of difficulty: an A is worth 4.0 whether it came from a standard class or an AP class. Weighted GPA adds a level boost before averaging: the common convention is +0.5 for Honors and +1.0 for AP or IB courses, so a student who took harder classes can end up with a higher number than a straight 4.0, even without earning a single grade above an A. That's a real, intended feature of weighting, not a rounding artifact: an A in an AP class is scored as a 5.0 in weighted mode.",
+					"There's no single official weighting standard. Some schools use a different boost, some cap weighted GPA at 5.0, and some don't weight at all. Colleges are aware of this and often recompute applicants' GPA on their own consistent scale during admissions review rather than comparing weighted numbers across different high schools directly, so treat whichever number your school reports as the one that actually appears on your transcript.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Standard 4.0 grade-point scale (College Board BigFuture)',
+				headers: ['Letter grade', 'Grade points'],
+				rows: [
+					['A+ / A', '4.0'],
+					['A-', '3.7'],
+					['B+', '3.3'],
+					['B', '3.0'],
+					['B-', '2.7'],
+					['C+', '2.3'],
+					['C', '2.0'],
+					['C-', '1.7'],
+					['D+', '1.3'],
+					['D', '1.0'],
+					['D-', '0.7'],
+					['F', '0.0'],
+				],
+				note: "One commonly used conversion chart, not a universal law: some schools round or step letter grades differently. Check your registrar's scale if you need an exact official figure.",
+			},
+			{
+				title: 'Weighted level boost (common school convention)',
+				headers: ['Course level', 'Boost added', 'An A grade becomes'],
+				rows: [
+					['Regular', '+0.0', '4.0'],
+					['Honors', '+0.5', '4.5'],
+					['AP / IB', '+1.0', '5.0'],
+				],
+				note: 'The boost is added to the base grade points before averaging across credit hours, not applied as a flat bonus to the final GPA.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the formula for GPA?',
+				answer:
+					"GPA = total quality points ÷ total credit hours, where each course's quality points equal its grade points (from the 4.0 scale) multiplied by its credit hours. A 3-credit A (4.0 points) contributes 12 quality points; a 1-credit A contributes 4. Add up quality points and credit hours across every course, then divide, to get the credit-weighted average.",
+			},
+			{
+				question: "What's the difference between weighted and unweighted GPA?",
+				answer:
+					"Unweighted GPA scores every course on the same 4.0 scale regardless of difficulty. Weighted GPA adds a level boost (commonly +0.5 for Honors and +1.0 for AP or IB) to each course's grade points before averaging, so tougher courses can push the result above 4.0. Both describe the same grades; they just answer different questions (raw grade average vs. grade average adjusted for course difficulty).",
+			},
+			{
+				question: 'Can a weighted GPA go above 4.0?',
+				answer:
+					"Yes, and that's expected. An A in an AP or IB class scores 5.0 in weighted mode (4.0 base + 1.0 boost), so a student with mostly A's in advanced courses can land well above 4.0. An unweighted GPA cannot exceed 4.0 (or 4.3 at schools that give A+ a bonus decimal), since it has no mechanism to add extra points for course difficulty.",
+			},
+			{
+				question: 'Do colleges look at weighted or unweighted GPA?',
+				answer:
+					"Both, generally. Many colleges recalculate applicants' GPA on their own consistent scale during admissions review, since high schools use different weighting policies, so a weighted GPA from one school isn't directly comparable to another's. Reporting both numbers, and letting your transcript and school profile explain the weighting policy behind them, is standard practice.",
+			},
+			{
+				question: 'Does a Pass/Fail or Incomplete grade count toward GPA?',
+				answer:
+					"Typically not: most schools exclude Pass/Fail, Credit/No Credit, Incomplete, and Withdrawal grades from the GPA calculation entirely, since there's no letter grade to convert to points. Leave those courses out of this calculator rather than assigning them a grade, the same way your registrar's office would.",
+			},
+		],
+		sources: [
+			{
+				label: 'College Board BigFuture — "How to Calculate Your GPA on a 4.0 Scale"',
+				url: 'https://bigfuture.collegeboard.org/plan-for-college/get-started/how-to-calculate-gpa-4.0-scale',
+			},
+			{
+				label: 'College Board BigFuture — "Does GPA Need to Be Weighted or Unweighted?"',
+				url: 'https://bigfuture.collegeboard.org/help-center/does-gpa-need-be-weighted-or-unweighted',
+			},
+		],
+		embedHeight: 980,
+	},
 ];

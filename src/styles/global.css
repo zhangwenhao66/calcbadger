@@ -380,6 +380,65 @@ h3 {
 	}
 }
 
+/* Repeating rows: GPA calculator's course list. Each row is its own small
+   instrument panel so the row boundary reads clearly once there are several. */
+.calc-course-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	margin-bottom: 0.9rem;
+}
+.calc-course-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 0.6rem;
+	padding: 0.75rem;
+	border: 1px solid var(--chassis-rule);
+	border-radius: 10px;
+	background: rgb(255 255 255 / 0.02);
+}
+.calc-course-row > .calc-field {
+	flex: 1 1 140px;
+	min-width: 0;
+}
+.calc-row-remove {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	align-self: flex-end;
+	border: 1px solid var(--chassis-rule);
+	border-radius: 9px;
+	background: var(--chassis-raised);
+	color: var(--chassis-muted);
+	cursor: pointer;
+	transition:
+		color 150ms ease,
+		border-color 150ms ease,
+		background-color 150ms ease;
+}
+.calc-row-remove svg {
+	width: 12px;
+	height: 12px;
+}
+.calc-row-remove:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+@media (hover: hover) and (pointer: fine) {
+	.calc-row-remove:not(:disabled):hover {
+		color: var(--warn);
+		border-color: var(--warn);
+	}
+}
+.calc-row-remove:focus-visible {
+	outline: 2px solid var(--op);
+	outline-offset: 2px;
+}
+
 /* The display strip: results read like a calculator readout. */
 .calc-results {
 	margin-top: 1.1rem;

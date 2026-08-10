@@ -10,6 +10,7 @@ import CdCalculator from './calculators/CdCalculator';
 import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import ConcreteCalculator from './calculators/ConcreteCalculator';
 import DateCalculator from './calculators/DateCalculator';
+import GpaCalculator from './calculators/GpaCalculator';
 import LengthConverter from './calculators/LengthConverter';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
@@ -50,3 +51,4 @@ const { slug } = Astro.props;
 {slug === 'volume-converter' && <VolumeConverter client:load />}
 {slug === 'world-clock' && <WorldClockConverter client:load />}
 {slug === 'tip-calculator' && <TipCalculator client:load />}
+{slug === 'gpa-calculator' && <GpaCalculator client:load />}
