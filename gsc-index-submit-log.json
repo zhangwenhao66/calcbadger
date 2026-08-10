@@ -125,5 +125,19 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 request"
+  },
+  {
+    "date": "2026-08-10",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行。今日两个新工具(tip-calculator/gpa-calculator)，tip-calculator查询确认'URL is unknown to Google'，REQUEST INDEXING后确认'Indexing requested'。gpa-calculator及上次运行(8/9)遗留的molarity-calculator本轮时间/配额限制未及查询，留待下次运行优先处理。",
+    "submitted_urls": [
+      "https://calcbadger.com/tip-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "not_checked_this_run": [
+      "https://calcbadger.com/gpa-calculator/",
+      "https://calcbadger.com/molarity-calculator/"
+    ],
+    "quota_used": "1 request"
   }
 ]
