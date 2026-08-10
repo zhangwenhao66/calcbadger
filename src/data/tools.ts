@@ -659,7 +659,7 @@ export const tools: Tool[] = [
 		title: 'Coin Flip Simulator & Probability Calculator',
 		shortTitle: 'Coin Flip',
 		description:
-			'Flip 1 to 500 virtual coins at once (fair or weighted) and see the heads/tails split and longest streaks, or switch to the probability calculator to get the exact chance of any heads count using the binomial distribution.',
+			'Flip 1-500 virtual coins (fair or weighted) and see the heads/tails split and longest streak, or use the probability calculator for exact binomial odds.',
 		updated: '2026-08-03',
 		published: '2026-08-03',
 		coreSummary:
