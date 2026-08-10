@@ -515,3 +515,94 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "coin-flip-simulator",
+  "last_audited": "2026-08-10",
+  "published_date": "2026-08-03",
+  "checklist": [
+    "公式正确性：binomialProbability/binomialAtLeast的对数空间实现是否与NIST/SEMATECH二项分布PMF一致",
+    "正文worked example数值（10次抛硬币恰好5次正面=24.6%、恰好0次正面=0.098%约250倍稀有、20次抛硬币至少15次正面≈2.07%）是否与独立复算一致",
+    "两张参考表（10次抛硬币0-10次正面各档概率、1/2/3/5/10/20次抛硬币至少1次正面概率）是否逐格吻合",
+    "meta description等技术SEO字段是否健康",
+    "NIST来源链接是否仍可访问"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：k=0..10对应10次公平抛硬币的概率分别为0.10%/0.98%/4.39%/11.72%/20.51%/24.61%/20.51%/11.72%/4.39%/0.98%/0.10%，与正文参考表逐格吻合；P(5正面)/P(0正面)=252倍，正文写'about 250 times rarer'为合理取整；20次抛硬币至少15次正面：sum(C(20,k) for k=15..20)/2^20=21700/1048576≈2.0695%，与正文'21,700⁄1,048,576 ≈ 2.07%'完全一致；至少1次正面表（1/2/3/5/10/20次分别50%/75%/87.5%/96.875%/99.90%/99.9999%）逐项复算吻合。src/lib/coinFlip.ts的logBinomialCoefficient用对数空间求和避免大n阶乘溢出，binomialProbability/binomialAtLeast/binomialAtMost三个函数逻辑与NIST PMF公式一致。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test -- coinFlip：tests/coinFlip.test.ts（26项）+tests/CoinFlipCalculator.dom.test.tsx（4项）共30项全过。测试注释声明期望值为手工推导（非从实现反推），抽查5项关键用例（C(10,5)/2^10、大n=1000稳定性、E[X]/Var[X]公式、边界k>n/k<0/p=0/p=1）与独立计算吻合。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "CalculatorIsland.astro按slug分发到CoinFlipCalculator，embed/[slug].astro复用同一组件（非另一份实现）。npm run build成功生成/coin-flip-simulator/与/embed/coin-flip-simulator/。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题",
+      "detail": "NIST/SEMATECH e-Handbook二项分布页 curl -A Mozilla 返回200，权威来源仍然有效。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1项并已修复：meta description超长",
+      "detail": "meta description实测221字符（Python len()核实），远超~155-160字SERP截断经验阈值，超出60余字符不是边缘案例；title/canonical/h1层级/3处JSON-LD schema（WebApplication+FAQPage+BreadcrumbList）/robots.txt(含AI爬虫Allow)均正常。独立复核agent确认该问题为真（核实字符数与行业阈值均属实），已将description精简到152字符（不改动正文/公式/FAQ），npm run build验证成功，线上确认已部署新文案。"
+    },
+    {
+      "dimension": "GEO审计",
+      "status": "未发现问题",
+      "detail": "coreSummary首屏给出可独立引用的公式与结论；各section直接陈述开头；含精确数字worked example与2张参考表；5组FAQ配FAQPage schema；robots.txt放行GPTBot/ClaudeBot/PerplexityBot；description精简未触及正文，GEO可提取性不受影响。人工估计等效90/99左右，明显超过≥80门槛。"
+    },
+    {
+      "dimension": "早期内容去AI味补漏",
+      "status": "未发现问题",
+      "detail": "本工具2026-08-03发布，早于avoid-ai-writing接入(08-07)。用Skill(humanizer)规则逐条核对正文：0个em dash、无AI高频词汇（testament/pivotal/delve等均未出现）、无inline-header列表、标题为句子式非Title Case、无emoji、直引号非弯引号、加粗仅用于关键公式/数字结果非滥用列表。判定无需重写。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "本站21个工具的[slug].astro相关工具区块用site-toolkit pickRelatedGuides轮转选择，首页/分类页均遍历tools数组渲染，无孤儿页风险。"
+    },
+    {
+      "dimension": "Schema数据一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication.dateModified取值updated='2026-08-03'（本次修复未改动updated，因该字段已存在published='2026-08-03'不受影响）；FAQPage 5条与页面FAQ渲染逐一对应；BreadcrumbList三级正确。"
+    },
+    {
+      "dimension": "合规/敏感度漂移",
+      "status": "未发现问题",
+      "detail": "正文提及'casino and lottery intuition'仅用于解释赌徒谬误这一统计学概念，属于教育性反驳而非赌博推广/下注指导，未鼓励真实下注行为。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "grep检查全文'bet/wager/gambl/casino'仅命中上述教育性用法，无实际下注操作细节或推广；ads.txt正确指向pub-5245502795720653；/privacy/与/terms/均200可访问。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "openseo get_serp_results查'coin flip simulator'与'coin toss probability calculator'两词，calcbadger未进入前20（新站正常，非质量问题）。对比头部竞品omnicalculator.com/statistics/coin-flip-probability（curl抓取确认，纯公式计算器+FAQ，无实际模拟功能）：本工具同时提供真实随机模拟（含streak追踪、加权硬币）与概率计算器，并额外给出'is this coin actually fair'假设检验/显著性阈值角度，属真实增量而非同质化内容。"
+    },
+    {
+      "dimension": "配图可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（计算器UI为主），仅用全站favicon，无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "description字段从221字符精简到152字符（src/data/tools.ts第662行），未改动公式/正文/FAQ/测试",
+    "先经独立fresh-context agent复核确认为真问题（独立核实221字符与~155-160字行业阈值两项事实）后才动手，未凭第2步一遍判断直接修复",
+    "npm test -- coinFlip 30/30通过、npm run build 57页成功生成，git diff确认src/data/tools.ts仅本行改动后单独commit（未受其他并发改动影响）",
+    "push后CF Pages自动部署，curl轮询3次（约30秒）确认线上description已生效，node tools/submit-indexnow.mjs提交/coin-flip-simulator/（Bing 200/Yandex 202），内容发布日志.md已追加记录"
+  ],
+  "seo_score": "修复前：description 221字符超长（唯一问题），其余（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）均健康；修复后：description缩短到152字符，其余维度不变",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，估计等效90/99左右，明显超过≥80门槛，description精简未影响正文GEO结构，无需进一步修复",
+  "escalation": null
+}
+```
