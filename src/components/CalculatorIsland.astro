@@ -13,6 +13,7 @@ import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
 import GpaCalculator from './calculators/GpaCalculator';
+import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import LengthConverter from './calculators/LengthConverter';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
@@ -60,3 +61,4 @@ const { slug } = Astro.props;
 {slug === 'cursive-alphabet' && <CursiveAlphabetGenerator client:load />}
 {slug === 'fraction-calculator' && <FractionCalculator client:load />}
 {slug === 'time-duration-calculator' && <TimeDurationCalculator client:load />}
+{slug === 'greek-alphabet' && <GreekAlphabetGenerator client:load />}

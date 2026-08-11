@@ -1,3 +1,5 @@
+import { GREEK_LETTERS } from '../lib/greekAlphabet';
+
 export interface ToolSection {
 	heading: string;
 	body: string[];
@@ -3120,5 +3122,154 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 860,
+	},
+	{
+		slug: 'greek-alphabet',
+		category: 'Reference',
+		title: 'Greek Alphabet',
+		shortTitle: 'Greek Alphabet',
+		description:
+			'Search or browse all 24 letters of the Greek alphabet with names, Unicode code points, and their common uses in math, science, and engineering, and copy any letter with one click.',
+		updated: '2026-08-11',
+		published: '2026-08-11',
+		coreSummary:
+			'The modern Greek alphabet has 24 letters, from alpha (Α, α) to omega (Ω, ω). Sigma is the only letter with two lowercase forms: σ inside a word and ς only when sigma is the last letter of a word. Search this tool by letter name (like "pi") or by what it is used for (like "standard deviation") and click any result to copy it.',
+		queries: [
+			'greek alphabet',
+			'greek letters',
+			'greek alphabet symbols',
+			'greek alphabet in order',
+			'greek alphabet copy and paste',
+			'pi symbol',
+			'delta symbol',
+			'sigma symbol',
+			'alpha symbol',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					'Type a letter name or a use case into the search box (try "pi," "angle," or "standard deviation") to narrow the grid, or leave it blank to browse all 24 letters at once. Click any letter to copy it, along with its lowercase form and name, to your clipboard.',
+					'Each entry shows the uppercase and lowercase forms side by side, and sigma also shows its special word-final form. The full reference table below adds Unicode code points, a rough pronunciation guide, and where each letter commonly turns up in math, science, or engineering.',
+				],
+			},
+			{
+				heading: 'Where the Greek alphabet comes from',
+				body: [
+					"Greek writing developed from the Phoenician alphabet around the 9th or 8th century BCE, adding the first true vowel letters along the way, a change the Phoenician consonant-only script didn't have. Early Greek city-states used regional variants with a few extra letters that later dropped out of everyday use: digamma (Ϝ), qoppa (Ϙ), and sampi (Ϡ) all disappeared from the alphabet used to write Greek but survive as numeral symbols, standing for 6, 90, and 900 in the traditional Greek numbering system.",
+					'The 24-letter alphabet used today became the Athenian standard during the archonship of Eucleides in 403 BCE, when Athens officially adopted the Ionic alphabet (the version with eta, phi, psi, and omega) in place of its older local Attic script. Other Greek city-states had already been using versions of the Ionic alphabet for some time; Athens\' adoption is what fixed the 24-letter form that spread from there.',
+				],
+			},
+			{
+				heading: 'Greek letters in math, science, and engineering',
+				body: [
+					'Scientists and mathematicians reach for Greek letters mainly because the Latin alphabet runs out of obvious, unambiguous symbols long before an equation does. π, Σ, Δ, and the rest give a second full alphabet of symbols to draw on, and a few have stuck around specifically because of what they originally meant in Greek. π is the clearest example: the Welsh mathematician William Jones introduced π for the ratio of a circle\'s circumference to its diameter in 1706, likely because π is the first letter of "perimetros" (perimeter). The symbol only caught on widely after Leonhard Euler started using it in his own work in the 1730s and 40s, and Euler\'s influence is largely why it became the standard.',
+					"Other letters carry more than one meaning depending on the field: uppercase Δ (delta) usually means a change or difference in a quantity, while lowercase σ (sigma) is standard deviation in statistics but mechanical stress in engineering. Context, not the letter alone, tells you which meaning applies. The reference table below lists a letter's most common uses, not an exhaustive list of every field that borrows it.",
+				],
+			},
+			{
+				heading: 'The sigma exception: σ vs. ς',
+				body: [
+					'Sigma is the only Greek letter with two different lowercase shapes. The regular form, σ (U+03C3), is used everywhere within a word. The moment sigma is the last letter of a word, it switches to a hooked final form, ς (U+03C2). In the Greek word for "wisdom," σοφός, for example, the first two sigmas are the regular σ and the last one is the final ς. This positional rule is a feature of Greek spelling itself, not a font quirk or a typo, and it has no equivalent among the other 23 letters.',
+				],
+			},
+			{
+				heading: 'Greek letters in fraternity and sorority names',
+				body: [
+					'Phi Beta Kappa, founded on December 5, 1776 by five students at the College of William & Mary in Williamsburg, Virginia, was the first organization to take a Greek-letter name: Φ Β Κ stood for the initials of its Greek motto, "Love of learning is the guide of life." The naming convention it started (Greek initials standing in for a Latin or Greek motto) became the template that later college fraternities and sororities across the US adopted for their own names.',
+				],
+			},
+			{
+				heading: 'How to type Greek letters',
+				body: [
+					'The Unicode code points in the table below (like U+03C0 for π) work directly in any app that accepts Unicode input by code point. In Microsoft Word specifically, type the hex code point without the "U+" prefix (just 3C0) immediately followed by the Alt+X keyboard shortcut, and Word converts it to the character automatically. On a phone, most iOS and Android keyboards offer a Greek keyboard layout under keyboard settings that types the letters directly. For quick one-off use on any device, this tool\'s copy button is the simplest route: search for the letter, click it, and paste.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'The 24 Greek letters',
+				headers: ['Letter', 'Glyphs', 'Unicode (upper / lower)', 'Pronunciation', 'Common use'],
+				rows: GREEK_LETTERS.map((letter) => [
+					letter.name,
+					`${letter.uppercase} ${letter.lowercase}${letter.finalForm ? ` ${letter.finalForm}` : ''}`,
+					letter.finalForm
+						? `${letter.upperCodePoint} / ${letter.lowerCodePoint} (final: U+03C2)`
+						: `${letter.upperCodePoint} / ${letter.lowerCodePoint}`,
+					letter.pronunciation,
+					letter.commonUse,
+				]),
+				note: 'Uppercase code points run U+0391–U+03A9 with U+03A2 left unassigned in Unicode (a reserved gap, not a 25th letter). Lowercase code points run U+03B1–U+03C9, skipping U+03C2 in the regular sequence because that slot is reserved for the sigma final form.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many letters are in the Greek alphabet?',
+				answer:
+					'24. Three older letters (digamma, qoppa, and sampi) dropped out of the alphabet used to write Greek but are still used as numeral symbols (6, 90, and 900) in the traditional Greek numbering system, so they sometimes show up in alphabet history but not in the modern 24-letter list.',
+			},
+			{
+				question: 'What is the pi symbol?',
+				answer:
+					'Lowercase π (U+03C0) is the 16th letter of the Greek alphabet, and in math it represents the ratio of a circle\'s circumference to its diameter, approximately 3.14159. Uppercase Π is used for a product series in math, unrelated to the circle constant. Search "pi" above to find and copy it.',
+			},
+			{
+				question: 'What is the delta symbol?',
+				answer:
+					'Delta is the 4th Greek letter. Uppercase Δ (U+0394) most commonly means "change in" a quantity (as in ΔT for a change in temperature). Lowercase δ (U+03B4) is used for smaller or more specific changes, and in advanced math for the Dirac delta function. Search "delta" above to find and copy either form.',
+			},
+			{
+				question: 'What is the sigma symbol?',
+				answer:
+					'Sigma is the 18th Greek letter and the only one with two lowercase forms: σ (U+03C3) within a word and ς (U+03C2) only when sigma ends a word. Uppercase Σ (U+03A3) is the summation symbol in math. Lowercase σ is standard deviation in statistics and mechanical stress in engineering. Search "sigma" above to find and copy any of the three forms.',
+			},
+			{
+				question: 'What is the alpha symbol?',
+				answer:
+					'Alpha is the first Greek letter. Lowercase α (U+03B1) commonly denotes an angle, a significance level in statistics, or an alpha particle in nuclear physics; uppercase Α (U+0391) is used less often since it looks identical to the Latin capital A. Search "alpha" above to find and copy it.',
+			},
+			{
+				question: 'Why does sigma have two different lowercase shapes?',
+				answer:
+					'Because Greek spelling rules give sigma a different shape depending on where it falls in a word: the regular σ is used everywhere except the very end of a word, where it switches to the hooked final form ς. No other Greek letter has this positional rule.',
+			},
+			{
+				question: 'Is omicron the same as the letter O?',
+				answer:
+					"They look almost identical, but they're different letters from different alphabets: omicron (Ο, ο) is the 15th Greek letter, while O is Latin. Because they're so visually similar, omicron is rarely used as a math or science symbol, unlike most of the other 23 Greek letters.",
+			},
+			{
+				question: 'How do I type a Greek letter on my keyboard?',
+				answer:
+					'In Microsoft Word, type the hex Unicode code point (for example, 3C0 for π) and press Alt+X to convert it to the character. On iOS or Android, add a Greek keyboard layout in your keyboard settings. For a one-off letter on any device, search for it above and click to copy.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Greek alphabet"',
+				url: 'https://en.wikipedia.org/wiki/Greek_alphabet',
+			},
+			{
+				label: 'Unicode Consortium — "Greek and Coptic" code chart (U+0370–U+03FF), showing the U+03A2 reserved gap',
+				url: 'https://www.unicode.org/charts/PDF/U0370.pdf',
+			},
+			{
+				label: 'Wikipedia — "Eucleides" (archon during whose year Athens adopted the Ionic alphabet, 403 BCE)',
+				url: 'https://en.wikipedia.org/wiki/Eucleides',
+			},
+			{
+				label: 'Wikipedia — "Digamma," "Koppa (letter)," and "Sampi" (archaic letters retained as Greek numerals)',
+				url: 'https://en.wikipedia.org/wiki/Digamma',
+			},
+			{
+				label: 'MacTutor History of Mathematics (University of St Andrews) — "Earliest Uses of Symbols for Constants" (William Jones, 1706; Euler\'s adoption)',
+				url: 'https://mathshistory.st-andrews.ac.uk/Miller/mathsym/constants/',
+			},
+			{
+				label: 'The Phi Beta Kappa Society — official history (founded December 5, 1776, College of William & Mary)',
+				url: 'https://www.pbk.org/about/history',
+			},
+		],
+		embedHeight: 920,
 	},
 ];
