@@ -778,7 +778,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-04',
 		published: '2026-08-04',
 		coreSummary:
-			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations — so there is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two.',
+			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two.',
 		queries: [
 			'celsius to fahrenheit',
 			'fahrenheit to celsius',
@@ -796,21 +796,21 @@ export const tools: Tool[] = [
 			{
 				heading: 'Why three temperature scales exist',
 				body: [
-					'Celsius, Fahrenheit, and Kelvin were built for three different jobs, which is why none of them lines up neatly with the others. Celsius (originally proposed in 1742) was defined so that water freezes at 0° and boils at 100° at standard atmospheric pressure — a scale built around a lab reference. Fahrenheit predates it by about three decades and uses a finer-grained scale where water freezes at 32° and boils at 212°, still the everyday standard in the US for weather and cooking.',
-					'Kelvin is different in kind, not just in offset: it is the SI base unit for temperature, and 0 K is absolute zero — the point where a substance has the least thermal energy physically possible. Celsius and Fahrenheit both allow negative numbers because they are anchored to arbitrary reference points (water\'s freezing point); Kelvin never goes negative because it is anchored to a physical floor. Scientists default to Kelvin specifically to avoid negative temperatures breaking formulas like the ideal gas law, which require an absolute scale.',
+					'Celsius, Fahrenheit, and Kelvin were built for three different jobs, which is why none of them lines up neatly with the others. Celsius (originally proposed in 1742) was defined so that water freezes at 0° and boils at 100° at standard atmospheric pressure, a scale built around a lab reference. Fahrenheit predates it by about three decades and uses a finer-grained scale where water freezes at 32° and boils at 212°, still the everyday standard in the US for weather and cooking.',
+					'Kelvin is different in kind, not just in offset: it is the SI base unit for temperature, and 0 K is absolute zero, the point where a substance has the least thermal energy physically possible. Celsius and Fahrenheit both allow negative numbers because they are anchored to arbitrary reference points (water\'s freezing point); Kelvin never goes negative because it is anchored to a physical floor. Scientists default to Kelvin specifically to avoid negative temperatures breaking formulas like the ideal gas law, which require an absolute scale.',
 				],
 			},
 			{
 				heading: 'The conversion formulas',
 				body: [
-					'All three conversions are exact definitions, not measured constants: **°F = °C × 9/5 + 32**, **°C = (°F − 32) × 5/9**, and **K = °C + 273.15**. Because the offset between Celsius and Kelvin is fixed at exactly 273.15, a Kelvin reading is just a Celsius reading with the negative numbers pushed out of the way — a 1-degree change means the same amount of thermal energy on both scales, only the zero point moves.',
-					'Fahrenheit and Celsius also change at different rates: a 1°C change equals a 1.8°F change (the 9/5 factor), so converting a *difference* between two temperatures uses a different multiplication than converting a single reading. A day that warms up "by 10°C" gets 18°F warmer, not 10°F warmer — a common mix-up between converting a point on the scale and converting a change along it.',
+					'All three conversions are exact definitions, not measured constants: **°F = °C × 9/5 + 32**, **°C = (°F − 32) × 5/9**, and **K = °C + 273.15**. Because the offset between Celsius and Kelvin is fixed at exactly 273.15, a Kelvin reading is just a Celsius reading with the negative numbers pushed out of the way. A 1-degree change means the same amount of thermal energy on both scales, only the zero point moves.',
+					'Fahrenheit and Celsius also change at different rates: a 1°C change equals a 1.8°F change (the 9/5 factor), so converting a *difference* between two temperatures uses a different multiplication than converting a single reading. A day that warms up "by 10°C" gets 18°F warmer, not 10°F warmer, a common mix-up between converting a point on the scale and converting a change along it.',
 				],
 			},
 			{
 				heading: 'Worked example: converting an oven temperature',
 				body: [
-					"A recipe from a European or Australian source calls for a 180°C oven. Converting: 180 × 9/5 + 32 = 324 + 32 = 356°F. Most US ovens dial in 25°F increments, so 356°F rounds to the nearest common setting — typically down to 350°F, which most bakers treat as close enough for the recipe to work, since a home oven's actual cavity temperature already swings several degrees around its setpoint during a bake.",
+					"A recipe from a European or Australian source calls for a 180°C oven. Converting: 180 × 9/5 + 32 = 324 + 32 = 356°F. Most US ovens dial in 25°F increments, so 356°F rounds to the nearest common setting, typically down to 350°F, which most bakers treat as close enough for the recipe to work, since a home oven's actual cavity temperature already swings several degrees around its setpoint during a bake.",
 					"That rounding is a kitchen convention, not part of the math: this calculator always shows the exact converted value (356°F, not the rounded 350°F) so you can decide how much precision your oven and recipe actually need.",
 				],
 			},
@@ -860,7 +860,7 @@ export const tools: Tool[] = [
 					['39.5°C', '103.1°F', ''],
 					['40.0°C', '104.0°F', 'High fever'],
 					['41.0°C', '105.8°F', ''],
-					['42.0°C', '107.6°F', 'Hyperpyrexia — seek care'],
+					['42.0°C', '107.6°F', 'Hyperpyrexia: seek care'],
 				],
 				note: 'Exact conversions via °F = °C×9/5+32. Fever threshold per CDC (cdc.gov/port-health); "normal" varies by person, time of day, and measurement site (oral/rectal/tympanic/axillary).',
 			},
@@ -907,7 +907,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is absolute zero in Fahrenheit and Celsius?',
 				answer:
-					'Absolute zero is 0 Kelvin, which equals −273.15°C and −459.67°F. It is the coldest temperature theoretically possible — the point at which a system has minimum thermal energy — and is the reason the Kelvin scale never has negative numbers.',
+					'Absolute zero is 0 Kelvin, which equals −273.15°C and −459.67°F. It is the coldest temperature theoretically possible, the point at which a system has minimum thermal energy, and is the reason the Kelvin scale never has negative numbers.',
 			},
 			{
 				question: 'Why does Kelvin not use the degree symbol?',
@@ -917,7 +917,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Does a 1-degree change mean the same thing on every scale?',
 				answer:
-					'No — this trips people up specifically when converting a *change* in temperature rather than a single reading. A 1°C change equals a 1.8°F change (or 1 K, since Kelvin and Celsius move at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
+					'No. This trips people up specifically when converting a *change* in temperature rather than a single reading. A 1°C change equals a 1.8°F change (or 1 K, since Kelvin and Celsius move at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
 			},
 		],
 		sources: [
