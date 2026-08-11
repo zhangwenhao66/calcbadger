@@ -23,6 +23,7 @@ import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
+import TimeDurationCalculator from './calculators/TimeDurationCalculator';
 import TipCalculator from './calculators/TipCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
@@ -58,3 +59,4 @@ const { slug } = Astro.props;
 {slug === 'reaction-time-test' && <ReactionTimeTest client:load />}
 {slug === 'cursive-alphabet' && <CursiveAlphabetGenerator client:load />}
 {slug === 'fraction-calculator' && <FractionCalculator client:load />}
+{slug === 'time-duration-calculator' && <TimeDurationCalculator client:load />}

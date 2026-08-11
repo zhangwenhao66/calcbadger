@@ -3002,4 +3002,123 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'time-duration-calculator',
+		category: 'Date & Time',
+		title: 'Time Duration Calculator',
+		shortTitle: 'Duration Calculator',
+		description:
+			'Find the elapsed time between two clock times, add or subtract hours and minutes from a time, or calculate the duration between two full dates and times, with automatic overnight rollover.',
+		updated: '2026-08-11',
+		published: '2026-08-11',
+		coreSummary:
+			'An hour equals exactly 60 minutes and a minute equals exactly 60 seconds, fixed ratios from the BIPM SI Brochure, not estimates. When the end time entered is earlier than or the same as the start time, this calculator assumes the end falls on the next day, the standard convention for an overnight span such as a 10 PM to 6 AM shift, so the result is always a positive duration instead of a negative one.',
+		queries: [
+			'time duration calculator',
+			'time between two times calculator',
+			'elapsed time calculator',
+			'add time calculator',
+			'hours and minutes calculator',
+			'how many hours between two times',
+			'time duration',
+		],
+		sections: [
+			{
+				heading: 'Three ways to measure elapsed time',
+				body: [
+					'"Between two times" answers the most common version of the question: given a start and an end clock reading, how much time passed. "Add/subtract" answers a different question: given one time and a duration, what time results, useful for figuring out when a task that started at 2:15 PM and runs for 3 hours 40 minutes will finish. "Two date-times" is for spans longer than a single day: enter a full start date and time and a full end date and time, and the result includes a day count along with hours and minutes.',
+					"All three modes convert clock readings into whole seconds first, then do the arithmetic in seconds before converting back, so a result of \"8h 30m\" and a result of \"8.5 hours\" always describe the identical span, just in two common formats.",
+				],
+			},
+			{
+				heading: 'Why an earlier end time means the next day',
+				body: [
+					'A search for the time between two clock readings almost always means a single continuous span, not a full day minus that span. If the end time entered is earlier than or equal to the start time, this calculator assumes the missing hours belong to the next calendar day rather than returning a negative number. A shift that runs from 10:00 PM to 6:00 AM, for instance, is 8 hours: the clock passes midnight partway through, and 6:00 AM only reads as "earlier" than 10:00 PM because it belongs to the following day.',
+					'This is the convention every general-purpose elapsed-time tool uses for the same reason: on a plain 24-hour clock with no date attached, there is no way to distinguish "2 hours" from "26 hours" without picking one interpretation, and the overnight-span reading matches how the question is normally asked.',
+				],
+			},
+			{
+				heading: 'Worked example: a 9:15 AM to 5:45 PM workday',
+				body: [
+					'Start at 9:15 AM (33,300 seconds after midnight) and end at 5:45 PM (63,900 seconds after midnight). The difference is 30,600 seconds, which breaks down to 8 hours and 30 minutes, or 8.5 hours exactly, since 30 minutes is precisely half of 60. A workday quoted as "9 to 5" with a half-hour added on either end lands on this same 8.5-hour figure.',
+					'Payroll and time-tracking software often display both formats side by side because they serve different purposes: decimal hours multiply cleanly against an hourly rate (8.5 hours at $20/hour is $170.00 with no further conversion), while hours and minutes reads naturally off a clock.',
+				],
+			},
+			{
+				heading: 'When to use "Two date-times" instead',
+				body: [
+					'"Between two times" and "Add/subtract" both work on a single abstract 24-hour clock with no calendar date attached, which is enough for anything within one day or one overnight rollover. "Two date-times" is for a longer span: a project that starts at 9:00 AM on January 1 and finishes at 9:00 AM on January 3 is exactly 48 hours, 2 full days, a figure the single-clock modes cannot express since they only ever assume at most one day has passed.',
+					'The two calculations agree wherever they overlap. An overnight span entered as 10:00 PM to 6:00 AM in "Between two times," and the same span entered as two full date-times one calendar day apart, both return 8 hours, because both ultimately convert the clock readings to seconds and subtract.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Minutes as decimal hours',
+				headers: ['Minutes', 'Decimal hours'],
+				rows: [
+					['0', '0.00'],
+					['15', '0.25'],
+					['30', '0.50'],
+					['45', '0.75'],
+					['60', '1.00'],
+				],
+				note: 'Exact fractions of 60, not rounded. Useful for reading a timesheet total like "8h 15m" as 8.25 hours.',
+			},
+			{
+				title: 'Example elapsed times',
+				headers: ['Start', 'End', 'Elapsed'],
+				rows: [
+					['9:00 AM', '5:00 PM', '8h 0m'],
+					['9:15 AM', '5:45 PM', '8h 30m'],
+					['8:30 AM', '12:15 PM', '3h 45m'],
+					['10:00 PM', '6:00 AM', '8h 0m (overnight)'],
+				],
+				note: 'Each figure is a plain clock-to-clock difference; the overnight row assumes an end time at or before the start time falls on the next day.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do I calculate the time between two clock times?',
+				answer:
+					'Use "Between two times," enter the start and end hour and minute, and the calculator returns the elapsed duration in hours and minutes, decimal hours, and total minutes at once.',
+			},
+			{
+				question: 'What happens if the end time is earlier than the start time?',
+				answer:
+					'The calculator assumes the end time falls on the next day rather than returning a negative result. A 10:00 PM to 6:00 AM entry is treated as an 8-hour overnight span, not negative 16 hours.',
+			},
+			{
+				question: 'How do I add or subtract hours and minutes from a time?',
+				answer:
+					'Use "Add/subtract," enter a starting time and a duration in hours and minutes, and choose Add or Subtract. If the result crosses midnight, the calculator reports how many days forward or back it lands.',
+			},
+			{
+				question: 'What is the difference between "Between two times" and "Two date-times" modes?',
+				answer:
+					'"Between two times" works on a single 24-hour clock and assumes at most one overnight rollover. "Two date-times" takes a full calendar date alongside each time, so it correctly reports spans of several days, not just a same-day or overnight difference.',
+			},
+			{
+				question: 'How do I convert 8 hours 30 minutes into decimal hours?',
+				answer:
+					'Divide the minutes by 60 and add it to the hours: 30 minutes is 30/60 = 0.5, so 8 hours 30 minutes is 8.5 decimal hours. The calculator does this automatically and shows the decimal-hours figure alongside the hours-and-minutes figure.',
+			},
+			{
+				question: 'Does this calculator account for time zones or daylight saving time?',
+				answer:
+					'No. This tool treats every day as exactly 24 hours on an abstract clock with no time zone attached. If two real-world clock readings fall on opposite sides of a daylight-saving transition, the actual elapsed wall-clock time will differ by an hour from what this calculator reports; this site\'s World Clock converter handles time-zone-aware conversions instead.',
+			},
+		],
+		sources: [
+			{
+				label: 'BIPM SI Brochure — Annex 1: Units of time accepted for use with the SI (minute, hour, day as exact fixed ratios)',
+				url: 'https://www.bipm.org/en/publications/si-brochure/annex-1/time',
+			},
+			{
+				label: 'ECMA-262, the ECMAScript Language Specification — §21.4 "Date Objects" (proleptic Gregorian calendar convention used for the date-time mode)',
+				url: 'https://tc39.es/ecma262/#sec-date-objects',
+			},
+		],
+		embedHeight: 860,
+	},
 ];
