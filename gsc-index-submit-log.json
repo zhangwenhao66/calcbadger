@@ -139,5 +139,15 @@
       "https://calcbadger.com/molarity-calculator/"
     ],
     "quota_used": "1 request"
+  },
+  {
+    "date": "2026-08-11",
+    "action": "submitted",
+    "reason": "游标第8站。今日新发布fraction-calculator（第23个工具，三模式设计：加减乘除/化简/互转，含mixed fraction calculator长尾并入）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
+    "submitted_urls": [
+      "https://calcbadger.com/fraction-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 request"
   }
 ]
