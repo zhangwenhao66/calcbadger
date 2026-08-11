@@ -606,3 +606,96 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "temperature-converter",
+  "last_audited": "2026-08-11",
+  "published_date": "2026-08-04",
+  "note": "全站25个工具中last_audited缺失且published最早的一个（temperature-converter/length-converter/weight-converter三者同为8/4发布并列最早，取数据文件中排最前者）；此前已审计cd/square-footage/bmi/stair/sat-score/molarity/coin-flip共7个，其余18个均从未审计过，按SKILL.md最早/缺失优先规则选取。",
+  "checklist": [
+    "公式正确性（最高优先级）：°F=°C×9/5+32、°C=(°F−32)×5/9、K=°C+273.15三条精确转换是否与NIST SP811定义一致，三张参考表（烤箱13行、体温/发烧15行、日常参考11行）共39个数值是否逐格吻合",
+    "两条worked example（180°C烤箱→356°F、38.5°C体温→101.3°F）与FAQ内数值是否可独立复算通过",
+    "CDC发烧阈值100.4°F/38°C引用是否与cdc.gov现行页面一致；NIST SP811 PDF来源链接是否仍可访问",
+    "组件功能：TemperatureConverter.tsx的三向切换（C/F/K互转，切换单位时保留物理温度而非重新解释数字）与isPhysicallyValid绝对零度边界判定逻辑是否正确，embed页是否正常渲染",
+    "早期内容去AI味补漏：本工具2026-08-04发布，早于avoid-ai-writing技能生效日（2026-08-07），需全文检查是否残留em dash等AI写作特征（此前7个已审计工具中molarity/coin-flip检查同类问题均为0处，作为对照基准）"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码，只用NIST SP811精确定义）：烤箱参考表13行（120-250°C对应°F/K）逐一复算全部吻合；体温/发烧参考表15行（35.0-42.0°C对应°F）逐一复算全部吻合，含CDC发烧阈值38.0°C=100.4°F、正文标注的37.0°C=98.6°F常见正常体温；日常参考表11行（绝对零度到水沸点）逐一复算吻合。worked example独立复算：180°C×9/5+32=356°F（页面写356°F，一致，US常见烤箱刻度就近取350°F仅作烹饪惯例说明，页面正确区分'精确值356°F'与'烤箱刻度350°F'两者不混淆）；38.5°C×9/5+32=101.3°F（一致，高于CDC 100.4°F阈值判定正确）。src/lib/temperature.ts的celsiusToFahrenheit/fahrenheitToCelsius/celsiusToKelvin/kelvinToCelsius/fahrenheitToKelvin/kelvinToFahrenheit六个函数逐一核对与NIST精确公式一致，无重复换算或近似值误用；convertAll函数三分支（from=C/F/K）互不冲突。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：26个测试文件、574个测试全部通过，其中tests/temperature.test.ts 25个（celsiusToFahrenheit 7个/fahrenheitToCelsius 3个/celsius-kelvin 5个/fahrenheit-kelvin 4个/convertAll 3个/isPhysicallyValid 3个）。25条期望值逐条用独立Python复算比对，全部一致；测试注释声明期望值'hand-computed and cross-checked with an independent Python calculation (2026-08-04)'，核实属实，非从实现输出反推。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "TemperatureConverter.tsx逐行核对：switchTo函数切换量表时正确调用convertAll(n, from)[next]重新表达同一物理温度（而非重新解释数字本身），避免了'100→切到K→变成100K'这种错误行为；isPhysicallyValid正确判定低于绝对零度时显示警示而非垃圾结果。CalculatorIsland.astro正确分发'temperature-converter'到该组件，npm run build成功生成66个页面，dist/temperature-converter/与dist/embed/temperature-converter/均存在，线上curl实测均200。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题（含两项说明）",
+      "detail": "NIST SP811 PDF链接（physics.nist.gov/cuu/pdf/sp811.pdf）curl -sIL返回301跳转到nist.gov/pml/special-publication-811，该页面标题确认为'Special Publication 811 | NIST'且内容为NIST重组SP811后的现行多页HTML指南入口（原PDF格式已被拆分为分章节页面），属正常URL重组重定向，非死链，人类浏览器可正常到达权威原文，未改动引用URL。CDC来源链接（cdc.gov/port-health/...）curl返回403（Akamai机器人拦截，响应体'Access Denied'），与此前审计发现的Cloudflare 'cf-mitigated: challenge'反爬模式同类但网关厂商不同；WebSearch独立核实该URL当前确实可公开访问且正文含'100.4°F (38°C) or greater'发烧定义，与本文引用一致，判定非真实失效。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/temperature-converter/ 200，title'Temperature Converter | CalcBadger'34字符正常；meta description 165字符，超出理想上限160仅5字符（3.1%），幅度与本站既有'不修'先例（cd-calculator 164/+4/2.5%、sat-score-calculator 166/+6/3.75%）相当，显著小于'应修'区间（207-221字符/29-42%），沿用同一判定口径不修改；canonical自指正确；单一h1，10个h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt含GPTBot/ClaudeBot/PerplexityBot/Google-Extended显式Allow；sitemap-0.xml含本页。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用既有人工核对方法（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的精确公式定义；4个小节+2个worked example均以直接陈述开头；含3张真实数字参考表（39个数据点）；7组FAQ配FAQPage schema；'last reviewed 2026-08-04'时效信号明确；robots.txt放行AI爬虫。综合判定明显高于80分门槛，em dash修复未改变正文事实内容，不影响GEO可提取性。"
+    },
+    {
+      "dimension": "早期内容去AI味补漏（本次真实发现问题，已修复）",
+      "status": "发现1个真问题（已修复）",
+      "detail": "本工具2026-08-04发布，早于avoid-ai-writing技能生效日（2026-08-07）。用python逐字符扫描coreSummary/sections/referenceTables/faq全部字段，发现12处em dash（—），其中2处位于sources[].label引用标签内（'NIST Special Publication 811 — Guide for...'/'CDC — Definitions of...'，属本站多个工具共用的引用标题格式惯例，未改动），其余10处分布在coreSummary（1处）、两个正文小节共4处、worked example 1处、参考表note单元格1处、两条FAQ答案共3处，均为叙事性/说明性用途（如'0 K is absolute zero — the point where...'），与同站此前审计的molarity-calculator/coin-flip-simulator（检查同类问题均为0处）形成明显对比，判定为该工具早于规则生效日的真实历史遗留问题。独立fresh-context agent复核确认：总数12处（含2处引用标签），narrative部分10处，与候选发现描述一致，未夸大也未低估。修复：10处逐一改写为句号/逗号/冒号（如'—so there is'改为'. There is'、'—the point where'改为', the point where'），未改动任何数字、公式或事实性表述，仅调整标点与句子切分。修复后额外发现TemperatureConverter.tsx组件内2处、src/pages/[slug].astro共享embed模板内1处同类em dash（组件与共享模板不在tools.ts审计范围内，但渲染在同一页面上属于读者可见文本，一并修复；后者是全站25个工具页共用的'Embed this calculator'说明文案，为站点级修复，已用build产物grep确认其余24个工具页嵌入区块文案同步生效，未改动任何其他站点级逻辑）。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上HTML核对'More calculators'侧栏含6条到其余真实工具slug的链接（concrete-calculator/molarity-calculator/mortgage-calculator/percentage-calculator/time-converter/weight-converter），无死链；grep dist/确认temperature-converter被首页、/category/science/分类页、sitemap及molarity/square-footage/bmi/sat-score/stair/coin-flip六个姊妹工具页链接到，非孤儿页。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-04'与页面'last reviewed 2026-08-04'一致（本次em dash标点修复判定为不改变实质内容，未触发updated字段更新，沿用本站既有先例——square-footage/bmi/stair/coin-flip/molarity等历次纯文案精简修复均未更新updated字段，仅当内容实质性变化如公式/数据/结论改变时才更新）；FAQPage 7条FAQ与tools.ts faq数组及页面渲染逐一对应；BreadcrumbList三级（Home/Science/Temperature Converter）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "工具涉及体温/发烧信息，FAQ表述为'is above that threshold'（客观陈述阈值比较）而非诊断性语言，未暗示计算器可替代医疗判断；全站/terms/页'No professional advice'条款覆盖medical场景。工具本身是物理单位换算，无其他敏感场景。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；/privacy/与/terms/均curl 200可达；页面标题与内容无误导性设计；工具是物理/日常科学换算，不涉及暴力/赌博/武器/毒品等敏感类目。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "openseo的get_serp_results工具本次调用返回NOT_FOUND（项目未配置/凭证不可用），改用WebSearch核实'celsius to fahrenheit converter'当前SERP：calculatorsoup.com/unitconverters.net/browserling.com/almanac.com等头部竞品页面多为纯换算工具+2步公式说明（curl抓取calculatorsoup.com确认仅有基础HowTo schema，无参考表/无worked example/无发烧阈值等衍生信息）。本页相比之下多出2条真实数字worked example（烤箱/体温）、3张参考表（39数据点）、'为什么存在三套温标'的历史与物理背景讲解、'change vs point on scale'易错点专项说明，构成真实增量而非同质化复制。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon.svg，无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "1. src/data/tools.ts：10处叙事性em dash改写为句号/逗号/冒号，未改动任何公式/数字/事实（commit 8cd8495）",
+    "2. 后续发现并修复src/components/calculators/TemperatureConverter.tsx组件内2处、src/pages/[slug].astro共享embed模板内1处同类em dash，后者为站点级修复影响全部25个工具页的嵌入说明文案（commit 7230ae3）",
+    "两处commit均先经独立fresh-context agent核实候选问题为真（em dash总数、叙事部分与引用标签部分的区分）后才动手；未触碰gsc-index-submit-log.json（并发会话正在修改的文件，未纳入本次commit，符合共享文件并发提交教训）",
+    "npm test 574/574通过、npm run build 66页成功生成后两次分别git add指定文件提交并push；curl轮询确认https://calcbadger.com/temperature-converter/与其余工具页的embed区块均已生效部署新文案（非stale缓存）",
+    "node tools/submit-indexnow.mjs /temperature-converter/（Bing 200/Yandex 202，indexnow-submit-log.json已更新），其余因模板改动幅度小未逐一重新提交（沿用stair-calculator审计先例，避免被判定批量提交）；内容发布日志.md已追加记录"
+  ],
+  "seo_score": "修复前后均健康：title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap无异常；meta description 165字符轻微超长但幅度与本站既有'不修'先例相当，未改动",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，估计等效90/99左右，明显超过≥80门槛，em dash标点修复未改变正文事实内容，GEO可提取性不受影响",
+  "escalation": null
+}
+```
