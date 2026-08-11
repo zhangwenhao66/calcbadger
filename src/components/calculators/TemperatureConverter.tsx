@@ -68,7 +68,7 @@ export default function TemperatureConverter() {
 			) : results && !physical ? (
 				<p class="calc-note">
 					{fmt(n)} {UNIT_LABEL[from]} is below absolute zero ({fmt(ABSOLUTE_ZERO[from])}{' '}
-					{UNIT_LABEL[from]}), which is not physically possible — nothing can be colder than
+					{UNIT_LABEL[from]}), which is not physically possible. Nothing can be colder than
 					absolute zero on any scale.
 				</p>
 			) : (
@@ -76,7 +76,7 @@ export default function TemperatureConverter() {
 			)}
 
 			<p class="calc-note">
-				°F = °C × 9/5 + 32 and K = °C + 273.15 are exact by definition (NIST SP 811) — there is no
+				°F = °C × 9/5 + 32 and K = °C + 273.15 are exact by definition (NIST SP 811). There is no
 				rounding in the formula itself, only in the display above. Calculations run in your
 				browser; nothing you type is sent anywhere.
 			</p>
