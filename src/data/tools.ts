@@ -2870,4 +2870,136 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1080,
 	},
+	{
+		slug: 'fraction-calculator',
+		category: 'Math',
+		title: 'Fraction Calculator',
+		shortTitle: 'Fraction Calculator',
+		description:
+			'Add, subtract, multiply, or divide two fractions (including mixed numbers), simplify a fraction to lowest terms, or convert between mixed numbers, improper fractions, decimals, and percents.',
+		updated: '2026-08-11',
+		published: '2026-08-11',
+		coreSummary:
+			'Adding or subtracting fractions requires a common denominator first: a/b + c/d = (a×d + c×b) ÷ (b×d). Multiplying and dividing do not need one. Multiply straight across (a/b × c/d = a×c ÷ b×d), and divide by multiplying by the reciprocal (a/b ÷ c/d = a×d ÷ b×c). Every result is then reduced to lowest terms by dividing both terms by their greatest common divisor, found with the Euclidean algorithm. A mixed number like 2 3/4 is the same value as the improper fraction 11/4 (2×4+3 over 4), so operations on mixed numbers work by converting to an improper fraction first and converting back afterward.',
+		queries: [
+			'fraction calculator',
+			'mixed fraction calculator',
+			'adding fractions calculator',
+			'simplify fractions calculator',
+			'improper fraction to mixed number',
+			'fraction to percent calculator',
+			'fraction to decimal',
+		],
+		sections: [
+			{
+				heading: 'Adding and subtracting need a common denominator',
+				body: [
+					'Fractions only add or subtract directly when they already share a denominator. You cannot combine "3 of something cut into 4 pieces" with "1 of something cut into 6 pieces" until both are re-cut into the same size piece. The fix is to rewrite each fraction as an equivalent fraction over a shared denominator (multiplying a fraction\'s numerator and denominator by the same number never changes its value), then add or subtract the numerators. The Common Core State Standards for Mathematics describe exactly this in the Grade 5 fractions domain, standard 5.NF.A.1: "replacing given fractions with equivalent fractions… to produce an equivalent sum or difference of fractions with like denominators." Their own worked example is 2/3 + 5/4 = 8/12 + 15/12 = 23/12, found by cross-multiplying the two denominators (3×4=12) instead of hunting for the least common multiple by hand.',
+					'A subtraction example: 3/4 − 1/6. The shared denominator is 4×6=24, so 3/4 becomes 18/24 and 1/6 becomes 4/24, leaving 18/24 − 4/24 = 14/24, which simplifies to 7/12 (dividing both terms by their greatest common divisor, 2).',
+				],
+			},
+			{
+				heading: 'Multiplying and dividing skip the common denominator entirely',
+				body: [
+					'Multiplication of fractions is a straight-across operation: multiply the two numerators together, multiply the two denominators together, and simplify. 2/3 × 3/4 = (2×3)/(3×4) = 6/12, which reduces to 1/2. No common denominator is needed, because multiplication is not measuring "how many of the same-size piece" the way addition is. It is scaling one fraction by another.',
+					'Division works by flipping the second fraction (its reciprocal) and multiplying: 1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2. That matches the intuitive version too: "how many 1/4-cup scoops fit in 1/2 cup" is 2. Multiplying by a fraction\'s reciprocal is how division is formally defined for fractions in the Common Core standards (6.NS.A.1 extends this to dividing any fraction by any fraction). Dividing by a fraction that equals zero, like 0/5, has no defined answer, the same way dividing by the whole number 0 does not.',
+				],
+			},
+			{
+				heading: 'Simplifying to lowest terms',
+				body: [
+					'A fraction is in "lowest terms" when its numerator and denominator share no common factor greater than 1. Finding that shared factor, the greatest common divisor (GCD), is done here with the Euclidean algorithm: repeatedly replace the larger number with the remainder of dividing it by the smaller, until the remainder is 0. The last non-zero remainder is the GCD. This method is over two thousand years old. Euclid\'s *Elements* (Book VII, Proposition 2) describes it as a way to find the "greatest common measure" of two numbers, and it is still the standard algorithm computers use for this today. For 36/48, the GCD of 36 and 48 is 12, so dividing both terms by 12 gives 3/4.',
+					'A fraction where the numerator is 0, like 0/9, always simplifies to 0/1. Zero pieces of anything is zero, regardless of the denominator.',
+				],
+			},
+			{
+				heading: 'Mixed numbers are fractions in disguise',
+				body: [
+					'A mixed number like 2 3/4 means "2 whole units, plus 3/4 of another unit," which is the same quantity as the improper fraction 11/4 (an improper fraction is simply one whose numerator is larger than its denominator). To convert a mixed number to an improper fraction, multiply the whole number by the denominator, add the numerator, and keep the same denominator: (2×4)+3=11, over 4. To go the other way, divide the numerator by the denominator. The whole-number quotient becomes the whole part, and the remainder becomes the new numerator over the same denominator: 11÷4 is 2 remainder 3, so 11/4 becomes 2 3/4.',
+					'A recipe example: a batch of bread dough calls for 2 3/4 cups of flour and you want to double it. Convert to an improper fraction first (2 3/4 = 11/4), then multiply by 2/1: 11/4 × 2/1 = 22/4, which simplifies to 11/2, or 5 1/2 cups. Trying to double "2 3/4" directly, without converting to an improper fraction first, is where most doubled-recipe arithmetic mistakes happen.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Eighths ladder: fraction, decimal, percent',
+				headers: ['Fraction', 'Decimal', 'Percent'],
+				rows: [
+					['1/8', '0.125', '12.5%'],
+					['1/4 (2/8)', '0.25', '25%'],
+					['3/8', '0.375', '37.5%'],
+					['1/2 (4/8)', '0.5', '50%'],
+					['5/8', '0.625', '62.5%'],
+					['3/4 (6/8)', '0.75', '75%'],
+					['7/8', '0.875', '87.5%'],
+					['1 (8/8)', '1', '100%'],
+				],
+				note: 'Eighths are the increments printed on most tape measures and measuring cups, which is why this ladder shows up constantly in cooking and carpentry conversions.',
+			},
+			{
+				title: 'Simplifying common fractions',
+				headers: ['Fraction', 'Greatest common divisor', 'Simplified'],
+				rows: [
+					['4/8', '4', '1/2'],
+					['6/9', '3', '2/3'],
+					['9/12', '3', '3/4'],
+					['10/15', '5', '2/3'],
+					['12/16', '4', '3/4'],
+					['15/20', '5', '3/4'],
+					['18/24', '6', '3/4'],
+					['20/30', '10', '2/3'],
+				],
+				note: 'Dividing numerator and denominator by their GCD is the only way to reach lowest terms. Dividing by any smaller common factor leaves the fraction only partly simplified.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do you add fractions with different denominators?',
+				answer:
+					'Rewrite both fractions over a shared denominator, then add the numerators. The simplest shared denominator is the product of the two original denominators: for a/b + c/d, use (a×d + c×b) ÷ (b×d). For example, 2/3 + 5/4 = (2×4 + 5×3) ÷ (3×4) = 23/12.',
+			},
+			{
+				question: 'How do you divide fractions?',
+				answer:
+					'Multiply the first fraction by the reciprocal (flip) of the second: a/b ÷ c/d = a/b × d/c. For example, 1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2. Dividing by a fraction that equals zero is undefined.',
+			},
+			{
+				question: 'How do you simplify a fraction to lowest terms?',
+				answer:
+					'Find the greatest common divisor (GCD) of the numerator and denominator, then divide both by it. 8/12 has a GCD of 4, so it simplifies to 2/3. The Euclidean algorithm (repeatedly dividing and taking the remainder) is the standard way to find the GCD without listing every factor.',
+			},
+			{
+				question: 'How do you convert a mixed number to an improper fraction?',
+				answer:
+					'Multiply the whole number by the denominator, add the numerator, and keep the same denominator. 2 3/4 becomes (2×4 + 3) ÷ 4 = 11/4.',
+			},
+			{
+				question: 'How do you convert an improper fraction to a mixed number?',
+				answer:
+					'Divide the numerator by the denominator. The whole-number part of the quotient is the mixed number\'s whole part; the remainder becomes the new numerator over the same denominator. 11/4 is 2 remainder 3, so it becomes 2 3/4.',
+			},
+			{
+				question: 'How do you convert a fraction to a decimal or a percent?',
+				answer:
+					'Divide the numerator by the denominator to get a decimal (3/4 = 0.75); multiply that decimal by 100 to get a percent (0.75 = 75%). A fraction whose denominator has prime factors other than 2 or 5 (like 1/3) produces a repeating decimal rather than a terminating one.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'Common Core State Standards for Mathematics, Grade 5 Number and Operations, Fractions domain (5.NF.A.1, 5.NF.B.4)',
+				url: 'https://www.thecorestandards.org/Math/Content/5/NF/',
+			},
+			{
+				label:
+					'Common Core State Standards for Mathematics, Grade 6 The Number System (6.NS.A.1): dividing any fraction by any fraction',
+				url: 'https://www.thecorestandards.org/Math/Content/6/NS/',
+			},
+			{
+				label: 'Euclid, Elements, Book VII, Proposition 2: the Euclidean algorithm for the greatest common divisor',
+				url: 'https://mathcs.clarku.edu/~djoyce/elements/bookVII/propVII2.html',
+			},
+		],
+		embedHeight: 900,
+	},
 ];

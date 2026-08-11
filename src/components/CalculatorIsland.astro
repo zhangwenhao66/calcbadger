@@ -11,6 +11,7 @@ import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import ConcreteCalculator from './calculators/ConcreteCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
+import FractionCalculator from './calculators/FractionCalculator';
 import GpaCalculator from './calculators/GpaCalculator';
 import LengthConverter from './calculators/LengthConverter';
 import MolarityCalculator from './calculators/MolarityCalculator';
@@ -56,3 +57,4 @@ const { slug } = Astro.props;
 {slug === 'gpa-calculator' && <GpaCalculator client:load />}
 {slug === 'reaction-time-test' && <ReactionTimeTest client:load />}
 {slug === 'cursive-alphabet' && <CursiveAlphabetGenerator client:load />}
+{slug === 'fraction-calculator' && <FractionCalculator client:load />}
