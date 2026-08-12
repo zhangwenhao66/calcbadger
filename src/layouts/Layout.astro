@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, ADSENSE_PUBLISHER_ID } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, ADSENSE_PUBLISHER_ID, GA4_ID } from '../consts';
 
 interface Props {
 	title?: string;
@@ -43,6 +43,18 @@ const ogImageURL = new URL(ogImage, Astro.site);
 			async
 			src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUBLISHER_ID}`}
 			crossorigin="anonymous"></script>
+
+		<script
+			async
+			src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+		<script is:inline define:vars={{ GA4_ID }}>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', GA4_ID);
+		</script>
 
 		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
