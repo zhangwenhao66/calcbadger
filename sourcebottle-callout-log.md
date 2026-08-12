@@ -19,3 +19,15 @@
 - **Deadline**：2026-08-25 17:00
 - **发布状态**：✅ 已提交，跳转 `thankyou.asp`，Pending approval。提交回执 product id = `44eda763da74cf839a3f5f94701e234c`。
 - **上线复核**：⏳ 待下次任务运行时补查。
+
+### 2026-08-12 — CalcBadger（calcbadger.com）
+
+- **问题标题**：Lab technicians and chemistry educators: what's the most consequential molarity or dilution calculation mistake you've caught?
+- **角度**：绑定`molarity-calculator`工具页征集实验室技术人员/化学教师/QA-QC人员的真实案例——实验室场景中一次具体的摩尔浓度/稀释/浓度计算错误（小数点错位、摩尔质量算错、连续稀释计数错误），以及这个错误是怎么被发现的（或在被发现前造成了什么后果）。与此前问过的楼梯计算器施工错误角度（承包商/木工领域）完全不同的工具与受众。
+- **绑定文章**：CalcBadger `molarity-calculator`（Molarity Calculator）。
+- **分类标签**：Topics = General + Technology；Countries = UK & Republic of Ireland + Canada + United States。
+- **表单设置**：Job title = Content Creator；Organisation = CalcBadger；Contact = Email；Unpaid；Email address 和 Contact email 均填 `contact@calcbadger.com`。
+- **Deadline**：2026-09-02 17:00
+- **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `aea55da4777da2679df47cd47a443613`。
+- **上线复核**：⏳ 待补做（当天提交，通常需要1-2天过审）。
+- **备注**：本次是08-04登录失效连续三次导致周二排期落空后的补做。

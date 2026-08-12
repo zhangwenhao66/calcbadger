@@ -149,5 +149,15 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 request"
+  },
+  {
+    "date": "2026-08-12",
+    "action": "submitted",
+    "reason": "游标第7站。今日新工具shape-volume-calculator（第26个工具，矩形棱柱/圆柱/球/圆锥体积表面积一并覆盖）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
+    "submitted_urls": [
+      "https://calcbadger.com/shape-volume-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 request"
   }
 ]
