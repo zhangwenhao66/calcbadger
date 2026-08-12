@@ -30,6 +30,7 @@ import TipCalculator from './calculators/TipCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
 import WorldClockConverter from './calculators/WorldClockConverter';
+import YesNoWheel from './calculators/YesNoWheel';
 
 interface Props {
 	slug: string;
@@ -64,3 +65,4 @@ const { slug } = Astro.props;
 {slug === 'time-duration-calculator' && <TimeDurationCalculator client:load />}
 {slug === 'greek-alphabet' && <GreekAlphabetGenerator client:load />}
 {slug === 'shape-volume-calculator' && <ShapeVolumeCalculator client:load />}
+{slug === 'yes-or-no-wheel' && <YesNoWheel client:load />}

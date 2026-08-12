@@ -3396,4 +3396,105 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 800,
 	},
+	{
+		slug: 'yes-or-no-wheel',
+		category: 'Games',
+		title: 'Yes or No Wheel: Weighted Decision Spinner',
+		shortTitle: 'Yes or No Wheel',
+		description:
+			'Spin a weighted yes/no wheel (or add a Maybe segment) for a quick decision, plus the odds behind it: how likely each outcome is and how many spins it usually takes to land on Yes.',
+		updated: '2026-08-12',
+		published: '2026-08-12',
+		coreSummary:
+			'A yes-or-no wheel is a weighted random draw dressed up as a spinning circle: split the circle into arcs sized to each option\'s share of the total, draw one random number from 0 to 1, and see which arc it falls into. At an even 50/50 split, each spin behaves like a coin flip: a 50% chance of Yes and a 50% chance of No. Bias the wheel to 70% Yes, 30% No, and Yes lands on 70% of spins, cutting the average wait for a Yes down to 1 ÷ 0.7 ≈ 1.43 spins instead of 2.',
+		queries: [
+			'yes or no wheel',
+			'yes no wheel',
+			'decision wheel',
+			'random yes or no',
+			'spin the wheel yes or no',
+		],
+		sections: [
+			{
+				heading: 'How a weighted wheel actually picks an answer',
+				body: [
+					'Behind the spinning graphic, the wheel is doing one thing: converting each option\'s weight into an arc of the circle, then drawing a single random number to see which arc it lands in. With Yes and No both weighted equally, each gets a 180-degree arc, so the draw is exactly a coin flip with extra visual flair. Slide the "Chance of Yes" control to 70% and the Yes arc grows to 252 degrees (70% of 360) while No shrinks to 108 degrees, so the same one random number now favors Yes without the wheel doing anything different mechanically.',
+					'This is the standard cumulative-weight method for sampling from a weighted discrete outcome set: line up the options\' probabilities end to end from 0 to 1, draw a uniform random number, and take whichever option\'s slice the draw fell into. It is the same technique behind inverse transform sampling in probability theory, just applied to a small, fixed list of outcomes instead of a continuous curve.',
+				],
+			},
+			{
+				heading: 'Worked example: a 65/35 wheel',
+				body: [
+					"Set the Chance of Yes to 65%. The probability of No landing three times in a row is 0.35 × 0.35 × 0.35 = 0.042875, about 4.3%, because each spin is independent and the chances multiply. The average number of spins before Yes first appears is 1 ÷ 0.65 ≈ 1.54, a result from the geometric distribution: for a per-spin success probability p, the expected number of tries until the first success is 1/p.",
+					'That 1/p relationship is why a heavily lopsided wheel (say 90% Yes) still occasionally takes several spins to hit the 10% side, and also why a fair 50/50 wheel needs 2 spins on average to land Yes at least once, not 1: half the time the first spin is No, and the wait keeps stacking from there.',
+				],
+			},
+			{
+				heading: "A streak doesn't mean the wheel is 'due' for the other answer",
+				body: [
+					'Every spin draws its own independent random number, so the wheel has no memory of what it landed on before. Three Yes spins in a row on a fair wheel does not raise or lower the odds of the fourth spin. Each still has an even 50% chance of either outcome, exactly like the spin before it, because the arcs on the wheel never change between draws unless the weight is changed.',
+					"The chance of a specific streak happening is not the same question as whether the next spin is influenced by the streak. P(4 Yes in a row, fair wheel) = 0.5⁴ = 6.25% describes how rare that whole sequence is going in, before any of the spins happen; it says nothing about spin number 5 once spins 1 through 4 have already landed. That confusion between the two is the gambler's fallacy, and it applies to a decision wheel exactly as it does to a roulette wheel or a coin.",
+				],
+			},
+			{
+				heading: 'The three-way Yes / No / Maybe wheel',
+				body: [
+					'Switching to the three-segment wheel splits the circle into equal 120-degree thirds rather than a Yes/No bias, since a "Maybe" option in most everyday use is meant as a genuine third possibility, not a weighted alternative. Each segment lands 1-in-3 spins (33.3%), the average wait for any specific one of the three is 3 spins, and the chance of the same segment landing twice in a row is (1/3)² ≈ 11.1%, noticeably rarer than the roughly 1-in-4 chance of a repeat on the two-segment wheel.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Average spins until Yes, by bias',
+				headers: ['Chance of Yes', 'Chance of No', 'Avg. spins until Yes', 'P(Yes twice in a row)'],
+				rows: [
+					['50%', '50%', '2.00', '25.0%'],
+					['60%', '40%', '1.67', '36.0%'],
+					['70%', '30%', '1.43', '49.0%'],
+					['75%', '25%', '1.33', '56.3%'],
+					['80%', '20%', '1.25', '64.0%'],
+					['90%', '10%', '1.11', '81.0%'],
+				],
+				note: 'Avg. spins until Yes = 1 ÷ P(Yes) (geometric distribution mean). P(Yes twice in a row) = P(Yes)² for two independent spins.',
+			},
+		],
+		faq: [
+			{
+				question: 'Is a yes or no wheel actually random?',
+				answer:
+					"It runs on the browser's built-in pseudorandom number generator (Math.random), which is not truly random in a cryptographic sense but is statistically even and unpredictable enough for a decision wheel, a game, or any other everyday use where nothing is riding on defeating a deliberate attacker. Each spin draws a fresh number independent of every spin before it.",
+			},
+			{
+				question: 'Can I make the wheel favor Yes or No?',
+				answer:
+					'Yes, the "Chance of Yes" control resizes the wheel\'s arcs to match: set it to 70% and Yes occupies 70% of the circle (252 of 360 degrees), so it lands on roughly 7 of every 10 spins over the long run, though any single spin can still go either way.',
+			},
+			{
+				question: 'How is this different from just flipping a coin?',
+				answer:
+					'A fair 50/50 wheel and a fair coin are mathematically identical: both are a single draw between two equally likely outcomes. The wheel adds three things a coin does not: an adjustable bias so the odds do not have to be 50/50, a "Maybe" third option, and a running spin history so a streak (or the lack of one) is visible at a glance.',
+			},
+			{
+				question: 'What is the chance of landing the same answer three times in a row?',
+				answer:
+					"Multiply that answer's per-spin probability by itself three times, since each spin is independent: on a fair 50/50 wheel, 0.5³ = 12.5%. On a wheel biased 70% toward Yes, three Yes spins in a row happen 0.7³ = 34.3% of the time, while three No spins in a row happen only 0.3³ = 2.7% of the time.",
+			},
+			{
+				question: 'Does adding a Maybe option split the odds evenly?',
+				answer:
+					'Yes, the three-segment wheel splits Yes, No, and Maybe into equal thirds (33.3% each) rather than reusing the Yes/No bias slider, since a genuine third option is treated as its own even choice rather than a weighted variant of the two-way wheel.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia, "Geometric distribution" (expected number of trials until first success, E[X] = 1/p)',
+				url: 'https://en.wikipedia.org/wiki/Geometric_distribution',
+			},
+			{
+				label: 'Wikipedia, "Inverse transform sampling" (cumulative-probability method for drawing from a weighted discrete distribution)',
+				url: 'https://en.wikipedia.org/wiki/Inverse_transform_sampling',
+			},
+		],
+		embedHeight: 900,
+	},
 ];
