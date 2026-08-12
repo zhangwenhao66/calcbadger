@@ -5,3 +5,4 @@ export const SITE_ORIGIN = 'https://calcbadger.com';
 export const AUTHOR_NAME = 'Owen Zhang';
 export const ADSENSE_PUBLISHER_ID = 'pub-5245502795720653';
 export const GA4_ID = 'G-CETNHSCJG2';
+export const CLARITY_ID = 'y14zwvco3j';
