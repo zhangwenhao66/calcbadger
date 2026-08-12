@@ -3503,7 +3503,7 @@ export const tools: Tool[] = [
 		title: 'Steps to Miles Calculator',
 		shortTitle: 'Steps to Miles',
 		description:
-			'Convert steps to miles or kilometers using an estimated stride length from your actual height and gender, not a flat 2,000-steps-per-mile guess. Works in reverse too: enter a distance to see how many steps it takes.',
+			'Convert steps to miles or kilometers using a stride length estimated from your height and gender, not a flat 2,000-steps-per-mile guess. Also converts a distance back into steps.',
 		updated: '2026-08-12',
 		published: '2026-08-12',
 		coreSummary:
