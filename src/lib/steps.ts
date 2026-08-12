@@ -1,9 +1,11 @@
 /**
  * Steps-to-distance conversion via personalized stride length, not a flat
  * steps-per-mile constant. Step length as a fraction of height (0.415 for
- * men, 0.413 for women) is the regression Hoeger et al. fit on 1,000 adults
- * across walking and running speeds: "One-Mile Step Count at Walking and
- * Running Speeds," ACSM's Health & Fitness Journal, Vol. 12, No. 1 (2008).
+ * men, 0.413 for women) is the regression Hoeger et al. fit across walking
+ * and running speeds: "One-Mile Step Count at Walking and Running Speeds,"
+ * ACSM's Health & Fitness Journal, Vol. 12, No. 1 (2008). (The paper's own
+ * abstract doesn't state a sample size for this coefficient — don't restate
+ * one; see 内容通用教训库.md L-0805-21.)
  */
 
 export type Gender = 'male' | 'female';

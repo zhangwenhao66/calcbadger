@@ -145,8 +145,8 @@ export default function StepsToMilesCalculator() {
 			)}
 
 			<p class="calc-note">
-				Step length is estimated from height using the regression Hoeger et al. fit on 1,000
-				walkers and runners (0.415 × height for men, 0.413 × height for women) rather than a flat
+				Step length is estimated from height using the regression Hoeger et al. fit across
+				walking and running speeds (0.415 × height for men, 0.413 × height for women) rather than a flat
 				"2,000 steps per mile" rule, so a taller or shorter stride shifts the result. Individual
 				stride varies roughly 10-15% around this estimate depending on leg length and pace.
 				Calculations run in your browser; nothing you type is sent anywhere.
