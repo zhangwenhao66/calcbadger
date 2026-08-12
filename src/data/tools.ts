@@ -3497,4 +3497,125 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'steps-to-miles-calculator',
+		category: 'Health',
+		title: 'Steps to Miles Calculator',
+		shortTitle: 'Steps to Miles',
+		description:
+			'Convert steps to miles or kilometers using an estimated stride length from your actual height and gender, not a flat 2,000-steps-per-mile guess. Works in reverse too: enter a distance to see how many steps it takes.',
+		updated: '2026-08-12',
+		published: '2026-08-12',
+		coreSummary:
+			'Steps convert to distance through stride length, not a fixed ratio: distance = steps × step length. Step length itself is estimated from height using the regression Hoeger et al. (2008) fit on 1,000 walkers and runners: step length ≈ height × 0.415 for men or height × 0.413 for women. At the U.S. average adult height (68.9in men, 63.5in women, CDC NHANES), 10,000 steps works out to about 4.51 miles for men and 4.14 miles for women. The "10,000 steps ≈ 5 miles" rule of thumb only holds for someone near that average height and overshoots for a shorter stride.',
+		queries: [
+			'how many miles is 10000 steps',
+			'steps to miles',
+			'how many steps in a mile',
+			'how many steps is 5 miles',
+			'how many miles is 8000 steps',
+			'steps to miles calculator',
+			'how many miles is 6000 steps',
+		],
+		sections: [
+			{
+				heading: 'Why height changes the answer',
+				body: [
+					"A step count on its own doesn't set a distance; it's steps times step length, and step length scales with leg length, which scales with height. Hoeger et al. measured step length across 1,000 walkers and runners and found it averages about 41.5% of height for men and 41.3% for women, published as \"One-Mile Step Count at Walking and Running Speeds\" in ACSM's Health & Fitness Journal (2008). A 5'2\" walker and a 6'2\" walker covering the same 10,000 steps end up roughly a mile apart, because the taller stride eats more ground per step.",
+					'This calculator multiplies that estimated step length by the step count entered (or divides a distance by it, in reverse) rather than assuming everyone takes about 2,000 steps to cover a mile, a number that only holds near the population-average height.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					"A 5'9\" (69in) man walking 10,000 steps: step length = 69 × 0.415 = 28.635in. Distance = 10,000 × 28.635 ÷ 63,360 (inches per mile) ≈ 4.52 miles.",
+					"A 5'4\" (64in) woman covering the same 10,000 steps: step length = 64 × 0.413 = 26.432in, giving 10,000 × 26.432 ÷ 63,360 ≈ 4.17 miles, a third of a mile less than the man above at the same step count, purely from the height difference.",
+					"Reverse direction: how many steps cover 5 miles for that same 5'9\" man? Steps = 5 miles × 63,360in ÷ 28.635in ≈ 11,063 steps.",
+				],
+			},
+			{
+				heading: "The '10,000 steps ≈ 5 miles' rule only fits average height",
+				body: [
+					"That rule of thumb comes from roughly 2,000-2,200 steps per mile, which lines up with a step length around 28-31in, close to the U.S. average adult male height (68.9in) but noticeably longer than the average adult female stride (about 26.2in at 63.5in height, CDC NHANES 2021-2023). Below-average height compounds over thousands of steps: a half-inch-shorter step length changes a 10,000-step walk by roughly 0.08 miles, so the gap between a short and tall walker's actual distance for the same step count is real, not rounding noise.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Steps to distance at average adult height',
+				headers: ['Steps', 'Men (68.9in avg. height)', 'Women (63.5in avg. height)'],
+				rows: [
+					['2,000', '0.90 mi', '0.83 mi'],
+					['3,000', '1.35 mi', '1.24 mi'],
+					['5,000', '2.26 mi', '2.07 mi'],
+					['6,000', '2.71 mi', '2.48 mi'],
+					['8,000', '3.61 mi', '3.31 mi'],
+					['9,000', '4.06 mi', '3.73 mi'],
+					['10,000', '4.51 mi', '4.14 mi'],
+					['11,000', '4.96 mi', '4.55 mi'],
+					['12,000', '5.42 mi', '4.97 mi'],
+					['13,000', '5.87 mi', '5.38 mi'],
+					['14,000', '6.32 mi', '5.79 mi'],
+					['15,000', '6.77 mi', '6.21 mi'],
+					['16,000', '7.22 mi', '6.62 mi'],
+					['18,000', '8.12 mi', '7.45 mi'],
+					['20,000', '9.03 mi', '8.28 mi'],
+				],
+				note: 'Based on the Hoeger et al. (2008) step-length regression at CDC NHANES 2021-2023 average adult heights. Enter your own height above for a personalized figure.',
+			},
+			{
+				title: 'Estimated step length by height (average of men and women)',
+				headers: ['Height', 'Est. step length', 'Distance for 10,000 steps'],
+				rows: [
+					["5'0\"", '24.84 in', '3.92 mi'],
+					["5'2\"", '25.67 in', '4.05 mi'],
+					["5'4\"", '26.50 in', '4.18 mi'],
+					["5'6\"", '27.32 in', '4.31 mi'],
+					["5'8\"", '28.15 in', '4.44 mi'],
+					["5'10\"", '28.98 in', '4.57 mi'],
+					["6'0\"", '29.81 in', '4.70 mi'],
+				],
+				note: 'Uses the midpoint of the male (0.415) and female (0.413) coefficients for a single-column estimate; the calculator above uses the gender-specific figure.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many miles is 10,000 steps?',
+				answer:
+					'About 4.5-5 miles for most adults, but it depends on height: roughly 4.51 miles at the U.S. average male height (68.9in) and 4.14 miles at the average female height (63.5in), using a step length of 0.415 × height for men and 0.413 × height for women.',
+			},
+			{
+				question: 'How many steps are in a mile?',
+				answer:
+					"Around 2,000-2,300 steps per mile for most adults, again driven by height: a 5'9\" man averages about 2,213 steps per mile (63,360 ÷ 28.635in step length), while a shorter stride needs more steps to cover the same mile.",
+			},
+			{
+				question: 'How many steps is 5 miles?',
+				answer:
+					"Around 11,000-12,000 steps depending on height and stride: about 11,079 steps at the U.S. average male height (68.9in), or roughly 12,080 steps at the average female height (63.5in).",
+			},
+			{
+				question: 'Why not just use 2,000 steps per mile for everyone?',
+				answer:
+					"Because that ratio only holds near the population-average height. It comes from an average step length around 28-31in, which fits a roughly 5'9\"-6'0\" stride but overstates the distance for someone with a shorter stride, sometimes by close to half a mile over a 10,000-step walk.",
+			},
+			{
+				question: 'Does this account for running instead of walking?',
+				answer:
+					"Not directly. The 0.415/0.413 coefficients here come from the walking-and-running-combined regression in the source study, so they land close to a moderate walking pace. Running stride lengthens with speed, so a runner's actual steps-per-mile will usually be lower (fewer, longer steps) than this estimate.",
+			},
+		],
+		sources: [
+			{
+				label:
+					'Hoeger, W.W.K. et al., "One-Mile Step Count at Walking and Running Speeds," ACSM\'s Health & Fitness Journal, Vol. 12, No. 1, pp. 14-19 (2008) — source of the 0.415 (men) / 0.413 (women) step-length-to-height regression',
+				url: 'https://journals.lww.com/acsm-healthfitness/fulltext/2008/01000/one_mile_step_count_at_walking_and_running_speeds.6.aspx',
+			},
+			{
+				label: 'CDC/NCHS, "Body Measurements" (FastStats) — U.S. average adult height, ages 20+, NHANES 2021-2023',
+				url: 'https://www.cdc.gov/nchs/fastats/body-measurements.htm',
+			},
+		],
+		embedHeight: 820,
+	},
 ];

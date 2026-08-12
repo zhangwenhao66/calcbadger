@@ -23,6 +23,7 @@ import SatScoreCalculator from './calculators/SatScoreCalculator';
 import ShapeVolumeCalculator from './calculators/ShapeVolumeCalculator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
+import StepsToMilesCalculator from './calculators/StepsToMilesCalculator';
 import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
 import TimeDurationCalculator from './calculators/TimeDurationCalculator';
@@ -66,3 +67,4 @@ const { slug } = Astro.props;
 {slug === 'greek-alphabet' && <GreekAlphabetGenerator client:load />}
 {slug === 'shape-volume-calculator' && <ShapeVolumeCalculator client:load />}
 {slug === 'yes-or-no-wheel' && <YesNoWheel client:load />}
+{slug === 'steps-to-miles-calculator' && <StepsToMilesCalculator client:load />}
