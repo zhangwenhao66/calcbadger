@@ -3272,4 +3272,128 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 920,
 	},
+	{
+		slug: 'shape-volume-calculator',
+		category: 'Math',
+		title: 'Shape Volume & Surface Area Calculator',
+		shortTitle: 'Shape Volume Calculator',
+		description:
+			'Find the volume and surface area of a rectangular prism, cylinder, sphere, or cone. Enter the dimensions in ft, in, yd, m, or cm and get both numbers at once.',
+		updated: '2026-08-12',
+		published: '2026-08-12',
+		coreSummary:
+			'Volume and surface area both come from the same handful of dimensions. Rectangular prism: volume = length × width × height, surface area = 2(lw + lh + wh). Cylinder: volume = πr²h, surface area = 2πr(r + h). Sphere: volume = (4/3)πr³, surface area = 4πr². Cone: volume = (1/3)πr²h, surface area = πr² + πrl, where l is the slant height, √(r² + h²). This tool takes the dimensions for whichever shape is selected and returns both figures at once.',
+		queries: [
+			'volume of a rectangular prism',
+			'surface area of a sphere',
+			'surface area of a cylinder',
+			'volume of a cylinder calculator',
+			'volume of a sphere calculator',
+			'volume of a cone calculator',
+			'shape volume calculator',
+		],
+		sections: [
+			{
+				heading: 'The four formulas',
+				body: [
+					'A rectangular prism, a box, has volume length × width × height. Its surface area is the sum of the areas of all six rectangular faces: 2(lw + lh + wh), since opposite faces come in matching pairs.',
+					'A cylinder\'s volume is πr²h: the area of the circular base, πr², times the height. Its total surface area covers both circular ends plus the curved side wrapped around them, 2πr² + 2πrh, usually written 2πr(r + h).',
+					'A sphere\'s volume is (4/3)πr³, and its surface area is 4πr², a result attributed to Archimedes: a sphere\'s surface area equals exactly four times the area of its largest circular cross-section.',
+					'A cone\'s volume is (1/3)πr²h, one third of a cylinder sharing the same base and height. Its total surface area is the flat base circle plus the slanted side: πr² + πrl, where the slant height l is √(r² + h²) by the Pythagorean theorem, since the slant is the hypotenuse of a right triangle formed by the radius and the height.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					'A shipping box 2 ft long, 1.5 ft wide, and 1 ft tall: volume = 2 × 1.5 × 1 = 3 cubic feet. Surface area = 2(2×1.5 + 2×1 + 1.5×1) = 2(3 + 2 + 1.5) = 13 square feet, the amount of cardboard the box is made from.',
+					'A cylindrical drum with a 2 ft radius and 6 ft height: volume = π × 2² × 6 = 24π ≈ 75.4 cubic feet. Surface area = 2π × 2 × (2 + 6) = 32π ≈ 100.5 square feet, counting the top and bottom lids plus the wrapped side.',
+				],
+			},
+			{
+				heading: 'Radius, not diameter',
+				body: [
+					'Every formula above uses the radius, the distance from the center to the edge. Product listings and everyday measurements more often give the diameter, the distance all the way across, so if that is what is on hand, halve it before entering a value here.',
+					"The cone result is the total surface area: base plus the slanted side. A party hat or a paper cone rolled with no bottom only has the slanted portion, so subtract πr² from the total shown here to get that lateral-only figure.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Formula reference',
+				headers: ['Shape', 'Volume', 'Surface area'],
+				rows: [
+					['Rectangular prism', 'l × w × h', '2(lw + lh + wh)'],
+					['Cylinder', 'πr²h', '2πr(r + h)'],
+					['Sphere', '(4/3)πr³', '4πr²'],
+					['Cone', '(1/3)πr²h', 'πr² + πrl, l = √(r² + h²)'],
+				],
+			},
+			{
+				title: 'Example calculations',
+				headers: ['Shape', 'Dimensions', 'Volume', 'Surface area'],
+				rows: [
+					['Rectangular prism', '3 × 4 × 5 ft', '60 ft³', '94 ft²'],
+					['Cylinder', 'radius 3 ft, height 10 ft', '282.74 ft³', '245.04 ft²'],
+					['Sphere', 'radius 5 ft', '523.60 ft³', '314.16 ft²'],
+					['Cone', 'radius 3 ft, height 4 ft', '37.70 ft³', '75.40 ft²'],
+				],
+				note: 'Volume and surface area figures are rounded to two decimal places; the calculator above shows more precision.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do you find the volume of a rectangular prism?',
+				answer:
+					'Multiply length × width × height. All three measurements need to be in the same unit; a 3 ft × 4 ft × 5 ft box has a volume of 60 cubic feet.',
+			},
+			{
+				question: 'What is the formula for the surface area of a sphere?',
+				answer:
+					'4πr², where r is the radius. A sphere with a 5 ft radius has a surface area of 4π × 25 = 100π, about 314.16 square feet.',
+			},
+			{
+				question: 'How do you find the volume of a cylinder?',
+				answer:
+					'Volume = πr²h: the area of the circular base (πr²) times the height. A cylinder with a 3 ft radius and 10 ft height has a volume of π × 9 × 10 = 90π, about 282.74 cubic feet.',
+			},
+			{
+				question: "What is a cone's surface area formula?",
+				answer:
+					'Total surface area = πr² + πrl, where l is the slant height, √(r² + h²). The πr² term is the flat circular base and πrl is the slanted side. For a lateral-only figure (no base), use just πrl.',
+			},
+			{
+				question: 'Does this calculator use radius or diameter?',
+				answer:
+					'Radius for the cylinder, sphere, and cone fields. If a product spec gives the diameter instead, divide it by two before entering it here.',
+			},
+			{
+				question: "Why is a cone's volume one third of a cylinder's?",
+				answer:
+					"Because (1/3)πr²h versus πr²h for a cylinder sharing the same base and height. This is a general result for any cone or pyramid against a prism with a matching base and height, not something specific to circular cones.",
+			},
+		],
+		sources: [
+			{
+				label: 'Wolfram MathWorld — "Cuboid" (rectangular prism volume and surface area)',
+				url: 'https://mathworld.wolfram.com/Cuboid.html',
+			},
+			{
+				label: 'Wolfram MathWorld — "Cylinder"',
+				url: 'https://mathworld.wolfram.com/Cylinder.html',
+			},
+			{
+				label: 'Wolfram MathWorld — "Sphere"',
+				url: 'https://mathworld.wolfram.com/Sphere.html',
+			},
+			{
+				label: 'Wolfram MathWorld — "Cone"',
+				url: 'https://mathworld.wolfram.com/Cone.html',
+			},
+			{
+				label: 'CalculatorSoup — "Cone Calculator" (cross-check for the cone total surface area formula)',
+				url: 'https://www.calculatorsoup.com/calculators/geometry-solids/cone.php',
+			},
+		],
+		embedHeight: 800,
+	},
 ];
