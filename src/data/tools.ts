@@ -939,7 +939,7 @@ export const tools: Tool[] = [
 		title: 'Length Converter',
 		shortTitle: 'Length Converter',
 		description:
-			'Convert between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles instantly, with reference tables for heights, tool sizes, and race distances.',
+			'Convert millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles, with reference tables for heights, tool sizes, and race distances.',
 		updated: '2026-08-04',
 		published: '2026-08-04',
 		coreSummary:

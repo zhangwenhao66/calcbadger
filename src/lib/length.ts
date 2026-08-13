@@ -52,11 +52,19 @@ export function convertAll(value: number, from: LengthUnit): Record<LengthUnit, 
  * a fixed 2dp would show 1mm-in-km as "0.00" and a fixed 6dp would clutter
  * "1000 m in mm" with trailing zeros. 6 significant figures matches common
  * unit-converter practice and keeps small and large results both readable.
+ *
+ * Uses `toPrecision` (a correctly-rounded decimal string conversion) rather
+ * than the more obvious `Math.round(n * 10^k) / 10^k`. That approach breaks
+ * for large n: `10^k` for a negative k is not exactly representable in
+ * IEEE-754, so the multiply-round-divide round-trips through binary error
+ * and can surface as e.g. 32808400000.000004 instead of 32808400000 for a
+ * ~1e12 input. `toPrecision` doesn't have this failure mode because it
+ * rounds the decimal representation directly instead of scaling by an
+ * inexact power of ten.
  */
 export function roundSig(n: number, sig = 6): number {
 	if (n === 0 || !Number.isFinite(n)) return n;
-	const magnitude = Math.pow(10, sig - Math.ceil(Math.log10(Math.abs(n))));
-	return Math.round(n * magnitude) / magnitude;
+	return Number(n.toPrecision(sig));
 }
 
 /** Splits a total inches value into whole feet + remaining inches, e.g. for height display. */
