@@ -699,3 +699,91 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "length-converter",
+  "last_audited": "2026-08-13",
+  "published_date": "2026-08-04",
+  "note": "本站从未被审计过的最早工具之一（与temperature-converter/weight-converter同为8/4发布，取data文件中排最后者，此前8轮审计均未轮到），按SKILL.md最早/缺失优先规则选取。",
+  "checklist": [
+    "公式正确性（最高优先级）：8种长度单位（mm/cm/m/km/in/ft/yd/mi）换算系数是否与NIST Handbook 44 Appendix C / 1959国际码磅协定精确值一致",
+    "3张参考表（cm-inches 12行、身高换算11行、赛程距离5行）与2条worked example（69in身高、10K/马拉松距离）数值是否可独立复算通过",
+    "边界值处理：0、负数、非数字输入、极大数值（如1e12量级）时页面表现是否合理（不崩溃、不出现NaN/Infinity裸露给用户）",
+    "meta description等技术SEO字段是否健康",
+    "sources链接（NIST两条）是否仍可访问；内链健康度（crossCategory轮转兜底逻辑在工具数增长后是否仍覆盖本工具）"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：8种单位的meters-per-unit系数（in=0.0254/ft=0.3048/yd=0.9144/mi=1609.344等）均与NIST HB44 App.C/1959协定精确值一致。cm-inches参考表12行、身高换算表11行（含5'9\"→175.3cm）、赛程距离表5行（400m/1mile/5K/10K/half-marathon/marathon）逐一复算全部吻合；worked example独立复算：69in×2.54=175.26cm、175cm÷2.54=68.8976in、10km÷1.609344=6.2137mi、42.195km÷1.609344=26.2188mi，均与正文/FAQ数值一致，无一处偏差。src/lib/length.ts的convert/convertAll实现单一路径，无重复换算或单位混淆。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test -- length：24个测试全部通过。期望值逐条用独立Python复算比对一致，测试注释声明期望值'independently computed in Python from the exact meters-per-unit factors'，非从实现输出反推，核实属实。修复后（roundSig改用toPrecision）24/24仍全部通过，全站661个测试（32个测试文件，站点已扩至29个工具）同步全过，无回归。"
+    },
+    {
+      "dimension": "内嵌组件功能与边界值处理（浏览器实测，发现1个真问题，已修复）",
+      "status": "发现1个真问题（已修复）",
+      "detail": "浏览器实测LengthConverter.tsx交互：负数输入（-5）正确显示'A length can't be negative'提示，不崩溃；0输入全部结果正确显示为0（无除零错误）；非数字输入（'abc'，type=number原生过滤）正确落回'Enter a length to convert'提示；单位切换正确重新表达同一物理长度（非重新解释数字）。**极端数值（999999999999 cm）测试发现真问题**：Feet结果显示'32,808,399,999.999996 ft'而非干净的6位有效数字'32,808,400,000 ft'——roundSig()用Math.round(n*magnitude)/magnitude（magnitude由Math.pow(10,负指数)算出）四舍五入，负指数的10^k在IEEE-754下无法精确表示，乘除往返产生浮点残留，与页面自身'there is no rounding error...only in how many digits are displayed'的承诺相矛盾。独立agent复核：用Node独立复现真实换算路径（999999999999cm→ft原始值32808398950.098423，旧算法输出32808400000.000004含残留位）确认可复现，CONFIRMED为真问题。修复：roundSig()改用Number(n.toPrecision(sig))（对十进制表示直接四舍五入，无此失效模式），验证对全部正常量级测试值（11.811/0.000001/3280.84/0.1/999999.5等）结果与旧算法完全一致，仅消除极端量级的残留位。修复后浏览器重新实测999999999999cm，Feet结果已变为干净的'32,808,400,000 ft'，线上确认生效。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题",
+      "detail": "NIST两条sources链接（si-units-length页面 + Handbook 44 Appendix C PDF）curl -sIL均返回200，内容与文中引用对应，无死链或反爬网关。"
+    },
+    {
+      "dimension": "SEO技术审计（发现1个真问题，已修复）",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/length-converter/ 200，title'Length Converter | CalcBadger'29字符正常；canonical自指正确；单一h1，7个内容h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt含GPTBot/ClaudeBot/PerplexityBot/Google-Extended显式Allow；sitemap-0.xml含本页。**meta description 170字符**，超出~160字符SERP安全区间10字符（6.25%），落在本站既有'不修'先例（cd 164/+4、sat-score 166/+6、temperature 165/+5）与'应修'先例（207-221字符）之间的空档，需独立判断。独立agent复核：核实155-160字符截断点会在'...for heights, tool sizes, and race '处不完整收尾（丢失'distances'一词），且三个差异化关键词（heights/tool sizes/race distances）均为真实功能点非填充词，CONFIRMED应修。修复：精简到152字符，保留全部三个差异化关键词，同步更新meta description/og/twitter description/JSON-LD WebApplication.description/页面首屏可见导语（同一字段5处复用）。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "跑Skill(ai-seo)的Content Extractability Check逐项人工核对（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的精确定义；4个小节+2个worked example均以直接陈述开头；含3张真实数字参考表；7组FAQ配FAQPage schema；'last reviewed 2026-08-04'时效信号明确；robots.txt放行GPTBot/ClaudeBot/PerplexityBot/Google-Extended。综合判定明显高于80分门槛，description精简未改变正文内容，不影响GEO可提取性。"
+    },
+    {
+      "dimension": "早期内容去AI味补漏",
+      "status": "未发现问题",
+      "detail": "本工具2026-08-04发布，早于avoid-ai-writing技能生效日（2026-08-07）。用Skill(humanizer)+Skill(avoid-ai-writing)逐段核对coreSummary/sections/referenceTables/faq全部字段：叙事正文与FAQ部分0处em dash/en dash/curly quote，无Tier1/Tier2 AI高频词命中，无inline-header列表/机械三连排比/信心校准短语。referenceTables标题（'Centimeters to inches — quick reference'）与sources标签（'NIST — SI Units...'）内共3处em dash，属本站多个工具共用的标题/引用标签格式惯例（与temperature-converter审计中'2处位于sources[].label内，未改动'的先例一致），非叙事问题，未改动。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题（含一项全站回归验证）",
+      "detail": "本站工具数已增长到29个（较molarity-calculator审计时的16个增长81%）。用node独立复现src/pages/[slug].astro的pickRelatedGuides+crossCategory完整逻辑，验证结果29/29工具零孤儿覆盖，length-converter本身被正常链接（非8/4 stair-calculator审计修复前的零曝光状态）；线上length-converter页面实测'More calculators'侧栏含6条到weight-converter/time-converter/volume-converter/mortgage-calculator/concrete-calculator/percentage-calculator的链接；embed页/embed/length-converter/curl 200且组件正常挂载。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-04'与页面'last reviewed 2026-08-04'一致，description字段已同步为精简后的152字符版本；FAQPage 7条FAQ与tools.ts faq数组及页面渲染逐一对应；BreadcrumbList三级（Home/Conversion/Length Converter）与面包屑一致。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "WebSearch核实当前SERP头部竞品（calculatorsoup.com/rapidtables.com/unitconverters.net）均为单向基础换算工具（如仅cm→in），无历史背景讲解、无参考表、无8向同时换算。本页相比之下多出1959年国际码磅协定历史背景、2条真实数字worked example、3张参考表、8种单位一次性同时显示，构成真实增量而非同质化复制。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；页面标题与内容无误导性/诱导点击设计；工具是长度单位换算，不涉及暴力/赌博/武器/毒品等敏感类目。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon.svg（curl 200），无失效图片资源。"
+    }
+  ],
+  "actions_taken": [
+    "1. src/lib/length.ts的roundSig()改用Number(n.toPrecision(sig))替代Math.round(n*magnitude)/magnitude，消除极端数值（~1e12量级）下的浮点残留位显示问题，对正常量级结果无影响",
+    "2. src/data/tools.ts的description字段从170字符精简到152字符，保留全部三个差异化关键词（heights/tool sizes/race distances），同步更新meta description/og/twitter/JSON-LD description/页面首屏可见导语（同一字段5处复用）",
+    "两处均为定点修改，未做大范围重写；均先经独立fresh-context agent复核确认为真问题（浮点残留用Node独立复现真实换算路径确认可复现；meta description用截断点分析+关键词丢失评估确认应修）后才动手，两条独立复核均CONFIRMED",
+    "npm test -- length 24/24通过、全站npm test 661/661通过（32个测试文件）、npm run build 74页成功生成后，git status确认仅src/data/tools.ts与src/lib/length.ts本次改动，未受同仓库其他并发会话影响，单独commit f8e22d0并push",
+    "push后curl轮询3次（约30秒）确认线上description已生效部署；用Browser pane重新实测输入999999999999cm，Feet结果已变为干净的32,808,400,000 ft，浮点残留修复确认线上生效；node tools/submit-indexnow.mjs提交/length-converter/（Bing 200/Yandex 200）；内容发布日志.md已追加记录（标注为审计更新非新发布）"
+  ],
+  "seo_score": "修复前：meta description 170字符超长（唯一SEO问题），其余（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）均健康；修复后：description缩短到152字符，其余维度不变",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，估计等效90/99左右，明显超过≥80门槛，description精简未影响正文GEO结构，无需进一步修复",
+  "escalation": null
+}
+```
