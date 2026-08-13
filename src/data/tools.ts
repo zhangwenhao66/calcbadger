@@ -1,4 +1,5 @@
 import { GREEK_LETTERS } from '../lib/greekAlphabet';
+import { MATH_SYMBOLS } from '../lib/mathSymbols';
 
 export interface ToolSection {
 	heading: string;
@@ -3617,5 +3618,172 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 820,
+	},
+	{
+		slug: 'math-symbols',
+		category: 'Reference',
+		title: 'Math Symbols',
+		shortTitle: 'Math Symbols',
+		description:
+			'Search or browse common math symbols like ± × ÷ ≥ ≤ ≈ √ ² ³ ° ∞ ∴ with meanings, Unicode code points, and a short verified history, and copy any symbol with one click.',
+		updated: '2026-08-13',
+		published: '2026-08-13',
+		coreSummary:
+			'This tool covers 12 common math symbols that do not have their own keyboard key: ± × ÷ ≥ ≤ ≈ √ ² ³ ° ∞ ∴. Search by name or by what a symbol is used for (like "inequality" or "quadratic formula") and click any result to copy it.',
+		queries: [
+			'math symbols',
+			'math symbols copy and paste',
+			'greater than or equal to symbol',
+			'less than or equal to symbol',
+			'plus minus symbol',
+			'division symbol',
+			'multiplication symbol',
+			'approximately symbol',
+			'degree symbol',
+			'infinity symbol',
+			'squared symbol',
+			'cubed symbol',
+			'square root symbol',
+			'therefore symbol',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					'Search by a symbol\'s name ("infinity") or by what it\'s for ("quadratic formula," "inequality") and the grid narrows to matches; an empty search box shows all 12. Clicking a result copies the bare glyph, nothing else, to your clipboard.',
+					"These 12 symbols don't share one origin the way an alphabet does. Each was put into print separately, sometimes centuries apart, so the reference table below pairs every symbol with its own Unicode code point and the specific book and year it first appeared in.",
+				],
+			},
+			{
+				heading: 'Two textbooks, four symbols',
+				body: [
+					"Two of the oldest symbols here trace back to the same two textbooks, each contributing an unrelated pair. English mathematician William Oughtred's 1631 Clavis Mathematicae (\"The Key of Mathematics\") introduced both × for multiplication and ± for plus-or-minus, though × itself first appears thirteen years earlier, in a 1618 appendix now attributed to Oughtred. Oughtred chose × over a plain letter x specifically to keep it from being confused with a variable.",
+					'Almost three decades later, Swiss mathematician Johann Rahn did the same trick with a different pair. His 1659 Teutsche Algebra took the obelus, a symbol earlier writers had used for subtraction, and repurposed it as ÷ for division. The same book introduced the three-dot triangle ∴ for "therefore" (its upside-down twin, ∵, later came to mean "because"). Historians still debate how much credit belongs to Rahn\'s collaborator John Pell, but no evidence favors Pell over Rahn as the inventor.',
+				],
+			},
+			{
+				heading: 'Where √ and ∞ actually come from',
+				body: [
+					'The square root sign √ is older than either of those textbooks: German mathematician Christoff Rudolff put it into print in 1525, in his algebra textbook Die Coss. Most historians trace its hooked shape to a stylized lowercase "r," standing for the Latin radix, meaning root. That specific theory is more "probable" than certain, though, since the symbol\'s earliest appearances look more like isolated dots than letters.',
+					'The infinity symbol ∞ has a firmer origin: English mathematician John Wallis introduced it in his 1655 treatise De sectionibus conicis, using it to represent unbounded quantities. Wallis never explained the shape himself, but it\'s usually read as either a stylized Roman numeral for 1,000 or the Greek letter omega (ω), the final letter of that alphabet, which fits a symbol that means "without end."',
+				],
+			},
+			{
+				heading: 'How ≤ and ≥ got their line',
+				body: [
+					'The plain < and > signs for "less than" and "greater than" appeared in English mathematician Thomas Harriot\'s Artis Analyticae Praxis, published posthumously in 1631. It took another century for someone to combine them with equality: French mathematician and hydrographer Pierre Bouguer added a line underneath each symbol in 1734, giving math ≤ and ≥ as a single combined "or equal to" mark instead of writing out both cases separately.',
+				],
+			},
+			{
+				heading: 'Superscript exponents, and where the degree sign fits',
+				body: [
+					'Writing an exponent as a small raised number (x², x³) comes from René Descartes\'s 1637 La Géométrie, which introduced superscript notation to streamline algebra that had previously repeated a term out in full, like x·x for a square. Descartes\'s own habits lagged behind his invention: he usually still wrote "zz" instead of "z²" for a squared term, even in the same book that introduced the notation.',
+					'The degree sign ° is older and comes from a different tradition entirely. Dividing a circle into 360 parts traces back to Babylonian base-60 astronomy, and the small raised circle for marking those parts became standard in European mathematical printing by the 17th century. It now does double duty for angles (45°) and for temperature scales (98.6°F), two uses that share nothing but the symbol.',
+				],
+			},
+			{
+				heading: 'How to type these symbols',
+				body: [
+					"Six of these symbols (± × ÷ ° ² ³) sit in the Latin-1 range, so on Windows you can hold Alt and type a four-digit decimal code on the numpad: Alt+0177 for ±, Alt+0215 for ×, Alt+0247 for ÷, Alt+0176 for °, Alt+0178 for ², Alt+0179 for ³. The other six (≥ ≤ ≈ √ ∞ ∴) live outside that range and don't have a numpad shortcut.",
+					'For any of the 12, typing the hex Unicode code point from the table below and then pressing Alt+X works in Microsoft Word (for ∞, that\'s typing 221E and pressing Alt+X). On any other device, this tool\'s copy button skips the code point entirely: search, click, paste.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'The 12 symbols',
+				headers: ['Symbol', 'Name', 'Meaning', 'Unicode', 'Common use'],
+				rows: MATH_SYMBOLS.map((s) => [s.symbol, s.name, s.meaning, s.codePoint, s.commonUse]),
+			},
+		],
+		faq: [
+			{
+				question: 'What is the plus-minus symbol used for?',
+				answer:
+					'± (U+00B1) means "plus or minus": two possible values, one found by adding and one by subtracting. It shows up in margins of error, engineering tolerances, and the quadratic formula, where it produces both roots of an equation at once. Search "plus minus" above to find and copy it.',
+			},
+			{
+				question: 'What is the infinity symbol?',
+				answer:
+					'∞ (U+221E) represents an unbounded, never-ending quantity. English mathematician John Wallis introduced it in 1655; the horizontal figure-eight shape is usually explained as a stylized Roman numeral for 1,000 or the Greek letter omega. Search "infinity" above to find and copy it.',
+			},
+			{
+				question: 'What is the square root symbol called, and where did it come from?',
+				answer:
+					'√ (U+221A) is called the radical sign. Christoff Rudolff put it into print in 1525; most historians trace its hooked shape to a stylized lowercase "r" for the Latin radix, meaning root. Search "square root" above to find and copy it.',
+			},
+			{
+				question: 'Why do ≤ and ≥ have a line under them?',
+				answer:
+					'The plain < and > signs date to 1631. In 1734, French mathematician Pierre Bouguer added an underline to each one to create a single combined symbol meaning "or equal to," instead of writing out "less than, or equal to" as two separate comparisons.',
+			},
+			{
+				question: 'What is the difference between × and a lowercase x?',
+				answer:
+					'× (U+00D7) is a dedicated multiplication symbol, distinct from the letter x. William Oughtred introduced × specifically so multiplication would not be confused with a variable named x, a mix-up that only gets worse once algebra starts using x, y, and z for unknowns.',
+			},
+			{
+				question: 'Why is ÷ called an obelus, and why do some countries not use it for division?',
+				answer:
+					"The ÷ symbol is a repurposed obelus, a mark earlier writers used for subtraction before Johann Rahn assigned it to division in 1659. Division notation was never fully standardized worldwide: many countries outside the US and UK write division with a colon (a : b) or a fraction slash instead.",
+			},
+			{
+				question: 'How do I type a math symbol like ∞ or ≤ on my keyboard?',
+				answer:
+					'In Microsoft Word, type the hex Unicode code point (for example, 2264 for ≤) and press Alt+X to convert it to the character. For a one-off symbol on any device, search for it above and click to copy.',
+			},
+			{
+				question: 'Is the degree symbol (°) the same whether it means angle or temperature?',
+				answer:
+					'Yes, it is the same Unicode character (U+00B0) either way. Only the letter that follows changes the meaning, as in 45° for an angle versus 98.6°F for a temperature. The symbol itself traces back to the Babylonian 360-part division of the circle.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Clavis mathematicae" (Oughtred, 1631; introduced × and ±)',
+				url: 'https://en.wikipedia.org/wiki/Clavis_mathematicae',
+			},
+			{
+				label: 'MacTutor History of Mathematics (University of St Andrews) — "Earliest Uses of Symbols of Operation"',
+				url: 'https://mathshistory.st-andrews.ac.uk/Miller/mathsym/operation/',
+			},
+			{
+				label: 'Wikipedia — "Division sign" (Rahn, Teutsche Algebra, 1659)',
+				url: 'https://en.wikipedia.org/wiki/Division_sign',
+			},
+			{
+				label: 'Wikipedia — "Therefore sign" (Rahn, 1659; ∴ and ∵)',
+				url: 'https://en.wikipedia.org/wiki/Therefore_sign',
+			},
+			{
+				label: 'MacTutor History of Mathematics (University of St Andrews) — "Earliest Uses of Symbols of Relation" (Harriot 1631; Bouguer 1734)',
+				url: 'https://mathshistory.st-andrews.ac.uk/Miller/mathsym/relation/',
+			},
+			{
+				label: 'Wikipedia — "John Wallis" (introduced ∞, 1655)',
+				url: 'https://en.wikipedia.org/wiki/John_Wallis',
+			},
+			{
+				label: 'Encyclopaedia Britannica — "Infinity | Definition, Symbol, Types, & Facts"',
+				url: 'https://www.britannica.com/science/infinity-mathematics',
+			},
+			{
+				label: 'MacTutor History of Mathematics (University of St Andrews) — Biography of Christoff Rudolff (√ symbol, 1525)',
+				url: 'https://mathshistory.st-andrews.ac.uk/Biographies/Rudolff/',
+			},
+			{
+				label: 'Stanford Encyclopedia of Philosophy — "Descartes\' Mathematics" (superscript exponent notation, 1637)',
+				url: 'https://plato.stanford.edu/entries/descartes-mathematics/',
+			},
+			{
+				label: 'Unicode Consortium — "Latin-1 Supplement" code chart (U+0080–U+00FF)',
+				url: 'https://www.unicode.org/charts/PDF/U0080.pdf',
+			},
+			{
+				label: 'Unicode Consortium — "Mathematical Operators" code chart (U+2200–U+22FF)',
+				url: 'https://www.unicode.org/charts/PDF/U2200.pdf',
+			},
+		],
+		embedHeight: 900,
 	},
 ];

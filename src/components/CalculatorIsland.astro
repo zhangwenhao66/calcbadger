@@ -15,6 +15,7 @@ import FractionCalculator from './calculators/FractionCalculator';
 import GpaCalculator from './calculators/GpaCalculator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import LengthConverter from './calculators/LengthConverter';
+import MathSymbolsGenerator from './calculators/MathSymbolsGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
@@ -68,3 +69,4 @@ const { slug } = Astro.props;
 {slug === 'shape-volume-calculator' && <ShapeVolumeCalculator client:load />}
 {slug === 'yes-or-no-wheel' && <YesNoWheel client:load />}
 {slug === 'steps-to-miles-calculator' && <StepsToMilesCalculator client:load />}
+{slug === 'math-symbols' && <MathSymbolsGenerator client:load />}
