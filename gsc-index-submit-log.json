@@ -159,5 +159,14 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 request"
+  },
+  {
+    "date": "2026-08-13",
+    "action": "submitted",
+    "reason": "trafficsite-gsc-index-requests例行运行。今日新发布Math Symbols工具（math-symbols，另有length-converter审计更新，因math-symbols为新发布优先检查）。URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功，等待约20秒确认'Indexing requested'。",
+    "submitted_urls": [
+      "https://calcbadger.com/math-symbols/"
+    ],
+    "quota_used": "1 of shared account-wide daily quota (7th request this run)"
   }
 ]
