@@ -3888,4 +3888,116 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1050,
 	},
+	{
+		slug: 'board-foot-calculator',
+		category: 'Construction',
+		title: 'Board Foot Calculator',
+		shortTitle: 'Board Foot Calculator',
+		description:
+			'Work out board feet for lumber from actual thickness, width, and length, with a rough-sawn quarter-thickness shortcut, waste allowance, and cost estimate.',
+		updated: '2026-08-13',
+		published: '2026-08-13',
+		coreSummary:
+			'Board feet is the standard volume unit for sawed lumber: board feet = (thickness in inches x width in inches x length in feet) / 12, since one board foot equals 144 cubic inches (a 1"x12"x12" block). The formula needs the piece\'s actual measured dimensions, not the nominal size on the price tag. A rough-sawn "4/4" board is nominally 1 inch thick, but a surfaced one is usually thinner once the mill planes it smooth.',
+		queries: [
+			'board foot calculator',
+			'board footage calculator',
+			'how to calculate board feet',
+			'lumber board foot formula',
+			'4/4 lumber calculator',
+		],
+		sections: [
+			{
+				heading: 'The board-foot formula, and why lumber isn\'t priced like plywood',
+				body: [
+					'A board foot is a volume, not a length: one piece of wood measuring 1 inch thick by 12 inches wide by 12 inches long, equal to 144 cubic inches. For sawed lumber, the University of Wisconsin-Madison\'s Division of Extension forestry program gives the working formula: board feet = (thickness in inches × width in inches × length in feet) / 12. Plug in a piece\'s actual thickness and width in inches and its length in feet, and the /12 converts the length term so the whole thing comes out in cubic-foot-sized units instead of cubic inches.',
+					'Framing lumber (2x4s, 2x6s) skips this entirely because it\'s milled to standardized sizes under the American Softwood Lumber Standard (Voluntary Product Standard PS 20, administered by NIST) and sold by the piece or the linear foot: every stud is the same cross-section, so there\'s nothing to normalize. Hardwood and specialty lumber come in random widths and odd lengths off the saw, so board feet gives buyer and seller a volume-based price that works no matter how wide or long any individual board happens to be.',
+				],
+			},
+			{
+				heading: 'Worked examples: a hobby board and a table-top order',
+				body: [
+					'A single rough 1"×6"×8\' pine board: board feet = (1 × 6 × 8) / 12 = 4 board feet. At $6.50 per board foot that one board runs 4 × $6.50 = $26.00.',
+					'A woodworker orders six pieces of 8/4 walnut (2 inches actual thickness), each 8 inches wide and 6 feet long, for a table build. Per piece: (2 × 8 × 6) / 12 = 8 board feet. Six pieces: 6 × 8 = 48 board feet. Add a 10% allowance for knots, checks, and cutting waste: 48 × 1.10 = 52.8 board feet. At $9.25 per board foot: 52.8 × $9.25 = $488.40.',
+				],
+			},
+			{
+				heading: 'Nominal quarters vs. what you should actually measure',
+				body: [
+					'Rough-sawn hardwood is traded in "quarters," a National Hardwood Lumber Association convention where the number of quarter-inches gives the nominal thickness: 4/4 is 1 inch, 5/4 is 1.25 inches, 8/4 is 2 inches, and so on. That works directly as a thickness input when a board is still rough off the saw, before any surfacing.',
+					"Once a board is surfaced (S2S or S4S), the mill has planed material off both faces, and how much varies by supplier. Retailers describe results anywhere from about an eighth to a quarter inch under nominal for 4/4 stock, and it isn't the same number everywhere. Rather than guess, measure the board with calipers and enter that actual thickness; the quarter buttons on this calculator are a rough-lumber shortcut, not a substitute for measuring surfaced stock.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Board feet for common actual sizes',
+				headers: ['Thickness x width x length', 'Board feet'],
+				rows: [
+					['1" x 4" x 8\'', '2.67'],
+					['1" x 6" x 8\'', '4.00'],
+					['1" x 8" x 8\'', '5.33'],
+					['1" x 10" x 8\'', '6.67'],
+					['1" x 12" x 8\'', '8.00'],
+					['2" x 4" x 8\'', '5.33'],
+					['2" x 6" x 8\'', '8.00'],
+					['2" x 8" x 10\'', '13.33'],
+					['2" x 10" x 12\'', '20.00'],
+					['2" x 12" x 16\'', '32.00'],
+				],
+				note: 'Computed directly from (thickness × width × length) / 12 using actual dimensions, not nominal.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a board foot?',
+				answer:
+					'A unit of lumber volume: a piece 1 inch thick, 12 inches wide, and 12 inches long, equal to 144 cubic inches. Any board\'s footage is (thickness in. × width in. × length ft.) / 12, regardless of its actual shape.',
+			},
+			{
+				question: 'Is a board foot the same as a linear foot or square foot?',
+				answer:
+					'No. A linear foot only measures length, ignoring thickness and width entirely. A square foot measures area (width × length) with no thickness term. Board feet is a volume, which is why it\'s the unit lumber yards use to price boards that vary in both thickness and width.',
+			},
+			{
+				question: 'Do I use nominal or actual dimensions in the formula?',
+				answer:
+					'Actual, measured dimensions. Nominal sizes (like "4/4" or a framing "2x4") describe the board before milling or as a trade label, not what you\'re holding. Measure thickness and width with calipers or a tape measure and enter those numbers.',
+			},
+			{
+				question: 'How much waste should I add for defects and cutting?',
+				answer:
+					'There\'s no single official figure. It depends on the wood\'s grade and how many joints, knots, or checks you\'re cutting around. Shop rules of thumb commonly range from about 10% for clean, straight stock to 20%+ for highly figured or lower-grade material. Add whatever allowance your supplier or project plan calls for in the waste field.',
+			},
+			{
+				question: 'Why is hardwood priced by the board foot but a 2x4 isn\'t?',
+				answer:
+					'Softwood framing lumber (2x4s, 2x6s) is milled to standardized cross-sections under the American Softwood Lumber Standard (PS 20), so every stud of a given nominal size is priced the same way, by the piece or linear foot. Hardwood and specialty lumber come in random widths and lengths off the saw, so board feet gives a volume-based price that works regardless of any individual board\'s dimensions.',
+			},
+			{
+				question: 'Can I use this for plywood or sheet goods?',
+				answer:
+					'Sheet goods are conventionally sold by the sheet or by square footage, not board feet, since their thickness is fixed and standardized (like 3/4" plywood). This calculator will still compute a mathematically correct board-foot figure if you enter a sheet\'s dimensions, but it isn\'t how sheet goods are normally priced.',
+			},
+		],
+		sources: [
+			{
+				label: 'University of Wisconsin-Madison Division of Extension, Forestry, FEM-042 — "What Is A Board Foot?" (the sawed-lumber board-foot formula and definition)',
+				url: 'https://forestry.extension.wisc.edu/files/2023/05/fem_042.pdf',
+			},
+			{
+				label: 'Wikipedia — "Board foot" (definition and formula, for general corroboration)',
+				url: 'https://en.wikipedia.org/wiki/Board_foot',
+			},
+			{
+				label: 'NIST — DOC Voluntary Product Standard PS 20-20, "American Softwood Lumber Standard"',
+				url: 'https://www.nist.gov/document/doc-ps-20-20-american-softwood-lumber-standard',
+			},
+			{
+				label: 'Rockler — "What Does the Quarter System of Lumber Thickness Mean?"',
+				url: 'https://www.rockler.com/learn/what-does-quarter-system-of-lumber-thickness-mean',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
