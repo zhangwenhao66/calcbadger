@@ -16,6 +16,7 @@ import GpaCalculator from './calculators/GpaCalculator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import LengthConverter from './calculators/LengthConverter';
 import MathSymbolsGenerator from './calculators/MathSymbolsGenerator';
+import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
@@ -70,3 +71,4 @@ const { slug } = Astro.props;
 {slug === 'yes-or-no-wheel' && <YesNoWheel client:load />}
 {slug === 'steps-to-miles-calculator' && <StepsToMilesCalculator client:load />}
 {slug === 'math-symbols' && <MathSymbolsGenerator client:load />}
+{slug === 'minecraft-circle-generator' && <MinecraftCircleGenerator client:load />}

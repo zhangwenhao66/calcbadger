@@ -3786,4 +3786,106 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'minecraft-circle-generator',
+		category: 'Games',
+		title: 'Minecraft Circle Generator',
+		shortTitle: 'Circle Generator',
+		description:
+			'Pick a radius from 1 to 30 and get a pixel-perfect block grid for a Minecraft circle, filled or outline, plus a row-by-row list of how many blocks go in each row and where.',
+		updated: '2026-08-13',
+		published: '2026-08-13',
+		coreSummary:
+			'A block belongs in the circle when the straight-line distance from its center to the true center is at most the radius: sqrt(row² + col²) ≤ radius. Because Minecraft blocks are a grid, a radius of r always produces an odd diameter of 2r + 1 blocks, giving the shape one true center block instead of splitting it across four. Outline mode keeps only blocks that touch at least one empty neighbor, leaving a one-block-thick ring instead of a solid disc.',
+		queries: [
+			'minecraft circle generator',
+			'minecraft circle chart',
+			'how to build a circle in minecraft',
+			'pixel circle generator',
+			'minecraft circle blueprint',
+		],
+		sections: [
+			{
+				heading: 'How a block ends up inside the circle',
+				body: [
+					'The generator lays a grid over the radius you enter, with one block sitting dead center. For every other block, it measures the straight-line distance from that block\'s center to the true center using the Pythagorean theorem: distance = sqrt(row² + col²), where row and col are how many blocks over and up/down that block sits from the middle. If that distance is at most the radius, the block is part of the circle.',
+					"This is the same rule the Minecraft-building community has used since Jesse Donat published the original Pixel Circle / Oval Generator at Donat Studios in 2012. He built it because he couldn't find a decent chart or generator for variable-size Minecraft circles at the time, and most later circle tools in this niche copy his approach. It's a simpler cousin of the incremental digital-circle-rasterization techniques computer graphics has used for decades to draw circles on pixel grids; the underlying goal is the same either way, approximating a smooth circle on a grid that only has square cells to work with.",
+					'One consequence of measuring from block centers: the diameter always comes out odd, equal to 2 × radius + 1. A radius of 5 gives an 11×11 footprint, not 10×10, because an even-width grid has no single center block: the middle would fall between four blocks instead of on one.',
+				],
+			},
+			{
+				heading: 'Filled vs. outline, worked through radius 5',
+				body: [
+					'In filled mode, every block within the radius gets placed, which is what you want for a solid floor or platform. Take the block 3 over and 4 up from center: distance = sqrt(3² + 4²) = sqrt(25) = 5, exactly equal to the radius, so it is included. The block 4 over and 4 up sits at distance sqrt(32) ≈ 5.66, past the radius, so it is left out.',
+					'Outline mode starts from that same filled disc, then drops any block whose four orthogonal neighbors (up, down, left, right) are all also filled. Those are interior blocks with nothing to hollow out around them. What is left is a one-block-thick ring, meant for walls, towers, or a rim around a pond rather than a solid fill.',
+					'At very small radii the outline rule can look odd rather than round. At radius 1 the circle is just a five-block plus sign, and the single center block is fully boxed in by its four neighbors, so outline mode drops it, leaving four separate arm blocks with a gap in the middle. That is the rule working as intended: a plus sign that small has no interior left to hollow out, not a bug in the generator.',
+				],
+			},
+			{
+				heading: 'Using the row list to build it',
+				body: [
+					'The row breakdown below the grid lists, for every row from top to bottom, how many blocks that row needs and which columns they span, both counted as offsets from the center (row 0, column 0). A positive row offset means below center, negative means above; the same goes for columns, left and right. The "Copy build schematic" button grabs the whole list as plain text so you can paste it next to your build.',
+					'For a filled circle the row spans are contiguous: "columns -3 to 3" means every block from -3 through 3 in that row. For an outline circle a row can have two separate stretches (the left and right edges of the ring), and the tool still reports one combined leftmost-to-rightmost span plus the total block count for that row, so check the count against the span width if the row has a gap in the middle.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Common radius sizes',
+				headers: ['Radius', 'Diameter', 'Filled blocks', 'Outline blocks'],
+				rows: [
+					['5', '11', '81', '28'],
+					['8', '17', '197', '44'],
+					['10', '21', '317', '56'],
+					['15', '31', '709', '84'],
+					['20', '41', '1,257', '112'],
+					['30', '61', '2,821', '168'],
+				],
+				note: 'Counts come from applying the distance rule above to every block in the grid, independently verified with a Python script rather than read off the live tool.',
+			},
+		],
+		faq: [
+			{
+				question: 'What does "radius" mean in this generator?',
+				answer:
+					'The distance in blocks from the center block outward to the edge, not counting the center block itself. A radius of 8 gives a 17×17 grid: the center block plus 8 blocks in every direction.',
+			},
+			{
+				question: 'Why is the diameter always an odd number?',
+				answer:
+					'Because the grid is built around one true center block. Diameter = 2 × radius + 1, which is always odd. An even-width grid would have no single center block: the middle would fall on the seam between four blocks instead.',
+			},
+			{
+				question: "What's the difference between filled and outline mode?",
+				answer:
+					'Filled places every block within the radius, for a solid floor or platform. Outline keeps only the blocks on the surface of that shape (anything with all four orthogonal neighbors also filled gets dropped) for a hollow ring to use as a wall or rim.',
+			},
+			{
+				question: 'Why does the radius-1 outline circle have a gap in the middle?',
+				answer:
+					"At radius 1 the filled shape is a five-block plus sign, and the center block's four neighbors are all filled, so the surface rule drops it. What's left is four blocks that only touch at the corners, with a visible gap on each side. That's the rule behaving correctly on a shape too small to have anything to hollow out. The silhouette still gets more circular as the radius grows, reading as a diamond at radius 2 and rounder from there, even though individual outline blocks generally touch corner-to-corner rather than edge-to-edge at any radius, not just at radius 1.",
+			},
+			{
+				question: 'How do I actually build the circle in-game?',
+				answer:
+					'Read the row list from top to bottom (or bottom to top), and for each row place blocks across the column span it lists, counting outward from wherever you decide your center block is. The copy button grabs the full list as plain text.',
+			},
+			{
+				question: 'What is the largest circle this tool can generate?',
+				answer:
+					'Radius 30, a 61×61 grid with up to 2,821 blocks in filled mode. That covers most arena floors and tower bases; bigger domes are usually assembled from repeated or scaled-up sections rather than one single circle.',
+			},
+		],
+		sources: [
+			{
+				label: 'Donat Studios — "Pixel Circle / Oval Generator (Minecraft)" (the 2012 tool that established the radius/diameter convention and distance-based fill rule this niche still uses)',
+				url: 'https://donatstudios.com/PixelCircleGenerator',
+			},
+			{
+				label: 'Wikipedia — "Midpoint circle algorithm" (general mathematical background on rasterizing circles onto a grid)',
+				url: 'https://en.wikipedia.org/wiki/Midpoint_circle_algorithm',
+			},
+		],
+		embedHeight: 1050,
+	},
 ];
