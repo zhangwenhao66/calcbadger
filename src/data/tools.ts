@@ -4261,4 +4261,107 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1250,
 	},
+	{
+		slug: 'asphalt-calculator',
+		category: 'Construction',
+		title: 'Asphalt Calculator',
+		shortTitle: 'Asphalt Calculator',
+		description:
+			'Estimate tons of hot mix or recycled asphalt for a driveway, lot, or base repair from paved area and compacted depth, with an optional material cost estimate.',
+		updated: '2026-08-17',
+		published: '2026-08-17',
+		coreSummary:
+			'Asphalt is ordered by weight, not area, because plants batch and truck it by the ton. The formula: volume (length x width x compacted depth) converts to weight using the mix\'s density, then weight in pounds divides by 2,000 to get tons. This calculator defaults to 145 lb/ft³ for hot mix asphalt, the planning unit weight the Iowa DOT\'s Standard Specifications use, and 112 lb/ft³ for reclaimed asphalt pavement (RAP), near the midpoint of the compacted-density range FHWA documents for recycled material.',
+		queries: [
+			'asphalt calculator',
+			'asphalt tonnage calculator',
+			'how much asphalt do i need',
+			'driveway asphalt calculator',
+			'asphalt density lb per cubic foot',
+		],
+		sections: [
+			{
+				heading: 'Why asphalt is measured in tons, and how the tonnage formula works',
+				body: [
+					"Concrete and gravel are commonly ordered by volume (cubic yards), but asphalt plants batch and deliver hot mix by weight, so paving estimates need a weight figure, not just an area. The path there has three steps: find the volume (length x width x compacted depth, all in the same length unit), convert that volume to weight using the mix's density, then divide the weight in pounds by 2,000 to get short tons.",
+					"The density term is doing the real work, and it isn't one fixed number. The Iowa Department of Transportation's Standard Specifications, Section 2303, use 145 lb/ft³ as the unit weight for converting hot-mix bid quantities to tons, and that figure sits inside the 142-148 lb/ft³ range the Asphalt Institute's Engineering FAQ gives for in-place asphalt mixture. Reclaimed asphalt pavement (RAP), asphalt milled up and reused typically as a base or shoulder material rather than a wearing surface, compacts to a lower density; FHWA's guideline on waste and byproduct materials in pavement construction documents a compacted range of 1,600-2,000 kg/m³, which is 100-125 lb/ft³. This calculator defaults to a figure near that range's midpoint, 112 lb/ft³, for RAP, and leaves a density field you can fill in yourself for anything else: cold patch, a blended base, or a supplier's lab-tested figure.",
+				],
+			},
+			{
+				heading: 'Two worked examples: a driveway overlay and a RAP base',
+				body: [
+					'A 24 ft by 12 ft driveway getting a 2 in hot-mix overlay: volume = 24 x 12 x (2/12) = 48 ft³. At 145 lb/ft³, that\'s 48 x 145 = 6,960 lb, or 3.48 tons before any waste allowance. Add a 5% allowance for compaction loss and truck-bed residue: 48 x 1.05 = 50.4 ft³, 50.4 x 145 = 7,308 lb, which is 3.654 tons; round up to whatever increment the supplier sells in, usually a half or quarter ton.',
+					'A 150 ft by 40 ft gravel lot getting a 4 in RAP base repair: volume = 150 x 40 x (4/12) = 2,000 ft³. At the 112 lb/ft³ RAP default, that\'s 2,000 x 112 = 224,000 lb, exactly 112 tons. Because RAP\'s real density depends on how finely it was milled and how well it compacts on site, treat that 112-ton figure as a planning estimate and confirm against a delivered load ticket once the job starts, or enter a supplier-provided density in the custom field if one is available.',
+				],
+			},
+			{
+				heading: 'Picking a density: hot mix, RAP, or a custom figure',
+				body: [
+					"Use the hot mix preset for new pavement or an overlay: a driveway, parking lot, or road surface course. Use RAP for a base or sub-base layer built from milled, recycled asphalt rather than virgin mix; it's lighter per cubic foot than hot mix and is priced and sold differently (often by the ton at a lower rate, sometimes by the load). Neither preset covers bagged cold-patch material, since published cold-patch densities vary widely by product formulation and aren't consistently documented by a single standards body. That's what the custom density field is for. If a supplier or lab report gives you a specific unit weight, entering it directly will be more accurate than either preset.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Hot mix asphalt (145 lb/ft³): tons per 100 sq ft by compacted depth',
+				headers: ['Compacted depth', 'Tons per 100 sq ft'],
+				rows: [
+					['1 in', '0.60'],
+					['1.5 in', '0.91'],
+					['2 in', '1.21'],
+					['2.5 in', '1.51'],
+					['3 in', '1.81'],
+					['4 in', '2.42'],
+				],
+				note: 'Computed directly from (100 sq ft x depth in feet x 145 lb/ft³) / 2,000, before any waste allowance. Scale linearly for other areas.',
+			},
+		],
+		faq: [
+			{
+				question: 'What density does this calculator use for hot mix asphalt?',
+				answer:
+					'145 lb/ft³ by default, the unit weight the Iowa DOT\'s Standard Specifications (Section 2303) use for converting hot-mix bid quantities to tons, which falls inside the 142-148 lb/ft³ in-place range published in the Asphalt Institute\'s Engineering FAQ. Real mixes vary within that range depending on aggregate type and air voids.',
+			},
+			{
+				question: 'Why is asphalt priced by the ton instead of by area?',
+				answer:
+					"Asphalt plants mix and load material by weight, and delivery trucks are weighed at the scale house going out, so tonnage is what both the plant and the paving crew actually measure. Area and depth are how you plan the order; tons are how it gets billed.",
+			},
+			{
+				question: 'What is RAP, and why does it use a different density?',
+				answer:
+					"RAP (reclaimed asphalt pavement) is old asphalt that's been milled up and reused, most often as base or shoulder material rather than a finished driving surface. It compacts less densely than fresh hot mix: FHWA documents a compacted range of 100-125 lb/ft³ for RAP, versus 142-148 lb/ft³ for hot mix, so using the hot-mix density on a RAP order would overstate the tonnage you need.",
+			},
+			{
+				question: 'How much waste or compaction allowance should I add?',
+				answer:
+					"There's no single official figure; contractors commonly plan for roughly 5-10% to cover compaction loss, minor grade variation, and material left in the truck bed or on the ground after spreading. Tighter, well-graded jobs can run closer to 5%; irregular areas or a first-time crew often plan closer to 10%.",
+			},
+			{
+				question: 'Does this calculator include the aggregate base layer?',
+				answer:
+					"No. This calculates the asphalt layer only. A driveway or lot typically sits on a separate compacted aggregate base (often 4-8 in of crushed stone), which is priced and ordered separately, usually by the cubic yard rather than by the ton.",
+			},
+			{
+				question: 'Can I use this for patching a pothole?',
+				answer:
+					"You can, for the volume-to-weight math, but small patch jobs are usually bought in pre-bagged cold-patch units rather than bulk tons, and cold-patch density varies by product. Enter the patch's dimensions and use the custom density field with a figure from the product's packaging or data sheet, since neither the hot-mix nor RAP preset represents cold patch.",
+			},
+		],
+		sources: [
+			{
+				label: 'Iowa Department of Transportation — Standard Specifications, Section 2303, "Hot Mix Asphalt Mixtures" (145 lb/ft³ unit weight for tonnage conversion)',
+				url: 'https://ia.iowadot.gov/erl/current/gs/content/2303.htm',
+			},
+			{
+				label: 'Asphalt Institute — Engineering FAQs (142-148 lb/ft³ in-place density range for asphalt mixture)',
+				url: 'https://www.asphaltinstitute.org/engineering/frequently-asked-questions/asphalt-pavement-thickness-and-mix-design/',
+			},
+			{
+				label: 'Federal Highway Administration — FHWA-RD-97-148, "User Guidelines for Waste and Byproduct Materials in Pavement Construction," Reclaimed Asphalt Pavement material description (100-125 lb/ft³ compacted density range)',
+				url: 'https://www.fhwa.dot.gov/publications/research/infrastructure/pavements/97148/046.cfm',
+			},
+		],
+		embedHeight: 820,
+	},
 ];
