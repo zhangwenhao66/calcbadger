@@ -4107,4 +4107,158 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'calligraphy-alphabet',
+		category: 'Reference',
+		title: 'Calligraphy Alphabet',
+		shortTitle: 'Calligraphy Alphabet',
+		description:
+			'Preview any word or all 52 letters in three real calligraphy traditions (Blackletter, Chancery Italic, and Modern Brush) and learn what actually separates one from another.',
+		updated: '2026-08-16',
+		published: '2026-08-16',
+		coreSummary:
+			'"Calligraphy alphabet" is not one alphabet. It covers several unrelated lettering traditions from different centuries and different parts of the world. This tool previews three of them: Blackletter (the dense, angular Gothic book hand behind Gutenberg\'s 1450s printing type), Chancery Italic (the slanted, oval Renaissance hand used in 16th- and 17th-century Italian chancery offices), and Modern Brush script (a freehand, pointed-pen style from the recent brush-lettering revival, with no fixed standard alphabet). Type a word to preview it in any of the three, or browse the full A–Z chart below.',
+		queries: [
+			'calligraphy alphabet',
+			'calligraphy letters',
+			'calligraphy alphabet chart',
+			'calligraphy fonts alphabet',
+			'how to write in calligraphy',
+			'blackletter alphabet',
+			'chancery script',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					'Pick a style (Blackletter, Chancery Italic, or Modern Brush), then type a word, name, or short phrase into the box to preview it instantly. The full alphabet chart underneath shows every uppercase and lowercase letter in that same style, each one labeled with its ordinary print letter so it\'s easy to match up.',
+					"None of the three fonts invents its letterforms from scratch: UnifrakturMaguntia digitizes a documented 1901 Fraktur typeface, Tangerine draws on historical Italian chancery hands, and Alex Brush is one specific artist's take on brush lettering, so what shows up here is closer to a historical specimen than a generic script font.",
+					"What this tool cannot do is teach the handwriting itself. A display font has no nib angle, no pressure changes, and no stroke order, so anyone actually learning to write Blackletter, Chancery Italic, or brush calligraphy by hand needs a pen diagram or a demonstration video, not this page.",
+				],
+			},
+			{
+				heading: 'There is no single "calligraphy alphabet"',
+				body: [
+					"Unlike the Latin alphabet itself, calligraphy doesn't have one standard letterform set. It's an umbrella term for hand-lettering traditions that developed independently, centuries or even a thousand years apart, for different practical reasons: copying books before printing existed, writing fast and legibly in a Renaissance office, engraving elegant handwriting samples for 18th-century copybooks, or just looking striking on a wedding invitation today. A chart built for one tradition (say, Blackletter) shares almost nothing with a chart built for another (say, modern brush lettering) beyond both being called \"calligraphy.\"",
+					"That's why this tool offers three distinct styles instead of one: picking a single font and calling it \"the\" calligraphy alphabet would misrepresent how varied the category actually is.",
+				],
+			},
+			{
+				heading: 'Blackletter: from medieval book hands to Gutenberg\'s printing press',
+				body: [
+					'Blackletter, also called Gothic script, developed in northwestern Europe in the 12th century as a more compressed, angular evolution of the earlier Carolingian minuscule hand, driven partly by the cost of parchment: tighter, narrower letters fit more text on an expensive page. Scribes held a broad-nibbed quill nearly perpendicular to the writing line, which produced the thick, uniform, "broken" strokes the style is known for. The most formal, calligraphic version of blackletter, called textualis or textura, became the standard book hand across much of medieval Europe.',
+					"Blackletter's best-known appearance came a few centuries later: when Johannes Gutenberg built his printing press in the 1440s and produced the Gutenberg Bible by the mid-1450s, he cut metal type modeled directly on textura, because that was the handwriting style readers already recognized as a proper book. In the early 16th century, Holy Roman Emperor Maximilian I commissioned a new, more ornamented blackletter design, drawn by Hieronymus Andreae, for a set of imperial works including the Triumphal Arch woodcut and his own 1513 prayer book (Gebetbuch). That design became known as Fraktur, and it went on to dominate German-language printing for roughly the next four hundred years.",
+				],
+			},
+			{
+				heading: 'Chancery Italic: a Renaissance hand built for speed',
+				body: [
+					"Chancery Italic descends from the italic hands used in Italian chancery offices (government and papal writing bureaus) during the 16th and 17th centuries. Writing masters of the period pushed the style toward faster, more practical letterforms: in his 1579 manual Il perfetto cancellaresco corsivo (\"The Perfect Cursive Chancery\"), Vatican scribe Giovanni Francesco Cresci criticized earlier chancery models as too slow to write and proposed a steeper-sloped, narrower-nibbed hand better suited to everyday correspondence and bookkeeping, a different goal from blackletter's slow, formal book-copying purpose. The tall ascenders and open, rhythmic letter spacing typical of chancery hands are a direct result of that speed-and-legibility design.",
+					"This tool's Chancery Italic style uses the open-license font Tangerine, released through Google Fonts in 2010, which is itself modeled on those 16th- and 17th-century Italian chancery hands rather than on any single historical exemplar.",
+				],
+			},
+			{
+				heading: 'Modern Brush calligraphy has no fixed alphabet',
+				body: [
+					"Modern brush (or pointed-pen) calligraphy is the newest of the three styles here, part of a lettering revival that picked up through the 2010s alongside social media and hand-lettered wedding stationery. Structurally, it's freehand pointed-pen or brush-pen cursive: thick downstrokes from pressing the brush or flexible nib, thin upstrokes from releasing pressure, similar in principle to how a pointed Copperplate pen worked, but without Copperplate's engraved, standardized exemplars behind it.",
+					"That's the key difference from the other two styles on this page: Blackletter and Chancery Italic both trace back to specific historical teaching hands with identifiable letterforms, while modern brush calligraphy is explicitly shaped by whoever is writing it. There's no single authoritative brush-calligraphy alphabet the way there's a recognizable textura or chancery hand: every practitioner's version looks a little different, and the font used here (Alex Brush, released in 2011) is one designer's take on the style, not a definitive standard.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Three calligraphy traditions compared',
+				headers: ['Style', 'Era & origin', 'Defining trait'],
+				rows: [
+					[
+						'Blackletter',
+						'Textualis: 12th-century northwestern Europe. Fraktur: commissioned early 16th century under Emperor Maximilian I, first used for his 1513 prayer book',
+						'Dense, angular "broken" strokes from a broad-nib quill held nearly perpendicular to the page',
+					],
+					[
+						'Chancery Italic',
+						'16th- and 17th-century Italian chancery (government/papal) offices',
+						'Slanted, oval letterforms designed for writing official correspondence quickly and legibly',
+					],
+					[
+						'Modern Brush',
+						'Lettering revival, roughly 2010s to present',
+						'Freehand pointed-pen or brush strokes with no single fixed standard; shaped by the individual writer',
+					],
+				],
+				note: 'This table covers the three styles rendered in this tool, not every calligraphy tradition. Copperplate (the engraved, thick-and-thin script based on English Round Hand, developed from the 1660s and popularized in copybooks through the 1700s) is a related but distinct tradition not previewed here; see the FAQ below.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a calligraphy alphabet?',
+				answer:
+					'It\'s a catch-all term for any alphabet chart drawn in a decorative hand-lettering style, but there is no single calligraphy alphabet: it covers several unrelated traditions (Blackletter, Chancery Italic, Copperplate, modern brush lettering, and others) that developed independently, sometimes centuries apart. This tool previews three of the most distinct ones: Blackletter, Chancery Italic, and Modern Brush.',
+			},
+			{
+				question: "What's the difference between calligraphy and cursive?",
+				answer:
+					"Cursive, in the everyday US sense, refers to the joined-up handwriting taught in American schools, following one of a handful of teaching programs like Palmer or Zaner-Bloser. Calligraphy is a broader umbrella covering multiple decorative lettering traditions that developed independently, for different purposes: Blackletter was a slow, formal book hand built for durability rather than speed, while Chancery Italic was deliberately reworked in the 16th century to be fast enough for everyday correspondence. Both predate American cursive by centuries.",
+			},
+			{
+				question: 'What is Blackletter script?',
+				answer:
+					'Blackletter (also called Gothic script) is the dense, angular medieval book hand that developed in northwestern Europe starting in the 12th century. Its most formal form, textura, is the handwriting style Johannes Gutenberg modeled his printing type on for the Gutenberg Bible in the mid-1450s. Fraktur, a more ornamented blackletter variant, followed in the early 16th century and dominated German-language printing for centuries.',
+			},
+			{
+				question: 'What is Copperplate calligraphy?',
+				answer:
+					"Copperplate is a slanted, thick-and-thin script based on Round Hand, a style of English handwriting that writing masters John Ayres and William Banson developed starting in the 1660s. It gets the name \"Copperplate\" from copybooks like George Bickham the Elder's The Universal Penman (published in parts between 1733 and 1741) that reproduced model handwriting by engraving it onto copper printing plates. Copperplate isn't one of the three styles rendered in this tool, but it's the tradition most people picture when they think of formal wedding-invitation-style script.",
+			},
+			{
+				question: 'Is there one official calligraphy alphabet I should learn?',
+				answer:
+					"No. Which style is worth learning depends on what you're doing with it: Blackletter for a medieval or Gothic-themed project, Chancery Italic for a classic formal-document look, Copperplate or modern brush for wedding stationery and hand lettering. They use different tools and different letterforms, so picking a style before practicing matters more than finding a single \"correct\" calligraphy alphabet.",
+			},
+			{
+				question: 'What tools do real calligraphers use, versus this preview?',
+				answer:
+					"This tool renders letters in a display font on screen, not real ink strokes. Blackletter and Chancery Italic are traditionally written with a broad-nib (chisel-edge) pen held at a fairly consistent angle, which naturally produces their thick and thin strokes. Copperplate and modern brush calligraphy instead use a flexible pointed pen or a brush, where the thick/thin contrast comes from how much pressure the writer applies, not the nib's fixed shape.",
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Blackletter" (12th-century origin, textualis/textura, and Gutenberg\'s use of the style for printing type)',
+				url: 'https://en.wikipedia.org/wiki/Blackletter',
+			},
+			{
+				label: 'Wikipedia — "Fraktur" (Emperor Maximilian I\'s early-16th-century commission, designer Hieronymus Andreae, and the 1513 prayer book)',
+				url: 'https://en.wikipedia.org/wiki/Fraktur',
+			},
+			{
+				label: 'Wikipedia — "Round hand" (Round Hand developed in England in the 1660s by writing masters John Ayres and William Banson)',
+				url: 'https://en.wikipedia.org/wiki/Round_hand',
+			},
+			{
+				label: 'Wikipedia — "Copperplate script" (the "Copperplate" name comes from copybooks reproduced by engraving onto copper plates)',
+				url: 'https://en.wikipedia.org/wiki/Copperplate_script',
+			},
+			{
+				label: 'Wikipedia — "George Bickham the Elder" (The Universal Penman, published 1733–1741, and its role popularizing Round Hand)',
+				url: 'https://en.wikipedia.org/wiki/George_Bickham_the_Elder',
+			},
+			{
+				label: 'Internet Archive — Giovanni Francesco Cresci, "Il perfetto cancellaresco corsivo" (1579), the manual that introduced a faster, steeper chancery cursive for everyday correspondence',
+				url: 'https://archive.org/details/ilperfettocancel00cres',
+			},
+			{
+				label: 'Google Fonts (google/fonts repository) — "Tangerine" description (inspired by 16th- and 17th-century Italian chancery hands; designer Toshi Omagari)',
+				url: 'https://github.com/google/fonts/blob/main/ofl/tangerine/DESCRIPTION.en_us.html',
+			},
+			{
+				label: 'Google Fonts (google/fonts repository) — "Alex Brush" metadata (designer Robert Leuschke, added 2011)',
+				url: 'https://github.com/google/fonts/blob/main/ofl/alexbrush/METADATA.pb',
+			},
+			{
+				label: 'Google Fonts (google/fonts repository) — "UnifrakturMaguntia" description (based on Peter Wiegel\'s digitization of an 1901 Fraktur typeface by Carl Albert Fahrenwaldt, first published 2010)',
+				url: 'https://github.com/google/fonts/blob/main/ofl/unifrakturmaguntia/DESCRIPTION.en_us.html',
+			},
+		],
+		embedHeight: 1250,
+	},
 ];

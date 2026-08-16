@@ -6,6 +6,7 @@
  */
 import BmiCalculator from './calculators/BmiCalculator';
 import BoardFootCalculator from './calculators/BoardFootCalculator';
+import CalligraphyAlphabetGenerator from './calculators/CalligraphyAlphabetGenerator';
 import CalorieCalculator from './calculators/CalorieCalculator';
 import CdCalculator from './calculators/CdCalculator';
 import CoinFlipCalculator from './calculators/CoinFlipCalculator';
@@ -76,3 +77,4 @@ const { slug } = Astro.props;
 {slug === 'math-symbols' && <MathSymbolsGenerator client:load />}
 {slug === 'minecraft-circle-generator' && <MinecraftCircleGenerator client:load />}
 {slug === 'random-letter-generator' && <RandomLetterGenerator client:load />}
+{slug === 'calligraphy-alphabet' && <CalligraphyAlphabetGenerator client:load />}
