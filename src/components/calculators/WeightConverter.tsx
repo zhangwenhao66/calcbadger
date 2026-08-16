@@ -102,14 +102,14 @@ export default function WeightConverter() {
 					))}
 				</div>
 			) : negative ? (
-				<p class="calc-note">A weight can't be negative — enter a value of 0 or more.</p>
+				<p class="calc-note">A weight can't be negative. Enter a value of 0 or more.</p>
 			) : (
 				<p class="calc-note">Enter a weight to convert it to the other six units.</p>
 			)}
 
 			<p class="calc-note">
 				1 lb = 0.45359237 kg and 1 oz = 28.349523125 g are exact by international agreement (1959
-				International Yard and Pound Agreement / NIST Handbook 44) — not measured approximations,
+				International Yard and Pound Agreement / NIST Handbook 44), not measured approximations,
 				so there is no rounding error in the conversion itself, only in how many digits are
 				displayed above. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>

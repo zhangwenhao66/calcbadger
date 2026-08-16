@@ -1089,8 +1089,8 @@ export const tools: Tool[] = [
 		title: 'Weight Converter',
 		shortTitle: 'Weight Converter',
 		description:
-			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, and US tons instantly, with reference tables for body weight, cooking, newborn weight, and dosing.',
-		updated: '2026-08-04',
+			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, and US tons instantly, with reference tables for body weight, cooking, and dosing.',
+		updated: '2026-08-16',
 		published: '2026-08-04',
 		coreSummary:
 			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. Enter a weight in any of seven units and this tool converts it to the other six at once.',
@@ -1126,7 +1126,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'The exact factors this converter uses',
 				body: [
-					'Micrograms, milligrams, grams, and kilograms convert to each other by exact powers of ten (1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg), since that is how the SI system is built. The imperial bridge is fixed by legal definition rather than by measurement: 1 lb = 453.59237 g exactly (NIST Handbook 44, Appendix C, marks this "exact"). Neither the ounce nor the US ton has its own independent definition — both are derived arithmetically from that same fixed pound: 1 oz = 1 lb ÷ 16 = 28.349523125 g, and 1 US ton = 2,000 lb = 907,184.74 g.',
+					'Micrograms, milligrams, grams, and kilograms convert to each other by exact powers of ten (1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg), since that is how the SI system is built. The imperial bridge is fixed by legal definition rather than by measurement: 1 lb = 453.59237 g exactly (NIST Handbook 44, Appendix C, marks this "exact"). Neither the ounce nor the US ton has its own independent definition. Both are derived arithmetically from that same fixed pound: 1 oz = 1 lb ÷ 16 = 28.349523125 g, and 1 US ton = 2,000 lb = 907,184.74 g.',
 					"Because grams and pounds share no common round factor, most conversions land on a long decimal rather than a clean number (1 kg is 2.204623 lb, not 2.2). That matters more here than it might for a length or volume conversion: a nurse converting a dose between mg and mcg, or a lab weighing a reagent in g versus oz, is working with a figure where a rounding shortcut can shift the result by a meaningful margin. This tool carries the full floating-point calculation internally and rounds only for display, to 6 significant figures, so the number you copy is accurate even though the underlying arithmetic never actually stops at that many digits.",
 				],
 			},
