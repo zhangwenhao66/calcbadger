@@ -180,5 +180,20 @@
       "https://calcbadger.com/bmi-calculator/"
     ],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-16",
+    "action": "submitted",
+    "reason": "同日第二次运行（首次运行结尾因Claude in Chrome工具故障卡在Hollowvane，等待网络恢复后重试成功续跑）。GSC自身Page indexing报告'Discovered - currently not indexed'当前0页。改查build-index-queue.py队列高代理未提交候选：date-calculator/concrete-calculator/world-clock/minecraft-circle-generator连续4个均已收录（本站索引速度很快），reaction-time-test确认'Discovered - currently not indexed'，REQUEST INDEXING提交成功确认'Indexing requested'。",
+    "submitted_urls": [
+      "https://calcbadger.com/reaction-time-test/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/date-calculator/",
+      "https://calcbadger.com/concrete-calculator/",
+      "https://calcbadger.com/world-clock/",
+      "https://calcbadger.com/minecraft-circle-generator/"
+    ],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
