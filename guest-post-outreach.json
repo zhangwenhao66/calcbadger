@@ -104,5 +104,62 @@
     "environment_notes": "本轮研究阶段发现两处基础设施限制：(1) Browser pane（mcp__Claude_Browser__*）的浏览器分页在本次运行中被其他并发的矩阵站子任务共享/互相顶替，导致表单填写不可靠，已改用claude-in-chrome完成成功案例后该工具也因多浏览器连接问题在无人值守场景下不可用；(2) WebSearch本会话配额（200次/session）在研究阶段后期耗尽，可能是与其他并发矩阵站子任务共享同一会话配额，导致本轮未能挖到第4/5个候选渠道即被迫收尾。均记录在案，非本站可修复的问题，供跨站汇总时留意。",
     "actions_taken": "1个简单目录表单直接提交完成（The Free Tools Directory）；1个真实可行渠道因浏览器工具在并发环境下失效未能提交，留待下轮重试（nologin.tools）；1条pitch邮件走完整流程（核实→事实核对→查重→humanizer→独立复核agent判定can send→实际发送）成功发出（Ask a Tech Teacher）。2026-08-04的2条积压草稿经核实其实早已发送完毕，本轮未重复处理。",
     "result_summary": "3 new channels researched this round: 1 submitted (directory form), 1 sent (pitch email, independent-review approved), 1 real-and-viable but blocked by shared-environment tooling failures (browser pane contention + WebSearch quota exhaustion), carried to next round. No paid-link schemes or PBN-suspect channels encountered this round."
+  },
+  {
+    "date": "2026-08-16",
+    "site": "calcbadger",
+    "run_type": "weekly trafficsite-guest-post-outreach",
+    "gsc_target_selection": {
+      "source": "python3 gsc_query.py calcbadger (last 28 days)",
+      "note": "Top Pages in position 5-40 with meaningful impressions, excluding tools already pitched within 14 days (molarity-calculator x2, sat-score-calculator x1, stair-calculator x1): /coin-flip-simulator/ (160 impressions, avg position 13.0) selected as this round's featured tool."
+    },
+    "backlog_processed": [
+      {
+        "channel": "nologin.tools — Submit a Tool",
+        "url": "https://nologin.tools/submit",
+        "status": "submitted — 2026-08-16",
+        "notes": "Carried over from 2026-08-06 (blocked that round by shared-environment browser tooling failures, not a real rejection). Retried this round via Browser pane: page rendered correctly, filled Tool Name/URL/Description (matches src/data/tools.ts), checked the truthful 'works without login' confirmation, tagged Education/Web App/Client-Side Only/Free, submitted with contact@calcbadger.com. get_page_text confirmed a genuine success page: 'Submission Received! Thank you for contributing to the community. Our team will review your submission shortly.' with preview URL https://nologin.tools/tool/calcbadger-com-coin-flip-simulator. Backlog item resolved."
+      }
+    ],
+    "channels_researched": [
+      {
+        "name": "nosignuptools.com — Submit a Tool",
+        "url": "https://nosignuptools.com/submit",
+        "status": "real-and-viable — not completed this round (missing required screenshot asset)",
+        "notes": "curl-verified HTTP 200, legitimate Next.js tool directory with an explicit 'Math & STEM' category, no signup/CAPTCHA/payment required, clear submission guidelines (No Signup Required / High Quality / Publicly Accessible / Safe & Secure) and a stated 24-48h human review process. Filled via Browser pane: Tool Name, Tool URL, Category=Math & STEM, Short/Detailed Description (facts match tools.ts), Mobile Friendly tag, submitter name/email. Uploaded the tool icon successfully via JS fetch() of the live https://calcbadger.com/apple-touch-icon.png (real 180x180 site icon, not fabricated) into the file input. Submission blocked by a second mandatory requirement discovered only at submit time: 'Upload at least one screenshot'. This session's Browser pane screenshot tool returns image bytes only to the agent with no local file path to re-upload from, and using the favicon as a fake 'screenshot' was rejected as misleading. Not submitted. Genuinely viable channel, carried to next round: needs an actual screenshot of the coin-flip-simulator page saved to a fetchable location, then the same fill sequence can be replayed. Not an Owen-escalation item — pure tooling capability gap."
+      },
+      {
+        "name": "TCEA TechNotes Blog — Five Free Online Coin-Flipping Tools",
+        "url": "https://blog.tcea.org/coin-flip-tools-gone-digital-online-and-free/",
+        "status": "real-but-stale — not pursued",
+        "notes": "Blog itself is active (posts dated 2026-08-05, 2026-07-17, 2026-07-07 found on the same domain), but this specific post is dated 2021-11-17 with no update marker, i.e. a static old article rather than a maintained list. Does not meet the 2026-08-10 recent-activity quality bar for the specific target page. Skipped."
+      },
+      {
+        "name": "Ask a Tech Teacher — Best Math Websites",
+        "url": "https://askatechteacher.com/great-kids-websites/math-websites/",
+        "status": "real-and-active — skipped for 14-day dedup",
+        "notes": "curl-verified, page shows 'Updated 6-7-26' (June 2026), genuinely active. But askatechteacher@gmail.com was already contacted on 2026-08-06 (10 days ago, chemistry list pitch) — within the 14-day no-repeat-contact window, so not pitched again this round regardless of page."
+      },
+      {
+        "name": "Math = Love (mathequalslove.net, Sarah Carter)",
+        "url": "https://mathequalslove.net/probability-activities/",
+        "status": "real-but-poor-fit — not pursued",
+        "notes": "Real, very active personal high-school-math-teacher blog with genuine probability activities and a real contact email (sarah@mathequalslove.net). Not a third-party curated resource list open to outside tool suggestions — it's personal teaching material. Cold-pitching a tool link doesn't match the site's actual purpose, low expected hit rate, skipped."
+      },
+      {
+        "name": "Educators Technology — Best Math Websites for Teachers and Students",
+        "url": "https://www.educatorstechnology.com/2023/01/20-great-math-websites-for-teachers-and.html",
+        "status": "real-but-stale — not pursued",
+        "notes": "Site overall active (2026 posts exist) but this specific list dates to January 2023 with no update evidence found, same reasoning as TCEA. Skipped."
+      },
+      {
+        "name": "ToolDirs.com",
+        "url": "https://tooldirs.com/submit",
+        "status": "ambiguous — deprioritized",
+        "notes": "Real submission form exists but the site explicitly distinguishes free vs paid submission tiers and has a Sign In gate on the main nav, suggesting a more SaaS-directory / monetized-listing orientation than the plain no-login tool directories already used. Did not verify the free tier in depth this round; lower priority than confirmed clean channels."
+      }
+    ],
+    "actions_taken": "1 backlog item resolved (nologin.tools submitted, success page confirmed). 1 new directory found and mostly filled (nosignuptools.com) but blocked mid-submission on a mandatory screenshot upload the current tooling can't fulfill without fabricating the image; carried to next round. 5 other candidates researched around the coin-flip-simulator/probability-teaching angle and rejected: 2 for staleness (no recent-update evidence), 1 for 14-day dedup (already-contacted recipient), 1 for poor fit (personal blog, not an open resource list), 1 deprioritized (ambiguous paid tiers). No email pitches sent this round — no channel both passed the quality bar and needed a persuasive email rather than a simple directory form.",
+    "result_summary": "1 carryover resolved (nologin.tools), 1 new real-and-viable channel found but incomplete (nosignuptools.com, screenshot blocker), 5 channels researched and rejected with documented reasons. No paid-link or PBN-suspect channels encountered."
   }
 ]
