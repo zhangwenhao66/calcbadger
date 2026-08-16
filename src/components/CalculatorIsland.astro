@@ -21,6 +21,7 @@ import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
+import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import ShapeVolumeCalculator from './calculators/ShapeVolumeCalculator';
@@ -74,3 +75,4 @@ const { slug } = Astro.props;
 {slug === 'steps-to-miles-calculator' && <StepsToMilesCalculator client:load />}
 {slug === 'math-symbols' && <MathSymbolsGenerator client:load />}
 {slug === 'minecraft-circle-generator' && <MinecraftCircleGenerator client:load />}
+{slug === 'random-letter-generator' && <RandomLetterGenerator client:load />}

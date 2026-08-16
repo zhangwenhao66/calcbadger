@@ -4000,4 +4000,111 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'random-letter-generator',
+		category: 'Games',
+		title: 'Random Letter Generator',
+		shortTitle: 'Random Letter Generator',
+		description:
+			'Draw 1 to 20 random letters from A to Z, vowels only, or consonants only, either with an equal chance per letter or weighted by real English letter frequency.',
+		updated: '2026-08-16',
+		published: '2026-08-16',
+		coreSummary:
+			'Each draw is an independent weighted random pick: with equal weighting every letter in the chosen set has the same odds; with English-frequency weighting, a letter\'s odds match how often it actually appears in English text (e at 12.7%, versus z at 0.074%), so common letters like e, t, and a come up far more than q, x, or z. Draws are made with replacement, the same way rolling a die twice gives two independent results, so the same letter can appear more than once in one batch.',
+		queries: [
+			'random letter generator',
+			'random letter picker',
+			'pick a random letter',
+			'random vowel generator',
+			'random consonant generator',
+		],
+		sections: [
+			{
+				heading: 'How the generator picks a letter',
+				body: [
+					'Every draw uses the cumulative-weight method: each letter in the active set (all 26, vowels only, or consonants only) gets a weight, the weights are normalized so they sum to 1, and a single random number decides which letter\'s slice of that 0-to-1 range gets hit. Under "Equal chance," every letter in the set gets the same weight, so a draw from all 26 letters gives each one exactly 1/26 ≈ 3.8% odds.',
+					'Under "English frequency," each letter\'s weight comes from how often it actually shows up in English writing, not an equal split. The letter e carries about 12.7% of the weight on its own, roughly 3.3 times its 3.8% equal-chance odds, while z sits at just 0.074%, about 52 times rarer than an equal draw would make it and over 170 times rarer than e under this same weighting. This is the same fitness-proportionate ("roulette wheel") sampling method used by this site\'s Yes/No decision wheel, just applied to 26 (or fewer, in the vowels/consonants sets) letters instead of 2 or 3 outcomes.',
+				],
+			},
+			{
+				heading: 'Worked examples: turning the weights into real odds',
+				body: [
+					'All 26 letters, equal chance: the 5 vowels (a, e, i, o, u) make up 5/26 ≈ 19.2% of the set, so a single draw lands on a vowel about 1 time in 5. Across 3 independent draws, the chance of getting at least one vowel is 1 minus the chance of missing every time: 1 − (21/26)³ = 1 − 0.527 ≈ 47.3%.',
+					'All 26 letters, English-frequency weighted: the same 5 vowels carry a combined 38.1% of the weight (their frequencies add to roughly 38.2% of the table below, which itself sums to about 100.15% due to independent rounding in the source), about double their 19.2% equal-chance share, because e, a, i, and o are all individually common letters. A single frequency-weighted draw is close to a coin flip between "vowel" and "consonant," even though vowels are only 5 of the 26 letters on the keyboard.',
+				],
+			},
+			{
+				heading: 'Why offer vowels-only, consonants-only, and two weighting modes',
+				body: [
+					'Word games are the main reason to restrict the letter set: picking a target letter for a name game, generating consonant clusters for a made-up word, or drilling vowel sounds for early readers all call for one subset or the other, not the full alphabet.',
+					'The two weighting modes serve different purposes. Equal chance is the right default for anything where fairness matters, like a random pick for "who goes first," a coin-flip-style tiebreaker, or a classroom name-a-letter drill. English-frequency weighting is closer to how words in Scrabble, hangman, or Wordle actually behave, since it mirrors which letters are genuinely likelier to appear in a real English word rather than a mathematically fair coin toss between 26 equally weighted options.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'English letter frequency (Wikipedia "Letter frequency," Texts column)',
+				headers: ['Letter', 'Frequency', 'Letter', 'Frequency'],
+				rows: [
+					['E', '12.7%', 'N', '6.7%'],
+					['T', '9.1%', 'S', '6.3%'],
+					['A', '8.2%', 'H', '6.1%'],
+					['O', '7.5%', 'R', '6.0%'],
+					['I', '7.0%', 'D', '4.3%'],
+					['L', '4.0%', 'C', '2.8%'],
+					['U', '2.8%', 'M', '2.4%'],
+					['W', '2.4%', 'F', '2.2%'],
+					['G', '2.0%', 'Y', '2.0%'],
+					['P', '1.9%', 'B', '1.5%'],
+					['V', '0.98%', 'K', '0.77%'],
+					['J', '0.16%', 'X', '0.15%'],
+					['Q', '0.12%', 'Z', '0.074%'],
+				],
+				note: 'This is the weighting used by the "English frequency" mode above. Percentages are Wikipedia\'s reported figures and sum to about 100.15% due to independent rounding at the source; a second corpus-based table (Cornell\'s Math Explorers\' Club, 40,000-word sample) agrees on the top 7 letters and most percentages, though the two sources rank a few letters differently further down the alphabet (for example, Wikipedia has h just ahead of r, Cornell has r just ahead of h).',
+			},
+		],
+		faq: [
+			{
+				question: 'How does this generator decide which letter to pick?',
+				answer:
+					'It normalizes the weights of every letter in the active set so they sum to 1, then draws one random number and finds which letter\'s slice of that range it falls into (the cumulative-weight, or "roulette wheel," sampling method). Under equal chance every letter\'s slice is the same size; under English frequency the slices are sized by how often each letter appears in English text.',
+			},
+			{
+				question: 'What\'s the difference between "Equal chance" and "English frequency"?',
+				answer:
+					'Equal chance gives every letter in the set identical odds, for example 1/26 ≈ 3.8% each across the full alphabet. English frequency instead weights each letter by how often it shows up in real English writing, so e (about 12.7%) comes up roughly 3.3 times more often than under equal chance, while rare letters like q and z come up far less.',
+			},
+			{
+				question: 'Can the same letter come up more than once in one batch?',
+				answer:
+					'Yes. Each letter in a batch is drawn independently, the same way rolling a die twice can land on the same number twice. It does not remove a letter from the pool once it\'s been drawn, so a run of 5 letters could include the same letter two or three times.',
+			},
+			{
+				question: 'Why would I restrict the draw to vowels or consonants only?',
+				answer:
+					'Word games and language drills often call for one subset specifically, like picking consonant clusters for a made-up word, choosing a vowel sound for an early-reading exercise, or narrowing a name-picking game to consonant-only initials.',
+			},
+			{
+				question: 'What is a random letter generator actually used for?',
+				answer:
+					'Common uses include picking a starting letter for word games like hangman, Scrabble tile practice, or category games ("name a fruit that starts with…"), classroom random-call drills, and icebreaker or naming exercises where any letter needs to come up fairly.',
+			},
+			{
+				question: 'Where does the English letter frequency data come from?',
+				answer:
+					'The Texts column of Wikipedia\'s "Letter frequency" article, cross-checked against Cornell University\'s Math Explorers\' Club frequency table (based on a 40,000-word English sample). The two agree on the 7 most common letters (e, t, a, o, i, n, s) and on most individual percentages, with some reordering further down the alphabet between sources.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Letter frequency" (Texts column: relative frequency of each letter in English)',
+				url: 'https://en.wikipedia.org/wiki/Letter_frequency',
+			},
+			{
+				label: 'Cornell University, Math Explorers\' Club — "Frequency Table" (40,000-word English corpus, corroborating source)',
+				url: 'https://pi.math.cornell.edu/~mec/2003-2004/cryptography/subs/frequencies.html',
+			},
+		],
+		embedHeight: 820,
+	},
 ];
