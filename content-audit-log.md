@@ -787,3 +787,102 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "weight-converter",
+  "last_audited": "2026-08-16",
+  "published_date": "2026-08-04",
+  "note": "本站从未被审计过，9个已审计工具之后按tools.ts文件顺序（cd/square-footage/stair/sat-score/molarity/bmi/coin-flip/temperature/length之后）的下一个候选，按SKILL.md最早/缺失优先规则选取。",
+  "checklist": [
+    "公式正确性（最高优先级）：7种质量单位（mcg/mg/g/kg/oz/lb/US ton）换算系数是否与NIST Handbook 44 Appendix C / 1959国际码磅协定精确值一致",
+    "4张参考表（kg-lb身体体重 7行、lb-kg身体体重 7行、oz-g烹饪计量 6行、新生儿oz→lb·oz 7行）与3条worked example（68kg体重、8lb6oz新生儿、200mcg用药剂量）数值是否可独立复算通过",
+    "极大/极小量级下roundSig()是否有浮点残留——本站length-converter 2026-08-13审计已确认同款roundSig实现在极端量级下有IEEE-754残留，需核对weight.ts是否有同一未修复的bug（本工具单位跨度达mcg↔US ton共12个数量级，比length-converter的mm↔mile约6.4个数量级更宽，理论上更容易触发）",
+    "meta description等技术SEO字段是否健康",
+    "sources链接（NIST两条）是否仍可访问；内链健康度（工具数已增长到33个，crossCategory轮转兜底逻辑是否仍覆盖本工具）"
+  ],
+  "findings": [
+    {
+      "dimension": "EEAT / 公式正确性（最高优先级）",
+      "status": "发现1个真问题（已修复），其余核实无误",
+      "detail": "直接下载NIST Handbook 44（2026版）Appendix C原始PDF（非WebSearch摘要，用pdfminer提取全文逐字搜索）核实四组关键数字：'453.592 37'（1磅→克，精确）、'28.349 523 125'（1盎司→克，精确）、'907.184 74'（1短吨→千克，精确）、'31.103 476 8'（1金衡盎司→克）均逐字存在于官方PDF表格，与weight.ts/tools.ts引用完全一致；金衡盎司比常衡盎司重9.7%（31.1034768/28.349523125-1=9.714%，正文写'about 9.7%'准确）。用Python Decimal（30位精度）独立重算全部4张referenceTables（共27行）、3条worked example、7条FAQ中的全部数字，与tests/weight.test.ts及正文逐一比对全部吻合，无一处偏差。**发现真问题**：src/lib/weight.ts的roundSig()仍是Math.round(n*magnitude)/magnitude（magnitude由Math.pow(10,负指数)算出）旧实现——这正是length-converter 2026-08-13审计发现并修复的同一bug（改用Number(n.toPrecision(sig))），但修复未同步传播到这个姊妹文件。独立agent用Node独立复现：convert(1e11,'ton','mcg')原始值9.0718474e+22，旧算法产出9.071850000000001e+22（第6位有效数字之后残留非零位）；convert(1e12,'kg','mcg')更极端，原始值1e+21，旧算法产出形似20个9的999999999999999900000而非干净的1e+21。本工具单位跨度达12个数量级（比length-converter更宽），且NumberField无max上限，用户可直接通过UI输入大数值触发。CONFIRMED为真问题（独立agent复现2/2案例，55组测试中17组发散）。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test -- weight：27个测试全部通过。期望值逐条用独立Python Decimal复算比对一致，测试注释声明期望值'independently computed in Python (Decimal, 30-digit precision) from the exact grams-per-unit factors'，非从实现输出反推，核实属实。roundSig修复后27/27仍全部通过，全站742个测试（37个测试文件，站点已扩至33个工具）同步全过，无回归。"
+    },
+    {
+      "dimension": "组件可用性（浏览器/构建产物实测）",
+      "status": "发现1个真问题（已修复，见上）",
+      "detail": "roundSig浮点残留问题已在上一条'公式正确性'记录；修复后用curl独立复算构建产物dist/weight-converter/index.html与线上部署后的JS bundle（WeightConverter.CFk8Nsbv.js），确认修复已实际部署到客户端渲染路径，非仅静态HTML层面。其余组件行为正常：负数输入正确显示'A weight can't be negative'提示（组件级，非崩溃）；0输入全部结果正确显示为0；单位切换正确重新表达同一物理质量（非重新解释数字，switchTo()逻辑核对无误）。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "不适用",
+      "detail": "7种单位间均为纯数学换算（SI十进制前缀或1959年国际协定固定的法律定义），无随时间变化的可能。1959 International Yard and Pound Agreement与NIST HB44（2026版，仍在有效更新维护）核实均为当前仍生效的权威定义，无过时风险。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "WebSearch+curl核对当前SERP头部竞品（unitconverters.net等）实际抓取页面正文，发现其同样含较详细的历史/定义类说明文字（kilogram/pound definition、history/origin段落），深度不亚于本站；但本页额外提供3条具体数字worked example（68kg体重/8lb6oz新生儿/200mcg用药剂量场景化换算）+ 输入一次同时显示其余6个单位换算结果的UX（多数竞品仅单向两单位换算），构成真实增量，非同质化复制。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/weight-converter/ 200，title'Weight Converter | CalcBadger'29字符正常；canonical自指正确；单一h1，12个内容h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt含GPTBot/ClaudeBot/PerplexityBot/Google-Extended显式Allow；sitemap-index.xml含本页。**meta description 172字符**，超出~155-160字符SERP安全区间，独立agent用python3独立计数确认172字符属实、curl线上确认未修复前该字符串确实是当前生效内容。CONFIRMED应修。修复：精简到156字符，保留完整7单位列表与'instantly'关键词，及4个差异化参考表主题中的3个（body weight/cooking/dosing，舍弃'newborn weight'——搜索查询列表中无明确匹配newborn的词，判定为影响最小的一项），同步更新meta description/og/twitter description/JSON-LD WebApplication.description/页面首屏可见导语（同一字段5处复用）。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "跑Skill(ai-seo)引导的Content Extractability Check逐项人工核对（本站无适用于长文的99分制自动打分器）：coreSummary首屏给出可独立引用的精确定义；5个小节+3个worked example均以直接陈述开头；含4张真实数字参考表；7组FAQ配FAQPage schema；'last reviewed'时效信号明确（更新为2026-08-16）；robots.txt放行GPTBot/ClaudeBot/PerplexityBot/Google-Extended。9/10项清晰通过，唯一软性缺口（无独立作者署名）为全站模板级设计非本工具专属问题，与cd-calculator/length-converter审计中的判定一致。综合判定明显高于80分门槛，description精简未改变正文内容，不影响GEO可提取性。"
+    },
+    {
+      "dimension": "早期内容去AI味补漏",
+      "status": "发现1个真问题（已修复）",
+      "detail": "本工具2026-08-04发布，早于avoid-ai-writing技能生效日（2026-08-07），属强制回查范围。用Skill(humanizer)+Skill(avoid-ai-writing)逐段核对coreSummary/sections/referenceTables/faq全部字段，以及WeightConverter.tsx组件内两处硬编码渲染文案（教训库L-0811记录过工具站需额外核对.tsx组件文案，不能只查tools.ts数据文件）：**发现3处用户可见em dash**——tools.ts正文1处('Neither the ounce nor the US ton has its own independent definition — both are derived...')、WeightConverter.tsx渲染文案2处('A weight can't be negative — enter a value of 0 or more.'/'NIST Handbook 44) — not measured approximations...'）。独立agent逐行读取源码复核，确认3处均是真实渲染到页面的叙事/提示文案（非代码注释），CONFIRMED。其余：无Tier1/Tier2 AI高频词命中，无inline-header列表/机械三连排比/信心校准短语/rule-of-three滥用，句长有变化不过于均匀，无弯引号。修复：3处em dash改为句号/逗号消除。sources[]标签内1处em dash（'NIST — SI Units: Mass'）经核对为站内跨15+工具沿用的'机构 — 标题'引用惯例格式（length-converter 2026-08-13审计已明确判定同类实例为'站内既有惯例格式，非叙事问题，未改动'），本次同样未改动，避免制造单工具例外。"
+    },
+    {
+      "dimension": "外部链接腐烂",
+      "status": "未发现问题",
+      "detail": "NIST两条sources链接（si-units-mass页面 + Handbook 44 Appendix C PDF）curl均返回200，内容与文中引用对应，无死链。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题（含一项全站回归验证及一项非本工具范围的附带发现）",
+      "detail": "本站工具数已增长到33个（较length-converter审计时的29个继续增长）。用node独立复现src/pages/[slug].astro的pickRelatedGuides+crossCategory完整逻辑，验证结果33/33工具零孤儿覆盖，weight-converter本身被正常链接。附带发现：若只跑pickRelatedGuides而不含crossCategory兜底环节（不完整复现），会误判square-footage-calculator（Home Improvement类目仅此1个工具的真单例）为孤儿页；补回完整crossCategory轮转逻辑后确认33/33无孤儿——该发现与本次weight-converter审计范围无关，未处理，仅记录避免今后误判。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的description字段已同步为精简后的156字符版本；FAQPage 7条FAQ与tools.ts faq数组及页面渲染逐一对应；BreadcrumbList三级（Home/Conversion/Weight Converter）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "工具本身worked example涉及用药剂量换算场景（levothyroxine 200mcg示例），正文已明确提示'Always convert dosing units explicitly rather than assuming the number carries over'，未暗示本工具替代专业判断；全站/terms/页'No professional advice'条款明确覆盖medical场景，Footer可达。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon.svg（curl 200），无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；页面标题与内容无误导性/诱导点击设计；工具是质量单位换算，不涉及暴力/赌博/武器/毒品等敏感类目。"
+    }
+  ],
+  "actions_taken": [
+    "1. src/lib/weight.ts的roundSig()改用Number(n.toPrecision(sig))替代Math.round(n*magnitude)/magnitude，消除极端数值（~1e21-1e23量级）下的浮点残留位显示问题，对正常量级结果无影响——与length-converter 2026-08-13的同款修复同步",
+    "2. src/data/tools.ts的description字段从172字符精简到156字符，保留完整7单位列表+instantly关键词+3/4差异化参考表主题，同步更新meta description/og/twitter/JSON-LD description/页面首屏可见导语（同一字段5处复用）；updated字段改为2026-08-16（published字段已存在'2026-08-04'，未改动，符合L-0809-1顺序要求）",
+    "3. src/data/tools.ts正文1处 + src/components/calculators/WeightConverter.tsx渲染文案2处，共3处用户可见em dash改为句号/逗号消除",
+    "三处均为定点修改，未做大范围重写；三项均先经独立fresh-context agent复核确认为真问题（roundSig用独立Node脚本复现2个极端案例；meta description用独立python3计数+curl线上核对；em dash用独立逐行读取源码复核）后才动手，三条独立复核均CONFIRMED",
+    "npm test -- weight 27/27通过、全站npm test 742/742通过（37个测试文件）、npm run build 82页成功生成后，git status确认另有broken-link-outreach-log.md被同仓库并发任务修改，仅git add本次相关的3个文件（src/lib/weight.ts/src/data/tools.ts/src/components/calculators/WeightConverter.tsx），单独commit e74748c并push",
+    "push后curl轮询确认线上description已生效部署（第2次轮询命中）；curl构建产物+线上JS bundle确认roundSig修复与两处em dash修复均已实际部署到客户端渲染路径，非仅静态HTML层面；node tools/submit-indexnow.mjs提交/weight-converter/（Bing 200/Yandex 200）；内容发布日志.md已追加记录（标注为审计更新非新发布）"
+  ],
+  "seo_score": "修复前：meta description 172字符超长（唯一SEO问题），其余（title/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap）均健康；修复后：description缩短到156字符，其余维度不变",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，9/10项清晰通过，明显超过≥80门槛，description精简未影响正文GEO结构，无需进一步修复",
+  "escalation": null
+}
+```
