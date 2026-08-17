@@ -123,7 +123,7 @@ export default function MortgageCalculator() {
 			<p class="calc-note">
 				Principal &amp; interest use the standard level-payment amortization formula M =
 				P[r(1+r)<sup>n</sup>]/[(1+r)<sup>n</sup>&minus;1]. Taxes, insurance, PMI and HOA are added on
-				top as flat monthly amounts, not amortized — they change the total payment but not the loan
+				top as flat monthly amounts, not amortized: they change the total payment but not the loan
 				payoff schedule. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>

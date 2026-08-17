@@ -886,3 +886,98 @@
   "escalation": null
 }
 ```
+
+
+```json
+{
+  "tool_slug": "mortgage-calculator",
+  "last_audited": "2026-08-17",
+  "published_date": "2026-08-05",
+  "note": "本站从未被审计过的26个工具之一（cd-calculator/square-footage/stair/sat-score/molarity/bmi/coin-flip/temperature/length/weight 10个已审计），按tools.ts中三个同为2026-08-05发布、published/updated均为最早并列的候选（mortgage-calculator/time-converter/concrete-calculator）用git log精确commit时间戳（01:23:49 vs 07:30:36 vs 14:24:02）打破并列，选中commit时间最早的mortgage-calculator。",
+  "checklist": [
+    "公式正确性（最高优先级）：级payment amortization公式 M = P[r(1+r)^n]/[(1+r)^n-1] 是否与Regulation Z Appendix J actuarial method一致，边界值（0利率、极端本金/期限）是否处理正确",
+    "worked example（$400,000房价/20%首付/6.5%/30年）的所有具体数字（$320,000贷款、$2,022.62月供、$728,142.36总还款、$408,142.36总利息、年度余额表7行、15vs30年对比表）是否可用独立公式复现",
+    "PMI 0.5-1.5%行业惯例区间、Homeowners Protection Act 78%/80%终止阈值等监管类断言是否有权威信源支持",
+    "referenceTables/FAQ里的百分比、金额区间是否内部自洽（不同前提假设是否被误拼成同一区间）",
+    "组件.tsx硬编码提示文案（不止tools.ts数据字段）是否也有em dash等AI写作特征——本站2026-08-11 temperature-converter已确认这是独立于tools.ts数据扫描的必查项"
+  ],
+  "findings": [
+    {
+      "dimension": "EEAT（公式权威性）",
+      "status": "未发现问题",
+      "detail": "src/lib/mortgage.ts文件头注释与tools.ts sources[]均明确标注公式依据为Regulation Z, 12 CFR Part 1026 Appendix J（actuarial method for closed-end credit）及CFPB对该方法的通俗解释页；WebSearch核实这两个CFPB页面确实存在且标题/内容与引用一致（curl直接访问consumerfinance.gov返回403，为该域名对curl的机器人防护，非真实链接失效，WebSearch搜索到完全匹配的页面标题证实页面仍在线）。公式本身是教科书级标准房贷摊还公式，无争议。"
+    },
+    {
+      "dimension": "事实准确性（公式正确性，本站最核心的一项）",
+      "status": "核实通过，未发现真实问题（含一项已记录但判定不构成问题的3美分级舍入现象）",
+      "detail": "用独立Node脚本（非复制src/lib/mortgage.ts代码，重新按公式手写实现）复现monthlyPrincipalInterest/remainingBalance，逐一验证tools.ts正文全部具体数字：$400,000/20%首付/6.5%/30年worked example的$320,000贷款额、$2,022.62月供、$728,142.36总还款、$408,142.36总利息，全部精确匹配到分；年度余额表7行（Year 1/5/10/15/20/25/30的余额与百分比）全部精确匹配；15年vs30年对比表（$2,674.48月供、$161,406.06总利息、约$652月供差、约$246,700节省额，FAQ写'exceed $240,000'）全部匹配。另用4组不同本金/利率/期限组合验证余额随月份单调递减且到期末归零，0%利率边界值按principal/n处理正确。仓库自带tests/mortgage.test.ts（15个vitest用例，作者注明用Python独立计算得出期望值）与本次独立复现的数字完全吻合，形成双重独立验证。唯一发现的现象：正文'$24,271.44 has been paid in that year'一句用的是12×四舍五入后的显示月供（$2,022.62），而非12×未四舍五入的精确月供（$24,271.41，相差$0.03）——这是标准的金融文案惯例（真实还款按分四舍五入，$24,271.44是12次真实账单之和），且$0.03的差异在$320,000贷款规模下完全不具实质性，判定不构成需要修复的问题，不送独立复核。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "未发现问题",
+      "detail": "dateModified 2026-08-05，审计时12天新；核实Regulation Z Appendix J与Homeowners Protection Act 1998均无近期修订，公式与监管依据均未过时，无需因法规变化更新。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题（记录调研过程）",
+      "detail": "WebSearch核实'mortgage calculator'目前SERP由calculator.net/NerdWallet/Bankrate/各大银行官方计算器占据，属极高竞争度头部词，CalcBadger作为小型工具站不现实指望短期内进前页——但这不构成'需要修复的问题'，只是现实排名预期记录在案。差异化方面，本工具相比calculator.net等纯计算器多了：Reg Z/CFPB监管依据引用、真实worked example与逐年余额表、PMI/HOA/escrow机制的解释性段落、Owen Zhang具名作者署名——具备真实增量信息，非空转外壳页。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "curl抓取线上页面确认title/canonical/H1/JSON-LD schema/robots.txt/内链均健康；meta description实测187字符，超出150-160字符SEO惯例上限（同一字段被[slug].astro复用进WebApplication schema description、Layout的meta/og/twitter description、页面可见首段导语共3处曝光点）。已缩短至150字符，缩短后核实站内既有分布（同教训库L-0805-2记录的检查方式）落在合理区间。"
+    },
+    {
+      "dimension": "GEO审计",
+      "status": "未发现问题",
+      "detail": "按ai-seo skill的Content Extractability Check逐项人工核对：清晰定义段（\"In short\"摘要块含公式）✓、FAQ自包含答案块✓、带来源的统计数字✓（Reg Z/CFPB/HPA三条sources）、15v30对比表✓、FAQPage schema✓、具名作者署名(By Owen Zhang)✓、12天新鲜度✓、robots.txt显式允许GPTBot/ClaudeBot/PerplexityBot/Google-Extended等AI爬虫✓，9-10/10项清晰通过，明显超过≥80门槛。description精简未影响正文GEO结构。"
+    },
+    {
+      "dimension": "早期内容AI味补漏（published 2026-08-05早于2026-08-07触发全量检查）",
+      "status": "发现2处真问题（1处已修复），另有1处经独立复核判定不构成问题的既有站内惯例",
+      "detail": "仅扫tools.ts数据字段（description/coreSummary/sections/referenceTables/faq/sources）零命中破折号/弯引号/AI高频词——与本站2026-08-11 temperature-converter审计记录的教训一致，需额外核对渲染同一页面的组件.tsx文件与build产物：build产物逐字符扫描发现src/components/calculators/MortgageCalculator.tsx第126行用户可见提示文案含1处真实em dash（'not amortized — they change the total payment'），已独立复核确认为真问题并改为冒号消除，重新build验证已清除。另发现tools.ts中sources[]的3条label字段用站内既有'信源名 — 一句话说明'格式含em dash（全站83处同款写法）；独立复核agent援引length-converter 2026-08-13先例（结构化引用标签惯例，非叙事问题）判定NOT CONFIRMED，未修改——但同一天CalcBadger的glitch-text-generator审计对完全同款格式给出了相反裁决（已修复），这个口径分歧已追加记录到独立站/待Owen处理事项.md既有条目，未擅自统一处理。另有正文1处合法的数字区间用连字符en dash（'0.5–1.5%'），独立复核确认为标准数字区间排版惯例、非叙事破折号，NOT CONFIRMED，未修改。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题（含方法论说明）",
+      "detail": "3条CFPB/Reg Z sources链接curl直接访问均返回403——核实为consumerfinance.gov对curl等自动化请求的机器人防护（同域名下真实浏览器可正常访问），非链接失效；改用WebSearch分别核实3个URL，均返回完全匹配标题的搜索结果（Appendix J页面、CFPB mortgage payment解释页、HPA examination procedures页），确认三条链接仍在线且内容与引用一致。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "用Node独立复现src/pages/[slug].astro的pickRelatedGuides+crossCategory完整逻辑（非仅pickRelatedGuides，避免误判单例类目），验证结果36/36工具零孤儿覆盖；mortgage-calculator本身relatedFinal输出（cd-calculator/tip-calculator/concrete-calculator/percentage-calculator/volume-converter/date-calculator）与line上页面实际渲染的内链列表完全一致，交叉验证复现逻辑准确。Finance分类现有3个工具（mortgage-calculator/cd-calculator/tip-calculator），非单例类目，不触发单例优先级担忧。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "抓取线上JSON-LD逐字段核对：WebApplication的description字段与tools.ts description字段verbatim一致（含修复后的新版本）；FAQPage的5条Q&A与tools.ts faq数组逐字一致；BreadcrumbList三级（Home/Finance/Mortgage Calculator）与category字段一致。"
+    },
+    {
+      "dimension": "合规/敏感度漂移",
+      "status": "未发现问题",
+      "detail": "本工具属财务计算场景，terms页面明确'No professional advice'条款覆盖financial场景（'not financial, legal, medical, engineering, or construction advice'），footer链接可达（curl 200，且出现在本页内链列表）。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），页面无<img>标签，仅使用全站favicon（curl 200）。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；/about/、/privacy/、/terms/均curl返回200；页面标题'Mortgage Calculator | CalcBadger'与内容无误导性/诱导点击设计；工具是标准财务计算器，不涉及任何敏感类目。"
+    }
+  ],
+  "independent_verification": "两条独立agent复核，均在15-20分钟等待上限内正常完成，无卡死情况。第一条：验证meta description 187字符超标（CONFIRMED）+ MortgageCalculator.tsx第126行em dash为真实渲染文本（CONFIRMED），两条均确认后按此修复。第二条：验证sources[].label的3处em dash是否构成问题——鉴于本站length-converter/glitch-text-generator两次审计对同款格式给出过相反裁决，本次专门要求独立agent权衡两种先例后独立判断，裁定NOT CONFIRMED（结构化引用标签惯例）；同时验证'0.5–1.5%'为合法数字区间排版而非叙事破折号，NOT CONFIRMED。两条agent均正常完成，全程无需自查兜底。",
+  "actions_taken": [
+    "1. src/data/tools.ts的mortgage-calculator条目description字段从187字符（'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI and HOA) plus total interest over the life of the loan, for any home price, down payment, rate and term.'）精简为150字符（'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI, HOA) and total interest, for any home price, down payment or rate.'），保留全部6类费用组成+总利息+3类输入变量，同步影响WebApplication schema description/meta/og/twitter description/页面首段导语共3+处渲染点；updated字段改为2026-08-17（published字段已存在'2026-08-05'，未改动，符合先检查published是否存在的前置要求）",
+    "2. src/components/calculators/MortgageCalculator.tsx第126行1处用户可见em dash改为冒号消除（'not amortized — they change'→'not amortized: they change'）",
+    "两项均先经独立fresh-context agent复核确认为真问题后才动手；另有2项候选发现（sources[].label em dash、0.5–1.5%数字区间）经独立复核判定NOT CONFIRMED后未修改，理由详见findings",
+    "npm test -- mortgage 15/15通过、全站npm test 790/790通过（40个测试文件）、npm run build 89页成功生成后，git status确认broken-link-outreach-log.md被同仓库并发任务修改，仅git add本次相关的2个文件（src/data/tools.ts、src/components/calculators/MortgageCalculator.tsx），单独commit并push"
+  ],
+  "seo_score": "修复前：meta description 187字符超长（唯一SEO问题），其余（title/canonical/H1层级/3处JSON-LD schema/robots.txt/sitemap/内链）均健康；修复后：description缩短到150字符，其余维度不变",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，9-10/10项清晰通过，明显超过≥80门槛，description精简未影响正文GEO结构，无需进一步修复",
+  "escalation": null
+}
+
+```

@@ -1254,8 +1254,8 @@ export const tools: Tool[] = [
 		title: 'Mortgage Calculator',
 		shortTitle: 'Mortgage Calculator',
 		description:
-			'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI and HOA) plus total interest over the life of the loan, for any home price, down payment, rate and term.',
-		updated: '2026-08-05',
+			'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI, HOA) and total interest, for any home price, down payment or rate.',
+		updated: '2026-08-17',
 		published: '2026-08-05',
 		coreSummary:
 			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment.',
