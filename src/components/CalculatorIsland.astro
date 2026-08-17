@@ -15,6 +15,7 @@ import ConcreteCalculator from './calculators/ConcreteCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
+import GlitchTextGenerator from './calculators/GlitchTextGenerator';
 import GpaCalculator from './calculators/GpaCalculator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import LengthConverter from './calculators/LengthConverter';
@@ -80,3 +81,4 @@ const { slug } = Astro.props;
 {slug === 'minecraft-circle-generator' && <MinecraftCircleGenerator client:load />}
 {slug === 'random-letter-generator' && <RandomLetterGenerator client:load />}
 {slug === 'calligraphy-alphabet' && <CalligraphyAlphabetGenerator client:load />}
+{slug === 'glitch-text-generator' && <GlitchTextGenerator client:load />}

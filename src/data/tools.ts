@@ -4364,4 +4364,109 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'glitch-text-generator',
+		category: 'Text Tools',
+		title: 'Glitch Text Generator',
+		shortTitle: 'Glitch Text Generator',
+		description:
+			'Turn plain text into glitched, "cursed" zalgo text by stacking random Unicode combining marks above, below, or through each letter, at four intensity levels, with a one-click copy.',
+		updated: '2026-08-17',
+		published: '2026-08-17',
+		coreSummary:
+			'Every visible character in your text gets a random batch of Unicode combining marks (U+0300 to U+036F) stacked above it, below it, or both, with the batch size drawn from a range set by the intensity you pick, from 0-2 marks per direction at Mild up to 10-18 at Extreme. Because those marks are ordinary Unicode characters riding on your original letters rather than an image or a custom font, the result copies and pastes as plain text into any app or field that can display Unicode.',
+		queries: [
+			'glitch text generator',
+			'zalgo text generator',
+			'cursed text generator',
+			'glitch text copy and paste',
+			'weird text generator',
+		],
+		sections: [
+			{
+				heading: 'How each character gets its marks',
+				body: [
+					"The generator walks through your text one character at a time. Spaces and line breaks are skipped, since there's no letter underneath them to attach a mark to; every other character gets its own independent roll. For each direction you have switched on (up, down, or both), it draws a random whole number from the range your chosen intensity sets, then picks that many marks, one at a time and with repeats allowed, from Unicode's Combining Diacritical Marks block. Up marks and down marks are drawn from separate pools, so a Medium-intensity, up-only pass and a Medium-intensity, down-only pass pull from the same range of counts but never share which specific marks land.",
+					'Run the same word through it twice at the same settings and you\'ll get two different results: the ranges are fixed, but which count gets drawn inside that range, and which specific marks fill it, are both re-rolled every time. That\'s also what the Shuffle button does on purpose, it re-runs the same text through the same settings with a fresh set of rolls, without touching what you typed.',
+					'Turning on both up and down marks (the "Up + down" option) also adds a third, smaller batch of strikethrough-style marks that cut through the letter itself rather than sitting above or below it, at roughly a third of the up/down count. Those come from a much smaller table (5 marks in the whole Unicode block fit this description), so they show up less often and read as an accent to the up/down stacking rather than the main effect.',
+				],
+			},
+			{
+				heading: 'Why it pastes as real text, not a font or an image',
+				body: [
+					'Combining marks are a normal part of Unicode, the same mechanism that puts the accent on café or the tilde on niño: a base letter followed by one or more marks that render attached to it. Zalgo or "glitch" text just uses far more of them per letter than any real-world language does, which is why it looks broken instead of merely accented. Because the output is still plain Unicode text (not a picture, not a font swap), you can select it, copy it, and paste it into a text field, chat app, or document, and it carries the same combining characters with it.',
+					"How chaotic it actually looks depends partly on the app or font displaying it, not just on how many marks got attached. Some apps and websites cap how many combining marks they'll render stacked on one base character, whether for performance or specifically to blunt this effect, so the same Extreme-intensity output can look denser in one app than another even though the underlying text is identical. If you're aiming for a specific look in a specific place, paste a short test run there before committing to a long caption.",
+				],
+			},
+			{
+				heading: 'Picking an intensity for where the text is going',
+				body: [
+					'Mild keeps every letter easy to identify at a glance, useful anywhere the text still needs to be read quickly, like a display name that should look a little "off" without becoming a puzzle. Medium is a middle ground: noticeably glitchy, but each letter is still recoverable if someone looks for a second. Heavy and Extreme obscure most or all of the base letters under the stacked marks, which is the look most people mean by "cursed text": horror-themed captions, meme text, or image overlays where illegibility is part of the effect rather than a problem with it.',
+					"One practical thing to check before pasting a long caption at Heavy or Extreme: many platforms count each combining mark as its own character toward a length limit, the same way they'd count any other character. A 40-letter sentence that reads fine in plain text can turn into several hundred characters once heavily glitched, which can push it over a bio, comment, or caption limit that the plain version would have cleared easily.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Marks added per character, by intensity',
+				headers: ['Intensity', 'Marks per active direction', 'Typical use'],
+				rows: [
+					['Mild', '0-2', 'Subtly "off" while staying easy to read'],
+					['Medium', '2-5', 'Clearly glitchy, letters still identifiable'],
+					['Heavy', '5-10', 'Heavy stacking, most letters partly buried'],
+					['Extreme', '10-18', 'Full cursed-text look, letters mostly buried'],
+				],
+				note: 'Each row is the random range the generator draws a fresh count from for every single character, separately for up and down; it is not one fixed count applied to the whole string.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is glitch text, and why is it also called Zalgo text?',
+				answer:
+					'It\'s digital text with large numbers of Unicode combining marks stacked onto the letters so it reads as corrupted or glitching. The "Zalgo" name comes from a 2004 Something Awful forum meme, in which a forum member posted image macros of cartoon characters (Garfield among them) exclaiming "Zalgo!" with distorted art and captions, attributed to an unnamed eldritch, apocalyptic figure the community named Zalgo. The distorted-text style used in those captions is what later became known as Zalgo text.',
+			},
+			{
+				question: 'Is this a special font?',
+				answer:
+					"No. It's your original letters plus standard Unicode combining marks (the same character block used for accents in languages like Vietnamese or Yoruba), just far more of them per letter than any real accent uses. That's why the result copies and pastes as plain text into any Unicode-aware app instead of needing a font to be installed.",
+			},
+			{
+				question: 'Why does the same glitched text look different when I paste it somewhere else?',
+				answer:
+					"Some apps and websites limit how many combining marks they'll render stacked on one base letter, so the same text can look denser in one place than another even though the underlying characters are identical. Font choice also affects how tightly the marks stack. If you need a specific look in a specific app, paste a short test line there first.",
+			},
+			{
+				question: 'Can I use glitch text as a username?',
+				answer:
+					"It depends on the platform. Many apps allow Unicode combining marks in a display name or bio field but restrict actual usernames or handles to plain letters, numbers, and a few symbols, so glitch text placed in a username field may get rejected or silently stripped. Each combining mark also typically counts as its own character toward any length limit, so a short glitched name can use up a lot more of that limit than the same word in plain text.",
+			},
+			{
+				question: 'Can heavily glitched text break or crash an app?',
+				answer:
+					"Historically, yes, in a narrow way: older versions of Apple's Messages app (before iOS 8.4, patched in mid-2015) could crash trying to render certain Unicode strings, including some Zalgo-style text, which is part of why Zalgo text picked up a reputation for \"breaking\" devices. That specific rendering bug has been fixed for close to a decade on any remotely current iOS version. Even so, dropping a wall of Heavy or Extreme text into someone's inbox unannounced is more of a courtesy problem than a technical one.",
+			},
+			{
+				question: 'Does this tool store or send my text anywhere?',
+				answer:
+					'No. The text you type and the glitched output are both generated and combined entirely in your browser; nothing is uploaded or logged.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'Unicode Consortium, Unicode Character Database, UnicodeData.txt (source for the Combining Diacritical Marks block, U+0300-U+036F, used to build this tool\'s mark tables)',
+				url: 'https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt',
+			},
+			{
+				label: 'Wikipedia, "Zalgo text" (2004 Something Awful origin of the name)',
+				url: 'https://en.wikipedia.org/wiki/Zalgo_text',
+			},
+			{
+				label:
+					'Wikipedia, "SpringBoard," "effective power" bug section (pre-iOS 8.4 Messages crash, patched with the June 30, 2015 iOS 8.4 release)',
+				url: 'https://en.wikipedia.org/wiki/SpringBoard#%22effective_power%22_bug',
+			},
+		],
+		embedHeight: 1120,
+	},
 ];

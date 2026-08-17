@@ -988,3 +988,56 @@ h3 {
 	color: var(--chassis-text);
 	white-space: pre-wrap;
 }
+
+/* ---------- Glitch Text Generator ---------- */
+.glitch-textarea-shell {
+	border: 1px solid var(--chassis-rule);
+	border-radius: 9px;
+	background: var(--chassis-raised);
+	padding: 0.65rem 0.7rem;
+	transition:
+		border-color 150ms ease,
+		box-shadow 150ms ease;
+}
+.glitch-textarea-shell:focus-within {
+	border-color: var(--op);
+	box-shadow: 0 0 0 2px rgb(234 88 12 / 0.35);
+}
+.glitch-textarea {
+	display: block;
+	width: 100%;
+	min-height: 76px;
+	resize: vertical;
+	border: 0;
+	background: transparent;
+	padding: 0;
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-size: 1.05rem;
+	line-height: 1.5;
+	color: var(--chassis-text);
+}
+.glitch-textarea:focus {
+	outline: none;
+}
+.glitch-textarea::placeholder {
+	color: var(--chassis-muted);
+	opacity: 0.65;
+}
+.glitch-output-box {
+	margin-top: 1.1rem;
+	border-top: 1px solid var(--chassis-rule);
+	padding-top: 1rem;
+}
+.glitch-output-text {
+	margin: 0.4rem 0 0;
+	min-height: 3.2em;
+	padding: 0.85rem;
+	border: 1px solid var(--chassis-rule);
+	border-radius: 10px;
+	background: rgb(255 255 255 / 0.02);
+	font-size: 1.3rem;
+	line-height: 2;
+	color: var(--op);
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+}
