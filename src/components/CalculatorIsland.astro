@@ -24,6 +24,7 @@ import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
+import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
@@ -82,3 +83,4 @@ const { slug } = Astro.props;
 {slug === 'random-letter-generator' && <RandomLetterGenerator client:load />}
 {slug === 'calligraphy-alphabet' && <CalligraphyAlphabetGenerator client:load />}
 {slug === 'glitch-text-generator' && <GlitchTextGenerator client:load />}
+{slug === 'random-animal-generator' && <RandomAnimalGenerator client:load />}

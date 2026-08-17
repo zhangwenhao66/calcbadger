@@ -4469,4 +4469,116 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1120,
 	},
+	{
+		slug: 'random-animal-generator',
+		category: 'Games',
+		title: 'Random Animal Generator',
+		shortTitle: 'Random Animal Generator',
+		description:
+			'Draw 1 to 10 random animals from a 131-species list spanning mammals, birds, reptiles, amphibians, fish, and invertebrates, with a unique-only or repeats-allowed draw mode.',
+		updated: '2026-08-17',
+		published: '2026-08-17',
+		coreSummary:
+			'Each draw picks uniformly at random from the active pool (the full 131-animal list, or just one class if you filter by type): every animal in that pool has an equal chance on every pick, there is no weighting toward "more common" or "more famous" animals. "Unique only" removes each animal from the pool once it is drawn, a partial Fisher-Yates shuffle, so no name repeats within a single batch; "Allow repeats" draws each pick independently, the same way rolling a die twice gives two unrelated results, so the same animal can come up more than once.',
+		queries: [
+			'random animal generator',
+			'random animal picker',
+			'pick a random animal',
+			'random animal name generator',
+			'random animal wheel',
+		],
+		sections: [
+			{
+				heading: 'How the generator picks an animal',
+				body: [
+					'Filtering by animal type first narrows the pool (for example, "Birds" shrinks it from 131 animals down to the 26 birds in the list), then a single random draw picks uniformly from whatever pool is active. Under "Unique only," each pick removes that animal from the pool before the next one is drawn, the same partial-shuffle method a deck of cards uses when you deal without putting cards back, so a batch of 5 always contains 5 different animals (capped at the pool size: filtering to Amphibians, which has 10 entries, and asking for more than 10 unique animals will return all 10 rather than erroring).',
+					'Under "Allow repeats," each pick is drawn independently from the full active pool every time, so nothing is removed between picks. That is the same mechanism this site\'s random letter generator and coin flip simulator use for independent draws: each pick has no memory of the picks before it, so the same animal, letter, or coin face can land again immediately.',
+				],
+			},
+			{
+				heading: 'Worked example: why unique and repeats give slightly different odds',
+				body: [
+					'Mammals make up 52 of the 131 animals in the full list (39.7%). Drawing 5 animals from the full list with "Unique only" on, the chance all five happen to be mammals is (52/131) x (51/130) x (50/129) x (49/128) x (48/127), about 0.87%. With "Allow repeats" on, that same all-five-mammals event is (52/131)^5, about 0.99%, a little higher.',
+					'The gap exists because removing a drawn mammal always leaves the remaining pool very slightly less mammal-heavy than before (52/131, then 51/130, then 50/129...), a property of sampling without replacement that holds no matter what share of the pool mammals start out as, majority or minority. Under "Allow repeats," nothing is ever removed, so the odds reset to the same flat 39.7% on every single pick. That is why stacking the same class several times in a row is always at least a little less likely under "Unique only" than under "Allow repeats," never more likely.',
+				],
+			},
+			{
+				heading: 'When to use unique picks vs. allowing repeats',
+				body: [
+					'"Unique only" fits anything where a repeat would be wasted or confusing: assigning one animal to each student in a class activity, filling out a scavenger-hunt or bingo card, seeding a "guess the animal" party game, or pulling a short list of writing prompts where you want 5 distinct ideas rather than the same animal twice.',
+					'"Allow repeats" fits situations where independence matters more than variety: running a long series of draws to see how often each class shows up over time, or drawing more times than a narrow filter can supply (asking for 8 unique fish from a 12-fish pool works fine, but asking for 15 does not; switching to "Allow repeats" removes that ceiling entirely, since there is no pool to run out of).',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Animals by class (full 131-animal list)',
+				headers: ['Class', 'Count', 'Share of the list'],
+				rows: [
+					['Mammal', '52', '39.7%'],
+					['Bird', '26', '19.8%'],
+					['Reptile', '16', '12.2%'],
+					['Invertebrate', '15', '11.5%'],
+					['Fish', '12', '9.2%'],
+					['Amphibian', '10', '7.6%'],
+				],
+				note: 'Percentages are the class\'s share of this tool\'s own 131-animal list, not of all animal species on Earth.',
+			},
+		],
+		faq: [
+			{
+				question: 'Can the same animal come up twice in one batch?',
+				answer:
+					'Only if "Allow repeats" is selected. With "Unique only" (the default), each animal is removed from the pool as soon as it is drawn, so a single batch never contains the same name twice.',
+			},
+			{
+				question: 'How many animals are in the generator, and how were they chosen?',
+				answer:
+					'131 well-known species, split across six classes: 52 mammals, 26 birds, 16 reptiles, 15 invertebrates, 12 fish, and 10 amphibians. It is a curated sample of widely recognized animals for games, prompts, and classroom use, not an exhaustive database of every known species.',
+			},
+			{
+				question: 'What do "Mammal," "Bird," "Reptile," and "Amphibian" mean here, and what about "Fish" and "Invertebrate"?',
+				answer:
+					'Mammal, Bird, Reptile, and Amphibian match the formal taxonomic classes Mammalia, Aves, Reptilia, and Amphibia. "Fish" and "Invertebrate" are broader, informal umbrella labels, the same way general wildlife references group them, since fish alone actually span several formal classes and invertebrates span many phyla rather than a single class.',
+			},
+			{
+				question: "Is the region shown for each animal its only habitat?",
+				answer:
+					"No, it is the animal's primary or best-known native range, not an exhaustive list of everywhere it lives. Many species (foxes, honeybees, several birds of prey) are naturally widespread across multiple regions, and some have been introduced well outside their native range by human activity.",
+			},
+			{
+				question: 'Can I generate only one type of animal, like just reptiles?',
+				answer:
+					'Yes. Use the "Animal type" dropdown to filter the pool to one class before generating; the pool size and per-draw odds shown below the button update to match your filter.',
+			},
+			{
+				question: 'Does this tool store or send my draws anywhere?',
+				answer:
+					'No. Every draw happens in your browser using the built-in random number generator; nothing you generate is uploaded or logged.',
+			},
+		],
+		sources: [
+			{
+				label: 'Integrated Taxonomic Information System (ITIS), U.S. Geological Survey, Report: Mammalia (Taxonomic Rank: Class)',
+				url: 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=179913',
+			},
+			{
+				label: 'Integrated Taxonomic Information System (ITIS), U.S. Geological Survey, Report: Aves (Taxonomic Rank: Class)',
+				url: 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=174371',
+			},
+			{
+				label: 'Integrated Taxonomic Information System (ITIS), U.S. Geological Survey, Report: Reptilia (Taxonomic Rank: Class)',
+				url: 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173747',
+			},
+			{
+				label: 'Integrated Taxonomic Information System (ITIS), U.S. Geological Survey, Report: Amphibia (Taxonomic Rank: Class)',
+				url: 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173420',
+			},
+			{
+				label: 'San Diego Zoo Wildlife Explorers, "Animals" (general-audience grouping into amphibians, arthropods, birds, fish, mammals, and reptiles, corroborating the "Fish" and "Invertebrate" umbrella labels used on this page)',
+				url: 'https://sdzwildlifeexplorers.org/animals',
+			},
+		],
+		embedHeight: 900,
+	},
 ];
