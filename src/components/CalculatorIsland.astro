@@ -7,6 +7,7 @@
 import AsphaltCalculator from './calculators/AsphaltCalculator';
 import BmiCalculator from './calculators/BmiCalculator';
 import BoardFootCalculator from './calculators/BoardFootCalculator';
+import BsaCalculator from './calculators/BsaCalculator';
 import CalligraphyAlphabetGenerator from './calculators/CalligraphyAlphabetGenerator';
 import CalorieCalculator from './calculators/CalorieCalculator';
 import CdCalculator from './calculators/CdCalculator';
@@ -51,6 +52,7 @@ const { slug } = Astro.props;
 {slug === 'asphalt-calculator' && <AsphaltCalculator client:load />}
 {slug === 'bmi-calculator' && <BmiCalculator client:load />}
 {slug === 'board-foot-calculator' && <BoardFootCalculator client:load />}
+{slug === 'body-surface-area-calculator' && <BsaCalculator client:load />}
 {slug === 'calorie-calculator' && <CalorieCalculator client:load />}
 {slug === 'cd-calculator' && <CdCalculator client:load />}
 {slug === 'coin-flip-simulator' && <CoinFlipCalculator client:load />}
