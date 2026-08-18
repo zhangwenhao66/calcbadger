@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbList from '../../vendor/site-toolkit/packages/schema/src/BreadcrumbList.astro';
+import Dataset from '../../vendor/site-toolkit/packages/schema/src/Dataset.astro';
+import { tools } from '../data/tools';
+import {
+	buildSourceIndex,
+	GOVERNMENT,
+	RESEARCH,
+	STANDARDS,
+	sourceType,
+	summarizeByType,
+} from '../lib/sourceIndex';
+import { AUTHOR_NAME, SITE_ORIGIN } from '../consts';
+
+const rows = buildSourceIndex(tools);
+const summary = summarizeByType(rows);
+const totalSources = rows.length;
+const totalTools = tools.length;
+const totalDomains = new Set(rows.map((r) => r.sourceDomain)).size;
+
+const primaryTypes = new Set([GOVERNMENT, STANDARDS, RESEARCH]);
+const primaryCount = rows.filter((r) => primaryTypes.has(r.sourceType)).length;
+const primaryPct = Math.round((primaryCount / totalSources) * 100);
+
+const lastUpdated = tools.reduce((max, t) => (t.updated > max ? t.updated : max), tools[0].updated);
+const publishedDate = '2026-08-18';
+
+const pageUrl = `${SITE_ORIGIN}/formula-standards-index/`;
+const csvUrl = `${SITE_ORIGIN}/data/formula-standards-sources.csv`;
+
+const categories = [...new Set(tools.map((t) => t.category))];
+
+const breadcrumbItems = [
+	{ name: 'Home', item: `${SITE_ORIGIN}/` },
+	{ name: 'Formula & Standards Source Index', item: pageUrl },
+];
+
+function pct(count: number): number {
+	return Math.round((count / totalSources) * 100);
+}
+
+function badgeClasses(type: string): string {
+	switch (type) {
+		case GOVERNMENT:
+			return 'bg-blue-50 text-blue-700 border-blue-200';
+		case STANDARDS:
+			return 'bg-purple-50 text-purple-700 border-purple-200';
+		case RESEARCH:
+			return 'bg-green-50 text-green-700 border-green-200';
+		default:
+			return 'bg-zinc-100 text-zinc-600 border-zinc-200';
+	}
+}
+
+function badgeLabel(type: string): string {
+	switch (type) {
+		case GOVERNMENT:
+			return 'Government';
+		case STANDARDS:
+			return 'Standards body';
+		case RESEARCH:
+			return 'Peer-reviewed';
+		default:
+			return 'Reference';
+	}
+}
+
+const citeText = `"Formula & Standards Source Index." CalcBadger. Published ${publishedDate}, last compiled ${lastUpdated}. ${pageUrl}`;
+---
+
+<Layout
+	title="Formula & Standards Source Index"
+	description={`Every source CalcBadger's ${totalTools} calculators cite, in one place: ${totalSources} citations across government agencies, standards bodies, and peer-reviewed journals.`}
+>
+	<BreadcrumbList slot="head" items={breadcrumbItems} />
+	<Dataset
+		slot="head"
+		name="CalcBadger Formula & Standards Source Index"
+		description={`${totalSources} source citations backing ${totalTools} calculators, classified by source type (government agency, standards body, peer-reviewed research, or reference work) and tagged to the calculator that cites them.`}
+		url={csvUrl}
+	/>
+
+	<div class="mx-auto max-w-[760px]">
+		<nav class="mb-4 flex flex-wrap items-center gap-1.5 text-sm text-[var(--ink)]/40">
+			<a href="/" class="no-underline hover:text-[var(--ink)] hover:underline">Home</a>
+			<span>/</span>
+			<span>Formula & Standards Source Index</span>
+		</nav>
+
+		<h1 class="font-display text-3xl font-bold leading-tight text-[var(--ink)] md:text-4xl">
+			Formula & Standards Source Index
+		</h1>
+		<p class="mt-2 mb-5 text-[1.02rem] leading-relaxed text-[var(--ink)]/60">
+			Every calculator on this site names the formula it runs and links to where that formula
+			comes from. This page pulls all of those citations into one list, sorted by which
+			calculator uses them, so a specific number can be traced back to its source without
+			opening {totalTools} separate pages one at a time.
+		</p>
+
+		<div class="mt-8 border-l-4 border-[var(--flag)] bg-white p-4">
+			<p class="m-0 text-[0.7rem] font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
+				In short
+			</p>
+			<p class="mt-2 mb-0 text-[1rem] leading-relaxed text-[var(--ink)]">
+				{totalTools} calculators cite {totalSources} sources across {totalDomains} distinct
+				domains. {primaryCount} of those {totalSources} citations, {primaryPct}%, come from a
+				government agency, an international standards body, or a peer-reviewed journal rather
+				than a secondhand explainer site.
+			</p>
+		</div>
+
+		<article class="mt-9">
+			<section class="mb-8 border-b border-[var(--rule)] pb-8">
+				<h2 class="font-display mb-3 text-xl font-bold text-[var(--ink)]">
+					Sources by type
+				</h2>
+				<div class="overflow-x-auto">
+					<table class="w-full border-collapse bg-white text-[0.9rem]">
+						<thead>
+							<tr>
+								<th class="border border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-left font-semibold">
+									Source type
+								</th>
+								<th class="border border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-left font-semibold">
+									Citations
+								</th>
+								<th class="border border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-left font-semibold">
+									Share
+								</th>
+								<th class="border border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-left font-semibold">
+									Distinct domains
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								summary.map((s) => (
+									<tr>
+										<td class="border border-[var(--rule)] px-3 py-2">{s.type}</td>
+										<td class="border border-[var(--rule)] px-3 py-2 tabular-nums">{s.count}</td>
+										<td class="border border-[var(--rule)] px-3 py-2 tabular-nums">{pct(s.count)}%</td>
+										<td class="border border-[var(--rule)] px-3 py-2 tabular-nums">{s.domains}</td>
+									</tr>
+								))
+							}
+							<tr>
+								<td class="border border-[var(--rule)] px-3 py-2 font-semibold">Total</td>
+								<td class="border border-[var(--rule)] px-3 py-2 font-semibold tabular-nums">{totalSources}</td>
+								<td class="border border-[var(--rule)] px-3 py-2 font-semibold tabular-nums">100%</td>
+								<td class="border border-[var(--rule)] px-3 py-2 font-semibold tabular-nums">{totalDomains}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="mt-2 text-xs text-[var(--ink)]/50">
+					Counts recompute at every build from the same source list each calculator page cites, so
+					they track the site as new tools are added.
+				</p>
+			</section>
+
+			<section class="mb-8 border-b border-[var(--rule)] pb-8">
+				<h2 class="font-display mb-3 text-xl font-bold text-[var(--ink)]">
+					What counts as each type
+				</h2>
+				<p class="mb-3.5 text-[0.95rem] leading-[1.8] text-[var(--ink)]/75">
+					<strong>Government &amp; regulatory agency</strong> covers federal and foreign agencies that
+					publish the rule or table a calculator applies directly: the CDC's adult BMI cutoffs, the
+					CFPB's mortgage amortization method under Regulation Z, the FDIC's deposit insurance
+					limits, the Iowa DOT's asphalt density spec.
+				</p>
+				<p class="mb-3.5 text-[0.95rem] leading-[1.8] text-[var(--ink)]/75">
+					<strong>International standards body</strong> covers organizations that define the unit or
+					format itself, not one country's application of it: BIPM for the metric system, IUPAC for
+					chemistry nomenclature, the Unicode Consortium, ECMA International, the International Code
+					Council, IANA's time zone database, College Board for SAT scoring.
+				</p>
+				<p class="mb-3.5 text-[0.95rem] leading-[1.8] text-[var(--ink)]/75">
+					<strong>Peer-reviewed research</strong> covers calculators built on a named, dated study:
+					the Mifflin-St Jeor resting-energy equation (1990), the Mosteller and Du Bois
+					body-surface-area formulas, Woods et al.'s 2015 reaction-time study, Hoeger et al.'s 2008
+					step-length regression.
+				</p>
+				<p class="mb-0 text-[0.95rem] leading-[1.8] text-[var(--ink)]/75">
+					<strong>Reference work or industry source</strong> covers everything else with a checkable
+					citation: Wikipedia, Britannica, Wolfram MathWorld, and manufacturer or trade documents
+					like QUIKRETE's technical data sheet or the Asphalt Institute's density range. These mostly
+					back descriptive or historical claims: how a symbol got its shape, what a lumber grade
+					means. None of them set a regulated number.
+				</p>
+			</section>
+
+			{
+				categories.map((cat) => (
+					<section class="mb-8 border-b border-[var(--rule)] pb-8 last:mb-0 last:border-b-0 last:pb-0">
+						<h2 class="font-display mb-3 text-xl font-bold text-[var(--ink)]">{cat}</h2>
+						{tools
+							.filter((t) => t.category === cat)
+							.map((t) => (
+								<div class="mb-5 last:mb-0">
+									<h3 class="m-0 text-[0.95rem] font-semibold text-[var(--ink)]">
+										<a
+											href={`/${t.slug}/`}
+											class="text-[var(--ink)] no-underline hover:underline"
+										>
+											{t.title}
+										</a>
+									</h3>
+									<ul class="mt-1.5 mb-0 list-none pl-0">
+										{t.sources.map((s) => (
+											<li class="flex flex-wrap items-center gap-2 py-1">
+												<span
+													class={`rounded border px-1.5 py-0.5 text-[0.65rem] font-semibold ${badgeClasses(
+														sourceType(s.url),
+													)}`}
+												>
+													{badgeLabel(sourceType(s.url))}
+												</span>
+												<a
+													href={s.url}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="text-sm text-[var(--ink)]/70 no-underline hover:text-[var(--ink)] hover:underline"
+												>
+													{s.label}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+							))}
+					</section>
+				))
+			}
+		</article>
+
+		<div class="mt-9 rounded-xl border border-[var(--rule)] bg-white p-5">
+			<h2 class="font-display m-0 text-lg font-bold text-[var(--ink)]">Download the full list</h2>
+			<p class="mt-2 mb-3 text-sm leading-relaxed text-[var(--ink)]/65">
+				All {totalSources} rows (calculator, source label, URL, domain, and type) as a CSV, rebuilt
+				from the same data behind this page.
+			</p>
+			<a href="/data/formula-standards-sources.csv" class="op-button inline-block no-underline">
+				Download CSV
+			</a>
+		</div>
+
+		<div class="mt-9 border-t border-[var(--ink)] pt-4">
+			<p class="m-0 text-[0.7rem] font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
+				Cite this
+			</p>
+			<p class="mt-2 mb-0 text-sm text-[var(--ink)]/65">{citeText}</p>
+		</div>
+
+		<div class="mt-10 border-t border-[var(--rule)] pt-5 text-sm text-[var(--ink)]/55">
+			<p class="m-0">
+				Built and maintained by <a
+					href="/about/"
+					class="text-[var(--ink)]/70 no-underline hover:text-[var(--ink)] hover:underline"
+					>{AUTHOR_NAME}</a
+				>. Source list last compiled {lastUpdated}.
+			</p>
+		</div>
+	</div>
+</Layout>
+

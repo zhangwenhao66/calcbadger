@@ -137,3 +137,30 @@ CalcBadger
 - 1个backlog渠道（nologin.tools）本轮成功提交，视觉确认真实成功文案。
 - 1个新渠道（nosignuptools.com）研究属实、表单填写完成度约90%，卡在强制截图要求，未提交，已记录到下轮carryover（非Owen事项，纯工具能力缺口）。
 - 围绕coin-flip-simulator做了约8次定向搜索，其余候选均因"过旧无更新证据""14天内已联系过""性质不符（个人博客非资源清单）""疑似付费/内容农场"等原因被排除，无new email pitch发出。
+
+## 2026-08-18 — MaxAEO (nancy@maxaeo.ai) — 新资产pitch
+
+- 来源：`trafficsite-linkable-asset-building`本轮制作了新资产Formula & Standards Source Index（`https://calcbadger.com/formula-standards-index/`），第3步要求为新发布资产搜索可能引用它的近期活跃写作者。
+- 目标发现：WebSearch"how to get your website cited by ChatGPT AI Overviews cite sources 2026"命中MaxAEO Blog《Interactive Tools and AI Citations: Why Calculators Earn Durable Mentions》（`https://maxaeo.ai/blog/interactive-tools-ai-citations/`，署名Chris Han，发布于2026年7月），核心论点是"可解释、站得住的透明公式比黑箱更容易被AI搜索引用"，与CalcBadger新资产的定位（把38个计算器的132条来源引用整理成一个可摘引、可下载CSV的索引页）直接相关，非硬凑话题。
+- 联系方式核实：curl抓取`https://maxaeo.ai/contact/`（200存活），页面明确列出"Sales and partnerships — For demos, paid plans, partnerships, and media or directory collaboration"对应`nancy@maxaeo.ai`（区别于`support@maxaeo.ai`产品支持邮箱），公司主体为HIII PTE. LTD.，判定为真实可核实的具名联系渠道（非纯Contact Us表单）。
+- 查重：`gmail_send.py list --query "to:nancy@maxaeo.ai"`和`"maxaeo.ai"`（全账号范围）均返回空，本仓库其余外链日志文件grep同样无匹配。
+- 已过`Skill(humanizer)`+`Skill(avoid-ai-writing)`去AI味：两项检查均判定邮件已经干净——无em/en dash、无AI高频词（delve/leverage/robust等）、无排比三连、无chatbot残留语、无空洞背书套话、语气具体不模板化，未做改动。
+- 独立复核结果：待发送前用全新独立agent复核（见下方运行记录）。
+- 邮件正文：
+
+```
+Subject: A transparent-sourcing example for your interactive-tools piece
+
+Hi Nancy,
+
+I read Chris Han's piece on interactive tools and AI citations, especially the line about a transparent formula you can explain and stand behind out-citing a black box. That's the whole premise behind CalcBadger.
+
+Every calculator on the site states its formula and links to where that formula comes from. We just pulled all of those citations into one index page: 132 sources across 38 calculators, sorted by whether each one traces back to a government agency, a standards body, a peer-reviewed study, or a reference source. The full list downloads as a CSV.
+
+Link: https://calcbadger.com/formula-standards-index/
+
+If it's a useful example for future coverage of transparent calculator methodology, feel free to use it. Either way, the piece matched what we're building here.
+
+Owen Zhang
+CalcBadger
+```
