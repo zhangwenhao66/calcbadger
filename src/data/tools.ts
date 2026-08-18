@@ -1,3 +1,4 @@
+import { GENDER_SYMBOLS } from '../lib/genderSymbols';
 import { GREEK_LETTERS } from '../lib/greekAlphabet';
 import { MATH_SYMBOLS } from '../lib/mathSymbols';
 
@@ -4811,6 +4812,140 @@ export const tools: Tool[] = [
 			{
 				label: 'Holly Tuke, "How special characters and symbols affect screen reader accessibility," Scope for Business (2021)',
 				url: 'https://business.scope.org.uk/accessibility-screen-readers-special-characters-and-unicode-symbols/',
+			},
+		],
+		embedHeight: 900,
+	},
+	{
+		slug: 'gender-symbols',
+		category: 'Reference',
+		title: 'Gender Symbols',
+		shortTitle: 'Gender Symbols',
+		description:
+			'Search or browse 7 gender symbols, including ♀ ♂ ⚧ ⚢ ⚣, with meanings, Unicode code points, and verified history, and copy any symbol with one click.',
+		updated: '2026-08-18',
+		published: '2026-08-18',
+		coreSummary:
+			"The female (♀) and male (♂) signs began as astrological shorthand for Venus and Mars long before Carl Linnaeus repurposed them for plant sex in 1751. The other five symbols here are far newer: activists built the doubled lesbian (⚢) and gay (⚣) signs from the same Venus and Mars glyphs for a 1970 UK newspaper cover, Holly Boswell drew the transgender symbol (⚧) by hand in 1993, and the Unicode Consortium did not formally assign code points to any of the five until version 4.1 in 2005. Search this tool by name or meaning and click any result to copy it.",
+		queries: [
+			'female symbol',
+			'male symbol',
+			'gender symbol',
+			'gender symbols copy and paste',
+			'transgender symbol',
+			'lesbian symbol',
+			'gay symbol',
+			'intersex symbol',
+			'venus symbol',
+			'mars symbol',
+			'hermaphrodite symbol',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					'Most searches that land here are looking for one specific glyph to paste into a bio, a form, or a chat message, not to browse a full set. Type what you\'re after ("female," "transgender," "gay") into the search box and the grid narrows to matches, or leave it blank to see all 7 at once. Clicking a result copies just the character, ready to paste anywhere.',
+					"A word of caution on the five newer symbols (everything except ♀ and ♂): several combine visually in ways that render inconsistently across fonts and operating systems, and screen readers don't reliably announce them the same way twice. If you're publishing text where the symbol has to be unambiguous, for example a form that records legal sex versus gender identity, spell the word out instead of relying on the glyph.",
+				],
+			},
+			{
+				heading: 'Two symbols from astrology, repurposed for biology',
+				body: [
+					"♀ and ♂ are the oldest symbols on this page by a wide margin. Astrologers used them for the planets Venus and Mars, and alchemists borrowed the same glyphs for the metals each planet was thought to govern: copper for Venus, iron for Mars. A popular story reads the shapes as a stylized hand mirror for Venus and a spear and shield for Mars, but botanist William T. Stearn's 1962 survey of the evidence found that historians who study the symbols reject that reading; Stearn favored an older theory that both glyphs are compressed Greek letters standing for the planets' Greek names, though later manuscript evidence has left even that account short of settled.",
+					"Swedish botanist Carl Linnaeus gave the pair their modern meaning. He first used ♀ for the female parent and ♂ for the male parent of hybrid plants in his 1751 dissertation Plantae hybridae, then carried the same convention into his 1753 book Species Plantarum, the work that fixed the modern rules for naming species. Zoologists adopted the pair soon after for animal sex, and the symbols have marked \"female\" and \"male\" in science, and later on restroom doors and dating profiles, ever since.",
+				],
+			},
+			{
+				heading: 'Doubled signs from a 1970 newspaper cover',
+				body: [
+					'⚢ and ⚣ are not ancient at all. The UK\'s Gay Liberation Front started printing two interlocked Venus signs and two interlocked Mars signs on the cover of its newspaper, Come Together, starting in late 1970, using the doubled female sign for lesbians and the doubled male sign for gay men. The idea took the existing astrological pair and doubled each one rather than inventing anything new, which is likely why it caught on quickly as a recognizable community shorthand.',
+					"The Unicode Consortium did not give either doubled sign an official code point until version 4.1 in March 2005, well over three decades after they first appeared in print. Before that, anyone who wanted to type them was out of luck; a plain word or an image was the only option.",
+				],
+			},
+			{
+				heading: 'The transgender symbol, drawn by one activist in 1993',
+				body: [
+					'⚧ has a documented single author. Transgender activist Holly Boswell sketched the design in 1993, adding a third branch, an arrow crossed by a stroke, to the combined female-and-male shape to represent identities outside the binary. Wendy Parker and Nancy R. Nangeroni helped refine and circulate the drawing before it reached Unicode 4.1 in 2005 under the plain descriptive name "male with stroke and male and female sign." The Unicode Consortium\'s CLDR project separately labels it "transgender symbol" specifically so screen readers announce it correctly.',
+					'The remaining two symbols, ⚤ (interlocked female and male, for heterosexual pairings) and ⚥ (combined female and male, used for intersex, androgynous, or hermaphroditic meanings), joined the same 2005 batch without a single named creator. ⚥ is easy to mix up with the older astrological symbol for Mercury (☿), which Linnaeus separately used for hermaphroditic flowers; the two glyphs look alike but are unrelated Unicode characters.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'The 7 symbols',
+				headers: ['Symbol', 'Name', 'Meaning', 'Unicode', 'Common use'],
+				rows: GENDER_SYMBOLS.map((s) => [s.symbol, s.name, s.meaning, s.codePoint, s.commonUse]),
+			},
+		],
+		faq: [
+			{
+				question: 'What is the female symbol (♀) and where did it come from?',
+				answer:
+					'♀ (U+2640) marks a woman, girl, or biologically female organism. It began as the astrological symbol for Venus and the alchemical symbol for copper; the popular reading of the shape as a stylized hand mirror is widely repeated but disputed by historians. Carl Linnaeus adopted it for female plants in 1751 and 1753, and biology, medicine, and everyday signage have used it ever since. Search "female" above to find and copy it.',
+			},
+			{
+				question: 'What is the male symbol (♂) and where did it come from?',
+				answer:
+					"♂ (U+2642) marks a man, boy, or biologically male organism. It began as the astrological symbol for Mars and the alchemical symbol for iron; the popular reading of the shape as a spear and shield is widely repeated but disputed by historians. Carl Linnaeus paired it with the female sign for male plants in 1751 and 1753. Search \"male\" above to find and copy it.",
+			},
+			{
+				question: 'What is the transgender symbol (⚧) and who created it?',
+				answer:
+					'⚧ (U+26A7) represents transgender or gender-nonconforming identity. Activist Holly Boswell drew it in 1993 by adding a crossed third branch to the combined female-and-male sign, with help from Wendy Parker and Nancy R. Nangeroni in refining and circulating it. It entered Unicode in version 4.1 (2005).',
+			},
+			{
+				question: 'What do the doubled female (⚢) and doubled male (⚣) symbols mean?',
+				answer:
+					"⚢ (U+26A2) represents lesbians, and ⚣ (U+26A3) represents gay men. Both come from two interlocked copies of the female and male astrological signs, first printed on the cover of the UK newspaper Come Together starting in late 1970. Neither had a Unicode code point until version 4.1 in 2005.",
+			},
+			{
+				question: 'What is the difference between ⚤ and ⚥?',
+				answer:
+					'⚤ (U+26A4) interlocks the female and male signs and is generally used for heterosexuality or a male-female pairing. ⚥ (U+26A5) overlaps them into a single combined glyph and is generally used for intersex, androgynous, or (in botany) hermaphroditic meanings. Both joined Unicode in version 4.1 (2005) without a single named creator.',
+			},
+			{
+				question: 'Is ⚥ the same symbol Linnaeus used for hermaphroditic plants?',
+				answer:
+					'No. Linnaeus used the older astrological symbol for Mercury (☿) for hermaphroditic flowers in his later botanical works. ⚥ (U+26A5) looks similar but is a separate, much newer Unicode character, added in 2005.',
+			},
+			{
+				question: 'Why do gender symbols sometimes look different or fail to display?',
+				answer:
+					'The five newer symbols on this page combine multiple glyph elements, and not every font or operating system renders that combination the same way. Screen readers can also announce them inconsistently. For text where the meaning has to be unambiguous, spelling the word out is more reliable than the symbol.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia, "Gender symbol"',
+				url: 'https://en.wikipedia.org/wiki/Gender_symbol',
+			},
+			{
+				label: 'Encyclopaedia Britannica, "Gender symbol | Description, Examples, & History"',
+				url: 'https://www.britannica.com/topic/gender-symbol',
+			},
+			{
+				label: 'William T. Stearn, "The Origin of the Male and Female Symbols of Biology," Taxon, Vol. 11, No. 4 (May 1962), pp. 109 to 113',
+				url: 'https://iapt-taxon.org/historic/Congress/IBC_1964/male_fem.pdf',
+			},
+			{
+				label: 'LSE History Blog, "LGBTQI+ symbols and their meanings" (Gay Liberation Front, Come Together, 1970)',
+				url: 'https://blogs.lse.ac.uk/lsehistory/2024/05/15/lgbtqi-symbols-and-their-meanings/',
+			},
+			{
+				label: 'LGBTQ Nation, "History And Meaning Of The Trans Symbol" (Holly Boswell, 1993)',
+				url: 'https://www.lgbtqnation.com/2022/07/all-about-the-transgender-symbol/',
+			},
+			{
+				label: 'codepoints.net, U+26A7 MALE WITH STROKE AND MALE AND FEMALE SIGN (Unicode version and CLDR name)',
+				url: 'https://codepoints.net/U+26A7',
+			},
+			{
+				label: 'Unicode Consortium, "Miscellaneous Symbols" code chart, current (U+2600 to U+26FF)',
+				url: 'https://www.unicode.org/charts/PDF/U2600.pdf',
+			},
+			{
+				label: 'Unicode Consortium, "Miscellaneous Symbols" code chart, Unicode 4.1 (March 2005, confirms addition of ⚢ ⚣ ⚤ ⚥ ⚧)',
+				url: 'https://unicode.org/charts/PDF/Unicode-4.1/U41-2600.pdf',
 			},
 		],
 		embedHeight: 900,

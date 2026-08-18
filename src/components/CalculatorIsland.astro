@@ -16,6 +16,7 @@ import ConcreteCalculator from './calculators/ConcreteCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
+import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
 import GlitchTextGenerator from './calculators/GlitchTextGenerator';
 import GpaCalculator from './calculators/GpaCalculator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
@@ -88,3 +89,4 @@ const { slug } = Astro.props;
 {slug === 'glitch-text-generator' && <GlitchTextGenerator client:load />}
 {slug === 'random-animal-generator' && <RandomAnimalGenerator client:load />}
 {slug === 'small-text-generator' && <SmallTextGenerator client:load />}
+{slug === 'gender-symbols' && <GenderSymbolsGenerator client:load />}
