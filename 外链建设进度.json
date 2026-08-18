@@ -20,6 +20,13 @@
       "question_url": "https://www.quora.com/How-is-a-weighted-GPA-calculated-Is-it-by-semester-grades-or-end-of-year-grades/answer/Owen-Zhang-161",
       "question_title": "How is a weighted GPA calculated? Is it by semester grades or end of year grades?",
       "notes": "发布时该问题0答案。以站内GPA Calculator工具页骨架撰写(4.0量表转换+Honors/AP加成、无全国统一标准、大学自行重算)。额外WebSearch找到得州SB 1191(89th Legislature)要求建立全州统一加权GPA公式、2026年4月20日前征求意见、2027-28学年七年级学生起适用的增量事实。过humanizer+avoid-ai-writing自查。用Quora Add Link功能(Cmd+K)插入真实超链接，全程只填URL字段不碰Text字段，发布前DOM核实class为span link。已直接发布成功(非Space类问题)，发布后javascript_tool核实DOM中确实是<a href>真实超链接指向https://calcbadger.com/gpa-calculator/。"
+    },
+    {
+      "date": "2026-08-18",
+      "target_page": "https://calcbadger.com/body-surface-area-calculator/",
+      "question_url": "https://www.quora.com/What-is-the-significance-of-EGFR-estimated-glomerular-filtration-rate-I-realize-it-has-to-do-with-renal-function-but-is-the-test-a-reliable-indicator/answer/Owen-Zhang-161",
+      "question_title": "What is the significance of EGFR (estimated glomerular filtration rate)? I realize it has to do with renal function, but is the test a reliable indicator?",
+      "notes": "本站首次选用未在Quora用过的BSA(体表面积)计算器工具页(此前已用过stair/concrete/gpa三个计算器)。发布时该问题已有3个真实答案，均在讲eGFR整体可靠性(相对变化准确/绝对值不准)，没有一条解释报告单上'per 1.73 m²'这个标注到底是什么意思，也没提到体表面积(BSA)本身怎么算，判定为真实内容空白值得补充。以站内BSA Calculator工具页骨架撰写(1.73平方米是该报告惯例确立时测得的成人平均体表面积、按患者自身BSA换算到1.73m²是为了让不同体型患者的数值能在同一套正常范围下比较；National Kidney Foundation明确指出药物剂量计算走相反逻辑——用未按体表面积换算的原始GFR而非1.73m²标准化后的数值，因为剂量要匹配患者真实的过滤能力而非按假设平均体型折算后的数值；体表面积本身通常是估算而非直接测量，主流用1916年Du Bois公式与更简单的1987年Mosteller公式(身高×体重÷3600开平方根)，二者对普通体型成人相差约1%，但在体重较大时会明显分叉，170cm/150kg时Du Bois给出2.502m²、Mosteller给出2.661m²，相差约6%)。过humanizer+avoid-ai-writing双重检查（无破折号、无AI高频词、避免了'worth adding'这类空心背书开场，改用直接陈述'The answers above cover reliability well. One detail... is missing'）。用Quora Add Link功能(Cmd+K)插入真实超链接，锚文本'here'，指向body-surface-area-calculator页面，全程只填URL字段。该问题不属于任何Space，提交后直接发布成功，credential选择默认'Business Communications Researcher'。发布前用javascript_tool核实编辑器DOM中该span确实是class=\"span link\"，发布后再次核实渲染页面DOM中确实是<a href=\"https://calcbadger.com/body-surface-area-calculator/\">here</a>真实超链接，非纯文本。"
     }
   ],
   "reddit": []

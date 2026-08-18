@@ -31,3 +31,14 @@
 - **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `aea55da4777da2679df47cd47a443613`。
 - **上线复核**：⏳ 待补做（当天提交，通常需要1-2天过审）。
 - **备注**：本次是08-04登录失效连续三次导致周二排期落空后的补做。
+
+### 2026-08-18（周二，正常排期）— CalcBadger（calcbadger.com）
+
+- **问题标题**：Loan officers and real estate agents: has a buyer's DIY mortgage math left out something that caused a real problem at closing?
+- **角度**：绑定`mortgage-calculator`工具页讲的房贷月供构成（本金、利息、税费、保险、PMI、HOA），常见失败模式是买家只用本金+利息估算月供，等escrow/PMI/HOA叠加上去时才傻眼。征集贷款经理/房产经纪人/房贷经纪举出真实案例——买家自己算的月供漏掉了其中一项，因此造成的真实问题（交易差点告吹、预算不得不重做、结算时的意外）。与此前问过的楼梯施工错误角度（08-04，承包商领域）、实验室摩尔浓度计算错误角度（08-12，化学领域）完全不同，这次聚焦房贷金融领域的计算失误。
+- **绑定文章**：CalcBadger `mortgage-calculator`（Mortgage Calculator）。
+- **分类标签**：Topics = General + Business & Finance；Countries = United States（PMI/escrow等是美国房贷特有概念，仅限美国）。
+- **表单设置**：Job title = Content Creator；Organisation = CalcBadger；Contact = Email；Unpaid；Email address 和 Contact email 均填 `contact@calcbadger.com`。
+- **Deadline**：2026-09-10 17:00（鼠标真实点击日历控件选中）。
+- **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `84338fb1b84466085a1a5e4467161c6f`。
+- **上线复核**：⏳ 待下次任务运行时补查。
