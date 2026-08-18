@@ -32,6 +32,8 @@ WebSearch（`"calcbadger.com" -site:calcbadger.com`、`"CalcBadger" calculator f
 
 ### 第4步：去AI味 + 独立复核
 
-pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经干净，存入 `outreach-drafts.md`。独立复核 agent（全新实例）核实：查重（`gmail_send.py` 全账号范围 `to:nancy@maxaeo.ai` 与 `maxaeo.ai` 均为空）、邮件里"132 sources across 38 calculators"等数字与线上页面实测一致、CSV 端点 200 存活、Chris Han 文章原文确实包含邮件引用的核心论点、`nancy@maxaeo.ai` 确系 MaxAEO 联系页真实列出的渠道、语气非模板化无 AI 写作痕迹。
+pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经干净，存入 `outreach-drafts.md`。**第一轮独立复核 agent 判定"有问题"**：抓出新资产当时仍只存在于本地未提交/未部署（`https://calcbadger.com/formula-standards-index/` 和 CSV 端点均返回 404），发邮件会把真实收件人指向一个死链接——这正是独立复核机制要拦的"资产实际未上线就发引用邮件"，流程按设计生效。按复核意见补做`git add`+commit+push，轮询约60秒后确认CF Pages部署完成（页面200），随后跑`node tools/submit-indexnow.mjs /formula-standards-index/`提交索引（Bing/Yandex均200）并单独commit+push这条日志。
 
-（复核与发送结果见下方"运行小结"。）
+**第二轮独立复核 agent（全新实例，针对线上已部署状态重新核查）判定"可以发送"**：逐项核实——线上页面200、CSV端点200且133行、页面文案与邮件所述"132 sources/38 calculators/66 domains/76条58%"逐字一致、四类来源分类（government agency/standards body/peer-reviewed/reference work，邮件里"reference source"为同义措辞非事实出入）与页面一致、`gmail_send.py`全账号范围两次查询（`to:nancy@maxaeo.ai`与`maxaeo.ai`）均为空确认无重复发送、`nancy@maxaeo.ai`确系MaxAEO联系页真实列出的"Sales and partnerships"渠道、Chris Han原文确实包含邮件引用的"a transparent formula you can explain and stand behind out-cites a black box"这句话、git状态确认资产已提交无遗漏。
+
+**发送状态**：已发送 2026-08-18，`gmail_send.py send --from calcbadger`，Message ID `1a0137373d9dd097`，Thread ID同，From头核实为`CalcBadger <contact@calcbadger.com>`，正文与草稿一致、无Subject行泄漏。
