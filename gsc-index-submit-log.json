@@ -207,5 +207,15 @@
       "https://calcbadger.com/asphalt-calculator/"
     ],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-18",
+    "action": "submitted",
+    "reason": "今日新发布Small Text Generator（第38个工具），URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功确认'Indexing requested'。",
+    "submitted_urls": [
+      "https://calcbadger.com/small-text-generator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
