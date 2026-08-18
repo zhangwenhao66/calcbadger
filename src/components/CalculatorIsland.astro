@@ -30,6 +30,7 @@ import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import ShapeVolumeCalculator from './calculators/ShapeVolumeCalculator';
+import SmallTextGenerator from './calculators/SmallTextGenerator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import StepsToMilesCalculator from './calculators/StepsToMilesCalculator';
@@ -86,3 +87,4 @@ const { slug } = Astro.props;
 {slug === 'calligraphy-alphabet' && <CalligraphyAlphabetGenerator client:load />}
 {slug === 'glitch-text-generator' && <GlitchTextGenerator client:load />}
 {slug === 'random-animal-generator' && <RandomAnimalGenerator client:load />}
+{slug === 'small-text-generator' && <SmallTextGenerator client:load />}

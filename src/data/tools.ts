@@ -4681,4 +4681,138 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 700,
 	},
+	{
+		slug: 'small-text-generator',
+		category: 'Text Tools',
+		title: 'Small Text Generator',
+		shortTitle: 'Small Text Generator',
+		description:
+			'Convert text into superscript, small caps, or subscript Unicode characters for bios, captions, and comments, with an exact count of which letters have no dedicated tiny glyph in that style.',
+		updated: '2026-08-18',
+		published: '2026-08-18',
+		coreSummary:
+			'Each style swaps letters, digits, and a few symbols for individually-named Unicode code points from blocks the Unicode Consortium built for chemistry, algebra, and phonetic transcription, not for social media styling. None of the three covers the full alphabet: superscript has no code point for "q" (25 of 26 letters), small caps has none for lowercase "x" (25 of 26), and subscript, which Unicode only ever extended for math and IPA notation, covers 17 of 26. Unmapped letters are left as regular characters rather than dropped, and this tool reports exactly how many that was for your text.',
+		queries: [
+			'small text generator',
+			'tiny text generator',
+			'superscript text generator',
+			'small caps generator',
+			'subscript text generator',
+		],
+		sections: [
+			{
+				heading: 'How each style pulls real Unicode characters, not a font',
+				body: [
+					'There is no way to shrink font size in a platform bio field, a comment box, or most chat apps. Those fields accept plain text and render it at whatever size the platform sets. What these three styles do instead is character substitution: each letter, digit, or symbol you type gets swapped for a different, individually-named Unicode code point that happens to render small or raised or lowered in most fonts, then the result is copied as ordinary text. Superscript output uses the Unicode block built at U+2070-209F plus scattered code points named "MODIFIER LETTER SMALL ⟨letter⟩" elsewhere in the standard; small caps pulls from "LATIN LETTER SMALL CAPITAL ⟨letter⟩" code points; subscript uses the "LATIN SUBSCRIPT SMALL LETTER ⟨letter⟩" set. Because every one of these is a real character with its own code point, not a custom font file or an image, the output pastes correctly into any field that accepts Unicode text, and it keeps working even in apps that strip formatting or block custom fonts entirely.',
+					'The three styles handle uppercase input differently, on purpose. Superscript and subscript convert both cases to the same small-form glyph, since Unicode\'s separate capital-height superscript table (the "MODIFIER LETTER CAPITAL ⟨letter⟩" set) has more gaps than the lowercase one used here, and there is no capital subscript table at all. Small caps does the opposite. Lowercase input converts to a small capital glyph, while letters you already typed in uppercase are left untouched, matching how small caps works in real typography: full capitals stay full size, only lowercase letters get reduced.',
+				],
+			},
+			{
+				heading: 'Why none of the three styles covers the full alphabet',
+				body: [
+					'These code points were never designed as a decorative alphabet. The superscript and subscript digits and symbols at U+2070-209F were added, according to a W3C technical note on their intended use, so that "chemical and algebraic formulas could be written without markup": H₂O with a real subscript 2, not HTML\'s <sub> tag. The letter forms for both styles mostly came later and for a narrower reason: subscript letters like ᵢ, ⱼ, ₐ exist for variable notation in math and phonetics (xᵢ, a subscripted index), which is why only 17 of 26 exist. B, c, d, f, g, q, w, y, and z were simply never requested for that use case. The small caps and lowercase-height superscript letters mostly live in the Phonetic Extensions block, added to Unicode in 2003-2005 specifically to support the Uralic Phonetic Alphabet, historical Americanist transcription, and dictionary pronunciation guides. Using them for Instagram bios repurposes characters that were built for linguists.',
+					'The gaps are real, not an oversight this tool works around. Superscript "q" and small caps "x" have no dedicated code point anywhere in the current Unicode standard, so this tool leaves them as plain letters and counts them separately below rather than silently substituting a look-alike character or dropping them. Subscript is missing nine letters for the same reason, though three of them are already scheduled to close: the Unicode Consortium\'s public character pipeline currently reserves code points U+209D, U+209E, and U+209F for subscript w, y, and z, provisionally approved but not yet part of a released Unicode version.',
+				],
+			},
+			{
+				heading: 'Where this text works, and where it breaks down',
+				body: [
+					'Superscript, small caps, and subscript Unicode text pastes cleanly into any plain-text field: bios, captions, comments, direct messages, chat apps, spreadsheet cells. It generally will not work as an actual username or account handle, since most platforms restrict handles to a fixed ASCII character set specifically to prevent look-alike impersonation, even where they allow the same characters freely in a bio or display name.',
+					'Screen readers frequently mishandle these code points, because assistive technology reads by the character\'s official Unicode name, not by how it looks to a sighted reader. Scope, a UK disability charity, found that screen readers either skip stylized Unicode letters entirely or read out their technical names one by one, so a short stylized word can take noticeably longer to process than the same word in plain text, or vanish from what a screen reader user hears altogether. That does not make these characters unusable, but it argues for keeping stylized runs short (a name, a heading, a few words for emphasis) rather than converting a full paragraph, and for making sure the plain-text meaning is not the only place any critical information appears.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'a-z coverage by style',
+				headers: ['Letter', 'Superscript', 'Small caps', 'Subscript'],
+				rows: [
+					['a', 'ᵃ', 'ᴀ', 'ₐ'],
+					['b', 'ᵇ', 'ʙ', '—'],
+					['c', 'ᶜ', 'ᴄ', '—'],
+					['d', 'ᵈ', 'ᴅ', '—'],
+					['e', 'ᵉ', 'ᴇ', 'ₑ'],
+					['f', 'ᶠ', 'ꜰ', '—'],
+					['g', 'ᵍ', 'ɢ', '—'],
+					['h', 'ʰ', 'ʜ', 'ₕ'],
+					['i', 'ⁱ', 'ɪ', 'ᵢ'],
+					['j', 'ʲ', 'ᴊ', 'ⱼ'],
+					['k', 'ᵏ', 'ᴋ', 'ₖ'],
+					['l', 'ˡ', 'ʟ', 'ₗ'],
+					['m', 'ᵐ', 'ᴍ', 'ₘ'],
+					['n', 'ⁿ', 'ɴ', 'ₙ'],
+					['o', 'ᵒ', 'ᴏ', 'ₒ'],
+					['p', 'ᵖ', 'ᴘ', 'ₚ'],
+					['q', '— (no code point)', 'ꞯ', '—'],
+					['r', 'ʳ', 'ʀ', 'ᵣ'],
+					['s', 'ˢ', 'ꜱ', 'ₛ'],
+					['t', 'ᵗ', 'ᴛ', 'ₜ'],
+					['u', 'ᵘ', 'ᴜ', 'ᵤ'],
+					['v', 'ᵛ', 'ᴠ', 'ᵥ'],
+					['w', 'ʷ', 'ᴡ', '— (reserved, unreleased)'],
+					['x', 'ˣ', '— (no code point)', 'ₓ'],
+					['y', 'ʸ', 'ʏ', '— (reserved, unreleased)'],
+					['z', 'ᶻ', 'ᴢ', '— (reserved, unreleased)'],
+				],
+				note: 'Generated directly from this tool\'s conversion table. "Reserved, unreleased" means the Unicode Consortium has set aside a code point (U+209D/209E/209F) for that character but it is not yet part of a released Unicode version.',
+			},
+		],
+		faq: [
+			{
+				question: 'Why does converting "q" to superscript just show a regular q?',
+				answer:
+					'Unicode has no dedicated superscript code point for the letter q, unlike every other letter a-z. This tool leaves it as a plain lowercase q rather than substituting an unrelated look-alike character, and counts it toward "No tiny form exists" so you know it happened.',
+			},
+			{
+				question: 'Why do capital letters stay full-size in small caps mode, but not in superscript?',
+				answer:
+					"It matches how each style is actually used. Small caps typography is defined as shrinking lowercase letters to capital-height while leaving true capitals alone, so that's what this tool does. Superscript and subscript don't have that convention, and Unicode's separate capital-height superscript table has even more missing letters than the lowercase one, so both cases route through the same small-form glyphs.",
+			},
+			{
+				question: 'Will subscript ever support the full alphabet?',
+				answer:
+					'Closer than it used to be. The Unicode Consortium\'s public character pipeline lists code points U+209D, U+209E, and U+209F as reserved for subscript w, y, and z, provisionally approved but not yet part of a released Unicode version. Even after those ship, b, c, d, f, g, and q would still have no subscript form.',
+			},
+			{
+				question: 'Can I use this styled text as my username or account handle?',
+				answer:
+					"Usually not, even on platforms where it works fine in a bio or display name. Most platforms restrict actual handles to a fixed set of plain ASCII characters, partly to stop look-alike characters from being used to impersonate another account.",
+			},
+			{
+				question: 'Is this text accessible to screen reader users?',
+				answer:
+					"Not reliably. Screen readers announce a character by its official Unicode name rather than by how it looks, and the UK disability charity Scope has documented screen readers either skipping stylized Unicode letters or reading out each one's technical name in sequence, which can make a short phrase slow to process or drop it from what a screen reader user hears entirely. Keeping stylized text short, and not relying on it for anything essential, avoids the worst of this.",
+			},
+			{
+				question: 'Does this tool store or send my text anywhere?',
+				answer:
+					'No. The conversion runs entirely in your browser using the mapping tables above; nothing you type is uploaded or logged.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'Unicode Consortium, Unicode Character Database, UnicodeData.txt (source for every code point and official character name used in this tool\'s mapping tables)',
+				url: 'https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt',
+			},
+			{
+				label:
+					'Wikipedia, "Unicode subscripts and superscripts" (intended use for chemical/algebraic notation; U+209D-209F reserved for subscript w/y/z)',
+				url: 'https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts',
+			},
+			{
+				label: 'Unicode Consortium, Character Pipeline (public allocation list confirming U+209D-209F reserved for LATIN SUBSCRIPT SMALL LETTER W/Y/Z)',
+				url: 'https://www.unicode.org/alloc/Pipeline.html',
+			},
+			{
+				label: 'Wikipedia, "Phonetic Extensions" (Unicode block background; added in Unicode 4.0-4.1, 2003-2005, for the Uralic Phonetic Alphabet and related transcription systems)',
+				url: 'https://en.wikipedia.org/wiki/Phonetic_Extensions',
+			},
+			{
+				label: 'Holly Tuke, "How special characters and symbols affect screen reader accessibility," Scope for Business (2021)',
+				url: 'https://business.scope.org.uk/accessibility-screen-readers-special-characters-and-unicode-symbols/',
+			},
+		],
+		embedHeight: 900,
+	},
 ];
