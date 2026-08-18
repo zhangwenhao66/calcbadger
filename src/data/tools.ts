@@ -4950,4 +4950,127 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 900,
 	},
+	{
+		slug: 'topsoil-calculator',
+		category: 'Construction',
+		title: 'Topsoil Calculator',
+		shortTitle: 'Topsoil Calculator',
+		description:
+			'Work out cubic yards, weight, and bag count for a lawn, garden bed, or raised bed from its shape, area, and fill depth, with soil-texture density presets sourced from USDA soil science.',
+		updated: '2026-08-18',
+		published: '2026-08-18',
+		coreSummary:
+			'Topsoil is ordered by volume: length x width x depth (or, for a round bed, pi x radius squared x depth), converted from cubic feet to cubic yards by dividing by 27. Weight is harder to pin to one number because it depends on both moisture and soil texture, so this calculator uses the USDA NRCS Soil Health Educators Guide\'s ideal bulk-density ceiling for sandy, loam, and clay-heavy soils, converted to pounds per cubic yard, as a texture-specific planning estimate rather than a single flat figure.',
+		queries: [
+			'topsoil calculator',
+			'how much topsoil do i need',
+			'topsoil cubic yards calculator',
+			'topsoil weight calculator',
+			'how many bags of topsoil do i need',
+		],
+		sections: [
+			{
+				heading: 'The volume formula, and why topsoil is priced by the cubic yard',
+				body: [
+					"Bulk topsoil suppliers sell by the cubic yard, so the first step is area times depth. For a rectangular bed or lawn section, that's length times width times fill depth, all converted to the same unit, usually feet. For a round bed or tree ring, swap the rectangle for a circle: pi times the radius squared, times depth. Either way, the result comes out in cubic feet. A cubic yard holds 27 cubic feet, so the last step is dividing by 27, which lands on the unit a supplier's price sheet is actually written in.",
+					"Bagged topsoil is priced differently: by the bag, at a fixed cubic-foot size per bag. Scotts Premium Topsoil, sold at Home Depot, Lowe's, and Amazon, ships in 0.75 cubic foot bags, but sizes vary by brand from roughly 0.5 to 2 cubic feet, so this calculator lets you pick the bag size on the label rather than assuming one universal number.",
+				],
+			},
+			{
+				heading: 'A new lawn and a raised bed: the math behind both',
+				body: [
+					"A 1,200 sq ft yard getting fresh topsoil worked into the top 4 inches, the till depth the University of Maryland Extension's lawn-establishment guide recommends for blending amendments into existing soil: volume = 1,200 x (4/12) = 400 cu ft, which is 14.81 cu yd. Using the loam density preset (87.2 lb/ft³), that's 34,880 lb, or 17.44 tons, before any settling allowance. Add a 10% allowance for the soil compacting once it's spread and watered in: 400 x 1.10 = 440 cu ft, 16.30 cu yd, 38,368 lb (19.18 tons).",
+					"A 4 ft by 8 ft raised bed on a patio, filled to the 8 in minimum the University of Maryland Extension gives for growing leafy greens, beans, or cucumbers in a bed sitting on a hard surface: volume = 32 x (8/12) = 21.33 cu ft, or 0.79 cu yd. At the loam density, that's 1,860 lb (0.93 tons), and at 0.75 cu ft per bag, 29 bags before settling, 32 bags with a 10% allowance. For a bed shallower than 16 inches, the same Extension guidance caps straight topsoil at 20% of the mix by volume, so most of that fill would come from compost and a soilless growing medium rather than topsoil alone.",
+				],
+			},
+			{
+				heading: 'Why the weight estimate depends on soil texture, not just volume',
+				body: [
+					"A cubic yard of topsoil doesn't have one fixed weight, because bulk density (mass per unit volume) changes with how much sand, silt, clay, and organic matter the soil contains, plus how wet it is when it's weighed. Rather than pick one number and call it universal, this calculator's three texture presets come from the USDA NRCS Soil Health Educators Guide (2023), which publishes an ideal bulk-density ceiling for each texture group, the density a soil should stay at or under for roots to grow through it freely. Converted to pounds per cubic yard: sand and loamy sand top out around 2,692 lb, sandy loam through silt loam around 2,354 lb, and clay-heavy textures around 1,850 lb.",
+					"That NRCS table describes undisturbed or tilled soil in the ground, not necessarily loose, screened topsoil sitting in a supplier's stockpile, which tends to stay looser, and lighter per cubic yard, until it settles. Moisture matters too: wet soil can weigh noticeably more than the same soil dry, sometimes enough to swamp the difference between texture presets. Treat the preset as a planning estimate, and if a supplier gives you a lab-tested or load-ticket density, enter it directly with the custom option instead.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Fill depth by project (University of Maryland Extension)',
+				headers: ['Project', 'Recommended depth', 'Source guidance'],
+				rows: [
+					['Covering grass seed', '1/4-1/2 in', "Light cover to aid germination, not a full soil layer"],
+					['New lawn, tilling in amendments', '4-6 in', 'Depth a rototiller mixes soil and amendments to'],
+					['Raised bed on hard surface: leafy greens, beans, cucumbers', '8 in minimum', 'Roots need this much rooting depth above the hard surface'],
+					['Raised bed on hard surface: peppers, tomatoes, squash', '12-24 in', 'Deeper-rooting crops need more depth for the same reason'],
+					['Raised bed straight-topsoil limit', 'Up to 20% of mix by volume', 'Applies unless the bed is at least 16 in deep'],
+				],
+				note: 'Source: University of Maryland Extension, "Starting a New Lawn" and "Soil to Fill Raised Beds."',
+			},
+			{
+				title: 'Soil texture density presets (USDA NRCS ideal bulk density ceiling)',
+				headers: ['Texture preset', 'Density (g/cm³)', 'Density (lb/ft³)', 'Weight per cu yd'],
+				rows: [
+					['Sandy blend (sand, loamy sand)', '< 1.6', '99.7', '~2,692 lb'],
+					['Loam (sandy loam through silt loam)', '< 1.4', '87.2', '~2,354 lb'],
+					['Clay-heavy (sandy clay, silty clay, clay)', '< 1.1', '68.5', '~1,850 lb'],
+				],
+				note: 'Source: USDA NRCS Soil Health Educators Guide (2023), as tabulated by SDSU Extension. These are ceilings for healthy root growth in soil already in the ground, not a measured weight of bagged or bulk-delivered topsoil.',
+			},
+		],
+		faq: [
+			{
+				question: 'How much topsoil do I need for a given area and depth?',
+				answer:
+					"Multiply the area in square feet by the fill depth in feet, then divide by 27 to get cubic yards. For a 500 sq ft bed at 6 inches: 500 x 0.5 = 250 cu ft, divided by 27 is 9.26 cu yd. This calculator does that conversion and adds a settling allowance and weight estimate on top.",
+			},
+			{
+				question: 'How much does a cubic yard of topsoil weigh?',
+				answer:
+					"There's no single official figure, because weight depends on soil texture and moisture. This calculator uses USDA NRCS's ideal bulk-density ceiling for each texture: roughly 2,692 lb/cu yd for sandy soil, 2,354 lb/cu yd for loam, and 1,850 lb/cu yd for clay-heavy soil. Wetter soil weighs more than these dry-basis figures; a supplier's load ticket, if you have one, is more accurate than any preset.",
+			},
+			{
+				question: 'Should I buy topsoil in bags or bulk by the cubic yard?',
+				answer:
+					"Bags make sense for small jobs, generally under a cubic yard or two, since bulk delivery minimums and per-load fees often make a small bulk order cost more per unit than bags. For a full cubic yard (about 36 bags at 0.75 cu ft each), bulk delivery is almost always cheaper if a supplier in your area offers it and the volume clears their minimum order.",
+			},
+			{
+				question: 'How much extra should I order for settling?',
+				answer:
+					"Freshly spread topsoil compacts once it's walked on and watered in, so ordering exactly the calculated volume tends to leave you short once it settles. There's no single official percentage; this calculator defaults to a 10% allowance, which you can adjust, as a middle-of-the-road planning figure rather than a guarantee.",
+			},
+			{
+				question: 'How deep should topsoil be for a new lawn versus a raised bed?',
+				answer:
+					"For working amendments into an existing lawn area, University of Maryland Extension's guidance points to tilling the top 4-6 inches. Raised beds need more: at least 8 inches for shallow-rooting crops like leafy greens and beans, and 12-24 inches for deeper-rooting crops like tomatoes and peppers, per the same Extension's raised-bed guidance.",
+			},
+			{
+				question: 'Can I fill a raised bed with 100% topsoil?',
+				answer:
+					"University of Maryland Extension caps straight topsoil at about 20% of the mix by volume unless the bed is at least 16 inches deep, recommending compost and a soilless growing mix for the rest. Straight topsoil alone tends to compact and drain poorly in a contained bed compared with a blended mix.",
+			},
+			{
+				question: 'Why does the calculator ask for soil texture instead of using one weight for everyone?',
+				answer:
+					"Bulk density differs by texture: sandier soils pack denser than clay-heavy soils at the same moisture level, per USDA NRCS's published bulk-density figures. Picking the closest texture preset, or entering a custom density if you know one, gets you a closer weight estimate than a single flat number would.",
+			},
+			{
+				question: 'Does the price estimate include delivery?',
+				answer:
+					"No, the optional price field multiplies your cubic-yard total by a per-cubic-yard material price you enter, so it estimates material cost only. Delivery fees, minimum-order charges, and any spreading labor are separate and vary by supplier.",
+			},
+		],
+		sources: [
+			{
+				label: 'SDSU Extension (Hans Klopp & Anthony Bly), "Bulk Density is an Indicator of Soil Health," updated September 22, 2023 (tabulates USDA NRCS Soil Health Educators Guide 2023 ideal bulk-density ceilings by soil texture)',
+				url: 'https://extension.sdstate.edu/bulk-density-indicator-soil-health',
+			},
+			{
+				label: 'University of Maryland Extension, "Starting a New Lawn" (4-6 in till depth for soil amendments)',
+				url: 'https://extension.umd.edu/resource/starting-new-lawn',
+			},
+			{
+				label: 'University of Maryland Extension, "Soil to Fill Raised Beds" (8 in and 12-24 in depth minimums, 20% topsoil-by-volume guidance)',
+				url: 'https://extension.umd.edu/resource/soil-fill-raised-beds',
+			},
+		],
+		embedHeight: 980,
+	},
 ];

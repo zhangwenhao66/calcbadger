@@ -39,6 +39,7 @@ import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
 import TimeDurationCalculator from './calculators/TimeDurationCalculator';
 import TipCalculator from './calculators/TipCalculator';
+import TopsoilCalculator from './calculators/TopsoilCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
 import WorldClockConverter from './calculators/WorldClockConverter';
@@ -90,3 +91,4 @@ const { slug } = Astro.props;
 {slug === 'random-animal-generator' && <RandomAnimalGenerator client:load />}
 {slug === 'small-text-generator' && <SmallTextGenerator client:load />}
 {slug === 'gender-symbols' && <GenderSymbolsGenerator client:load />}
+{slug === 'topsoil-calculator' && <TopsoilCalculator client:load />}
