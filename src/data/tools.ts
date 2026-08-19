@@ -5195,4 +5195,137 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 940,
 	},
+	{
+		slug: 'sentence-counter',
+		category: 'Text Tools',
+		title: 'Sentence Counter',
+		shortTitle: 'Sentence Counter',
+		description:
+			'Count sentences, words, and characters in text, plus reading time and Flesch readability scores, using Flesch\'s 1948 formula, its 1975 grade-level version, and Brysbaert\'s 2019 research.',
+		updated: '2026-08-19',
+		published: '2026-08-19',
+		coreSummary:
+			'A sentence ends at a run of . ! or ? unless that single period sits inside a decimal number, follows a recognized abbreviation ("Dr.", "approx.", "p.m."), or follows a capital letter used as an initial. This tool also scores readability with Rudolf Flesch\'s 1948 Reading Ease formula and the Flesch-Kincaid Grade Level formula Kincaid et al. derived from it for a 1975 Navy readability study, and estimates reading time from Brysbaert\'s 2019 meta-analysis putting average adult silent non-fiction reading at 238 words per minute.',
+		queries: [
+			'sentence counter',
+			'sentence counter online',
+			'count sentences in text',
+			'word and character counter',
+			'flesch reading ease calculator',
+			'flesch kincaid grade level calculator',
+		],
+		sections: [
+			{
+				heading: 'How the sentence count actually works',
+				body: [
+					'A period, question mark, or exclamation point almost always ends a sentence, but not quite always: "Dr. Chen arrived at 3 p.m." has two periods that stay inside one sentence, and "The total came to 3.14 dollars" has a period that\'s just a decimal point. This tool scans for runs of . ! and ?, then holds back on splitting when a single period sits between two digits, follows a word from a short list of common abbreviations (Dr., Mr., Mrs., Inc., approx., etc., and similar), follows a two-letter or longer dotted abbreviation like "p.m." or "U.S.", or follows a capital letter standing alone as an initial ("J. K. Rowling"). Everything else, including a run like "?!" or an ellipsis, counts as one sentence boundary.',
+					'That rule set has a known blind spot: it always treats an abbreviation\'s period as continuing the sentence, so a sentence that actually ends right after "Inc." or "etc." gets folded into the one after it. There\'s no punctuation-only rule that resolves every case correctly, since English itself doesn\'t mark the difference; a period after "St." means one thing in "St. Louis" and another at the end of "Turn left on Main St." with nothing else to go on. Lightweight sentence counters generally accept this trade-off rather than trying to parse full grammar, because it gets the overwhelming majority of ordinary prose right.',
+				],
+			},
+			{
+				heading: 'Where the readability formulas come from',
+				body: [
+					'The Flesch Reading Ease score runs from roughly 0 to 100, with higher numbers meaning easier text: 206.835 minus 1.015 times the average number of words per sentence, minus 84.6 times the average number of syllables per word. Rudolf Flesch published that formula in 1948. The Flesch-Kincaid Grade Level rescales the same two inputs onto a US school-grade scale: 0.39 times average words per sentence, plus 11.8 times average syllables per word, minus 15.59. J. P. Kincaid, R. P. Fishburne, R. L. Rogers, and B. S. Chissom derived that second formula in a 1975 report for the US Navy, testing it against reading scores from enlisted sailors and building it from the same word and syllable counts Flesch\'s formula uses.',
+					'Both formulas need a syllable count, and there\'s no way to get an exact one without a pronunciation dictionary. This tool estimates syllables by counting groups of vowel letters in each word, which handles most everyday words correctly but can miss by a syllable or two on an irregular word (silent letters, unusual endings, extra vowel clusters). That kind of miss moves the Reading Ease score by a few points at most, not enough to jump a paragraph from one reading-level band to another.',
+				],
+			},
+			{
+				heading: 'How reading time is estimated',
+				body: [
+					'Reading-time estimates on this tool use 238 words per minute, the average adult silent reading rate for non-fiction English text found by Marc Brysbaert\'s 2019 meta-analysis of 190 studies covering more than 18,500 participants. The same analysis found fiction reads faster on average, at 260 words per minute, and reading aloud is slower, at 183 words per minute; this tool defaults to the non-fiction figure since most pasted text (emails, articles, reports, essays) fits that category better than fiction does. Any single reader can run faster or slower than the average, so treat the estimate as a rough planning number, not a stopwatch result.',
+				],
+			},
+			{
+				heading: 'Two worked examples, plain versus dense',
+				body: [
+					'"Read the instructions first. Then fill in each blank. Check your answers before you submit the form." is 3 sentences and 17 words, averaging 5.7 words per sentence and 1.3 syllables per word. That lands a Flesch Reading Ease score of 91.6, in the "Very easy" band, and a Flesch-Kincaid grade level of 1.9, meaning a strong first- or second-grade reader could follow it.',
+					'"Notwithstanding the aforementioned stipulations, applicants seeking supplementary compensation must, prior to formal adjudication, substantiate their eligibility through comprehensive documentation verifying continuous employment throughout the preceding fiscal quarter." is one 27-word sentence averaging 2.9 syllables per word. The formula scores it at -65.0, below the bottom of the 0-100 scale and squarely in the "Very confusing" band, with a Flesch-Kincaid grade level over 29, past any real school grade. Same idea, expressed in long words and one long sentence instead of three short ones, and the readability score moves by more than 150 points.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Flesch Reading Ease score bands',
+				headers: ['Score', 'Reading level', 'Typical audience'],
+				rows: [
+					['90-100', 'Very easy', 'Understood by an average 11-year-old'],
+					['80-89', 'Easy', 'Conversational English'],
+					['70-79', 'Fairly easy', 'Comfortable for most teenagers'],
+					['60-69', 'Standard', 'Plain English, roughly 8th-9th grade'],
+					['50-59', 'Fairly difficult', 'High-school-level reading'],
+					['30-49', 'Difficult', 'Best suited to college graduates'],
+					['0-29', 'Very confusing', 'Dense academic or specialist text'],
+				],
+				note: 'Bands as published on ReadabilityFormulas.com and consistently reproduced across readability references; a computed score below 0 (as with the dense-paragraph example above) still falls in the "Very confusing" band, the scale just doesn\'t have a formal floor.',
+			},
+			{
+				title: 'Average adult reading speed',
+				headers: ['Reading mode', 'Words per minute'],
+				rows: [
+					['Silent reading, non-fiction', '238'],
+					['Silent reading, fiction', '260'],
+					['Reading aloud', '183'],
+				],
+				note: 'Source: Brysbaert (2019), meta-analysis of 190 studies and 18,573 participants (77 studies and 5,965 participants for the oral-reading figure). This tool\'s reading-time estimate uses the 238 wpm non-fiction figure.',
+			},
+		],
+		faq: [
+			{
+				question: 'How does this tool count sentences?',
+				answer:
+					'It looks for a period, question mark, or exclamation point, then checks whether that punctuation actually ends a sentence. A period doesn\'t count as an ending when it sits between two digits (a decimal), follows a recognized abbreviation like "Dr." or "approx.", follows a dotted abbreviation like "p.m." or "U.S.", or follows a lone capital letter used as an initial. Everything else counts as a sentence boundary.',
+			},
+			{
+				question: 'Does the sentence count ever get it wrong?',
+				answer:
+					'Yes, in a couple of predictable ways. It always reads an abbreviation\'s period as continuing the sentence, so on the rare occasion a sentence actually ends right after "Inc." or "etc.", this tool merges it with the sentence that follows instead of splitting it. It can also split too eagerly in text this heuristic doesn\'t recognize as a special case, such as a period inside a URL ("example.com") or after a bare numbered-list marker ("1."). There\'s no punctuation-only rule that resolves every case, since abbreviations, web addresses, and list numbers all share the same period character with nothing else to distinguish them.',
+			},
+			{
+				question: 'What is a Flesch Reading Ease score?',
+				answer:
+					'A 0-to-100 score (206.835 minus 1.015 times average words per sentence, minus 84.6 times average syllables per word) where higher means easier to read. A score of 90-100 is "very easy," roughly what an 11-year-old can follow; a score under 30 is "very confusing," typical of dense academic or legal writing. Rudolf Flesch published the formula in 1948; Kincaid, Fishburne, Rogers, and Chissom reused it for a 1975 US Navy study that derived the grade-level score below from the same inputs.',
+			},
+			{
+				question: 'What Flesch-Kincaid grade level should general web content aim for?',
+				answer:
+					'There\'s no single official target, but a grade level in the roughly 6-to-9 range (matching a Flesch Reading Ease score in the 60s to low 80s) is a common aim for content meant for a broad adult audience, since it stays readable without sounding like it\'s written for children. Technical or specialist content naturally scores lower on ease and higher on grade level, and that\'s expected for its audience.',
+			},
+			{
+				question: 'How is the estimated reading time calculated?',
+				answer:
+					'Word count divided by 238 words per minute, the average adult silent non-fiction reading rate from Brysbaert\'s 2019 meta-analysis of 190 studies. It\'s a population average; a faster or slower individual reader will finish sooner or later than the estimate shown.',
+			},
+			{
+				question: 'Why do "characters with spaces" and "characters without spaces" differ so much?',
+				answer:
+					'Every space, tab, and line break between words counts toward "with spaces" but not toward "without spaces." For ordinary English prose, roughly one character in six is a space, so the gap between the two counts scales with how many words the text has, not with anything unusual about the text itself.',
+			},
+			{
+				question: 'How accurate is the syllable count?',
+				answer:
+					'It\'s an estimate, not a dictionary lookup. The tool counts groups of vowel letters in each word and adjusts for a silent trailing "e", which gets most common English words right but can be off by a syllable or two on irregular spellings. Because both Flesch formulas average syllables across every word in the text, an occasional single-word miss shifts the final score by a few points at most.',
+			},
+		],
+		sources: [
+			{
+				label: 'Flesch, R. (1948), "A New Readability Yardstick," Journal of Applied Psychology, 32(3), 221-233 (source of the Reading Ease formula and its 206.835/1.015/84.6 constants)',
+				url: 'https://pubmed.ncbi.nlm.nih.gov/18867058/',
+			},
+			{
+				label:
+					'Kincaid, J. P., Fishburne, R. P., Rogers, R. L., & Chissom, B. S. (1975), "Derivation of New Readability Formulas (Automated Readability Index, Fog Count and Flesch Reading Ease Formula) for Navy Enlisted Personnel," Research Branch Report 8-75, Chief of Naval Technical Training, Naval Air Station Memphis (source of the Flesch-Kincaid Grade Level formula, via Defense Technical Information Center / Internet Archive)',
+				url: 'https://archive.org/details/DTIC_ADA006655',
+			},
+			{
+				label:
+					'Brysbaert, M. (2019), "How many words do we read per minute? A review and meta-analysis of reading rate," Journal of Memory and Language, 109',
+				url: 'https://www.sciencedirect.com/science/article/abs/pii/S0749596X19300786',
+			},
+			{
+				label: 'ReadabilityFormulas.com, "Learn About the Flesch Reading Ease Formula" (score-band interpretation table)',
+				url: 'https://readabilityformulas.com/learn-about-the-flesch-reading-ease-formula/',
+			},
+		],
+		embedHeight: 1050,
+	},
 ];

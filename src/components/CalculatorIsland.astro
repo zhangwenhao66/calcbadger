@@ -31,6 +31,7 @@ import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
+import SentenceCounter from './calculators/SentenceCounter';
 import ShapeVolumeCalculator from './calculators/ShapeVolumeCalculator';
 import SmallTextGenerator from './calculators/SmallTextGenerator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
@@ -94,3 +95,4 @@ const { slug } = Astro.props;
 {slug === 'gender-symbols' && <GenderSymbolsGenerator client:load />}
 {slug === 'topsoil-calculator' && <TopsoilCalculator client:load />}
 {slug === 'keg-calculator' && <KegCalculator client:load />}
+{slug === 'sentence-counter' && <SentenceCounter client:load />}

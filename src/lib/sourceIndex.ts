@@ -66,6 +66,8 @@ const DOMAIN_TYPE: Record<string, string> = {
 	'www.ahajournals.org': RESEARCH,
 	'www.thelancet.com': RESEARCH,
 	'www.ncbi.nlm.nih.gov': RESEARCH,
+	'pubmed.ncbi.nlm.nih.gov': RESEARCH,
+	'www.sciencedirect.com': RESEARCH,
 	'facultypsy.hope.edu': RESEARCH,
 	'mathcs.clarku.edu': RESEARCH,
 	'mathshistory.st-andrews.ac.uk': RESEARCH,
