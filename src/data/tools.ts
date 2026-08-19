@@ -1381,8 +1381,8 @@ export const tools: Tool[] = [
 		title: 'Time Converter',
 		shortTitle: 'Time Converter',
 		description:
-			'Convert between seconds, minutes, hours, days, weeks, months, and years instantly, with reference tables for "how many hours/minutes/seconds in a year" and worked examples for ages, projects, and countdowns.',
-		updated: '2026-08-05',
+			'Convert between seconds, minutes, hours, days, weeks, months, and years instantly, with reference tables and worked examples for ages, projects, and countdowns.',
+		updated: '2026-08-19',
 		published: '2026-08-05',
 		coreSummary:
 			'A day is exactly 24 hours (86,400 seconds) and a week is exactly 7 days, both fixed by definition. A calendar month or year has no single fixed length (28-31 days per month, 365 or 366 days per year), so this converter uses the mean Gregorian month (30.436875 days) and mean Gregorian year (365.2425 days), the exact average over the calendar\'s 400-year leap cycle, not an estimate. Enter a duration in any of seven units and this tool converts it to the other six at once.',
