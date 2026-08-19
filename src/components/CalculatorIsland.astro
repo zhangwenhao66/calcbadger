@@ -20,6 +20,7 @@ import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
 import GlitchTextGenerator from './calculators/GlitchTextGenerator';
 import GpaCalculator from './calculators/GpaCalculator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
+import KegCalculator from './calculators/KegCalculator';
 import LengthConverter from './calculators/LengthConverter';
 import MathSymbolsGenerator from './calculators/MathSymbolsGenerator';
 import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
@@ -92,3 +93,4 @@ const { slug } = Astro.props;
 {slug === 'small-text-generator' && <SmallTextGenerator client:load />}
 {slug === 'gender-symbols' && <GenderSymbolsGenerator client:load />}
 {slug === 'topsoil-calculator' && <TopsoilCalculator client:load />}
+{slug === 'keg-calculator' && <KegCalculator client:load />}

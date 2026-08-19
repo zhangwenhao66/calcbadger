@@ -5073,4 +5073,126 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 980,
 	},
+	{
+		slug: 'keg-calculator',
+		category: 'Food & Drink',
+		title: 'Keg Calculator',
+		shortTitle: 'Keg Calculator',
+		description:
+			'Work out how many 12 oz beers, US pints, or custom pours a keg holds for any standard US or metric keg size, plus how many kegs a party needs, using the federally defined keg sizes and standard-drink serving reference.',
+		updated: '2026-08-19',
+		published: '2026-08-19',
+		coreSummary:
+			'Servings per keg = keg volume divided by serving size, rounded down. Keg volumes come from the fractional-barrel sizes the US Alcohol and Tobacco Tax and Trade Bureau authorizes under 27 CFR 25.11 and 25.156 (half barrel = 15.5 gal, quarter barrel = 7.75 gal, sixth barrel = 31/6 gal), plus the 5-gallon and metric kegs the same regulation covers. The default 12 oz serving is the NIAAA\'s standard-drink reference volume for beer near 5% ABV.',
+		queries: [
+			'keg calculator',
+			'how many beers in a keg',
+			'how many beers in a keg calculator',
+			'keg size calculator',
+			'how many kegs do i need for a party',
+		],
+		sections: [
+			{
+				heading: 'Where keg sizes actually come from',
+				body: [
+					"A \"keg\" isn't one fixed size; it's a fraction of a barrel, and the barrel itself is a legal unit of measure. The US Alcohol and Tobacco Tax and Trade Bureau defines a barrel as 31 gallons for beer-tax purposes (27 CFR 25.11), and separately authorizes the fractional and metric container sizes breweries actually fill (27 CFR 25.156): halves, thirds, quarters, sixths, and eighths of that 31-gallon barrel, plus straight 5-gallon kegs and metric 30 L and 50 L kegs. The everyday keg names come straight out of those fractions: a half barrel (the size most people mean by \"a keg\") is 15.5 gallons, a quarter barrel or pony keg is 7.75 gallons, and a sixth barrel or sixtel is 31/6, about 5.17 gallons.",
+					'Two sizes on this calculator sit outside that legal fraction system. A "corny" or Cornelius keg is a 5-gallon container that TTB separately authorizes as a keg size, but the name comes from its original use as a soda-fountain syrup keg that homebrewers repurposed; it isn\'t a clean fraction of 31. A mini or party keg, the small stainless container sold at grocery and liquor stores for a single gathering, typically holds 5 liters, the metric size several import brands use for retail party kegs.',
+				],
+			},
+			{
+				heading: 'Two worked examples',
+				body: [
+					"A half barrel filled with a standard 12 oz can-equivalent pour: 15.5 gal converts to 58,673.9 mL (using the exact US-gallon-to-milliliter factor), and a 12 oz serving is 354.9 mL, so 58,673.9 / 354.9 = 165.3, which rounds down to 165 full servings. Switch the same half barrel to 16 oz US pint pours instead, and the math comes out exact: a half barrel is 1,984 US fluid ounces, and 1,984 / 16 = 124 pints, no rounding needed.",
+					"A sixth barrel (sixtel), the size a lot of taprooms use for a rotating tap, holds 31/6 gallons, which is 19,558 mL. At a 12 oz serving that's 55.1, so 55 full pours, matching the same figure published by keg-size guides like Kegerator's Learning Center. Swap in a 20 oz UK imperial pint instead and the count drops to 34, because a UK pint pour holds more liquid than a US pint, not because the keg got smaller.",
+				],
+			},
+			{
+				heading: 'US pint vs. UK pint, and how much to budget for waste',
+				body: [
+					'A "pint" isn\'t a single measurement worldwide. A US pint pour is 16 US fluid ounces (473.2 mL); a UK or Irish imperial pint is 20 imperial fluid ounces (568.3 mL). The imperial fluid ounce is actually the smaller of the two units, about 3.9% less than a US fluid ounce, but a UK pint counts 20 of them against the US pint\'s 16, a 25% bigger count that more than makes up the difference. Net result: an imperial pint holds about 20% more liquid than a US pint. Pick the wrong one and a keg-servings estimate is off by a fifth before anything else changes.',
+					"None of the numbers above account for foam and spillage, which is why this calculator has a separate waste-allowance field defaulted to zero rather than baking in an assumed loss. For commercial draft systems, draft-technology vendor BevTeq puts typical bar and restaurant draft-beer waste in the 15-25% range, mostly from foam; the Siebel Institute of Technology's draft-loss guidance points the same direction (a pour that's mostly foam wastes most of its liquid beer) without naming a percentage of its own. Well-maintained systems do better than that range. A home kegerator or party pump, poured by hand into varied glassware, doesn't have a published equivalent figure, so treat that industry range as context for setting your own waste allowance rather than a number this calculator assumes for you.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Standard keg sizes and how many pours they hold',
+				headers: ['Keg size', 'Volume', '12 oz servings', '16 oz US pints'],
+				rows: [
+					['Half barrel ("full keg")', '15.5 gal (58.67 L)', '165', '124'],
+					['Quarter barrel (pony keg)', '7.75 gal (29.34 L)', '82', '62'],
+					['Sixth barrel (sixtel)', '31/6 gal (19.56 L)', '55', '41'],
+					['Corny keg (homebrew)', '5 gal (18.93 L)', '53', '40'],
+					['Mini keg (party keg)', '5 L (1.32 gal)', '14', '10'],
+				],
+				note: 'Source: 27 CFR 25.11 and 25.156 for the half barrel, quarter barrel, sixth barrel, and corny keg volumes; the mini keg\'s 5 L is a common import-brand party-keg size, not a TTB-authorized fraction. Servings independently calculated as floor(volume / serving size) using NIST\'s exact US-gallon and US-fluid-ounce conversion factors, cross-checked against the ~165/~82/~55 figures published by Kegerator\'s Learning Center and The Calculator Site.',
+			},
+			{
+				title: 'Serving size reference',
+				headers: ['Serving', 'Fluid ounces', 'Milliliters'],
+				rows: [
+					['12 oz can/bottle (NIAAA standard drink)', '12 US fl oz', '354.9'],
+					['16 oz US pint', '16 US fl oz', '473.2'],
+					['20 oz UK/Irish imperial pint', '20 imperial fl oz', '568.3'],
+				],
+				note: 'US and imperial fluid ounces are different units (1 imperial fl oz = 28.41 mL vs. 1 US fl oz = 29.57 mL), so the milliliter column, not the ounce count, is what actually compares serving sizes across the two systems.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many beers are in a keg?',
+				answer:
+					"It depends on the keg size and the serving size. A standard half barrel (15.5 gal, what most people mean by \"a keg\") holds about 165 twelve-ounce beers or 124 sixteen-ounce pints. A quarter barrel holds about 82 twelve-ounce beers, and a sixth barrel (sixtel) holds about 55.",
+			},
+			{
+				question: 'What\'s the difference between a keg and a barrel?',
+				answer:
+					'A barrel is the legal unit, 31 gallons under 27 CFR 25.11. A keg is a container holding some authorized fraction of that barrel, most commonly a half barrel (15.5 gal) or a quarter barrel (7.75 gal), plus some sizes like the 5-gallon corny keg and metric 30 L/50 L kegs that TTB authorizes separately rather than as a barrel fraction.',
+			},
+			{
+				question: 'How many kegs do I need for a party?',
+				answer:
+					"Multiply your guest count by expected drinks per guest, then divide by the servings a single keg holds (after any waste allowance), and round up, since a partial keg still means buying the whole thing. This calculator's guest and drinks-per-guest fields do that math automatically once a keg size and serving size are set.",
+			},
+			{
+				question: 'Is a UK pint the same as a US pint?',
+				answer:
+					'No. A US pint pour is 16 US fluid ounces (473.2 mL). A UK or Irish imperial pint is 20 imperial fluid ounces (568.3 mL). Even though each imperial fluid ounce is slightly smaller than a US one, counting 20 of them instead of 16 still lands an imperial pint about 20% bigger than a US pint, not just "4 more ounces."',
+			},
+			{
+				question: 'Why do keg-serving numbers differ between calculators?',
+				answer:
+					"Most of the spread comes from rounding conventions and whether a site accounts for foam waste. This calculator rounds full servings down (a partial pour past the last full serving doesn't count) and lets you dial in your own waste percentage instead of assuming one, so a 0% waste result compares directly against the reference figures other keg-size guides publish.",
+			},
+			{
+				question: 'What is a corny keg, and why is it 5 gallons instead of a barrel fraction?',
+				answer:
+					'A Cornelius or "corny" keg is a 5-gallon stainless container, originally built for soda-fountain syrup, that homebrewers adopted because it\'s cheap, easy to clean, and fits a standard kegerator. TTB authorizes it as a keg size, but it isn\'t a fraction of the 31-gallon barrel the way half, quarter, and sixth barrels are.',
+			},
+			{
+				question: 'How much beer should I budget for foam and spillage?',
+				answer:
+					"There's no single official figure, and it depends heavily on the dispensing setup. Draft-technology vendor BevTeq puts typical commercial bar and restaurant draft-beer waste in the 15-25% range, mostly from foam, with well-run systems doing better; the Siebel Institute of Technology's draft-loss guidance covers the same foam-waste mechanism without giving its own percentage. A home kegerator or party pump doesn't have a published equivalent, so this calculator defaults its waste field to 0% and leaves the allowance up to you rather than assuming a number.",
+			},
+		],
+		sources: [
+			{
+				label: '27 CFR § 25.11, Definition of "barrel" (31 US gallons), eCFR (Electronic Code of Federal Regulations)',
+				url: 'https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-25/subpart-B/section-25.11',
+			},
+			{
+				label: '27 CFR § 25.156, Determination of tax on keg beer (authorized keg fractions and metric sizes), eCFR',
+				url: 'https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-25/subpart-K/subject-group-ECFR13ed4f8cf706222/section-25.156',
+			},
+			{
+				label: 'National Institute on Alcohol Abuse and Alcoholism, "What Is A Standard Drink?" (12 oz beer at ~5% ABV reference)',
+				url: 'https://www.niaaa.nih.gov/alcohols-effects-health/overview-alcohol-consumption/what-standard-drink',
+			},
+			{
+				label: 'Siebel Institute of Technology, "How much does wasting draught beer cost a Retailer?" (draft-beer waste range)',
+				url: 'https://www.siebelinstitute.com/news/business-and-management/how-much-does-wasting-draught-beer-cost-a-retailer',
+			},
+		],
+		embedHeight: 940,
+	},
 ];

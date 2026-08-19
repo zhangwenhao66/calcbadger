@@ -42,6 +42,7 @@ const DOMAIN_TYPE: Record<string, string> = {
 	'physics.nist.gov': GOVERNMENT,
 	'www.nist.gov': GOVERNMENT,
 	'www.niddk.nih.gov': GOVERNMENT,
+	'www.niaaa.nih.gov': GOVERNMENT,
 	'pubchem.ncbi.nlm.nih.gov': GOVERNMENT,
 	'www.law.cornell.edu': GOVERNMENT,
 	'www.legislation.gov.uk': GOVERNMENT,
