@@ -5328,4 +5328,103 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1050,
 	},
+	{
+		slug: 'markup-calculator',
+		category: 'Finance',
+		title: 'Markup Calculator',
+		shortTitle: 'Markup Calculator',
+		description:
+			'Solve for selling price, cost, or markup percentage from the other two, and see the corresponding margin percentage every time, since the two are easy to mix up but never equal.',
+		updated: '2026-08-19',
+		published: '2026-08-19',
+		coreSummary:
+			'Markup% = (selling price - cost) / cost × 100. Margin% = (selling price - cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused.',
+		queries: ['markup calculator', 'markup percentage calculator', 'markup vs margin calculator', 'how to calculate markup', 'markup to margin converter'],
+		sections: [
+			{
+				heading: 'How markup is calculated',
+				body: [
+					'Markup is profit expressed as a percentage of cost: **markup% = (selling price - cost) / cost × 100**. Rearranged, that gives the other two directions this calculator solves: **selling price = cost × (1 + markup% / 100)**, and **cost = selling price / (1 + markup% / 100)**.',
+					'A $40 item marked up 35% sells for $40 × 1.35 = $54.00, for a $14.00 profit. That $14.00 is 35% of the $40.00 cost, which is exactly the markup percent that went in. The formula is circular by design, since markup is defined relative to cost.',
+				],
+			},
+			{
+				heading: 'Markup vs. margin: the number that trips people up',
+				body: [
+					'Markup and margin both describe the same profit dollar, but they divide it by a different base. Markup divides by cost; margin (sometimes "gross margin" or "gross profit margin") divides by the selling price instead: **margin% = (selling price - cost) / selling price × 100**. Because the selling price is always larger than the cost on a profitable sale, margin% is always the smaller of the two numbers for the same transaction (Corporate Finance Institute; AccountingTools).',
+					'Cost $70, sell at $100: profit is $30. As markup, that $30 is 42.86% of the $70 cost. As margin, the same $30 is 30% of the $100 price. Using one number where the other is meant (for example, trying to hit a 30% profit margin by adding a flat 30% markup to cost) undershoots the actual margin target, because 30% markup on $70 only lands at 23.08% margin, not 30%.',
+				],
+			},
+			{
+				heading: 'Worked example: pricing from a target markup',
+				body: [
+					'A retailer buys a product for $18.50 and wants to price it at $24.99, a common practice of landing on a round consumer price rather than an exact multiple of cost. The markup on that sale is (24.99 - 18.50) / 18.50 × 100 = 35.08%, and the margin is (24.99 - 18.50) / 24.99 × 100 = 25.97%. The two percentages describe the identical $6.49 of profit; neither is "wrong," they just answer different questions. Markup answers "how much did I add to cost," and margin answers "what share of the sale price is profit."',
+				],
+			},
+			{
+				heading: 'Why the gap between the two widens at higher markups',
+				body: [
+					'At low markups the gap between markup% and margin% is small (10% markup is 9.09% margin, a 0.91-point gap), but it widens fast as markup climbs: 100% markup ("keystone" pricing, common in apparel and jewelry retail, meaning cost is simply doubled to set the price) is only 50% margin, and 200% markup is 66.67% margin, not 200%. Margin can never reach 100% no matter how high the markup goes, since margin is profit as a share of a selling price that always includes the cost as well as the profit.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Markup percent converted to margin percent',
+				headers: ['Markup %', 'Margin %'],
+				rows: [
+					['10%', '9.09%'],
+					['20%', '16.67%'],
+					['25%', '20.00%'],
+					['30%', '23.08%'],
+					['40%', '28.57%'],
+					['50%', '33.33%'],
+					['75%', '42.86%'],
+					['100% ("keystone")', '50.00%'],
+					['150%', '60.00%'],
+					['200%', '66.67%'],
+					['300%', '75.00%'],
+				],
+				note: 'margin% = markup% / (1 + markup% / 100). Margin approaches but never reaches 100% as markup increases.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the difference between markup and margin?',
+				answer:
+					'Markup divides profit by cost: markup% = (price - cost) / cost × 100. Margin divides the same profit by the selling price instead: margin% = (price - cost) / price × 100. Because the selling price is larger than the cost, margin% is always lower than markup% for the same sale (Corporate Finance Institute; AccountingTools).',
+			},
+			{
+				question: 'How do I calculate markup percentage?',
+				answer:
+					'Subtract the cost from the selling price to get profit, then divide profit by the cost and multiply by 100: markup% = (selling price - cost) / cost × 100. A $70 cost sold at $100 has a $30 profit, which is 42.86% of the $70 cost.',
+			},
+			{
+				question: 'If I want a 30% profit margin, what markup should I use?',
+				answer:
+					'A 30% profit margin needs a 42.86% markup, not a 30% markup. Adding a flat 30% markup to cost only produces a 23.08% margin. To hit a target margin, convert it to the matching markup first: markup% = margin% / (1 - margin% / 100). That is also why this calculator always shows both numbers instead of just the one you entered.',
+			},
+			{
+				question: 'What does 100% markup mean?',
+				answer:
+					'It means the selling price is double the cost: a $50 cost marked up 100% sells for $100, for a $50 profit. In retail, doubling cost to set price is sometimes called "keystone" pricing. A 100% markup works out to a 50% margin, not 100%, since margin measures the same profit against the larger selling price instead of the cost.',
+			},
+			{
+				question: 'Is markup the same as profit margin?',
+				answer:
+					'No, they describe the same profit dollar but are not numerically equal except when profit is $0. Markup is profit over cost; margin (gross profit margin) is profit over selling price. Mixing the two up when setting prices is a common pricing mistake, since a markup percentage always understates the resulting margin percentage.',
+			},
+		],
+		sources: [
+			{
+				label: 'Corporate Finance Institute — "Markup: Learn How to Calculate Markup & Markup Percentage"',
+				url: 'https://corporatefinanceinstitute.com/resources/accounting/markup/',
+			},
+			{
+				label: 'AccountingTools — "The difference between margin and markup"',
+				url: 'https://www.accountingtools.com/articles/what-is-the-difference-between-margin-and-markup.html',
+			},
+		],
+		embedHeight: 640,
+	},
 ];
