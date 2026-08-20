@@ -5516,4 +5516,96 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'conduit-fill-calculator',
+		category: 'Construction',
+		title: 'Conduit Fill Calculator',
+		shortTitle: 'Conduit Fill',
+		description:
+			'Check whether a set of THHN/THWN-2 conductors fits inside an EMT, IMC, RMC, or PVC conduit under the NEC Chapter 9 fill limits, and see the smallest size that would pass if it does not.',
+		updated: '2026-08-20',
+		published: '2026-08-20',
+		coreSummary:
+			'NEC Chapter 9 caps how much of a conduit\'s cross-section conductors may occupy: 53% for one conductor, 31% for exactly two, 40% for three or more (60% for a nipple 24 in. or shorter). Fill percent = total conductor area ÷ conduit\'s 100%-fill area from Table 4, compared against that cap. Three 12 AWG THHN wires in a 1/2 in. EMT use 0.0399 sq in. against a 0.1216 sq in. allowance at 40% fill, about 13% full and well within limits.',
+		queries: [
+			'conduit fill calculator',
+			'nec conduit fill chart',
+			'how many wires in a conduit',
+			'emt conduit fill calculator',
+			'conduit fill percentage calculator',
+		],
+		sections: [
+			{
+				heading: 'Two tables and one percentage rule',
+				body: [
+					'Conduit fill comes from three numbers in NEC (NFPA 70) Chapter 9. Table 4, "Dimensions and Percent Area of Conduit and Tubing," lists each conduit type\'s internal cross-sectional area at 100% fill, by trade size. Table 5, "Dimensions of Insulated Conductors and Fixture Wires," lists each conductor\'s cross-sectional area, insulation included, by wire gauge and insulation type. Chapter 9, Table 1 then sets how much of that 100% area conductors are actually allowed to take up: 53% for a single conductor, 31% for exactly two, and 40% for three or more. The two-conductor number sits lower than the three-conductor one on purpose. With only two wires there is nothing to hold them apart inside the tube, so they can twist around each other and jam during a pull; three or more wires tend to lie against the conduit wall instead.',
+					'A note to Table 1 carves out one exception: a nipple, a conduit run of 24 in. or less between two enclosures, is allowed a flat 60% fill no matter how many conductors are inside. Short runs do not get pulled the way long ones do, so the jamming concern that drives the 31%/40% split does not apply.',
+				],
+			},
+			{
+				heading: 'Worked example: four 12 AWG circuits sharing a run',
+				body: [
+					'Four 20-amp branch circuits, each a hot and neutral in 12 AWG THHN plus one shared 12 AWG ground, run together through a single EMT nipple: 9 conductors total. Each 12 AWG THHN conductor has an area of 0.0133 sq in. (Table 5), so 9 of them use 9 × 0.0133 = 0.1197 sq in. A 1/2 in. EMT has a 100%-fill area of 0.304 sq in. (Table 4). As a nipple, the allowance is 60% of that: 0.304 × 0.60 = 0.1824 sq in. 0.1197 sq in. fits inside 0.1824 sq in., about 39.4% fill, so the run passes in a 1/2 in. nipple.',
+					'Run the same 9 conductors through a full-length branch (not a nipple, so the three-or-more-conductors rule applies) instead of a short nipple, and the allowance drops to 40% of 0.304 = 0.1216 sq in. 0.1197 still just fits, at 98.4% of that lower allowance, close enough that adding one more 12 AWG conductor (0.1330 sq in. total) would push it over. That is the kind of margin worth re-checking with the trade size one step up before pulling wire.',
+				],
+			},
+			{
+				heading: 'Conduit type changes the available area, not the fill rule',
+				body: [
+					'The 53%/31%/40% percentages are the same across every raceway type; what changes is the internal area behind them. A 1 in. trade size is not the same physical opening in every material, because each conduit type has its own outside diameter and wall thickness standard for that label. At 1 in., NEC Table 4 lists 0.864 sq in. of 100%-fill area for EMT, 0.887 sq in. for RMC, 0.959 sq in. for IMC, and 0.832 sq in. for PVC Schedule 40. IMC has the most room and PVC Schedule 40 the least: PVC Schedule 40 holds roughly 13% less area than IMC at that trade size. The gap rarely changes a pass/fail result by itself, but it can on a fill that is already close to the limit, which is why switching conduit type mid-project is worth re-running the numbers for rather than assuming the trade size alone carries over.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Maximum same-size THHN/THWN-2 conductors in EMT (NEC Annex C, Table C.1)',
+				headers: ['Wire size', '1/2 in EMT', '3/4 in EMT', '1 in EMT'],
+				rows: [
+					['14 AWG', '12', '22', '35'],
+					['12 AWG', '9', '16', '26'],
+					['10 AWG', '5', '10', '16'],
+					['8 AWG', '3', '6', '9'],
+					['6 AWG', '2', '4', '7'],
+				],
+			},
+		],
+		faq: [
+			{
+				question: 'What is conduit fill percentage?',
+				answer:
+					'It is the share of a conduit\'s internal cross-sectional area that the conductors inside it occupy, measured against the area NEC Chapter 9 Table 4 lists for that conduit type and trade size at 100% fill. NEC Chapter 9, Table 1 then caps how much of that 100% area is allowed to actually be used: 53% for one conductor, 31% for two, 40% for three or more.',
+			},
+			{
+				question: 'How many 12 AWG wires fit in a 3/4 inch EMT conduit?',
+				answer:
+					'Up to 16, per NEC Annex C, Table C.1, which is built from the same Chapter 9 area tables and percentage rule this calculator uses. 16 conductors at 0.0133 sq in. each use 0.2128 sq in. against a 3/4 in. EMT\'s 40%-fill allowance of 0.2132 sq in.; a 17th conductor would push the total past that limit.',
+			},
+			{
+				question: 'Does the ground wire count toward conduit fill?',
+				answer:
+					'Yes. Every current-carrying and grounding conductor pulled through the raceway counts toward the total, including equipment grounding conductors. A circuit with a hot, a neutral, and a ground is 3 conductors for fill purposes, not 2.',
+			},
+			{
+				question: 'What counts as a nipple, and why does it get 60% fill?',
+				answer:
+					'A nipple is a conduit run of 24 in. or less connecting two enclosures. NEC Chapter 9, Table 1 exempts it from the usual 31%/40% conductor-count rule and allows a flat 60% fill instead, because a run that short is not pulled the way a long branch run is, which removes the jamming risk the lower percentages are meant to guard against.',
+			},
+			{
+				question: 'Does conduit fill work the same for EMT, RMC, IMC, and PVC?',
+				answer:
+					'The 53%/31%/40% percentage rule is identical across conduit types. What differs is the internal area behind it: EMT, IMC, RMC, and PVC Schedule 40 each have a different wall thickness for a given trade size, so the same "1 inch" label holds a slightly different amount of conductor area depending on which one is installed.',
+			},
+		],
+		sources: [
+			{
+				label: 'NFPA — NFPA 70, National Electrical Code (NEC)',
+				url: 'https://www.nfpa.org/product/nfpa-70-national-electrical-code-nec/p0070code',
+			},
+			{
+				label: 'UpCodes — National Electrical Code, 2023 (NFPA 70), free online read',
+				url: 'https://up.codes/code/nfpa-70-national-electrical-code-2023',
+			},
+		],
+		embedHeight: 820,
+	},
 ];

@@ -13,6 +13,7 @@ import CalorieCalculator from './calculators/CalorieCalculator';
 import CdCalculator from './calculators/CdCalculator';
 import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import ConcreteCalculator from './calculators/ConcreteCalculator';
+import ConduitFillCalculator from './calculators/ConduitFillCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
@@ -100,3 +101,4 @@ const { slug } = Astro.props;
 {slug === 'keg-calculator' && <KegCalculator client:load />}
 {slug === 'sentence-counter' && <SentenceCounter client:load />}
 {slug === 'prorated-rent-calculator' && <ProratedRentCalculator client:load />}
+{slug === 'conduit-fill-calculator' && <ConduitFillCalculator client:load />}
