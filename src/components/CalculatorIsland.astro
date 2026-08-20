@@ -33,6 +33,7 @@ import ProratedRentCalculator from './calculators/ProratedRentCalculator';
 import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
+import RoundingCalculator from './calculators/RoundingCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SentenceCounter from './calculators/SentenceCounter';
 import ShapeVolumeCalculator from './calculators/ShapeVolumeCalculator';
@@ -102,3 +103,4 @@ const { slug } = Astro.props;
 {slug === 'sentence-counter' && <SentenceCounter client:load />}
 {slug === 'prorated-rent-calculator' && <ProratedRentCalculator client:load />}
 {slug === 'conduit-fill-calculator' && <ConduitFillCalculator client:load />}
+{slug === 'rounding-calculator' && <RoundingCalculator client:load />}

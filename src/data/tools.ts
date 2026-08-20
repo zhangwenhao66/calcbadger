@@ -1927,6 +1927,10 @@ export const tools: Tool[] = [
 				question: 'How many gallons are in an oil barrel?',
 				answer: 'Exactly 42 US gallons, per the US Energy Information Administration — a standard fixed by the 19th-century petroleum industry, unrelated to gas-pump gallons.',
 			},
+			{
+				question: 'How many shots are in a fifth?',
+				answer: 'About 16.9. A "fifth" is 750 mL, the metric bottle size the TTB adopted in 1980 to replace the old 1/5-US-gallon liquor bottle (27 CFR § 5.203); at the standard US bar shot of 1.5 fl oz (44.4 mL), 750 ÷ 44.4 ≈ 16.9 shots.',
+			},
 		],
 		sources: [
 			{
@@ -1940,6 +1944,10 @@ export const tools: Tool[] = [
 			{
 				label: 'Sizes, Inc. — "English wine gallon" (1707 231 in³ standard; US 1836 adoption; UK 1824 Imperial gallon split)',
 				url: 'https://www.sizes.com/units/gallon_english_wine.htm',
+			},
+			{
+				label: 'eCFR — 27 CFR § 5.203, Standards of Fill (Container Sizes), TTB',
+				url: 'https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-5/subpart-K/section-5.203',
 			},
 		],
 		embedHeight: 780,
@@ -5607,5 +5615,130 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 820,
+	},
+	{
+		slug: 'rounding-calculator',
+		category: 'Math',
+		title: 'Rounding Calculator',
+		shortTitle: 'Rounding Calculator',
+		description:
+			'Round any number to a chosen number of decimal places or significant figures, with a choice of seven rounding methods including banker\'s rounding, and no binary floating-point rounding errors.',
+		updated: '2026-08-20',
+		published: '2026-08-20',
+		coreSummary:
+			'Rounding a number that falls exactly halfway (like 2.5 or -2.5) needs a tie-breaking rule, and different rules give different, equally valid answers: "half up" sends 2.5 to 3 but -2.5 to -2, while "half away from zero" sends both to 3 and -3. This calculator works from the exact decimal digits typed in, not a binary floating-point approximation of them, so a case like 1.005 rounds to 1.01 at 2 decimal places rather than the 1.00 that naive floating-point math sometimes produces.',
+		queries: [
+			'rounding calculator',
+			'round to nearest 10 calculator',
+			'round to 2 decimal places',
+			'significant figures calculator',
+			'bankers rounding calculator',
+			'round half up vs round half to even',
+			'round to nearest hundredth',
+			'sig fig calculator',
+		],
+		sections: [
+			{
+				heading: 'Seven ways to round the same number',
+				body: [
+					"Most of the time rounding is unambiguous: 23.7 rounds down to 23 and 23.2 rounds up to 24 no matter which method is used, because neither sits exactly on the boundary. The methods only disagree when a number falls exactly halfway, like 2.5 or -2.5, and even then the four \"directed\" methods don't need a tie rule at all: floor (round down / toward -∞) always takes the lower integer, ceiling (round up / toward +∞) always takes the higher one, and truncate just chops the decimal part off, so 2.5 becomes 2 and -2.5 becomes -2.",
+					"Ties only come up for the \"round to nearest\" methods, and Wikipedia's rounding article documents four distinct tie-breaking conventions: half up sends every tie toward +∞ (2.5 → 3, but -2.5 → -2, since -2 is the greater of the two candidates: \"toward +∞\" always means picking the larger value, whichever sign it has); half down sends every tie toward -∞ (2.5 → 2, -2.5 → -3); half away from zero treats both signs the same and always rounds the tie outward (2.5 → 3, -2.5 → -3); and half to even, commonly called banker's rounding, breaks the tie toward whichever candidate integer is even (2.5 → 2, 3.5 → 4, -2.5 → -2). Pick the wrong one for the context and a batch of numbers rounds with a small but real bias in one direction.",
+				],
+			},
+			{
+				heading: '"Half up" doesn\'t mean the same thing everywhere',
+				body: [
+					'This is a well-documented source of calculator disagreements, not user error. Wikipedia\'s rounding article notes that "some programming languages (such as Java and Python) use \'half up\' to refer to round half away from zero rather than round half toward positive infinity," which is the textbook definition. The two conventions only diverge on negative numbers: -2.5 becomes -2 under the toward-positive-infinity definition, but -3 under the away-from-zero definition. If a spreadsheet, a calculator, and a piece of code all round the same negative half-value differently, this is almost always why. This calculator keeps the two options separate ("Half up" and "Half away from zero") instead of picking one and hiding the choice.',
+					'Banker\'s rounding gets its name from accounting, where always rounding 0.5 the same direction (e.g. always up) systematically inflates a large batch of sums; alternating between round-down and round-up ties largely cancels that out. It\'s also the default IEEE 754 rounding mode for binary floating-point math and the recommended default for decimal floating-point, which is why it shows up as the built-in behavior of Python\'s round() function and several spreadsheet and database engines, sometimes surprising people who expect classic half-up rounding instead.',
+				],
+			},
+			{
+				heading: 'Decimal places vs. significant figures',
+				body: [
+					'Rounding to a number of decimal places counts digits after the decimal point, full stop. 3.14159 to 2 decimal places is 3.14, and 0.00042 to 2 decimal places is 0.00, because both of its meaningful digits fall in the fourth and fifth decimal place. Rounding to significant figures instead counts meaningful digits starting from the first nonzero digit, ignoring leading zeros: 0.00042 to 2 significant figures is 0.00042 unchanged (it already has exactly 2), while 0.0034567 to 2 significant figures is 0.0035. The two modes agree for numbers already close to 1, and diverge sharply for very small or very large ones.',
+					'Significant-figures rounding can also carry a value across a power of ten: 995 rounded to 2 significant figures is 1000, not 990. That is a tie, not a lean toward one side: 995 sits exactly halfway between the two candidate 2-significant-figure values, 990 and 1000, so which one it lands on depends on the tie-breaking method, and the default here (half up, ties toward +∞) sends it to 1000. Written as plain digits, 1000 looks like it has 4 significant figures even though only 2 are meaningful. That is exactly the ambiguity scientific notation exists to remove, which is why this calculator also shows a 1.0 × 10³-style reading whenever significant-figures mode is selected.',
+				],
+			},
+			{
+				heading: 'Why 1.005 is the classic floating-point trap',
+				body: [
+					"A number like 1.005 has no exact representation in IEEE 754 binary floating point, the format underlying nearly all calculators, spreadsheets, and programming languages: the closest representable double-precision value is actually about 1.00499999999999989, a hair below 1.005. Rounding that stored value to 2 decimal places with ordinary half-up logic lands on 1.00, not the 1.01 the original decimal digits called for. That is a real, reproducible quirk of binary arithmetic, not a bug specific to any one tool. This calculator sidesteps it entirely by parsing the digits typed in directly and rounding them as exact decimal values, so a case like 1.005 → 1.01 comes out the way the digits themselves say, with no floating-point conversion step in between.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Exact ties: the same halfway value under all seven methods',
+				headers: ['Method', '2.5', '-2.5', '3.5', '-3.5'],
+				rows: [
+					['Half up (toward +∞)', '3', '-2', '4', '-3'],
+					['Half down (toward -∞)', '2', '-3', '3', '-4'],
+					['Half away from zero', '3', '-3', '4', '-4'],
+					["Half to even (banker's)", '2', '-2', '4', '-4'],
+					['Ceiling (always up)', '3', '-2', '4', '-3'],
+					['Floor (always down)', '2', '-3', '3', '-4'],
+					['Truncate (chop)', '2', '-2', '3', '-3'],
+				],
+				note: 'Every row is a mathematically valid answer to "round this to the nearest whole number": they differ only in how the exact-halfway case is broken.',
+			},
+			{
+				title: 'Decimal places vs. significant figures, same numbers',
+				headers: ['Value', '2 decimal places', '2 significant figures'],
+				rows: [
+					['3.14159', '3.14', '3.1'],
+					['0.0034567', '0.00', '0.0035'],
+					['123.45', '123.45 (already at that precision)', '120'],
+					['995', '995 (already coarser)', '1000'],
+				],
+				note: 'Decimal-place rounding counts digits after the decimal point; significant-figure rounding counts meaningful digits from the first nonzero one, regardless of where the decimal point falls.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the difference between "round half up" and "round half away from zero"?',
+				answer:
+					'They agree for positive numbers but disagree for negative ones. Half up (toward +∞) sends -2.5 to -2; half away from zero sends -2.5 to -3. Some languages, including Java and Python, label the away-from-zero behavior "half up," which is the textbook name for the toward-+∞ version. That is a documented source of cross-tool disagreement on negative ties.',
+			},
+			{
+				question: "What is banker's rounding and why do some calculators use it by default?",
+				answer:
+					"Banker's rounding (\"half to even\") breaks an exact tie toward whichever candidate is even: 2.5 rounds to 2, but 3.5 rounds to 4. It's the default rounding mode for IEEE 754 binary floating-point arithmetic and the recommended default for decimal, which is why it's the built-in behavior of Python's round() and some spreadsheet and database engines. Always rounding ties the same direction biases a large sum upward or downward over many values; alternating largely cancels that bias out.",
+			},
+			{
+				question: 'How do I round to 2 decimal places without a floating-point error?',
+				answer:
+					'The error people run into is a real IEEE 754 quirk: 1.005 is actually stored as roughly 1.00499999999999989, so naive floating-point rounding gives 1.00 instead of 1.01. This calculator avoids it by rounding the exact decimal digits you type rather than converting through binary floating point first, so 1.005 correctly rounds to 1.01 at 2 decimal places.',
+			},
+			{
+				question: 'What is the difference between decimal places and significant figures?',
+				answer:
+					'Decimal places count digits after the decimal point only. Significant figures count meaningful digits starting from the first nonzero digit, ignoring leading zeros: 0.0034567 rounds to 0.00 at 2 decimal places but to 0.0035 at 2 significant figures.',
+			},
+			{
+				question: 'Does 995 rounded to 2 significant figures become 1000?',
+				answer:
+					'Yes, but not because 995 is nearer to 1000. It sits exactly halfway between the two 2-significant-figure candidates, 990 and 1000, an exact tie. The default tie-breaking rule here (half up, ties toward +∞) sends it to 1000. Because 1000 written as plain digits looks like it could have up to 4 significant figures, this calculator also shows the result in scientific notation (1.0 × 10³) to make the 2-significant-figure precision unambiguous.',
+			},
+			{
+				question: 'How is truncating different from rounding down?',
+				answer:
+					'They agree for positive numbers but not for negative ones. "Round down" (floor) always moves toward -∞, so -2.7 floors to -3. "Truncate" always moves toward zero regardless of sign, so -2.7 truncates to -2. The two terms get used interchangeably for positive numbers, which is where the confusion usually starts.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Rounding" (tie-breaking rules and directed-rounding definitions)',
+				url: 'https://en.wikipedia.org/wiki/Rounding',
+			},
+			{
+				label: 'Wikipedia — "IEEE 754" (round-to-nearest-ties-to-even as the binary default)',
+				url: 'https://en.wikipedia.org/wiki/IEEE_754',
+			},
+			{
+				label: 'ASTM International — "How Do You Round Fractions? Significant Digits and Converting to a Decimal" (ASTM E29 practice)',
+				url: 'https://www.astm.org/news/how-to-round-fractions-decimals',
+			},
+		],
+		embedHeight: 860,
 	},
 ];
