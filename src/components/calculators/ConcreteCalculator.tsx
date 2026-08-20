@@ -185,7 +185,7 @@ export default function ConcreteCalculator() {
 			<p class="calc-note">
 				Bag yields are QUIKRETE Concrete Mix (Product No. 1101) published figures: 40 lb → 0.30
 				ft³, 50 lb → 0.375 ft³, 60 lb → 0.45 ft³, 80 lb → 0.60 ft³. For a ready-mix truck order,
-				use the cubic yard figure with waste included — most plants round up to the nearest
+				use the cubic yard figure with waste included; most plants round up to the nearest
 				quarter or half yard. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>

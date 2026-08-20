@@ -1527,10 +1527,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Concrete Calculator',
 		description:
 			'Calculate how much concrete a slab, footing, wall, column, or post hole needs in cubic feet and cubic yards, plus how many 40, 50, 60, or 80 lb bags to buy.',
-		updated: '2026-08-05',
+		updated: '2026-08-20',
 		published: '2026-08-05',
 		coreSummary:
-			'Concrete volume is just geometry: a slab, footing, or wall is length × width × thickness; a column, tube, or post hole is π × (diameter/2)² × depth. Divide cubic feet by 27 to get cubic yards for a ready-mix order. For bagged mix, QUIKRETE Concrete Mix (Product No. 1101) publishes exact yields — 40 lb bags give 0.30 ft³, 50 lb give 0.375 ft³, 60 lb give 0.45 ft³, and 80 lb give 0.60 ft³ — so bags needed = volume ÷ yield, rounded up.',
+			'Concrete volume is just geometry: a slab, footing, or wall is length × width × thickness; a column, tube, or post hole is π × (diameter/2)² × depth. Divide cubic feet by 27 to get cubic yards for a ready-mix order. For bagged mix, QUIKRETE Concrete Mix (Product No. 1101) publishes exact yields: 40 lb bags give 0.30 ft³, 50 lb give 0.375 ft³, 60 lb give 0.45 ft³, and 80 lb give 0.60 ft³. Bags needed = volume ÷ yield, rounded up.',
 		queries: [
 			'concrete calculator',
 			'how much concrete do i need',
@@ -1543,21 +1543,21 @@ export const tools: Tool[] = [
 				heading: 'The formula: volume first, bags second',
 				body: [
 					'Every concrete estimate starts as a volume problem. A slab, footing, or wall is a rectangular prism: **volume = length × width × thickness**. A column, sonotube, or fence post hole is a cylinder: **volume = π × radius² × depth**, where radius is half the diameter. Get the volume in cubic feet, then divide by 27 (a cubic yard is 3 ft × 3 ft × 3 ft = 27 cubic feet) to get the number a ready-mix plant will quote you.',
-					'The part people get wrong is thickness. Slab thickness is almost always specified in inches (4 in for a patio, 6 in for a driveway) while the footprint is measured in feet — mixing the two without converting is the single most common way to over- or under-order by a factor of 12.',
+					'The part people get wrong is thickness. Slab thickness is almost always specified in inches (4 in for a patio, 6 in for a driveway) while the footprint is measured in feet, and mixing the two without converting is the single most common way to over- or under-order by a factor of 12.',
 				],
 			},
 			{
 				heading: 'Worked example: a 10 × 10 ft patio slab, 4 in thick',
 				body: [
-					'Convert 4 in to feet first: 4 ÷ 12 = 0.3333 ft. Volume = 10 × 10 × 0.3333 = **33.33 cubic feet**. Divide by 27: 33.33 ÷ 27 = **1.235 cubic yards**. Add a 10% waste allowance for an uneven sub-base and form leakage: 33.33 × 1.10 = 36.67 ft³, or about 1.36 cu yd — that is the number to hand a ready-mix dispatcher.',
-					'For bags instead: 36.67 ft³ ÷ 0.60 ft³ per 80 lb bag = 61.1, rounded up to **62 bags** (4,960 lb of mix). At 60 lb bags it is 36.67 ÷ 0.45 = 81.5, rounded up to 82 bags — same concrete, more bags to carry, because each 60 lb bag holds less mix per pound than an 80 lb bag of the same product.',
+					'Convert 4 in to feet first: 4 ÷ 12 = 0.3333 ft. Volume = 10 × 10 × 0.3333 = **33.33 cubic feet**. Divide by 27: 33.33 ÷ 27 = **1.235 cubic yards**. Add a 10% waste allowance for an uneven sub-base and form leakage: 33.33 × 1.10 = 36.67 ft³, or about 1.36 cu yd. That is the number to hand a ready-mix dispatcher.',
+					'For bags instead: 36.67 ft³ ÷ 0.60 ft³ per 80 lb bag = 61.1, rounded up to **62 bags** (4,960 lb of mix). At 60 lb bags it is 36.67 ÷ 0.45 = 81.5, rounded up to 82 bags: same concrete, more bags to carry, because each 60 lb bag holds less mix per pound than an 80 lb bag of the same product.',
 				],
 			},
 			{
 				heading: 'Bags vs. ready-mix: where the line actually is',
 				body: [
-					'Bagged mix is fine for anything a couple of people can comfortably wheelbarrow-mix in an afternoon — fence posts, small footings, patch repairs, slabs under roughly a cubic yard. Past that, most contractors switch to a ready-mix truck: a full load, delivered and poured in minutes, is more uniform than dozens of hand-mixed batches, and the total labor of opening, mixing, and hauling 60-plus bags usually costs more than the delivery minimum on a ready-mix order.',
-					'Ready-mix trucks are quoted and billed in cubic yards, and most plants round an order up to the nearest quarter or half yard rather than delivering a fractional amount — so the cubic-yard figure from this calculator (with waste included) is exactly what to give the dispatcher.',
+					'Bagged mix is fine for anything a couple of people can comfortably wheelbarrow-mix in an afternoon: fence posts, small footings, patch repairs, slabs under roughly a cubic yard. Past that, most contractors switch to a ready-mix truck: a full load, delivered and poured in minutes, is more uniform than dozens of hand-mixed batches, and the total labor of opening, mixing, and hauling 60-plus bags usually costs more than the delivery minimum on a ready-mix order.',
+					'Ready-mix trucks are quoted and billed in cubic yards, and most plants round an order up to the nearest quarter or half yard rather than delivering a fractional amount. So the cubic-yard figure from this calculator (with waste included) is exactly what to give the dispatcher.',
 				],
 			},
 			{
@@ -1570,7 +1570,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Why add a waste allowance at all',
 				body: [
-					'The math above gives the geometric volume of the finished pour, not what actually leaves the mixer. Sub-grade is rarely perfectly flat, forms flex and leak a little at the seams, and wheelbarrow spillage is real — so a 5-10% overage is standard estimating practice, higher for irregular shapes like post holes dug by hand and lower for a clean rectangular slab poured against tight forms. Order short and a job stalls waiting on a second batch or delivery; order a bit long and the leftover fills a few paver joints or a birdbath mold.',
+					'The math above gives the geometric volume of the finished pour, not what actually leaves the mixer. Sub-grade is rarely perfectly flat, forms flex and leak a little at the seams, and wheelbarrow spillage is real, so a 5-10% overage is standard estimating practice, higher for irregular shapes like post holes dug by hand and lower for a clean rectangular slab poured against tight forms. Order short and a job stalls waiting on a second batch or delivery; order a bit long and the leftover fills a few paver joints or a birdbath mold.',
 				],
 			},
 		],
@@ -1602,7 +1602,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How much concrete do I need for a 10x10 slab?',
 				answer:
-					'At a standard 4 in thickness, a 10 × 10 ft slab is 33.33 cubic feet, or about 1.23 cubic yards. Add a 5-10% waste allowance before ordering — roughly 1.30-1.36 cubic yards, or about 59-62 bags of 80 lb mix.',
+					'At a standard 4 in thickness, a 10 × 10 ft slab is 33.33 cubic feet, or about 1.23 cubic yards. Add a 5-10% waste allowance before ordering, roughly 1.30-1.36 cubic yards, or about 59-62 bags of 80 lb mix.',
 			},
 			{
 				question: 'How many 80 lb bags of concrete are in a cubic yard?',
@@ -1617,7 +1617,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Should I use bags or order ready-mix concrete?',
 				answer:
-					'Bags make sense up to roughly a cubic yard — small slabs, footings, and post holes a couple of people can mix by hand in an afternoon. Beyond that, a ready-mix truck delivers a uniform batch in one pour and usually costs less in total than the labor of opening and mixing 60-plus bags, even after the delivery minimum.',
+					'Bags make sense up to roughly a cubic yard: small slabs, footings, and post holes a couple of people can mix by hand in an afternoon. Beyond that, a ready-mix truck delivers a uniform batch in one pour and usually costs less in total than the labor of opening and mixing 60-plus bags, even after the delivery minimum.',
 			},
 			{
 				question: 'How much extra concrete should I order for waste?',
@@ -1627,7 +1627,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between 60 lb and 80 lb bags?',
 				answer:
-					'Both are the same QUIKRETE Concrete Mix formula, just packaged in different weights. An 80 lb bag yields 0.60 cubic feet and a 60 lb bag yields 0.45 cubic feet — the 80 lb bag delivers more concrete per bag (fewer bags to carry for the same pour) but is proportionally heavier to lift.',
+					'Both are the same QUIKRETE Concrete Mix formula, just packaged in different weights. An 80 lb bag yields 0.60 cubic feet and a 60 lb bag yields 0.45 cubic feet, so the 80 lb bag delivers more concrete per bag (fewer bags to carry for the same pour) but is proportionally heavier to lift.',
 			},
 		],
 		sources: [
