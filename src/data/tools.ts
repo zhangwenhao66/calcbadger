@@ -2888,6 +2888,7 @@ export const tools: Tool[] = [
 		queries: [
 			'fraction calculator',
 			'mixed fraction calculator',
+			'mixed number calculator',
 			'adding fractions calculator',
 			'simplify fractions calculator',
 			'improper fraction to mixed number',
@@ -5426,5 +5427,93 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 640,
+	},
+	{
+		slug: 'prorated-rent-calculator',
+		category: 'Real Estate',
+		title: 'Prorated Rent Calculator',
+		shortTitle: 'Prorated Rent',
+		description:
+			'Work out the partial-month rent for a mid-month move-in or move-out, and compare what the three common day-count methods (actual days in the month, a flat 30-day "banker\'s month," and the rent divided across a 365-day year) would each charge for the same dates.',
+		updated: '2026-08-20',
+		published: '2026-08-20',
+		coreSummary:
+			'Prorated rent = daily rate × days occupied, but the daily rate depends on which day-count convention sets it: "actual days" divides the monthly rent by that specific month\'s real length (28–31 days), "banker\'s month" always divides by 30 regardless of the month, and "annual (365)" divides the yearly rent (monthly × 12) by 365, or 366 in a leap year. On a $1,500/month lease with 12 days occupied in a 31-day month, that is $580.65 (actual), $600.00 (banker\'s), or $591.78 (annual). Three different answers for the identical move-in date, which is why the lease should say which method applies.',
+		queries: [
+			'prorated rent calculator',
+			'how to calculate prorated rent',
+			'prorate rent calculator',
+			'partial month rent calculator',
+			'prorated rent formula',
+		],
+		sections: [
+			{
+				heading: 'Two conventions, borrowed from finance',
+				body: [
+					'There is no single method every lease uses. Landlords and property managers pick one of a small set of day-count conventions, the same choice bond and loan markets make when accruing interest for a period shorter than a full term. The "banker\'s month" convention treats every month as exactly 30 days, no matter how many days it actually has. This is the same 30/360 day-count convention the International Swaps and Derivatives Association formally defines in its 2006 ISDA Definitions for interest accrual, applied here to rent instead of a bond coupon. The "actual days" convention instead divides by the real number of days in that specific calendar month, so the daily rate is higher in February and lower in a 31-day month like January, March, May, July, August, October, or December.',
+					'A third option, sometimes called the "annual" or "365" method, skips the month entirely: it multiplies the monthly rent by 12 to get an annual figure, then divides by 365 (or 366 in a leap year) to get a daily rate that stays constant all year. All three agree exactly whenever the partial month itself has 30 days (April, June, September, and November) and diverge everywhere else. That is the reason a lease needs to say which method applies instead of just saying "prorated."',
+				],
+			},
+			{
+				heading: 'Worked example: moving in on March 20',
+				body: [
+					'A tenant with a $1,500/month lease moves in on March 20. March has 31 days, so the tenant occupies the 20th through the 31st: 12 days. Under "actual days," the daily rate is $1,500 ÷ 31 = $48.387..., so 12 days comes to $580.65. Under "banker\'s month," the daily rate is a flat $1,500 ÷ 30 = $50.00, so the same 12 days comes to $600.00 instead. That is $19.35 more, because 30/360 always understates a 31-day month\'s real length by one day\'s worth of rent. Under "annual (365)," the daily rate is $1,500 × 12 ÷ 365 = $49.315..., landing at $591.78, between the other two.',
+					'The move-in day itself counts as an occupied day in all three methods here (the tenant has the unit from the 20th onward), which is the more common convention. Some leases instead start the clock at midnight after move-in, which would shift every total by exactly one day\'s rent.',
+				],
+			},
+			{
+				heading: 'Moving out works the same way, counted from the 1st',
+				body: [
+					'For a move-out instead of a move-in, the occupied days run from the 1st of the month through the move-out date, inclusive. A $1,800/month tenant who moves out on September 10 (a 30-day month) occupies 10 days: $1,800 ÷ 30 × 10 = $600.00 under either "actual days" or "banker\'s month," since September happens to have exactly 30 days. The two methods only disagree in months that are not 30 days long. Under "annual (365)," the same 10 days comes to $1,800 × 12 ÷ 365 × 10 = $591.78.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Daily rate on a $1,500/month lease, by method and month length',
+				headers: ['Days in month', 'Actual days', "Banker's month (30/360)", 'Annual (365)'],
+				rows: [
+					['28 (February, common year)', '$53.57', '$50.00', '$49.32'],
+					['29 (February, leap year)', '$51.72', '$50.00', '$49.18'],
+					['30 (Apr, Jun, Sep, Nov)', '$50.00', '$50.00', '$49.32'],
+					['31 (Jan, Mar, May, Jul, Aug, Oct, Dec)', '$48.39', '$50.00', '$49.32'],
+				],
+				note: '"Annual (365)" uses 366 in the leap-year row because the annual method divides by the number of days in the year, not the month. The other two methods only depend on the month, so a leap-year February\'s 29-day row does not change their numbers.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do you calculate prorated rent?',
+				answer:
+					'Divide the monthly rent by a day-count denominator to get a daily rate, then multiply by the number of days occupied. The denominator is where methods differ: the actual number of days in that month, a flat 30, or the yearly rent divided by 365 (366 in a leap year). For a $1,500 lease with 12 days occupied in a 31-day month, that gives $580.65, $600.00, or $591.78 depending on which denominator the lease uses.',
+			},
+			{
+				question: 'Does the day you move in count as a full day of rent?',
+				answer:
+					'In the most common convention, yes. The move-in date itself is counted as an occupied day, and the days-occupied count runs from that date through the end of the month. Some leases instead start counting from the day after move-in; check the lease language, since that shifts every total by exactly one day\'s rent.',
+			},
+			{
+				question: 'What is the "banker\'s month" method?',
+				answer:
+					'It treats every month as exactly 30 days for rent math, regardless of whether the real month has 28, 29, 30, or 31 days. It is the same 30/360 day-count convention the International Swaps and Derivatives Association formally defines for bond and loan interest accrual, applied to a monthly rent figure instead of a coupon payment.',
+			},
+			{
+				question: 'Why do I get a different prorated amount than my landlord calculated?',
+				answer:
+					'Almost always because you are using different day-count methods. The actual-days, banker\'s-month, and annual (365) conventions only agree exactly in a 30-day month (April, June, September, November); in every other month they produce three different totals for the identical move-in or move-out date. Check the lease for which method it specifies before assuming either number is wrong.',
+			},
+			{
+				question: 'Is there a federal law that sets the prorated rent method?',
+				answer:
+					'No single method is mandated nationwide. It is set by the lease itself, and some states or localities may regulate it further, so the lease and local landlord-tenant law are the two places to check rather than assuming a default.',
+			},
+		],
+		sources: [
+			{
+				label: 'International Swaps and Derivatives Association — "30/360 Day Count Conventions" (2006 ISDA Definitions)',
+				url: 'https://www.isda.org/2008/12/22/30-360-day-count-conventions/',
+			},
+		],
+		embedHeight: 760,
 	},
 ];

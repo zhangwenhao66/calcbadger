@@ -28,6 +28,7 @@ import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
+import ProratedRentCalculator from './calculators/ProratedRentCalculator';
 import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
@@ -98,3 +99,4 @@ const { slug } = Astro.props;
 {slug === 'topsoil-calculator' && <TopsoilCalculator client:load />}
 {slug === 'keg-calculator' && <KegCalculator client:load />}
 {slug === 'sentence-counter' && <SentenceCounter client:load />}
+{slug === 'prorated-rent-calculator' && <ProratedRentCalculator client:load />}
