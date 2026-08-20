@@ -1067,5 +1067,107 @@
   "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，9/9项清晰通过，明显超过≥80门槛，description精简未影响正文GEO结构，无需进一步修复",
   "escalation": null
 }
+```
+
+```json
+{
+  "tool_slug": "concrete-calculator",
+  "last_audited": "2026-08-20",
+  "published_date": "2026-08-05",
+  "note": "全站45个工具中last_audited缺失且published最早的一个（此前已审计cd/square-footage/bmi/stair/sat-score/molarity/coin-flip/temperature/length/weight/mortgage/time共12个），按SKILL.md'缺失/最早优先'规则选中。",
+  "checklist": [
+    "公式正确性（最高优先级）：矩形板/条形基础volume=l×w×d、圆柱（柱/管/柱洞）volume=π×(d/2)²×depth是否为标准几何公式，diameter输入是否被正确除2转半径",
+    "单位换算toFeet五档（ft/in/yd/m/cm）是否与NIST SP811 / 国际码磅协定精确定义一致（1ft=0.3048m精确值）",
+    "QUIKRETE Concrete Mix (Product No. 1101)公开袋装产率40/50/60/80lb→0.30/0.375/0.45/0.60ft³是否为当前仍在生效的官方数值，四档是否按同一配方线性自洽",
+    "bagsNeeded向上取整逻辑（含浮点噪声epsilon处理）是否会导致多算/少算整袋",
+    "正文worked example（10×10ft slab 4in厚）、fence post 3×diameter规则、waste allowance 5-10%惯例等具体断言是否可独立复现"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "src/lib/concrete.ts的slabVolumeCuFt=l×w×d（矩形棱柱标准公式）、roundVolumeCuFt=π×(diameter/2)²×depth（圆柱标准公式，正确用直径/2转半径）、cuFtToCuYd=cuFt/27（27=3ft³标准换算）均为教科书级公式，无争议。toFeet五档单位换算（in:1/12, yd:3, m:1/0.3048, cm:1/30.48）与NIST SP811/国际码磅协定精确定义（1ft=0.3048m exactly）逐一核对一致。bagsNeeded用Math.ceil向上取整并加1e-9 epsilon防止浮点噪声（如27/0.45理论上恰好60但可能算出60.00000000000001）误判多算1袋，逻辑合理。独立复算10×10ft slab 4in厚：10×10×(4/12)=33.333ft³=1.2346yd³，与正文'33.33 cubic feet'/'1.235 cubic yards'一致。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "tests/concrete.test.ts共25项，逐条核对期望值均为独立几何/单位换算手算得出（如注释'π/4×3=2.3562'系从公式推导，非从实现代码输出反推）。npm test：50个测试文件、1002个测试全部通过（tests/concrete.test.ts 25个）。"
+    },
+    {
+      "dimension": "数据/常量准确性",
+      "status": "未发现问题",
+      "detail": "WebSearch独立核实QUIKRETE Concrete Mix 1101技术数据表：80lb bag产率0.60ft³（多个第三方经销商产品页与官方PDF均确认）、50lb bag产率0.375ft³确认。40lb/60lb未直接搜到独立信源片段，但按同一配方仅包装重量不同的物理常识，产率应与重量线性成正比：0.60/80=0.0075ft³/lb，×40=0.30、×60=0.45，与站内断言精确吻合，判定四档数值内部自洽且可信。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "未发现问题",
+      "detail": "dateModified原为2026-08-05（审计时15天），QUIKRETE 1101技术数据表版本（2022年10月修订）与NIST SP811均无近期修订，公式与数据依据均未过时。本次因修复em dash对正文做了实质编辑，updated字段已更新为2026-08-20。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题（记录调研过程）",
+      "detail": "dataforseo-query查真实SERP：'concrete calculator'（55万/月搜索量，KD24）前10被calculator.net/quikrete.com/concretenetwork.com/ozinga.com/sakrete.com等头部工具站与品牌官网占据，CalcBadger作为2026-08-05才发布的新页面未进前排，属预期内、非需修复问题。差异化方面，相比多数纯计算器多了：QUIKRETE官方施工指引引用（fence post 3×diameter规则）、worked example、bags-vs-ready-mix决策段落、waste allowance说明、具名作者署名，具备真实增量信息，非空转外壳页。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "curl核实title(34字符)/canonical/H1单一/meta description(156字符，在150-160理想区间内)/robots.txt(显式Allow GPTBot/ChatGPT-User/ClaudeBot/Claude-Web/PerplexityBot/Google-Extended)/sitemap(含该URL)均健康。3个JSON-LD schema（WebApplication/FAQPage/BreadcrumbList）均正确渲染。"
+    },
+    {
+      "dimension": "GEO审计（ai-seo skill Content Extractability Check）",
+      "status": "未发现问题",
+      "detail": "人工逐项核对：清晰定义段（coreSummary含公式）✓、FAQ自包含答案块(6条)✓、参考表(2张)✓、带来源的具体数字(QUIKRETE/NIST两条sources)✓、具名作者署名(By Owen Zhang)✓、H1/H2/H3层级清晰匹配查询短语✓、robots.txt显式允许全部主流AI爬虫✓，7/7项清晰通过，明显超过≥80门槛。"
+    },
+    {
+      "dimension": "早期内容AI味补漏（published 2026-08-05早于2026-08-07触发全量检查）",
+      "status": "发现12处真问题（已修复）",
+      "detail": "扫描tools.ts该工具条目coreSummary/sections/faq字段，发现11处叙事性em dash（sources[].label本身用'机构名: 说明'冒号格式，零命中，与本站其余工具常见的'机构 — 说明'em dash惯例不同，本工具本就未采用该格式）；进一步核对渲染同一页面的ConcreteCalculator.tsx组件硬编码提示文案，另发现1处（'waste included — most plants round up'）——与L-0810-4首次CalcBadger案例（temperature-converter）、及mortgage-calculator案例完全同一失效模式（tools.ts数据字段扫描零漏，组件.tsx硬编码文案仍有真实em dash）。AI高频词表（delve/robust/leverage/testament等约18词）全扫零命中；14处**加粗**均用于关键公式/数字结果（非滥用列表），与站内惯例一致。12处em dash已改写为句号/冒号/逗号消除，未改动任何数字、公式或事实表述。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题",
+      "detail": "curl核实QUIKRETE Concrete Mix 1101技术数据表PDF与NIST Special Publication 811两条sources链接均返回200，仍在线可访问。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "Construction类目现有6个工具（stair-calculator/concrete-calculator/board-foot-calculator/asphalt-calculator/topsoil-calculator/conduit-fill-calculator），本工具的同类peer数为5（≤6），按pickRelatedGuides算法全部5个同类工具页均会在'相关计算器'区块链到本工具，非单例类目，无孤儿风险；category页面（/category/construction/）同样列出本工具。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "线上JSON-LD逐字段核对：WebApplication的description字段与tools.ts description字段verbatim一致；FAQPage的6条Q&A与tools.ts faq数组逐字一致；BreadcrumbList三级（Home/Construction/Concrete Calculator）与category字段一致。"
+    },
+    {
+      "dimension": "合规/敏感度漂移",
+      "status": "未发现问题",
+      "detail": "本工具属施工估算场景，terms页面'No professional advice'条款已明确覆盖'legal, medical, engineering, or construction advice'，footer链接可达（/terms/ curl 200）。"
+    },
+    {
+      "dimension": "组件/embed可用性",
+      "status": "未发现问题",
+      "detail": "ConcreteCalculator.tsx用Preact函数组件+JSX（.map()渲染结果卡片），非本站已知bug模式的element.innerHTML拼字符串表格，不受Astro scoped CSS丢失问题影响。/concrete-calculator/与/embed/concrete-calculator/均curl 200，embed页面确认渲染出计算器组件。因本次运行判定为无人值守场景，未使用App内置Browser面板加载外部站点（遵循全局CLAUDE.md关于该面板对部分站点强制逐动作审批、无人值守场景会静默拒绝或卡死的规则），改用源码逐行追踪+同一lib函数的单元测试双重验证公式/组件一致性，独立验证agent另行确认结果渲染路径为JSX非innerHTML。"
+    },
+    {
+      "dimension": "AdSense政策风险",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；/about/、/privacy/均curl返回200；页面标题'Concrete Calculator | CalcBadger'与内容无误导性/诱导点击设计；工具是标准建材估算计算器，不涉及任何AdSense敏感类目。"
+    }
+  ],
+  "independent_verification": "两条独立fresh-context agent复核，均在数分钟内正常完成，无卡死情况，未触发看门狗降级流程。第一条验证6项子结论（公式正确性手算复现、QUIKRETE数据WebSearch独立核实、tests/concrete.test.ts期望值独立可推导性、独立跑vitest 25/25通过、组件渲染方式为JSX非innerHTML、线上页面curl+schema核对）：全部CONFIRMED。第二条专门验证em dash计数与位置（tools.ts 11处叙事字段/0处sources标签、组件1处、published字段确为2026-08-05早于规则生效日）：CONFIRMED，计数与位置均准确无误。",
+  "actions_taken": [
+    "src/data/tools.ts的concrete-calculator条目coreSummary/sections(5节共9段)/faq(6条)字段共11处em dash改写为句号/冒号/逗号消除，未改动任何数字、公式或事实表述；updated字段从2026-08-05改为2026-08-20（published字段已存在'2026-08-05'，未改动，符合先检查published是否存在的前置要求）",
+    "src/components/calculators/ConcreteCalculator.tsx第188行1处用户可见em dash改为分号消除",
+    "两处改动均先经独立fresh-context agent复核确认为真问题后才动手",
+    "npm test 1002/1002通过（50个测试文件）、npm run build 110页成功生成，build产物dist/concrete-calculator/index.html逐字符扫描确认零em dash；dist/embed/concrete-calculator/index.html标题标签含1处em dash，经核实为src/pages/embed/[slug].astro全站45工具共用的'{tool.title} — CalcBadger'模板级标题分隔符格式，非本工具叙事文案，判定不属于本次单工具修复范围，未改动",
+    "git status确认indexnow-submit-log.json.backup-20260817-000242-before-verify为其他并发任务遗留备份，未纳入本次commit；git add两个相关文件，commit 956e557并push，CF Pages git连接自动部署，curl轮询3次确认线上正文已从'publishes exact yields —'变为'publishes exact yields:'",
+    "IndexNow提交/concrete-calculator/：Bing 200 / Yandex 202",
+    "内容发布日志.md追加审计记录，明确标注为content-quality-audit审计更新非新发布",
+    "教训库L-0810-4条目下追加1条复发记录（第7次同类复现：tools.ts扫描零漏、组件.tsx硬编码文案仍有真实em dash）"
+  ],
+  "seo_score": "修复前后SEO技术层面均健康（title/canonical/H1/meta description/robots.txt/sitemap/schema无问题）；本次修复属早期内容AI写作特征回填，非SEO技术问题",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，7/7项清晰通过，明显超过≥80门槛，em dash修复未影响正文GEO结构",
+  "escalation": null
+}
 
 ```
