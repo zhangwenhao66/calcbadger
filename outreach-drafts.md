@@ -164,3 +164,26 @@ If it's a useful example for future coverage of transparent calculator methodolo
 Owen Zhang
 CalcBadger
 ```
+
+## 2026-08-20 — GitHub `xxczaki/awesome-calculators` — PR-style listing suggestion (not an email)
+
+- 背景：本轮GSC优先目标是`/time-converter/`（近28天62次曝光、平均排名14.2，pos 5-40区间且未在14天内被pitch过；`/coin-flip-simulator/`虽287次曝光但已是上上轮2026-08-16的featured tool，14天内不再重复），围绕它和其他工具类别做了约10次定向搜索，多数命中的是竞品计算器聚合站（calculator.net/omnicalculator/constructlytools类，会跟CalcBadger直接竞争，不会链接过来）、TPT/TeachStarter类付费素材市场（无法外链）、或`design-your-homeschool.com`/`libguides.auburn.edu`类页面（分别核实到最后活跃时间为2016年评论、2021-07-26"Last Updated"，不满足"近期活跃"门槛，跳过）。
+- 命中候选：GitHub仓库`xxczaki/awesome-calculators`（"A curated list of resources related to calculators!"）。用`api.github.com`核实仓库元数据：`updated_at: 2026-08-19T12:39:31Z`（前一天）、`pushed_at: 2026-03-21`、265 stars、68 open issues、`archived: false`——真实活跃的开源curated list，非僵尸仓库。README的`## Calculator apps` → `### Web`小节已收录Calculator.net（"Huge collection of various calculators"），证明该list本身接受"综合型计算器聚合站"这一类目，CalcBadger（覆盖construction/home improvement/education/science/finance多类计算器）与现有条目性质一致，非硬凑。
+- 核实贡献流程：仓库根目录`contributing.md`（curl直接读取，HTTP 200）明确写明PR提交规范："Use the following format: `[Software Name](link) - Description.`"，"Make an individual pull request for each suggestion"，"Search previous suggestions before making a new one"，附CC0协议，是标准的awesome-list PR工作流。
+- 查重：README全文grep确认CalcBadger当前未被收录；本仓库`guest-post-outreach.json`全部历史记录中未出现过`awesome-calculators`或`xxczaki`字样，非重复调研。
+- **渠道类型说明（不同于本文件其余条目）**：这是GitHub Pull Request，不是邮件——需要GitHub账号并实际提交PR，超出本次无人值守研究run的权限范围（环境规则禁止创建账号/提交表单）。以下只是研究+起草PR文案的建议内容，供下一个有GitHub权限的会话/Owen本人核实后提交，不是gmail_send.py可发送的邮件草稿。
+- 已过`Skill(humanizer)` + `Skill(avoid-ai-writing)`去AI味：两项检查均未发现em dash/AI高频词/空洞背书/rule-of-three填充等问题，文案本身已经干净，仅做了轻微精简使entry行风格更贴近现有list条目的简洁程度（对照Calculator.net那条"Huge collection of various calculators."的长度）。
+
+**建议PR内容（readme.md，`## Calculator apps` → `### Web`小节，加在Calculator.net条目之后）：**
+
+```
+[CalcBadger](https://calcbadger.com/) - Calculators and unit converters for construction, home improvement, test prep, science, and personal finance, each with the formula and source cited.
+```
+
+**建议PR标题：** Add CalcBadger to Web calculators
+
+**建议PR描述：**
+
+```
+Adding CalcBadger under Web calculators, alongside Calculator.net. It's a free collection of standalone calculators and converters (mortgage, concrete, stair layout, SAT score, molarity, BMI, unit converters, and more), and every tool states its formula and links to the source it came from. One suggestion per PR, format matches the existing list, per the contribution guidelines.
+```

@@ -161,5 +161,83 @@
     ],
     "actions_taken": "1 backlog item resolved (nologin.tools submitted, success page confirmed). 1 new directory found and mostly filled (nosignuptools.com) but blocked mid-submission on a mandatory screenshot upload the current tooling can't fulfill without fabricating the image; carried to next round. 5 other candidates researched around the coin-flip-simulator/probability-teaching angle and rejected: 2 for staleness (no recent-update evidence), 1 for 14-day dedup (already-contacted recipient), 1 for poor fit (personal blog, not an open resource list), 1 deprioritized (ambiguous paid tiers). No email pitches sent this round — no channel both passed the quality bar and needed a persuasive email rather than a simple directory form.",
     "result_summary": "1 carryover resolved (nologin.tools), 1 new real-and-viable channel found but incomplete (nosignuptools.com, screenshot blocker), 5 channels researched and rejected with documented reasons. No paid-link or PBN-suspect channels encountered."
+  },
+  {
+    "date": "2026-08-20",
+    "site": "calcbadger",
+    "run_type": "weekly trafficsite-guest-post-outreach",
+    "niche_focus": "calculator/converter tool site — this round focused on time-converter (GSC priority) plus general awesome-list/curated-directory channels",
+    "backlog_verification": {
+      "note": "Step B new-for-this-run check: verified the two oldest never-verified sent/submitted pitches (both dated 2026-08-04, oldest first, per instructions to check max 2).",
+      "checks": [
+        {
+          "channel": "Math Sharpeners — Write for Us",
+          "recipient": "pro@Mathsharpeners.com",
+          "sent_date": "2026-08-04",
+          "method": "WebSearch site:mathsharpeners.com calcbadger (no hits) + curl -sL on mathsharpeners.com/blog/ grep for 'calcbadger' (no match, page reachable) + gmail_send.py list --query 'from:pro@Mathsharpeners.com' (empty, no reply) + dataforseo_query.py backlinks calcbadger.com (0 total backlinks site-wide)",
+          "verified_status": "no_response_declined",
+          "notes": "16 days since send, no reply in inbox, no published post referencing calcbadger found. Classified as no-response given the silence plus zero live backlinks account-wide."
+        },
+        {
+          "channel": "Ranch Roofing — 25 Best Home Improvement Websites",
+          "recipient": "ranchroof@gmail.com",
+          "sent_date": "2026-08-04",
+          "method": "WebSearch site:ranchroofing.com calcbadger (no hits) + curl -sL on the actual list page grep for 'calcbadger' (no match, page reachable, HTTP 200) + gmail_send.py list --query 'from:ranchroof@gmail.com' (empty, no reply) + dataforseo_query.py backlinks calcbadger.com (0 total backlinks site-wide)",
+          "verified_status": "no_response_declined",
+          "notes": "16 days since send, no reply, calcbadger.com not added to the list page yet, zero live backlinks account-wide."
+        }
+      ]
+    },
+    "backlog_status": {
+      "channel": "nosignuptools.com — Submit a Tool",
+      "url": "https://nosignuptools.com/submit",
+      "carried_from": "2026-08-16",
+      "status": "still blocked — not resolved this round",
+      "notes": "Re-verified the submit page is still live (curl HTTP 200). Not resolvable this round: this run's environment rules prohibit using mcp__Claude_Browser__* / form submission entirely (research-and-draft only), and the original blocker (site requires an uploaded screenshot the current tooling can't produce without fabricating an image) is unchanged. Not an Owen-escalation item, pure tooling gap; carry forward again."
+    },
+    "gsc_target_selection": {
+      "source": "python3 gsc_query.py calcbadger (last 28 days)",
+      "note": "Site total: 0 clicks, 3838 impressions, avg position 49.6. Top Pages in position 5-40 with meaningful impressions, excluding tools pitched within 14 days (coin-flip-simulator was the 2026-08-16 featured tool; molarity/sat-score/stair-calculator recipients contacted earlier): /time-converter/ (62 impressions, avg position 14.2) selected as this round's priority tool. Runners-up not used this round: /temperature-converter/ (41 impr, pos 18.9), /length-converter/ (50 impr, pos 24.7)."
+    },
+    "channels_researched": [
+      {
+        "name": "GitHub — xxczaki/awesome-calculators (curated awesome-list)",
+        "url": "https://github.com/xxczaki/awesome-calculators",
+        "status": "real-and-viable — PR text drafted, not submitted (requires GitHub account/PR, out of scope for this unattended research-only run)",
+        "notes": "Verified via api.github.com: updated_at 2026-08-19 (previous day), pushed_at 2026-03-21, 265 stars, 68 open issues, not archived — a genuinely active, popular curated list, not a dead repo. README's Web-calculators section already lists Calculator.net ('Huge collection of various calculators'), confirming the list accepts general-purpose multi-tool calculator sites, which is exactly what CalcBadger is (construction/home improvement/education/science/finance calculators). contributing.md confirms a standard awesome-list PR process: one suggestion per PR, format `[Name](link) - Description.`, CC0 license. Dedup: grepped current README (calcbadger not listed) and full guest-post-outreach.json history (no prior mention of this repo or its owner). PR entry line + PR description drafted and run through Skill(humanizer) + Skill(avoid-ai-writing), both clean. Full text in outreach-drafts.md under '2026-08-20 — GitHub xxczaki/awesome-calculators'. Not submitted because this session cannot create a GitHub account or open a PR (environment rule); flagged for the next session/Owen with GitHub access to submit, or a future round with GitHub tooling."
+      },
+      {
+        "name": "design-your-homeschool.com — Good Calculators page",
+        "url": "https://www.design-your-homeschool.com/good-calculators.html",
+        "status": "real-but-stale — not pursued",
+        "notes": "Same site family already flagged real-but-poor-fit/stale in the 2026-08-04 round (different page). This specific page is a single third-party resource review with a 'click here to add your own comments' form, but the comment thread's newest entries are dated October 2016 — no recent activity evidence. Fails the quality bar for genuinely active engagement. Skipped."
+      },
+      {
+        "name": "homeschoolmath.net (Maria Miller)",
+        "url": "https://www.homeschoolmath.net/",
+        "status": "unable to verify — no clear submission/contact route found",
+        "notes": "Well-known, real homeschool math resource site, but the homepage is heavily JS-rendered (Next.js-style bundle over curl) and no explicit contact or resource-suggestion page could be located within this round's search budget (an /about.php page returned but its extractable text was mostly analytics boilerplate). Not pursued this round for lack of a verifiable contact path; could be revisited with a browser-capable session."
+      },
+      {
+        "name": "libguides.auburn.edu/conversions (Auburn University Libraries subject guide)",
+        "url": "https://libguides.auburn.edu/conversions",
+        "status": "real-but-stale — not pursued",
+        "notes": "Genuine .edu library subject guide listing external unit-conversion tools (Calculator.com, metric-conversions.org, megaConverter.com), which is exactly the kind of resource page that could plausibly add a converter tool. But page footer shows 'Last Updated: Jul 26, 2021' — over 5 years stale, no maintenance evidence. Fails the 2026-08-10 recent-activity quality bar. Skipped."
+      },
+      {
+        "name": "thefreeaitools.com (calculator directory)",
+        "url": "https://www.thefreeaitools.com/",
+        "status": "real-but-poor-fit — not pursued",
+        "notes": "Verified real and active (200+ in-house-built browser tools including a Calculators category), but investigation showed it hosts its own self-built tools (Next.js app) rather than linking out to external calculator sites — a directory of their own product, not a curated links page. No realistic path to an outbound link. Skipped."
+      },
+      {
+        "name": "Various 'best free calculators 2026' roundup blogs (CalcLeap, CalcyVerse, EveryFreeTool, freetools.blog, onlinetoolsforge.com, thecalculatorsite competitors)",
+        "url": "multiple",
+        "status": "real-but-poor-fit — not pursued",
+        "notes": "All are themselves competing calculator/converter aggregation sites (same category as calculator.net/omnicalculator), with no structural incentive to link to a competing multi-tool calculator site. Not pursued as outreach targets."
+      }
+    ],
+    "actions_taken": "0 emails sent (research-only run per this session's rules). 1 GitHub PR-format pitch drafted for a genuinely active, verified curated awesome-list (xxczaki/awesome-calculators, 265 stars, updated yesterday) — logged in outreach-drafts.md, not submitted because opening a GitHub PR requires an account/form-submission action out of scope for this run. 1 backlog item (nosignuptools.com) re-verified still live but still blocked on the same screenshot-upload tooling gap from 2026-08-16, carried forward again. 2 oldest unverified prior pitches (Math Sharpeners, Ranch Roofing, both sent 2026-08-04) checked for live-backlink outcome: both classified no_response_declined (no reply after 16 days, no link/publication found, 0 total backlinks on calcbadger.com per DataForSEO). 5 other candidates researched and rejected this round: 2 for staleness (design-your-homeschool.com comment page last active 2016, Auburn LibGuide last updated 2021-07-26), 1 for inability to verify a contact route (homeschoolmath.net), 1 for structural poor fit (thefreeaitools.com builds its own tools rather than linking out), and a cluster of competitor calculator-aggregator roundup blogs skipped as poor fit.",
+    "result_summary": "Step B (backlog-verification-of-old-sends, first time run): 2/2 checked, both no_response_declined — first real signal that this site's guest-post/directory outreach isn't converting to live backlinks yet, consistent with the low base rates documented in 独立站/外链外联真实案例调研.md. Step C backlog (nosignuptools.com): unresolved, still blocked by a genuine tooling gap, not a rejection. Step E new research: 1 real-and-viable channel found (GitHub awesome-calculators) but requires a different execution mechanism (GitHub PR, not email) than this task's infrastructure supports directly — drafted for hand-off. No paid-link or PBN-suspect channels encountered."
   }
 ]
