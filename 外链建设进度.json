@@ -27,6 +27,13 @@
       "question_url": "https://www.quora.com/What-is-the-significance-of-EGFR-estimated-glomerular-filtration-rate-I-realize-it-has-to-do-with-renal-function-but-is-the-test-a-reliable-indicator/answer/Owen-Zhang-161",
       "question_title": "What is the significance of EGFR (estimated glomerular filtration rate)? I realize it has to do with renal function, but is the test a reliable indicator?",
       "notes": "本站首次选用未在Quora用过的BSA(体表面积)计算器工具页(此前已用过stair/concrete/gpa三个计算器)。发布时该问题已有3个真实答案，均在讲eGFR整体可靠性(相对变化准确/绝对值不准)，没有一条解释报告单上'per 1.73 m²'这个标注到底是什么意思，也没提到体表面积(BSA)本身怎么算，判定为真实内容空白值得补充。以站内BSA Calculator工具页骨架撰写(1.73平方米是该报告惯例确立时测得的成人平均体表面积、按患者自身BSA换算到1.73m²是为了让不同体型患者的数值能在同一套正常范围下比较；National Kidney Foundation明确指出药物剂量计算走相反逻辑——用未按体表面积换算的原始GFR而非1.73m²标准化后的数值，因为剂量要匹配患者真实的过滤能力而非按假设平均体型折算后的数值；体表面积本身通常是估算而非直接测量，主流用1916年Du Bois公式与更简单的1987年Mosteller公式(身高×体重÷3600开平方根)，二者对普通体型成人相差约1%，但在体重较大时会明显分叉，170cm/150kg时Du Bois给出2.502m²、Mosteller给出2.661m²，相差约6%)。过humanizer+avoid-ai-writing双重检查（无破折号、无AI高频词、避免了'worth adding'这类空心背书开场，改用直接陈述'The answers above cover reliability well. One detail... is missing'）。用Quora Add Link功能(Cmd+K)插入真实超链接，锚文本'here'，指向body-surface-area-calculator页面，全程只填URL字段。该问题不属于任何Space，提交后直接发布成功，credential选择默认'Business Communications Researcher'。发布前用javascript_tool核实编辑器DOM中该span确实是class=\"span link\"，发布后再次核实渲染页面DOM中确实是<a href=\"https://calcbadger.com/body-surface-area-calculator/\">here</a>真实超链接，非纯文本。"
+    },
+    {
+      "date": "2026-08-21",
+      "target_page": "https://calcbadger.com/concrete-calculator/",
+      "question_url": "https://www.quora.com/How-much-concrete-do-I-need-for-a-slab-that-measures-on-181-and-5-8-by-50-and-1-2-by-3-in/answer/Owen-Zhang-161",
+      "question_title": "How much concrete do I need for a slab that measures on 181 and 5/8 by 50 and 1/2 by 3 in?",
+      "notes": "发布时该问题0真实答案(仅1条折叠答案不计，8年前提出无人正经回答)，问题本身就是具体数字计算题，与站内concrete-calculator工具页天然契合。回答内容：实际代入计算(181.625in x 50.5in = 9172.06平方英寸，乘3in厚=27516.19立方英寸，除以1728=15.92立方英尺，除以27=0.59立方码；加5-10%损耗系数后约0.62-0.65立方码/17-17.5立方英尺；换算80磅装QUIKRETE Concrete Mix每袋0.60立方英尺产出，约需30袋；60磅装每袋0.45立方英尺，约需39袋；因体量小于1立方码，判断散装袋装比预拌车更合适)，全部数字取自站内concrete-calculator工具页已核实的QUIKRETE官方产品数据表(40/50/60/80磅装产出立方英尺换算表)，未编造任何数据源。过humanizer+avoid-ai-writing双重检查(无破折号；文中5-10%/0.62-0.65等数值区间被Quora编辑器自动转换为en dash属于数字范围的正常排版惯例，非AI式散文连接符，不算违规)。用Quora Add Link功能(Cmd+K)插入真实超链接,锚文本here,指向concrete-calculator页面,全程只填URL字段。已直接发布成功(非Space类问题),发布前用javascript_tool核实编辑器DOM中该span确实是class=\"span link\"(非link_pending),发布后再次核实渲染页面DOM中确实是<a href>真实超链接指向https://calcbadger.com/concrete-calculator/,锚文本为here。"
     }
   ],
   "reddit": []
