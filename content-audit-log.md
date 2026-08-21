@@ -1169,5 +1169,95 @@
   "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill的Content Extractability Check人工核对，7/7项清晰通过，明显超过≥80门槛，em dash修复未影响正文GEO结构",
   "escalation": null
 }
+```
+
+本条为从未审计过（never-audited）的工具，按tools.ts文件内位置（紧接在last_audited最晚的concrete-calculator之后发布）选取，而非"最早last_audited"（本站47个工具中33个从未被审计过，backlog较大）。
+
+```json
+{
+  "tool_slug": "percentage-calculator",
+  "last_audited": "2026-08-21",
+  "published_date": "2026-08-06",
+  "checklist": [
+    "公式正确性：part=(percent/100)×whole、percentage change=(new-old)/|old|×100、percent difference=|a-b|/((a+b)/2)×100三条公式是否与src/lib/percentage.ts实现及tests/percentage.test.ts期望值一致",
+    "正文worked example（$79.99打7折/100→50→75/10g与12g两秤/叠加折扣44%等）是否手算复现",
+    "参考表（9组\"X%的Y\"结果+8组百分比-小数-分数对照）逐格是否正确",
+    "外部引用来源（BIPM SI Brochure、Statistics How To）是否仍然真实存在、内容仍对应",
+    "本文published于2026-08-06（早于avoid-ai-writing 2026-08-07正式生效日1天），是否需要回补AI味检查"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "src/lib/percentage.ts的6个导出函数（percentOfWhole/partAsPercentOfWhole/wholeFromPartAndPercent/percentChange/applyDiscount/percentDifference）逐条核对公式定义，均与正文coreSummary/sections中的公式描述完全一致；tests/percentage.test.ts 32个测试全部通过（npx vitest run独立执行确认，非读测试文件断言）。"
+    },
+    {
+      "dimension": "worked example手算复现",
+      "status": "未发现问题",
+      "detail": "用Python独立重算全部数值例：20%of50=10、10是40的25%、10是20%的50；stock 80→60=-25%，60→80=+33.3%；10g/12g percent difference=18.1818...%（=2/11×100）；percent error(12,10)=20%；100→50→75净变化-25%，50→100需100%涨幅；$79.99打30%off省$23.997→显示$24.00，售价$55.993→$55.99（先折后减/先减后折四舍五入结果一致，正文断言属实）；$100打30%off再打20%off=$56，总折扣44%非50%；$100降10%再涨10%=$99非$100。全部与正文断言吻合，零编造。"
+    },
+    {
+      "dimension": "参考表数据准确性",
+      "status": "未发现问题",
+      "detail": "\"常见X%的Y\"表9行、百分比-小数-分数对照表8行，逐格独立复算，全部正确（如15%of200=30、30%of150=45、12.5%=0.125=1/8等）。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题（含一项误报排查）",
+      "detail": "BIPM SI Brochure PDF curl 200正常。Statistics How To页面curl返回403，初步怀疑链接失效；换UA重试仍403，判断为该站点的反爬/Cloudflare网关拦截自动化客户端（非真实链接失效）；用WebSearch独立核实该URL仍被搜索引擎索引且摘要内容（percent error vs percent difference定义、E1/E2两个实验值对比）与文中引用的论断一致，判定内容仍然有效，不作为失效处理。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1项并修复：meta description过长",
+      "detail": "线上https://calcbadger.com/percentage-calculator/ 200；title'Percentage Calculator | CalcBadger'；meta description原文186字符，超出Google桌面SERP约155-160字符的实际显示阈值26字符（14-17%超标），独立agent复核确认在155/160字符处截断均落在从句中间（'...apply a discount, or compare two'），而非自然断句处，判定为真实需修复问题（非仅理论超标）。已改写为138字符版本，保留全部5种计算模式的关键词覆盖（求百分比/百分比增减/折扣/百分比差异）。canonical自指正确；单一h1、9个h2；schema含WebApplication+FAQPage+BreadcrumbList+Organization四类；robots.txt对GPTBot/ClaudeBot/PerplexityBot等AI爬虫显式Allow。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "按ai-seo skill的Content Extractability Check人工核对：coreSummary首屏给出可独立引用的完整定义+三条公式；各section均以直接陈述开头；含7组真实数字worked example、2个对比表；6组FAQ配FAQPage schema；2条权威来源（BIPM国际计量局+Statistics How To）；robots.txt放行AI爬虫。明显超过80分门槛，未改动。"
+    },
+    {
+      "dimension": "早期内容AI味回补（本次审计重点，因published 2026-08-06早于avoid-ai-writing 2026-08-07生效1天）",
+      "status": "发现并修复：em dash密度偏高",
+      "detail": "独立agent复核（仅限sections[].body范围）实测14处em dash/约770-824词（约1处/57词），判定约一半为公式两侧配对使用（合法，公式含逗号/运算符无法用逗号代替），另一半为单侧'punchy结尾从句'模式（Wikipedia Signs of AI writing明确列为AI写作标记），综合判定CONFIRMED需回补humanizer处理。已改写tools.ts全字段（coreSummary/sections/referenceTables note/faq共17处单侧punchy dash改为句号/冒号/逗号/连词，保留10处公式两侧配对dash与2处来源标题分隔符dash不动）+ src/components/calculators/PercentageCalculator.tsx用户可见文案4处（3处验证提示+1处说明段落）单侧dash改为分号/冒号；embed/[slug].astro第35行'{tool.title} — CalcBadger'为全站45工具共用模板级标题分隔符，非本工具专属文案，判定不属于本次修复范围未改动（与concrete-calculator审计记录的判定口径一致）。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "本页通过vendor/site-toolkit的pickRelatedGuides()轮转算法+crossCategoryPool跨分类兜底自动生成相关工具区块（非硬编码链接），该算法在site-toolkit README及本仓库既往审计中已验证接近100%覆盖率，未见证据显示本工具是孤儿页。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "DataForSEO真实SERP核实'percentage calculator'目标词CalcBadger未进入前17名（含calculator.net/omnicalculator.com/calculatorsoup.com等成熟老站，且SERP位#4为AI Overview），符合18天新站对抗高竞争头部词的正常预期，非本工具专属问题。竞品结构调研（calculatorsoup.com把百分比差异/百分比变化/百分比增长拆成独立URL）显示本工具'一个页面覆盖5种百分比问题+显式讲解percentage change vs percentage difference易混淆点'的整合式设计是真实差异化，非同质化内容。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；robots.txt/隐私页均可达；页面标题无误导性/诱导点击设计；工具是标准数学计算器，不涉及暴力/武器/毒品/赌博等任何AdSense敏感类目。"
+    },
+    {
+      "dimension": "Schema数据一致性/组件可用性",
+      "status": "未发现问题",
+      "detail": "src/components/CalculatorIsland.astro按slug分发到PercentageCalculator（client:load）；npm run build成功生成114页含/percentage-calculator/与/embed/percentage-calculator/，无报错；本次两处内容改写（description字段+组件文案）均未涉及数字/公式/schema字段，build产物逐字符核对description已生效为新138字符版本。"
+    }
+  ],
+  "independent_verification": "两条独立fresh-context agent复核：第一条验证meta description 186字符是否真实超标及截断位置，独立Python复算字符数确认186、独立核实Google桌面SERP约155-160字符阈值为业界公认标准、独立模拟155/160字符截断点确认均落在从句中间——CONFIRMED。第二条验证sections[].body范围内em dash计数与AI写作信号强度，独立重新读取源文件计数得14处/约770-824词（与本agent原始估算19处/1097词不同，因原始估算误将coreSummary与faq字段一并计入，独立agent指出该scope creep并只在明确限定范围内验证）——CONFIRMED em dash密度是真实值得修复的信号，且明确指出约一半为公式配对合法用法建议保留。均在数分钟内正常完成，无卡死，未触发看门狗降级流程。",
+  "actions_taken": [
+    "src/data/tools.ts的description字段从186字符改写为138字符（消除SERP截断风险，保留5种计算模式关键词覆盖）",
+    "src/data/tools.ts的coreSummary/4个section共7段/referenceTables 1处note/faq 2条共17处单侧punchy em dash改写为句号/冒号/逗号/连词，保留10处公式两侧配对dash（合法）与2处sources标题分隔符dash（合法引用格式）不动，未改动任何数字、公式或事实表述",
+    "src/components/calculators/PercentageCalculator.tsx用户可见的3处验证提示与1处说明段落共4处单侧em dash改为分号/冒号",
+    "updated字段从2026-08-06改为2026-08-21（published字段已存在'2026-08-06'，未改动，符合先检查published是否存在的前置要求，本次无需git历史回填）",
+    "npx vitest run tests/percentage.test.ts 32/32通过，npm test全站1088/1088通过（54个测试文件），npm run build 114页成功生成",
+    "build产物dist/percentage-calculator/index.html逐字符扫描确认description已更新、em dash仅剩10处公式配对+2处来源标题分隔符，无新增单侧punchy dash；dist/embed/percentage-calculator/index.html标题标签1处em dash核实为全站共用模板分隔符，非本工具专属，未改动",
+    "git add src/data/tools.ts src/components/calculators/PercentageCalculator.tsx content-audit-log.md（未包含仓库内其他并发任务遗留的未暂存改动：外链建设进度.json/外链执行日志.md/indexnow-submit-log.json.backup-*），commit并push，CF Pages为git连接自动部署无需手动触发deploy hook",
+    "部署完成后（轮询/percentage-calculator/返回200）跑node tools/submit-indexnow.mjs提交索引",
+    "内容发布日志.md追加审计记录，标注为content-quality-audit审计更新非新发布",
+    "教训库该条目下追加1条复发记录（组件.tsx硬编码用户可见文案仍有真实em dash，第8次同类复现，tools.ts主字段已扫描零漏但组件文件是独立盲区）"
+  ],
+  "seo_score": "meta description从186字符超标修复为138字符，其余SEO技术层面（title/canonical/H1/schema/robots.txt/sitemap）均健康无需改动",
+  "geo_score": "ai-seo skill Content Extractability Check 9/9项清晰通过，明显超过≥80门槛，两处修复（description精简+em dash回补）均未削弱可提取性",
+  "escalation": null
+}
 
 ```

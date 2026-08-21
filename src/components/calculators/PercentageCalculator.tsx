@@ -157,9 +157,9 @@ export default function PercentageCalculator() {
 				) : (
 					<p class="calc-note">
 						{solveFor === 'percent'
-							? 'Whole cannot be 0 — enter a non-zero whole.'
+							? 'Whole cannot be 0; enter a non-zero whole.'
 							: solveFor === 'whole'
-								? 'Percent cannot be 0 — enter a non-zero percent.'
+								? 'Percent cannot be 0; enter a non-zero percent.'
 								: 'Enter the two known values.'}
 					</p>
 				))}
@@ -180,7 +180,7 @@ export default function PercentageCalculator() {
 						</div>
 					</div>
 				) : (
-					<p class="calc-note">Old value cannot be 0 — there is no base to measure a change from.</p>
+					<p class="calc-note">Old value cannot be 0; there is no base to measure a change from.</p>
 				))}
 
 			{mode === 'discount' &&
@@ -200,7 +200,7 @@ export default function PercentageCalculator() {
 						{Number.isFinite(originalNum) && originalNum < 0
 							? 'Original price cannot be negative.'
 							: Number.isFinite(discountNum) && discountNum > 100
-								? "Discount can't exceed 100% — that would make the sale price negative."
+								? "Discount can't exceed 100%; that would make the sale price negative."
 								: 'Enter the original price and discount percentage.'}
 					</p>
 				))}
@@ -222,7 +222,7 @@ export default function PercentageCalculator() {
 			<p class="calc-note">
 				"Basic percentage" solves the classic percent relationship (part = percent × whole) for
 				whichever piece you don't have. "Percentage change" and "Percent off" both use the
-				earlier value or sticker price as the base. "Percent difference" is symmetric — it
+				earlier value or sticker price as the base. "Percent difference" is symmetric: it
 				treats neither value as the reference, which is why it gives a different answer than
 				percentage change for the same two numbers. Calculations run in your browser; nothing you
 				type is sent anywhere.

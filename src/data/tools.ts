@@ -1715,8 +1715,8 @@ export const tools: Tool[] = [
 		title: 'Percentage Calculator',
 		shortTitle: 'Percentage Calculator',
 		description:
-			'Find a percentage of a number, work out what percent one number is of another, calculate percentage increase or decrease, apply a discount, or compare two values with percent difference.',
-		updated: '2026-08-06',
+			'Find a percentage of a number, calculate percentage increase or decrease, apply a discount, or compare two values with percent difference.',
+		updated: '2026-08-21',
 		published: '2026-08-06',
 		coreSummary:
 			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one — (new − old) ÷ |old| × 100 — and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula — |a − b| ÷ ((a + b) ÷ 2) × 100 — used when comparing two values where neither one is the reference.',
@@ -1733,27 +1733,27 @@ export const tools: Tool[] = [
 				heading: 'One formula, three questions',
 				body: [
 					'Every basic percentage question is the same equation — **part = (percent ÷ 100) × whole** — asked with a different piece missing. "What is 20% of 50?" gives you the percent and the whole, and asks for the part (20 ÷ 100 × 50 = 10). "10 is what percent of 40?" gives you the part and the whole, and asks for the percent (10 ÷ 40 × 100 = 25%). "10 is 20% of what number?" gives you the part and the percent, and asks for the whole (10 ÷ (20 ÷ 100) = 50). The "Basic percentage" mode above is exactly this triangle: pick which piece you are solving for, and the other two become the inputs.',
-					'The word itself tells you why the formula works: "percent" comes from the Latin *per centum*, "by the hundred," and the BIPM\'s own style guide for the SI confirms the modern usage — the % symbol is internationally recognized and, in running text, "generally takes the meaning of parts per hundred." A percentage is not a unit of anything on its own; it is always a percentage *of* some specific base number, which is the "whole" in the formula above.',
+					'The word itself tells you why the formula works: "percent" comes from the Latin *per centum*, "by the hundred." The BIPM\'s own style guide for the SI confirms the modern usage: the % symbol is internationally recognized and, in running text, "generally takes the meaning of parts per hundred." A percentage is not a unit of anything on its own; it is always a percentage *of* some specific base number, which is the "whole" in the formula above.',
 				],
 			},
 			{
 				heading: 'Percentage change is not percentage difference',
 				body: [
-					'These two get mixed up constantly because they look almost identical, but they answer different questions and can give different numbers for the same pair of values. **Percentage change** — (new − old) ÷ |old| × 100 — always treats one value as the starting point. A stock at $80 that closes at $60 is down (60 − 80) ÷ 80 × 100 = −25%; the $80 is the anchor, so going back up from $60 to $80 would be a +33.3% change, not +25% — the base moved.',
-					'**Percentage difference** — |a − b| ÷ ((a + b) ÷ 2) × 100 — has no anchor. It is used to compare two independent measurements when neither one is the "correct" answer, so it divides by their average instead of by either value alone. Two lab scales reading 10 g and 12 g for the same object differ by |10 − 12| ÷ ((10 + 12) ÷ 2) × 100 = 18.18%, and it would come out exactly the same if the scales had reported 12 g and 10 g in the opposite order — swap a and b in a percentage-change calculation and the answer changes sign and magnitude. If one of those two readings is actually the accepted/true value rather than a second independent measurement, that is a third, related calculation — percent error — which divides by the accepted value instead of the average: (12 − 10) ÷ 10 × 100 = 20%, a different number again for the same two readings.',
+					'These two get mixed up constantly because they look almost identical, but they answer different questions and can give different numbers for the same pair of values. **Percentage change** — (new − old) ÷ |old| × 100 — always treats one value as the starting point. A stock at $80 that closes at $60 is down (60 − 80) ÷ 80 × 100 = −25%; the $80 is the anchor, so going back up from $60 to $80 would be a +33.3% change, not +25%, because the anchor itself moved from $80 to $60.',
+					'**Percentage difference** — |a − b| ÷ ((a + b) ÷ 2) × 100 — has no anchor. It is used to compare two independent measurements when neither one is the "correct" answer, so it divides by their average instead of by either value alone. Two lab scales reading 10 g and 12 g for the same object differ by |10 − 12| ÷ ((10 + 12) ÷ 2) × 100 = 18.18%, and it would come out exactly the same if the scales had reported 12 g and 10 g in the opposite order. Swap a and b in a percentage-change calculation, by contrast, and the answer changes sign and magnitude. If one of those two readings is actually the accepted or true value rather than a second independent measurement, that is a third, related calculation, percent error, which divides by the accepted value instead of the average: (12 − 10) ÷ 10 × 100 = 20%, a different number again for the same two readings.',
 				],
 			},
 			{
 				heading: 'Why a 50% drop and a 50% rise do not cancel out',
 				body: [
-					'This is the most common percentage mistake, and it is a direct consequence of "percentage change always uses the old value as its base." Take $100, apply a 50% decrease: $100 × (1 − 0.50) = $50. Apply a 50% increase to that new number: $50 × (1 + 0.50) = $75. The two 50%-magnitude moves do not cancel — you end up at $75, a net change of (75 − 100) ÷ 100 × 100 = −25% from where you started. Each percentage move is calculated against whatever the current value is at that moment, not against the original number, so a loss always needs a *larger* percentage gain to fully recover: recovering from that $50 back to $100 requires a 100% increase, not 50%.',
+					'This is the most common percentage mistake, and it is a direct consequence of "percentage change always uses the old value as its base." Take $100, apply a 50% decrease: $100 × (1 − 0.50) = $50. Apply a 50% increase to that new number: $50 × (1 + 0.50) = $75. The two 50%-magnitude moves do not cancel. You end up at $75, a net change of (75 − 100) ÷ 100 × 100 = −25% from where you started. Each percentage move is calculated against whatever the current value is at that moment, not against the original number, so a loss always needs a *larger* percentage gain to fully recover: recovering from that $50 back to $100 requires a 100% increase, not 50%.',
 				],
 			},
 			{
 				heading: 'Reading a discount tag correctly',
 				body: [
-					'"Percent off" mode applies a straightforward version of the same base formula: **amount saved = original price × (discount ÷ 100)**, and **sale price = original price − amount saved**. A $79.99 item marked 30% off saves 79.99 × 0.30 = $23.997, which rounds to $24.00 for display; the sale price works out to 79.99 − 23.997 = $55.993, or $55.99 at the register. Because the original price is already a whole number of cents, rounding the savings first and then subtracting, or subtracting first and then rounding, always lands on the same cent — the two don\'t drift apart. A store\'s "you saved $X!" badge that looks rounded more loosely (to the nearest dollar rather than the nearest cent) is a marketing choice, not a sign that the underlying math disagrees with a hand calculation.',
-					'Stacked discounts do not add. A 20%-off sale on top of an already-30%-off clearance item is not 50% off the original price — it is 20% off the *already-discounted* price. $100 at 30% off is $70; take another 20% off that $70 and you get $56, a total discount of 44%, not 50%.',
+					'"Percent off" mode applies a straightforward version of the same base formula: **amount saved = original price × (discount ÷ 100)**, and **sale price = original price − amount saved**. A $79.99 item marked 30% off saves 79.99 × 0.30 = $23.997, which rounds to $24.00 for display; the sale price works out to 79.99 − 23.997 = $55.993, or $55.99 at the register. Because the original price is already a whole number of cents, rounding the savings first and then subtracting, or subtracting first and then rounding, always lands on the same cent, so the two figures never drift apart. A store\'s "you saved $X!" badge that looks rounded more loosely (to the nearest dollar rather than the nearest cent) is a marketing choice, not a sign that the underlying math disagrees with a hand calculation.',
+					'Stacked discounts do not add. A 20%-off sale on top of an already-30%-off clearance item works out to 20% off the *already-discounted* price, not 50% off the original price. $100 at 30% off is $70; take another 20% off that $70 and you get $56, a total discount of 44%, not 50%.',
 				],
 			},
 		],
@@ -1772,7 +1772,7 @@ export const tools: Tool[] = [
 					['25% of 80', '20'],
 					['30% of 150', '45'],
 				],
-				note: 'Each value is percent ÷ 100 × whole, computed directly — e.g. 15% of 200 = 0.15 × 200 = 30.',
+				note: 'Each value is percent ÷ 100 × whole, computed directly. For example, 15% of 200 = 0.15 × 200 = 30.',
 			},
 			{
 				title: 'Percent, decimal, and fraction equivalents',
@@ -1808,7 +1808,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between percent change and percent difference?',
 				answer:
-					'Percent change compares a value to itself over time or before/after — it always divides by the earlier ("old") value, so the order of the two numbers matters. Percent difference compares two independent values where neither is a reference point — it divides by their average instead, so swapping the two numbers gives the same answer. The same pair of numbers can produce two different results depending on which formula fits the question.',
+					'Percent change compares a value to itself over time or before/after, always dividing by the earlier ("old") value, so the order of the two numbers matters. Percent difference compares two independent values where neither is a reference point, dividing by their average instead, so swapping the two numbers gives the same answer. The same pair of numbers can produce two different results depending on which formula fits the question.',
 			},
 			{
 				question: 'How do I find what percentage one number is of another?',
@@ -1818,7 +1818,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Does a 10% decrease followed by a 10% increase get back to the original number?',
 				answer:
-					'No. A 10% decrease and the following 10% increase are calculated against different base numbers, so they do not cancel. $100 minus 10% is $90; $90 plus 10% of $90 (which is $9) is $99 — one dollar short of the original $100. The gap grows with larger percentages: a 50% drop needs a 100% rise, not 50%, to fully recover.',
+					'No. A 10% decrease and the following 10% increase are calculated against different base numbers, so they do not cancel. $100 minus 10% is $90; $90 plus 10% of $90 (which is $9) is $99, one dollar short of the original $100. The gap grows with larger percentages: a 50% drop needs a 100% rise, not 50%, to fully recover.',
 			},
 		],
 		sources: [
