@@ -1841,7 +1841,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Volume Converter',
 		description:
 			'Convert between teaspoons, tablespoons, fluid ounces, cups, pints, quarts, gallons, milliliters, and liters instantly, with reference tables for cooking measures, bottle and can sizes, and larger volumes.',
-		updated: '2026-08-06',
+		updated: '2026-08-21',
 		published: '2026-08-06',
 		coreSummary:
 			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here — quart, pint, cup, fluid ounce, tablespoon, teaspoon — is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once.',
@@ -1997,6 +1997,10 @@ export const tools: Tool[] = [
 			{
 				question: 'How many shots are in a fifth?',
 				answer: 'About 16.9. A "fifth" is 750 mL, the metric bottle size the TTB adopted in 1980 to replace the old 1/5-US-gallon liquor bottle (27 CFR § 5.203); at the standard US bar shot of 1.5 fl oz (44.4 mL), 750 ÷ 44.4 ≈ 16.9 shots.',
+			},
+			{
+				question: 'How many bottles of water are in a gallon?',
+				answer: 'About 7.6 standard single-serving water bottles. Most disposable water bottles hold 500 mL (labeled 16.9 fl oz), and a US gallon is 3.785411784 liters, so 3.785411784 ÷ 0.5 = 7.57 bottles. A case of 24 bottles at that size holds a little over 3 gallons.',
 			},
 		],
 		sources: [
@@ -5939,5 +5943,110 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 1180,
+	},
+	{
+		slug: 'click-speed-test',
+		category: 'Games',
+		title: 'Click Speed Test',
+		shortTitle: 'Click Speed Test',
+		description:
+			'Measure your clicks per second (CPS) and clicks per minute over a timer you choose, then compare your result against the clinical single-finger tapping range from neuropsychology research.',
+		updated: '2026-08-21',
+		published: '2026-08-21',
+		coreSummary:
+			'Click speed measures raw clicking throughput over a fixed window (clicks divided by seconds), which is a different thing from reaction time (how fast you respond to a single signal). A well-documented clinical measure of natural single-finger speed, the Finger Tapping Test (Halstead, 1947; standardized by Reitan & Wolfson, 1985), puts a healthy young adult\'s dominant-hand average at roughly 5.0-5.5 taps per second when tapping continuously with one finger. This tool times a click session over a duration you pick, reports clicks per second and per minute, and compares the result against that clinical range, noting that scores well above it typically come from alternating multiple fingers rather than one finger tapping alone.',
+		queries: [
+			'click speed test',
+			'cps test',
+			'clicks per second test',
+			'how many clicks per second can you do',
+			'mouse click test',
+		],
+		sections: [
+			{
+				heading: 'What clicks per second measures, and what it doesn\'t',
+				body: [
+					"This tool counts every click during a timer you choose and divides by the time elapsed: clicks per second (CPS) is throughput, not speed of response. That's a different skill from reaction time, which measures the gap between a single signal and a single response (this site's separate Reaction Time Test covers that). A fast clicker with a slow reaction time, or the reverse, is entirely possible, since one measures how quickly you can repeat an action and the other measures how quickly you can start one.",
+					"CPM (clicks per minute) is the same number scaled up, useful mainly for comparing against contexts, like typing or data-entry benchmarks, that are conventionally reported per minute rather than per second.",
+				],
+			},
+			{
+				heading: 'Why the test offers five different durations',
+				body: [
+					"A 1-second window rewards a short, maximal burst, since a single fast flurry of clicks dominates the whole result with no time to fatigue. A 60-second window averages that same burst potential against sustained effort, so a score that looked impressive at 1 second usually comes down once fatigue and rhythm-holding enter the picture. Neither duration is more correct. They measure burst speed versus sustained rate, the same way a 100m sprint time and a mile time both measure running speed without being interchangeable.",
+					'Pick a longer duration if you want a rate closer to what you could sustain in an actual game or task, and a shorter one if you specifically want to test peak burst speed.',
+				],
+			},
+			{
+				heading: 'How this compares to a validated clinical measure',
+				body: [
+					'The Finger Tapping Test is a real neuropsychological instrument, originally developed by Ward Halstead in 1947 and later standardized by Ralph Reitan (Reitan & Wolfson, 1985) as part of the Halstead-Reitan Neuropsychological Test Battery. It asks someone to tap a single key or button continuously, one finger only, for a fixed 10-second trial, averaged across several trials, and clinicians use it to help screen for conditions like Parkinson\'s disease and the after-effects of traumatic brain injury. Ruff & Parker (1993) and later replications commonly report a young, healthy adult\'s dominant-hand average at roughly 50-55 taps per 10-second trial, i.e. about 5.0-5.5 taps per second.',
+					"That figure describes continuous single-finger tapping under controlled clinical conditions, not this tool's own click session, so treat it as a documented reference point rather than a pass/fail score. Community click-speed-test results well above that range are typically attributed to alternating two fingers, using a fast wrist motion, or named techniques like jitter clicking and butterfly clicking, none of which are single-finger continuous tapping. A much higher CPS on this tool doesn't contradict the clinical figure. It usually just means the clicker used a different technique.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Worked examples',
+				headers: ['Clicks', 'Duration', 'CPS', 'CPM'],
+				rows: [
+					['9', '1s', '9.00', '540'],
+					['42', '5s', '8.40', '504'],
+					['156', '10s', '15.60', '936'],
+					['210', '30s', '7.00', '420'],
+					['300', '60s', '5.00', '300'],
+				],
+				note: 'CPS = clicks ÷ duration in seconds; CPM = CPS × 60. Shorter windows tend to produce higher CPS because a maximal burst is easier to sustain briefly than for a full minute.',
+			},
+			{
+				title: 'How this tool classifies your CPS',
+				headers: ['CPS', 'Band', 'What it means'],
+				rows: [
+					['Under 5.0', 'Below the typical sustained single-finger tapping range', 'Below the ~5.0-5.5 taps/sec dominant-hand average Ruff & Parker (1993) and later replications report for the clinical Finger Tapping Test'],
+					['5.0-7.0', 'In the typical single-finger tapping range', 'Within the commonly reported range for continuous single-finger tapping in Finger Tapping Test normative studies'],
+					['7.01-15.0', 'Above the natural single-finger tapping range', 'Above documented single-finger rates; usually reflects alternating fingers or a fast wrist motion'],
+					['Over 15.0', 'In the range of specialized clicking techniques', 'Community-reported range associated with named techniques like jitter clicking or butterfly clicking, not natural single-finger tapping'],
+				],
+				note: 'The clinical figures come from a 10-second, one-finger tapping protocol; results on this tool at other durations, or using more than one finger, are not directly comparable to that clinical baseline, only informed by it.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a good CPS (clicks per second) score?',
+				answer:
+					'It depends on what you\'re comparing it to. Continuous single-finger tapping in the clinical Finger Tapping Test literature (Ruff & Parker, 1993, and later replications) averages roughly 5.0-5.5 taps per second for a healthy young adult\'s dominant hand. Click-speed-test communities report much higher numbers, but those typically come from alternating multiple fingers or specialized techniques, not single-finger tapping, so the two aren\'t measuring the same thing.',
+			},
+			{
+				question: 'What is the difference between a click speed test and a reaction time test?',
+				answer:
+					'A click speed test measures throughput: how many clicks you can produce in a fixed window. A reaction time test measures latency: how long it takes to respond to a single, unpredictable signal. They test different skills, and a high score on one does not imply a high score on the other.',
+			},
+			{
+				question: 'What are jitter clicking and butterfly clicking?',
+				answer:
+					"They're named techniques some gamers use to exceed natural single-finger tapping speed: jitter clicking tenses the forearm to make a finger vibrate rapidly against the mouse button, and butterfly clicking alternates two fingers rapidly on the same button. Both are widely documented within gaming communities, but the specific CPS thresholds associated with them are community convention, not a peer-reviewed measurement.",
+			},
+			{
+				question: 'Why does my CPS change depending on the test duration?',
+				answer:
+					"A short window (1 or 5 seconds) captures a maximal burst, which is easier to sustain briefly than for a full minute. A longer window (30 or 60 seconds) averages that burst against fatigue and rhythm-holding, so it typically produces a lower, more sustainable rate. Neither number is more correct: they describe burst speed versus sustained rate.",
+			},
+			{
+				question: 'Can this tool detect clicking macros or verify esports records?',
+				answer:
+					"No. This is a simple browser-based timer and counter with no anti-cheat detection, and it is not a validated or officially recognized record-keeping tool. It's useful for casual comparison against your own past results or the documented clinical range above, not for verifying competitive claims.",
+			},
+		],
+		sources: [
+			{
+				label: 'Ruff, R.M. & Parker, S.B. (1993). "Gender- and age-specific changes in motor speed and eye-hand coordination in adults: normative values for the Finger Tapping and Grooved Pegboard Tests," Perceptual and Motor Skills, 76, 1219-1230',
+				url: 'https://pubmed.ncbi.nlm.nih.gov/8337069/',
+			},
+			{
+				label: 'Millisecond — "Finger Tapping Test" test library (protocol description, citing Halstead, 1947, and Reitan & Wolfson, 1985)',
+				url: 'https://www.millisecond.com/library/fingertapping',
+			},
+		],
+		embedHeight: 560,
 	},
 ];

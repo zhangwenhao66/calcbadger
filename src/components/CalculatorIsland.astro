@@ -11,6 +11,7 @@ import BsaCalculator from './calculators/BsaCalculator';
 import CalligraphyAlphabetGenerator from './calculators/CalligraphyAlphabetGenerator';
 import CalorieCalculator from './calculators/CalorieCalculator';
 import CdCalculator from './calculators/CdCalculator';
+import ClickSpeedTest from './calculators/ClickSpeedTest';
 import CoinFlipCalculator from './calculators/CoinFlipCalculator';
 import ConcreteCalculator from './calculators/ConcreteCalculator';
 import ConduitFillCalculator from './calculators/ConduitFillCalculator';
@@ -106,3 +107,4 @@ const { slug } = Astro.props;
 {slug === 'conduit-fill-calculator' && <ConduitFillCalculator client:load />}
 {slug === 'rounding-calculator' && <RoundingCalculator client:load />}
 {slug === 'wingdings-translator' && <WingdingsTranslator client:load />}
+{slug === 'click-speed-test' && <ClickSpeedTest client:load />}
