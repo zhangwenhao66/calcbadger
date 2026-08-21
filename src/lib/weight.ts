@@ -9,9 +9,14 @@
  * for US trade and measurement use, and derives the ounce as exactly 1/16 of
  * that pound (28.349523125 g) and the US short ton as exactly 2,000 pounds
  * (907.18474 kg). Metric prefixes (mg, mcg, kg) are SI-exact by definition.
+ *
+ * The stone is a UK/Ireland unit, not part of the 1959 agreement itself, but
+ * fixed at exactly 14 lb by the Weights and Measures Act 1985 (Schedule 1,
+ * Part VI) — so it inherits the same exact pound and converts to exactly
+ * 6.35029318 kg (14 × 0.45359237 kg).
  */
 
-export type WeightUnit = 'mcg' | 'mg' | 'g' | 'kg' | 'oz' | 'lb' | 'ton';
+export type WeightUnit = 'mcg' | 'mg' | 'g' | 'kg' | 'oz' | 'lb' | 'st' | 'ton';
 
 /** Grams per unit — the base for every conversion below. All values exact. */
 export const GRAMS_PER_UNIT: Record<WeightUnit, number> = {
@@ -21,10 +26,11 @@ export const GRAMS_PER_UNIT: Record<WeightUnit, number> = {
 	kg: 1000,
 	oz: 28.349523125,
 	lb: 453.59237,
+	st: 6350.29318,
 	ton: 907184.74,
 };
 
-export const UNITS: WeightUnit[] = ['mcg', 'mg', 'g', 'kg', 'oz', 'lb', 'ton'];
+export const UNITS: WeightUnit[] = ['mcg', 'mg', 'g', 'kg', 'oz', 'lb', 'st', 'ton'];
 
 export function toGrams(value: number, unit: WeightUnit): number {
 	return value * GRAMS_PER_UNIT[unit];
@@ -38,7 +44,7 @@ export function convert(value: number, from: WeightUnit, to: WeightUnit): number
 	return fromGrams(toGrams(value, from), to);
 }
 
-/** Converts a value in one unit to all seven, for a "type once, see all" display. */
+/** Converts a value in one unit to all eight, for a "type once, see all" display. */
 export function convertAll(value: number, from: WeightUnit): Record<WeightUnit, number> {
 	const grams = toGrams(value, from);
 	const result = {} as Record<WeightUnit, number>;

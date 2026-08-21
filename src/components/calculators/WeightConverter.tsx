@@ -10,6 +10,7 @@ const UNIT_LABEL: Record<WeightUnit, string> = {
 	kg: 'kg',
 	oz: 'oz',
 	lb: 'lb',
+	st: 'st',
 	ton: 'US ton',
 };
 
@@ -20,6 +21,7 @@ const UNIT_NAME: Record<WeightUnit, string> = {
 	kg: 'Kilograms',
 	oz: 'Ounces',
 	lb: 'Pounds',
+	st: 'Stone (UK, 14 lb)',
 	ton: 'US tons (short, 2,000 lb)',
 };
 
@@ -30,6 +32,7 @@ const STEP: Record<WeightUnit, number> = {
 	kg: 0.1,
 	oz: 0.5,
 	lb: 0.1,
+	st: 0.1,
 	ton: 0.01,
 };
 
@@ -104,7 +107,7 @@ export default function WeightConverter() {
 			) : negative ? (
 				<p class="calc-note">A weight can't be negative. Enter a value of 0 or more.</p>
 			) : (
-				<p class="calc-note">Enter a weight to convert it to the other six units.</p>
+				<p class="calc-note">Enter a weight to convert it to the other seven units.</p>
 			)}
 
 			<p class="calc-note">

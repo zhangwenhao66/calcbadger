@@ -3,8 +3,9 @@ import { convert, convertAll, ouncesToPoundsOunces, roundSig } from '../src/lib/
 
 // Expected values independently computed in Python (Decimal, 30-digit precision) from the
 // exact grams-per-unit factors (1959 International Yard and Pound Agreement / NIST HB44
-// App. C), not read back from this implementation:
-//   G = {mcg:0.000001, mg:0.001, g:1, kg:1000, oz:28.349523125, lb:453.59237, ton:907184.74}
+// App. C; stone = 14 lb per UK Weights and Measures Act 1985, Sch. 1 Part VI), not read
+// back from this implementation:
+//   G = {mcg:0.000001, mg:0.001, g:1, kg:1000, oz:28.349523125, lb:453.59237, st:6350.29318, ton:907184.74}
 //   conv(v, frm, to) = v * G[frm] / G[to]
 
 describe('convert — exact-definition pairs', () => {
@@ -26,6 +27,14 @@ describe('convert — exact-definition pairs', () => {
 
 	it('1 US ton = 907.18474 kg exactly', () => {
 		expect(convert(1, 'ton', 'kg')).toBeCloseTo(907.18474, 8);
+	});
+
+	it('1 stone = 14 lb exactly (UK Weights and Measures Act 1985)', () => {
+		expect(convert(1, 'st', 'lb')).toBeCloseTo(14, 10);
+	});
+
+	it('1 stone = 6.35029318 kg exactly (14 x the 1959 pound)', () => {
+		expect(convert(1, 'st', 'kg')).toBeCloseTo(6.35029318, 8);
 	});
 });
 
@@ -61,6 +70,22 @@ describe('convert — real-world worked values (Python hand-calc)', () => {
 	it('1 g to oz', () => {
 		expect(convert(1, 'g', 'oz')).toBeCloseTo(0.03527396194958041, 9);
 	});
+
+	it('11 stone to kg (UK adult body weight)', () => {
+		expect(convert(11, 'st', 'kg')).toBeCloseTo(69.85322498, 6);
+	});
+
+	it('157 lb (11 st 3 lb) to kg', () => {
+		expect(convert(157, 'lb', 'kg')).toBeCloseTo(71.21400209, 6);
+	});
+
+	it('60 kg to stone', () => {
+		expect(convert(60, 'kg', 'st')).toBeCloseTo(9.448382665066182, 9);
+	});
+
+	it('10 stone to kg', () => {
+		expect(convert(10, 'st', 'kg')).toBeCloseTo(63.5029318, 6);
+	});
 });
 
 describe('convert — edge cases', () => {
@@ -88,9 +113,9 @@ describe('convert — edge cases', () => {
 });
 
 describe('convertAll', () => {
-	it('returns all 7 units and each matches pairwise convert()', () => {
+	it('returns all 8 units and each matches pairwise convert()', () => {
 		const all = convertAll(1, 'kg');
-		expect(Object.keys(all).sort()).toEqual(['g', 'kg', 'lb', 'mcg', 'mg', 'oz', 'ton'].sort());
+		expect(Object.keys(all).sort()).toEqual(['g', 'kg', 'lb', 'mcg', 'mg', 'oz', 'st', 'ton'].sort());
 		for (const unit of Object.keys(all) as (keyof typeof all)[]) {
 			expect(all[unit]).toBeCloseTo(convert(1, 'kg', unit), 9);
 		}

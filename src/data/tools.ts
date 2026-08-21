@@ -1090,11 +1090,11 @@ export const tools: Tool[] = [
 		title: 'Weight Converter',
 		shortTitle: 'Weight Converter',
 		description:
-			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, and US tons instantly, with reference tables for body weight, cooking, and dosing.',
-		updated: '2026-08-16',
+			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, stone, and US tons instantly, with reference tables for body weight, cooking, and dosing.',
+		updated: '2026-08-21',
 		published: '2026-08-04',
 		coreSummary:
-			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. Enter a weight in any of seven units and this tool converts it to the other six at once.',
+			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once.',
 		queries: [
 			'kg to lbs',
 			'lbs to kg',
@@ -1115,6 +1115,12 @@ export const tools: Tool[] = [
 			'70 kg to lbs',
 			'150 lbs to kg',
 			'convert kg to lbs',
+			'kg to stone',
+			'stone to kg',
+			'how many kg in a stone',
+			'how many lbs in a stone',
+			'stone to lbs',
+			'convert stone to kg',
 		],
 		sections: [
 			{
@@ -1147,6 +1153,20 @@ export const tools: Tool[] = [
 				heading: 'Worked example: a medication dose',
 				body: [
 					'A prescription label reads "levothyroxine 200 mcg," and a pharmacy reference lists the same drug in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams instead of micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly rather than assuming the number carries over.',
+				],
+			},
+			{
+				heading: 'The stone: a UK and Ireland body-weight custom',
+				body: [
+					'The stone predates the 1959 pound by centuries as a medieval English trade weight, but its modern value is not a separate definition: the Weights and Measures Act 1985 (Schedule 1, Part VI) fixes it at exactly 14 avoirdupois pounds, so it inherits the same 0.45359237 kg pound as the rest of this converter. 14 × 0.45359237 kg = 6.35029318 kg exactly, with no independent rounding of its own.',
+					'That same Act pushed most UK goods sold by weight onto the metric kilogram for trade purposes. Body weight was never really part of that shift in everyday practice: bathroom scales, GP surgery records, and ordinary conversation across the UK and Ireland still run in stone and pounds (a person might be described as "11 stone 3," meaning 11 st plus 3 remaining lb), which is why this converter treats stone primarily as a body-weight unit rather than a general trade one.',
+				],
+			},
+			{
+				heading: 'Worked example: converting a UK body weight',
+				body: [
+					'A UK GP surgery records a patient at 11 st 3 lb, and a specialist clinic elsewhere needs the figure in kilograms. First convert to a single unit: 11 st 3 lb = (11 × 14) + 3 = 157 lb. Then apply the exact pound: 157 × 0.45359237 = 71.214 kg, which this converter rounds for display to 71.2140 kg.',
+					'Going the other way, a 60 kg reading converts to 60 ÷ 6.35029318 = 9.4484 stone. Since stone readings are conventionally given as whole stone plus remaining pounds rather than a decimal, that splits into 9 st plus 0.4484 st × 14 lb/st = 6.28 lb, commonly rounded to "9 stone 6."',
 				],
 			},
 		],
@@ -1206,6 +1226,33 @@ export const tools: Tool[] = [
 				],
 				note: 'Splits total ounces into whole pounds plus remaining ounces, the format most US birth records use.',
 			},
+			{
+				title: 'Stone to kilograms: body weight range',
+				headers: ['Stone', 'kg'],
+				rows: [
+					['8 st', '50.80 kg'],
+					['10 st', '63.50 kg'],
+					['12 st', '76.20 kg'],
+					['14 st', '88.90 kg'],
+					['16 st', '101.60 kg'],
+					['18 st', '114.31 kg'],
+					['20 st', '127.01 kg'],
+				],
+				note: 'Exact conversion via 1 st = 14 lb = 6.35029318 kg, rounded to two decimal places.',
+			},
+			{
+				title: 'Kilograms to stone & pounds: body weight range',
+				headers: ['kg', 'Stone & lb'],
+				rows: [
+					['50 kg', '7 st 12 lb'],
+					['60 kg', '9 st 6 lb'],
+					['70 kg', '11 st 0 lb'],
+					['80 kg', '12 st 8 lb'],
+					['90 kg', '14 st 2 lb'],
+					['100 kg', '15 st 10 lb'],
+				],
+				note: 'Splits the decimal stone figure into whole stone plus remaining pounds, the conventional UK format, rounded to the nearest pound.',
+			},
 		],
 		faq: [
 			{
@@ -1236,6 +1283,22 @@ export const tools: Tool[] = [
 				question: 'How many milligrams are in a gram?',
 				answer: 'There are exactly 1,000 milligrams in a gram, and 1,000 micrograms in a milligram. Both are SI decimal prefixes, not measured relationships.',
 			},
+			{
+				question: 'How many kilograms are in a stone?',
+				answer: '1 stone equals exactly 6.35029318 kilograms. It is defined as 14 avoirdupois pounds (Weights and Measures Act 1985, Schedule 1, Part VI), and 14 × 0.45359237 kg gives that exact figure.',
+			},
+			{
+				question: 'How many pounds are in a stone?',
+				answer: 'There are exactly 14 pounds in a stone. This is a legal definition under UK law (Weights and Measures Act 1985), not an approximation.',
+			},
+			{
+				question: 'Why do UK and Irish scales show weight in stone instead of kilograms?',
+				answer: 'The Weights and Measures Act 1985 pushed most UK goods sold by weight onto the metric kilogram for trade, but that shift never really extended to personal body weight in everyday practice, so UK and Ireland bathroom scales, GP surgery records, and ordinary speech still default to stone and pounds even though the country is otherwise metric.',
+			},
+			{
+				question: 'How do I convert kilograms to stone and pounds?',
+				answer: 'Divide the kilogram figure by 6.35029318 to get decimal stone. The whole number is the stone count; multiply the remaining decimal by 14 to get the leftover pounds. For example, 70 kg ÷ 6.35029318 ≈ 11.02 stone, which is 11 stone plus 0.02 × 14 ≈ 0 lb, commonly written "11 stone."',
+			},
 		],
 		sources: [
 			{
@@ -1246,8 +1309,12 @@ export const tools: Tool[] = [
 				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
 				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
 			},
+			{
+				label: 'legislation.gov.uk — Weights and Measures Act 1985, Schedule 1, Part VI (stone = 14 lb)',
+				url: 'https://www.legislation.gov.uk/ukpga/1985/72/schedule/1/part/VI/paragraph/wrapper1n2',
+			},
 		],
-		embedHeight: 720,
+		embedHeight: 800,
 	},
 	{
 		slug: 'mortgage-calculator',
