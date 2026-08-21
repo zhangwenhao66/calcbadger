@@ -237,5 +237,17 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-21",
+    "action": "submitted",
+    "reason": "今日无新工具发布（weight-converter新增stone单位是既有页面功能扩展，非新页面，不适用本任务）。改用build-index-queue.py收入代理排序，队列第一候选bmi-calculator已收录，选中Pages报告discovered-not-indexed候选中收入代理最高的gpa-calculator，确认URL is not on Google/Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
+    "submitted_urls": [
+      "https://calcbadger.com/gpa-calculator/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/bmi-calculator/"
+    ],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
