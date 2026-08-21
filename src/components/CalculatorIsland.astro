@@ -48,6 +48,7 @@ import TipCalculator from './calculators/TipCalculator';
 import TopsoilCalculator from './calculators/TopsoilCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
 import WeightConverter from './calculators/WeightConverter';
+import WingdingsTranslator from './calculators/WingdingsTranslator';
 import WorldClockConverter from './calculators/WorldClockConverter';
 import YesNoWheel from './calculators/YesNoWheel';
 
@@ -104,3 +105,4 @@ const { slug } = Astro.props;
 {slug === 'prorated-rent-calculator' && <ProratedRentCalculator client:load />}
 {slug === 'conduit-fill-calculator' && <ConduitFillCalculator client:load />}
 {slug === 'rounding-calculator' && <RoundingCalculator client:load />}
+{slug === 'wingdings-translator' && <WingdingsTranslator client:load />}

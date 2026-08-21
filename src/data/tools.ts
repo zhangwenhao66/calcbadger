@@ -5808,4 +5808,136 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 860,
 	},
+	{
+		slug: 'wingdings-translator',
+		category: 'Text Tools',
+		title: 'Wingdings Translator',
+		shortTitle: 'Wingdings Translator',
+		description:
+			'Convert text to Wingdings two different ways: a Unicode symbol preview that renders on any device, and the real Windows font code. Decode Wingdings-style text back into plain words too.',
+		updated: '2026-08-21',
+		published: '2026-08-21',
+		coreSummary:
+			'Wingdings assigns a dingbat glyph to each printable ASCII character (space through ~), and Windows makes that same glyph set reachable a second way: at Unicode code point 0xF000 plus the ASCII code, the exact offset Microsoft\'s OpenType specification documents for symbol fonts. That trick only shows symbols on a device with Wingdings installed. This tool defaults to a different approach instead, swapping each character for its own standalone Unicode symbol equivalent so the output renders correctly on any device, with the Windows font code and a decoder available as separate modes.',
+		queries: [
+			'wingdings translator',
+			'wingdings to text',
+			'text to wingdings',
+			'wingdings alphabet',
+			'wingdings font translator',
+		],
+		sections: [
+			{
+				heading: 'How Wingdings actually encodes its symbols',
+				body: [
+					'Wingdings is a "symbol" font: instead of drawing letters, every printable ASCII character from space through tilde (0x20 to 0x7E, 95 characters total) is assigned a small picture instead, such as an envelope, a pair of scissors, a zodiac sign, or a hand pointing. Type a capital "J" in Wingdings and a smiling face appears; type a lowercase "j" and something else entirely shows up, since the mapping runs off the raw character code, not the letter itself.',
+					'Windows exposes that same glyph set a second way. Microsoft\'s OpenType specification, in its section on non-standard (symbol) fonts, states that the cmap table for a font like Wingdings should use Unicode\'s Private Use Area starting at 0xF000, adding that "it is suggested to derive the format 4 encodings by simply adding 0xF000 to the format 0 (Macintosh) encodings." In practice that means the smiley assigned to ASCII "J" (0x4A) also lives at Unicode code point 0xF04A, a second address for the identical glyph.',
+				],
+			},
+			{
+				heading: 'Two different outputs, and why this tool defaults to the one that always renders',
+				body: [
+					'The "Windows font code" mode above reproduces that exact 0xF000 offset. It is the real Wingdings trick, and on a Windows machine with the Wingdings font installed (most of them, since Windows ships it by default), the output displays as proper symbols. Copy it into Word or a Windows-rendered web form and the pictures show up correctly. On a Mac, a phone, or a Linux machine without that font, the same text shows up as empty boxes instead, because there\'s no glyph to draw.',
+					'"Symbol preview" mode, the default, sidesteps that problem by mapping each character to its own separate Unicode symbol instead of a Wingdings-specific code point: real, independently encoded characters from blocks like Ornamental Dingbats and Geometric Shapes Extended, several of which Unicode added specifically to give older symbol fonts a portable equivalent. This is plain Unicode text, not a font file or an image, so it renders the same everywhere without requiring anything installed on the visitor\'s device. It\'s a close standalone equivalent to each Wingdings glyph, not a pixel-for-pixel reproduction of the original artwork.',
+				],
+			},
+			{
+				heading: 'Decoding text back into words',
+				body: [
+					'The third mode runs the font-code conversion in reverse: paste in text that used the 0xF000 offset (copied from this tool\'s own font-code output, or from anywhere else that encoded a string the same way) and it subtracts 0xF000 back off each character to recover the original letters. This works even on a device that can\'t display the symbols in the first place, since decoding only needs the underlying character codes, not a rendered picture.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'A–Z, symbol preview mode',
+				headers: ['Letter', 'Symbol', 'What it depicts'],
+				rows: [
+					['A', '✌', 'victory hand'],
+					['B', '\u{1F58F}', 'turned OK hand sign'],
+					['C', '\u{1F44D}', 'thumbs up'],
+					['D', '\u{1F44E}', 'thumbs down'],
+					['E', '☜', 'pointing left'],
+					['F', '☞', 'pointing right'],
+					['G', '☝', 'pointing up'],
+					['H', '\u{1F597}', 'pointing down (left hand)'],
+					['I', '\u{1F590}', 'raised hand, fingers splayed'],
+					['J', '☺', 'smiling face'],
+					['K', '\u{1F610}', 'neutral face'],
+					['L', '☹', 'frowning face'],
+					['M', '\u{1F4A3}', 'bomb'],
+					['N', '\u{1F571}', 'skull and crossbones'],
+					['O', '\u{1F3F3}', 'waving white flag'],
+					['P', '\u{1F3F1}', 'white pennant'],
+					['Q', '✈', 'airplane'],
+					['R', '☼', 'sun with rays'],
+					['S', '\u{1F322}', 'raindrop'],
+					['T', '❄', 'snowflake'],
+					['U', '\u{1F546}', 'latin cross'],
+					['V', '✞', 'shadowed latin cross'],
+					['W', '\u{1F548}', 'celtic cross'],
+					['X', '✠', 'maltese cross'],
+					['Y', '✡', 'star of david'],
+					['Z', '☪', 'star and crescent'],
+				],
+				note: 'Lowercase letters map to a completely different set of glyphs (mostly zodiac signs and geometric shapes). Wingdings runs off the character code, not the letter, so case matters.',
+			},
+			{
+				title: 'A few common punctuation marks and digits',
+				headers: ['Character', 'Symbol', 'What it depicts'],
+				rows: [
+					['0', '\u{1F5C0}', 'a folder'],
+					['1', '\u{1F5C1}', 'an open folder'],
+					['!', '\u{1F589}', 'a pencil, lower left'],
+					['@', '\u{1F58E}', 'a left-facing writing hand'],
+					['.', '\u{1F4EC}', 'an open mailbox, raised flag'],
+					['?', '✍', 'a writing hand'],
+				],
+				note: 'The full set covers all 95 printable ASCII characters (space through tilde); the live tool above converts a whole sentence at once.',
+			},
+		],
+		faq: [
+			{
+				question: 'Why does the "Windows font code" output show empty boxes instead of symbols?',
+				answer:
+					'That mode reproduces the real Wingdings font mechanism, which only displays correctly on a device that has the Wingdings font installed. Windows ships it by default, so most Windows browsers and Word show it correctly; Mac, Linux, and most mobile browsers don\'t have the font and show boxes instead. The text you copy is still correct. Pasting it somewhere with Wingdings installed will show the symbols.',
+			},
+			{
+				question: 'What is the difference between "Symbol preview" and "Windows font code" mode?',
+				answer:
+					'Symbol preview swaps each character for its own separate Unicode symbol, so it renders identically on any device with no font dependency. Windows font code reproduces the actual Wingdings mechanism (shifting each character by 0xF000), which only displays as symbols where the Wingdings font is present.',
+			},
+			{
+				question: 'How do I convert Wingdings symbols back into readable text?',
+				answer:
+					'Switch to "Decode to text" mode and paste in the symbol text. The decoder subtracts the 0xF000 offset back off each character to recover the original letters, and it works even if your own device can\'t display the symbols themselves.',
+			},
+			{
+				question: 'Do I need Microsoft Office or Windows installed to use this tool?',
+				answer:
+					'No. The default symbol preview mode uses standard Unicode characters that render in any modern browser. Only the "Windows font code" mode depends on having the actual Wingdings font available to display correctly, and that mode is optional.',
+			},
+			{
+				question: 'Does uppercase and lowercase of the same letter give the same Wingdings symbol?',
+				answer:
+					'No. Wingdings assigns a glyph to each ASCII character code, and uppercase and lowercase letters have different codes, so they map to unrelated symbols: capital "A" becomes a victory-hand gesture, while lowercase "a" becomes the zodiac sign Cancer.',
+			},
+			{
+				question: 'Is this tool using the actual copyrighted Wingdings font file?',
+				answer:
+					'No font file is embedded or distributed here. The default mode uses standard, freely available Unicode characters; the "Windows font code" mode only references the Wingdings font by name in CSS, the same way a webpage might reference "Arial," and it displays correctly if that font already happens to be installed on the visitor\'s own device.',
+			},
+		],
+		sources: [
+			{
+				label: 'Microsoft Typography — "Recommendations for OpenType Fonts," Non-Standard (Symbol) Fonts',
+				url: 'https://learn.microsoft.com/en-us/typography/opentype/spec/recom',
+			},
+			{
+				label: 'Wikipedia — "Wingdings" (character-to-Unicode compatibility table)',
+				url: 'https://en.wikipedia.org/wiki/Wingdings',
+			},
+		],
+		embedHeight: 1180,
+	},
 ];
