@@ -139,3 +139,34 @@
 1. **`timsturf.com`、`woodlogger.com`、`statisticshowto.com`三个高置信度目标**——功能对应确认（分别对应Square Footage/Board Foot/Fraction Calculator），但联系方式受限（Squarespace表单/JS表单/Cloudflare挑战页），curl拿不到邮箱。下次运行建议用Browser pane（非curl）打开这三个页面的联系表单直接填写提交（邮箱字段用`contact@calcbadger.com`），或用浏览器人工核实是否有隐藏邮箱。
 2. Mortgage/Concrete/Percentage/Date Calculator四个方向的资源合集页搜索**已连续两轮（8/9、8/16）用不同关键词均未命中**，短期内不建议再用通用WebSearch长尾词方法重复尝试；下次可考虑换成`dataforseo_query.py backlinks`反查更多细分竞品（如dinkytown.net的mortgage calculator、omnicalculator的concrete-column等）的引荐域名，复用本轮1.5的方法而非泛搜索。
 3. `freeweightlosspodcast.com`（5篇文章重复链同一calorie-calculator，疑似站内模块）如果下轮想追查，需先用浏览器确认该链接是否为侧边栏工具箱模块（会显著降低"真实编辑推荐"权重）还是逐篇正文引用。
+
+---
+
+## 2026-08-21
+
+### 第一部分：验证10天前旧pitch
+
+按规则重新读了本文件全部历史记录：`已发出`的邮件只有一条（8/16 `info@thelawnturflaying.co.uk`），发送日期在10天验证窗口（2026-08-11之前）之外；8/4、8/9两轮均未实际发出任何邮件（都是"跳过"结论）。**没有符合"发送日期在2026-08-11之前"条件的记录，第一部分按规则跳过。**
+
+### 第二部分：新断链置换机会
+
+先读`src/data/tools.ts`确认当前真实工具清单：站点已从上轮（8/16，30个工具）扩到**约45个工具**，新增覆盖Real Estate（prorated-rent-calculator）、Food & Drink（keg-calculator）、Text Tools（glitch-text-generator/small-text-generator/sentence-counter/wingdings-translator）等新分类，以及Construction新增asphalt-calculator/topsoil-calculator/conduit-fill-calculator/rounding-calculator。
+
+**WebSearch定向搜索**（6次，覆盖electrical/landscaping/homebrewing/property-management/asphalt/board-foot六个新工具方向）：结果与8/16遗留笔记预判一致——全部召回的是竞品计算器工具站本身（southwire/conduit-fill-calculator.com/asphapro/boardcalculate等）或大型内容站，**没有一次命中真正的第三方资源合集/链接列表页**，追加两轮（elementary teacher/homeschool/libguides construction/apartment tenant/homebrewing roundup/electrician apprenticeship方向）同样零命中。判定WebSearch通用查询法对这批新工具方向系统性失效，不再重复投入。
+
+**1.5竞品外链缺口分析**（延续8/16方法，本轮扩大样本）：用`dataforseo_query.py backlinks`对omnicalculator.com/inchcalculator.com各拉150条`--mode one_per_domain`外链明细，逐条核对`url_from`+`url_to`+`anchor`；另外对calculator.net（此前两轮未查过）首次拉取100条`one_per_domain`外链明细。按"只链1-2个竞品+真实编辑判断"标准筛选出20个候选资源页，主题分布：Topsoil Calculator对应5个（rainbowgardens.biz/garden-center、dirtcheep.ca、southlandlawns.com/soil-calculator、redigreen.net/soil-blend-yardage-calculator、mrmulchmrtopsoil.com/mulch-calculator——均为独立土壤/景观供应商主页或专页，非大站）、Concrete Calculator对应12个（bluestarredimix、cornerstonedfw、teaguerental、carryduffconcrete、talonconagg、whistleredimix、dbrmx、dumpstermaxx、bwreadymix、concretepumping.ie、centralmixconcrete、kwikmix——均为独立预拌混凝土/搅拌站公司主页，calculator.net外链画像里这类小型建材公司占比明显高于大媒体/大平台，是本轮最主要的候选来源）、Fraction Calculator对应2个（pivotordie.com/how-to-read-a-tape-measure、statisticshowto.com/how-to-calculate-odds-of-winning——后者是8/16遗留的"高置信度但暂不可达"目标，本轮再次尝试）、Rounding Calculator对应1个（dr-aart.nl/Arithmetic-rounding-off.html，锚文本"significant figures calculator"，跟CalcBadger新上线的rounding-calculator主题相符）。排除的候选：caseystoneco.com/midillinoisquarry.com/youngssandandgravel.com（石料/砂石供应商链的是limestone/gravel材料计算器，跟Topsoil Calculator的"soil-texture密度预设"范围不符，判定硬凑跳过）、veransa.com/mudcontrolgrids.com（mulch/tile计算器，无对应工具）、triplejinc.com（landscaping公司但候选页是contact-us页，资源页价值弱，跳过）。
+
+**死链批量扫描**：把20个候选资源页写入`candidates.txt`，跑`broken_link_scan.py --file candidates.txt --timeout 15 --workers 12`。结果：14个页面成功抓取（0 DEAD、1 SOFT即`whistleredimix.com`站内Yelp链接403，不计），6个页面因SSL握手失败（`urlopen error EOF...`）或403被脚本判定"资源页本身抓取失败"（`dirtcheep.ca`/`cornerstonedfw.com`/`pivotordie.com`/`dr-aart.nl`/`teaguerental.com`/`centralmixconcrete.com`）；**用curl+浏览器UA独立复核`dirtcheep.ca`（返回200）和`cornerstonedfw.com`（返回406，WAF拦截）**，证实这6个"抓取失败"是脚本urllib在本沙箱对部分站点TLS/UA的假阴性，不是网站真的不可达——但这也意味着这6个页面本轮**未能核实出站链接**，不能排除有真实死链，只是本次工具链条件下拿不到证据。
+
+在成功抓取的14个页面里，发现2条技术意义上的DEAD链接：
+1. `www.dbrmx.com/order-now` 页面上的一个`href`本身就是一段未编码的地址字符串（`https://3777 Westminster Dr, London, ON N6E 3Y3`），DNS解析失败——这是对方页面自己的编码bug（大概率是想链Google Maps但漏加`https://maps.google.com/?q=`前缀），不是指向任何计算器/资源的链接，**跟CalcBadger任何工具都不构成主题对应，放弃**。
+2. `concretepumping.ie` 页面上的`http://www.klasikthemes.com`死链——核实是WordPress主题版权/致谢链接（页脚"Powered by"类型），指向已下架的主题商店，**跟混凝土计算器毫无主题关联，硬性规则4/5双重不满足，放弃**。
+
+**本轮结论：20个候选资源页里0个产出可发送的断链置换机会**——两条真实DEAD链接均因主题不对应被主动放弃，符合硬性规则2/4（不能硬凑）。未触发规则7-9的邮件撰写/复核/发送流程（没有草稿产生）。
+
+### 遗留待办（供下次运行参考）
+
+1. **6个SSL握手失败的候选页**（`dirtcheep.ca`/`cornerstonedfw.com`/`pivotordie.com`/`dr-aart.nl`/`teaguerental.com`/`centralmixconcrete.com`）实际可访问（curl验证），下轮若要复用同一批候选，`broken_link_scan.py`需要换更宽容的TLS/UA配置重试，或改用curl逐条探测出站链接，本次未做（时间/范围限制）。
+2. `statisticshowto.com/how-to-calculate-odds-of-winning/`连续两轮（8/16、8/21）均因Cloudflare挑战页/403拿不到内容，**已确认不是死链问题而是访问受限问题**，是否值得继续追（该页锚文本直接对应CalcBadger Fraction Calculator）留给下轮判断是否值得上浏览器工具核实，或直接放弃转向其他候选。
+3. Real Estate/Food & Drink/Text Tools三个较新分类（prorated-rent-calculator/keg-calculator/glitch-text-generator等）本轮WebSearch和竞品缺口分析均未找到任何候选资源页（竞品外链画像里没有覆盖这些细分主题的小型独立站），下次可尝试换更细分的竞品（如`steadily.com`房产测算工具、`brewersfriend.com`酿造计算器）反查外链，而非继续用宽泛关键词WebSearch。
+4. Concrete Calculator候选资源池明显比其他工具丰富（calculator.net外链画像里独立预拌混凝土公司占比高），但本轮14个成功抓取的页面出站链接数普遍很少（多数1-2条，且多是自己的社交媒体/联系页），命中率低是样本本身链接密度低导致，不是候选质量问题——下次同类"公司主页"型候选，可以改抓该公司网站下的"服务页/关于我们页"而非纯首页，出站链接数可能更多。
