@@ -6175,4 +6175,152 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1080,
 	},
+	{
+		slug: 'graffiti-alphabet',
+		category: 'Reference',
+		title: 'Graffiti Alphabet',
+		shortTitle: 'Graffiti Alphabet',
+		description:
+			'Preview any word or all 52 letters in a spray-paint display font, and learn what actually separates tags, throw-ups, pieces, and wildstyle from each other.',
+		updated: '2026-08-22',
+		published: '2026-08-22',
+		coreSummary:
+			'This tool renders all 26 uppercase and 26 lowercase letters, plus any word you type, in a spray-paint-style display font. Graffiti writers do not treat "graffiti lettering" as one style: a tag is a fast personal signature, a throw-up is bubble letters painted quickly in one or two colors, a piece ("masterpiece") is a large, planned, multi-color work, and wildstyle interlocks and distorts letters until they are hard to read even for other writers. This page previews text in a display font and explains what separates those styles, not the can-control technique itself.',
+		queries: [
+			'graffiti alphabet',
+			'graffiti alphabet chart',
+			'graffiti letters',
+			'graffiti font generator',
+			'graffiti alphabet styles',
+			'how to draw graffiti letters',
+			'wildstyle graffiti alphabet',
+		],
+		sections: [
+			{
+				heading: 'How to use this tool',
+				body: [
+					"Type a name, a crew tag, or a short word into the box above and it renders instantly in a spray-paint display font (Rubik Spray Paint, up to 18 characters: letters, digits, spaces, and exclamation marks). Below that, a chart runs through the same font one letter at a time, uppercase row first and then lowercase, each glyph sitting over its plain print equivalent so you can spot which letter is which without guessing.",
+					"A font file can only fake a spray can so far. Real graffiti gets its texture from drips, overspray halos, and a writer's arm speed and can control, none of which a typeface reproduces. What the font does capture is the blocky, slightly uneven letterforms and rounded corners that read as \"spray-painted\" at a glance, which is enough to preview how a word would look before sketching it out by hand, or to use as reference lettering for a school project, poster, or mockup.",
+				],
+			},
+			{
+				heading: 'Four graffiti letter styles, four different jobs',
+				body: [
+					'Graffiti writers sort their own work by how much time and risk it takes to make, and the visual differences follow from that. A tag is the simplest and fastest form: a personal signature, often written in a single continuous stroke ("one-liner") specifically because it usually has to be finished before anyone notices. Wikipedia\'s entry on the form notes that tags, despite being the style most writers start with, are also more likely to be treated as vandalism than more elaborate work, precisely because they carry none of the planning or visual payoff that can make a larger piece read as art to an outside viewer.',
+					'A throw-up sits one step up: the writer\'s name in large "bubble letters," usually outlined in one color and loosely filled in a second (a throw-up with no fill at all is called a hollow). The name comes from the goal, throwing the piece onto a surface as fast as possible, and Wikipedia traces the form back to New York City subway writers in the 1970s who wanted something faster to repeat across many train cars than a full piece. A piece, short for "masterpiece," is the opposite trade-off: large, multi-color, planned in advance, and often built with highlights, shadows, extensions, or a background, which is why pieces usually show up on legal walls or on quiet, hard-to-reach illegal spots like train yards and tunnel walls rather than a street corner someone can paint over by morning.',
+					'Wildstyle is a specific, especially demanding way of painting a piece: letters interlock, overlap, and sprout arrows or spikes until they become difficult for anyone outside the culture to read at all, a difficulty Wikipedia describes as sometimes treated as the whole point of the style rather than a side effect. It draws visibly on calligraphy\'s flowing, connected strokes, and it is widely considered the hardest of the four forms to paint well, since a writer has to distort every letter and still keep the underlying word legible to other writers.',
+				],
+			},
+			{
+				heading: 'Where modern graffiti writing started',
+				body: [
+					'Darryl McCray, a Philadelphia teenager who picked up the nickname "Cornbread" while in a juvenile detention facility around 1965, is usually named as the first writer to tag his own chosen name on walls across a city rather than a gang\'s name or symbol, starting in the late 1960s with friends in his Brewerytown neighborhood. A separate signature-writing culture was developing in New York City around the same time, largely independent of what was happening in Philadelphia.',
+					'The New York scene reached a much wider audience on July 21, 1971, when The New York Times ran a profile of a Washington Heights foot messenger who wrote "TAKI 183," short for his birth name Demetrios ("Dimitraki") plus 183rd Street, on walls and subway stations he passed on his rounds. The article, "\'Taki 183\' Spawns Pen Pals," named several of the writers he had already inspired to imitate him, and it gets most of the credit for turning tagging from a local habit into a citywide, then national, phenomenon. Through the rest of the 1970s that signature culture moved onto the sides of New York subway cars, a scene documented in Martha Cooper and Henry Chalfant\'s 1984 photo book Subway Art, still regarded by many writers as the definitive record of that era.',
+				],
+			},
+			{
+				heading: 'Is graffiti legal?',
+				body: [
+					"It depends entirely on whether the property owner said yes. Painting on someone else's building or train without permission is a criminal offense (typically charged as vandalism or criminal mischief) in most US states and many other countries, no matter how elaborate or skilled the work is. Flip that one fact and the legal picture flips with it: plenty of cities designate legal graffiti walls, and property owners commission full pieces from writers outright.",
+					'The clearest illustration of that flip is 5Pointz, a Long Island City, Queens warehouse whose owner began inviting graffiti writers to paint its exterior in 2002, curated by writer Jonathan Cohen and eventually covered floor to roof in murals from artists worldwide. When the owner had those murals whitewashed overnight in 2013 ahead of demolishing the building, a federal court ruled the following year that doing so violated the Visual Artists Rights Act, because 45 of the works had achieved "recognized stature." In February 2018 a judge awarded the maximum statutory damages of $150,000 for each of those 45 works, $6.75 million total to 21 artists, an award the Second Circuit Court of Appeals upheld in February 2020. None of that outcome would have been possible if the murals had been painted without the owner\'s permission in the first place.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Four graffiti lettering styles compared',
+				headers: ['Style', 'What it looks like', 'Typical time & colors'],
+				rows: [
+					[
+						'Tag',
+						'A personal signature, often one continuous stroke',
+						'Seconds; usually one color (marker or spray)',
+					],
+					[
+						'Throw-up',
+						'Large bubble letters, loosely outlined and filled',
+						'A few minutes; one or two colors',
+					],
+					[
+						'Piece',
+						'Large, multi-color, with highlights/shadows/background',
+						'Often hours, sometimes over multiple sessions',
+					],
+					[
+						'Wildstyle',
+						'Interlocking, arrow-heavy letters, deliberately hard to read',
+						'Hours; usually several colors, most demanding to paint well',
+					],
+				],
+				note: 'Based on the Wikipedia entries for each form, cited individually in Sources below. The line between categories is not always sharp; writers themselves describe some work as "semi-wild" or borderline between a throw-up and a piece.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a graffiti alphabet?',
+				answer:
+					'It usually means a reference chart showing every letter A to Z rendered in a spray-paint-style display font, used as a preview or model rather than a record of real aerosol technique. This tool covers both a full A-to-Z chart and a live preview for any word you type.',
+			},
+			{
+				question: "What's the difference between a tag and a throw-up?",
+				answer:
+					'A tag is a writer\'s personal signature, usually painted or marked in seconds and in one color. A throw-up is one step more involved: the name in large bubble letters, outlined in one color and loosely filled in a second, designed to be painted in a few minutes rather than seconds.',
+			},
+			{
+				question: 'What is wildstyle graffiti?',
+				answer:
+					'Wildstyle is a way of painting a piece where the letters interlock, overlap, and sprout arrows or spikes until the word is difficult to read for anyone outside graffiti culture. It draws on calligraphy\'s connected, flowing strokes and is widely considered the hardest of the main graffiti styles to paint well.',
+			},
+			{
+				question: 'Who started modern graffiti?',
+				answer:
+					'Two writers are usually credited: Darryl "Cornbread" McCray in Philadelphia, tagging his own name starting in the late 1960s, and TAKI 183 in New York City, whose July 1971 profile in The New York Times turned tagging into a citywide and then national phenomenon. The two scenes developed largely independently of each other.',
+			},
+			{
+				question: 'Is graffiti illegal?',
+				answer:
+					"Painting on property without the owner's permission is a crime (vandalism or criminal mischief) in most US states and many other countries. With the owner's permission, it isn't: legal graffiti walls and commissioned murals are common, and courts have even ruled that destroying permitted murals without warning can violate the artists' rights under federal law.",
+			},
+			{
+				question: 'What font does this graffiti alphabet use?',
+				answer:
+					'Rubik Spray Paint, an open-source (SIL Open Font License) display font distributed through Google Fonts. It covers the Latin uppercase and lowercase alphabet and digits 0-9, which is why this tool\'s input is limited to letters, numbers, spaces, and exclamation marks.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Tag (graffiti)"',
+				url: 'https://en.wikipedia.org/wiki/Tag_(graffiti)',
+			},
+			{
+				label: 'Wikipedia — "Throw up (graffiti)"',
+				url: 'https://en.wikipedia.org/wiki/Throw_up_(graffiti)',
+			},
+			{
+				label: 'Wikipedia — "Piece (graffiti)"',
+				url: 'https://en.wikipedia.org/wiki/Piece_(graffiti)',
+			},
+			{
+				label: 'Wikipedia — "Wildstyle"',
+				url: 'https://en.wikipedia.org/wiki/Wildstyle',
+			},
+			{
+				label: 'Wikipedia — "TAKI 183"',
+				url: 'https://en.wikipedia.org/wiki/TAKI_183',
+			},
+			{
+				label: 'Wikipedia — "Cornbread (graffiti artist)"',
+				url: 'https://en.wikipedia.org/wiki/Cornbread_(graffiti_artist)',
+			},
+			{
+				label: 'Wikipedia — "Subway Art" (Martha Cooper & Henry Chalfant, 1984)',
+				url: 'https://en.wikipedia.org/wiki/Subway_Art',
+			},
+			{
+				label: 'Wikipedia — "5 Pointz"; Loeb & Loeb LLP case summary, Castillo v. G&M Realty L.P. (2d Cir. 2020) — $6.75 million VARA damages award and appeal outcome',
+				url: 'https://www.loeb.com/en/insights/publications/2020/02/castillo-v-gm-realty',
+			},
+		],
+		embedHeight: 1080,
+	},
 ];

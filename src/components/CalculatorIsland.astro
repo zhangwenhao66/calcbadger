@@ -21,6 +21,7 @@ import FractionCalculator from './calculators/FractionCalculator';
 import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
 import GlitchTextGenerator from './calculators/GlitchTextGenerator';
 import GpaCalculator from './calculators/GpaCalculator';
+import GraffitiAlphabetGenerator from './calculators/GraffitiAlphabetGenerator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import KegCalculator from './calculators/KegCalculator';
 import LengthConverter from './calculators/LengthConverter';
@@ -110,3 +111,4 @@ const { slug } = Astro.props;
 {slug === 'wingdings-translator' && <WingdingsTranslator client:load />}
 {slug === 'click-speed-test' && <ClickSpeedTest client:load />}
 {slug === 'pool-calculator' && <PoolCalculator client:load />}
+{slug === 'graffiti-alphabet' && <GraffitiAlphabetGenerator client:load />}
