@@ -31,6 +31,7 @@ import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
 import PercentageCalculator from './calculators/PercentageCalculator';
+import PizzaCalculator from './calculators/PizzaCalculator';
 import PoolCalculator from './calculators/PoolCalculator';
 import ProratedRentCalculator from './calculators/ProratedRentCalculator';
 import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
@@ -112,3 +113,4 @@ const { slug } = Astro.props;
 {slug === 'click-speed-test' && <ClickSpeedTest client:load />}
 {slug === 'pool-calculator' && <PoolCalculator client:load />}
 {slug === 'graffiti-alphabet' && <GraffitiAlphabetGenerator client:load />}
+{slug === 'pizza-calculator' && <PizzaCalculator client:load />}

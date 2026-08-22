@@ -6323,4 +6323,147 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1080,
 	},
+	{
+		slug: 'pizza-calculator',
+		category: 'Food & Drink',
+		title: 'Pizza Calculator',
+		shortTitle: 'Pizza Calculator',
+		description:
+			'Work out how many pizzas to order for a group of adults and kids, by appetite and pizza size, plus a slices-per-size reference chart and the reverse question: how many people one pizza feeds.',
+		updated: '2026-08-22',
+		published: '2026-08-22',
+		coreSummary:
+			"This calculator multiplies each group by a slices-per-person figure (2 for a light adult appetite, 3 average, 4 hearty, 2 for a child) and divides the total by however many slices your chosen pizza size holds (6 small, 8 medium, 8 large, 12 extra-large), rounding up to a whole pizza. Serving heavy sides like wings or pasta cuts the estimate by 25%, the midpoint of the 20-30% range catering guides commonly cite. None of these figures are a physical law: pizzerias cut pies differently, so the calculator states the convention it uses, and the reference tables below show where it varies.",
+		queries: [
+			'pizza calculator',
+			'how many slices in a large pizza',
+			'how many slices in a medium pizza',
+			'how many slices in a small pizza',
+			'how many people does a large pizza feed',
+			'how many pizzas do i need',
+			'how many pizzas for a party',
+			'how many pizzas per person',
+		],
+		sections: [
+			{
+				heading: 'How this calculator works',
+				body: [
+					'Ordering pizza for a group comes down to one division: total slices needed, divided by however many slices your chosen size holds. This calculator gets the numerator by multiplying adults by a slices-per-adult figure for the selected appetite (2 light, 3 average, 4 hearty) and children by 2 slices each, then adding the two together; it always rounds the final answer up, since a fraction of a pizza still means ordering a whole one. Switching on "heavy sides" cuts that numerator by 25% before the division (catering guides that mention this adjustment cite a range of roughly 20% to 30%; this calculator uses the midpoint), on the assumption that wings, pasta, or a full salad table will absorb some of the appetite that would otherwise go to pizza.',
+					'The slices-per-pizza and slices-per-person figures below are catering conventions, not something a lab measured. Results are a planning estimate, not a guarantee, since actual appetite varies by group, occasion, and how good the pizza is.',
+				],
+			},
+			{
+				heading: 'How many slices are in a pizza, by size',
+				body: [
+					"There is no regulation or industry body that fixes how a pizzeria cuts a pie. The convention this calculator uses (6 slices for a small, about 10\"; 8 for a medium, about 12\"; 8 for a large, about 14\"; 12 for an extra-large, about 16\") comes from PMQ Pizza, the pizza industry's own trade publication, whose reader forum on cutting conventions puts six-for-small and eight-for-medium-and-large as the norm most operators converge on. It is not universal: PMQ has also reported at least one national chain switching its large-pizza cut from 10 slices down to 8 specifically to save on labor, which is the kind of business decision that can change the count at any single location without changing the size on the box.",
+					"Crust style shifts the count further in either direction. A thick, hand-tossed or deep-dish large typically stays at the 8-slice convention this calculator assumes, while a thin-crust pie of the same diameter is sometimes cut into 12 or even 16 smaller squares (a \"party cut\"), and Chicago deep-dish is more often cut into 6 wedges because each one is already a full meal. When the exact count matters (catering a specific headcount, say), it is worth asking the pizzeria directly rather than trusting any general chart, including this one.",
+				],
+			},
+			{
+				heading: 'How many slices per person: the "3/8" convention',
+				body: [
+					'The default "average" appetite in this calculator (3 slices per adult) comes from a catering rule of thumb sometimes called the 3/8 rule: 3 slices per adult, 8 slices per pizza, so multiplying a headcount by 3 and dividing by 8 gives roughly the number of pizzas needed. Pizza Hut\'s own catering guidance for office lunches uses a related shorthand it calls the "Rule of 3" (one large pizza feeding about 3 adults) and gives worked examples: 4 large pizzas for a 12-person lunch, 6 to 7 for 20 people. Both land in the same neighborhood as this calculator\'s "average" preset, which is why it is the default rather than "light" or "hearty."',
+					"Children roughly ages 3 to 10 are commonly budgeted at 2 slices each rather than the adult figure, per pizzeria-published ordering guides, and this calculator applies that fixed figure regardless of the appetite setting (which only changes the adult multiplier). None of these numbers are exact science. They are what pizza businesses themselves publish as planning guidance for their own catering customers, not a measured average of how much any specific group actually eats.",
+				],
+			},
+			{
+				heading: 'Worked example: 10 hungry adults, 5 kids, medium pizzas, with wings on the table',
+				body: [
+					"Ten adults at the hearty setting (4 slices each) need 40 slices; five children at the fixed 2 slices each need 10 more, for a subtotal of 50 slices. Because wings are also being served, the heavy-sides toggle cuts that by 25%: 50 x 0.75 = 37.5, rounded up to 38 slices needed. At 8 slices per medium pizza, 38 / 8 = 4.75, which rounds up to 5 pizzas, providing 40 slices, or 2 more than the 38 actually estimated.",
+					'Drop the heavy-sides toggle for the same group and the math changes: 50 slices needed (no reduction), 50 / 8 = 6.25, rounding up to 7 pizzas, two more than the wings-included estimate, which is the entire point of the toggle.',
+				],
+			},
+			{
+				heading: 'The reverse question: how many people does one pizza feed',
+				body: [
+					"Flip the same arithmetic around and a single pizza's slice count divided by a per-person figure answers \"how many people does this pizza feed\": an 8-slice large pizza feeds 2 average-appetite adults (3 slices each, with 2 slices left over) up to 4 light-appetite adults (2 slices each), or as few as 2 hearty eaters. This is the same 8-slices/3-per-adult convention driving the main calculator above, just divided the other way.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Slices per pizza, by size (this calculator\'s convention)',
+				headers: ['Size', 'Approx. diameter', 'Slices'],
+				rows: [
+					['Small', '~10"', '6'],
+					['Medium', '~12"', '8'],
+					['Large', '~14"', '8 (some pizzerias cut 10)'],
+					['Extra-large', '~16"', '12 (varies 10-14)'],
+				],
+				note: 'Convention reported by PMQ Pizza\'s trade forum, not a regulation. A single chain or location can cut differently, especially at large and extra-large.',
+			},
+			{
+				title: 'Slices per person, by appetite',
+				headers: ['Appetite', 'Slices per adult', 'Slices per child (~3-10)'],
+				rows: [
+					['Light', '2', '2'],
+					['Average (this calculator\'s default)', '3', '2'],
+					['Hearty', '4', '2'],
+				],
+				note: 'The "average" figure is the catering-industry 3/8 rule (3 slices per adult, 8 per pizza); child figure is fixed regardless of appetite setting.',
+			},
+			{
+				title: 'How many people one pizza feeds, by size and appetite',
+				headers: ['Size', 'Hearty (4/adult)', 'Average (3/adult)', 'Light (2/adult)'],
+				rows: [
+					['Small (6 slices)', '1', '2', '3'],
+					['Medium (8 slices)', '2', '2', '4'],
+					['Large (8 slices)', '2', '2', '4'],
+					['Extra-large (12 slices)', '3', '4', '6'],
+				],
+				note: 'Rounded down to whole people (slices/per-person figure). Real groups rarely split slices this evenly, so treat these as a floor, not a promise.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many slices are in a large pizza?',
+				answer:
+					'Most large pizzas (around 14") are cut into 8 slices, the convention PMQ Pizza\'s industry trade forum reports as standard. Some pizzerias cut large pizzas into 10 slices instead, and thin-crust or "party cut" styles can run higher, so it is worth confirming with the specific pizzeria if an exact count matters.',
+			},
+			{
+				question: 'How many people does a large pizza feed?',
+				answer:
+					'About 2 to 4 people, depending on appetite: 2 hearty eaters at 4 slices each, 2 average eaters at 3 slices each (with 2 slices left over from the 8), or up to 4 light eaters at 2 slices each. Pizza Hut\'s own catering guidance uses a similar shorthand, treating one large pizza as feeding roughly 3 adults.',
+			},
+			{
+				question: 'How many slices are in a medium pizza?',
+				answer:
+					"8 slices, per PMQ Pizza's trade-forum convention. That's the same count as a large pizza at most pizzerias, since the size difference is usually made up in slice size rather than slice count.",
+			},
+			{
+				question: 'How many slices are in a small pizza?',
+				answer: '6 slices is the standard convention for a small (roughly 10") pizza, per PMQ Pizza\'s trade forum.',
+			},
+			{
+				question: 'How many pizzas do I need for a group?',
+				answer:
+					'Enter the number of adults and children above, pick an appetite level and pizza size, and the calculator rounds up to the number of whole pizzas needed. As a rough mental-math shortcut, the catering-industry "3/8 rule" says roughly 3 slices per adult and 8 slices per pizza, so multiply headcount by 3 and divide by 8.',
+			},
+			{
+				question: 'Does ordering sides change how many pizzas I need?',
+				answer:
+					"A widely repeated catering rule of thumb suggests cutting the pizza order by roughly 20% to 30% when heavy sides like wings, pasta, or a full salad spread are also on the table, since guests fill up on those instead of extra slices. No single authority publishes this figure, so treat it as informal guidance rather than a measured average; this calculator uses the 25% midpoint as an optional toggle rather than baking it in by default.",
+			},
+			{
+				question: 'How many pizza slices should a kid eat?',
+				answer:
+					"Pizzeria-published ordering guides commonly budget 2 slices per child roughly ages 3 to 10, regardless of how hungry the adults in the group are expected to be. This calculator applies that fixed number to the children field no matter which appetite level is selected for adults.",
+			},
+		],
+		sources: [
+			{
+				label: 'PMQ Pizza — "Pizza Slice Cutting Guide" (PMQ Think Tank, the pizza industry trade forum) — small/medium/large slice-count convention',
+				url: 'https://thinktank.pmq.com/threads/pizza-slice-cutting-guide.6278/',
+			},
+			{
+				label: 'PMQ Pizza — "Can Cutting Pizzas into Bigger Slices Save Labor Costs?" (documented example of a chain changing its slice count)',
+				url: 'https://www.pmq.com/bigger-slices-at-jets-pizza/',
+			},
+			{
+				label: "Pizza Hut — Office & Corporate Lunch Catering (official group-ordering guidance, the \"Rule of 3\")",
+				url: 'https://www.pizzahut.com/c/content/office-lunch',
+			},
+		],
+		embedHeight: 820,
+	},
 ];
