@@ -107,13 +107,13 @@ export default function VolumeConverter() {
 					))}
 				</div>
 			) : negative ? (
-				<p class="calc-note">A volume can't be negative — enter a value of 0 or more.</p>
+				<p class="calc-note">A volume can't be negative. Enter a value of 0 or more.</p>
 			) : (
 				<p class="calc-note">Enter a volume to convert it to the other eight units.</p>
 			)}
 
 			<p class="calc-note">
-				1 US gallon = 3.785411784 liters exactly (NIST Handbook 44, Appendix C) — every other
+				1 US gallon = 3.785411784 liters exactly (NIST Handbook 44, Appendix C); every other
 				unit here is an exact legal ratio of that one figure (4 qt/gal, 2 pt/qt, 2 cup/pt, 8 fl
 				oz/cup, 2 tbsp/fl oz, 3 tsp/tbsp), so there is no rounding error in the conversion itself,
 				only in how many digits are displayed above. Calculations run in your browser; nothing

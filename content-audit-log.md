@@ -1259,5 +1259,102 @@
   "geo_score": "ai-seo skill Content Extractability Check 9/9项清晰通过，明显超过≥80门槛，两处修复（description精简+em dash回补）均未削弱可提取性",
   "escalation": null
 }
+```
 
+```json
+{
+  "tool_slug": "volume-converter",
+  "last_audited": "2026-08-22",
+  "published_date": "2026-08-06",
+  "checklist": [
+    "公式正确性：US gallon=3.785411784 L精确值（NIST HB44 App. C），及其派生的quart/pint/cup/floz/tbsp/tsp链条比例是否精确无误",
+    "历史叙事细节（1707 Queen Anne wine gallon 231 in³、圆柱6in高7in径×π≈22/7巧合、1836 Weights and Measures Act、1959 International Yard and Pound Agreement、UK 1824 Imperial gallon分裂）是否真实准确，非编造",
+    "EIA原油桶=42美制加仑定义、TTB 1980年'fifth'=750mL metrication历史（27 CFR 5.203）是否准确",
+    "参考表与worked examples具体数字（750mL酒瓶=25.36 fl oz、12 fl oz罐=354.88mL标355mL、1.5 fl oz shot=44.4mL、500mL水瓶=16.9 fl oz、2/3杯=157.73mL/10.667tbsp等）是否与精确公式吻合",
+    "4条外部来源链接（NIST PDF、EIA glossary、sizes.com历史条目、eCFR 27 CFR 5.203）是否仍可访问、内容仍对应"
+  ],
+  "findings": [
+    {
+      "dimension": "EEAT",
+      "status": "未发现问题",
+      "detail": "coreSummary开篇即给出精确权威数字来源（NIST Handbook 44 Appendix C）；4条sources均为一手权威机构（NIST/EIA/eCFR）或专业历史条目站；每个worked example都给出可复算的具体算式而非泛泛而谈；'Formulas verified against the sources above; last reviewed'签名区全站统一模板。"
+    },
+    {
+      "dimension": "事实准确性",
+      "status": "未发现问题（核实后确认全部准确）",
+      "detail": "用Python独立重算全部ML_PER_UNIT表（tsp/tbsp/floz/cup/pint/quart/gallon）与src/lib/volume.ts完全吻合；下载并用pypdf解析NIST Handbook 44 (2026) Appendix C官方PDF原文，直接找到'1 gallon (gal) = ... 3 785.411 784'精确条目，以及'by custom, 42 gallons comprise a barrel of crude oil'、'[1 gallon (British Imperial)] ... 4.546 liters'两条原文，与页面正文逐字吻合，不是二手转述。WebSearch独立核实三条历史/法规细节：(1) 1707 Queen Anne wine gallon=231 in³=圆柱7in径×6in高（标准历史记载一致）；(2) 1836年5月19日国会法案正式定义US liquid gallon=231 in³；(3) 27 CFR 5.203/TTB 1980年起'fifth'=750mL metrication，与页面叙述完全一致。9组参考表数字、6条worked examples（wine bottle 25.36 fl oz、can 354.88mL、shot 44.4mL、water bottle 7.57瓶、2/3杯=157.73mL/10.667tbsp、barrel=158.99L）逐一独立Python复算，全部精确吻合，无一处误传或常见错误数字。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "未发现问题",
+      "detail": "updated字段原为2026-08-06，git log确认2026-08-21曾有一次合法内容追加（新增'How many bottles of water are in a gallon'一条FAQ，随词库273行需求合并进本页而非拆分近重复页，updated字段当时已同步更新，非本次审计遗漏）；published字段已存在'2026-08-06'与首次新增该条目的commit日期一致，无需git历史回填。NIST Handbook 44已引用最新2026版，无更新的标准版本需要跟进。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题（含站点年龄说明）",
+      "detail": "dataforseo-query实测'volume converter'真实SERP：unitconverters.net/onlineconversion.com/calculator.net/omnicalculator.com等老牌聚合站占据前10，calcbadger.com未上榜；查calcbadger.com全站ranked keywords（62条）确认目前无任何volume-converter相关词已获排名，因页面2026-08-06发布仅16天、站点整体年轻（仅62个已排名词多为低位#58-94）。内容本身对比头部竞品有真实差异化：竞品多为纯换算器无解释，本页含完整历史溯源（1707 wine gallon→1836 Act→1959 inch协定三段式精确链条）、'fl oz≠oz'常见误区专门讲解、6条真实数字worked examples、4条一手权威来源，属于内容深度真实领先而非同模板换词，未排名是站龄问题非内容问题。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1个真问题（已修复）",
+      "detail": "线上https://calcbadger.com/volume-converter/ 200；title'Volume Converter | CalcBadger'30字符正常；canonical自指正确；单一H1，11个H2/10个H3层级正确无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt 'Allow: /'含AI爬虫显式规则；sitemap-index.xml正常收录。**meta description实测204字符**，超出Google桌面SERP安全阈值（155-160）约44-49字符（27%-32%），且该字段同时复用为H1下方可见导语段落。独立agent复核CONFIRMED，已缩短至155字符，保留全部9个单位名称与参考表提及。"
+    },
+    {
+      "dimension": "GEO审计",
+      "status": "未发现问题",
+      "detail": "本站无适用的99分制自动打分工具（沿用cd-calculator审计确立的方法），对照ai-seo skill Content Extractability Check人工核对：coreSummary首屏给出可独立引用的精确定义；4个worked example小节+4个参考表；10条FAQ配FAQPage schema；4条一手权威来源引用；'last reviewed'时效签名明确；robots.txt放行全部主流AI爬虫。9/9项清晰通过，明显超过≥80门槛，无需改动。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "发现问题（已按站内标点风格合规规则修复，非AI生成证据）",
+      "detail": "published='2026-08-06'早于avoid-ai-writing接入日(2026-08-07)，触发全量扫描。tools.ts该条目coreSummary/2个section共2段/1个heading/referenceTables 1处note/3条FAQ answer共13处叙事性em dash；VolumeConverter.tsx组件另有2处用户可见硬编码文案（负值校验提示、公式说明note）em dash（组件内另2处em dash在代码注释里非用户可见文案，未动）。除em dash外未发现其他AI写作信号（无testament/underscore/showcase/vibrant/boasts/crucial/delve/pivotal/landscape/seamless/leverage等AI高频词、无翻案句式、无排比三连、无promotional语言、无curly quotes）。独立复核agent明确澄清：humanizer技能原文本身有caveat'Em dashes alone...are evidence only when paired with formulaic sales-y rhythm'，单独em dash计数不构成'AI生成证据'，写成'确认AI味问题'属过度归因；但鉴于本站长期实践已把移除em dash当作独立于AI味判断之外的站内标点风格合规规则在执行（不依赖'是否像AI'判断），修复本身仍按此规则执行。sources[].label 4条均为'机构名/文档名 — 标题'结构化引用格式，按08-21 DayAlmanac确立的'出版方—标题'双字段模板子模式判定LEAVE未动。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题（含一项反爬网关说明）",
+      "detail": "NIST Handbook 44 PDF链接curl 200且下载后pypdf解析确认为28页真实PDF，内容含gallon精确换算表。EIA glossary链接curl 200。eCFR 27 CFR 5.203链接curl 200。sizes.com英语wine gallon历史条目链接curl -sIL返回403，响应头含'cf-mitigated: challenge'（Cloudflare人机验证网关标记），与cd-calculator/bmi-calculator审计已确立的同款反爬模式一致，非真实死链，未计入'失效'。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上HTML核对'More calculators'区块含length-converter/weight-converter/time-converter/tip-calculator/gpa-calculator/reaction-time-test 6个跨分类链接；sitemap-0.xml确认收录/volume-converter/；site-toolkit的related-guides轮转机制覆盖，非孤儿页。"
+    },
+    {
+      "dimension": "Schema数据一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified取值tool.updated（本次同步改为2026-08-22）；FAQPage 10条FAQ与页面渲染一致；BreadcrumbList三级正确；description字段修改后WebApplication description、Layout meta/og/twitter description、页面可见导语共3处均通过build产物核对已同步更新为155字符新版本。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "内容涉及bar shot/wine bottle等酒类容量属教育性事实换算（非促销/非鼓励饮酒），不涉及AdSense限制类目；全站/terms/页'No professional advice'条款已覆盖。"
+    },
+    {
+      "dimension": "配图可用性与版权",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；页面标题/文案无误导性设计；工具是标准单位换算器，不涉及暴力/武器/毒品/赌博等任何AdSense敏感类目。"
+    }
+  ],
+  "independent_verification": "两条独立fresh-context agent复核：第一条验证meta description 204字符是否真实超标，独立确认超出155-160字符安全阈值约27%-32%（44-49字符），且该字段同时复用为可见导语段落进一步支持修复必要性——CONFIRMED。第二条验证18处em dash（16处tools.ts叙事字段+2处组件用户可见文案）是否构成AI味证据：独立agent指出humanizer技能原文对'孤立em dash'有明确豁免caveat，本工具页未发现其他AI写作信号伴随，单独em dash计数不构成'AI生成证据'，若写成'确认AI味'属过度归因；但同时指出本站长期实践已把移除em dash当作独立的站内标点风格合规规则执行，修复本身有先例支持——最终结论为'按风格合规规则修复，但审计记录措辞需准确区分AI味证据与风格合规'，已按此措辞记录并执行修复。两条复核均在1分钟内正常完成，无卡死，未触发看门狗降级流程。",
+  "actions_taken": [
+    "src/data/tools.ts的description字段从204字符改写为155字符（消除SERP截断风险，保留全部9个单位名称）",
+    "src/data/tools.ts的coreSummary/2个section共2段/1个heading/referenceTables 1处note/3条FAQ answer共13处单侧叙事性em dash改写为句号/分号/冒号/逗号/括号/连词，sources[].label 4处结构化引用格式dash保留未动，未改动任何数字、公式或事实表述",
+    "src/components/calculators/VolumeConverter.tsx用户可见的1处负值校验提示+1处公式说明note共2处em dash改为句号/分号，组件内代码注释里的2处em dash非用户可见文案未动",
+    "updated字段从2026-08-21改为2026-08-22（published字段已存在'2026-08-06'，未改动，无需git历史回填）",
+    "npx vitest run tests/volume.test.ts 27/27通过，npm test全站1145/1145通过（58个测试文件），npm run build 122页成功生成",
+    "build产物dist/volume-converter/index.html逐字符扫描确认description已更新为155字符、13+2处叙事性em dash清零，sources[].label 4处保留符合预期",
+    "git add src/data/tools.ts src/components/calculators/VolumeConverter.tsx content-audit-log.md（未包含仓库内其他并发任务遗留的未暂存改动：indexnow-submit-log.json.backup-20260817-000242-before-verify），commit并push，CF Pages为git连接自动部署无需手动触发deploy hook",
+    "部署完成后（轮询/volume-converter/返回200）跑node tools/submit-indexnow.mjs提交索引",
+    "内容发布日志.md追加审计记录，标注为content-quality-audit审计更新非新发布",
+    "教训库L-0810-4条目下追加第11次复发记录（含'em dash≠AI证据'独立澄清），L-0805-2条目下追加meta description超标第三次CalcBadger复发记录"
+  ],
+  "seo_score": "meta description从204字符超标修复为155字符，其余SEO技术层面（title/canonical/H1/schema/robots.txt/sitemap）均健康无需改动",
+  "geo_score": "ai-seo skill Content Extractability Check 9/9项清晰通过，明显超过≥80门槛，本次修复（description精简+em dash回补）均未削弱可提取性",
+  "escalation": null
+}
 ```
