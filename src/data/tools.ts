@@ -6049,4 +6049,130 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 560,
 	},
+	{
+		slug: 'pool-calculator',
+		category: 'Home Improvement',
+		title: 'Pool Calculator',
+		shortTitle: 'Pool Calculator',
+		description:
+			'Find your pool\'s volume in gallons from its shape and dimensions, or work out how much salt to add to reach a saltwater chlorine generator\'s target level.',
+		updated: '2026-08-22',
+		published: '2026-08-22',
+		coreSummary:
+			'Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round), or length x width x average depth x 6.7 (oval, using the stadium-shape multiplier Hayward\'s Aqua Rite manual publishes, since an oval pool is a rectangle with two semicircular ends, not a true ellipse), each times the exact 7.480519 gal/ft³ conversion. Salt dosing follows directly from the definition of ppm as mg of solute per liter: pounds of salt needed = (target ppm - current ppm) x gallons / 119,826, a unit-conversion identity that pool guides commonly round to "gallons / 120,000."',
+		queries: [
+			'pool calculator',
+			'salt water pool calculator',
+			'pool volume calculator',
+			'how many gallons in a pool',
+			'pool gallon calculator',
+			'pool salt calculator',
+			'how much salt to add to pool',
+		],
+		sections: [
+			{
+				heading: 'Two questions, one calculator',
+				body: [
+					'"Pool volume" answers how many gallons (or liters) your pool holds, from its shape and dimensions. That\'s the number you need before ordering chemicals, sizing a heater or pump, or filling a new pool for the first time. "Salt needed" answers a narrower, very common follow-up for saltwater pools specifically: given your gallons and a salt test reading, how many pounds to add to reach a target level. Run "Pool volume" first if you don\'t already know your gallons, then carry that number into "Salt needed."',
+					"Both calculations are deterministic once you have the right inputs. There's no rounding shortcut or lookup table involved, just the geometry of your pool and the definition of parts per million.",
+				],
+			},
+			{
+				heading: 'Why the oval formula is different from rectangular and round',
+				body: [
+					"Rectangular and round pools are unambiguous solids: a rectangular pool is a rectangular prism (length x width x depth), and a round pool is a cylinder (pi x radius squared x depth). Both formulas here use the exact conversion of 1 cubic foot to 7.480519 US gallons (1,728 in³ per ft³ divided by 231 in³ per gallon, both exact), which is why the results land a hair off the rounded \"7.5\" and \"5.9\" shortcuts printed in some pool guides.",
+					"\"Oval\" pools are a different case. The shape sold under that name is a stadium or racetrack outline: a rectangle with a semicircle capping each end, not a true mathematical ellipse. That means there's no clean formula to derive from scratch the way there is for a rectangle or circle. This calculator uses the multiplier Hayward publishes in its Aqua Rite salt chlorine generator manual for oval pools: length x width x average depth x 6.7. That figure is noticeably higher than a true ellipse of the same footprint would give (pi/4 x 7.480519 = 5.875), because a stadium shape holds more water than an ellipse inscribed inside the same rectangle. The two rounded ends bulge outward past where an ellipse's curve would fall.",
+				],
+			},
+			{
+				heading: 'The salt math, from the definition of ppm',
+				body: [
+					'A concentration in parts per million is milligrams of solute per liter of solution. That definition alone is enough to derive the dosing formula without relying on any pool-specific figure. One pound of salt is exactly 453,592.37 mg (the international avoirdupois pound), and one US gallon is exactly 3.785411784 liters. Dissolving that one pound into G gallons raises the concentration by 453,592.37 / (G x 3.785411784) ppm. Rearranged for how many pounds raise a G-gallon pool by a given ppm increase: pounds = (target ppm - current ppm) x G / 119,826.4, a unit-conversion identity, not a number specific to any brand of salt or cell.',
+					"Pool and salt-cell literature commonly rounds that 119,826 constant to \"120,000\" for easier mental math (a 0.15% rounding, immaterial for a chemical you're adding gradually and retesting). This calculator keeps the unrounded constant. Worked example: an 8,000-gallon pool testing at 1,000 ppm, targeting the commonly cited optimal of 3,200 ppm, needs (3,200 - 1,000) x 8,000 / 119,826.4 = 146.9 lb of salt.",
+				],
+			},
+			{
+				heading: 'Why the target range is a range, not one number',
+				body: [
+					'Hayward\'s Aqua Rite manual lists 2,700-3,400 ppm as the ideal salt range for its cells, with 3,200 ppm as the optimal target. The same manual\'s troubleshooting section notes the "Check Salt" warning triggers below 2,700 ppm (flashing) or 2,400 ppm (steady, cell shuts down), while a noticeably salty taste tends to show up around 3,500-4,000 ppm. Other manufacturers\' cells specify similar but not identical windows, so this calculator defaults to 3,200 ppm as a commonly cited target but leaves it fully editable. Check your specific cell\'s manual for its exact spec before dosing.',
+					"There's no formula for lowering salt: the only way to reduce concentration is diluting with fresh water (partial drain and refill). That's also why this calculator returns zero pounds, not a negative number, when your current reading is already at or above target.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Volume by shape and size (worked examples)',
+				headers: ['Shape', 'Dimensions', 'Average depth', 'Volume'],
+				rows: [
+					['Rectangular', '16 ft x 32 ft', '5 ft', '19,150 gal'],
+					['Rectangular', '20 ft x 40 ft', '5.5 ft', '32,914 gal'],
+					['Round', '15 ft diameter', '4 ft', '5,288 gal'],
+					['Round', '24 ft diameter', '4.5 ft', '15,228 gal'],
+					['Oval', '12 ft x 24 ft', '4 ft', '7,718 gal'],
+					['Oval', '18 ft x 36 ft', '4.5 ft', '19,537 gal'],
+				],
+				note: 'Average depth = (shallow end + deep end) / 2. Oval uses Hayward\'s published 6.7 stadium-shape multiplier; rectangular and round use exact prism/cylinder geometry.',
+			},
+			{
+				title: 'Salt needed to reach 3,200 ppm, by pool size and starting level',
+				headers: ['Pool size', 'From 0 ppm (fresh fill)', 'From 2,000 ppm', 'From 2,700 ppm (low-end warning)'],
+				rows: [
+					['10,000 gal', '267.1 lb', '100.1 lb', '41.7 lb'],
+					['15,000 gal', '400.6 lb', '150.2 lb', '62.6 lb'],
+					['20,000 gal', '534.1 lb', '200.3 lb', '83.5 lb'],
+					['25,000 gal', '667.6 lb', '250.4 lb', '104.3 lb'],
+					['30,000 gal', '801.2 lb', '300.4 lb', '125.2 lb'],
+				],
+				note: '3,200 ppm is Hayward\'s published optimal target for its Aqua Rite cells; other saltwater chlorine generator brands may specify a different target within a similar range.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many gallons is my pool?',
+				answer:
+					"It depends on shape. Rectangular: length x width x average depth x 7.480519. Round: pi x radius² x average depth x 7.480519. Oval (built as a rounded rectangle, not a true ellipse): length x width x average depth x 6.7, the multiplier Hayward's Aqua Rite manual publishes. Average depth is the shallow-end depth plus the deep-end depth, divided by 2.",
+			},
+			{
+				question: 'How much salt do I need to add to my pool?',
+				answer:
+					'Pounds of salt = (target ppm - current ppm) x gallons / 119,826.4, derived directly from ppm meaning milligrams per liter, an exact pound, and an exact gallon-to-liter conversion. An 8,000-gallon pool going from 1,000 ppm to a 3,200 ppm target needs about 147 lb.',
+			},
+			{
+				question: 'What salt level should my saltwater pool be at?',
+				answer:
+					"Hayward's Aqua Rite manual specifies 2,700-3,400 ppm as the ideal range for its cells, with 3,200 ppm as the optimal target. Below 2,700 ppm the cell's \"Check Salt\" warning starts flashing (and below roughly 2,400 ppm it shuts down); above about 3,500-4,000 ppm the water can start to taste noticeably salty. Other cell manufacturers publish similar but not always identical ranges, so check your unit's manual.",
+			},
+			{
+				question: 'Why is the oval pool formula different from a true ellipse?',
+				answer:
+					"Because an \"oval\" pool isn't actually shaped like a mathematical ellipse. It's a stadium or racetrack outline, a rectangle with a semicircle capping each end. That shape holds more water than a true ellipse of the same length and width would, since the rounded ends bulge out past where an ellipse's curve falls. This calculator uses the 6.7 multiplier Hayward's manual publishes for that real-world shape rather than a from-scratch ellipse formula, which would understate the volume by roughly 12%.",
+			},
+			{
+				question: "Can I lower my pool's salt level if it's too high?",
+				answer:
+					"Not by adding anything. The only way to reduce salt concentration is diluting it, by partially draining the pool and refilling with fresh water, then retesting. There's no chemical additive that removes dissolved salt. This calculator returns zero pounds (not a negative number) whenever your current reading is already at or above your target.",
+			},
+			{
+				question: 'Does salt evaporate out of a pool, or does it need to be topped up regularly?',
+				answer:
+					"Salt doesn't leave with evaporation. Only water does, which actually concentrates the remaining salt slightly. Salt is lost only when pool water itself is removed and replaced: backwashing the filter, splash-out, or draining rain overflow. A stable pool with a properly working salt cell typically needs a top-up just a few times a season, not continuously.",
+			},
+			{
+				question: 'What kind of salt should I use in a saltwater pool?',
+				answer:
+					'Plain sodium chloride (NaCl) at greater than 99% purity: common food-quality or water-softener salt, often sold in 40-80 lb bags labeled "coarse solar salt." Avoid rock salt, iodized salt, or salt with anti-caking or yellow prussiate of soda additives, which can interfere with the cell or leave residue.',
+			},
+		],
+		sources: [
+			{
+				label: 'Hayward Inc., "Aqua Rite Electronic Chlorine Generator, Operation and Installation Manual" (2,700-3,400 ppm ideal salt range, 3,200 ppm optimal target, gallons-by-shape formulas including the oval 6.7 multiplier, Check Salt/High Salt warning thresholds)',
+				url: 'https://hayward.com/media/wysiwyg/pdf/aqua_rite_product_manual.pdf',
+			},
+			{
+				label: 'NIST Handbook 44, Appendix C, General Tables of Units of Measurement (exact US gallon = 231 in³, exact cubic foot = 1,728 in³, exact avoirdupois pound = 453.59237 g)',
+				url: 'https://www.nist.gov/pml/owm/nist-handbook-44',
+			},
+		],
+		embedHeight: 1080,
+	},
 ];
