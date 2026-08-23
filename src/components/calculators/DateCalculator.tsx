@@ -204,7 +204,7 @@ export default function DateCalculator() {
 						</div>
 					</div>
 				) : addOutOfRange ? (
-					<p class="calc-note">That shift lands outside year 1–9999 — try a smaller number of days.</p>
+					<p class="calc-note">That shift lands outside year 1–9999. Try a smaller number of days.</p>
 				) : (
 					<p class="calc-note">Enter a valid date and a whole number of days (0 or more).</p>
 				))}
@@ -229,7 +229,7 @@ export default function DateCalculator() {
 			<p class="calc-note">
 				{mode === 'until'
 					? "Countdown is based on today's date in your browser."
-					: 'All three modes use the proleptic Gregorian calendar (the standard civil calendar) with no time-of-day component — a "day" always means one full calendar date. Calculations run in your browser; nothing you type is sent anywhere.'}
+					: 'All three modes use the proleptic Gregorian calendar (the standard civil calendar) with no time-of-day component: a "day" always means one full calendar date. Calculations run in your browser; nothing you type is sent anywhere.'}
 			</p>
 		</div>
 	);

@@ -2030,10 +2030,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Date Calculator',
 		description:
 			'Find the number of days between two dates, add or subtract days from a date, or count down to New Year\'s Day, Halloween, Thanksgiving, and Christmas.',
-		updated: '2026-08-06',
+		updated: '2026-08-23',
 		published: '2026-08-06',
 		coreSummary:
-			'Every mode here runs on the proleptic Gregorian calendar — the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4) — with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function.',
+			'Every mode here runs on the proleptic Gregorian calendar, the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4), with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function.',
 		queries: [
 			'date calculator',
 			'days between two dates',
@@ -2049,15 +2049,15 @@ export const tools: Tool[] = [
 			{
 				heading: 'Three date-math questions, one calculator',
 				body: [
-					'"Difference" answers *how far apart are these two dates* — pick a start and end date and it returns the exact day count plus a years/months/days breakdown. "Shift date" answers *what date is N days from this one* — the calculation behind every "30 days from today," "90 days from today," or "45 days before this date" search. "Days until" answers a narrower, very common question on its own: a live countdown to the next New Year\'s Day, Halloween, Thanksgiving, and Christmas, automatically rolling to next year the moment each one passes.',
-					'All three share the same underlying date arithmetic, so switching modes never produces a different answer for the same pair of dates — "Difference" from today to next Christmas and "Days until → Christmas" always agree.',
+					'"Difference" answers *how far apart are these two dates*: pick a start and end date and it returns the exact day count plus a years/months/days breakdown. "Shift date" answers *what date is N days from this one*, the calculation behind every "30 days from today," "90 days from today," or "45 days before this date" search. "Days until" answers a narrower, very common question on its own: a live countdown to the next New Year\'s Day, Halloween, Thanksgiving, and Christmas, automatically rolling to next year the moment each one passes.',
+					'All three share the same underlying date arithmetic, so switching modes never produces a different answer for the same pair of dates: "Difference" from today to next Christmas and "Days until → Christmas" always agree.',
 				],
 			},
 			{
 				heading: 'Total days and the years/months/days breakdown can tell different stories',
 				body: [
 					'The "Total days" figure is unambiguous: a straight count of calendar days between two dates, the same number you would get counting boxes on a calendar. The "Calendar span" (Ny Nm Nd) figure is a different, more human convention: it answers "how many full years, then full months, then full days" separate the two dates, the way people describe an age or an anniversary.',
-					'These two can diverge by exactly one day in a specific, well-documented edge case: an anniversary of February 29 measured against February 28 in a non-leap year. From Feb 29, 2024 to Feb 28, 2025 is 365 total days, but the calendar breakdown reads 11 months and 30 days, not a clean 1 year — because the month-and-day pair (Feb, 28) has not yet reached (Feb, 29), the same "has the anniversary date been reached" rule Microsoft documents for Excel\'s DATEDIF function. A different, equally common convention (used by Python\'s dateutil library, among others) instead clamps to the nearest valid day and calls that same pair exactly 1 year — there is no single universal answer for this specific edge case, only different documented rules for handling a date that does not exist in the target year.',
+					'These two can diverge by exactly one day in a specific, well-documented edge case: an anniversary of February 29 measured against February 28 in a non-leap year. From Feb 29, 2024 to Feb 28, 2025 is 365 total days, but the calendar breakdown reads 11 months and 30 days, not a clean 1 year, because the month-and-day pair (Feb, 28) has not yet reached (Feb, 29), the same "has the anniversary date been reached" rule Microsoft documents for Excel\'s DATEDIF function. A different, equally common convention (used by Python\'s dateutil library, among others) instead clamps to the nearest valid day and calls that same pair exactly 1 year: there is no single universal answer for this specific edge case, only different documented rules for handling a date that does not exist in the target year.',
 				],
 			},
 			{
@@ -2101,7 +2101,7 @@ export const tools: Tool[] = [
 					['180', 'Jun 30, 2026'],
 					['365', 'Jan 1, 2027'],
 				],
-				note: 'A fixed anchor date, not "today" — use the calculator above for a live result from any start date, including today.',
+				note: 'A fixed anchor date, not "today": use the calculator above for a live result from any start date, including today.',
 			},
 			{
 				title: 'Example calendar-span breakdowns',
@@ -2111,14 +2111,14 @@ export const tools: Tool[] = [
 					['Jan 1, 1970', 'Jan 1, 2000', '10,957', '30y 0m 0d'],
 					['Mar 15, 1990', 'Jan 1, 2026', '13,076', '35y 9m 17d'],
 				],
-				note: 'Total days is an exact count; years/months/days is the calendar-style breakdown described above — the two measure the same span differently, not disagree.',
+				note: 'Total days is an exact count; years/months/days is the calendar-style breakdown described above. The two measure the same span differently, not disagree.',
 			},
 		],
 		faq: [
 			{
 				question: 'How do I find the number of days between two dates?',
 				answer:
-					'Use "Difference" mode and enter the start and end dates. The calculator returns the exact total day count and a calendar-style years/months/days breakdown — both measure the same span, just in different units.',
+					'Use "Difference" mode and enter the start and end dates. The calculator returns the exact total day count and a calendar-style years/months/days breakdown; both measure the same span, just in different units.',
 			},
 			{
 				question: 'How do I add or subtract days from a date?',
@@ -2138,25 +2138,25 @@ export const tools: Tool[] = [
 			{
 				question: "What's the difference between 'total days' and 'years, months, days'?",
 				answer:
-					'Total days is a plain count of calendar days between two dates. Years/months/days is a calendar-aware breakdown — full years, then full months, then remaining days — the same convention used to describe someone\'s age. They can disagree by a day for an anniversary of February 29 measured in a non-leap year, a documented edge case with more than one accepted convention.',
+					'Total days is a plain count of calendar days between two dates. Years/months/days is a calendar-aware breakdown (full years, then full months, then remaining days), the same convention used to describe someone\'s age. They can disagree by a day for an anniversary of February 29 measured in a non-leap year, a documented edge case with more than one accepted convention.',
 			},
 			{
 				question: 'Does this account for time zones or daylight saving time?',
 				answer:
-					'No — every calculation here works with plain calendar dates and has no time-of-day component, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
+					'No. Every calculation here works with plain calendar dates and has no time-of-day component, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
 			},
 		],
 		sources: [
 			{
-				label: '5 U.S.C. § 6103 — Thanksgiving Day fixed as the fourth Thursday in November (Cornell Legal Information Institute)',
+				label: '5 U.S.C. § 6103, Thanksgiving Day fixed as the fourth Thursday in November (Cornell Legal Information Institute)',
 				url: 'https://www.law.cornell.edu/uscode/text/5/6103',
 			},
 			{
-				label: 'ECMA-262, the ECMAScript Language Specification — §21.4 "Date Objects" (proleptic Gregorian calendar convention)',
+				label: 'ECMA-262, the ECMAScript Language Specification, §21.4 "Date Objects" (proleptic Gregorian calendar convention)',
 				url: 'https://tc39.es/ecma262/#sec-date-objects',
 			},
 			{
-				label: 'Microsoft Support — "DATEDIF function," Excel (the year/month/day breakdown convention this calculator follows)',
+				label: 'Microsoft Support, "DATEDIF function," Excel (the year/month/day breakdown convention this calculator follows)',
 				url: 'https://support.microsoft.com/en-us/office/datedif-function-25dba1a4-2812-480b-84dd-8b32a451b35c',
 			},
 		],
