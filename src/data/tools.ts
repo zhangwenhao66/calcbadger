@@ -6466,4 +6466,119 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'age-difference-calculator',
+		category: 'Date & Time',
+		title: 'Age Difference Calculator',
+		shortTitle: 'Age Difference',
+		description:
+			'Find the exact age gap between two people from their birth dates, in years/months/days and as a percentage of the older person\'s age, plus the "half your age plus seven" reference rule.',
+		updated: '2026-08-23',
+		published: '2026-08-23',
+		coreSummary:
+			'Enter two birth dates and this calculator returns the calendar-aware years/months/days apart, the total days apart, each person\'s current age, and the gap expressed as a percentage of the older person\'s age. The percentage is the part a plain date-difference tool skips: a 5-year gap is a 20% difference between two 20- and 25-year-olds but only about 8% between two 60- and 65-year-olds, using the same 5 years both times.',
+		queries: [
+			'age difference calculator',
+			'age gap calculator',
+			'calculate age difference between two dates',
+			'how much older is someone',
+			'half your age plus seven calculator',
+			'dating age rule calculator',
+		],
+		sections: [
+			{
+				heading: 'What this calculator adds beyond a plain date difference',
+				body: [
+					'The calendar math here is the same "how far apart are two dates" arithmetic behind this site\'s date calculator, applied specifically to two birth dates. What is different is the framing: instead of a generic day count, the result names which person is older, states each person\'s current age, and adds a percentage figure, the age gap divided by the older person\'s age. That percentage answers the question most "age difference" searches are actually asking: how big a deal is a 5-year gap, which depends entirely on how old the two people already are.',
+					'"Total days apart" and the years/months/days breakdown never change once the two birth dates are set. "Current age" and the percentage figure do change: they are both calculated as of today, in your browser, and will read differently a year from now for the same two birth dates.',
+				],
+			},
+			{
+				heading: 'Why the same number of years feels smaller as people get older',
+				body: [
+					'A fixed age gap shrinks as a share of either person\'s age the older both people get, because the denominator (the older person\'s age) keeps growing while the gap itself stays fixed. Two people 5 years apart are 20% apart in age at 20 and 25, but only about 8% apart at 60 and 65, the same 5-year gap measured against a much larger base. The reference table below works through several of these fixed-gap comparisons.',
+					"This is arithmetic, not a claim about how age gaps are experienced. The calculator reports the percentage; what it means for a specific pair of people (siblings, coworkers, historical figures, or a couple) is outside what a number can tell you.",
+				],
+			},
+			{
+				heading: 'The "half your age plus seven" rule of thumb',
+				body: [
+					'One reference point that regularly comes up in age-gap discussions is a rule of thumb holding that a person should not date someone younger than half their own age, plus seven years: a 28-year-old\'s floor works out to 21, and a 50-year-old\'s to 32. Wikipedia\'s article on age disparity traces variations of the phrasing back to an 1879 collection by Frederick Locker-Lampson and a 1901 book by Max O\'Rell, well before its more recent circulation online, including as the "Standard Creepiness Rule" in the webcomic xkcd\'s 2007 strip "Dating Pools."',
+					"This calculator shows the rule's minimum age for the older person in the results, purely as the commonly cited reference point it is. It is not a scientific formula and this page does not present it as advice.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: '"Half your age plus seven" minimum partner age, by age',
+				headers: ['Age', 'Rule minimum (age ÷ 2 + 7)'],
+				rows: [
+					['20', '17'],
+					['25', '19.5'],
+					['30', '22'],
+					['35', '24.5'],
+					['40', '27'],
+					['50', '32'],
+					['60', '37'],
+					['70', '42'],
+				],
+				note: 'A rule of thumb (see above), not a calculated fact about any specific pair of people.',
+			},
+			{
+				title: 'The same 5-year gap, at different ages',
+				headers: ['Younger age', 'Older age', 'Gap as % of older age'],
+				rows: [
+					['20', '25', '20.0%'],
+					['30', '35', '14.3%'],
+					['40', '45', '11.1%'],
+					['50', '55', '9.1%'],
+					['60', '65', '7.7%'],
+				],
+				note: 'Every row is the same 5-year gap; the percentage shrinks as both ages rise because the older person\'s age (the denominator) grows while the gap stays fixed.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the formula for age difference?',
+				answer:
+					'The calendar-style age gap is the same years/months/days breakdown used to describe anyone\'s age: subtract the earlier birth date from the later one, carrying a borrow from the calendar month when the day-of-month subtraction goes negative. The percentage figure divides that gap (converted to decimal years) by the older person\'s current decimal age and multiplies by 100.',
+			},
+			{
+				question: 'How is this different from a regular date-difference calculator?',
+				answer:
+					'The underlying date arithmetic is the same. This calculator is built specifically around comparing two people\'s birth dates: it names who is older, reports each person\'s current age, and adds the percentage-of-the-older-person\'s-age figure that a generic two-date difference does not compute.',
+			},
+			{
+				question: 'Why does a 5-year age gap seem bigger between two 20-somethings than two 60-somethings?',
+				answer:
+					"Because the percentage is the gap divided by the older person's age, and that denominator keeps growing while a fixed gap does not. Five years is 20% of 25 but only about 8% of 65, the identical 5-year gap measured against two very different bases.",
+			},
+			{
+				question: 'What is the "half your age plus seven" rule?',
+				answer:
+					'A commonly cited rule of thumb for a minimum acceptable partner age: half the older person\'s age, plus seven years. A 28-year-old\'s floor by this rule is 21; a 50-year-old\'s is 32. Its exact origin is unclear, though phrasings of it appear in print as early as 1879, and it circulates today partly through the webcomic xkcd\'s "Standard Creepiness Rule." It is a cultural reference point, not a scientific or legal standard.',
+			},
+			{
+				question: 'Can I use this for two historical dates instead of two living people?',
+				answer:
+					"Yes, the calendar-gap and total-days figures work for any two valid birth dates, including people no longer living. The two \"current age\" figures and the percentage figure are calculated against today's date, so for a deceased person they describe how old they would be today, not their age when they died.",
+			},
+			{
+				question: 'Does this calculator store or send my birth dates anywhere?',
+				answer:
+					'No. Every calculation runs in your browser using the dates you type; nothing is transmitted to a server or stored.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Age disparity in sexual relationships," §"Half-your-age-plus-seven" rule',
+				url: 'https://en.wikipedia.org/wiki/Age_disparity_in_sexual_relationships',
+			},
+			{
+				label: 'xkcd #314, "Dating Pools" (2007) — origin of the "Standard Creepiness Rule" phrasing',
+				url: 'https://xkcd.com/314/',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
