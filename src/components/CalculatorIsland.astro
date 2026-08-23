@@ -53,6 +53,7 @@ import TimeDurationCalculator from './calculators/TimeDurationCalculator';
 import TipCalculator from './calculators/TipCalculator';
 import TopsoilCalculator from './calculators/TopsoilCalculator';
 import VolumeConverter from './calculators/VolumeConverter';
+import WaccCalculator from './calculators/WaccCalculator';
 import WeightConverter from './calculators/WeightConverter';
 import WingdingsTranslator from './calculators/WingdingsTranslator';
 import WorldClockConverter from './calculators/WorldClockConverter';
@@ -118,3 +119,4 @@ const { slug } = Astro.props;
 {slug === 'pool-calculator' && <PoolCalculator client:load />}
 {slug === 'graffiti-alphabet' && <GraffitiAlphabetGenerator client:load />}
 {slug === 'pizza-calculator' && <PizzaCalculator client:load />}
+{slug === 'wacc-calculator' && <WaccCalculator client:load />}

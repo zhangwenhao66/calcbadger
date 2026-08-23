@@ -240,6 +240,11 @@ export const tools: Tool[] = [
 				answer:
 					'For flooring and paint, measure the inside of the room, since that is the surface you are covering. Real-estate listing conventions differ (they often use exterior dimensions and follow standards like ANSI Z765), which is why a listed home size rarely matches the sum of its rooms.',
 			},
+			{
+				question: 'How many acres is a football field?',
+				answer:
+					'A regulation American football field, end zones included, is 360 ft × 160 ft (120 yd × 53⅓ yd), which works out to 57,600 sq ft, or exactly 1.32 acres. Drop the end zones and count only the playing field between goal lines (300 ft × 160 ft = 48,000 sq ft), and it comes to about 1.10 acres. High school, college, and NFL fields all share these dimensions.',
+			},
 		],
 		sources: [
 			{
@@ -6688,5 +6693,111 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 760,
+	},
+	{
+		slug: 'wacc-calculator',
+		category: 'Finance',
+		title: 'WACC Calculator',
+		shortTitle: 'WACC',
+		description:
+			"Calculate a company's weighted average cost of capital from its equity and debt weights, cost of equity (CAPM or a direct rate), and after-tax cost of debt.",
+		updated: '2026-08-23',
+		published: '2026-08-23',
+		coreSummary:
+			'WACC = (E/V × Re) + (D/V × Rd × (1 − Tc)), where V = E + D is total capital, Re is the cost of equity, and Rd is the pre-tax cost of debt. A company with $600M equity at a 10% cost of equity and $400M debt at a 6% pre-tax cost of debt (21% tax rate) has a WACC of (0.6 × 10%) + (0.4 × 4.74%) = 7.90%.',
+		queries: [
+			'wacc calculator',
+			'weighted average cost of capital calculator',
+			'how to calculate wacc',
+			'wacc formula calculator',
+		],
+		sections: [
+			{
+				heading: 'What WACC is for',
+				body: [
+					"WACC blends what a company pays its shareholders and its lenders into one rate: the minimum return a project or investment has to clear before it creates value rather than destroying it. It shows up as the discount rate in a discounted-cash-flow valuation and as the hurdle rate finance teams compare a project's expected return against.",
+					'Because it mixes two very different capital sources, WACC needs three things for each: how much of the company is funded by that source (its weight), what that source costs, and, for debt only, a tax adjustment, since interest payments are deductible and dividends are not.',
+				],
+			},
+			{
+				heading: 'Cost of equity: CAPM or a number you already have',
+				body: [
+					'Shareholders never send an invoice for their required return, so it has to be estimated. The standard approach is CAPM: Re = Rf + β × (Rm − Rf), where Rf is the risk-free rate (typically a long-term government bond yield), β measures how much the stock swings relative to the market, and (Rm − Rf) is the equity risk premium investors demand for holding stocks over risk-free bonds.',
+					'A β above 1 amplifies market moves and raises the required return; a β below 1 (or negative, for a handful of stocks that move opposite the market) lowers it. If a company already has a cost of equity from a valuation report or analyst estimate, this calculator also accepts that number directly instead of rebuilding it from CAPM.',
+				],
+			},
+			{
+				heading: 'Cost of debt gets a tax break equity does not',
+				body: [
+					'Lenders quote a pre-tax rate on the debt itself. But interest expense reduces taxable income, so the money actually leaving the company is only Rd × (1 − Tc). At a 6% pre-tax rate and a 21% tax rate, the after-tax cost of debt is 6% × (1 − 0.21) = 4.74%, not the full 6%. Equity has no equivalent deduction, which is part of why debt is usually the cheaper source of capital before it drives up bankruptcy risk.',
+				],
+			},
+			{
+				heading: 'Worked example',
+				body: [
+					'A company has $600M in equity and $400M in debt, so V = $1,000M, giving weights of 60% equity and 40% debt. Using CAPM with a 4% risk-free rate, a beta of 1.2, and a 9% expected market return: Re = 4% + 1.2 × (9% − 4%) = 10%. Its lenders charge 6% pre-tax, and the tax rate is 21%, so the after-tax cost of debt is 4.74%.',
+					'WACC = (0.60 × 10%) + (0.40 × 4.74%) = 6.00% + 1.896% = 7.896%, which rounds to 7.90%. That is the rate this company would use to discount a new project\'s cash flows, or the minimum return that project needs to clear.',
+				],
+			},
+			{
+				heading: 'Use market value, not book value',
+				body: [
+					"The E and D in E/V and D/V should be market values: equity's market capitalization (share price × shares outstanding), not the book equity on the balance sheet, and debt at its current market price where it trades, or face value as a reasonable stand-in when it does not trade actively. Book equity reflects historical accounting entries, not what investors would pay for the company today, so mixing book equity with market debt (or the reverse) skews the weights and the resulting WACC.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'How the debt-to-capital mix moves WACC',
+				headers: ['Debt share of capital (D/V)', 'WACC'],
+				rows: [
+					['0% (all-equity)', '10.00%'],
+					['20%', '8.95%'],
+					['40%', '7.90%'],
+					['60%', '6.84%'],
+					['80%', '5.79%'],
+					['100% (all-debt)', '4.74%'],
+				],
+				note: 'Holding cost of equity at 10%, pre-tax cost of debt at 6%, and the tax rate at 21% constant while the debt share rises. WACC falls as debt replaces equity here because the after-tax cost of debt (4.74%) is cheaper than the cost of equity; that gap, not a fixed rule, is what drives the direction, and a company with expensive or risky debt can see the opposite pattern.',
+			},
+		],
+		faq: [
+			{
+				question: 'What counts as a "good" WACC?',
+				answer:
+					"There is no universal good number. WACC runs lower for stable, mostly debt-funded businesses like regulated utilities and higher for volatile, mostly equity-funded ones like early-stage software or biotech, since both a higher beta and a smaller debt share push it up. What matters is comparing a project's expected return against its own company's WACC, not against another industry's.",
+			},
+			{
+				question: 'Why does debt get a tax adjustment but equity does not?',
+				answer:
+					'Interest paid to lenders is a deductible business expense, so it lowers the company\'s taxable income; dividends paid to shareholders come out of after-tax profit and get no such deduction. Multiplying the pre-tax cost of debt by (1 − Tc) reflects that only the after-tax cost is actually borne by the company.',
+			},
+			{
+				question: 'Can I use book value instead of market value for the weights?',
+				answer:
+					"You can, but it will usually distort the result. Market value of equity (share price × shares outstanding) reflects what investors currently think the company is worth; book equity is a historical accounting figure that can be far lower or higher. Market value of debt is less commonly available, so face value on the balance sheet is the standard workaround when the debt does not trade actively.",
+			},
+			{
+				question: 'Does WACC change over time?',
+				answer:
+					"Yes. Interest rates move the risk-free rate and cost of debt, a company's stock price moves its equity weight, and its beta and credit terms shift as its business and leverage change. WACC used for a long-lived project is usually treated as a snapshot estimate, not a rate the company recalculates for every cash flow year.",
+			},
+			{
+				question: 'What if a company has no debt?',
+				answer:
+					'With D = 0, the debt term drops out and WACC simply equals the cost of equity, since the entire capital structure is equity-funded. This calculator handles that case automatically: set debt to 0 and the after-tax cost of debt term contributes nothing to the result.',
+			},
+		],
+		sources: [
+			{
+				label: 'Aswath Damodaran (NYU Stern): CAPM and cost of equity, valuation lecture notes',
+				url: 'https://pages.stern.nyu.edu/~adamodar/New_Home_Page/lectures/dcfinput.html',
+			},
+			{
+				label: '26 U.S.C. § 11 — flat 21% corporate income tax rate',
+				url: 'https://www.law.cornell.edu/uscode/text/26/11',
+			},
+		],
+		embedHeight: 820,
 	},
 ];
