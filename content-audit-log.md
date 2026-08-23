@@ -1358,3 +1358,101 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "date-calculator",
+  "last_audited": "2026-08-23",
+  "published_date": "2026-08-06",
+  "note": "全站last_audited缺失工具中published最早的一个（never-audited），按SKILL.md'缺失/最早优先'轮转规则选中。",
+  "checklist": [
+    "coreSummary/FAQ声称的proleptic Gregorian calendar + ECMA-262 §21.4行为是否与src/lib/dateCalculator.ts实际计算逻辑一致",
+    "years/months/days拆解（calendarDiff）是否吻合coreSummary点名的DATEDIF借位规则，含Feb-29周年边界情形（Feb 29 2024→Feb 28 2025=365天/11月30天，非整1年）",
+    "三个假日倒计时（New Year's/Halloween/Thanksgiving/Christmas）是否用正确的美国历法规则，尤其Thanksgiving=11月第四个星期四（法定浮动日期，非固定日历日）而非硬编码日期表",
+    "切换Difference/Shift date/Days until三种模式时是否存在级联下拉框式的状态未重置风险（L-0809-2）",
+    "referenceTables三张表（假日日期2026-2030、固定起点加日、calendar-span breakdown示例）共约21组具体数字是否可用lib公式独立重算复现"
+  ],
+  "findings": [
+    {
+      "dimension": "EEAT",
+      "status": "未发现问题",
+      "detail": "coreSummary开篇即给出精确的计算规则来源（ECMA-262 §21.4 proleptic Gregorian calendar、Microsoft DATEDIF惯例）；3条sources均为一手权威来源（Cornell LII法典原文、ECMA-262官方规范、Microsoft官方文档）；每个reference table行都是可独立复算的具体数字而非泛泛而谈。"
+    },
+    {
+      "dimension": "事实/公式准确性",
+      "status": "未发现问题（核实后确认全部准确）",
+      "detail": "独立手算复核referenceTables三张表全部21组数字（假日日期5年×4项、固定起点加日9组、calendar-span breakdown 3组，含leap year跨越案例）与tests/dateCalculator.test.ts（自身注明用Python datetime/dateutil.relativedelta独立验证过）逐一吻合，无一处错位；coreSummary点名的Feb-29边界案例（365 total days但11月30天calendar breakdown）同样吻合测试用例；usThanksgiving()实测确认动态推算第四个星期四（非硬编码），2026-2030五年输出与referenceTable完全一致。WebSearch独立核实三条引用：5 U.S.C. §6103确系将Thanksgiving定义为'the fourth Thursday in November'（Cornell LII原文核实）；ECMA-262规范§21.4章节标题确为'Date Objects'（tc39.es/read262.jedfox.com均确认）；Microsoft DATEDIF文档的'complete years/months elapsed'规则与coreSummary描述的边界行为一致。三个引用链接curl均200存活，无死链。"
+    },
+    {
+      "dimension": "时效性",
+      "status": "未发现问题",
+      "detail": "updated字段原为2026-08-06，本次审计前从未修改过；referenceTable的2026-2030假日日期表未过期（当前日期2026-08-23仍在范围内）；日期数学本身无需随时间刷新的内容。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题（弱差异化，非阻断项）",
+      "detail": "WebSearch核实omnicalculator等主流date calculator竞品同样提供years/months/days breakdown且同样处理leap year，本工具的breakdown功能本身并非独家。但coreSummary/正文对Feb-29周年这一具体边界情形（DATEDIF vs dateutil.relativedelta两种惯例的分歧、以及为何选择DATEDIF惯例）给出的透明度和精确度，明显超出典型竞品页面的说明深度，构成真实但非独占的差异化，不构成需要修复的问题。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/date-calculator/ 200；title'Date Calculator | CalcBadger'渲染28字符；canonical自指正确；单一H1（'Date Calculator'），10个H2层级正确无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）均结构正确；meta description实测149字符，check_seo_field_stats.py确认z-score=-0.97（全站53个description正常分布内，非离群值）；title的z-score=-0.76同样正常；robots.txt含AI爬虫显式Allow规则；ads.txt正确列出pub-5245502795720653。"
+    },
+    {
+      "dimension": "GEO审计",
+      "status": "未发现问题",
+      "detail": "本站无适用的99分制自动打分工具（沿用cd-calculator审计确立的方法），对照ai-seo skill Content Extractability Check人工核对：coreSummary首屏给出可独立引用的精确定义；4个worked-example小节+3个参考表；6条FAQ配FAQPage schema、问法均为真实用户查询句式（'How do I find...', 'Why does...show a different number tomorrow?'）；3条一手权威来源引用（法典/技术规范/官方文档）；'last reviewed'时效签名明确；robots.txt放行全部主流AI爬虫。9/9项清晰通过，明显超过≥80门槛，无需改动。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "发现问题（已修复）",
+      "detail": "published='2026-08-06'早于avoid-ai-writing接入日(2026-08-07)，触发全量扫描，此前从未跑过。tools.ts该条目coreSummary/2段section body/2处referenceTable note/3条FAQ answer/3条sources.label共12处叙事性em dash；DateCalculator.tsx组件另有2处用户可见硬编码calc-note文案（'no time-of-day component'说明、addOutOfRange边界提示，后者仅在offset超出年份1-9999范围时才渲染，非首屏可见，逐行读码才发现）em dash。DateFields组件构造字段标签使用的`${legend} — month/day/year`模板（渲染为6处可见label+约12处aria-label，共约18处）经独立复核agent判定为UI复合标签分隔符（类breadcrumb'Section — Subsection'结构），非叙事文字，不落入本站em dash零容忍策略范围，未改动。除em dash外未发现其他AI写作信号（Skill(humanizer)+Skill(avoid-ai-writing)复扫无AI高频词、无rule-of-three、无copula avoidance、无filler phrase、无curly quotes）。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题",
+      "detail": "curl -A自定义UA -L核实3条引用链接：law.cornell.edu/uscode/text/5/6103、tc39.es/ecma262/#sec-date-objects、support.microsoft.com DATEDIF函数页均返回200，无死链、无反爬拦截。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "首页index.astro直接列出全部工具含date-calculator（非仅分类入口）；site-toolkit的related-guides轮转机制（Date & Time分类4个工具互相覆盖+跨分类兜底）覆盖，非孤儿页；sitemap-index.xml正常收录。"
+    },
+    {
+      "dimension": "Schema数据一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified取值tool.updated（本次同步改为2026-08-23）；FAQPage 6条FAQ与页面渲染一致；BreadcrumbList三级正确；description字段（149字符）通过build产物核对WebApplication description、Layout meta/og/twitter description、页面可见导语共3处一致未拆分。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "内容为纯日期数学计算工具，不涉及任何敏感类目，快速核查确认无需深入。"
+    },
+    {
+      "dimension": "配图可用性与版权",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；页面标题/文案无误导性或clickbait设计；工具是标准日期计算器，不涉及AdSense敏感类目。"
+    }
+  ],
+  "independent_verification": "两条独立fresh-context agent复核：第一条给出narrative字段（coreSummary/2段section body/2处referenceTable note/3条FAQ answer/1处组件calc-note共9处逐字引用）证据，判定除对component硬编码note（items 10）的适用范围有保留意见外，其余narrative字段em dash均CONFIRMED需修——已按established precedent（本站temperature-converter/mortgage-calculator/concrete-calculator三次先例）判定component硬编码narrative文案同样在scope，无需单独再起一轮验证。第二条专门针对本站历史上口径反复的两类边界字段给出证据：(a) sources.label'Publisher — 说明'格式3处，援引本站2026-08-21最新仲裁裁决（rendering position优先于field name判断）判定CONFIRMED需修；(b) DateFields组件的`${legend} — month/day/year`字段标签模式，判定NOT-CONFIRMED（UI复合标签分隔符，非叙事文字，不在em dash零容忍策略范围）。两条复核均在20秒内正常完成，无卡死，未触发看门狗降级流程。",
+  "actions_taken": [
+    "src/data/tools.ts的coreSummary/2段section body/2处referenceTable note/3条FAQ answer/3条sources.label共12处叙事性em dash改写为句号/逗号/冒号/括号，未改动任何数字、公式或事实表述",
+    "src/components/calculators/DateCalculator.tsx用户可见的2处calc-note（含仅在offset超出年份边界时渲染的1处）em dash改为冒号/句号；DateFields组件的字段标签em dash模式（约18处）经独立复核判定不在范围，未改动",
+    "updated字段从2026-08-06改为2026-08-23（published字段已存在'2026-08-06'，未改动，无需git历史回填）",
+    "npx vitest run tests/dateCalculator.test.ts 45/45通过，npm test全站1173/1173通过（60个测试文件），npm run build 126页成功生成",
+    "build产物dist/date-calculator/index.html逐字符扫描确认narrative字段叙事性em dash清零，仅剩DateFields的UI标签模式（符合预期）",
+    "git add src/data/tools.ts src/components/calculators/DateCalculator.tsx（未包含仓库内并发存在的未暂存文件indexnow-submit-log.json.backup-20260817-000242-before-verify），commit并push，CF Pages为git连接自动部署无需手动触发deploy hook",
+    "部署完成后（curl轮询3次约40秒后确认新文案生效）跑node tools/submit-indexnow.mjs /date-calculator/提交索引（Bing 200/Yandex 200）",
+    "seo_drift.py compare报WARNING（schema dateModified从2026-08-06变为2026-08-23，为本次updated字段改动的预期结果，非异常，未触发CRITICAL）",
+    "内容发布日志.md追加审计记录，标注为content-quality-audit审计更新非新发布"
+  ],
+  "seo_score": "title/description/canonical/H1/schema/robots.txt/ads.txt全部健康，description z-score=-0.97正常范围，无需改动",
+  "geo_score": "ai-seo skill Content Extractability Check 9/9项清晰通过，明显超过≥80门槛，本次修复（narrative em dash清零）未削弱可提取性",
+  "escalation": null
+}
+```
