@@ -37,6 +37,7 @@ import PoolCalculator from './calculators/PoolCalculator';
 import ProratedRentCalculator from './calculators/ProratedRentCalculator';
 import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
+import RandomObjectGenerator from './calculators/RandomObjectGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
 import RoundingCalculator from './calculators/RoundingCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
@@ -103,6 +104,7 @@ const { slug } = Astro.props;
 {slug === 'calligraphy-alphabet' && <CalligraphyAlphabetGenerator client:load />}
 {slug === 'glitch-text-generator' && <GlitchTextGenerator client:load />}
 {slug === 'random-animal-generator' && <RandomAnimalGenerator client:load />}
+{slug === 'random-object-generator' && <RandomObjectGenerator client:load />}
 {slug === 'small-text-generator' && <SmallTextGenerator client:load />}
 {slug === 'gender-symbols' && <GenderSymbolsGenerator client:load />}
 {slug === 'topsoil-calculator' && <TopsoilCalculator client:load />}

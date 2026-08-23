@@ -4663,6 +4663,114 @@ export const tools: Tool[] = [
 		embedHeight: 900,
 	},
 	{
+		slug: 'random-object-generator',
+		category: 'Games',
+		title: 'Random Object Generator',
+		shortTitle: 'Random Object Generator',
+		description:
+			'Draw 1 to 10 random everyday objects from a 145-item list across 8 categories, each tagged Easy/Medium/Hard to draw, with a unique-only or repeats-allowed draw mode.',
+		updated: '2026-08-23',
+		published: '2026-08-23',
+		coreSummary:
+			'This tool draws uniformly at random from whichever pool is active, the full 145 objects or a single category if filtered, so every object has identical odds on every pick regardless of its Easy/Medium/Hard difficulty tag. With "Unique only" selected, the draw removes each object from the pool the moment it is picked (a partial Fisher-Yates shuffle), so a batch never repeats a name; with "Allow repeats" selected, every pick stays independent of the ones before it, so the same object can legitimately show up more than once in one batch.',
+		queries: [
+			'random object generator',
+			'random thing generator',
+			'things to draw generator',
+			'random item generator',
+			'pictionary word generator',
+		],
+		sections: [
+			{
+				heading: 'How the generator picks an object',
+				body: [
+					'Every object on this page carries two independent tags: which of 8 categories it belongs to, and a curated Easy/Medium/Hard difficulty rating for how hard it is to draw. Picking a category from the dropdown narrows the working pool before a draw happens, "Vehicles & Transport" cuts it from 145 objects down to 15, but the difficulty tag never changes the odds. A Hard object like Airplane and an Easy object like Apple are drawn with exactly the same probability once both are sitting in the active pool.',
+					'The draw mechanics match this site\'s other random-pick tools. "Unique only" pulls a random index out of whatever is left in the pool and deletes it before the next pick, so a batch never repeats a name, and asking for more objects than a narrow filter can supply (say, 8 unique picks from just the 15-item "Vehicles & Transport" pool once the count creeps past 15) simply returns everything available instead of failing. "Allow repeats" leaves the pool untouched between picks, so each draw is an independent look at the same full pool and the same object can legitimately turn up twice in one five-object batch, the random animal generator and random letter generator on this site work the same way, just against different lists.',
+				],
+			},
+			{
+				heading: 'Worked example: how likely is a genuinely hard batch?',
+				body: [
+					'Hard objects are a small slice of the list, 10 of 145 (6.9%). Draw 5 objects from the full list with "Allow repeats" on, and the chance every single one skips the Hard tier works out to (135/145)^5 ≈ 70.0%, which leaves roughly a 30.0% chance that at least one Hard object (an Airplane, a Wheelbarrow, a Fire Extinguisher) turns up somewhere in that batch of five. Switch to "Unique only" and the same all-not-Hard calculation runs (135/145) × (134/144) × (133/143) × (132/142) × (131/141) ≈ 69.6%, which puts the at-least-one-Hard chance a touch higher, about 30.4%.',
+					'That roughly four-tenths-of-a-point gap comes from the same mechanism behind every draw-without-replacement effect on this site: once a non-Hard object is removed from the pool, whatever is left is very slightly more concentrated toward the objects still remaining, Hard ones included, so a run of 5 that dodges the Hard tier entirely gets marginally less likely under "Unique only" than under "Allow repeats." Flip that around and the at-least-one-Hard chance is marginally higher under "Unique only," small enough not to change how you\'d plan a round, but the direction is consistent every time.',
+				],
+			},
+			{
+				heading: 'Matching category and difficulty to the game you\'re playing',
+				body: [
+					'A warm-up round for young kids or a first-time group benefits from filtering nothing and leaning on the difficulty tag shown with each result to skip the 10 Hard entries (mostly vehicles with lots of moving parts, like Car, Bus, Airplane, and Submarine) until players are comfortable. A drawing-and-guessing party round for adults can go the other way and specifically hunt for Medium and Hard objects, since those are the ones that reward a good drawer over a lucky guesser.',
+					'Restricting to one category suits a themed round (School & Office for a classroom icebreaker, Food & Drink for a cooking-themed game night) or an observational-drawing practice session where variety within a narrow subject matters more than covering the whole list. Leaving the filter on "All categories" is the right default for general-purpose charades, Pictionary-style games, or open-ended writing prompts, where the mix of categories is itself part of the fun.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Objects by category (full 145-object list)',
+				headers: ['Category', 'Count', 'Share of the list'],
+				rows: [
+					['Household & Kitchen', '20', '13.8%'],
+					['Food & Drink', '20', '13.8%'],
+					['Nature & Outdoors', '19', '13.1%'],
+					['Tools & Hardware', '18', '12.4%'],
+					['Sports & Recreation', '18', '12.4%'],
+					['School & Office', '18', '12.4%'],
+					['Clothing & Accessories', '17', '11.7%'],
+					['Vehicles & Transport', '15', '10.3%'],
+				],
+				note: 'Percentages are each category\'s share of this tool\'s own 145-object list, not a measure of how common these objects are in the real world.',
+			},
+			{
+				title: 'Objects by drawing difficulty',
+				headers: ['Difficulty', 'Count', 'Share of the list', 'Typical examples'],
+				rows: [
+					['Easy', '76', '52.4%', 'Apple, Sun, Pencil, Spoon, Basketball'],
+					['Medium', '59', '40.7%', 'Chair, Sailboat, Wristwatch, Backpack'],
+					['Hard', '10', '6.9%', 'Car, Airplane, Wheelbarrow, Fire Extinguisher'],
+				],
+				note: 'Difficulty is this tool\'s own curatorial judgment (how many distinct parts or how much perspective a recognizable drawing needs), not a scored or externally measured fact.',
+			},
+		],
+		faq: [
+			{
+				question: 'Can the same object come up twice in one batch?',
+				answer:
+					'Not under the default setting. "Unique only" pulls each object out of the pool the moment it is drawn, so a batch of 5 always has 5 distinct names. Switch to "Allow repeats" and that restriction goes away, since each pick is independent of the ones before it.',
+			},
+			{
+				question: 'How many objects are in the generator, and how were the categories chosen?',
+				answer:
+					'145 everyday objects split across 8 categories: Household & Kitchen, Food & Drink, Nature & Outdoors, Tools & Hardware, Clothing & Accessories, Vehicles & Transport, Sports & Recreation, and School & Office. It is a curated list built for drawing games, charades-style prompts, and writing exercises, not an exhaustive inventory of every object that exists.',
+			},
+			{
+				question: 'How was the Easy/Medium/Hard difficulty rating decided?',
+				answer:
+					'By this tool\'s own curatorial judgment, not a measured or externally sourced score: Easy objects have a simple, mostly symmetric outline recognizable in a few strokes (a spoon, a sun, a basketball); Hard objects need several distinct parts or a sense of perspective to read clearly (a car, an airplane, a fire extinguisher). Treat it as a helpful guide for picking a round\'s difficulty, not a scientific fact about how hard any specific object is to draw.',
+			},
+			{
+				question: 'What games can I use this for?',
+				answer:
+					'Drawing-and-guessing party games, charades, "I Spy" style prompts, classroom warm-ups, and open-ended writing or observational-drawing exercises. Filtering by category suits a themed round; filtering by the difficulty shown on each result suits matching the round to the group\'s skill level.',
+			},
+			{
+				question: 'Can I generate only one category, like just Food & Drink?',
+				answer:
+					'Pick it from the "Category" dropdown before you hit generate. The pool-size, chance-per-draw, and draw-count figures underneath the button all recalculate for whichever category you land on, so they always describe the filter that\'s actually active.',
+			},
+			{
+				question: 'Does this tool store or send my draws anywhere?',
+				answer:
+					"It doesn't. The random pick happens with JavaScript already loaded in your browser, so nothing about what you generate ever leaves your device or gets logged on a server.",
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Pictionary" (drawing-and-guessing party game format this tool\'s prompts are commonly used for)',
+				url: 'https://en.wikipedia.org/wiki/Pictionary',
+			},
+		],
+		embedHeight: 900,
+	},
+	{
 		slug: 'body-surface-area-calculator',
 		category: 'Health',
 		title: 'Body Surface Area (BSA) Calculator',
