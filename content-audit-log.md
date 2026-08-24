@@ -1456,3 +1456,99 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "calorie-calculator",
+  "last_audited": "2026-08-24",
+  "published_date": "2026-08-09",
+  "note": "全站56个工具中last_audited缺失（从未审计过）工具里published最早的一个（其余16个已在8/2-8/23期间审计过一轮，40个从未审计）；本工具在2026-08-09独立审核agent发现L-0809-2级联下拉框状态失配bug时尚未发布，本次是它首次真正上线后被例行审计到，也是首次核实该bug修复是否在生产环境中站得住。",
+  "checklist": [
+    "公式权威性：BMR = 10×kg + 6.25×cm − 5×age (+5男/−161女) 是否与Mifflin MD, St Jeor ST et al. 1990 (Am J Clin Nutr 51(2):241-247) 原始发表公式一致",
+    "referenceTables三张表（BMR by profile 4行、TDEE by activity 5行、Goal calories 7行）每个数字是否能用src/lib/calories.ts公式独立重算复现（L-0805-15历史教训）",
+    "L-0809-2复发核查（最高优先级）：本工具正是该教训首次发现的对象——Lose/Gain两个目标各自的Target rate下拉选项集不同（LOSE_RATES vs GAIN_RATES），切换目标时rate状态是否正确重置，UI选中态与实际参与计算的数值是否可能不一致",
+    "2013 AHA/ACC/TOS指南1200-1500(女)/1500-1800(男)安全下限断言、3500kcal/lb换算惯例（Wishnofsky 1958）、NIH Body Weight Planner非线性研究引用，是否真实存在且未被更新的指南取代",
+    "embed组件(/embed/calorie-calculator/)是否可正常渲染并计算，有无控制台报错；是否使用innerHTML+scoped CSS模式（本站姊妹站已知bug模式）"
+  ],
+  "findings": [
+    {
+      "dimension": "1. EEAT（公式权威性/方法论透明度）",
+      "status": "未发现问题",
+      "detail": "src/lib/calories.ts文件头注释完整标注BMR公式出处（Mifflin-St Jeor 1990原始study）、activity multiplier缺乏政府标准的坦诚说明、3500kcal/lb规则的历史出处（Wishnofsky 1958）及其局限性（引NIH Kevin Hall研究反驳线性假设）、安全下限依据（2013 AHA/ACC/TOS指南）。页面正文4个section逐一展开这些方法论说明（为何选Mifflin-St Jeor而非Harris-Benedict、活动系数为何是起点而非精确值、500卡赤字为何不会精确兑现1磅/周）。页脚'Built and maintained by Owen Zhang...last reviewed 2026-08-09'具名作者署名+可见新鲜度信号。"
+    },
+    {
+      "dimension": "2. 公式/常量准确性（最高优先级）",
+      "status": "未发现问题，独立agent复核CONFIRMED",
+      "detail": "独立Python脚本重新实现公式，逐一复现referenceTables全部16个数字（BMR by profile 4行、TDEE by activity 5行基于固定BMR=1600、Goal calories 7行基于固定TDEE=2400）：全部精确匹配。imperial换算用精确国际系数（1lb=0.45359237kg, 1in=2.54cm）。npx vitest run tests/calories.test.ts 19/19通过（该测试文件本身注明期望值来自独立计算并交叉核对）。浏览器实测主页面（Female/30/150lb/5'6\"/Lightly active/Lose 1lb/week）BMR=1417、TDEE=1949、target=1449，手算精确匹配。"
+    },
+    {
+      "dimension": "3. 时效性",
+      "status": "未发现问题",
+      "detail": "WebSearch核实2013 AHA/ACC/TOS指南至今（2026）未被ACC/AHA正式替代或修订（2019 ACC/AHA心血管一级预防指南仅含4条相关但非替代性建议；2025年多个其他学会独立发布了新指南，但均未取代2013版作为calorie-deficit安全阈值的权威来源），页面引用的1200-1500/1500-1800 kcal/day断言经WebSearch原文核实准确无误。"
+    },
+    {
+      "dimension": "4. 竞品差异化",
+      "status": "未发现问题，独立agent复核CONFIRMED",
+      "detail": "WebSearch确认'calorie calculator'头部词由Mayo Clinic/Calculator.net/Healthline/Forbes Health等高权重站占据，CalcBadger作为小型工具站不现实指望头部词短期进前页——但独立复核显式排除了'能否排名'作为差异化判断依据，只判断内容实质：CalcBadger页面含4个说明性section+3张带worked example的参考表+6条FAQ+3条可点击引文（含DOI），核对calculator.net与inchcalculator.com的同类页面后确认，同类竞品通常只陈述公式本身，不会引用原始1990论文DOI、不会挂具体医学指南做安全阈值依据、不会点名NIH研究者姓名解释3500kcal规则为何不是线性关系——非空转外壳页。"
+    },
+    {
+      "dimension": "5. SEO技术审计",
+      "status": "未发现问题",
+      "detail": "title'Calorie Calculator | CalcBadger'(31字符)、description 141字符（150-160区间内，未截断）、canonical自指、H1唯一、H2/H3层级无跳级（4个说明性H2→3张表H2→FAQ的H2+6个H3→embed/相关工具H2）、WebApplication+FAQPage+BreadcrumbList三处JSON-LD均抓取核对与tools.ts数据逐字一致、viewport正确、无图片标签（合理，无需alt）、robots.txt显式Allow GPTBot/ChatGPT-User/ClaudeBot/Claude-Web/PerplexityBot/Google-Extended、ads.txt正确列出pub-5245502795720653、/privacy/与/about/均200。"
+    },
+    {
+      "dimension": "6. GEO审计",
+      "status": "未发现问题，明显超过≥80/99门槛",
+      "detail": "按ai-seo skill Content Extractability Check人工核对：清晰定义段（coreSummary含公式+多个hedge说明）✓、FAQ自包含答案块✓（6条）、带来源统计数字✓（3条sources含DOI/指南/NIH链接）、3张参考表✓、FAQPage schema✓、具名作者署名(Owen Zhang)+可见'last reviewed 2026-08-09'新鲜度✓、robots.txt允许全部主流AI爬虫✓，7/7项清晰通过。站内暂无llms.txt/pricing.md（全站性缺口，非本工具专属问题，不影响本次评分）。"
+    },
+    {
+      "dimension": "7. 早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published 2026-08-09晚于2026-08-07规则生效日，发布时已受humanizer+avoid-ai-writing双重检查约束；抽查tools.ts calorie-calculator条目与CalorieCalculator.tsx组件均未发现em dash/ASCII双连字符/AI高频词。"
+    },
+    {
+      "dimension": "8. 外部引用链接腐烂",
+      "status": "未发现问题，独立agent复核CONFIRMED",
+      "detail": "3条sources链接中doi.org（换浏览器UA后200）与niddk.nih.gov（直接200）curl可访问；ahajournals.org持续403（含浏览器UA），核实为该期刊站点对自动化请求的机器人防护而非链接失效——WebSearch独立复核确认该URL对应真实可访问的2013 AHA/ACC/TOS指南页面，且指南原文中的具体数字（1200-1500女/1500-1800男kcal/day）与页面引用完全一致。"
+    },
+    {
+      "dimension": "9. 内链健康度",
+      "status": "未发现问题",
+      "detail": "页面outbound relatedFinal正确渲染（bmi-calculator/body-surface-area-calculator/ffmi-calculator/gpa-calculator/steps-to-miles-calculator/tip-calculator，Health类目仅5个工具不足6篇触发跨类目补齐，符合site-toolkit pickRelatedGuides+crossCategory算法预期）；抽查tip-calculator/gpa-calculator页面均实测curl确认存在指向/calorie-calculator/的inbound链接，非孤儿页。"
+    },
+    {
+      "dimension": "10. Schema一致性",
+      "status": "未发现问题",
+      "detail": "抓取线上JSON-LD逐字段核对：WebApplication description与tools.ts description verbatim一致；FAQPage 6条Q&A与tools.ts faq数组逐字一致；BreadcrumbList三级（Home/Health/Calorie Calculator）与category字段一致；dateModified='2026-08-09'与updated字段一致。"
+    },
+    {
+      "dimension": "11. 合规/敏感度漂移",
+      "status": "未发现问题",
+      "detail": "本工具涉及健康/医疗边界话题（卡路里摄入建议），/terms/页面'No professional advice'条款明确覆盖'not...medical...advice'；页面本身对低于安全下限的目标主动显示橙色警示条并引用2013指南建议咨询医生，而非静默给出可能不安全的数字——属于对敏感话题的负责任处理，非合规风险。"
+    },
+    {
+      "dimension": "12. 图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图，无<img>标签。"
+    },
+    {
+      "dimension": "13. AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；/about/、/privacy/均200；页面标题与内容无误导性权威声称，反而多处主动hedge准确性局限（'不是精确工具''请以几周实测调整'），健康类工具的谨慎表述本身是AdSense合规的加分项，无需升级。"
+    },
+    {
+      "dimension": "工具专属：embed组件功能测试",
+      "status": "未发现问题，独立agent复核CONFIRMED（L-0809-2级联下拉框bug）",
+      "detail": "浏览器实测主页面与/embed/calorie-calculator/均正常渲染并计算，全部_astro/*.js资源200，控制台仅2条与cdn-cgi/rum信标相关的ERR_CONNECTION_CLOSED（页面导航时的良性竞态，非资源加载失败，两个页面所有实际资源均200）。CalorieCalculator.tsx未使用innerHTML拼接markup（纯preact JSX渲染），不受姊妹站已知的Astro scoped CSS+innerHTML bug模式影响。**L-0809-2重点复测**：实测将rate设为Lose下的'2 lb/week'后切换Goal到Gain，UI正确重置为'0.25 lb/week'（GAIN_RATES[0]）且计算结果同步更新为2074 cal/day（=1949+125，与新rate一致，非stale值）；独立agent逐行核对handleGoalChange（第75-81行）确认setGoal与setRate在同一handler内同步调用，不存在goal='gain'与stale rate='2'共存的中间渲染态。确认该bug在生产环境的修复是稳固的，非本次审计新发现的复发。"
+    }
+  ],
+  "independent_verification": "4条独立fresh-context agent复核，均在40秒内正常完成，无卡死、无需看门狗降级：①公式/常量准确性（独立Python重算referenceTables全部16个数字+跑通19个vitest用例）CONFIRMED；②L-0809-2级联下拉框bug修复稳固性（逐行核对handleGoalChange+追踪具体切换场景）CONFIRMED；③3条外部引用链接真实可访问且内容匹配（WebSearch核实，不依赖curl/WebFetch）CONFIRMED；④非稀薄竞品克隆（WebSearch核对calculator.net/inchcalculator.com同类页面后独立判断）CONFIRMED。四项均为发现\"未发现问题\"结论的验证，无需要修复的confirmed finding。",
+  "actions_taken": [
+    "本次审计13个维度+2项工具专属检查（embed功能、L-0809-2复测）均未发现需要修复的问题，未做任何代码/数据改动，未涉及git commit/push/IndexNow提交",
+    "跳过Step 5（验证与部署），因无编辑改动；updated/published字段均未触碰（published='2026-08-09'已存在，无需回填）"
+  ],
+  "seo_score": "title/description/canonical/H1/schema/robots.txt/ads.txt全部健康，无需改动",
+  "geo_score": "ai-seo skill Content Extractability Check 7/7项清晰通过，明显超过≥80/99门槛",
+  "escalation": null
+}
+```
