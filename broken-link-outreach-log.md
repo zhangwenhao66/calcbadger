@@ -170,3 +170,51 @@
 2. `statisticshowto.com/how-to-calculate-odds-of-winning/`连续两轮（8/16、8/21）均因Cloudflare挑战页/403拿不到内容，**已确认不是死链问题而是访问受限问题**，是否值得继续追（该页锚文本直接对应CalcBadger Fraction Calculator）留给下轮判断是否值得上浏览器工具核实，或直接放弃转向其他候选。
 3. Real Estate/Food & Drink/Text Tools三个较新分类（prorated-rent-calculator/keg-calculator/glitch-text-generator等）本轮WebSearch和竞品缺口分析均未找到任何候选资源页（竞品外链画像里没有覆盖这些细分主题的小型独立站），下次可尝试换更细分的竞品（如`steadily.com`房产测算工具、`brewersfriend.com`酿造计算器）反查外链，而非继续用宽泛关键词WebSearch。
 4. Concrete Calculator候选资源池明显比其他工具丰富（calculator.net外链画像里独立预拌混凝土公司占比高），但本轮14个成功抓取的页面出站链接数普遍很少（多数1-2条，且多是自己的社交媒体/联系页），命中率低是样本本身链接密度低导致，不是候选质量问题——下次同类"公司主页"型候选，可以改抓该公司网站下的"服务页/关于我们页"而非纯首页，出站链接数可能更多。
+
+---
+
+## 2026-08-24（第五次运行）
+
+### 第一部分：验证10天前旧pitch
+
+按本轮任务说明，上层会话已统一处理：CalcBadger唯一发出的邮件在8/16（`info@thelawnturflaying.co.uk`），距今仅8天，不满10天验证窗口，本次运行不重复验证。
+
+### 第二部分：新断链置换机会
+
+先读`src/data/tools.ts`确认当前真实工具清单：站点已从上轮（8/21，约45个工具）扩到**57个工具**，14个分类（Construction/Conversion/Date & Time/Education/Finance/Food & Drink/Games/Health/Home Improvement/Math/Real Estate/Reference/Science/Text Tools）。
+
+**遗留待办1：6个SSL握手失败候选页重新抓取**——用browser UA（Chrome 126 on macOS）+curl（非Python urllib）逐个重试`dirtcheep.ca`/`cornerstonedfw.com`/`pivotordie.com/how-to-read-a-tape-measure`/`dr-aart.nl/Arithmetic-rounding-off.html`/`teaguerental.com`/`centralmixconcrete.com`：
+- 5个恢复200正常访问（`centralmixconcrete.com`本次是`curl: (60) SSL certificate problem: certificate has expired`——这是该站**自己域名证书过期**，不是出站链接死链问题，跟我们的置换机会无关，标记放弃跟踪）。
+- 对5个可访问页面逐个提取出站链接（跳过站内链接）：`dirtcheep.ca`（3条：aweditycreative本地建站商、Facebook、inchcalculator soil-calculator）、`cornerstonedfw.com`（0条外部链接，页面本身无出站资源链接）、`pivotordie.com`（2条：Akismet隐私政策、inchcalculator inch-fraction-calculator）、`dr-aart.nl`（1条：omnicalculator sig-fig）、`teaguerental.com`（6条：calculator.net concrete-calculator、Facebook、2条Google Maps地址、2条Thryv隐私/条款页）。**全部存活，0条死链**——这5个页面链的都是活的竞品计算器工具或纯品牌/地图/政策页，本轮确认这条carryover线索彻底关闭，不再是可挖掘方向。
+
+**遗留待办2：`statisticshowto.com/how-to-calculate-odds-of-winning/`第三次尝试**——`curl -A "Chrome/126..." -L` 仍返回`HTTP 403`（Cloudflare拦截）。连续三轮（8/16、8/21、8/24）均无法用curl访问，判定本沙箱工具链下这个目标不可持续追踪，**本轮起放弃**，不再列入下轮遗留待办。
+
+**遗留待办3：Real Estate/Food & Drink/Text Tools三个新分类的竞品反查**——按建议方向用`dataforseo_query.py backlinks`查了两个新竞品域名：
+
+- `steadily.com`（房产测算工具，主打landlord/rental）：`--mode one_per_domain --limit 120`拉取（引荐域名总数3198，样本4%）未直接命中`prorat`关键词（one_per_domain模式按域名最高权重页采样，未必包含目标细分页）。改用**页面级精确查询**（`backlinks`命令`target`参数支持完整URL）直接查steadily.com站内已确认存在的对应页`/blog/prorated-rent-calculator-everything-you-need-to-know`（`--mode as_is --limit 50`），命中全部4条外链，全部命中CalcBadger的Prorated Rent Calculator：
+  - `councilbluffspropertymanagementinc.com/blog/how-do-you-calculate-prorated-rent-in-council-bluffs-ia`——curl 200存活，但`datePublished`/`dateModified`均为2025-01-22，超过12个月未更新（站点sitemap显示其他页面2026-03仍在更新，站点本身非僵尸，但**这篇具体文章**不满足硬性规则3"近12个月有真实更新迹象"）。
+  - `righthousepm.com/blog/how-do-you-calculate-prorated-rent-in-orlando-fl`——curl 200存活，`datePublished`/`dateModified`均为2025-01-28，同样超过12个月，同样理由不满足。
+  - `creatingrealestatesolutions.com/blog/figuring-out-a-prorated-rent-calculator-move-out/`——curl 200存活，`dateModified`2025-02-18，超过12个月，不满足。
+  - `cashforhousesfl.com/blog/the-importance-of-prorated-rent-calculator-move-out/`——**curl返回404，页面已不存在**，链接来源页本身已消失，无法联系。
+  - 另外，前两个标题格式"How Do You Calculate Prorated Rent in [City] [State]"高度疑似同一物业管理加盟网络（Property Management Inc系）按城市换词的模板化内容，即使时间不过期也可能因内容非本地编辑控制、难以获得真正的编辑响应而降低命中率。**四个候选全部放弃**：3个因硬性规则3的12个月更新窗口不满足，1个因目标页已404无法联系。
+- `brewersfriend.com`（自酿啤酒工具站）：`--mode one_per_domain --limit 150`。命中的keg相关外链（keg-carbonation-calculator、CO2 line length等）全部是**精细的自酿工艺技术计算器**（麦芽糖化、酵母接种率、CO2管路压力），跟CalcBadger的`keg-calculator`（读`src/lib/kegCalculator.ts`确认：算的是聚会用桶的"能倒多少杯/需要几桶"，面向party planning而非自酿工艺）功能定位不同，**不构成主题对应，硬性规则2排除**。
+
+**顺带发现：Pool Calculator候选**（非本轮主动搜索目标，是复用8/16/8/21已缓存的omnicalculator/inchcalculator外链JSON做关键词扫描时命中）：读`src/lib/pool.ts`确认CalcBadger的Pool Calculator同时算泳池体积（加仑）和盐氯化投放量（ppm），理论上能对应两类候选，但逐一核实：
+  - `clarkespoolwater.net/water-chart.html`（inchcalculator pool-volume-calculator）——Weebly建站，页面近乎空白（仅"Water Chart"标题+1条外链+Weebly版权信息），无发布/更新日期证据，无法核实活跃度，且无法定位联系邮箱，跳过。
+  - `cashblog.com/cost-of-maintaining-a-pool/`（inchcalculator pool-volume-calculator，锚文本"pool volume calculator"）——`dateModified: 2022-12-26`，接近4年未更新，明显不满足硬性规则3，跳过。
+  - `forgedbysalt.com/saltwater-pools-how-much-salt/`（omnicalculator pool-salt）——`dateModified: 2025-07-09`，超过12个月（约13.5个月）；且该竞品链接是**Omni Calculator官方embed组件**（`<div class="omni-calculator">`嵌入widget+品牌角标），不是普通文字超链接，置换难度和验证标准都更高。判定不满足硬性规则3，跳过。
+
+### 本轮结论
+
+**0封邮件发出，`outreach-drafts.md`未修改。** 本轮系统性验证了3条上轮遗留线索（SSL重试候选、statisticshowto.com、Real Estate/Food & Drink/Text Tools新方向），并追加发现Pool Calculator候选3个：
+- SSL重试候选：5个页面确认无死链，该方向确认关闭。
+- statisticshowto.com：三次尝试均被Cloudflare拦截，本轮起放弃追踪。
+- 竞品反查新方向：用页面级精确查询成功定位到steadily.com的prorated-rent-calculator对应页的4条外链（此前one_per_domain抽样方法未能命中，本轮验证"按已知竞品具体页面URL做`--mode as_is`精确查询"比泛域名抽样更有效，可作为下轮方法论沉淀），但4个候选全部因12个月更新窗口不满足（3个）或目标页已404（1个）被放弃；brewersfriend.com方向因功能定位不匹配（工艺技术vs聚会用量）被排除。
+- Pool Calculator 3个候选：均因更新时间超过12个月或内容/联系方式门槛不满足被放弃。
+
+### 遗留待办（供下次运行参考）
+
+1. **方法论沉淀**：反查已知竞品的"具体功能页URL"（`--mode as_is --limit 50`）比泛域名`one_per_domain`抽样更容易命中细分主题的真实候选（本轮steadily.com案例4/4命中主题相关，虽然最终都因时效性被放弃）。下轮可对inchcalculator/omnicalculator/calculator.net也用同样方法精确查询CalcBadger对应的细分工具页（如inchcalculator的keg/pizza/gpa类页面，若存在的话），而非只做泛域名抽样。
+2. Real Estate/Food & Drink/Text Tools三个分类**连续三轮（8/16、8/21、8/24）竞品反查/WebSearch均未产出可发送候选**，本轮虽首次找到4个主题精确匹配的候选但全部因时效性/页面消失被放弃——说明这个细分领域存在真实候选但普遍时效性差（多为2025年初的一次性文章，未持续更新），下轮如果继续投入这三个分类，建议直接放宽到"发布未满12个月"的更新竞品博客（如查询发布日期在2025-09之后的prorated rent/keg/text tool相关文章），而非依赖外链数据反查（外链数据本身有滞后性，热文章的外链需要时间积累，新文章反而外链少查不到）。
+3. Text Tools分类（glitch-text-generator/small-text-generator/sentence-counter/wingdings-translator）**四轮以来完全没有找到任何候选**，竞品（omnicalculator/inchcalculator/calculator.net）本身可能都不覆盖这类文本工具，导致反查外链天然没有信号——下轮建议换成直接反查专做文本工具的竞品（如`lingojam.com`、`fontvilla.com`等文本生成器站）的外链，而非继续套用施工/理财类竞品的方法论。
+4. `centralmixconcrete.com`（8/21候选之一）本轮确认SSL证书已过期，这是它自己域名的问题，不是我们的置换机会，下轮无需再重试这个域名。
