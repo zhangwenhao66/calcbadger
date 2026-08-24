@@ -56,6 +56,7 @@ import VolumeConverter from './calculators/VolumeConverter';
 import WaccCalculator from './calculators/WaccCalculator';
 import WeightConverter from './calculators/WeightConverter';
 import WingdingsTranslator from './calculators/WingdingsTranslator';
+import WordsToPagesCalculator from './calculators/WordsToPagesCalculator';
 import WorldClockConverter from './calculators/WorldClockConverter';
 import YesNoWheel from './calculators/YesNoWheel';
 
@@ -120,3 +121,4 @@ const { slug } = Astro.props;
 {slug === 'graffiti-alphabet' && <GraffitiAlphabetGenerator client:load />}
 {slug === 'pizza-calculator' && <PizzaCalculator client:load />}
 {slug === 'wacc-calculator' && <WaccCalculator client:load />}
+{slug === 'words-to-pages-calculator' && <WordsToPagesCalculator client:load />}

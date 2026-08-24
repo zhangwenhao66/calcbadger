@@ -6800,4 +6800,124 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'words-to-pages-calculator',
+		category: 'Education',
+		title: 'Words to Pages Calculator',
+		shortTitle: 'Words to Pages',
+		description:
+			'Convert a word count into an estimated page count (or the reverse), based on font, size, and line spacing. Uses the standard 250-words-per-page, double-spaced convention as the baseline.',
+		updated: '2026-08-24',
+		published: '2026-08-24',
+		coreSummary:
+			'At the standard formatting baseline of 12-point Times New Roman with one-inch margins, a page holds about 250 words double-spaced or 500 words single-spaced. 1,000 words works out to about 4 pages double-spaced or 2 pages single-spaced.',
+		queries: [
+			'words to pages calculator',
+			'how many pages is 1000 words',
+			'how many pages is 500 words',
+			'how many pages is 2000 words',
+			'how many pages is 5000 words',
+			'how many words per page',
+			'word count to page count',
+		],
+		sections: [
+			{
+				heading: 'Why word counts turn into page counts',
+				body: [
+					'Assignment instructions and submission guidelines rarely agree on units. A professor asks for "five pages." A literary magazine caps short-story submissions at "7,500 words." Converting between the two only works if you also know the formatting, since font, size, and line spacing all change how many words fit on a physical page.',
+					'That is why "how many pages is 1,000 words" does not have one universal answer: it depends on what the page looks like.',
+				],
+			},
+			{
+				heading: 'The standard baseline: 250 or 500 words a page',
+				body: [
+					'The number most style guides and writing centers land on is 250 words per double-spaced page at 12-point Times New Roman with one-inch margins, and 500 words per page at the same font and size single-spaced. The 250-to-300-word range comes from William Shunn\'s "Proper Manuscript Format," the formatting standard most fiction markets still point submitters to, and it lines up with the 12-point, double-spaced layout that MLA and most academic style guides specify for essays.',
+					'Shunn himself has cautioned against treating that figure as precise: it dates from the era of monospaced typewriters, and a proportional font like Times New Roman does not fill a page as predictably. His advice for a finished manuscript is to trust your word processor\'s exact word count rather than any page-based estimate. This calculator is for the opposite, earlier situation: sizing a draft before it is written, when an exact count is not yet possible. Treat its output the same way: a planning number, not a replacement for the word processor\'s count once the document exists.',
+				],
+			},
+			{
+				heading: 'Font and line spacing change the math',
+				body: [
+					"Times New Roman at 12pt is the reference point because it's what the 250/500 figures were built around, but Arial and Calibri are common substitutes, and neither packs words onto a page the same way. Arial 12pt runs slightly wider than Times New Roman, so it fits fewer words per line: a range commonly cited across font-comparison guides puts it around 450 to 500 words per single-spaced page, roughly 470 as a working middle figure. Calibri at its default 11pt is narrower and smaller, so it fits more, with guides putting single-spaced Calibri in the 550 to 600 range, around 575 in the middle. Neither is a fixed standard the way Times New Roman 12pt is, so treat them as estimates rather than exact counts.",
+					'Line spacing scales in the opposite direction, in a simple and predictable way: doubling the spacing between lines roughly halves how many lines (and words) fit on a page. That is exactly the relationship between 500 words single-spaced and 250 words double-spaced at the same font, so this calculator derives 1.15-line and 1.5-line spacing by dividing the single-spaced baseline by the spacing multiplier, rather than treating them as separately measured numbers.',
+				],
+			},
+			{
+				heading: 'Worked example',
+				body: [
+					'A 1,000-word essay in 12pt Times New Roman comes out to roughly 2 pages single-spaced (1,000 ÷ 500) or 4 pages double-spaced (1,000 ÷ 250). Switch to Calibri 11pt double-spaced and the same 1,000 words compresses to about 3.5 pages (1,000 ÷ 287.5), because Calibri\'s smaller, narrower default fits more text per line than Times New Roman 12pt.',
+				],
+			},
+			{
+				heading: 'When exact counts matter more than estimates',
+				body: [
+					'These figures assume plain paragraphs with no headings, block quotes, bullet lists, images, or wide chapter breaks. All of those eat page space without adding as many words, so a works-cited page, a title page, or a heavily subheaded report runs shorter on words per page than a plain-text essay.',
+					'For a final submission where the page count is graded or contractually specified, format the document in your own word processor and check its page counter rather than relying on any estimate, this one included.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Word count to page count, 12pt Times New Roman',
+				headers: ['Word count', 'Double-spaced', 'Single-spaced'],
+				rows: [
+					['500 words', '2 pages', '1 page'],
+					['1,000 words', '4 pages', '2 pages'],
+					['1,500 words', '6 pages', '3 pages'],
+					['2,000 words', '8 pages', '4 pages'],
+					['2,500 words', '10 pages', '5 pages'],
+					['5,000 words', '20 pages', '10 pages'],
+					['10,000 words', '40 pages', '20 pages'],
+				],
+				note: 'Assumes 12-point Times New Roman, one-inch margins, and plain paragraph text with no headings or images. Other fonts and spacing options shift these figures; use the calculator above for those combinations.',
+			},
+		],
+		faq: [
+			{
+				question: 'How many pages is 1,000 words double-spaced?',
+				answer:
+					'About 4 pages at 12-point Times New Roman with one-inch margins, using the standard 250-words-per-page convention. Single-spaced, the same 1,000 words runs about 2 pages.',
+			},
+			{
+				question: 'How many pages is 500 words?',
+				answer:
+					'About 2 pages double-spaced or 1 page single-spaced, at 12pt Times New Roman. That is a short essay or a long blog intro, well short of a full research paper.',
+			},
+			{
+				question: 'How many pages is 2,000 words double-spaced?',
+				answer:
+					'About 8 pages at 12pt Times New Roman double-spaced, or 4 pages single-spaced. That is a typical length for a college research paper assignment.',
+			},
+			{
+				question: 'Does the font I pick change the page count?',
+				answer:
+					'Yes, though not as much as line spacing does. Switching from Times New Roman to a narrower font like Calibri can shrink a document by roughly 10 to 15 percent at the same point size, since Calibri fits more characters per line. Switching from double- to single-spacing has a much bigger effect: it roughly doubles how many words fit per page.',
+			},
+			{
+				question: 'Why do teachers ask for double-spaced pages instead of just giving a word count?',
+				answer:
+					'Double spacing leaves room for handwritten or inline comments between the lines, which is the traditional rationale behind the format, and it makes a document easier to read and to estimate the length of at a glance.',
+			},
+			{
+				question: 'Is 250 words per page an exact number?',
+				answer:
+					'No, it is a rule of thumb for standard formatting: 12pt Times New Roman, one-inch margins, plain paragraphs. Real documents vary with margin width, paragraph length, headings, and block quotes. For a submission where the exact page count matters, format the document and check the actual page counter rather than relying on this estimate.',
+			},
+		],
+		sources: [
+			{
+				label: 'William Shunn, "Proper Manuscript Format": the 12-point, double-spaced formatting convention this calculator uses as its baseline',
+				url: 'https://www.shunn.net/format/story/',
+			},
+			{
+				label: 'William Shunn, "The Old Rule of Thumb for Estimating Word Count Is Obsolete": why a page-based word count is an estimate, not a substitute for your word processor\'s exact count',
+				url: 'https://www.shunn.net/format/2021/04/the_old_rule_of_thumb_for_estimating_word_count_is_obsolete.html',
+			},
+			{
+				label: 'Purdue OWL: MLA General Format, the 12-point font and double-spacing convention for academic papers',
+				url: 'https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_general_format.html',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
