@@ -18,6 +18,7 @@ import ConcreteCalculator from './calculators/ConcreteCalculator';
 import ConduitFillCalculator from './calculators/ConduitFillCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
+import FfmiCalculator from './calculators/FfmiCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
 import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
 import GlitchTextGenerator from './calculators/GlitchTextGenerator';
@@ -76,6 +77,7 @@ const { slug } = Astro.props;
 {slug === 'cd-calculator' && <CdCalculator client:load />}
 {slug === 'coin-flip-simulator' && <CoinFlipCalculator client:load />}
 {slug === 'concrete-calculator' && <ConcreteCalculator client:load />}
+{slug === 'ffmi-calculator' && <FfmiCalculator client:load />}
 {slug === 'date-calculator' && <DateCalculator client:load />}
 {slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
 {slug === 'stair-calculator' && <StairCalculator client:load />}

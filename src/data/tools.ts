@@ -6920,4 +6920,103 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 760,
 	},
+	{
+		slug: 'ffmi-calculator',
+		category: 'Health',
+		title: 'FFMI Calculator',
+		shortTitle: 'FFMI Calculator',
+		description:
+			'Calculate your Fat-Free Mass Index and height-normalized FFMI from weight, height, and body fat percentage, and see how it compares to the documented natural (non-steroid) ceiling of 25.',
+		updated: '2026-08-24',
+		published: '2026-08-24',
+		coreSummary:
+			'FFMI measures muscle mass relative to height, independent of body fat: fat-free mass (weight minus fat) divided by height in meters squared. Normalized FFMI adjusts that number to a 1.80 m reference height so people of different heights compare fairly. Kouri et al. (1995) found that normalized FFMI in drug-free male athletes topped out at 25.0, while steroid users reached 28-32 — a threshold still used as a rough natural-vs-enhanced reference point.',
+		queries: ['ffmi calculator', 'fat free mass index calculator', 'normalized ffmi calculator', 'ffmi natural limit'],
+		sections: [
+			{
+				heading: 'What FFMI measures that BMI and body fat percentage don\'t',
+				body: [
+					'BMI divides weight by height squared and cannot tell muscle from fat, which is why a heavily muscled person can land in BMI\'s "overweight" band despite low body fat. Body fat percentage alone has the opposite gap: it says how lean someone is but nothing about how much muscle they are carrying at that leanness.',
+					'FFMI, fat-free mass index, answers a narrower question: how much lean mass do you have relative to your height? It strips out fat entirely, so a 200 lb person at 10% body fat and a 160 lb person at 10% body fat get compared on the muscle they actually carry, not their weight or their leanness alone.',
+				],
+			},
+			{
+				heading: 'The formula and why it gets normalized',
+				body: [
+					'Fat-free mass is weight minus the fat portion: FFM = weight × (1 − body fat% ÷ 100). FFMI is that fat-free mass divided by height in meters squared, the same height-squared denominator BMI uses.',
+					'Raw FFMI still favors taller people slightly, the same way raw muscle mass does, so Kouri et al.\'s 1995 study in the Clinical Journal of Sport Medicine added a normalization term: normalized FFMI = FFMI + 6.3 × (1.80 − height in meters). At exactly 1.80 m the correction is zero; below it, the correction adds a small amount; above it, it subtracts. This puts everyone on the scale of a 1.80 m (5\'11") reference man, which is what makes normalized FFMI comparable across different heights.',
+				],
+			},
+			{
+				heading: 'The natural-limit reference: 25, and where it comes from',
+				body: [
+					'The 1995 study compared 83 anabolic-androgenic steroid users to 74 nonusers among 157 male athletes. Normalized FFMI among the nonusers had a well-defined ceiling of 25.0; a separate estimate for 20 Mr. America winners from the presteroid era, 1939 to 1959, put their mean normalized FFMI at 25.4. Steroid users in the same sample ran 28 to 32. That gap is why a normalized FFMI at or above roughly 25 gets flagged in fitness and sports-medicine discussion as reaching the outer edge of what is typically achievable without pharmacological help.',
+					'Two limits worth stating plainly: this ceiling comes from a male-only sample, so there is no equivalent peer-reviewed natural limit for women to compare against, and it is a population-level pattern from one study, not an individual diagnosis. Someone with an unusually long torso, wide frame, or years of dedicated training could sit near or above 25 without any pharmacological history, and the original researchers presented it as a useful reference point, not a hard rule.',
+				],
+			},
+			{
+				heading: 'Worked example',
+				body: [
+					'A 198 lb (90 kg), 5\'11" (180 cm) man at 12% body fat has 79.2 kg of fat-free mass (90 × 0.88). Dividing by height in meters squared (1.80² = 3.24) gives a raw FFMI of 24.4. Because 180 cm is exactly the reference height, the normalization term is zero, so normalized FFMI is also 24.4 — about 98% of the 25 natural-limit reference.',
+				],
+			},
+			{
+				heading: 'Where the body fat percentage comes from matters',
+				body: [
+					'This calculator does not estimate body fat percentage; it takes it as an input, because every estimation method (skinfold calipers, bioelectrical impedance scales, DEXA scans, hydrostatic weighing) carries its own error margin, and folding that uncertainty into a single number would hide how rough the underlying estimate might be. A cheap bioimpedance scale can be off by several percentage points depending on hydration; DEXA is the more accurate reference but is far less accessible. FFMI is only as reliable as the body fat percentage you feed it, so treat the output as directional rather than exact if your body fat number is a rough guess.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Fat-free mass needed to reach normalized FFMI 20, 22, and 25 by height',
+				headers: ['Height', 'FFM for FFMI 20', 'FFM for FFMI 22', 'FFM for FFMI 25 (natural-limit reference)'],
+				rows: [
+					["5'3\" (160 cm)", '48.0 kg / 106 lb', '53.1 kg / 117 lb', '60.8 kg / 134 lb'],
+					["5'5\" (165 cm)", '51.9 kg / 114 lb', '57.3 kg / 126 lb', '65.5 kg / 144 lb'],
+					["5'7\" (170 cm)", '56.0 kg / 123 lb', '61.8 kg / 136 lb', '70.4 kg / 155 lb'],
+					["5'9\" (175 cm)", '60.3 kg / 133 lb', '66.4 kg / 146 lb', '75.6 kg / 167 lb'],
+					["5'11\" (180 cm)", '64.8 kg / 143 lb', '71.3 kg / 157 lb', '81.0 kg / 179 lb'],
+					["6'1\" (185 cm)", '69.5 kg / 153 lb', '76.4 kg / 168 lb', '86.6 kg / 191 lb'],
+					["6'3\" (190 cm)", '74.5 kg / 164 lb', '81.7 kg / 180 lb', '92.5 kg / 204 lb'],
+				],
+				note: 'Fat-free mass, not total body weight — add back whatever body fat is carried on top of this to get total weight. Figures are derived algebraically from the normalized-FFMI formula (Kouri et al. 1995), not independently measured.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a good FFMI?',
+				answer:
+					'There is no single peer-reviewed "good" cutoff, but Kouri et al.\'s 1995 study found normalized FFMI in drug-free male athletes topped out around 25, with steroid users running 28-32. A normalized FFMI in the high teens to low twenties is common among people with meaningful training experience; values approaching 25 sit at the edge of what that study found achievable naturally.',
+			},
+			{
+				question: 'What counts as a natural FFMI limit?',
+				answer:
+					'Kouri et al. (1995) found normalized FFMI among drug-free male athletes did not exceed 25.0, and a separate sample of pre-steroid-era Mr. America winners (1939-1959) averaged 25.4. That figure comes from a male-only sample; there is no equivalent published natural-limit number for women.',
+			},
+			{
+				question: 'Why does FFMI use body fat percentage instead of just weight and height?',
+				answer:
+					'Weight and height alone (as in BMI) cannot separate muscle from fat, so two people at the same weight and height but different body fat percentages would get the same score despite very different muscle mass. FFMI backs out the fat portion first so the number reflects lean mass specifically.',
+			},
+			{
+				question: 'Why does normalized FFMI differ from raw FFMI?',
+				answer:
+					'Raw FFMI (fat-free mass ÷ height²) still gives taller people a slight edge, similar to how BMI behaves. Kouri et al. added a correction, 6.3 × (1.80 − height in meters), so scores from people of different heights land on the same comparative scale, referenced to a 1.80 m (5\'11") man.',
+			},
+			{
+				question: 'Does this calculator estimate my body fat percentage?',
+				answer:
+					'No — you supply the body fat percentage as an input. FFMI\'s accuracy depends entirely on how accurate that number is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'Kouri EM, Pope HG Jr, Katz DL, Oliva P (1995). "Fat-free mass index in users and nonusers of anabolic-androgenic steroids." Clinical Journal of Sport Medicine 5(4):223-228 — the formula, normalization constant, and the 25.0 natural-limit finding',
+				url: 'https://pubmed.ncbi.nlm.nih.gov/7496846/',
+			},
+		],
+		embedHeight: 720,
+	},
 ];
