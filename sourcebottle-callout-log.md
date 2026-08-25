@@ -42,3 +42,14 @@
 - **Deadline**：2026-09-10 17:00（鼠标真实点击日历控件选中）。
 - **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `84338fb1b84466085a1a5e4467161c6f`。
 - **上线复核**：⏳ 待下次任务运行时补查。
+
+### 2026-08-25（周二，正常排期）— CalcBadger（calcbadger.com）
+
+- **问题标题**：Electricians and inspectors: a conduit fill violation that got missed until inspection, a wire pull, or overheating caught it?
+- **角度**：绑定`conduit-fill-calculator`工具页讲的NEC Chapter 9导管填充率规则——单根导体53%、恰好两根31%、三根及以上40%，超限会导致穿线困难或散热不良。征集电工/验房员举出真实案例——某段导管填充超过NEC限值，未在设计/安装阶段发现，直到验收、穿线或过热问题出现才暴露。与此前问过的楼梯计算器施工错误角度（08-04，木工/承包商）、实验室摩尔浓度计算错误角度（08-12，化学）、房贷月供漏项角度（08-18，金融）完全不同的工具与受众。
+- **绑定文章**：CalcBadger `conduit-fill-calculator`（Conduit Fill Calculator）。
+- **分类标签**：Topics = General + Professional Services；Countries = United States（NEC是美国电气规范，仅限美国）。
+- **表单设置**：Job title = Content Creator；Organisation = CalcBadger；Contact = Email；Unpaid；Email address 和 Contact email 均填 `contact@calcbadger.com`。
+- **Deadline**：2026-09-21 17:00（鼠标真实点击日历控件选中）。
+- **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `2e82a30a4b3d7ea2f566a45c791b4379`。
+- **上线复核**：⏳ 待下次任务运行时补查。

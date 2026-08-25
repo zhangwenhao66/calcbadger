@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 
-# AI / LLM crawlers — explicitly allowed for search visibility and citation (reviewed 2026-08-05)
 User-agent: GPTBot
 Allow: /
 
