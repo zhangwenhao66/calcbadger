@@ -2360,7 +2360,7 @@ export const tools: Tool[] = [
 			{
 				heading: "Not every offset is a whole hour",
 				body: [
-					'India Standard Time is UTC+5:30, fixed year-round with no daylight saving. The half-hour offset dates to 1906, when colonial authorities rejected an earlier proposal for two separate one-hour zones (GMT+5 and GMT+6) and picked the offset exactly between them instead. Nepal goes further, at UTC+5:45, and the Chatham Islands, a small New Zealand territory, sit at a standard offset of UTC+12:45 that shifts to UTC+13:45 during daylight saving. Newfoundland, Canada uses a half-hour offset too: UTC-3:30 standard, UTC-2:30 during daylight saving, a full 90 minutes off the rest of Atlantic Canada. Lord Howe Island, a small Australian island, goes further still. It\'s one of the very few daylight-saving regions anywhere that shifts its clocks by only 30 minutes instead of a full hour, moving from UTC+10:30 standard to UTC+11 during daylight saving.',
+					'India Standard Time is UTC+5:30, fixed year-round with no daylight saving. The half-hour offset dates to 1906, when colonial authorities rejected an earlier proposal for two separate one-hour zones (GMT+5 and GMT+6) and picked the offset exactly between them instead. Nepal goes further, at UTC+5:45, and the Chatham Islands, a small New Zealand territory, sit at a standard offset of UTC+12:45 that shifts to UTC+13:45 during daylight saving. Newfoundland, Canada uses a half-hour offset too: UTC-3:30 standard, UTC-2:30 during daylight saving, a full 30 minutes off the rest of Atlantic Canada. Lord Howe Island, a small Australian island, goes further still. It\'s one of the very few daylight-saving regions anywhere that shifts its clocks by only 30 minutes instead of a full hour, moving from UTC+10:30 standard to UTC+11 during daylight saving.',
 				],
 			},
 			{
@@ -2440,11 +2440,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'IANA Time Zone Database (tzdata) — the authoritative source for UTC offset and daylight-saving rules this page reads live via the browser\'s Intl API',
+				label: 'IANA Time Zone Database (tzdata): the authoritative source for UTC offset and daylight-saving rules this page reads live via the browser\'s Intl API',
 				url: 'https://www.iana.org/time-zones',
 			},
 			{
-				label: 'ECMA-402, the ECMAScript Internationalization API Specification — defines Intl.DateTimeFormat\'s time-zone-aware formatting behavior',
+				label: 'ECMA-402, the ECMAScript Internationalization API Specification: defines Intl.DateTimeFormat\'s time-zone-aware formatting behavior',
 				url: 'https://tc39.es/ecma402/',
 			},
 			{
