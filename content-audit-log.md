@@ -1552,3 +1552,108 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "world-clock",
+  "last_audited": "2026-08-25",
+  "published_date": "2026-08-09",
+  "note": "全站45个工具中此前从未被trafficsite-content-quality-audit审计过（此前16次审计均命中已发布更早/已轮过一次的工具），按SKILL规则'未审计优先，tie-break按published最早'选出——本次未审计tools里published最早的即world-clock（2026-08-09）。",
+  "checklist": [
+    "公式/数据正确性（最高优先级）：offsetMinutes/getDstInfo/wallTimeToUtc/convertTime的Intl API双采样算法是否与Python zoneinfo独立复算一致；参考表5行标准/DST offset与非整点时区6行数值是否真实；3条worked conversion examples是否可独立复算通过",
+    "非整点时区与DST历史细节真实性：India 1906年UTC+5:30折中方案、Iran 2022年9月起取消夏令时、Lord Howe Island 30分钟DST偏移三条史实性陈述是否真实、非编造",
+    "CITIES数组的IANA时区ID是否与实际城市/地区对应（尤其多时区国家的代表城市选择是否合理）",
+    "cascading dropdown/state bug排查（本站已知模式，参照calorie-calculator L-0809-2与random-letter-generator教训）：'now'/'convert'两种Mode切换、From/To城市选择是否有依赖状态未重置的残留",
+    "sources[].label的em dash取舍：延续本站尚未被Owen最终拍板但已有子模式区分的判断框架"
+  ],
+  "findings": [
+    {
+      "dimension": "公式/数据正确性（最高优先级）",
+      "status": "发现1处真实问题（已修复）",
+      "detail": "用Python zoneinfo独立复算（不参考实现代码）：New York/London/Sydney/Auckland/Santiago五行标准vs DST offset全部与参考表一致；India(+5:30)/Nepal(+5:45)/Iran(+3:30)/Newfoundland(-3:30/-2:30)/Chatham(+12:45/+13:45)/Lord Howe(+10:30/+11:00)六行非整点时区数值全部一致；3条worked conversion examples（NY 3/10 9:00→Tokyo 22:00同日；LA 6/1 22:00→Sydney 6/2 15:00次日；Auckland 1/1 00:30→Honolulu 12/31 01:30前一日）用Python zoneinfo独立复算全部吻合，与tests/worldClock.test.ts的19个vitest用例（声明期望值来自独立Python zoneinfo计算）交叉一致。npm test 19/19通过。**但正文'Not every offset is a whole hour'一节声称纽芬兰'a full 90 minutes off the rest of Atlantic Canada'，独立复核agent用WebSearch核实大西洋标准时（Nova Scotia/New Brunswick/PEI，UTC-4:00）与纽芬兰标准时（UTC-3:30）实际只差30分钟——90分钟其实是纽芬兰与东部时区（Ontario/Quebec，UTC-5:00）的差值，与句子里点名的'Atlantic Canada'不符，是数字与地名标签错配的真实事实错误**。已改为'a full 30 minutes off the rest of Atlantic Canada'，UTC-3:30/UTC-2:30两个offset数值本身核实无误未动。"
+    },
+    {
+      "dimension": "非整点时区/DST历史细节真实性",
+      "status": "未发现问题",
+      "detail": "WebSearch独立核实三条史实：(1) India 1906年采用UTC+5:30，系殖民当局否决原本GMT+5/GMT+6两个整点时区方案后取两者中点，多方独立信源交叉确认；(2) Iran自2022年9月21/22日起永久取消夏令时、固定UTC+3:30，多方独立信源（含Iran Front Page等本地信源）交叉确认；(3) Lord Howe Island DST期间只调整30分钟（非整小时）、UTC+10:30→UTC+11，timeanddate.com等信源确认，历史上1985年governor's order确立这个惯例。三条均为真实史实，非编造。另核实'A country name is not a time zone'一节声称Brazil四个时区、Russia十一个时区——WebSearch独立核实两数字均准确（Brazil：Fernando de Noronha/Brasília/Amazon/Acre四区；Russia：11个UTC+2至+12时区）。"
+    },
+    {
+      "dimension": "CITIES数据真实性",
+      "status": "未发现问题",
+      "detail": "逐条核对CITIES数组112条记录的IANA时区ID：多时区国家的代表城市选择（Brazil→São Paulo/America/Sao_Paulo、Russia→Moscow/Europe/Moscow、Australia→按州分Sydney/Melbourne/Brisbane/Perth四个独立时区且Brisbane/Perth均无DST符合实情、USA按城市各自所在时区分散映射）均准确；Bali单独映射Asia/Makassar（WITA，非印尼首都雅加达的WIB）正确反映巴厘岛实际所在时区；未发现时区ID与城市实际所在地不符的记录。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：64个测试文件、1237个测试全部通过（worldClock.test.ts 19个）。测试注释声明期望值'computed independently with Python's zoneinfo module'，本次审计重新用Python zoneinfo独立复算全部覆盖到的用例，与实现和测试期望值三方一致，核实非从实现反推。"
+    },
+    {
+      "dimension": "内嵌组件功能（含cascading state排查）",
+      "status": "未发现问题",
+      "detail": "逐行核对WorldClockConverter.tsx：'now'模式与'convert'模式各自独立状态（nowCityId/tick vs fromCityId/toCityId/date/time），两个模式互不干扰，切换Mode不产生残留值问题；From/To两个城市Select共享同一CITY_OPTIONS完整列表（无级联过滤关系），不存在calorie-calculator L-0809-2或random-letter-generator曾出现过的'切换A导致B的可选项收窄、但B的当前选中值未联动重置'类bug模式。seedParts的useMemo空依赖数组仅用于表单初始种子值，非运行时状态同步逻辑，不构成隐患。build成功生成/world-clock/与/embed/world-clock/，embed页curl 200。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题（含一项反爬网关说明）",
+      "detail": "IANA/ECMA-402/两条Wikipedia链接curl均200且内容与引用对应。timeanddate.com的Lord Howe Island专页curl返回403，响应头含`cf-mitigated: challenge`，与cd-calculator/bmi-calculator此前审计发现的Cloudflare反爬网关模式一致，非真实死链；且该链接支撑的具体史实（30分钟DST偏移）已经WebSearch从其他信源独立核实无误，未计入失效。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/world-clock/ 200，title'World Clock & Time Zone Converter | CalcBadger'36字符正常；meta description 178字符，用`check_seo_field_stats.py --new-slug world-clock`核实z-score=0.36（全站44个工具description均值170/标准差22.1），在正常范围内，不判定为需修复的离群值（区别于此前mortgage-calculator/time-converter/volume-converter等z-score显著偏高被判定应修的案例）；canonical自指正确；单一h1，9个h2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt含GPTBot/ClaudeBot/PerplexityBot/Google-Extended显式Allow；sitemap-index.xml正常收录。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "沿用既有人工核对方法：coreSummary首屏说明数据来源（浏览器实时IANA库vs静态表）与两种模式；6个小节均以直接陈述开头；3个参考表（标准/DST offset、非整点时区、worked examples）+6条FAQ配FAQPage schema；robots.txt放行主流AI爬虫。综合判定明显高于80分门槛。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上HTML确认'More calculators'区块含6条跨类目链接（age-difference-calculator/date-calculator/fraction-calculator/gpa-calculator/reaction-time-test/time-duration-calculator）；对dist构建产物grep确认另有8个其他工具页面反向链接到/world-clock/，非孤儿页。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-09'与tool.updated一致（本站WebApplication schema统一不含datePublished字段，全站设计一致，非本工具专属问题）；FAQPage 6条FAQ与tools.ts faq数组逐一对应；BreadcrumbList三级（Home/Date & Time/World Clock & Time Zone Converter）与页面面包屑一致。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "用`dataforseo_query.py serp \"world clock\"`拉取真实SERP：头部为timeanddate.com、time.gov、worldtimebuddy.com、timetrex.com、24timezones.com、worldclock.com等。本页相比这些纯展示型世界时钟，多出'数据来自浏览器实时IANA库而非存储的offset表'这一架构说明、'国家名不等于时区'（Brazil/Russia多时区代表城市选择解释）、南北半球DST方向相反的具体机制解释、非整点时区的历史成因深挖（含四条独立核实的史实）等真正的增量内容，非同质化复制。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "本工具是时区转换计算器，不涉及暴力/赌博/武器/毒品等AdSense限制类目，无需额外风险提示。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt正确列出pub-5245502795720653；Privacy/About/Terms三页curl均200可达；无诱导点击设计。"
+    },
+    {
+      "dimension": "站内标点风格合规（sources[].label em dash）",
+      "status": "发现2处需修复、2处判定LEAVE（已按判定处理）",
+      "detail": "4条sources[].label均含em dash：'IANA Time Zone Database (tzdata) — the authoritative source...this page reads live via...'与'ECMA-402...— defines Intl.DateTimeFormat's...'两条破折号后接动词从句（reads/defines），独立复核agent按本站'出版方—标题结构化引用LEAVE / 破折号后接完整从句的叙事性连接FIX'判断框架判定均为FIX，已改为冒号消除。另两条'Wikipedia — \"Daylight saving time in Iran\"(...)'与'Wikipedia — \"Time in India\"(...)'是严格'出版方—标题'双字段模板，独立复核agent判定LEAVE，未改动，与08-21 DayAlmanac march-birthstone确立的子模式区分一致。"
+    }
+  ],
+  "independent_verification": "2条独立fresh-context agent复核，均在25秒内正常完成，无卡死、无需看门狗降级：①Newfoundland '90分钟'声称——独立WebSearch核实大西洋标准时(UTC-4:00)与纽芬兰标准时(UTC-3:30)实际相差30分钟，90分钟对应的是与东部时区(UTC-5:00)的差值而非'Atlantic Canada'，CONFIRMED为真实错误；②sources[].label 4条em dash逐条独立判定——IANA/ECMA-402两条FIX，两条Wikipedia引用LEAVE，与既有站内框架一致，CONFIRMED。",
+  "actions_taken": [
+    "1. 正文Newfoundland offset段落'a full 90 minutes off the rest of Atlantic Canada'改为'a full 30 minutes off the rest of Atlantic Canada'（src/data/tools.ts）",
+    "2. sources[]中IANA tzdata与ECMA-402两条label的em dash改为冒号；另两条Wikipedia label的em dash判定LEAVE未改动",
+    "两处均为定点修改，均先经独立fresh-context agent复核确认后才动手，未做大范围重写",
+    "npm test 1237/1237通过、npm run build 108页成功后，git status确认仅src/data/tools.ts改动，直接git add该文件提交（commit 669e091）",
+    "无CalcBadger专属CF deploy hook登记，改用curl轮询线上URL确认git自动部署生效（约30秒后从旧内容转为含'30 minutes off the rest of Atlantic Canada'的新内容）；seo_drift.py compare对比修复前基线仅INFO级'HTML内容有变化'提示，无CRITICAL异常；node tools/submit-indexnow.mjs /world-clock/：Bing 200/Yandex 200；内容发布日志.md已追加记录",
+    "published字段已存在（2026-08-09，与updated相同），本次未触发缺字段回填流程；参照cd-calculator/square-footage-calculator等既有先例（定点修复不必然同步bump updated），本次两处修复未改动updated字段"
+  ],
+  "seo_score": "修复前后均健康：title/canonical/H1层级/3处JSON-LD schema/robots.txt/sitemap全程无异常；meta description 178字符经check_seo_field_stats.py核实z-score 0.36属正常范围，未修改",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对，明显超过≥80门槛，无需修复",
+  "escalation": null
+}
+```
