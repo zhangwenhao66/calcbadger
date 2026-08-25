@@ -279,5 +279,15 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-25",
+    "action": "submitted",
+    "reason": "今日新发布Dead Pixel Test（第57个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。同日world-clock为content-quality-audit审计更新，本轮游标已轮到CalcBadger且新发布候选已提交成功，未额外查审计更新页（每站每轮限1个名额）。",
+    "submitted_urls": [
+      "https://calcbadger.com/dead-pixel-test/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
