@@ -5359,4 +5359,114 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 720,
 	},
+	{
+		slug: 'dead-pixel-test',
+		category: 'Tech',
+		title: 'Dead Pixel Test',
+		shortTitle: 'Dead Pixel Test',
+		description:
+			'Check a monitor, laptop, or phone screen for dead, hot, and stuck pixels with a full-screen color test, plus a pixel-refresh flash mode for stuck sub-pixels.',
+		updated: '2026-08-25',
+		published: '2026-08-25',
+		coreSummary:
+			'A dead pixel test fills the screen with solid colors, one at a time, so a defective pixel stands out against a flat background instead of getting lost inside a normal image. A dark dot on white reveals a dead (always-off) pixel; a bright dot on black reveals a hot (always-on) pixel; the pure red, green, and blue screens isolate each sub-pixel channel so a stuck one shows up as an off-color speck. This tool runs that cycle in your browser, plus a faster color-flashing mode sometimes reported to help dislodge a merely stuck (as opposed to physically dead) sub-pixel, and a reference table showing how many such defects the historical ISO 13406-2 classification allowed per resolution before a panel fell outside spec.',
+		queries: ['dead pixel test', 'dead pixel test online', 'stuck pixel test', 'how to check for dead pixels'],
+		sections: [
+			{
+				heading: 'Dead, hot, and stuck: three different defects with one name',
+				body: [
+					'"Dead pixel" gets used loosely, but a panel can fail in a few distinct ways. A dark dot defect (a dead or dark pixel) is a pixel stuck fully off: the backlight is there, but no light reaches through at that spot, so it shows as a black dot against any bright background. A bright dot defect (a hot pixel) is the opposite: a sub-pixel stuck fully on, showing as a colored or white dot against a dark background regardless of what the rest of the screen displays.',
+					"A stuck sub-pixel is narrower still. Each pixel is built from three sub-pixels, red, green, and blue, and a stuck sub-pixel is just one of those three frozen on or off while the other two keep working. That's why the red, green, and blue full-screen tests exist separately: a stuck red sub-pixel is invisible on a pure-red screen (everything is red anyway) but stands out clearly on a pure green or blue one.",
+				],
+			},
+			{
+				heading: 'How the two modes in this tool work',
+				body: [
+					'The solid-color test cycles through six full-screen colors, black, white, red, green, blue, and 50% gray, and you click or use the arrow keys to step through them while scanning for a dot that stays put. Gray sits between black and white and often reveals uneven backlighting or clouding that pure black or white can hide.',
+					"The pixel-refresh mode instead flashes through those colors rapidly (8 times per second here) for a duration you pick. Rapid color cycling like this is a documented approach some users report success with for a stuck sub-pixel specifically, on the theory that the rapid switching can jar loose the liquid crystal material behind a sub-pixel that is stuck rather than physically dead. It has no effect on a dead or hot pixel, since those come from a failed transistor rather than a temporarily stuck crystal, and even on a stuck sub-pixel it isn't guaranteed to work.",
+				],
+			},
+			{
+				heading: 'The ISO 13406-2 class system, and why "ISO-approved" doesn\'t mean flawless',
+				body: [
+					'ISO 13406-2 was the ergonomics standard that first defined pixel fault classes for flat-panel displays, from Class I (zero defects tolerated) down to Class IV (up to 50 hot pixels, 150 dead pixels, and 500 stuck sub-pixels allowed per million pixels). Most manufacturers built their displays to Class II, the second-strictest tier. The standard itself was withdrawn in the 2000s and formally revised by the ISO 9241-302/303/305/307:2008 series, but the old Class II numbers are still the figures most commonly quoted in manufacturer support pages and consumer pixel-policy discussions today.',
+					"None of this is a legal requirement. ISO classes are guidelines a manufacturer can choose to follow, ignore, or reference loosely, and Wikipedia's own summary of the standard notes manufacturers have used it as grounds for declining to accept an otherwise-working panel as defective. If a return or exchange matters to you, the number that actually counts is whatever your specific manufacturer's current warranty page says, not the class table below.",
+				],
+			},
+			{
+				heading: 'Worked example: what "allowed" looks like on a real screen',
+				body: [
+					"Class II allows 2 hot pixels and 2 dead pixels per million pixels. A 1920×1080 monitor has 1,920 × 1,080 = 2,073,600 pixels, so the allowance scales to 2 × 2,073,600 ÷ 1,000,000 = 4.15, rounded down to 4 hot pixels and 4 dead pixels before the panel would fall outside Class II. The stuck-sub-pixel allowance is looser, 5 per million, which works out to 5 × 2,073,600 ÷ 1,000,000 = 10.37, rounded down to 10 on the same panel. Move up to a 3840×2160 (4K) panel with 8,294,400 pixels and the same 2-per-million hot/dead allowance scales to 16, since a 4K panel simply has four times as many pixels for defects to be spread across.",
+				],
+			},
+			{
+				heading: 'Before you assume it\'s a defect',
+				body: [
+					'Wipe the screen with a dry microfiber cloth first. A speck of dust or a smudge can look identical to a dead pixel from a normal viewing distance, and it disappears with a wipe while a pixel defect does not. If it survives a cleaning and shows up in the same screen location across every color in the test, at every viewing angle, it is a pixel-level defect, not something sitting on the glass.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'ISO 13406-2 pixel fault classes (maximum faults per 1 million pixels)',
+				headers: ['Class', 'Hot pixels', 'Dead pixels', 'Stuck sub-pixels', 'Cluster of hot/dead', 'Cluster of stuck sub-px'],
+				rows: [
+					['I', '0', '0', '0', '0', '0'],
+					['II', '2', '2', '5', '0', '2'],
+					['III', '5', '15', '50', '0', '5'],
+					['IV', '50', '150', '500', '5', '50'],
+				],
+				note: 'Historical figures from the withdrawn ISO 13406-2:2001 standard, still the numbers most commonly referenced by manufacturers and consumer pixel-policy pages. The successor standard, ISO 9241-307:2008, restructured the classification; check your manufacturer\'s current policy for the number that actually governs a return.',
+			},
+			{
+				title: 'Class II hot/dead-pixel allowance scaled to common resolutions',
+				headers: ['Resolution', 'Total pixels', 'Hot pixels allowed', 'Dead pixels allowed', 'Stuck sub-pixels allowed'],
+				rows: [
+					['1366×768 (HD)', '1,049,088', '2', '2', '5'],
+					['1920×1080 (Full HD)', '2,073,600', '4', '4', '10'],
+					['2560×1440 (1440p)', '3,686,400', '7', '7', '18'],
+					['3840×2160 (4K UHD)', '8,294,400', '16', '16', '41'],
+				],
+				note: 'Class II\'s per-million figures (2 hot / 2 dead / 5 stuck sub-pixels) scaled to each resolution\'s real pixel count and rounded down.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a dead pixel exactly?',
+				answer:
+					"Strictly, a dead pixel (also called a dark dot defect) is a pixel stuck fully off, showing as a black dot regardless of what the screen is displaying. People often use \"dead pixel\" loosely to also cover hot pixels (stuck on) and stuck sub-pixels (one of the three red/green/blue components frozen), which are technically different defects with different likely causes.",
+			},
+			{
+				question: 'How many dead pixels is considered normal?',
+				answer:
+					"There's no universal number: it depends entirely on the manufacturer's own policy, and policies vary widely. The historical ISO 13406-2 Class II standard, which most manufacturers have referenced, allowed 2 hot and 2 dead pixels per million pixels (about 4 of each on a 1920x1080 monitor), but that standard was withdrawn and manufacturers are not bound to follow it. Check your specific manufacturer's current warranty page rather than assuming a universal threshold.",
+			},
+			{
+				question: 'Can a dead pixel fix itself, or be fixed?',
+				answer:
+					"A dead pixel (failed transistor) generally cannot be fixed. A stuck sub-pixel, where the liquid crystal material is jammed rather than the transistor failed, sometimes responds to rapid color-flashing, the technique this tool's pixel-refresh mode runs, though there's no guarantee it works and it has no effect on a dead or hot pixel.",
+			},
+			{
+				question: 'How do I tell a dead pixel apart from dust or a smudge?',
+				answer:
+					'Wipe the screen with a dry microfiber cloth first. Dust and smudges wipe away; a pixel-level defect does not, and it stays in the exact same screen location across every color in the test and every viewing angle.',
+			},
+			{
+				question: 'Will a photo of my screen show a dead pixel?',
+				answer:
+					"Not reliably. A camera captures the light coming off the screen, and a stuck sub-pixel's exact color and brightness relative to its neighbors often gets lost in a photo's compression and color processing, even when it's clearly visible to your eye in person. Look at the screen directly rather than relying on a photo to confirm a defect.",
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia: "Defective pixel" (dark dot, bright dot, and stuck sub-pixel defect definitions; pixel-refresh flashing technique)',
+				url: 'https://en.wikipedia.org/wiki/Defective_pixel',
+			},
+			{
+				label: 'Wikipedia: "ISO 13406-2" (fault-class table, standard withdrawal and revision by ISO 9241-307:2008)',
+				url: 'https://en.wikipedia.org/wiki/ISO_13406-2',
+			},
+		],
+		embedHeight: 680,
+	},
 ];
