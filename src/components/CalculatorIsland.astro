@@ -27,6 +27,7 @@ import GpaCalculator from './calculators/GpaCalculator';
 import GraffitiAlphabetGenerator from './calculators/GraffitiAlphabetGenerator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
 import KegCalculator from './calculators/KegCalculator';
+import KeyboardTest from './calculators/KeyboardTest';
 import LengthConverter from './calculators/LengthConverter';
 import MarkupCalculator from './calculators/MarkupCalculator';
 import MathSymbolsGenerator from './calculators/MathSymbolsGenerator';
@@ -126,3 +127,4 @@ const { slug } = Astro.props;
 {slug === 'pizza-calculator' && <PizzaCalculator client:load />}
 {slug === 'wacc-calculator' && <WaccCalculator client:load />}
 {slug === 'words-to-pages-calculator' && <WordsToPagesCalculator client:load />}
+{slug === 'keyboard-test' && <KeyboardTest client:load />}

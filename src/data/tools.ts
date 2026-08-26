@@ -5469,4 +5469,109 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 680,
 	},
+	{
+		slug: 'keyboard-test',
+		category: 'Tech',
+		title: 'Keyboard Test',
+		shortTitle: 'Keyboard Test',
+		description:
+			'Test every key on your keyboard with a live virtual layout, check how many keys register at once (rollover), and see which keys never registered.',
+		updated: '2026-08-26',
+		published: '2026-08-26',
+		coreSummary:
+			'A keyboard test lights up a virtual layout as you press physical keys, so you can confirm a key registers at all and see exactly which ones you have and have not tried yet. This tool also tracks how many keys it can detect held down at the same time, a property called key rollover: press just two keys and every keyboard should handle it, but push toward four, five, or more and a cheaper keyboard without per-key diodes may start dropping or "ghosting" a key rather than registering it. A reference table below explains what different rollover counts mean, including the 6-key ceiling built into the (largely obsolete) USB boot protocol, plus how the three common full-size physical layouts, ANSI, ISO, and JIS, differ in total key count.',
+		queries: ['keyboard test', 'keyboard tester online', 'test keyboard keys', 'keyboard rollover test', 'n-key rollover test'],
+		sections: [
+			{
+				heading: 'What this actually tests',
+				body: [
+					'Press a key and its matching key on the virtual layout above turns orange while held, then keeps a green outline once you have tried it. That is a straightforward test of whether a key sends a signal at all: a key that sends no signal never lights up here, no matter how hard or how many times you press it.',
+					"What it cannot test is more subtle. It cannot detect key chatter, where a worn switch fires two rapid keydown events from one press, since a bounce that fast usually looks identical to a normal press in the event log. It also cannot see media keys, Fn-combo shortcuts, or anything your operating system intercepts before it reaches the browser as a standard key event, which is why a laptop's brightness or volume keys may do nothing here even though they work fine everywhere else.",
+				],
+			},
+			{
+				heading: 'Rollover and ghosting: why some key combos silently drop a key',
+				body: [
+					"Most keyboards are wired as a grid, or matrix, of rows and columns rather than giving each key its own dedicated wire, which keeps manufacturing cheap. The tradeoff shows up when three particular keys are pressed together: the electrical signal can complete a path through all three switches and trigger a fourth, unpressed key on the same rows and columns, a false detection called ghosting. Most modern keyboards catch this and instead just refuse the third key, a milder failure called jamming, but either way a combo you actually pressed does not register correctly.",
+					'A keyboard with true two-key rollover reliably handles any two keys held together, which is the baseline every working keyboard should meet. Beyond that, keyboards without per-key diode isolation typically manage four to five simultaneous keys correctly for the most common typing sequences, since manufacturers arrange the matrix so frequent combinations avoid triggering ghosting even if the keyboard is not fully diode-isolated. Keyboards built for gaming, stenography, or fast typing often add per-key diodes specifically to remove this limit entirely, a property called n-key rollover (NKRO): every key is scanned independently, so any combination of any number of keys registers correctly regardless of what else is held.',
+				],
+			},
+			{
+				heading: 'The 6-key number you may have heard, and why it barely applies anymore',
+				body: [
+					"USB keyboards can report input in two different formats. The optional \"boot protocol\" packs currently-held keys into a fixed 1-byte modifier field (covering both Ctrl, Shift, Alt, and Win keys) plus exactly 6 bytes for everything else, capping it at 6 simultaneously reported non-modifier keys. It exists only so a BIOS or other pre-OS environment, which cannot parse a full HID report descriptor, can still read basic keyboard input using a fixed, predictable format. The mandatory \"report protocol\", which every modern operating system uses once it has actually booted, has no such limit and supports full n-key rollover if the keyboard hardware itself does.",
+					'That is why this tool will often show a rollover count well past 6 without anything unusual happening: your keyboard, OS, and browser are using the unrestricted report protocol, not the BIOS-era boot protocol. The 6-key figure only becomes a real ceiling in the narrow case of typing directly into BIOS setup or a similar pre-boot screen.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					'Hold W, A, S, and D at once, a common gaming combination: that is 4 non-modifier keys, landing in the typical 3-to-5 matrix rollover range most keyboards handle for common sequences, well short of the boot-protocol ceiling.',
+					'Hold Ctrl, Shift, and Escape together (the Windows Task Manager shortcut): Ctrl and Shift are both exempt modifier keys under the boot-protocol accounting above, so only Escape counts as a non-modifier key, for a rollover of 1, the simplest baseline case regardless of how many modifiers rode along with it.',
+					'Braille input is an extreme real-world case: Braille2000 and similar braille-keyboard software require up to six keys pressed at once to form a single character, landing exactly at the boot-protocol\'s 6-key ceiling, which is part of why braille and stenography keyboards are built with full per-key diode isolation rather than a cost-cut matrix.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'What this tool\'s rollover count means',
+				headers: ['Non-modifier keys held at once', 'Tier', 'What it suggests'],
+				rows: [
+					['1-2', 'Baseline rollover', 'Every working keyboard should handle this without dropping a key.'],
+					['3-5', 'Typical matrix rollover', 'Normal range for a keyboard without per-key diodes, on common key sequences.'],
+					['6', 'Boot-protocol ceiling', 'Matches the USB HID boot protocol\'s hard limit of 6 non-modifier keys.'],
+					['7+', 'Full (n-key) rollover', 'Past the boot-protocol limit; your keyboard/OS/browser are using the unrestricted HID report protocol.'],
+				],
+				note: 'Tiers describe what a given count typically indicates about the hardware and protocol involved, not a pass/fail grade; a keyboard that tops out at 4-5 keys is working exactly as designed for ordinary typing.',
+			},
+			{
+				title: 'Full-size keyboard layouts by key count',
+				headers: ['Layout', 'Key count', 'Distinguishing feature'],
+				rows: [
+					['ANSI (US)', '104', 'Shorter horizontal Enter key; tall left Shift; backslash key sits above Enter.'],
+					['ISO (UK/EU)', '105', 'Tall vertical Enter key; shorter left Shift makes room for one extra key beside it.'],
+					['JIS (Japan)', '109', 'Split space bar and extra kana/input-mode keys added near the Enter key.'],
+				],
+				note: 'Figures are for the standard full-size layout of each standard; compact and "extended" variants from individual manufacturers can add a handful more keys for extra function or media controls.',
+			},
+		],
+		faq: [
+			{
+				question: 'Why does my keyboard drop a key when I press three or more at once?',
+				answer:
+					'It is likely a matrix keyboard without per-key diodes, which can misdetect ("ghost") or refuse ("jam") a key when a specific combination of three or more keys completes an unintended electrical path through the row/column grid. This is a hardware design tradeoff for cost, not necessarily a defect, and it typically only affects uncommon key combinations rather than everyday typing.',
+			},
+			{
+				question: 'What does "key rollover" mean?',
+				answer:
+					'It is how many keys a keyboard can correctly detect held down at the same time. Two-key rollover, correctly handling any two keys together, is the baseline every keyboard should meet. Higher counts (n-key rollover, or NKRO) require the keyboard to scan every key independently rather than sharing wires across a matrix, which is common on gaming and mechanical keyboards but not universal.',
+			},
+			{
+				question: "Why does this tool show more than 6 keys held, if USB caps out at 6?",
+				answer:
+					'The 6-key figure is specific to the USB HID "boot protocol", an optional, simplified format meant only for BIOS-level input before an operating system has loaded. Windows, macOS, and Linux all use the unrestricted "report protocol" once booted, which supports full n-key rollover if the keyboard hardware itself supports it, so seeing well past 6 keys in a normal browser session is expected on capable hardware.',
+			},
+			{
+				question: 'Does this test detect a broken or "chattering" key?',
+				answer:
+					"It reliably shows a fully dead key, since a key that sends no signal at all will never light up here no matter how many times you press it. It cannot reliably catch chatter, where a worn switch occasionally fires two keydown events from a single press, since a fast double-fire and a legitimate rapid press can look the same in the event log.",
+			},
+			{
+				question: 'How many keys does a full-size keyboard have?',
+				answer:
+					'It depends on the physical layout standard: 104 for the US ANSI layout, 105 for the ISO layout common outside the US, and 109 for the Japanese JIS layout, which adds a split space bar and extra input-mode keys. Individual manufacturers\' "extended" keyboards can add a handful more for dedicated media or function controls.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia: "Key rollover" (two-key/matrix/n-key rollover definitions, ghosting and jamming explanation, USB HID boot-protocol 6-key figure, Braille2000 six-key example)',
+				url: 'https://en.wikipedia.org/wiki/Key_rollover',
+			},
+			{
+				label: 'Wikipedia: "Keyboard layout" (US ANSI 104-key and ISO 105-key figures; JIS OADG 109A layout)',
+				url: 'https://en.wikipedia.org/wiki/Keyboard_layout',
+			},
+		],
+		embedHeight: 780,
+	},
 ];
