@@ -289,5 +289,15 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-26",
+    "action": "submitted",
+    "reason": "今日新发布Keyboard Test（第58个工具），URL Inspection确认未收录（Discovered - currently not indexed），REQUEST INDEXING提交成功。",
+    "submitted_urls": [
+      "https://calcbadger.com/keyboard-test/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": 1
   }
 ]
