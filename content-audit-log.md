@@ -1657,3 +1657,83 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "tip-calculator",
+  "last_audited": "2026-08-26",
+  "published_date": "2026-08-10",
+  "note": "站点选取规则：本站content-audit-log内最早/未审计tool_slug（前18个工具按tools.ts数组顺序均已审过，本条为下一条从未审计的条目）。跨站选取规则：读全部10个流量站content-audit-log，按最近一次审计commit时间升序排，wagelark（2026-08-25 13:29:44）与calcbadger（同日13:30:51）并列最早，本次运行处理完wagelark后时间富余，接续处理次早的calcbadger。审计过程中发现src/data/tools.ts被另一个并发任务（commit b0d2c92，2026-08-26 21:27:57，为mortgage-calculator新增SourceBottle真实从业者案例，非本审计任务）在tip-calculator条目之前的位置插入8行，导致tip-calculator在文件中的行号从2473漂移到2481；已用git diff --stat确认该次并发提交只改了mortgage-calculator条目、tip-calculator条目内容本身未受影响，本次审计结论不受影响。",
+  "diagnosed_checkpoints": [
+    "核心公式tip=base×(tip%/100)、subtotal=total/(1+taxRate/100)是否与src/lib/tip.ts实现及正文描述一致，无TS/文案两套口径分叉",
+    "正文worked example（$106总额/6%税/20%小费/2人平分：subtotal=$100、pre-tax tip=$20 vs post-tax tip=$21.20、grand total=$126、人均$63，四舍五入到$5变$65/人多付$2/人共$4）是否可独立复算",
+    "Emily Post Institute小费惯例表（各服务场景百分比）与国际小费习俗表（美/英/法/日/中/澳6国）引用是否与官方信源当前内容一致",
+    "英国Employment (Allocation of Tips) Act 2023、法国service compris 1987年立法两条法律断言是否准确（生效日期/覆盖范围）",
+    "组件TipCalculator.tsx默认值($106/6%/20%/2人)是否与正文worked example完全对应，UI层与文案层是否共用同一lib函数而非重新实现"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "src/lib/tip.ts逐行核对：preTaxSubtotal=total/(1+taxRatePercent/100)、tipAmount=base×(tipPercent/100)、grandTotal=total+tip、perPerson=grandTotal/people、roundUpPerPerson=Math.ceil(perPerson/increment)×increment，与正文公式描述逐字一致。独立复算worked example：106/1.06=100.00（精确，非近似）；100×0.20=20.00（pre-tax tip）；106×0.20=21.20（post-tax tip）；106+20=126.00（grand total）；126/2=63.00（人均）；Math.ceil(63/5)×5=65（四舍五入到$5），65-63=2/人，×2人=$4总计——与正文'a $1.20 gap'（21.20-20.00）、'$63.00 each'、'adds $2.00 more per person（$4.00 total）'完全吻合。tests/tip.test.ts 15/15全部通过（npx vitest run实测），期望值与本次独立复算结果一致。"
+    },
+    {
+      "dimension": "组件与库函数一致性",
+      "status": "未发现问题",
+      "detail": "TipCalculator.tsx默认状态total='106.00'/taxRate='6'/tipPreset='20'/people='2'，与正文worked example默认值完全对应；组件直接import并调用computeTip/roundUpPerPerson（未重新实现任何公式）；CalculatorIsland.astro第56/97行确认'tip-calculator'正确分发到TipCalculator（client:load）；线上主页面与/embed/tip-calculator/两个curl实测的astro-island component-url均为同一哈希'/_astro/TipCalculator.gRiUkBMz.js'，证实embed与主页面复用同一份实现，非分叉。"
+    },
+    {
+      "dimension": "事实准确性（引用信源）",
+      "status": "未发现问题",
+      "detail": "WebSearch交叉核实Emily Post Institute确认'sit-down restaurant 15-20%'及'税前基数'为其官方立场；UK Employment (Allocation of Tips) Act 2023核实为2024年10月1日起生效、要求雇主100%转付小费给员工（正文表述'by law, all tips and service charges must be passed to staff in full'准确，未声称具体生效日期，不构成过时风险）；法国'service compris'自1987年（Godart Law）起法定纳入菜单价格核实属实；日本官方旅游局Japan Travel（curl 200）与Lonely Planet（curl 200）关于'不通行小费文化'的表述与正文一致；Cathay Pacific页面（curl 200）关于中国大陆'导游是常见例外'的表述与正文一致；DOL Fact Sheet 15A关于小费归属员工所有的核心结论经WebSearch确认与正文'employers generally cannot keep tips'表述一致（正文未涉及2018年小费池新规变动细节，无需修正因为文中没有做超出范围的断言）。"
+    },
+    {
+      "dimension": "事实准确性（税率统计数据）",
+      "status": "未发现问题",
+      "detail": "Tax Foundation 2026年中报告经WebSearch核实：人口加权全美平均综合税率7.53%（正文'around 7.5%'一致）、最高州Louisiana 10.13%（正文'just over 10%'一致）、五个州无州级销售税（Alaska/Delaware/Montana/New Hampshire/Oregon，正文'five states charge no statewide sales tax at all'一致）。"
+    },
+    {
+      "dimension": "外部引用链接腐烂（含方法论说明）",
+      "status": "未发现问题",
+      "detail": "9条sources中：taxfoundation.org/japan.travel/lonelyplanet.com/cathaypacific.com/legislation.gov.uk（202重定向正常）共5条curl直接200/202；emilypost.com/economie.gouv.fr/dol.gov共3条curl返回403（核实为WAF对自动化请求的机器人防护——同类403此前已在mortgage-calculator审计中对consumerfinance.gov确认过是同一模式，非链接失效），改用WebSearch核实3个URL内容仍与引用一致（Emily Post小费惯例表/DGCCRF pourboire条款/DOL Fact Sheet 15A）；fairwork.gov.au curl返回000（连接超时，同样判定为反爬虫/网络策略而非页面下线，WebSearch确认Fair Work Ombudsman当前仍维护该最低工资页面且数据与本站引用场景一致）。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "curl绕缓存实测：title'Tip Calculator | CalcBadger'、meta description与tools.ts description字段一致、canonical自引用、schema含WebApplication/FAQPage(6问答)/BreadcrumbList/Organization均正确渲染，无noindex。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "本工具属Finance分类（与mortgage-calculator/cd-calculator同类），根据既有mortgage-calculator审计已验证的related-guides逻辑复现结果，tip-calculator出现在mortgage-calculator的relatedFinal输出中，证实为入链目标而非孤儿页。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "线上JSON-LD的WebApplication description、FAQPage的6条Q&A与tools.ts对应字段逐字核对一致。"
+    },
+    {
+      "dimension": "合规/敏感度漂移",
+      "status": "未发现问题",
+      "detail": "/terms/页面'No professional advice'条款覆盖场景不含本工具（餐饮小费计算非financial/legal/medical/engineering/construction中任一类），但内容本身不构成建议类风险（纯算术工具+惯例参考表，非个性化财务建议），且页面footer链接可达；未发现收入承诺/误导性表述。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅使用全站favicon。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出pub-5245502795720653；/privacy/、/terms/均200可访问；页面标题与内容无误导性/诱导点击设计；工具为标准生活场景计算器，无限制类目内容。"
+    }
+  ],
+  "actions_taken": [
+    "无——11个适用维度逐一核查后未发现任何构成'需要修复'的问题（'图片/图标可用性'不适用本工具，标记不适用）"
+  ],
+  "independent_verification": "本次全部维度均为'未发现问题'或'不适用'，无需要独立复核确认的具体发现，未spawn独立复核agent，不适用后台agent看门狗流程。",
+  "seo_score": "技术项全部通过，无变化",
+  "geo_score": "无适用于本站的99分制自动打分器；按ai-seo skill可提取性清单人工核对（coreSummary前置定义块/FAQ自包含/2个对比表/6条具名信源），明显超过≥80门槛，无需修复",
+  "escalation": null
+}
+```
