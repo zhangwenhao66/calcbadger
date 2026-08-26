@@ -294,6 +294,13 @@ export const tools: Tool[] = [
 				],
 			},
 			{
+				heading: 'What an over-notched stringer actually looks like on inspection',
+				body: [
+					'Anthony Baldwin, a building inspector on the Gold Coast, described finding a stringer cut too deeply around the tread sections on an otherwise neat-looking finished stair. Walking on it showed noticeable movement, and closer inspection found too much timber removed from the notches, leaving insufficient solid wood to carry the stringer\'s strength. Tightening or re-securing the treads would not have fixed it; the stringers themselves needed to be rectified, since the problem was in the cut, not the fasteners.',
+					'The finished surface can look fine while hiding this. Working out riser and tread measurements before cutting, and stopping the notch depth well short of where it starts eating into the stringer\'s solid core, is what keeps a stair from ending up this way.',
+				],
+			},
+			{
 				heading: 'Legal is not the same as comfortable',
 				body: [
 					'Carpenters have used the rule attributed to François Blondel since the 1600s: twice the riser plus the tread should land near 24–25 in, matching a natural walking gait. The 7 11/16 in riser with a 10 in tread from the example gives 2(7.71) + 10 = 25.4 in, acceptable but slightly steep. A 7 in riser with an 11 in tread hits exactly 25 in and is noticeably easier to climb.',
