@@ -50,6 +50,7 @@ import SmallTextGenerator from './calculators/SmallTextGenerator';
 import SquareFootageCalculator from './calculators/SquareFootageCalculator';
 import StairCalculator from './calculators/StairCalculator';
 import StepsToMilesCalculator from './calculators/StepsToMilesCalculator';
+import SystemOfEquationsSolver from './calculators/SystemOfEquationsSolver';
 import TemperatureConverter from './calculators/TemperatureConverter';
 import TimeConverter from './calculators/TimeConverter';
 import TimeDurationCalculator from './calculators/TimeDurationCalculator';
@@ -128,3 +129,4 @@ const { slug } = Astro.props;
 {slug === 'wacc-calculator' && <WaccCalculator client:load />}
 {slug === 'words-to-pages-calculator' && <WordsToPagesCalculator client:load />}
 {slug === 'keyboard-test' && <KeyboardTest client:load />}
+{slug === 'system-of-equations-solver' && <SystemOfEquationsSolver client:load />}

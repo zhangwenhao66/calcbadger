@@ -5589,4 +5589,111 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 780,
 	},
+	{
+		slug: 'system-of-equations-solver',
+		category: 'Math',
+		title: 'System of Equations Solver',
+		shortTitle: 'System of Equations Solver',
+		description:
+			'Solve a system of 2 or 3 linear equations by Gaussian elimination, entered as ax + by = c (or ax + by + cz = d). Reports the exact solution, or whether it has none or infinitely many.',
+		updated: '2026-08-27',
+		published: '2026-08-27',
+		coreSummary:
+			'A square system of linear equations (as many equations as unknowns) has exactly one of three outcomes: one unique solution, no solution, or infinitely many solutions. Which one applies isn\'t a guess. Gaussian elimination reveals it directly: if every unknown ends up with a distinct pivot row, the solution is unique. If elimination produces a row that says something like "0 = 0," that equation was redundant, and the system has infinitely many solutions along a line or plane. If elimination instead produces a row that says "0 = k" for some nonzero k, the equations contradict each other and there is no solution.',
+		queries: [
+			'system of equations solver',
+			'system of equations calculator',
+			'solve system of linear equations',
+			'3 variable system of equations solver',
+			'elimination method calculator',
+			'no solution vs infinitely many solutions',
+			'gaussian elimination calculator',
+			'2 equations 2 unknowns calculator',
+		],
+		sections: [
+			{
+				heading: 'What this solver expects',
+				body: [
+					'Enter each equation in the form ax + by = c (two equations, two unknowns) or ax + by + cz = d (three equations, three unknowns). Every term needs its coefficient typed in explicitly, including a 1 for a bare variable and a 0 for a variable that\'s absent from that equation. The second equation of the classic example below is 0x + 2y + 5z = -4, so its x-coefficient is entered as 0, not left blank.',
+					'This tool solves square systems only: exactly as many equations as unknowns. That covers the two most common textbook cases (2 equations/2 unknowns and 3 equations/3 unknowns) but not an over- or under-determined system (say, 3 equations in 2 unknowns), and not a system where a variable appears squared, multiplied by another variable, or inside a trig/log/exponential function. Elimination in the form used here only applies to equations that are linear in every unknown.',
+				],
+			},
+			{
+				heading: 'The three possible outcomes, and what they mean geometrically',
+				body: [
+					'In two dimensions, each equation ax + by = c is a straight line. Two lines relate to each other in exactly three ways: they cross at one point (a unique solution), they run parallel and never meet (no solution), or they\'re the same line drawn twice (infinitely many solutions, since every point on that line satisfies both equations). Three dimensions works the same way one level up: each equation ax + by + cz = d is a plane, and three planes can meet at a single point, fail to share any common point, or share an entire line or plane of common points.',
+					'"Infinitely many solutions" doesn\'t mean the equations are wrong or trivial: it means one equation carries no new information beyond what the others already say. Doubling every term of an equation is the clearest example (2x + y = 5 and 4x + 2y = 10 are the same line), but redundancy can also hide inside a combination of several equations, which is exactly what elimination is built to expose.',
+				],
+			},
+			{
+				heading: 'How Gaussian elimination finds the answer',
+				body: [
+					'The method works by using one equation to cancel a variable out of the others, repeating until each equation contains only one unknown. This calculator uses the standard variant with partial pivoting: at each step, it eliminates using whichever remaining equation has the largest coefficient for the variable being cleared, rather than always the first one. That ordering choice doesn\'t change the answer, but it avoids dividing by a coefficient close to zero, which is where naive elimination becomes numerically unstable.',
+					'Whether the system lands on a unique solution, no solution, or infinitely many falls out of the same process rather than needing a separate check. If elimination reduces some equation to "0 = 0" (every coefficient and the constant cancel to zero), that equation added no independent information, and the system is under-determined. If it instead reduces an equation to "0 = k" for some nonzero k, the remaining equations can\'t all be true at once.',
+				],
+			},
+			{
+				heading: 'A worked example, step by step',
+				body: [
+					'Take x + y + z = 6, 2y + 5z = -4, and 2x + 5y - z = 27 (the default values loaded in the 3-equation mode above). The second equation already has no x term, so use the first equation to remove x from the third: multiply the first equation by 2 and subtract it from the third, giving (2x + 5y - z) - 2(x + y + z) = 27 - 12, which simplifies to 3y - 3z = 15, or y - z = 5.',
+					'Now two equations remain in y and z: 2y + 5z = -4 and y - z = 5. Multiply the second by 2 and subtract from the first: (2y + 5z) - 2(y - z) = -4 - 10, which simplifies to 7z = -14, so z = -2. Substituting back, y - (-2) = 5 gives y = 3, and x + 3 + (-2) = 6 gives x = 5. Every step here is the same elimination logic the calculator runs automatically, just carried out on paper for one specific case.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Each outcome type, worked in full',
+				headers: ['System', 'Outcome', 'Result'],
+				rows: [
+					['2x + 3y = 8 and x - y = -1', 'Unique solution', 'x = 1, y = 2'],
+					['x + y = 2 and x + y = 5', 'No solution', 'The lines are parallel; no x, y pair satisfies both'],
+					['2x + y = 5 and 4x + 2y = 10', 'Infinitely many solutions', 'The second equation is the first one doubled; every point on the line 2x + y = 5 works'],
+					['x+y+z=6, 2y+5z=-4, 2x+5y-z=27', 'Unique solution', 'x = 5, y = 3, z = -2'],
+				],
+				note: 'Every result here is independently verified by substituting the values back into the original equations, not just read off the elimination steps.',
+			},
+		],
+		faq: [
+			{
+				question: 'What does it mean when a system of equations has no solution?',
+				answer:
+					'It means the equations contradict each other: no combination of values for the unknowns can make every equation true at once. Geometrically in two dimensions, this is two parallel lines that never cross, like x + y = 2 and x + y = 5, which share a slope but not an intercept.',
+			},
+			{
+				question: 'What does "infinitely many solutions" mean?',
+				answer:
+					'It means at least one equation is redundant: it doesn\'t narrow down the answer beyond what the other equations already establish. In two dimensions this happens when both equations describe the same line (like 2x + y = 5 and 4x + 2y = 10), so every point on that line is a valid answer, not just one.',
+			},
+			{
+				question: 'Can this tool solve a system with more equations than unknowns, or nonlinear equations?',
+				answer:
+					'No. This solver handles square linear systems only (2 equations with 2 unknowns, or 3 with 3), where every term is a constant times a single variable. It doesn\'t handle systems with a different number of equations than unknowns, or equations where a variable is squared, multiplied by another variable, or inside a function like sine or a logarithm.',
+			},
+			{
+				question: 'What is the difference between the elimination method and Cramer\'s rule?',
+				answer:
+					'Both solve the same linear systems and agree on every answer; they differ in mechanism. Cramer\'s rule computes the solution directly from determinants of the coefficient matrix, which is compact for 2x2 and 3x3 systems but requires a separate divide-by-zero check to detect the no-solution and infinite-solutions cases. Gaussian elimination, used here, builds the answer through row operations and surfaces those two cases as a natural byproduct of the same process, which is also why it scales better to larger systems.',
+			},
+			{
+				question: 'Why do I need to enter a 0 for a variable that isn\'t in one of my equations?',
+				answer:
+					'Because the solver needs a coefficient for every variable in every equation to set up the elimination correctly. An equation like 2y + 5z = -4 has no x term, which is the same as saying its x-coefficient is 0: entering 0 there is mathematically required, not optional formatting.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia: "System of linear equations" (unique/none/infinite classification, geometric interpretation)',
+				url: 'https://en.wikipedia.org/wiki/System_of_linear_equations',
+			},
+			{
+				label: 'Wikipedia: "Gaussian elimination" (row-reduction method, partial pivoting)',
+				url: 'https://en.wikipedia.org/wiki/Gaussian_elimination',
+			},
+			{
+				label: 'Wikipedia: "Cramer\'s rule" (determinant-based alternative method)',
+				url: 'https://en.wikipedia.org/wiki/Cramer%27s_rule',
+			},
+		],
+		embedHeight: 1100,
+	},
 ];
