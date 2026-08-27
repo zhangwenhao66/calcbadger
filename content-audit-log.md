@@ -1737,3 +1737,93 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "gpa-calculator",
+  "last_audited": "2026-08-27",
+  "published_date": "2026-08-10",
+  "note": "本站content-audit-log内最早/未审计tool_slug，按tools.ts数组位置紧接已审过的tip-calculator之后选取。",
+  "checklist": [
+    "公式正确性：quality points(=grade points×credit hours)之和÷total credit hours的学分加权平均，及weighted模式Honors+0.5/AP-IB+1.0的boost是否在averaging之前正确叠加",
+    "4.0-scale等级换算表（A+/A=4.0、A-=3.7、B+=3.3……F=0.0）是否与College Board BigFuture及其他权威registrar口径一致",
+    "组件功能：unweighted/weighted切换、逐行grade/credits/level输入是否正确联动重算，边界（0学分/负学分/NaN）是否被正确排除",
+    "两条College Board BigFuture外链是否仍可访问",
+    "页面sources[].label是否符合本站08-26/08-27刚确立的'冒号'格式规范，而非此前的em dash格式"
+  ],
+  "findings": [
+    {
+      "dimension": "公式/换算表正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算：unweighted示例 A(3cr)+B+(4cr)+C(3cr)+A-(3cr)=42.3/13=3.253846...；weighted示例 AP-A(1cr)+Honors-B+(1cr)+A-(1cr)=12.5/3=4.166666...，均与src/lib/gpa.ts的computeGpa()及tests/gpa.test.ts期望值一致。4.0-scale等级表（A+/A=4.0、A-=3.7、B+=3.3、B=3.0、B-=2.7、C+=2.3、C=2.0、C-=1.7、D+=1.3、D=1.0、D-=0.7、F=0.0）用WebSearch独立核对：University of Nebraska-Lincoln registrar官方页（A+/A=4.00、A-=3.67、B+=3.33、B-=2.67……）与University of Michigan SSW官方页（同一套数字）均确认这是被广泛使用的标准换算表，与站内实现及tools.ts正文一致；weighted boost惯例（Honors+0.5、AP/IB+1.0）经WebSearch多方查证确认为'US most common practice'，页面正文已恰当声明'not a single official weighting standard，学校可能不同'，未做过度声明。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：67个测试文件、1265个测试全部通过（tests/gpa.test.ts 12个：GRADE_POINTS/LEVEL_BOOST图表1个、pointsForCourse 2个、computeGpa unweighted 3个、weighted 2个、edge cases 3个，另1个boost表断言）。测试注释声明期望值'hand-computed with Python before the implementation existed'，独立复算全部一致。"
+    },
+    {
+      "dimension": "内嵌组件功能（浏览器实测）",
+      "status": "未发现问题",
+      "detail": "用Browser pane实际打开https://calcbadger.com/gpa-calculator/：默认4门课（A/3cr/regular、B+/4cr/honors、A-/3cr/ap、B/3cr/regular）unweighted模式显示3.48（独立复算45.30/13=3.4846，一致）；点击切换到Weighted (Honors/AP boost)后重新渲染为3.87（独立复算：A regular=12、B+ honors(3.8)*4=15.2、A- ap(4.7)*3=14.1、B regular=9.0，合计50.3/13=3.8692，一致）。页面样式完整渲染（本工具是Preact组件client:load渲染，非innerHTML字符串注入，不属于trinity四站'innerHTML+scoped CSS'那类bug的适用架构，已确认排除）。"
+    },
+    {
+      "dimension": "外部引用链接健康度",
+      "status": "未发现问题",
+      "detail": "两条College Board BigFuture链接（how-to-calculate-gpa-4.0-scale、does-gpa-need-be-weighted-or-unweighted）均curl 200。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "发现1处观察项，独立复核判定不构成需修复问题",
+      "detail": "线上title 27字符正常；canonical自指正确；单一H1，7个H2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt放行含AI爬虫；sitemap-index.xml已收录。meta description 172字符，超出155-160安全区约12-17字符——独立复核agent判断：字符集中窄字符为主，实际像素宽度大概率不会显著超出安全线，且超幅（约7.5%）明显小于此前square-footage-calculator被判定需修复的207字符案例（超幅约29%），结论NOT A REAL ISSUE，未修改。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "调用Skill(ai-seo)获取可提取性清单标准后人工核对（本站无适用于长文的99分制自动打分器，沿用历次审计的既定方法）：定义在首段清晰给出、各小节以直接陈述开头、含2条真实数字worked example与2个对比/参考表、5组FAQ配FAQPage schema、'last reviewed 2026-08-10'时效信号明确（17天内）、标题结构贴近query措辞、robots.txt放行AI爬虫，10项清单中9项通过；唯一弱项'作者具名资质'（仅'Built and maintained by CalcBadger'链接到/about/，无个人署名）为全站模板级已知限制，历次审计均记录为非本工具专属问题，不单独修复。综合判定明显高于80分等效门槛。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "curl核实首页与/category/education/分类页均含指向/gpa-calculator/的链接；页面内'More calculators'区块交叉链接6个其他工具（sat-score/words-to-pages/fraction/time-duration/shape-volume/steps-to-miles）；sitemap-0.xml已收录，非孤儿页。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified='2026-08-10'与页面'last reviewed 2026-08-10'一致；FAQPage 5条FAQ与页面渲染一致；BreadcrumbList三级（Home/Education/GPA Calculator）与面包屑一致；本次修复（sources label格式）不涉及schema字段，未受影响。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "GPA计算属中性教育话题，无争议性/敏感性；工具已声明'not a replacement for your registrar's calculation'，不构成越权的学术判定。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出pub-5245502795720653；/about/、/terms/、/privacy/均200可访问；页面标题与内容无误导性/诱导点击设计；无限制类目内容。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅使用全站favicon。"
+    },
+    {
+      "dimension": "文案格式一致性（本站近期新确立的em dash零容忍+冒号格式惯例）",
+      "status": "发现1个真实问题（已修复，独立agent复核确认）",
+      "detail": "src/data/tools.ts的sources[]两条label仍用旧的em dash格式（'College Board BigFuture — \"标题\"'），违反本站em dash零容忍规则，且与08-26 keyboard-test、08-27 system-of-equations-solver两次运行刚确立的sources label'冒号'格式新惯例不一致（这是本工具2026-08-10发布时旧惯例遗留，非本次审计前从未被检查过——此前16次CalcBadger审计均未把'sources label格式随站内惯例演进'列为专属检查项，本次是首次纳入）。独立复核agent直接读取该文件对应行确认两处em dash均为真实字符（非en dash/连字符/URL内部），判定CONFIRMED REAL ISSUE。"
+    }
+  ],
+  "actions_taken": [
+    "src/data/tools.ts第2722/2726行（gpa-calculator条目sources[].label）两处em dash格式改为冒号格式，未改动published/updated字段（判定为格式一致性修正非内容更新）",
+    "npm test修复前后均1265/1265通过，npm run build 112页无报错，dist/gpa-calculator/index.html人工核对确认两处均生效",
+    "commit 3848583（仅src/data/tools.ts一个文件）push后curl轮询（?cb=$RANDOM绕缓存）6次约36秒确认线上生效",
+    "seo_drift.py compare：仅1条INFO级'HTML内容有变化'（即本次预期内改动），无CRITICAL发现",
+    "node tools/submit-indexnow.mjs /gpa-calculator/：Bing 200/Yandex 200",
+    "内容发布日志.md已追加本条审计记录"
+  ],
+  "independent_verification": "本次2条候选发现（meta description 172字符是否需缩短、sources label em dash是否构成真实问题）均各自spawn一个全新独立agent复核，均在30秒左右正常返回完成，无看门狗降级触发。meta description判定NOT A REAL ISSUE（未修复）；em dash判定CONFIRMED REAL ISSUE（已修复）。",
+  "seo_score": "技术项除meta description的观察项（判定不构成问题）外全部通过，无实质变化",
+  "geo_score": "无适用于本站的99分制自动打分器；调用Skill(ai-seo)清单人工核对9/10项通过（唯一弱项为全站已知模板级限制），明显超过≥80等效门槛，无需修复",
+  "escalation": null
+}
+```
