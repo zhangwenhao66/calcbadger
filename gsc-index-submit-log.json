@@ -299,5 +299,15 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": 1
+  },
+  {
+    "date": "2026-08-27",
+    "action": "submitted",
+    "reason": "今日新发布System of Equations Solver（第59个工具），URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+    "submitted_urls": [
+      "https://calcbadger.com/system-of-equations-solver/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
