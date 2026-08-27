@@ -2719,11 +2719,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'College Board BigFuture — "How to Calculate Your GPA on a 4.0 Scale"',
+				label: 'College Board BigFuture: "How to Calculate Your GPA on a 4.0 Scale"',
 				url: 'https://bigfuture.collegeboard.org/plan-for-college/get-started/how-to-calculate-gpa-4.0-scale',
 			},
 			{
-				label: 'College Board BigFuture — "Does GPA Need to Be Weighted or Unweighted?"',
+				label: 'College Board BigFuture: "Does GPA Need to Be Weighted or Unweighted?"',
 				url: 'https://bigfuture.collegeboard.org/help-center/does-gpa-need-be-weighted-or-unweighted',
 			},
 		],
