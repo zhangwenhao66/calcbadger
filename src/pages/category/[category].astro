@@ -31,7 +31,7 @@ const breadcrumbItems = [
 >
 	<BreadcrumbList slot="head" items={breadcrumbItems} />
 
-	<div class="mx-auto max-w-[760px]">
+	<div class="mx-auto max-w-[960px]">
 		<nav class="mb-4 flex items-center gap-1.5 text-sm text-[var(--ink)]/40">
 			<a href="/" class="no-underline hover:text-[var(--ink)] hover:underline">Home</a>
 			<span>/</span>
@@ -40,15 +40,15 @@ const breadcrumbItems = [
 
 		<h1 class="font-display text-3xl font-bold text-[var(--ink)]">{category} calculators</h1>
 
-		<div class="mt-6 grid gap-3 sm:grid-cols-2">
+		<div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 			{
 				categoryTools.map((t) => (
 					<a
 						href={`/${t.slug}/`}
-						class="keycap block p-4 no-underline"
+						class="bench-panel p-4 no-underline"
 					>
-						<p class="m-0 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
-						<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/55">{t.description}</p>
+						<p class="m-0 pr-6 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
+						<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/70">{t.description}</p>
 					</a>
 				))
 			}

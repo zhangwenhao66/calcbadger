@@ -1305,3 +1305,125 @@ h3 {
 	overflow-wrap: anywhere;
 	white-space: pre-wrap;
 }
+
+/* ---------- Bench array (2026-08-29 de-templating pass, display layer only) ----------
+   The homepage drops the tall centered hero for a workbench of small instrument
+   panels: each entry gets a charcoal edge strip and an orange indicator lamp, so
+   the listing reads like a rack of devices rather than a generic card grid. Same
+   tokens, same instrument metaphor — only the skeleton changes. */
+
+/* One tool entry as a small instrument panel. */
+.bench-panel {
+	position: relative;
+	display: block;
+	background: var(--card);
+	border: 1px solid var(--rule);
+	border-left: 5px solid var(--chassis);
+	border-radius: 8px;
+	transition:
+		transform 160ms var(--ease-out-strong),
+		border-color 160ms ease;
+}
+/* Indicator lamp, top-right. */
+.bench-panel::after {
+	content: '';
+	position: absolute;
+	top: 0.9rem;
+	right: 0.85rem;
+	width: 7px;
+	height: 7px;
+	border-radius: 999px;
+	background: var(--op);
+	box-shadow: 0 0 0 2px rgb(234 88 12 / 0.18);
+}
+.bench-panel:active {
+	transform: translateY(1px);
+}
+@media (hover: hover) and (pointer: fine) {
+	.bench-panel:hover {
+		border-color: var(--op);
+		border-left-color: var(--chassis);
+	}
+}
+
+/* Section header as an engraved instrument label plate. */
+.bench-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--chassis);
+	color: var(--chassis-text);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	padding: 0.32rem 0.75rem;
+	border-radius: 4px;
+}
+.bench-label::before {
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 999px;
+	background: var(--op);
+}
+
+/* Homepage nameplate: one slim strip instead of a hero block. */
+.nameplate {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.35rem 0.9rem;
+	background: var(--card);
+	border: 1px solid var(--rule);
+	border-left: 6px solid var(--chassis);
+	border-radius: 8px;
+	padding: 0.85rem 1.1rem;
+}
+
+/* Tool-page summary as an instrument annotation strip: charcoal tab, paper body. */
+.spec-note {
+	background: var(--card);
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	overflow: hidden;
+}
+.spec-note-tab {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--chassis);
+	color: var(--op);
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	padding: 0.4rem 1rem;
+}
+.spec-note-body {
+	padding: 0.85rem 1rem;
+}
+
+/* Related tools as a horizontal shelf of small panels; scrolls inside itself,
+   never the page (375px no-horizontal-scroll rule). */
+.bench-rail {
+	display: flex;
+	gap: 0.75rem;
+	overflow-x: auto;
+	padding-bottom: 0.5rem;
+	-webkit-overflow-scrolling: touch;
+}
+.bench-rail > * {
+	flex: 0 0 210px;
+	min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bench-panel {
+		transition: none;
+	}
+	.bench-panel:active {
+		transform: none;
+	}
+}

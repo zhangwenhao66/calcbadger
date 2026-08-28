@@ -99,11 +99,12 @@ function md(text: string): string {
 
 		<CalculatorIsland slug={tool.slug} />
 
-		<div class="mt-8 border-l-4 border-[var(--flag)] bg-white p-4">
-			<p class="m-0 text-[0.7rem] font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
-				In short
+		{/* Instrument annotation strip: charcoal SPEC tab + paper body. Text unchanged. */}
+		<div class="spec-note mt-8">
+			<p class="spec-note-tab m-0">Spec</p>
+			<p class="spec-note-body m-0 text-[1rem] leading-relaxed text-[var(--ink)]">
+				{tool.coreSummary}
 			</p>
-			<p class="mt-2 mb-0 text-[1rem] leading-relaxed text-[var(--ink)]">{tool.coreSummary}</p>
 		</div>
 
 		<article class="mt-9">
@@ -156,9 +157,7 @@ function md(text: string): string {
 		{
 			tool.faq.length > 0 && (
 				<div class="mt-9">
-					<h2 class="font-display mb-4 text-xl font-bold text-[var(--ink)]">
-						Frequently asked questions
-					</h2>
+					<h2 class="bench-label mb-4">Frequently asked questions</h2>
 					<div class="flex flex-col">
 						{tool.faq.map((item) => (
 							<div class="border-b border-[var(--rule)] py-4 first:pt-0 last:border-b-0">
@@ -224,17 +223,15 @@ function md(text: string): string {
 		{
 			relatedFinal.length > 0 && (
 				<div class="mt-10">
-					<h2 class="mb-3.5 text-xs font-semibold tracking-[0.1em] text-[var(--ink)]/45 uppercase">
-						More calculators
-					</h2>
-					<div class="grid gap-3 sm:grid-cols-2">
+					<h2 class="bench-label mb-3.5">On the same bench</h2>
+					<div class="bench-rail">
 						{relatedFinal.map((t) => (
 							<a
 								href={`/${t.slug}/`}
-								class="keycap block px-4 py-3 no-underline"
+								class="bench-panel px-4 py-3 no-underline"
 							>
-								<p class="m-0 text-[0.92rem] font-semibold text-[var(--ink)]">{t.shortTitle}</p>
-								<p class="mt-1 mb-0 text-xs text-[var(--ink)]/50">{t.category}</p>
+								<p class="m-0 pr-5 text-[0.92rem] font-semibold text-[var(--ink)]">{t.shortTitle}</p>
+								<p class="mt-1 mb-0 text-xs text-[var(--ink)]/60">{t.category}</p>
 							</a>
 						))}
 					</div>

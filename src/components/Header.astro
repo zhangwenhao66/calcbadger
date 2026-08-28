@@ -9,6 +9,9 @@ const categories = [...new Set(tools.map((t) => t.category))];
 <!-- Light chrome: the page stays paper throughout, so the only dark object
      on any page is the calculator itself. The instrument owns the dark. -->
 <header class="border-b border-[var(--rule)] bg-white">
+	{/* Bezel strip: ties the chrome to the charcoal panel edges introduced on the
+	    bench-array homepage (2026-08-29 de-templating pass, display layer only). */}
+	<div class="h-1 bg-[var(--chassis)]" aria-hidden="true"></div>
 	<nav class="mx-auto flex h-15 max-w-5xl items-center justify-between gap-2 px-4">
 		<a href="/" class="flex shrink-0 items-center gap-2 no-underline" aria-label={`${SITE_TITLE} home`}>
 			<BadgerLogo />

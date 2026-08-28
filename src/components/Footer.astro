@@ -4,6 +4,8 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--rule)] bg-white">
+	{/* Matching bottom bezel strip (see Header.astro). */}
+	<div class="h-1 bg-[var(--chassis)]" aria-hidden="true"></div>
 	<div
 		class="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-7 text-sm text-[var(--ink)]/55 md:flex-row md:items-center md:justify-between"
 	>

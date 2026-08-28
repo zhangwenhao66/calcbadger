@@ -10,11 +10,12 @@ const categories = [...new Set(tools.map((t) => t.category))];
 <Layout>
 	<WebSite slot="head" name={SITE_TITLE} url={`${SITE_ORIGIN}/`} description={SITE_DESCRIPTION} />
 
-	<section class="mx-auto max-w-[760px] pt-4 pb-10 md:pt-8">
-		<h1 class="font-display text-4xl font-bold tracking-tight text-[var(--ink)] md:text-5xl">
+	{/* Nameplate strip instead of a hero: same words, instrument-plate form. */}
+	<section class="nameplate mx-auto max-w-[960px]">
+		<h1 class="font-display m-0 text-[1.15rem] font-bold tracking-tight text-[var(--ink)]">
 			Calculators that show their work
 		</h1>
-		<p class="mt-4 max-w-[560px] text-[1.05rem] leading-relaxed text-[var(--ink)]/60">
+		<p class="m-0 text-[0.9rem] leading-relaxed text-[var(--ink)]/70">
 			Every CalcBadger tool explains its formula, cites the standard it follows, and runs entirely
 			in your browser. Nothing you type leaves the page.
 		</p>
@@ -22,9 +23,9 @@ const categories = [...new Set(tools.map((t) => t.category))];
 
 	{
 		categories.map((cat) => (
-			<section class="mx-auto mt-8 max-w-[760px] first-of-type:mt-0">
-				<div class="mb-3 flex items-baseline justify-between border-b-2 border-[var(--ink)] pb-2">
-					<h2 class="font-display m-0 text-xl font-bold text-[var(--ink)]">{cat}</h2>
+			<section class="mx-auto mt-9 max-w-[960px]">
+				<div class="mb-3 flex items-center justify-between gap-3">
+					<h2 class="bench-label m-0">{cat}</h2>
 					<a
 						href={`/category/${categorySlug(cat)}/`}
 						class="text-sm font-medium text-[var(--op-dark)] no-underline hover:underline"
@@ -32,13 +33,15 @@ const categories = [...new Set(tools.map((t) => t.category))];
 						All {cat.toLowerCase()} tools
 					</a>
 				</div>
-				<div class="grid gap-3 sm:grid-cols-2">
+				<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 					{tools
 						.filter((t) => t.category === cat)
 						.map((t) => (
-							<a href={`/${t.slug}/`} class="keycap block p-4 no-underline">
-								<p class="font-display m-0 text-[1rem] font-semibold text-[var(--ink)]">{t.title}</p>
-								<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/55">
+							<a href={`/${t.slug}/`} class="bench-panel p-4 no-underline">
+								<p class="font-display m-0 pr-6 text-[0.98rem] font-semibold text-[var(--ink)]">
+									{t.title}
+								</p>
+								<p class="mt-1.5 mb-0 text-sm leading-relaxed text-[var(--ink)]/70">
 									{t.description.length > 120 ? t.description.slice(0, 117) + '…' : t.description}
 								</p>
 							</a>
