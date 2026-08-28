@@ -3,6 +3,20 @@
  * Maps a tool slug to its Preact island. Used by both the full tool page and
  * the /embed/ skin so the two always render the identical component.
  * client:load — the calculator IS the page's primary content.
+ *
+ * NOTE: the imports/registrations below for cursive-alphabet, greek-alphabet,
+ * calligraphy-alphabet, math-symbols, gender-symbols, graffiti-alphabet,
+ * small-text-generator, minecraft-circle-generator, yes-or-no-wheel,
+ * random-letter-generator, glitch-text-generator, random-animal-generator,
+ * and random-object-generator are currently dead — their entries were removed
+ * from src/data/tools.ts in c3635a1 (Google August 2026 spam update pruning of
+ * generator/character-table pages, the clearest scaled-content-abuse signal in
+ * the page mix), so getStaticPaths never generates a route for these slugs and
+ * this JSX never renders. This is deliberate, not leftover cruft from a rollback
+ * — leave the components/lib/tests intact. Only re-wire these into tools.ts
+ * after checking the current page-mix/content-policy rules in
+ * .claude/scheduled-tasks/calcbadger-tool-publishing/SKILL.md and the recovery
+ * checkpoint in 独立站/流量站矩阵风险应对追踪.md.
  */
 import AgeDifferenceCalculator from './calculators/AgeDifferenceCalculator';
 import AsphaltCalculator from './calculators/AsphaltCalculator';

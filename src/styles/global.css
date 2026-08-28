@@ -764,6 +764,7 @@ h3 {
 }
 
 /* ---------- Cursive Alphabet Generator ---------- */
+/* Page pruned in c3635a1 (spam-update page-mix cleanup) — kept intentionally, see src/data/tools.ts import comment. */
 .cursive-text-input {
 	font-family: ui-sans-serif, system-ui, sans-serif;
 	font-size: 1.05rem;
@@ -822,6 +823,7 @@ h3 {
 }
 
 /* ---------- Graffiti Alphabet Generator ---------- */
+/* Page pruned in c3635a1 (spam-update page-mix cleanup) — kept intentionally, see src/data/tools.ts import comment. */
 .graffiti-text-input {
 	font-family: ui-sans-serif, system-ui, sans-serif;
 	font-size: 1.05rem;
@@ -949,6 +951,7 @@ h3 {
 }
 
 /* ---------- Calligraphy Alphabet Generator ---------- */
+/* Page pruned in c3635a1 (spam-update page-mix cleanup) — kept intentionally, see src/data/tools.ts import comment. */
 .calligraphy-text-input {
 	font-family: ui-sans-serif, system-ui, sans-serif;
 	font-size: 1.05rem;

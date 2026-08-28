@@ -1,3 +1,13 @@
+// GENDER_SYMBOLS / GREEK_LETTERS / MATH_SYMBOLS are unused here on purpose. Their tool
+// entries (gender-symbols, greek-alphabet, math-symbols) were deliberately removed from
+// the array below in c3635a1 ("prune: remove 13 generator/character-table pages") after
+// the Google August 2026 spam update algorithmically suppressed this site — generator and
+// character-table pages were the clearest scaled-content-abuse signal in the page mix.
+// This is not a rollback or incomplete migration; leave the imports, the referenced lib
+// files, the matching CalculatorIsland.astro registrations, and their tests as-is. Only
+// resurrect these tools after separately re-checking the current page-mix/content-policy
+// rules in .claude/scheduled-tasks/calcbadger-tool-publishing/SKILL.md and the recovery
+// checkpoint noted in 独立站/流量站矩阵风险应对追踪.md.
 import { GENDER_SYMBOLS } from '../lib/genderSymbols';
 import { GREEK_LETTERS } from '../lib/greekAlphabet';
 import { MATH_SYMBOLS } from '../lib/mathSymbols';
