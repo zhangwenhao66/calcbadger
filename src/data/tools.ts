@@ -5696,4 +5696,124 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 1100,
 	},
+	{
+		slug: 'number-base-converter',
+		category: 'Conversion',
+		title: 'Number Base Converter',
+		shortTitle: 'Number Base Converter',
+		description:
+			'Convert between binary, octal, decimal, and hexadecimal instantly, with a byte-value reference table and worked examples of the place-value math.',
+		updated: '2026-08-28',
+		published: '2026-08-28',
+		coreSummary:
+			'Binary, octal, decimal, and hexadecimal are four ways of writing the same integer using 2, 8, 10, or 16 symbols per digit. One hexadecimal digit always represents exactly 4 binary bits (since 2^4 = 16), which is why programmers use hex as shorthand for binary rather than decimal. Enter a number in any of the four bases and this tool converts it to the other three at once, using exact integer arithmetic so results never lose precision.',
+		queries: [
+			'decimal to binary',
+			'binary to decimal',
+			'hex to decimal',
+			'decimal to hex',
+			'binary to hex',
+			'hex to binary',
+			'octal to decimal',
+			'number base converter',
+			'binary decimal hex converter',
+			'convert decimal to binary',
+			'what is 255 in binary',
+			'what is ca in decimal',
+		],
+		sections: [
+			{
+				heading: 'Four alphabets for the same number',
+				body: [
+					"A number itself doesn't change when it's written in a different base. Only the symbols and the place values behind them do. Decimal (base 10) uses ten digits and place values that are powers of ten (ones, tens, hundreds); binary (base 2) uses two digits and place values that are powers of two; octal (base 8) and hexadecimal (base 16) work the same way with eight and sixteen digits respectively. Hex needs six extra symbols beyond 0-9, so it borrows a-f to stand for the values 10 through 15.",
+					'Binary is the one computers actually use internally, because a transistor or a magnetic domain is most reliably read as one of two states (on/off, charged/uncharged) rather than ten. Octal and hexadecimal exist purely for human convenience: both are powers of two themselves (8 = 2^3, 16 = 2^4), so converting between them and binary is a matter of grouping bits rather than doing arithmetic, which is why programmers reach for hex instead of decimal when they want a compact, readable stand-in for a raw binary value.',
+				],
+			},
+			{
+				heading: 'How the conversion math works',
+				body: [
+					'Converting decimal to any other base is repeated division: divide by the target base, write down the remainder, and keep dividing the quotient until it reaches zero, then read the remainders bottom to top. Converting 202 to binary: 202÷2=101 r0, 101÷2=50 r1, 50÷2=25 r0, 25÷2=12 r1, 12÷2=6 r0, 6÷2=3 r0, 3÷2=1 r1, 1÷2=0 r1. Reading the remainders from the last line to the first gives 11001010.',
+					'Converting the other direction (any base back to decimal) is multiply-and-add by place value: each digit times its base raised to its position (counting from 0 on the right), summed together. Checking that same binary result: 1×128 + 1×64 + 0×32 + 0×16 + 1×8 + 0×4 + 1×2 + 0×1 = 128+64+8+2 = 202. The two directions are inverses of each other, which is exactly what this tool checks against in its own tests.',
+				],
+			},
+			{
+				heading: 'Why hex is grouped binary, not a separate system',
+				body: [
+					"Because 16 is 2 to the 4th power, exactly one hexadecimal digit always covers exactly 4 binary bits, with no leftover or overlap: split a binary string into groups of 4 from the right and convert each group to a single hex digit (0-9, then a-f for 10-15) to get the same value. That clean 4-bit alignment is why a byte (8 bits) is always exactly 2 hex digits, from 00 to ff, and why colors on the web are written as 6 hex digits (#RRGGBB) instead of 24 binary digits or an 8-million-plus decimal number. Octal has the same relationship at 3 bits per digit (2^3 = 8), which is why older Unix file permission codes (like chmod 755) are written in octal rather than decimal.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Common byte values in all four bases',
+				headers: ['Decimal', 'Binary', 'Octal', 'Hex'],
+				rows: [
+					['0', '0', '0', '0'],
+					['1', '1', '1', '1'],
+					['2', '10', '2', '2'],
+					['4', '100', '4', '4'],
+					['8', '1000', '10', '8'],
+					['16', '10000', '20', '10'],
+					['32', '100000', '40', '20'],
+					['64', '1000000', '100', '40'],
+					['128', '10000000', '200', '80'],
+					['255', '11111111', '377', 'ff'],
+				],
+				note: '255 (binary 11111111, hex ff) is the largest value one byte can hold, which is why 8-bit color channels and IPv4 address octets both max out there.',
+			},
+			{
+				title: 'Powers of two, 2^0 through 2^16',
+				headers: ['Power', 'Decimal value'],
+				rows: [
+					['2^0', '1'],
+					['2^4', '16'],
+					['2^8', '256'],
+					['2^10', '1,024'],
+					['2^12', '4,096'],
+					['2^16', '65,536'],
+				],
+				note: '2^10 = 1,024 is why "kilo-" in computing (a kilobyte) is close to but not exactly 1,000: it rounds a power of two to the nearest decimal-style prefix.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do you convert decimal to binary by hand?',
+				answer:
+					'Repeatedly divide by 2 and record each remainder, then read the remainders from last to first. For example, 13 ÷ 2 = 6 r1, 6 ÷ 2 = 3 r0, 3 ÷ 2 = 1 r1, 1 ÷ 2 = 0 r1. Reading bottom to top gives 1101.',
+			},
+			{
+				question: 'What is 255 in hexadecimal?',
+				answer: '255 in hex is ff, the maximum value a single byte (8 bits) can hold, since 255 = 11111111 in binary and each 4-bit half (1111) is f in hex.',
+			},
+			{
+				question: 'Why do computers use binary instead of decimal?',
+				answer:
+					"Computer hardware stores and switches information most reliably as one of two physical states (a transistor on or off, a magnetic domain in one direction or the other), so representing data as base-2 digits maps directly onto the hardware. A base-10 system would need components that reliably hold ten distinct states, which is far less reliable to build at the scale of billions of transistors.",
+			},
+			{
+				question: 'How many bits are in a hex digit?',
+				answer: 'Exactly 4, because 2^4 = 16, the number of symbols hexadecimal uses. That is why a byte (8 bits) is always written as exactly 2 hex digits.',
+			},
+			{
+				question: 'What is the difference between octal and hexadecimal?',
+				answer:
+					'Both are shorthand for binary rather than independent number systems in practice. Octal groups binary digits in threes (2^3 = 8 symbols), hexadecimal groups them in fours (2^4 = 16 symbols). Hex is far more common today; octal mainly survives in Unix file-permission notation like chmod 755.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Positional notation" (place-value systems and base conversion)',
+				url: 'https://en.wikipedia.org/wiki/Positional_notation',
+			},
+			{
+				label: 'Wikipedia — "Hexadecimal" (base-16 digits, byte/nibble grouping)',
+				url: 'https://en.wikipedia.org/wiki/Hexadecimal',
+			},
+			{
+				label: 'Wikipedia — "Binary number" (base-2 arithmetic and computing use)',
+				url: 'https://en.wikipedia.org/wiki/Binary_number',
+			},
+		],
+		embedHeight: 620,
+	},
 ];

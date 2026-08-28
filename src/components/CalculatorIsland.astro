@@ -34,6 +34,7 @@ import MathSymbolsGenerator from './calculators/MathSymbolsGenerator';
 import MinecraftCircleGenerator from './calculators/MinecraftCircleGenerator';
 import MolarityCalculator from './calculators/MolarityCalculator';
 import MortgageCalculator from './calculators/MortgageCalculator';
+import NumberBaseConverter from './calculators/NumberBaseConverter';
 import PercentageCalculator from './calculators/PercentageCalculator';
 import PizzaCalculator from './calculators/PizzaCalculator';
 import PoolCalculator from './calculators/PoolCalculator';
@@ -88,6 +89,7 @@ const { slug } = Astro.props;
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}
 {slug === 'molarity-calculator' && <MolarityCalculator client:load />}
 {slug === 'mortgage-calculator' && <MortgageCalculator client:load />}
+{slug === 'number-base-converter' && <NumberBaseConverter client:load />}
 {slug === 'percentage-calculator' && <PercentageCalculator client:load />}
 {slug === 'temperature-converter' && <TemperatureConverter client:load />}
 {slug === 'length-converter' && <LengthConverter client:load />}
