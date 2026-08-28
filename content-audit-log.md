@@ -1827,3 +1827,98 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "reaction-time-test",
+  "last_audited": "2026-08-28",
+  "published_date": "2026-08-10",
+  "note": "本站content-audit-log内从未被审计过的工具中published日期最早（2026-08-10，与已审过的gpa-calculator/tip-calculator同日但排在轮次之外），按'从未审计=最旧优先'原则选取。",
+  "checklist": [
+    "mean/median/population-stdDev三个统计函数的公式实现是否标准",
+    "页面正文/FAQ/分类表引用的三组学术数据——Kosinski（Clemson文献综述）190ms基线、Eckner et al.（2010）203ms/268ms、Woods et al.（2015）1,469人/231ms原始/213ms硬件校正/0.55ms每岁年龄效应——是否与原始文献逐字段吻合",
+    "组件状态机（idle→waiting→go/early→trial-done→summary）计时与false start判定逻辑是否正确",
+    "该类目（Games）竞品（Human Benchmark等）是否只给单一众包均值，本工具是否有真实差异化"
+  ],
+  "findings": [
+    {
+      "dimension": "公式/统计函数正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "mean/median/population standard deviation三个函数实现均为标准公式（population stdDev明确注释'describes the spread of this run, not an estimate of a wider population'，未误用sample stdDev）。tests/reactionTime.test.ts 24项手算比对：mean([200,220,240])=220、median奇偶两种情形、stdDev([190,210])手算=10、summarizeTrials五值组mean/median/best/worst/stdDev=sqrt(200)全部核对一致；classifyReactionTime四档边界（<190/190-213/214-268/>268）测试覆盖边界值190/213/214/268/269，与src/lib/reactionTime.ts实现逐行核对无误。"
+    },
+    {
+      "dimension": "学术引用逐字段核实（最高优先级）",
+      "status": "未发现问题——本次审计citation-verification环节全部通过，零发现事实性错误",
+      "detail": "用PyMuPDF下载并提取Kosinski原始PDF（facultypsy.hope.edu/psychlabs/exp/reactiontime/docs/RT_Literature_Review.pdf）全文，逐句核对：'Last updated: September 2013'（与tools.ts sources[]标注一致，非测试文件注释里误写的'2008'——该'2008'仅为tests/reactionTime.test.ts的it()描述文字，非正式引用字段，不影响页面/schema对外内容，判定不构成需修复问题）；'For about 120 years...about 190 ms...for college-age individuals'及'Eckner et al. (2010) reported...averaged 0.203 sec when determined with a simple falling meter stick but 0.268 sec when measured with a computer. Reaction times measured at Clemson are usually closer to 0.268 sec'原文措辞与tools.ts/reactionTime.ts逐句对应。WebSearch+curl抓取Woods et al. (2015) PMC全文（pmc.ncbi.nlm.nih.gov/articles/PMC4374455/）核实：'Experiment 1 examined a community sample of 1469 subjects ranging in age from 18 to 65. Mean SRT latencies were short (231, 213 ms when corrected for hardware delays)...increased significantly with age (0.55 ms/year)'、'age-related increases in SRT latencies are due primarily to slowed motor output'均与页面正文/FAQ/reactionTime.ts注释逐字段精确匹配，无一处数值或结论性表述出入。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：68个测试文件、1284个测试全部通过（tests/reactionTime.test.ts 24个，含mean/median/stdDev/summarizeTrials/classifyReactionTime全部分支）。"
+    },
+    {
+      "dimension": "内嵌组件功能与已知innerHTML+scoped CSS坑排查",
+      "status": "未发现问题",
+      "detail": "逐行代码追踪src/components/calculators/ReactionTimeTest.tsx状态机：waiting阶段提前点击正确计入falseStarts且不进入times数组（不污染均值）；go阶段用performance.now()差值计时；trial-done→armTrial()重新进入随机延迟等待，循环直至达到trialCount。CSS方面，.rt-box系列规则定义在src/styles/global.css（全局样式表，非Astro组件级scoped<style>），且本组件是Preact client:load岛屿整体客户端渲染而非'Astro服务端markup+运行时innerHTML字符串替换'模式，不适用CLAUDE.md记录的'innerHTML注入表格丢失data-astro-cid scoped CSS'已知坑（架构不同，非该坑的适用场景）。curl静态构建产物dist/reaction-time-test/index.html及线上页面均确认class=\"rt-box\"与对应CSS规则已正确内联。/embed/reaction-time-test/同步200。"
+    },
+    {
+      "dimension": "外部引用链接健康度",
+      "status": "发现1处真实问题（已修复，独立agent复核确认CONFIRMED）",
+      "detail": "Kosinski PDF链接curl直接200。Woods et al.引用链接（https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4374455/）为NCBI 2023年PMC域名迁移前的旧地址，curl -IL确认301重定向到https://pmc.ncbi.nlm.nih.gov/articles/PMC4374455/且落地页citation_author/citation_journal_title/citation_doi等元数据确认是同一篇论文（非失效链接，但依赖历史重定向）。独立agent仅凭'发现内容+待核证据'（不含审计其余上下文）用curl独立复核301确实存在、落地页内容确实匹配、新域名确实是终态非规范URL，判定CONFIRMED。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上title 31字符、meta description 163字符（略超155-160安全区约3字符，幅度可忽略，不构成需修复问题，未改动）；canonical自指；单一H1，8个H2无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）均可解析；robots.txt对GPTBot/ChatGPT-User/ClaudeBot/Claude-Web/PerplexityBot/Google-Extended均Allow；viewport meta正常；curl多次测速TTFB 0.3-1.7秒（首次异常7.5秒判定为一次性网络抖动，重测三次均正常，非CDN/CWV问题）。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "调用Skill(ai-seo)获取可提取性清单标准后人工核对：coreSummary首段即给出清晰定义、各小节以直接陈述开头、FAQ 6条自成一体且每条均带具体数字与来源、含1个分类对照表、'updated'2026-08-10（审计前18天，判定为新鲜）、robots.txt放行全部AI爬虫、schema齐全。唯一弱项'作者具名资质'为全站模板级已知限制（历次审计已记录，非本工具专属，不单独修复）。综合判定明显高于80分等效门槛。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "curl核实首页与/category/games/分类页均含指向/reaction-time-test/的链接；页面内'相关工具'区块（经site-toolkit的pickRelatedGuides+跨类目兜底算法）交叉链接6个其他工具（board-foot/click-speed-test/coin-flip-simulator/shape-volume/steps-to-miles/time-duration-calculator）；面包屑Home/Games/Reaction Time Test三级正确；sitemap-index.xml已收录，非孤儿页。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题（修复后dateModified随updated同步更新，为预期内变化）",
+      "detail": "WebApplication的dateModified原为'2026-08-10'，随本次updated字段同步改为'2026-08-28'；FAQPage 6条FAQ与页面渲染一致；BreadcrumbList三级与面包屑一致；seo_drift.py compare报告的'schema内容变化'WARNING即此字段变化，非异常。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "未发现问题",
+      "detail": "反应速度测试属中性认知测试话题；FAQ已明确声明'Can this test diagnose ADHD, concussion, or a neurological condition? No...not a validated clinical instrument'，未越权做医学/临床判定。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出pub-5245502795720653；/about/、/terms/、/privacy/均200可访问；结果展示为清晰标注的统计卡片（Average/Best/Median/Consistency），无诱导点击设计；无限制类目内容。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题——确认真实差异化",
+      "detail": "WebSearch核实Human Benchmark等同类站（reaction-time-test.io/testreaction.com/cpstest.org/arealme.com）主流做法是给一个众包中位数（Human Benchmark为273ms，来自'tens of millions of tests'但无同行评审来源）。本工具引用三篇独立学术文献（Kosinski文献综述+Eckner et al. 2010+Woods et al. 2015）并按文献口径分四档说明结果，且FAQ主动解释'为什么不同测量方法数字不同'，构成真实差异化，非裸克隆同类工具。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图（交互式点击测试UI为主），仅使用全站favicon。"
+    }
+  ],
+  "actions_taken": [
+    "src/data/tools.ts第2831行左右（reaction-time-test条目sources[]中Woods et al.引用）URL由https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4374455/改为规范域名https://pmc.ncbi.nlm.nih.gov/articles/PMC4374455/",
+    "updated字段由2026-08-10改为2026-08-28（published保持2026-08-10不变，该字段本已存在无需回填）",
+    "npm test修复前后均1284/1284通过，npm run build 114页无报错，dist/reaction-time-test/index.html人工核对确认新URL已生效",
+    "commit dc776f3（仅src/data/tools.ts一个文件；会话开始前已存在的src/data/imageDims.ts未提交改动非本次产生，未纳入）push后curl轮询（?cb=$RANDOM绕缓存）3次约40秒确认线上生效",
+    "seo_drift.py compare：1条WARNING级'schema内容变化'，核对确为预期内的dateModified字段同步更新，无CRITICAL发现",
+    "node tools/submit-indexnow.mjs /reaction-time-test/：Bing 200/Yandex 200",
+    "内容发布日志.md已追加本条审计记录"
+  ],
+  "independent_verification": "本次唯一候选发现（NCBI旧域名链接是否构成需修复问题）spawn一个全新独立agent，仅提供发现内容+待核证据（不含审计其余上下文），要求用curl独立复核301重定向确实存在、落地页内容确实匹配该论文、新域名确实是终态非规范URL——agent约90秒内正常返回，判定CONFIRMED（无看门狗降级触发）。",
+  "seo_score": "全部技术项通过，无需修复",
+  "geo_score": "无适用于本站的99分制自动打分器；调用Skill(ai-seo)清单人工核对，明显超过≥80等效门槛，无需修复",
+  "escalation": null
+}
+```
