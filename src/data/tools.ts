@@ -2746,7 +2746,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Reaction Time Test',
 		description:
 			'Test your simple reaction time over several trials, then compare your average, best, median, and consistency against reaction-time figures from published research.',
-		updated: '2026-08-10',
+		updated: '2026-08-28',
 		published: '2026-08-10',
 		coreSummary:
 			"Simple reaction time measures how fast you can respond to a single expected signal, no choice involved, just detect and click. Published averages vary by measurement method: a Clemson University literature review cites roughly 190 ms as the accepted non-computer figure for over a century, and cites a further study putting computer-measured results around 268 ms. Woods et al. (2015) separately measured a 231 ms raw average (213 ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. This tool runs a short series of trials, times each one with the browser's performance clock from stimulus onset to click, and compares your average against those documented figures.",
@@ -2839,7 +2839,7 @@ export const tools: Tool[] = [
 			},
 			{
 				label: 'Woods, D.L. et al. (2015). "Factors influencing the latency of simple reaction time," Frontiers in Human Neuroscience 9:131',
-				url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4374455/',
+				url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4374455/',
 			},
 		],
 		embedHeight: 620,
