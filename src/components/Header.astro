@@ -18,16 +18,28 @@ const categories = [...new Set(tools.map((t) => t.category))];
 		</a>
 
 		<div class="hidden items-center gap-6 md:flex">
-			{
-				categories.map((cat) => (
-					<a
-						href={`/category/${categorySlug(cat)}/`}
-						class="text-[0.88rem] font-medium text-[var(--ink)]/65 no-underline transition-colors duration-150 hover:text-[var(--op-dark)]"
-					>
-						{cat}
-					</a>
-				))
-			}
+			<details id="categories-dropdown" class="relative">
+				<summary
+					class="flex cursor-pointer list-none items-center gap-1 text-[0.88rem] font-medium text-[var(--ink)]/65 no-underline transition-colors duration-150 hover:text-[var(--op-dark)] [&::-webkit-details-marker]:hidden"
+				>
+					Categories
+					<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</summary>
+				<div class="absolute left-0 top-full z-10 mt-3 grid w-52 grid-cols-1 gap-0.5 rounded-lg border border-[var(--rule)] bg-white p-2 shadow-lg">
+					{
+						categories.map((cat) => (
+							<a
+								href={`/category/${categorySlug(cat)}/`}
+								class="rounded-md px-3 py-2 text-[0.88rem] text-[var(--ink)]/70 no-underline transition-colors duration-150 hover:bg-[var(--rule)]/50 hover:text-[var(--op-dark)]"
+							>
+								{cat}
+							</a>
+						))
+					}
+				</div>
+			</details>
 			<a href="/about/" class="text-[0.88rem] font-medium text-[var(--ink)]/65 no-underline transition-colors duration-150 hover:text-[var(--op-dark)]">About</a>
 		</div>
 
@@ -67,5 +79,17 @@ const categories = [...new Set(tools.map((t) => t.category))];
 	toggle.addEventListener('click', () => {
 		const open = menu.classList.toggle('hidden');
 		toggle.setAttribute('aria-expanded', String(!open));
+	});
+
+	const dropdown = document.getElementById('categories-dropdown') as HTMLDetailsElement;
+	document.addEventListener('click', (e) => {
+		if (dropdown.open && !dropdown.contains(e.target as Node)) {
+			dropdown.open = false;
+		}
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && dropdown.open) {
+			dropdown.open = false;
+		}
 	});
 </script>
