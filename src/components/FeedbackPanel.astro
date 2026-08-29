@@ -81,8 +81,10 @@
 		font-weight: 700;
 		letter-spacing: 0.18em;
 		text-transform: uppercase;
+		/* Solid 0.75 alpha keeps the label above 4.5:1 on the white card
+		   (0.55 blended to roughly 3.6:1, below WCAG AA). */
 		color: var(--ink);
-		opacity: 0.55;
+		opacity: 0.75;
 	}
 	.cb-fb-q {
 		margin: 0.5rem 0 0;
