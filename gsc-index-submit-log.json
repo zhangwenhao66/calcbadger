@@ -319,5 +319,20 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-29",
+    "action": "submitted",
+    "reason": "今日随机休息未发布新工具。用build-index-queue.py队列遍历：bmi-calculator/date-calculator/concrete-calculator/world-clock均已收录，wingdings-translator显示Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
+    "submitted_urls": [
+      "https://calcbadger.com/wingdings-translator/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/bmi-calculator/",
+      "https://calcbadger.com/date-calculator/",
+      "https://calcbadger.com/concrete-calculator/",
+      "https://calcbadger.com/world-clock/"
+    ],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
