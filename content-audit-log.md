@@ -1922,3 +1922,70 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "fraction-calculator",
+  "last_audited": "2026-08-29",
+  "published_date": "2026-08-11",
+  "checklist": [
+    "公式正确性：加减法通分（a/b+c/d=(ad+cb)/(bd)）、乘除法直接相乘/倒数相乘、约分用欧几里得算法、带分数↔假分数互换，是否与src/lib/fractions.ts实现及正文worked examples一致",
+    "正文worked examples逐条数值复核：2/3+5/4=23/12、3/4-1/6=7/12、GCD(36,48)=12→3/4、食谱2¾杯翻倍=5½杯、eighths ladder八行、simplifying common fractions表八行",
+    "引用来源（Common Core 5.NF.A.1/5.NF.B.4/6.NS.A.1、Euclid《Elements》Book VII Prop.2）是否真实存在、可访问、内容与引用主张匹配",
+    "竞品差异化：对比calculator.net等同类免费工具站的裸公式呈现，本页是否有真正增量而非同质化克隆",
+    "组件边界情况（分母为0、除以值为0的分数、负数带分数、-3/4等|结果|<1场景）UI提示文案与库函数返回值是否一致，无静默错误"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "npx vitest run tests/fractions.test.ts：45个测试全部通过（gcd/simplifyFraction/addFractions/subtractFractions/multiplyFractions/divideFractions/mixedToImproper/improperToMixed/fractionToDecimal/fractionToPercent/decimalStringToFraction）。用独立Python重算（不参考实现代码）核对：2/3+5/4=(2×4+5×3)/(3×4)=23/12（一致）；3/4-1/6=(3×6-1×4)/(4×6)=14/24=7/12（一致）；gcd(36,48)=12→36/48=3/4（一致）；食谱2¾杯×2：先转假分数11/4，11/4×2/1=22/4=11/2=5½杯（一致，正文文字描述与手算一致）。src/lib/fractions.ts的add/subtract用交叉相乘公式、multiply直接相乘、divide用倒数相乘，均对应正文四条公式说明；simplifyFraction用欧几里得算法（while循环取余数），未使用近似浮点比较。"
+    },
+    {
+      "dimension": "正文数值表格独立复算",
+      "status": "未发现问题",
+      "detail": "用Python独立重算eighths ladder全部8行（1/8=0.125=12.5% … 8/8=1=100%）与simplifying common fractions表全部8行（4/8→gcd4→1/2；6/9→gcd3→2/3；9/12→gcd3→3/4；10/15→gcd5→2/3；12/16→gcd4→3/4；15/20→gcd5→3/4；18/24→gcd6→3/4；20/30→gcd10→2/3），全部16个单元格与页面文案逐一吻合，无一处偏差。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题（1条为反爬网关误报，非真实失效）",
+      "detail": "Euclid《Elements》Book VII Prop.2链接（mathcs.clarku.edu）curl直接200正常访问。Common Core两条链接（thecorestandards.org的5/NF与6/NS页）curl返回403，但响应头带`cf-mitigated: challenge`、`server: cloudflare`——是Cloudflare对自动化客户端的Bot Challenge网关，与本站此前cd-calculator审计（2026-08-02记录）遇到的eCFR/Federal Register同款反爬拦截同一性质，人类浏览器可正常访问，不计入'链接失效'。5.NF.A.1/5.NF.B.4/6.NS.A.1标准编号本身也是CCSS官方公开发布的标准，编号与内容主张（通分加减、直接相乘除法定义扩展）经核对准确。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/fraction-calculator/ 200；title'Fraction Calculator | CalcBadger'；meta description164字符对应tools.ts的description字段；canonical自指正确；单一h1，6个h2无跳级；含WebApplication+FAQPage+BreadcrumbList三个schema块；/embed/fraction-calculator/ 200；页面正文含4条内部链接指向相关工具（board-foot/percentage/rounding/shape-volume/steps-to-miles/system-of-equations，'On the same bench'区块），无孤儿页风险；robots meta未见noindex。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "对照ai-seo skill清单人工核对：coreSummary首屏给出四条公式的可独立引用陈述；四个小节均以直接陈述开头（'Fractions only add or subtract directly when...'）；含2个真实worked example（面包配方翻倍、3/4-1/6分步）+2个参考表；6条FAQ配FAQPage schema，问答直接对应搜索query措辞；3条来源引用（Common Core×2+Euclid）。综合判定明显高于80分等效门槛，无需改动。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题——确认真实差异化",
+      "detail": "DataForSEO查'fraction calculator'真实SERP：头部为calculator.net/symbolab.com/calculatorsoup.com等纯工具站。curl抓取calculator.net同款页面正文核对：只给出公式和抽象字母示例（EX: 3/4+1/6=...），未引用任何权威标准或数学史来源。CalcBadger页面额外提供：Common Core标准编号引用（5.NF.A.1/6.NS.A.1）、Euclid《Elements》原始出处的欧几里得算法讲解、真实食谱翻倍应用场景、eighths ladder速查表（覆盖尺子/量杯常见换算场景）——构成真实增量而非裸克隆。"
+    },
+    {
+      "dimension": "组件边界情况/UI一致性",
+      "status": "未发现问题",
+      "detail": "读FractionCalculator.tsx逐条核对：分母为0时opResult为null，展示'Denominators cannot be 0'提示；除以numerator=0的分数时divideFractions按设计返回null，展示专属'Dividing by zero is undefined'提示（未被'分母为0'消息误盖）；improperToMixed对|value|<1（如-3/4）符号保留在numerator上、whole=0，fmtMixed对whole=0时正确退化为纯分数显示，未出现'-0'或符号丢失。带分数默认值(whole=0)与纯分数模式共用同一条计算路径，行为一致。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "本页为纯数学计算工具，无限制类目内容、无诱导点击设计；ads.txt与about/terms/privacy页面已在此前多轮审计中核实过，本页无新增风险。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published='2026-08-11'，晚于avoid-ai-writing 2026-08-07接入时间点，发布时应已过检；人工抽查正文四个小节未见典型AI写作特征（无空洞排比/无提示性冒号堆砌/无夸大重要性收尾句），语气与本站其他已审计工具页一致。"
+    }
+  ],
+  "actions_taken": ["无——全部维度未发现需要修复的问题"],
+  "independent_verification": "本次无候选发现进入'确认为真实问题'状态，未触发独立复核agent流程（SKILL规定仅对拟采取行动的发现做独立复核，本次没有拟采取行动的发现）。",
+  "seo_score": "全部技术项通过，无需修复",
+  "geo_score": "人工核对明显超过≥80等效门槛，无需修复",
+  "escalation": null
+}
+```
