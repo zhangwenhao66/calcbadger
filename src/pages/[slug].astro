@@ -1,5 +1,6 @@
 ---
 import CalculatorIsland from '../components/CalculatorIsland.astro';
+import FeedbackPanel from '../components/FeedbackPanel.astro';
 import Layout from '../layouts/Layout.astro';
 import BreadcrumbList from '../../vendor/site-toolkit/packages/schema/src/BreadcrumbList.astro';
 import FAQPage from '../../vendor/site-toolkit/packages/schema/src/FAQPage.astro';
@@ -238,6 +239,8 @@ function md(text: string): string {
 				</div>
 			)
 		}
+
+		<FeedbackPanel />
 
 		<div class="mt-10 border-t border-[var(--rule)] pt-5 text-sm text-[var(--ink)]/55">
 			<p class="m-0">
