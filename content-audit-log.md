@@ -1989,3 +1989,95 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "time-duration-calculator",
+  "last_audited": "2026-08-30",
+  "published_date": "2026-08-11",
+  "checklist": [
+    "公式正确性（最高优先级）：秒/分/时的60进制固定比率（BIPM SI Brochure Annex 1）是否正确；跨午夜的'结束时间早于/等于开始时间即视为次日'惯例是否正确应用且不产生负数；两个full date-time之间的跨日计算是否正确复用dateCalculator.ts的proleptic Gregorian历法（ECMA-262 §21.4）",
+    "worked example与参考表数值：9:15 AM–5:45 PM=8h30m=8.5小时；10PM–6AM隔夜=8h；相同起止时间=24h；分钟→十进制小时换算表（15/30/45/60分钟）是否仍然正确",
+    "三种模式（Between two times / Add-subtract / Two date-times）互相之间在重叠场景下是否给出一致结果（如隔夜8h在单钟模式与跨日date-time模式下应相等）",
+    "内部交叉引用：页面提到'this site's World Clock converter handles time-zone-aware conversions'，需确认World Clock工具确实存在且确实做时区转换，不是编造的站内引用",
+    "sources两条外部引用（BIPM SI Brochure、ECMA-262 §21.4）是否仍可访问且内容仍对应"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：9:15AM→5:45PM=30,600秒=8.5小时（与页面worked example及tests/timeDuration.test.ts一致）；10PM→6AM隔夜规则（diff<=0则+86400）=28,800秒=8小时（与页面一致）；起止时间相同→按next-day惯例=86,400秒=24小时（与tests一致，非0）；分钟→十进制小时表0/15/30/45/60分钟=0/0.25/0.50/0.75/1.00（精确60进制，页面一致）。src/lib/timeDuration.ts的durationBetweenTimes/shiftTime/durationBetweenDateTimes三个函数分别对应三种模式，durationBetweenDateTimes复用dateCalculator.ts的daysBetween做跨日历天数计算，未见重复应用或单位混淆。三模式重叠场景交叉验证：22:00→06:00作为单钟隔夜（8h）与作为跨自然日的两个date-time（2026-01-01 22:00→2026-01-02 06:00）结果一致，均为8h，符合页面'两种算法在重叠区间应给出相同答案'的暗示表述。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test：68个测试文件、1284个测试全部通过，tests/timeDuration.test.ts 22个测试全部通过。测试注释声明期望值来自'a standalone Python script...a separate implementation of the same arithmetic, not derived from this file's own output'，本次审计用独立Python脚本重新核算了其中的关键期望值（9:15-17:45、隔夜、同起止时间、分钟换算），全部吻合，核实测试注释所述属实。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/calculators/TimeDurationCalculator.tsx逐行核对：三种mode（between/shift/datetime）分别正确路由到durationBetweenTimes/shiftTime/durationBetweenDateTimes；12/24小时格式切换时changeFormat先把已输入的时间转换回ClockTime再用新格式重新格式化，避免切换后数值丢失或错位；toClockTime对12小时制下hour<1或>12、24小时制下hour<0或>23均正确拒绝为null。npm run build成功生成/time-duration-calculator/与/embed/time-duration-calculator/，114个页面全部构建无报错。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题",
+      "detail": "BIPM SI Brochure Annex 1链接curl -sIL返回200；ECMA-262 §21.4链接（tc39.es/ecma262/#sec-date-objects）curl -sIL返回200（GitHub Pages托管，last-modified为近期，内容持续更新但该锚点章节仍存在）。两条均为该权威机构/标准的现行永久链接，无失效或反爬网关迹象。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/time-duration-calculator/ 200；title'Time Duration Calculator | CalcBadger'（约47字符）；meta description 188字符，用check_seo_field_stats.py核查：n=47，mean=169.3，stdev=22.1，z-score=0.85（<1门槛，不判定问题）；canonical自指正确；单一h1，9个h2/6个h3层级无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList），WebApplication的dateModified='2026-08-11'与tools.ts的updated字段一致；robots.txt放行所有爬虫含AI爬虫；页面已被sitemap-index.xml收录。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "本站无适用于长文的99分制自动打分器，沿用既往审计的人工核对方法（对照ai-seo skill可提取性清单）：coreSummary首屏给出可独立引用的60进制定义+隔夜惯例说明；4个小节均以直接陈述开头；2条真实worked example（9:15-5:45工作日、跨日48小时项目）+2个参考表；6条FAQ配FAQPage schema；2条权威来源引用（BIPM+ECMA-262）；'last reviewed 2026-08-11'时效信号明确（发布仅19天，无需刷新）；robots.txt放行GPTBot/ClaudeBot/PerplexityBot等。综合判定明显高于80分等效门槛，无需改动。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published='2026-08-11'，晚于avoid-ai-writing 2026-08-07接入时间点，跳过重新扫描。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题——确认真实差异化",
+      "detail": "WebSearch'time duration calculator between two times online tool'真实SERP：头部为calculator.net/timeanddate.com/calculator.io/ontheclock.com等纯工具站，普遍只提供单一'算个数字'功能。CalcBadger页面额外提供：三种模式合一（单钟间隔/加减时长/跨日历跨度）且三者结果在重叠场景保持一致、BIPM SI Brochure权威来源引用60进制定义、'为什么早于起始时间即视为次日'的可解释惯例说明（而非仅给结果不说明规则）、十进制小时换算表、与站内World Clock工具的场景分工说明（本工具不处理时区/夏令时，World Clock处理）——构成真实增量而非裸克隆。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "本站现有47个工具（非首次审计时的5个），用[slug].astro实际使用的pickRelatedGuides+跨分类补足逻辑写覆盖率验证脚本（tmp_check_coverage.mjs，验证后已删除）：全站47/47工具均被至少一个其他工具页的'相关工具'区块链接到，time-duration-calculator本身确认在内；无孤儿页风险。此外页面里提到的站内交叉引用'this site's World Clock converter handles time-zone-aware conversions'经核实为真——World Clock（world-clock工具）的coreSummary确认其确实做IANA时区数据库驱动的时区转换，不是编造的站内引用。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的description字段与tools.ts的description字段逐字一致；dateModified='2026-08-11'与updated字段一致；FAQPage的6条Question/Answer与页面渲染的FAQ区块逐一对应；BreadcrumbList三级（Home/Date & Time/Time Duration Calculator）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "不适用",
+      "detail": "纯时间计算工具，无需额外风险提示，无变化。"
+    },
+    {
+      "dimension": "图片/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图，仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "ads.txt仍正确指向'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；本页为纯时间计算工具，无限制类目内容、无诱导点击设计。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py）",
+      "status": "脚本报警但独立agent核实为误报，未修改",
+      "detail": "python3 check_prose_patterns.py --guides src/data/tools.ts --slug time-duration-calculator 首次运行：\"'s own\"归因0次（通过）、对比框架2次/801词（通过）、叙事性双连字符0处（通过）、但FAQ近乎逐字复述正文检查报警——4条FAQ answer与正文有≥20字符连续重合（分别为'between two times'/'Two date-times'两个UI模式标签的必要重复引用，以及'time and a duration'/'rather than returning a negative'两处功能性短语的自然重合），脚本退出码1。按Step 3要求，把这4处具体重合文本+脚本报警理由（不含审计过程中积累的其他判断）交给一个全新独立sub-agent复核，独立agent逐条读取src/data/tools.ts的sections与faq原文后判定：四处重合均属于（a）UI模式标签必须逐字引用才能让读者对上号（非同义词替换空间），或（b）描述同一底层事实的通用连接性短语；且每条FAQ答案的非重合主体部分都承载着正文未覆盖的独特信息（FAQ#1补充三种输出格式一次性返回、FAQ#2补充'8小时非负16小时'的具体数字对比、FAQ#3补充Add/Subtract选择与跨午夜时的天数报告机制、FAQ#4虽是四条里最接近的一条但省略了正文的48小时worked example，是FAQ体裁应有的'快速直答'而非复制粘贴）。独立agent最终结论：'insufficient evidence, not a real problem'——判定为朴素子串重合检测在不理解语境时的典型误报，非真实的AI写作套路或偷懒内容信号。按Step 3'只对确认属实的发现采取行动'的规定，未对FAQ或正文做任何改写。"
+    }
+  ],
+  "actions_taken": ["无代码改动——13个维度均未发现问题，第14维度（机械化文风检查）脚本报警的唯一候选发现经独立agent核实为误报（UI标签必要重复引用+功能性短语自然重合，非真实内容质量问题），未采取行动"],
+  "independent_verification": "对本次唯一候选发现（FAQ与正文文本重合）spawn了一个全新独立sub-agent，仅提供具体重合片段+脚本报警理由，未提供审计过程中积累的判断。独立agent读取原文后给出'insufficient evidence, not a real problem'结论，理由详见上方findings条目。未出现agent卡死情况（49.7秒内正常完成），无需启用看门狗兜底自查流程。",
+  "seo_score": "修复前后一致（无改动）：静态审计全部健康——title/meta description(z-score 0.85)/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap均无异常",
+  "geo_score": "修复前后一致（无改动）：无适用于本站的99分制自动打分器，人工核对明显超过≥80等效门槛",
+  "escalation": null
+}
+```
