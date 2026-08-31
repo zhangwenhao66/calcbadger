@@ -2081,3 +2081,105 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "shape-volume-calculator",
+  "last_audited": "2026-08-31",
+  "published_date": "2026-08-12",
+  "checklist": [
+    "公式正确性：四种形状（矩形棱柱/圆柱/球体/圆锥）的体积与表面积公式是否与Wolfram MathWorld标准定义一致，含圆锥的斜高√(r²+h²)推导",
+    "单位处理：本工具输入输出始终用同一个所选单位（ft/in/yd/m/cm），不涉及跨单位换算，需确认没有静默的单位混用",
+    "边界情况：半径/高/长宽高为0时是否有'请输入尺寸'的友好提示而非崩溃或显示0；负数是否被min=0与`>0`判断双重拦截",
+    "worked examples与参考表数值：正文两个worked example（2×1.5×1ft货箱、半径2ft高6ft圆柱drum）与Formula reference/Example calculations两张表共20个数值是否算得对",
+    "圆锥表面积措辞：页面明确写'total surface area'（含底面）而非仅侧面，FAQ与正文对'lateral-only需减πr²'的提示是否前后一致"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码，只用教科书标准公式）：矩形棱柱3×4×5=60体积/94表面积；圆柱r=3,h=10→282.7433体积/245.0442表面积；球体r=5→523.5988体积/314.1593表面积；圆锥r=3,h=4（3-4-5直角三角形）→37.6991体积/75.3982表面积——五组结果与页面显示、tests/geometry.test.ts、tests/ShapeVolumeCalculator.dom.test.tsx期望值全部一致（保留3位小数处完全吻合）。src/lib/geometry.ts的8个纯函数（prismVolume/prismSurfaceArea/cylinderVolume/cylinderSurfaceArea/sphereVolume/sphereSurfaceArea/coneVolume/coneSurfaceArea + coneSlantHeight）逐一核对代码与Wolfram MathWorld（Cuboid/Cylinder/Sphere/Cone词条）定义完全一致，无重复应用或漏项。worked examples同样独立重算：2×1.5×1ft货箱=3ft³体积/13ft²表面积（页面一致）；r=2,h=6ft圆柱drum=75.4ft³体积（π×2²×6）/100.5ft²表面积（2π×2×(2+6)）（页面一致）。Formula reference表与Example calculations表共20个单元格逐一复算全部吻合。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npm test -- geometry ShapeVolumeCalculator：2个测试文件、18个测试全部通过（geometry.test.ts 13个纯函数测试 + ShapeVolumeCalculator.dom.test.tsx 5个DOM交互测试，后者测试注释注明是Browser pane不可用时的真实DOM渲染替代方案）。测试期望值本次审计用独立Python脚本重新核算，全部吻合。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "src/components/CalculatorIsland.astro第63/121行正确映射'shape-volume-calculator'到ShapeVolumeCalculator组件（client:load）；组件按shape状态（prism/cylinder/sphere/cone）条件渲染对应输入字段（棱柱显示长宽高，圆柱/圆锥显示半径+高，球体只显示半径），只有全部相关维度均>0时才计算并显示结果，否则显示'Enter the dimensions...'提示，逻辑与tests覆盖的5种场景（默认棱柱/圆柱/球体/圆锥/零值提示）一致。npm run build未单独重跑（本次无代码改动，构建状态沿用上次审计已验证的全站114个页面无报错基线）。"
+    },
+    {
+      "dimension": "单位处理",
+      "status": "未发现问题——不适用跨单位换算风险",
+      "detail": "读组件源码确认：本工具的Unit选择器（ft/in/yd/m/cm）只影响输入框标签与结果的单位后缀显示，所有计算全程在用户选定的单一单位下进行（不像length-converter/weight-converter那类工具需要做跨单位比例换算），不存在'输入用一个单位、公式用另一个单位'的静默错配风险。这一点与教训库L-0821-1（站内已有换算公式套到新实例容易把'多单位叠加值'错当'单个单位容量'）描述的风险模式结构上不适用——本工具没有换算步骤。"
+    },
+    {
+      "dimension": "边界情况",
+      "status": "未发现问题",
+      "detail": "组件源码第56-69行：仅当对应维度全部满足`> 0`（如`l > 0 && w > 0 && h > 0`）才赋值volume/surfaceArea，否则两者保持null，UI显示'Enter the dimensions to see the volume and surface area.'而非0或崩溃；tests/ShapeVolumeCalculator.dom.test.tsx显式测试了length=0的场景，确认不显示Volume/Surface area标签只显示提示文案。NumberField组件min={0}从UI层面阻止负数拖动，但用户仍可手动键入负数——键入负数时`parseFloat('-5') > 0`为false，同样落入'未满足条件→显示提示'分支，不会算出负体积或崩溃，边界处理是安全的。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/shape-volume-calculator/ 200；title'Shape Volume & Surface Area Calculator | CalcBadger'（46字符，z-score=-1.15，正常范围）；meta description 158字符，用check_seo_field_stats.py核查：n=47，mean=169.3，stdev=22.1，z-score=-0.51（<1门槛，不判定问题）；canonical自指正确；单一h1，5个h2+6个h3层级无跳级；3个application/ld+json（WebApplication+FAQPage+BreadcrumbList）；robots.txt放行所有爬虫含GPTBot/ClaudeBot/PerplexityBot等；sitemap-0.xml确认已收录本页。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "本站无适用于长文的99分制自动打分器，沿用既往审计的人工核对方法（对照ai-seo skill可提取性清单）：coreSummary首屏给出四种形状公式的可独立引用摘要；3个小节均以直接陈述开头；2条真实数字worked example（货箱、圆柱drum）+2个参考表（公式对照表+算例对照表）；6条FAQ配FAQPage schema；5条权威来源引用（4条Wolfram MathWorld+1条CalculatorSoup交叉验证圆锥表面积公式）；published='2026-08-12'（发布19天，无需刷新）；robots.txt放行AI爬虫。综合判定明显高于80分等效门槛，无需改动。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published='2026-08-12'，晚于avoid-ai-writing 2026-08-07接入时间点，跳过重新扫描。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题——确认真实差异化",
+      "detail": "WebSearch'shape volume and surface area calculator rectangular prism cylinder sphere cone online tool'真实SERP，实测打开头部竞品：calculator.net的volume-calculator.html把7种形状拆成7个独立小计算器堆在一个长页面上，且只算体积、没有配套的表面积（表面积是另一个独立页面surface-area-calculator.html），无worked example、无参考对照表、无'半径非直径'的操作提示；CalculatorSoup同样是volume.php和surfacearea.php两个分离页面。CalcBadger本工具用一个选择器切换4种形状且体积+表面积同屏一次性给出，额外提供2条带真实数字的worked example、2张对照表、'半径非直径'与'圆锥总表面积含底面/仅侧面需自行减πr²'的操作性提示、5条权威来源（含用CalculatorSoup交叉验证圆锥公式），构成真实增量而非同款克隆换皮。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "本站现有47个工具，用[slug].astro实际使用的pickRelatedGuides+跨分类补足逻辑写覆盖率验证脚本（coverage_check.mjs，验证后已删除）：全站47/47工具均被至少一个其他工具页的'相关工具'区块链接到，shape-volume-calculator本身确认在内；无孤儿页风险。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "解析线上页面3个JSON-LD区块：WebApplication的name='Shape Volume & Surface Area Calculator'、dateModified='2026-08-12'与tools.ts的title/updated字段一致；FAQPage的6条Question与页面渲染的6条FAQ标题逐字对应；BreadcrumbList三级（Home/Math/Shape Volume & Surface Area Calculator）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度",
+      "status": "不适用",
+      "detail": "纯几何计算工具（体积/表面积），不涉及健康类换算（非BMI风格），无需额外免责声明。"
+    },
+    {
+      "dimension": "配图/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），og:image与favicon均指向public/favicon.svg，实测可正常访问，无失效图片资源。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出'google.com, pub-5245502795720653, DIRECT, f08c47fec0942fa0'；页面标题/文案无误导性或诱导点击设计；工具是标准几何计算器，不涉及暴力/武器/毒品/赌博/成人内容等任何AdSense限制类目，十站共用同一账号的连坐风险为0。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题",
+      "detail": "curl -A Mozilla/5.0核实5条sources链接：4条Wolfram MathWorld（Cuboid/Cylinder/Sphere/Cone）+1条CalculatorSoup圆锥计算器，全部返回200，无失效或反爬网关迹象。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py）",
+      "status": "脚本报警但独立agent核实为误报，未修改",
+      "detail": "python3 check_prose_patterns.py --guides src/data/tools.ts --slug shape-volume-calculator：\"'s own\"归因0次（通过）、对比框架0次/596词（通过）、叙事性连字符0处（通过，全文5处Unicode破折号均在'Wolfram MathWorld — \"Cuboid\"'这类来源标注里，非叙事性用法）、但FAQ近乎逐字复述正文检查报警——4条FAQ answer与正文有≥20字符连续重合（FAQ#1'length × width × height'26字符、FAQ#3'πr²h: the area of the circular base'36字符、FAQ#4'surface area = πr² + πrl...'70字符、FAQ#6'a cylinder sharing the same base and height'46字符），脚本退出码1。按Step 3要求，把这4处具体重合文本+脚本报警理由（不含审计过程中积累的其他判断）交给一个全新独立sub-agent复核，独立agent逐条读取正文sections与faq原文后判定：四处重合均属于数学公式记号本身只有一种正确写法（无同义改写空间）或必要的连接性短语，且每条FAQ答案除重合片段外都携带正文未覆盖的独立信息——FAQ#1/#3各自带一个跟正文worked example数字不同的独立算例（3×4×5ft/60ft³、半径3ft高10ft圆柱/282.74ft³）、FAQ#4补充'仅侧面用πrl'的操作性指令、FAQ#6补充'该1/3规律适用于任何棱锥对棱柱、非圆锥专属'的推广性结论。独立agent最终结论：'insufficient evidence, not a real problem'——判定为朴素子串重合检测在不理解数学记号约束时的典型误报，非真实的AI写作套路或偷懒内容信号（与2026-08-30 time-duration-calculator审计的同类误报结论一致）。按Step 3'只对确认属实的发现采取行动'的规定，未对FAQ或正文做任何改写。独立agent耗时约12.5秒正常完成，无卡死，无需启用看门狗兜底自查流程。"
+    }
+  ],
+  "actions_taken": ["无代码改动——13个维度均未发现问题，第14维度（机械化文风检查）脚本报警的唯一候选发现经独立agent核实为误报（数学公式记号只有一种正确写法+必要连接短语，且每条FAQ携带独立算例/结论，非真实内容质量问题），未采取行动。因无任何改动，跳过Step 5的build/commit/push/IndexNow流程与Step 6的内容发布日志追加"],
+  "independent_verification": "对本次唯一候选发现（FAQ与正文数学公式记号重合）spawn了一个全新独立sub-agent，仅提供具体重合片段+脚本报警理由+完整正文与FAQ原文，未提供审计过程中积累的判断倾向。独立agent逐条给出'insufficient evidence, not a real problem'结论并附四项分别的理由（详见上方findings条目），未出现agent卡死情况（约12.5秒内正常完成），无需启用看门狗兜底自查流程。",
+  "seo_score": "静态审计全部健康：title(z=-1.15)/meta description(z=-0.51)/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap均无异常",
+  "geo_score": "无适用于本站的99分制自动打分器；人工核对明显超过≥80等效门槛（coreSummary+直接陈述小节+2条worked example+2张对照表+6条FAQ schema+5条权威来源+时效信号齐全）",
+  "escalation": null
+}
+```
