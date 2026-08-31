@@ -218,3 +218,20 @@
 2. Real Estate/Food & Drink/Text Tools三个分类**连续三轮（8/16、8/21、8/24）竞品反查/WebSearch均未产出可发送候选**，本轮虽首次找到4个主题精确匹配的候选但全部因时效性/页面消失被放弃——说明这个细分领域存在真实候选但普遍时效性差（多为2025年初的一次性文章，未持续更新），下轮如果继续投入这三个分类，建议直接放宽到"发布未满12个月"的更新竞品博客（如查询发布日期在2025-09之后的prorated rent/keg/text tool相关文章），而非依赖外链数据反查（外链数据本身有滞后性，热文章的外链需要时间积累，新文章反而外链少查不到）。
 3. Text Tools分类（glitch-text-generator/small-text-generator/sentence-counter/wingdings-translator）**四轮以来完全没有找到任何候选**，竞品（omnicalculator/inchcalculator/calculator.net）本身可能都不覆盖这类文本工具，导致反查外链天然没有信号——下轮建议换成直接反查专做文本工具的竞品（如`lingojam.com`、`fontvilla.com`等文本生成器站）的外链，而非继续套用施工/理财类竞品的方法论。
 4. `centralmixconcrete.com`（8/21候选之一）本轮确认SSL证书已过期，这是它自己域名的问题，不是我们的置换机会，下轮无需再重试这个域名。
+
+---
+
+## 2026-08-31（第六次运行，`trafficsite-broken-link-building`）
+
+### 第一部分：核实10天以前的旧pitch
+
+08-16发出的唯一一条已发送记录（info@thelawnturflaying.co.uk，Message ID `1a0093cdbdaa9a26`）距今15天，此前从未验证过（8/24轮当时仅8天不满10天），本轮核实。
+
+- curl复查 `https://www.thelawnturflaying.co.uk/`：HTTP 200，首页无"calcbadger"字样，判定**`not_replaced`**。这是"竞品缺口"类pitch（并非断链，是请求对方在已有的inchcalculator链接旁增补CalcBadger链接），故此处核实的是"是否已加链接"而非"死链是否修复"。
+- `dataforseo_query.py backlinks calcbadger.com --limit 100`：未查到thelawnturflaying.co.uk引荐域名。
+- `gmail_send.py list --query "from:info@thelawnturflaying.co.uk"`返回空，对方从未回复。
+- 发出已15天，略超SKILL"10-14天"窗口字面表述，但此前从未验证过（属首次核实延迟，跟hollowvane/mythcairn此前的同类先例一致），且目标是真实营业的英国草坪铺设公司（有真实地址电话），符合"真实权威度"标准，发送简短跟进邮件（过Skill(humanizer)+Skill(avoid-ai-writing)均无命中），`gmail_send.py send --from calcbadger --reply-to 1a0093cdbdaa9a26`，Message ID `1a057f0758be7489`。标记 **`verified_not_replaced_followed_up_once`**。
+
+本轮系上层`trafficsite-broken-link-building`会话按「外链产能集中规则」统一处理：CalcBadger当前处于Google August 2026垃圾更新算法性整站压制中（见`流量站矩阵风险应对追踪.md`），且本轮11-30位曝光仅2次，未入选本轮新机会挖掘前3站，第二部分本轮跳过。
+
+**累计口径**：CalcBadger断链置换战术累计已发送2封pitch（含本轮1封跟进）；已验证`not_replaced` 1条、`verified_live_backlink_confirmed` 0条，转化率仍为0。
