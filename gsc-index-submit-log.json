@@ -349,5 +349,15 @@
       "https://calcbadger.com/world-clock/"
     ],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-08-31",
+    "action": "submitted",
+    "reason": "本站今日随机休息未发布（算法压制期）。Page indexing报告显示16个Discovered-currently-not-indexed（压制期常态），逐一核对proxy后确认markup-calculator（proxy 111858，从未提交过）URL is not on Google，REQUEST INDEXING提交成功确认Indexing requested。time-duration-calculator（proxy 184950更高但已submitted过历史记录）本次未再核查。",
+    "submitted_urls": [
+      "https://calcbadger.com/markup-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
