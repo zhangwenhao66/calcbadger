@@ -2183,3 +2183,96 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "steps-to-miles-calculator",
+  "last_audited": "2026-09-01",
+  "published_date": "2026-08-12",
+  "checklist": [
+    "公式正确性：step length = height × 0.415(男)/0.413(女)，distance = steps × step length ÷ 63,360(in/mile)，是否与Hoeger et al.(2008)回归系数一致",
+    "CDC NHANES 2021-2023成人平均身高（68.9in男/63.5in女）引用是否属实、未被篡改",
+    "referenceTables两张表（15行steps-to-distance、7行height-to-steplength）与3条worked examples共计数十个数字是否可用公式独立重算复现",
+    "2026-08-12该条目曾因L-0805-21复发（\"Hoeger et al.在1,000名步行/跑步者身上拟合\"这一样本量查无实据）被从4处文案中删除，需确认修复未被后续改动回退",
+    "组件（StepsToMilesCalculator.tsx）direction/units/gender三个独立控件是否存在L-0809-2式级联下拉未重置的状态bug"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：referenceTables第一张表（男女步长×15档steps 2,000-20,000）15×2共30个单元格全部吻合；第二张表（7档身高5'0\"-6'0\"的平均步长与10,000步距离）全部吻合。3条worked examples独立复算：69in男10,000步=4.5194mi（页面写≈4.52，一致）；64in女10,000步=4.1717mi（页面写≈4.17，一致，且'比男性少约1/3英里'=4.519-4.172=0.347mi核实成立）；反向5mi÷28.635in步长=11,063.4步（页面写≈11,063，一致）。FAQ内'2,213 steps per mile'（63,360÷28.635）、'11,079步/12,080步'（5mi在男/女平均身高下）均独立复算吻合。src/lib/steps.ts的stepLengthInches/stepsToMiles/stepsToKm/milesToSteps/kmToSteps/cmToInches六个纯函数与tests/steps.test.ts 14项期望值逐条核对一致（npm test 1308/1308全部通过，非仅本工具）。"
+    },
+    {
+      "dimension": "事实准确性（引用来源核实）",
+      "status": "未发现问题",
+      "detail": "WebSearch独立核实：Hoeger, W.W.K. et al. \"One-Mile Step Count at Walking and Running Speeds\"确认发表于ACSM's Health & Fitness Journal, Volume 12, Issue 1（2008年1-2月），pp.14-19，DOI 10.1249/01.FIT.0000298459.30006.8d——与tools.ts sources[]标注的卷/期/页码完全一致。CDC NCHS FastStats（NHANES 2021-2023）核实成人平均身高为男68.9in/女63.5in，与tools.ts数值完全一致。2026-08-12曾因'1,000名受试者'样本量查无实据被删除的修复未被回退——当前四处文案（lib注释/coreSummary/正文/组件提示）均只保留可独立核实的期刊卷期页码，不再声称具体样本量。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题（含一项反爬网关说明）",
+      "detail": "CDC FastStats链接curl 200正常。LWW期刊全文链接curl -sIL返回403，但响应头含`cf-mitigated: challenge`（Cloudflare人机验证网关标记，与cd-calculator/bmi-calculator此前审计发现的eCFR/Lancet同款反爬模式一致），非真实死链，人类浏览器可正常访问。"
+    },
+    {
+      "dimension": "内嵌组件功能（含级联状态bug排查）",
+      "status": "未发现问题",
+      "detail": "StepsToMilesCalculator.tsx的direction（steps→distance/distance→steps）、units（imperial/metric）、gender（male/female）三个Segmented控件互相独立，选项集不随彼此变化（不存在'A变化导致B可选项集变化'的级联关系），不构成L-0809-2描述的'选项集变化但底层值未重置'风险模式。npm run build成功生成116个页面无报错，/steps-to-miles-calculator/与/embed/steps-to-miles-calculator/均正常。"
+    },
+    {
+      "dimension": "SEO技术审计",
+      "status": "未发现问题",
+      "detail": "线上https://calcbadger.com/steps-to-miles-calculator/ 200；title'Steps to Miles Calculator | CalcBadger'38字符，`check_seo_field_stats.py --new-slug steps-to-miles-calculator`核查z-score=0.23（<1不判定超标）；meta description 178字符，z-score=0.40（<1不判定超标）；canonical自指正确；单一h1，8个h2无跳级；3个application/ld+json（WebApplication+FAQPage 5题+BreadcrumbList三级Home/Health/本页）均与页面内容一致；robots.txt放行GPTBot/ChatGPT-User/ClaudeBot/Claude-Web/PerplexityBot/Google-Extended。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "本站无适用于长文的99分制自动打分器，沿用既往人工核对方法（对照ai-seo skill可提取性清单）：coreSummary首屏给出公式与关键结论；4个小节均以直接陈述开头；3条真实数字worked example+2张参考表；5条FAQ配FAQPage schema；'published 2026-08-12'时效信号明确（发布20天，无需刷新）；robots.txt全放行AI爬虫。综合判定明显高于80分等效门槛。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published='2026-08-12'，晚于avoid-ai-writing 2026-08-07接入时间点，跳过重新扫描。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题——确认真实差异化",
+      "detail": "WebSearch'how many miles is 10000 steps calculator'真实SERP：头部竞品（omnicalculator、thecalculatorsite两个不同页面、sport-calculator、walkingpad/urevo品牌博客）多数用固定步长或简单身高输入，未点名具体回归研究来源；本工具明确引用Hoeger et al.(2008)的性别专属回归系数(0.415/0.413)与CDC NHANES官方平均身高数据，并提供双向换算（步数↔距离），构成真实方法学增量，非同款换皮。此话题非Wikipedia百科条目，不涉及与百科同质化风险。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "线上curl核实4篇Health分类同侪页（bmi-calculator/calorie-calculator/body-surface-area-calculator/ffmi-calculator）均在'On the same bench'区块反向链接回本工具，本工具自身'On the same bench'区块也链回6个工具（Health不足6个时按站内既有算法跨分类补足Construction/Food & Drink），双向链接健康，无孤儿页风险。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "解析线上3个JSON-LD区块：WebApplication的dateModified='2026-08-12'与tools.ts的updated/published字段一致；FAQPage的5条Question与页面渲染的5条FAQ标题逐字对应；BreadcrumbList三级（Home/Health/Steps to Miles Calculator）与面包屑一致。"
+    },
+    {
+      "dimension": "合规/敏感度（含AdSense政策）",
+      "status": "未发现问题",
+      "detail": "纯几何/统计换算工具，无暴力/武器/赌博等AdSense限制类目内容；全站/terms/页'No professional advice'条款可覆盖，本工具本身也不涉及需额外免责声明的医疗诊断类断言（区别于bmi-calculator的YMYL属性，本工具只是距离估算）。robots.txt/ads.txt此前审计已确认全站健康，本次未见变化。"
+    },
+    {
+      "dimension": "配图/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图（表格+计算器UI为主），仅用全站favicon，无失效图片资源。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py）",
+      "status": "脚本报警，1处CONFIRMED已修复，2处REJECTED误报未改动",
+      "detail": "python3 check_prose_patterns.py --guides src/data/tools.ts --slug steps-to-miles-calculator：\"'s own\"归因0次（通过）、对比框架1次/717词（通过）、叙事性连字符0处（通过）、但FAQ近乎逐字复述正文检查报警——FAQ#1/FAQ#3各与coreSummary重合21字符(' at the u.s. average ')、FAQ#4与'Why height changes the answer'节末句重合48字符(' only holds near the population-average height. ')。按Step 3分两轮spawn独立agent复核：第一轮确认FAQ#4的48字符重合为FAQ直接照抄正文结论句，CONFIRMED需修复；FAQ#1/#3的21字符重合判定为固定数字(68.9in)贴同一描述性标签的必然重复，无共享论证/句式，REJECTED为误报。修复FAQ#4首句为'Because a flat ratio like that ignores how much height varies from person to person.'（次句保留不变）后重跑脚本，暴露出此前被48字符重合掩盖的第二处28字符重合（FAQ#4次句'step length around 28-31in,'与正文“10,000 steps ≈ 5 miles”节同款描述性短语），第二轮独立agent复核判定与已驳回的FAQ#1/#3同性质（同一具体数字28-31in的必然标签重复，两句分别引出不同后续内容），REJECTED未改动。两轮复核均正常完成无卡死。脚本当前仍报2处（均为已复核确认的误报），非漏修，为审计过程如实保留的开放差异。"
+    }
+  ],
+  "actions_taken": [
+    "改写FAQ#4（'Why not just use 2,000 steps per mile for everyone?'）首句，消除与正文47字符逐字重复，事实内容不变；FAQ#1/#3及FAQ#4次句维持原文（复核判定为误报，按'只处理复核确认为真的问题'原则不改动）",
+    "npm test 1308/1308通过、npm run build 116页成功后，仅git add该文件里被改动的单行（tools.ts第3323行），commit+push",
+    "push后curl轮询（?cb=$RANDOM绕缓存）约90秒后确认200且新FAQ文案已生效；seo_drift.py compare仅报WARNING级schema内容变化（FAQPage answer文本改动，预期内），无CRITICAL",
+    "node tools/submit-indexnow.mjs /steps-to-miles-calculator/提交Bing/Yandex均200；内容发布日志.md已追加记录标注'审计更新非新发布'",
+    "过程中一次操作失误：首次误传完整URL给submit-indexnow.mjs产生畸形日志key，git checkout撤销时误删同一文件里并发会话(electrical-converter发布)已写入未提交的记录，已核实该次真实IndexNow提交本身未受影响（发布任务当时已正常完成提交），仅补回被误删的日志条目并在note字段注明原委"
+  ],
+  "independent_verification": "对第14维度3处候选发现分两轮spawn全新独立sub-agent（均只提供具体重合片段+脚本报警理由+相关原文，不含审计过程中积累的判断倾向）：第一轮对FAQ#1/#3/#4三处候选逐一给出判决，FAQ#4 CONFIRMED、FAQ#1/#3 REJECTED；修复FAQ#4后脚本暴露新的28字符候选，第二轮针对该新候选单独复核，REJECTED（与已驳回的FAQ#1/#3同性质）。两轮均正常完成，未出现卡死，无需启用看门狗兜底自查流程。",
+  "seo_score": "修复前后一致（FAQ文本改动不影响SEO字段）：title(z=0.23)/description(z=0.40)/canonical/h1层级/3处JSON-LD schema/robots.txt/sitemap均无异常",
+  "geo_score": "修复前后一致：无适用于本站的99分制自动打分器；人工核对明显超过≥80等效门槛（coreSummary+直接陈述小节+3条worked example+2张对照表+5条FAQ schema+2条权威来源+时效信号齐全）",
+  "escalation": null
+}
+```
