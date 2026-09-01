@@ -5826,4 +5826,138 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 620,
 	},
+	{
+		slug: 'electrical-converter',
+		category: 'Conversion',
+		title: 'Electrical Converter (Watts, Amps, Volts)',
+		shortTitle: 'Electrical Converter',
+		description:
+			'Convert between watts, amps, and volts for DC, AC single-phase, and AC three-phase circuits, with power factor support and worked examples for household and industrial loads.',
+		updated: '2026-09-01',
+		published: '2026-09-01',
+		coreSummary:
+			"Watts, amps, and volts are three different physical quantities, not three names for the same thing, so amps cannot be converted to watts without also knowing voltage: P (watts) = V (volts) x I (amps) is Watt's Law, the electrical version of Ohm's Law. AC circuits add a second factor, power factor (PF), for the phase difference between voltage and current; three-phase circuits add a further multiplier depending on whether the voltage reading is line-to-line or line-to-neutral. Enter any two of watts, amps, and volts (plus power factor for AC) and this tool solves for the third.",
+		queries: [
+			'amps to watts',
+			'watts to amps',
+			'electrical calculator',
+			'volts to watts',
+			'watts to volts',
+			'how many watts is 15 amps',
+			'how many amps is 1500 watts',
+			'power factor calculator',
+			'three phase power calculator',
+		],
+		sections: [
+			{
+				heading: "Why amps alone don't tell you watts",
+				body: [
+					"Watts measure power, the rate energy is used. Amps measure current, the rate charge flows. The two are related but not interchangeable: the same 15 amps flowing through a 120V US outlet and a 230V European outlet delivers very different power (1,800W versus 3,450W), because power also depends on the voltage pushing that current through the circuit. This is Watt's Law, P = V x I, and it holds for any DC circuit or purely resistive AC load.",
+					"That is why a search for \"amps to watts\" cannot have a single fixed answer the way a length or temperature conversion does (Wikipedia's \"Ohm's law\" article). A calculator that only asks for amps and returns a watt figure is silently assuming a voltage, usually a standard household value, on your behalf.",
+				],
+			},
+			{
+				heading: 'DC, AC single-phase, and AC three-phase',
+				body: [
+					"DC circuits and purely resistive AC loads (space heaters, incandescent bulbs) use the plain formula P = V x I. Other AC loads, especially anything with a motor, coil, or transformer, draw current that is slightly out of phase with the voltage; power factor (PF) is the fraction of that V x I product that actually does useful work, so real power becomes P = V x I x PF. PF is always 1 for DC (there is no phase to be out of) and ranges from about 0.8 to 0.95 for typical motors, dropping lower for poorly designed or lightly loaded equipment (Wikipedia's \"Power factor\" article).",
+					'Three-phase power (common in industrial and commercial buildings) adds a second multiplier on top of PF, because three-phase delivers power over three conductors carrying current 120 degrees out of phase with each other. If the voltage figure you have is measured line-to-line (between two of the three phase conductors), the formula is P = sqrt(3) x V x I x PF. If it is measured line-to-neutral (between one phase conductor and the neutral), the formula is P = 3 x V x I x PF instead (Wikipedia\'s "Three-phase electric power" article). Using the wrong one of these two formulas for the voltage reading you actually have is an easy mistake to make, since both look almost identical on the page.',
+				],
+			},
+			{
+				heading: 'Worked example: a US household circuit',
+				body: [
+					'A hair dryer or space heater is rated 15A on a US 120V circuit, PF ≈ 1 for a resistive heating element. Watts = 120 x 15 x 1 = 1,800W. This is why a standard 15A US household circuit breaker is generally treated as good for up to about 1,800W of continuous resistive load (in practice, the NEC 80% continuous-load rule keeps sustained draw closer to 1,440W, but the breaker itself trips at 15A regardless of what it is powering).',
+				],
+			},
+			{
+				heading: 'Worked example: a three-phase industrial motor',
+				body: [
+					'A motor is fed by a 400V line-to-line three-phase supply (the standard European industrial three-phase voltage), drawing 20A at a power factor of 0.9. Watts = sqrt(3) x 400 x 20 x 0.9 = 1.7320508 x 7,200 = 12,470.77W, or about 12.47kW. Using the line-to-neutral formula (x3 instead of x sqrt(3)) on the same 400V figure by mistake would overestimate the power by a factor of sqrt(3), about 73% too high, which is exactly the kind of mix-up the circuit-type and voltage-type selectors above are meant to prevent.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'US 120V household circuits (PF = 1, resistive load)',
+				headers: ['Amps', 'Watts'],
+				rows: [
+					['5A', '600W'],
+					['10A', '1,200W'],
+					['15A', '1,800W'],
+					['16A', '1,920W'],
+					['20A', '2,400W'],
+					['30A', '3,600W'],
+				],
+				note: 'Watts = 120 x Amps x 1. 15A and 20A are the two most common US household branch-circuit ratings (NEC).',
+			},
+			{
+				title: 'EU/UK 230V household circuits (PF = 1, resistive load)',
+				headers: ['Amps', 'Watts'],
+				rows: [
+					['5A', '1,150W'],
+					['10A', '2,300W'],
+					['13A', '2,990W'],
+					['16A', '3,680W'],
+					['20A', '4,600W'],
+					['32A', '7,360W'],
+				],
+				note: 'Watts = 230 x Amps x 1. 230V is the IEC 60038 standard single-phase mains voltage across most of Europe; 13A is the UK\'s standard fused-plug rating (BS 1363).',
+			},
+		],
+		faq: [
+			{
+				question: 'How many watts is 15 amps?',
+				answer:
+					"There's no single answer without a voltage: 15A draws 1,800W on a standard US 120V outlet, but pulls 3,450W when the mains supply is 230V instead. Multiply amps by volts (and by power factor for a non-resistive AC load) to get watts.",
+			},
+			{
+				question: 'How many amps is 1,500 watts?',
+				answer:
+					'Divide watts by voltage: 1,500W on a 120V circuit at power factor 1 draws 12.5A, while the same 1,500W on a 230V circuit draws roughly 6.5A. For AC loads with a power factor below 1, also divide by that power factor.',
+			},
+			{
+				question: 'Why do I need voltage to convert amps to watts?',
+				answer:
+					'Current (amps) and power (watts) are two different things, and the equation tying them together (P = V multiplied by I) has three variables. Any tool that produces a watt figure from amps alone has quietly picked a voltage for you, most often a generic household number, instead of actually converting your specific circuit.',
+			},
+			{
+				question: 'What is power factor?',
+				answer:
+					'A number from 0 to 1 describing how much of a circuit\'s V x I actually gets converted to useful work in an AC circuit: the rest is "reactive" current that flows without doing work. DC circuits and simple resistive loads like heaters sit at exactly 1; motors and transformers typically land around 0.8-0.95.',
+			},
+			{
+				question: 'What is the formula for three-phase power?',
+				answer:
+					"It's the single-phase formula with an extra multiplier tacked on: about 1.73 (the square root of 3) if your reading was taken across two phase conductors, or a flat 3 if it came from a single phase wire paired with neutral. Picking the wrong multiplier skews the result by roughly 73%.",
+			},
+			{
+				question: 'Is watts the same as volt-amps (VA)?',
+				answer:
+					'Only for a circuit whose current tracks its voltage exactly in sync. Volt-amps (V x I, "apparent power") and watts (V x I x PF, "real power") match exactly for DC circuits and simple resistive loads; anywhere power factor drops below 1, VA comes out larger than watts, with the difference sitting in current that never turns into usable output.',
+			},
+		],
+		sources: [
+			{
+				label: 'Wikipedia — "Ohm\'s law" (voltage, current, resistance relationship)',
+				url: 'https://en.wikipedia.org/wiki/Ohm%27s_law',
+			},
+			{
+				label: 'Wikipedia — "Electric power" (P = V x I and power in AC circuits)',
+				url: 'https://en.wikipedia.org/wiki/Electric_power',
+			},
+			{
+				label: 'Wikipedia — "Power factor" (real vs. apparent power in AC circuits)',
+				url: 'https://en.wikipedia.org/wiki/Power_factor',
+			},
+			{
+				label: 'Wikipedia — "Three-phase electric power" (line-to-line vs. line-to-neutral formulas)',
+				url: 'https://en.wikipedia.org/wiki/Three-phase_electric_power',
+			},
+			{
+				label: 'Wikipedia — "IEC 60038" (standard mains voltages by region)',
+				url: 'https://en.wikipedia.org/wiki/IEC_60038',
+			},
+		],
+		embedHeight: 820,
+	},
 ];

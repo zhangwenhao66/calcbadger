@@ -33,6 +33,7 @@ import ConduitFillCalculator from './calculators/ConduitFillCalculator';
 import CursiveAlphabetGenerator from './calculators/CursiveAlphabetGenerator';
 import DateCalculator from './calculators/DateCalculator';
 import DeadPixelTest from './calculators/DeadPixelTest';
+import ElectricalConverter from './calculators/ElectricalConverter';
 import FfmiCalculator from './calculators/FfmiCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
 import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
@@ -98,6 +99,7 @@ const { slug } = Astro.props;
 {slug === 'ffmi-calculator' && <FfmiCalculator client:load />}
 {slug === 'date-calculator' && <DateCalculator client:load />}
 {slug === 'dead-pixel-test' && <DeadPixelTest client:load />}
+{slug === 'electrical-converter' && <ElectricalConverter client:load />}
 {slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
 {slug === 'stair-calculator' && <StairCalculator client:load />}
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}
