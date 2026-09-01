@@ -201,7 +201,7 @@
   },
   "https://calcbadger.com/steps-to-miles-calculator/": {
     "submitted_date": "2026-08-12",
-    "last_submitted_date": "2026-08-12",
+    "last_submitted_date": "2026-09-01",
     "verified_status": "pending"
   },
   "https://calcbadger.com/math-symbols/": {
@@ -368,5 +368,11 @@
     "submitted_date": "2026-08-28",
     "last_submitted_date": "2026-08-28",
     "verified_status": "pending"
+  },
+  "https://calcbadger.com/electrical-converter/": {
+    "submitted_date": "2026-09-01",
+    "last_submitted_date": "2026-09-01",
+    "verified_status": "pending",
+    "note": "content-quality-audit于09-01误用git checkout恢复该记录(原记录被误删)，提交本身已在daily-content-publishing发布electrical-converter时正常完成(内容发布日志.md 1124行)，此处仅补回丢失的日志条目，日期沿用当时的真实提交日期"
   }
 }
