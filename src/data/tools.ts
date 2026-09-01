@@ -3320,7 +3320,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Why not just use 2,000 steps per mile for everyone?',
 				answer:
-					"Because that ratio only holds near the population-average height. It comes from an average step length around 28-31in, which fits a roughly 5'9\"-6'0\" stride but overstates the distance for someone with a shorter stride, sometimes by close to half a mile over a 10,000-step walk.",
+					"Because a flat ratio like that ignores how much height varies from person to person. It comes from an average step length around 28-31in, which fits a roughly 5'9\"-6'0\" stride but overstates the distance for someone with a shorter stride, sometimes by close to half a mile over a 10,000-step walk.",
 			},
 			{
 				question: 'Does this account for running instead of walking?',
