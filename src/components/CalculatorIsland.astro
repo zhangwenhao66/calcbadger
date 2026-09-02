@@ -38,6 +38,7 @@ import FfmiCalculator from './calculators/FfmiCalculator';
 import FractionCalculator from './calculators/FractionCalculator';
 import GenderSymbolsGenerator from './calculators/GenderSymbolsGenerator';
 import GlitchTextGenerator from './calculators/GlitchTextGenerator';
+import GolfClubDistanceChart from './calculators/GolfClubDistanceChart';
 import GpaCalculator from './calculators/GpaCalculator';
 import GraffitiAlphabetGenerator from './calculators/GraffitiAlphabetGenerator';
 import GreekAlphabetGenerator from './calculators/GreekAlphabetGenerator';
@@ -100,6 +101,7 @@ const { slug } = Astro.props;
 {slug === 'date-calculator' && <DateCalculator client:load />}
 {slug === 'dead-pixel-test' && <DeadPixelTest client:load />}
 {slug === 'electrical-converter' && <ElectricalConverter client:load />}
+{slug === 'golf-club-distance-chart' && <GolfClubDistanceChart client:load />}
 {slug === 'square-footage-calculator' && <SquareFootageCalculator client:load />}
 {slug === 'stair-calculator' && <StairCalculator client:load />}
 {slug === 'sat-score-calculator' && <SatScoreCalculator client:load />}

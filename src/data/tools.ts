@@ -5960,4 +5960,117 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'golf-club-distance-chart',
+		category: 'Sports',
+		title: 'Golf Club Distance Chart',
+		shortTitle: 'Golf Club Distances',
+		description:
+			'See typical yardage for every club in the bag by skill level, or enter your own driver distance to scale the whole chart to your swing, plus the yard gap between each club.',
+		updated: '2026-09-02',
+		published: '2026-09-02',
+		coreSummary:
+			'How far a golf club sends the ball is set mainly by clubhead speed at impact, with each club\'s loft converting that speed into a launch angle and spin rate matched to its length. Because every club in a set steps up loft and shortens shaft length by a fairly consistent amount, a golfer\'s distance with any one club predicts their distance with the rest of the bag fairly closely. This tool starts from published total-distance figures for four swing-speed tiers (beginner ~80 mph, average ~90 mph, good ~100 mph, PGA Tour ~114 mph) and, if you enter your own known driver distance, rescales every other club by that same ratio.',
+		queries: [
+			'golf club distance chart',
+			'average golf club distances',
+			'how far should i hit my irons',
+			'golf club distances by skill level',
+			'how far should a 7 iron go',
+			'golf club gapping chart',
+			'how far do i hit my driver',
+			'average driving distance amateur golfer',
+		],
+		sections: [
+			{
+				heading: 'What actually determines how far a club hits the ball',
+				body: [
+					"Distance comes from ball speed at impact, and ball speed comes from clubhead speed multiplied by how efficiently the strike transfers energy (smash factor). A driver's low loft keeps more of that speed pointed forward rather than upward, so it converts a given clubhead speed into more total distance than any other club. Move down through the irons and each one is built with more loft and a shorter shaft: more loft trades some ball speed for a higher, shorter-carrying trajectory, and a shorter shaft is easier to control but generates less clubhead speed. That's why a 7-iron and a driver, swung by the same golfer with similar effort, land in very different spots.",
+					"TrackMan's published launch-monitor data puts the average male amateur's driver clubhead speed around 93.4 mph, producing roughly 214 yards of total distance, which works out to about 2.3 yards of distance per mph of clubhead speed. PGA Tour players average closer to 114-116 mph and carry a driver around 282-300 yards. The gap between amateur and tour swing speeds (roughly 20-25 mph) is far smaller than the resulting gap in outcome (60-90 yards), so small speed gains matter more than they might seem to. It's also why generic \"add 10 yards\" advice ignores how much of driver distance is just clubhead speed.",
+				],
+			},
+			{
+				heading: 'Why one known distance can scale the whole bag',
+				body: [
+					"A set of irons and wedges is built as a progression: each club typically adds about 3-4 degrees of loft and shortens the shaft by roughly half an inch compared to the one above it. That consistent progression is why a golfer's distance with, say, a 7-iron tends to sit at a fairly predictable fraction of their driver distance. Golf-fitting data commonly shows a 7-iron landing around 55-65% of driver distance across skill levels, with the wedges compressing further, down to anywhere from roughly a fifth to half of driver distance depending on the specific wedge and skill tier. This tool uses that relationship in reverse: enter the one distance most golfers actually know, how far they carry a driver, and it rescales the published skill-tier chart by that same ratio, rather than asking for nine separate numbers most players have never measured.",
+					"The scaling is capped between half and 1.8 times the tier baseline. Outside that range the ratio stops reflecting a real swing and starts reflecting a typo or an unusually mismatched skill tier. When that happens, pick the tier closer to your actual swing speed instead of stretching the scale factor to compensate.",
+				],
+			},
+			{
+				heading: 'Reading the gaps between clubs',
+				body: [
+					'Golf-fitting guides generally treat an 8-15 yard gap between consecutive clubs as healthy, tightening toward 8-12 yards through the wedges where precision matters more than raw distance. A much wider gap usually means there is room in the bag for another club (a hybrid between the longest iron and the fairway wood is the most common fix); a much tighter gap suggests two clubs that do nearly the same job. This chart only tracks nine anchor clubs, driver, 3-wood, the 5/7/9-irons, and four wedges, so a wide-looking gap here, especially between the 3-wood and 5-iron, often just reflects clubs this simplified list skips (a 5-wood, hybrid, or 4-iron) rather than a real hole in a full 14-club bag.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Typical total distance by skill level (yards)',
+				headers: ['Club', 'Beginner (~80 mph)', 'Average (~90 mph)', 'Good (~100 mph)', 'Tour (~114 mph)'],
+				rows: [
+					['Driver', '190', '230', '260', '282'],
+					['3-Wood', '170', '205', '230', '243'],
+					['5-Iron', '125', '160', '185', '205'],
+					['7-Iron', '105', '140', '160', '176'],
+					['9-Iron', '85', '120', '135', '148'],
+					['Pitching Wedge', '75', '110', '125', '142'],
+					['Gap Wedge', '65', '95', '115', '126'],
+					['Sand Wedge', '55', '80', '100', '104'],
+					['Lob Wedge', '40', '65', '85', '88'],
+				],
+				note: 'Total distance (carry plus roll), no wind, sea level. Tour column matches TrackMan-published PGA Tour averages; the other three columns are the mid-range figures TrackMan-sourced golf-instruction publishers converge on for amateur clubhead-speed brackets around 80/90/100 mph.',
+			},
+		],
+		faq: [
+			{
+				question: 'How far should a beginner hit a 7-iron?',
+				answer:
+					'About 105 total yards for someone swinging the driver near 80 mph. That figure rises to roughly 140 yards at an average 90 mph swing, and 176 yards at PGA Tour swing speeds around 114 mph.',
+			},
+			{
+				question: 'What is a good driver distance for an average golfer?',
+				answer:
+					"Roughly 230 total yards, for a golfer swinging around 90 mph. TrackMan's broader amateur sample runs a bit shorter on average, closer to 214 yards at a 93.4 mph swing.",
+			},
+			{
+				question: 'How many yards of distance does 1 mph of swing speed add?',
+				answer:
+					"About 2.3 yards for every additional mph, based on TrackMan's amateur figures. That's a population-level ratio, not a guarantee for any single golfer; strike quality and launch conditions shift it in both directions.",
+			},
+			{
+				question: 'Why do PGA Tour pros hit the ball so much farther?',
+				answer:
+					"Mostly raw speed: on the men's pro circuit, driver swings run roughly 114-116 mph, versus about 90-95 mph for a typical amateur. That advantage, combined with more centered, repeatable contact (a higher smash factor), adds up to the 60-90 yard difference in how far the ball ends up.",
+			},
+			{
+				question: 'How big should the gap be between my clubs?',
+				answer:
+					"A healthy gap runs about 8-15 yards between neighboring clubs, tighter once you're into the wedges. Anything over 20 yards usually signals a missing club in the bag, often a hybrid or an extra wedge; under 5 yards points to redundant clubs covering the same yardage.",
+			},
+			{
+				question: 'Are these distances carry distance or total distance?',
+				answer:
+					"These figures are total distance, meaning carry plus roll, under normal conditions: no wind, sea level, firm-ish turf. Carry-only numbers run shorter, especially for wedges that land steeply and barely roll. Any single shot's real distance also depends on altitude, wind, ball model, and strike quality.",
+			},
+		],
+		sources: [
+			{
+				label: 'TrackMan — "What is Club Speed?" (average amateur and Tour clubhead speed/distance data)',
+				url: 'https://www.trackman.com/blog/golf/what-is-club-speed',
+			},
+			{
+				label: 'Golf.com — "This is how far PGA and LPGA Tour players hit it with every club"',
+				url: 'https://golf.com/instruction/driving/this-is-how-far-pga-and-lpga-tour-players-hit-it-with-every-club/',
+			},
+			{
+				label: 'PlayBetter — "Golf Club Distance Charts for Men and Women" (skill-level distance chart)',
+				url: 'https://www.playbetter.com/blogs/golf-tips/golf-club-distances-how-far-should-you-hit-your-clubs',
+			},
+			{
+				label: 'MyGolfSpy — "Golf Club Gapping Tool" (healthy gap-range guidance)',
+				url: 'https://mygolfspy.com/news-opinion/instruction/golf-club-gapping-tool/',
+			},
+		],
+		embedHeight: 980,
+	},
 ];
