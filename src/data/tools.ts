@@ -6073,4 +6073,141 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 980,
 	},
+	{
+		slug: 'rice-to-water-ratio',
+		category: 'Food & Drink',
+		title: 'Rice to Water Ratio Calculator',
+		shortTitle: 'Rice to Water Ratio',
+		description:
+			'Find how much water a given amount of dry rice needs, by type (white, brown, jasmine, basmati, arborio, wild rice, and more), using USA Rice\'s stovetop ratios, plus the estimated cooked yield.',
+		updated: '2026-09-03',
+		published: '2026-09-03',
+		coreSummary:
+			"Rice doesn't take one universal ratio of water. USA Rice's stovetop chart runs from 1.25 parts liquid per part rice for short-grain white up to 4:1 for arborio, with long-grain white, jasmine, and basmati all landing at 2:1 and brown or parboiled rice at 2.25:1. Enter an amount of dry rice, pick the type, and this tool multiplies by the matching ratio for the water needed and estimates the cooked yield.",
+		queries: [
+			'rice to water ratio',
+			'rice water ratio',
+			'how much water for rice',
+			'how much water for 1 cup of rice',
+			'how much water for 2 cups of rice',
+			'brown rice water ratio',
+			'jasmine rice water ratio',
+			'arborio rice water ratio',
+			'wild rice water ratio',
+			'rice to water ratio cups',
+			'rice to water ratio calculator',
+			'rice cooker water ratio',
+		],
+		sections: [
+			{
+				heading: 'Why the ratio isn\'t the same for every rice',
+				body: [
+					'Different rice types absorb water at noticeably different rates, driven by shape, bran content, and starch structure, which is why one blanket ratio does not cover all of them. A short-grain white rice packs its starchy grains close together and cooks through on comparatively little added liquid; a long-grain white rice, jasmine, and basmati all sit at a middle figure; and brown or parboiled rice needs more liquid and roughly twice the time, because the bran layer left on brown rice slows how fast water reaches the starchy interior. Arborio sits furthest out at 4 parts liquid to 1 part rice, well above ordinary table rice, since its high surface starch is meant to be worked into the water gradually, not fully absorbed the way a pilaf absorbs its liquid. Wild rice is botanically a grass seed, not true rice, and it takes its own 3:1 figure and the longest simmer of the group.',
+					'USA Rice, the trade group representing the U.S. rice industry, states this variation plainly in its own cooking guidance: the "rule of thumb" is 2 parts liquid to 1 part rice by volume, but "different rice types may require slightly less or slightly more liquid" than that rule of thumb suggests. The chart below is where that qualifier gets specific, type by type.',
+				],
+			},
+			{
+				heading: 'The stovetop ratios this calculator uses',
+				body: [
+					"These figures come from USA Rice's own Rice Cooking Chart (usarice.com/thinkrice/how-to/how-to-cook-rice), which covers the stovetop method specifically: combine rice, liquid, and any salt or fat in a covered saucepan, bring to a boil, then reduce to a simmer for the listed time. Other USA Rice guidance gives lower ratios for sealed appliances: its foodservice playbook \"Ready, Set, Rice!\" puts a rice cooker at 1 cup rice to 1 cup liquid for white rice (1.25 cups for brown or converted) and a pressure cooker or Instant Pot at 1 cup rice to 1.25 cups liquid across all types, crediting both lower figures to being closed systems that lose less water than an open stovetop pot. These stovetop ratios are the starting point for either appliance, not a direct substitute for its own manual.",
+					'A separate independent check against Purdue Extension\'s "All About Cooking Rice" guide lines up closely but not perfectly: Purdue gives long-grain white as 1 &frac34; to 2 cups liquid per cup of rice (USA Rice\'s 2:1 sits at the top of that range), brown rice as 2 to 2 &frac12; cups (USA Rice\'s 2.25:1 sits in the middle), and converted/parboiled rice as 2 to 2 &frac12; cups (same). The one place the two sources diverge is short-grain: Purdue groups medium and short grain together at 1 &frac12; cups, while USA Rice gives short grain its own lower 1.25:1 figure. Neither source is wrong; extension guides and industry charts each ran their own stovetop testing, and a grain\'s exact packing density is the kind of thing that can vary slightly by the specific rice tested. This tool uses USA Rice\'s more granular ten-type figures rather than Purdue\'s three-way grouping.',
+				],
+			},
+			{
+				heading: 'A jasmine measure and a gram conversion, worked out',
+				body: [
+					'1.5 cups of jasmine rice, at USA Rice\'s 2:1 ratio for U.S. jasmine white: 1.5 x 2 = 3 cups of water, for a 4.5-cup total once cooked (about 36 oz by weight, using USA Rice\'s general 8 oz-per-cooked-cup figure). Simmer time is 15 to 18 minutes, the same as any of the other 2:1 white rices.',
+					'150 grams of dry long-grain white rice, converted first to volume using USA Rice\'s general "1 cup dry rice is about 7 oz" figure (150 g is about 5.29 oz, or 0.756 cups): 0.756 x 2 = about 1.51 cups of water (roughly 358 mL), for an estimated 2.27 cups cooked (about 18.1 oz). The gram-to-cup step is the same regardless of rice type, since USA Rice publishes that conversion as a general average, not a per-type figure.',
+				],
+			},
+			{
+				heading: 'The math behind the cooked-yield estimate',
+				body: [
+					'USA Rice states one specific yield fact directly: "considering the 2:1 ratio, dry rice typically triples in volume when cooked." That is 1 part dry rice plus 2 parts absorbed liquid equaling 3 parts cooked rice, arithmetic on their own stated ratio, not a separate measurement. This calculator applies the same logic (dry rice volume plus the water it absorbs equals the cooked volume) to every ratio in the chart, so a 4:1 arborio measure is estimated at 5 parts cooked rather than a flat tripling. For the 2:1 types that reduces exactly to USA Rice\'s own tripling rule; for the others, it\'s this calculator\'s own extension of that logic, not a figure USA Rice publishes per type, and what actually comes out of the pot will drift a little from evaporation and how tightly the cooked grain packs.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'USA Rice stovetop ratios, by rice type',
+				headers: ['Rice type', 'Liquid : rice (by volume)', 'Stovetop simmer time'],
+				rows: [
+					['White, long grain', '2 : 1', '15-18 min'],
+					['U.S. jasmine, white', '2 : 1', '15-18 min'],
+					['U.S. basmati, white', '2 : 1', '15-18 min'],
+					['White, medium grain', '1.5 : 1', '15-18 min'],
+					['White, short grain', '1.25 : 1', '15-18 min'],
+					['Brown, medium or long grain', '2.25 : 1', '40-45 min'],
+					['Parboiled (converted)', '2.25 : 1', '20 min'],
+					['Parboiled, brown', '2.25 : 1', '25 min'],
+					['U.S. arborio', '4 : 1', '20-30 min'],
+					['Wild rice', '3 : 1', '40-50 min'],
+				],
+				note: 'Source: USA Rice, "Rice Cooking Chart," usarice.com/thinkrice/how-to/how-to-cook-rice (stovetop method). Rice cooker (1:1 white, 1.25:1 brown/converted) and pressure cooker/Instant Pot (1.25:1 all types) use different, lower ratios; see the FAQ below.',
+			},
+			{
+				title: 'Cross-check: USA Rice vs. Purdue Extension',
+				headers: ['Rice type', 'USA Rice ratio', 'Purdue Extension range'],
+				rows: [
+					['Long grain, white', '2 : 1', '1.75 - 2 cups per cup rice'],
+					['Medium/short grain, white', '1.5 : 1 / 1.25 : 1 (USA Rice splits these)', '1.5 cups per cup rice (Purdue groups them)'],
+					['Brown', '2.25 : 1', '2 - 2.5 cups per cup rice'],
+					['Parboiled (converted)', '2.25 : 1', '2 - 2.5 cups per cup rice'],
+				],
+				note: 'Purdue Extension, "All About Cooking Rice." The two sources agree closely except on short-grain, where Purdue does not break it out separately from medium grain; this tool follows USA Rice\'s more granular figure.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the rice to water ratio?',
+				answer:
+					'It depends on the rice type. USA Rice\'s chart puts basmati, jasmine, and long-grain white at 2 parts water to 1 part rice; medium grain at 1.5:1; short grain at 1.25:1; parboiled or brown at 2.25:1; arborio at 4:1; and wild rice at 3:1.',
+			},
+			{
+				question: 'How much water do I need for 1 cup of rice?',
+				answer:
+					'For the most common case (plain long-grain white), that\'s 2 cups of water per cup of rice. Other types differ: 1.5 cups for medium grain, 1.25 cups for short grain, 2.25 cups for parboiled or brown, 4 cups for arborio, and 3 cups for wild rice, all from USA Rice\'s chart.',
+			},
+			{
+				question: 'How much water for 2 cups of rice?',
+				answer:
+					'Double whatever ratio the type uses. Two cups of the long-grain white kind needs 4 cups of water (2:1); two cups of brown rice needs 4.5 cups (2.25:1). Enter 2 cups and the rice type above to get the exact figure for any type on the chart.',
+			},
+			{
+				question: 'What is the water ratio for brown rice?',
+				answer:
+					'2.25 parts water to 1 part brown rice, from USA Rice\'s chart, simmered 40 to 45 minutes, roughly double the cook time of white rice. Independent guidance from Purdue Extension gives a close but slightly wider range, 2 to 2.5 cups per cup of rice, which includes USA Rice\'s figure.',
+			},
+			{
+				question: 'How much water does arborio rice need?',
+				answer:
+					"4 parts water to 1 part arborio, far more than a plain bowl of table rice needs, per USA Rice's chart. Arborio's higher surface starch is worked into the liquid gradually rather than simply absorbed, which is part of why risotto is stirred rather than left to steam under a lid.",
+			},
+			{
+				question: 'Does the ratio change in a rice cooker or Instant Pot?',
+				answer:
+					"Yes, and both need less water than the stovetop chart above, because USA Rice's foodservice guide treats a sealed appliance differently. A rice cooker uses a 1-to-1 ratio for white rice, stepping up to five parts liquid for every four parts of brown or converted. An Instant Pot or other pressure cooker uses that same five-to-four ratio across every type, white rice included, cooking white in about 5 minutes and brown or converted in about 10 at high pressure. USA Rice credits the smaller amounts to steam staying trapped inside rather than escaping an open pot, and both appliances sense moisture and heat to know when the rice is actually done instead of running on a fixed clock. Check your appliance's own manual for either one; the numbers on this page are for the stovetop.",
+			},
+			{
+				question: 'How much does 1 cup of dry rice make when cooked?',
+				answer:
+					'About 3 cups, for rice cooked at the 2:1 ratio, since a cup of dry rice plus its two cups of added water settle into three cups once everything\'s absorbed (see the yield note above for USA Rice\'s exact wording). This calculator extends the same dry-plus-absorbed-liquid logic across the other ratios, so arborio (4:1) yields closer to 5 cups cooked per cup of dry rice.',
+			},
+		],
+		sources: [
+			{
+				label: 'USA Rice: "How To Cook Rice" (Rice Cooking Chart, Rice Yields)',
+				url: 'https://www.usarice.com/thinkrice/how-to/how-to-cook-rice',
+			},
+			{
+				label: 'Purdue Extension: "All About Cooking Rice" (independent liquid-ratio cross-check)',
+				url: 'https://extension.purdue.edu/news/county/putnam/2023/09/all-about-cooking-rice.html',
+			},
+			{
+				label: 'USA Rice Federation: "Ready, Set, Rice! A Rice Cooking Playbook" (rice cooker and pressure cooker/Instant Pot ratios)',
+				url: 'https://www.usarice.com/docs/default-source/thinkrice/foodservice/ready-set-rice!-a-rice-cooking-playbook.pdf',
+			},
+		],
+		embedHeight: 700,
+	},
 ];
