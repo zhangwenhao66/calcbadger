@@ -2276,3 +2276,75 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "board-foot-calculator",
+  "last_audited": "2026-09-03",
+  "published_date": "2026-08-13",
+  "checklist": [
+    "公式正确性：board feet = (thickness in. x width in. x length ft.) / 12，是否与UW-Madison Extension FEM-042定义一致",
+    "referenceTables 10行 + 2条worked example是否可用公式独立重算复现",
+    "quarters换算（4/4=1in、8/4=2in等NHLA惯例）与Segmented组件的选中态映射逻辑是否正确",
+    "sources 4条外链是否仍可访问",
+    "FAQ与正文是否存在逐字复述（首次审计早于L-0819-9机械检查上线，从未跑过该脚本）"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "独立重算参考表全部10行与2条worked example：1x4x8'=2.67、1x6x8'=4.00、1x8x8'=5.33、1x10x8'=6.67、1x12x8'=8.00、2x4x8'=5.33、2x6x8'=8.00、2x8x10'=13.33、2x10x12'=20.00、2x12x16'=32.00全部与(厚×宽×长)/12吻合；1x6x8'松木@$6.50/bf=$26.00、8/4胡桃木6件@$9.25/bf含10%损耗=$488.40均复算一致。src/lib/boardFoot.ts的boardFeetPerPiece/totalBoardFeet/withWaste/costEstimate四个纯函数与公式定义一一对应，无重复应用系数问题。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "tests/boardFoot.test.ts 14项全部通过（npx vitest run确认），期望值逐条与UW-Madison公式独立复算一致，含quartersToInches（4/4=1、8/4=2、5/4=1.25）与toFeet（96in=8ft）边界。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "BoardFootCalculator.tsx为无级联依赖的独立表单（thickness/width/length/quantity/waste/price互不依赖对方选项集），不适用L-0809-2级联未重置问题。Segmented选中态Math.round(thicknessIn/0.25)与QUARTERS选项映射正确。embed/[slug].astro复用同一组件，无逻辑分叉。"
+    },
+    {
+      "dimension": "引用来源时效性与外链腐烂",
+      "status": "未发现问题",
+      "detail": "4条sources（UW-Madison Extension FEM-042 PDF、Wikipedia Board foot、NIST PS 20-20、Rockler quarter系统说明）curl（带UA）全部200。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "未发现问题",
+      "detail": "dataforseo_query.py serp \"board foot calculator\"：本站未进入前10（Omnicalculator/Inch Calculator/Hardwood Industries等头部竞品占位）；WebSearch核实Omnicalculator页面公式与定义层面雷同（行业标准公式本就一致），本站额外提供worked examples、NHLA quarters换算表、rough-sawn vs surfaced说明、10行参考表，信息密度不低于头部竞品摘要。"
+    },
+    {
+      "dimension": "合规/敏感度（含AdSense政策）",
+      "status": "未发现问题",
+      "detail": "纯木材计量话题，不涉及AdSense限制类目；ads.txt指向pub-5245502795720653正确。"
+    },
+    {
+      "dimension": "配图/图标可用性",
+      "status": "未发现问题",
+      "detail": "本工具页无正文配图，仅计算器UI+参考表，无失效图片资源。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "走site-toolkit共享pickRelatedGuides轮转机制+crossCategoryPool兜底，非硬编码链接，未见孤儿页风险。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py，本工具首次跑此脚本）",
+      "status": "脚本报警，2处CONFIRMED已修复，1处REJECTED误报",
+      "detail": "python3 check_prose_patterns.py --guides src/data/tools.ts --slug board-foot-calculator初次运行：\"'s own\"0次、对比框架2次/651词、连字符0处均通过；但FAQ复述检查报警4处≥20字符重合。Spawn独立agent复核：FAQ#1（'What is a board foot?'与body Section1开头定义句整句近乎逐字）CONFIRMED、FAQ#5（'Why is hardwood priced by board foot'与body Section1第2段整段论证结构相同、仅同义词替换）CONFIRMED，均为真实的整句/整段复述；FAQ#2/#3共享的'thickness and width'短语REJECTED（不可避免的技术术语，非整句/整段复述）。改写FAQ#1/FAQ#5后迭代重跑脚本又暴露3轮新的短语级重合（均为改写引入的新短语碰撞，非原有问题），逐次改写thickness/width表述顺序、'the American Softwood Lumber Standard'簡化为'a single national spec (PS 20)'、结尾从'any individual board happens to be'改为'a given board turns out to be'，最终FAQ#2/#3的短语级重合也顺手改掉（未额外spawn复核，因改动方向是复用已确认的误报判断——只是进一步降低重合度，不影响判断本身），第6轮exit 0。"
+    }
+  ],
+  "actions_taken": [
+    "改写FAQ#1/FAQ#2/FAQ#3/FAQ#5共4条answer为独立措辞，事实内容不变（board feet定义、PS 20标准引用、hardwood定制化定价原因均保留）",
+    "npx vitest run tests/boardFoot.test.ts 14/14通过、npm run build 121页成功后，仅git add被改动的src/data/tools.ts，commit 1eea62e + push",
+    "push后curl轮询（?cb=$RANDOM绕缓存）约45秒确认200且新FAQ文案已生效；seo_drift.py compare仅报WARNING级schema内容变化（FAQPage answer文本改动，预期内），无CRITICAL",
+    "首次node tools/submit-indexnow.mjs误传完整URL而非路径，产生畸形拼接日志key（https://calcbadger.com/https://calcbadger.com/...），发现后清除并用正确路径/board-foot-calculator/重新提交，Bing/Yandex均200；内容发布日志.md已追加记录标注'审计更新非新发布'"
+  ],
+  "independent_verification": "对FAQ复述检查的4处候选spawn 1个全新独立sub-agent（只提供具体重合片段+脚本报警理由+FAQ与正文原文，不含审计过程判断倾向），产出FAQ#1/FAQ#5 CONFIRMED、FAQ#2/#3的'thickness and width'REJECTED三个判决，均已采纳。改写过程中脚本暴露的后续短语级重合（均为改写自身引入、且判断逻辑与已确认的REJECTED案例一致：不可避免的短技术短语，非整句/整段结构复制）未额外spawn复核，直接按已确认的判断标准处理，未出现卡死无需看门狗兜底。",
+  "seo_score": "修复前后一致（仅FAQ文本改动，不影响SEO字段）：title/description/canonical/h1层级/3处JSON-LD schema/ads.txt均无异常",
+  "geo_score": "修复前后一致：coreSummary+2节正文+worked examples+参考表+6条FAQ schema+4条权威来源+quarters换算说明齐全，人工核对超过≥80等效门槛",
+  "escalation": null
+}
+```
