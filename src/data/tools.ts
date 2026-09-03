@@ -3405,17 +3405,17 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a board foot?',
 				answer:
-					'A unit of lumber volume: a piece 1 inch thick, 12 inches wide, and 12 inches long, equal to 144 cubic inches. Any board\'s footage is (thickness in. × width in. × length ft.) / 12, regardless of its actual shape.',
+					'A volume unit, not a length or area: 144 cubic inches, equivalent to a one-foot square piece that\'s one inch thick. Multiply a board\'s measured thickness by its width and length, divide by 12, and the result comes out in board feet no matter what shape the piece is.',
 			},
 			{
 				question: 'Is a board foot the same as a linear foot or square foot?',
 				answer:
-					'No. A linear foot only measures length, ignoring thickness and width entirely. A square foot measures area (width × length) with no thickness term. Board feet is a volume, which is why it\'s the unit lumber yards use to price boards that vary in both thickness and width.',
+					'No. A linear foot only measures length, ignoring width and thickness entirely. A square foot measures area (width × length) with no thickness term. Board feet is a volume, which is why it\'s the unit lumber yards use to price boards that vary in both dimensions.',
 			},
 			{
 				question: 'Do I use nominal or actual dimensions in the formula?',
 				answer:
-					'Actual, measured dimensions. Nominal sizes (like "4/4" or a framing "2x4") describe the board before milling or as a trade label, not what you\'re holding. Measure thickness and width with calipers or a tape measure and enter those numbers.',
+					'Actual dimensions, taken with a tool in hand. Nominal sizes (like "4/4" or a framing "2x4") describe the board before milling or as a trade label, not what you\'re holding. Measure the board\'s width and thickness with calipers or a tape measure and enter those numbers.',
 			},
 			{
 				question: 'How much waste should I add for defects and cutting?',
@@ -3425,7 +3425,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Why is hardwood priced by the board foot but a 2x4 isn\'t?',
 				answer:
-					'Softwood framing lumber (2x4s, 2x6s) is milled to standardized cross-sections under the American Softwood Lumber Standard (PS 20), so every stud of a given nominal size is priced the same way, by the piece or linear foot. Hardwood and specialty lumber come in random widths and lengths off the saw, so board feet gives a volume-based price that works regardless of any individual board\'s dimensions.',
+					'Framing studs come off the mill already sized to a single national spec (PS 20), so every 2x4 or 2x6 of a given nominal size is identical and can just be priced per piece or per linear foot. Hardwood boards aren\'t milled to that kind of fixed spec: width and thickness vary from board to board, so pricing by volume is the only method that stays fair no matter what size a given board turns out to be.',
 			},
 			{
 				question: 'Can I use this for plywood or sheet goods?',
