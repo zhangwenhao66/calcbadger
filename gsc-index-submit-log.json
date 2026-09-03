@@ -380,5 +380,15 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-03",
+    "action": "submitted",
+    "reason": "今日新发布rice-to-water-ratio，URL Inspection确认URL is not on Google。首次REQUEST INDEXING返回'We had a problem submitting your indexing request'瞬时错误，立即重试后成功，未额外消耗配额。",
+    "submitted_urls": [
+      "https://calcbadger.com/rice-to-water-ratio/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "1 of shared account-wide daily quota"
   }
 ]
