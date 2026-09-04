@@ -390,5 +390,19 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-04",
+    "action": "submitted",
+    "reason": "今日无新发布(每周2工具节奏，周二/周五)。body-surface-area-calculator/bmi-calculator查询均已收录(报告数据滞后)。Discovered-not-indexed报告(17条，压制期真实积压)：click-speed-test与conduit-fill-calculator确认未收录，均提交成功(2条)。",
+    "submitted_urls": [
+      "https://calcbadger.com/click-speed-test/",
+      "https://calcbadger.com/conduit-fill-calculator/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/body-surface-area-calculator/",
+      "https://calcbadger.com/bmi-calculator/"
+    ],
+    "quota_used": "2 of shared account-wide daily quota"
   }
 ]
