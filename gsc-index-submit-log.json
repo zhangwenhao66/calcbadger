@@ -404,5 +404,16 @@
       "https://calcbadger.com/bmi-calculator/"
     ],
     "quota_used": "2 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-09",
+    "action": "submitted",
+    "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：pizza-calculator与ffmi-calculator确认未收录，均提交成功(第一轮1条+第二轮补提交1条)。",
+    "submitted_urls": [
+      "https://calcbadger.com/pizza-calculator/",
+      "https://calcbadger.com/ffmi-calculator/"
+    ],
+    "already_indexed_no_action": [],
+    "quota_used": "2 of shared account-wide daily quota"
   }
 ]
