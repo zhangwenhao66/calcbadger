@@ -206,3 +206,57 @@ Adding CalcBadger under Web calculators, alongside Calculator.net. It's a free c
 - URL：`https://admissions.blog/write-for-us/`
 - 核实：真实大学申请咨询新闻/观点站，明确列出的征稿主题含"Standardized Testing Tips & Trends""Financial Aid and Scholarships"，与`sat-score-calculator`/`gpa-calculator`直接相关。700-1500词，作者简介可放1个站外链接+正文内1个contextual链接。约1/10投稿会被采用（有编辑筛选，非自动收录）。
 - 待做：提交方式是页面内嵌"submission tool"（非邮件），需要交互式会话用Browser pane操作；文章角度可参考本次给Empowerly起草的"自算GPA与大学重算GPA不一致"或围绕SAT curve的角度另起一篇（避免跟已发给Empowerly的pitch内容重复，若Empowerly那边被拒可以转投这里但需要改写角度而非原样复用）。
+
+## 2026-09-09 — Current Event Rentals / eventslv.com（rentals@eventslv.com）— 嵌入组件主动投放
+
+- 背景：`trafficsite-broken-link-building`本轮按2026-09-04规则修订，角度固定为"嵌入组件署名链接的主动投放"，不要求先发现死链。WebSearch搜索"party planning blog how many people does a keg serve resource tools list"命中`eventslv.com/how-many-kegs-for-100-guests/`。
+- 核实：Current Event Rentals是拉斯维加斯真实运营的活动租赁公司（curl确认站点200存活，`rentals@eventslv.com`邮箱来自页面正文，非猜测）。目标文章本身发布于2025-05-31（超过12个月），但站点`/blog/`索引页确认最近一篇文章`dateModified 2025-11-22`（距今约9.5个月），说明博客整体仍在活跃维护，非僵尸站，满足"近期活跃迹象"标准（判断口径为站点整体维护状态，非单篇文章发布日期）。
+- 相关性：文章内容是"半桶/四分之一桶能倒多少杯"的标准聚会备酒测算，跟CalcBadger的`keg-calculator`（读`src/lib/kegCalculator.ts`确认：算聚会用桶的可倒杯数，非酿酒工艺）功能完全对应，非硬凑。
+- 查重：`outreach-drafts.md`全文grep未出现`eventslv`/`rentals@eventslv.com`；`gmail_send.py list --query "to:rentals@eventslv.com"`返回空，矩阵内其他站从未联系过。
+- 已过`Skill(humanizer)`+`Skill(avoid-ai-writing)`：均未发现em dash/AI高频词/群发模板腔调/chatbot artifact等问题。
+- 邮件正文：
+
+```
+Subject: A calculator for your keg planning article
+
+Hi there,
+
+I came across your article on how many kegs to order for 100 guests while looking at how event rental companies help people plan beverage quantities. The half-barrel versus quarter-barrel breakdown is clear and matches the standard serving math.
+
+We built a free keg calculator at CalcBadger that lets a reader enter guest count and drinking pace to get a serving estimate directly, instead of working through the math themselves: https://calcbadger.com/keg-calculator/
+
+It's also set up as an embeddable widget, so you could drop a live calculator into that page instead of just linking out: https://calcbadger.com/embed/keg-calculator/. It's hosted on our end, so there's nothing to install, and it credits CalcBadger with a small link at the bottom.
+
+No pressure either way, and happy to answer questions if you have any.
+
+Best,
+Owen
+CalcBadger
+```
+
+## 2026-09-09 — East Central College Learning Center（general_tutoring@eastcentral.edu）— 嵌入组件主动投放
+
+- 背景：同上轮次，教育类资源页方向。WebSearch搜索"site:edu helpful links math resources percentage calculator rounding calculator"命中`eastcentral.edu/learning-center/math-resources/`。
+- 核实：East Central College（密苏里州社区学院）Learning Center维护的Math Resources页，curl确认200存活；页面按手风琴分区（Whole Numbers/Fractions/Decimals and Percents/Ratios and Proportions/Rounding/TI 83-84/Misc等），"Decimals and Percents"和"Rounding"两个分区目前只有YouTube视频教程链接，没有任何计算器工具；"Misc. Math Resources"分区里已经链了第三方通用工具`rogerhub.com/final-grade-calculator/`（Final Grade Calculator，非本站产品），证明该页面本身有收录第三方免费计算器工具的先例，不是凭空硬推。联系邮箱`general_tutoring@eastcentral.edu`来自该页面正文本身（就是维护这页的部门收件箱），非法务/隐私/广告类单一用途邮箱。
+- 相关性：`percentage-calculator`直接对应"Decimals and Percents"分区缺口，`rounding-calculator`直接对应"Rounding"分区缺口，两个工具都是真实上线工具（`src/data/tools.ts`确认），功能对应明确非硬凑。
+- 查重：`outreach-drafts.md`全文grep未出现`eastcentral`；`gmail_send.py list --query "to:general_tutoring@eastcentral.edu"`返回空。
+- 已过`Skill(humanizer)`+`Skill(avoid-ai-writing)`：均未发现问题。
+- 邮件正文：
+
+```
+Subject: A couple of calculators for your Math Resources page
+
+Hi,
+
+I was looking through the Learning Center's Math Resources page and noticed the "Decimals and Percents" section links out to video walkthroughs but doesn't have a calculator students can use to check their own work.
+
+We run CalcBadger, a free site of standalone calculators, and one of them covers percent-of, percent-change, and finding-the-whole problems: https://calcbadger.com/percentage-calculator/. There's also an embeddable version if you'd rather it sit directly on the page next to the video links, rather than just a plain link out: https://calcbadger.com/embed/percentage-calculator/. It runs on our servers, so there's no code to maintain on your end beyond pasting the iframe, and it links back to CalcBadger at the bottom.
+
+If the "Rounding" section could use the same kind of companion tool, we have one of those too: https://calcbadger.com/rounding-calculator/.
+
+Happy to send more detail on either one, or just leave it here for you to look at whenever.
+
+Best,
+Owen
+CalcBadger
+```

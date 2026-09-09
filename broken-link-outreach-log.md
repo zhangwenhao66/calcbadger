@@ -235,3 +235,26 @@
 本轮系上层`trafficsite-broken-link-building`会话按「外链产能集中规则」统一处理：CalcBadger当前处于Google August 2026垃圾更新算法性整站压制中（见`流量站矩阵风险应对追踪.md`），且本轮11-30位曝光仅2次，未入选本轮新机会挖掘前3站，第二部分本轮跳过。
 
 **累计口径**：CalcBadger断链置换战术累计已发送2封pitch（含本轮1封跟进）；已验证`not_replaced` 1条、`verified_live_backlink_confirmed` 0条，转化率仍为0。
+
+---
+
+## 2026-09-09（第七次运行）— 「外链产能集中规则」2026-09-04修订：CalcBadger固定优先名额（与DialWick轮换，本轮轮到CalcBadger），角度改为嵌入组件署名链接主动投放
+
+### 第一部分：核实旧pitch
+
+上一条已发送记录（08-16发出、08-31已跟进一次）已是`verified_not_replaced_followed_up_once`终态，规则不做二次跟进，本轮无待核实的旧pitch。
+
+### 第二部分：嵌入组件主动投放（本轮不要求先发现死链）
+
+用WebSearch定向搜索教育/DIY/工程类资源页找到2个候选，逐一核实真实性、活跃度、工具功能对应性后撰写pitch，过`Skill(humanizer)`+`Skill(avoid-ai-writing)`，独立复核agent（全新spawn）逐条核实：查重（`outreach-drafts.md`+本日志全文grep+`gmail_send.py list --query "to:<邮箱>"`全账号）、curl核实目标页面真实内容、CalcBadger对应工具页/embed页真实存活、语气/AI味自查、收件邮箱用途核查。
+
+**候选1：Current Event Rentals / eventslv.com（`rentals@eventslv.com`）— 复核verdict：可以发送**
+- 拉斯维加斯真实运营的活动租赁公司，目标文章讲"半桶/四分之一桶聚会备酒测算"，与CalcBadger的`keg-calculator`（读`src/lib/kegCalculator.ts`确认功能对应）真实主题匹配；博客整体近9.5个月内仍有更新，非僵尸站；`rentals@eventslv.com`是页面JSON-LD里的机构Organization邮箱，非单一用途邮箱。
+- 查重：`outreach-drafts.md`/本日志全文grep + `gmail_send.py list --query "to:rentals@eventslv.com"` + 域名搜索均确认矩阵内从未联系过。
+- **已发送**：`gmail_send.py send --from calcbadger --to rentals@eventslv.com --subject "A calculator for your keg planning article"`，**Message ID `1a08650d620fed51`**。
+
+**候选2：East Central College Learning Center / eastcentral.edu（`general_tutoring@eastcentral.edu`）— 复核verdict：有问题，本轮不发送**
+- 独立复核agent发现两处硬伤：①邮件里"如果'Rounding'分区也需要配套工具"这句存在事实错误——该页面手风琴分区里根本没有独立的"Rounding"分区（只在"Operations and Integers"分区里有1条视频链接提到rounding），实际核实后与草稿描述不符；②`general_tutoring@eastcentral.edu`在页面HTML里明确标注为"Make Tutoring Appointment"预约通道，是单一用途的学生约课邮箱，不是内容建议类的合适渠道（性质上跟"法务/隐私/广告专用邮箱不发"是同一类判断，收件人大概率不会处理这类邮件或误路由）。
+- 处置：**不发送**，草稿留在`outreach-drafts.md`标注"有问题"待修（需删除/改写Rounding那句为准确描述"Operations and Integers分区里只有1条视频"，且需另找该校非预约类的通用联系渠道），不计入本轮发送量。
+
+**累计口径**：CalcBadger断链置换/嵌入投放战术累计已发送3封pitch（含1封跟进）；已验证`not_replaced` 1条、`verified_live_backlink_confirmed` 0条，本轮新发1封（eventslv.com）尚未到10天验证窗口。转化率0/2（不含跟进和本轮新发未到验证期的1封）。
