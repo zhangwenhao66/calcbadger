@@ -251,7 +251,7 @@
 **候选1：Current Event Rentals / eventslv.com（`rentals@eventslv.com`）— 复核verdict：可以发送**
 - 拉斯维加斯真实运营的活动租赁公司，目标文章讲"半桶/四分之一桶聚会备酒测算"，与CalcBadger的`keg-calculator`（读`src/lib/kegCalculator.ts`确认功能对应）真实主题匹配；博客整体近9.5个月内仍有更新，非僵尸站；`rentals@eventslv.com`是页面JSON-LD里的机构Organization邮箱，非单一用途邮箱。
 - 查重：`outreach-drafts.md`/本日志全文grep + `gmail_send.py list --query "to:rentals@eventslv.com"` + 域名搜索均确认矩阵内从未联系过。
-- **已发送**：`gmail_send.py send --from calcbadger --to rentals@eventslv.com --subject "A calculator for your keg planning article"`，**Message ID `1a08650d620fed51`**。
+- **已发送**：`gmail_send.py send --from calcbadger --to rentals@eventslv.com --subject "A calculator for your keg planning article"`，**Message ID `1a08650d620fed51`**。⚠️事后发现：本次发送执行于读到`邮件发信基础设施迁移_AWS_SES_20260907.md`SES冻结记录之前——截至09-09，14个域名"Send mail as"仍未从Mailjet切到SES，Mailjet已明确不同意继续这种多域名代发，本封邮件是经旧Mailjet路径发出，已无法撤回。已记入`待Owen处理事项.md`同名条目。本轮之后（UmberLore/WageLark/MythCairn）已改为只起草不发送。
 
 **候选2：East Central College Learning Center / eastcentral.edu（`general_tutoring@eastcentral.edu`）— 复核verdict：有问题，本轮不发送**
 - 独立复核agent发现两处硬伤：①邮件里"如果'Rounding'分区也需要配套工具"这句存在事实错误——该页面手风琴分区里根本没有独立的"Rounding"分区（只在"Operations and Integers"分区里有1条视频链接提到rounding），实际核实后与草稿描述不符；②`general_tutoring@eastcentral.edu`在页面HTML里明确标注为"Make Tutoring Appointment"预约通道，是单一用途的学生约课邮箱，不是内容建议类的合适渠道（性质上跟"法务/隐私/广告专用邮箱不发"是同一类判断，收件人大概率不会处理这类邮件或误路由）。
