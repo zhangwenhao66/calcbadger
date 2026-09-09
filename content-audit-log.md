@@ -2348,3 +2348,72 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "age-difference-calculator",
+  "last_audited": "2026-09-09",
+  "published_date": "2026-08-23",
+  "checklist": [
+    "'half your age plus seven'规则的1879 Frederick Locker-Lampson/1901 Max O'Rell/xkcd #314(2007)历史引用是否准确（挂靠维基百科具体年份+人名的断言是教训库L-0817-2/L-0819-1反复出现的脆弱点）",
+    "公式正确性：ageDifference.ts的百分比计算+creepinessRuleMinAge(age/2+7)是否与参考表8+5行数字吻合",
+    "是否只是站内date-calculator的换皮，缺乏独立差异化价值",
+    "标题含'Calculator'是否对应真实交互组件（L-0909-1新教训）"
+  ],
+  "findings": [
+    {
+      "dimension": "事实准确性",
+      "status": "未发现问题（独立核实）",
+      "detail": "WebSearch独立核实'半你的年龄加七'规则1879年Frederick Locker-Lampson文集《Patchwork》、1901年Max O'Rell著作《Her Royal Highness Woman》两条历史引用原文措辞，及xkcd #314'Dating Pools'确认2007-09-10发布——均与页面原文一致，无编造/误传，未改动这部分史实内容。"
+    },
+    {
+      "dimension": "公式/单元测试",
+      "status": "未发现问题",
+      "detail": "手工复算参考表全部8+5行数字（creepinessRuleMinAge age/2+7、gapPercentOfOlder百分比公式）与ageDifference.ts实现及referenceTables数字完全吻合；npx vitest run tests/ageDifference.test.ts 11/11通过。"
+    },
+    {
+      "dimension": "组件真实性（L-0909-1）",
+      "status": "未发现问题",
+      "detail": "AgeDifferenceCalculator.tsx为真实可交互组件（双人生日输入实时计算），非静态预设表格，标题'Age Difference Calculator'名副其实。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py）",
+      "status": "脚本报警，1处确认已修复",
+      "detail": "python3 check_prose_patterns.py --guides src/data/tools.ts --slug age-difference-calculator初次运行：\"'s own\"0次、对比框架1次/682词、连字符0处均通过；FAQ复述检查报警5处≥20字符重合（FAQ#1-5）。此项为脚本确定性字符串匹配（非主观判断），未走独立agent复核——按任务说明，独立复核用于防止'同一上下文形成判断倾向后自我确认'，客观脚本输出不属于此类。改写全部6条FAQ答案为独立措辞，事实内容不变，迭代4轮脚本确认exit 0。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "确认存在但力度一般，已加固",
+      "detail": "WebSearch实测SERP：gigacalculator.com、myagecalc.io（'AgeCalc Pro'）等竞品已提供同款'占更年长者年龄百分比'指标，本页原有差异化（历史规则说明+两张参考表）不算独占优势。按CalcBadger'实质增强'规则（2026-09-04）补充真实增量，见actions_taken。"
+    },
+    {
+      "dimension": "谷歌垃圾政策合规（Skill(google-spam-compliance)）",
+      "status": "PASS",
+      "detail": "三要素判定（投入/原创/附加价值均'有'）+11项政策逐条核对全部PASS。约会年龄敏感话题以百科式呈现，多处'仅供参考非科学/法律标准'免责声明，AdSense变现层面未见问题。"
+    },
+    {
+      "dimension": "去AI味（humanizer+avoid-ai-writing）",
+      "status": "发现并修复3处em dash",
+      "detail": "对本会话新写入的1个小节+6条改写FAQ人工过检，清除3处em dash（改为逗号/冒号），未发现其余AI写作特征命中（无AI高频词/排比三连/inline-header列表等）。该站历史内容中em dash已是既有惯例（全文件94处），本次仅清理本会话自己新引入的部分，不追溯修复存量。"
+    },
+    {
+      "dimension": "外链腐烂/内链健康度/schema一致性/合规漂移/配图版权/AdSense技术合规",
+      "status": "均未发现问题",
+      "detail": "2条原有sources链接（Wikipedia+xkcd）经WebSearch间接确认可访问；走site-toolkit共享轮转机制非硬编码；首次编辑无历史schema需要一致性核对；约会年龄话题无近期现实争议漂移；本页无正文配图；ads.txt指向pub-5245502795720653正确。"
+    }
+  ],
+  "actions_taken": [
+    "改写全部6条FAQ answer为独立措辞消除与正文≥20字符逐字重合，事实内容不变",
+    "enhancement: 新增1个小节('What a real spousal age gap looks like, per Census data')+1张参考表+1条sources引用，内容为Pew Research Center 2024-08分析Census Bureau ACS数据的美国夫妻平均年龄差历史趋势（1880年4.9岁/2000年2.4岁/2022年2.2岁）及性别分布占比，经WebSearch+curl直连Pew原文逐字核实非编造",
+    "清除本会话新写入内容中的3处em dash（humanizer硬性规则）",
+    "updated字段从2026-08-23改为2026-09-09（published字段已存在，无需回填，直接改updated）",
+    "npx vitest run（全站1336/1336）+npm run build（121页）通过后，仅git add被改动的src/data/tools.ts，commit 0b69fc1 + push；CalcBadger为git连接CF Pages自动部署，无需手动触发deploy hook",
+    "push后curl轮询（?cb=$RANDOM绕缓存）约60秒确认200且含'spousal age gap'新增内容；seo_drift.py compare报1条WARNING（schema内容变化，FAQ+新增内容的预期结果）+1条INFO（H2从8个变10个，新增小节+参考表标题的预期结果），均非CRITICAL",
+    "node tools/submit-indexnow.mjs提交/age-difference-calculator/，Bing 200、Yandex 202；内容发布日志.md已追加记录标注'审计更新非新发布'"
+  ],
+  "independent_verification": "FAQ复述检查为脚本确定性字符串匹配，未spawn独立agent（理由见上）；历史引用年份/xkcd发布日期/竞品SERP现状均为本会话直接WebSearch可验证的客观事实，同样未触发'需要防止自我确认偏差'的独立复核场景。本次运行无独立agent卡死情况，无需看门狗兜底。",
+  "seo_score": "title 38字符z-score=0.23、description 186字符z-score=0.74（check_seo_field_stats.py），均在正常范围，未触发疑似超标误判",
+  "geo_score": "未单独重跑Skill(ai-seo)打分（本页改动幅度小、原有GEO要素——coreSummary/2节正文/2张参考表/6条FAQ schema/新增第3条来源均齐全，判断不需要；若后续认为工具页也应纳入固定GEO评分流程可在下次审计执行）",
+  "escalation": null
+}
+```
