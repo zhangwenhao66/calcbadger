@@ -4951,7 +4951,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Age Difference',
 		description:
 			'Find the exact age gap between two people from their birth dates, in years/months/days and as a percentage of the older person\'s age, plus the "half your age plus seven" reference rule.',
-		updated: '2026-08-23',
+		updated: '2026-09-09',
 		published: '2026-08-23',
 		coreSummary:
 			'Enter two birth dates and this calculator returns the calendar-aware years/months/days apart, the total days apart, each person\'s current age, and the gap expressed as a percentage of the older person\'s age. The percentage is the part a plain date-difference tool skips: a 5-year gap is a 20% difference between two 20- and 25-year-olds but only about 8% between two 60- and 65-year-olds, using the same 5 years both times.',
@@ -4985,8 +4985,25 @@ export const tools: Tool[] = [
 					"This calculator shows the rule's minimum age for the older person in the results, purely as the commonly cited reference point it is. It is not a scientific formula and this page does not present it as advice.",
 				],
 			},
+			{
+				heading: 'What a real spousal age gap looks like, per Census data',
+				body: [
+					"Married couples in the U.S. sit much closer to each other in age than a century ago. Pew Research Center's August 2024 analysis of Census Bureau American Community Survey figures found husbands and wives were 2.2 years apart on average in 2022, down from 2.4 years in 2000 and 4.9 years back in 1880, a decline that has run steadily across well over a century of censuses.",
+					'The share of couples with a sizeable gap has fallen on both sides of that average. Husbands at least three years older than their wives made up 40% of marriages in 2022, down from 43% in 2000; wives at least three years older than their husbands held at 10%, down slightly from an 11% peak in 2000. Couples within two years of each other rose from 46% of marriages in 2000 to 51% in 2022.',
+				],
+			},
 		],
 		referenceTables: [
+			{
+				title: 'Average U.S. spousal age gap, 1880–2022 (Census Bureau data via Pew Research)',
+				headers: ['Year', 'Average gap between husband and wife'],
+				rows: [
+					['1880', '4.9 years'],
+					['2000', '2.4 years'],
+					['2022', '2.2 years'],
+				],
+				note: "Opposite-sex marriages with both spouses in the same household only. Source: Pew Research Center, analysis of U.S. Census Bureau decennial census and American Community Survey microdata, published August 2024.",
+			},
 			{
 				title: '"Half your age plus seven" minimum partner age, by age',
 				headers: ['Age', 'Rule minimum (age ÷ 2 + 7)'],
@@ -5019,27 +5036,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the formula for age difference?',
 				answer:
-					'The calendar-style age gap is the same years/months/days breakdown used to describe anyone\'s age: subtract the earlier birth date from the later one, carrying a borrow from the calendar month when the day-of-month subtraction goes negative. The percentage figure divides that gap (converted to decimal years) by the older person\'s current decimal age and multiplies by 100.',
+					"This tool subtracts one birthday from the other using ordinary calendar math, borrowing a month whenever the day-of-month subtraction would otherwise go negative. For the percentage number, that interval gets converted into decimal years and divided by however old the older participant currently is, then multiplied by 100.",
 			},
 			{
 				question: 'How is this different from a regular date-difference calculator?',
 				answer:
-					'The underlying date arithmetic is the same. This calculator is built specifically around comparing two people\'s birth dates: it names who is older, reports each person\'s current age, and adds the percentage-of-the-older-person\'s-age figure that a generic two-date difference does not compute.',
+					'Same underlying arithmetic, narrower purpose: this version is built around two birthdays specifically, so on top of the interval it also states which of the two is older and appends the one number a plain day-count skips, how large that gap is relative to how old the older participant already is.',
 			},
 			{
 				question: 'Why does a 5-year age gap seem bigger between two 20-somethings than two 60-somethings?',
 				answer:
-					"Because the percentage is the gap divided by the older person's age, and that denominator keeps growing while a fixed gap does not. Five years is 20% of 25 but only about 8% of 65, the identical 5-year gap measured against two very different bases.",
+					"Because that percentage is a fraction with the older participant's age on the bottom, and the bottom number only gets bigger as both people age while the top number (the gap itself) never moves. Five years works out to 20% once someone is 25, yet only around 8% once they're 65: the same five-year span, but the denominator is more than double the size.",
 			},
 			{
 				question: 'What is the "half your age plus seven" rule?',
 				answer:
-					'A commonly cited rule of thumb for a minimum acceptable partner age: half the older person\'s age, plus seven years. A 28-year-old\'s floor by this rule is 21; a 50-year-old\'s is 32. Its exact origin is unclear, though phrasings of it appear in print as early as 1879, and it circulates today partly through the webcomic xkcd\'s "Standard Creepiness Rule." It is a cultural reference point, not a scientific or legal standard.',
+					'It sets a floor on partner age: take however old the older person is, cut that number in half, then add seven. Under this arithmetic, someone who just turned 28 shouldn\'t date below 21, and someone who just turned 50 shouldn\'t date below 32. Print references to the wording go back to at least the late 1870s, long before pop culture carried it much further via a well-known xkcd strip in the late 2000s. Treat it as folklore, not science or law.',
 			},
 			{
 				question: 'Can I use this for two historical dates instead of two living people?',
 				answer:
-					"Yes, the calendar-gap and total-days figures work for any two valid birth dates, including people no longer living. The two \"current age\" figures and the percentage figure are calculated against today's date, so for a deceased person they describe how old they would be today, not their age when they died.",
+					"Yes, any pair of valid calendar dates works, whether or not either person is still alive. Just remember two of the numbers this page shows are pinned to today: how old each participant currently is, plus the ratio built from that age. For someone no longer living, those two show what they would be right now, not what they were at the time of death.",
 			},
 			{
 				question: 'Does this calculator store or send my birth dates anywhere?',
@@ -5055,6 +5072,10 @@ export const tools: Tool[] = [
 			{
 				label: 'xkcd #314, "Dating Pools" (2007) — origin of the "Standard Creepiness Rule" phrasing',
 				url: 'https://xkcd.com/314/',
+			},
+			{
+				label: 'Pew Research Center — "A growing share of U.S. husbands and wives are roughly the same age" (Aug. 2024), analysis of U.S. Census Bureau data',
+				url: 'https://www.pewresearch.org/short-reads/2024/08/15/a-growing-share-of-us-husbands-and-wives-are-roughly-the-same-age/',
 			},
 		],
 		embedHeight: 760,
