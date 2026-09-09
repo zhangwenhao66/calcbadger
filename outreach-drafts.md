@@ -187,3 +187,22 @@ CalcBadger
 ```
 Adding CalcBadger under Web calculators, alongside Calculator.net. It's a free collection of standalone calculators and converters (mortgage, concrete, stair layout, SAT score, molarity, BMI, unit converters, and more), and every tool states its formula and links to the source it came from. One suggestion per PR, format matches the existing list, per the contribution guidelines.
 ```
+
+## 2026-09-09 — 三个候选渠道（表单为JS渲染，本次无人值守run无法安全提交，留给下次交互式会话）
+
+- 背景：`trafficsite-directory-media-outreach`本轮Task 1搜索命中三个真实（非farm）候选，但三者的投稿/提交入口都是页面内嵌的JS渲染工具（curl抓取的原始HTML里没有`<form>`/`<input>`标签），本次是无人值守run，环境规则禁止对外部站点用`mcp__Claude_Browser__*`（category3站点会被逐动作弹窗或在无人值守场景被静默拒绝，本次对`learningonlineblog.com`/`homeschoolingteen.com`的navigate调用已确认被拒），盲猜JS widget背后的POST接口有产生垃圾/无效提交的风险，判定不值得冒险，故未提交，留待下次Owen在场、可用Browser pane的交互式会话跟进。
+
+### 候选1：The Homeschool Quest — Guest Article Submissions
+- URL：`https://thehomeschoolquest.com/articlesubmission`
+- 核实：真实运营的homeschool数字杂志，Facebook群组30万+成员、newsletter 2.5万订阅，当前征稿主题"Spring 2027: The Hands-On Homeschool"（真实排期的未来刊期，非僵尸站）。免费投稿，接受后给博客最多1000词文章+作者简介+回链到CalcBadger站点。
+- 待做：找一个此前未在本站任何渠道用过的工具页面（如`gpa-calculator`已用过Quora，可考虑`temperature-converter`或`concrete-calculator`），角度需符合其"Hands-On Homeschool"主题（如"用计算器代替猜测的动手数学练习"一类角度），交互式会话里用Browser pane打开表单填写提交。
+
+### 候选2：The Learning Scientists — Guest Blog Instructions
+- URL：`https://www.learningscientists.org/guest-blog-instructions`
+- 核实：真实认知科学家团队（Megan Sumeracki等）运营的证据类学习科学博客，非营利研究传播性质。**明确禁止广告/赞助内容**，正文不能是产品推广，只能在作者简介里简短提及CalcBadger链接。要求提案必须附科学引用/证据来源。
+- 待做：角度需是真正的evidence-based学习策略话题（如"自我监控/元认知在追踪自己GPA与学习进度中的作用"，需要真实查证据支持研究），而不是"这是我们的GPA计算器"——这个渠道的价值是E-E-A-T/品牌可信度而非直接推广，不适合用现成的产品角度硬凑，需要交互式会话认真起草一篇真正遵循科学写作要求的提案。
+
+### 候选3：admissions.blog — Write for Us
+- URL：`https://admissions.blog/write-for-us/`
+- 核实：真实大学申请咨询新闻/观点站，明确列出的征稿主题含"Standardized Testing Tips & Trends""Financial Aid and Scholarships"，与`sat-score-calculator`/`gpa-calculator`直接相关。700-1500词，作者简介可放1个站外链接+正文内1个contextual链接。约1/10投稿会被采用（有编辑筛选，非自动收录）。
+- 待做：提交方式是页面内嵌"submission tool"（非邮件），需要交互式会话用Browser pane操作；文章角度可参考本次给Empowerly起草的"自算GPA与大学重算GPA不一致"或围绕SAT curve的角度另起一篇（避免跟已发给Empowerly的pitch内容重复，若Empowerly那边被拒可以转投这里但需要改写角度而非原样复用）。
