@@ -11,3 +11,7 @@ export const AUTHOR_NAME = 'CalcBadger Team';
 export const ADSENSE_PUBLISHER_ID = 'pub-5245502795720653';
 export const GA4_ID = 'G-CETNHSCJG2';
 export const CLARITY_ID = 'y14zwvco3j';
+
+// 品牌实体的外部档案（Organization schema 的 sameAs）。2026-09-10 建：矩阵站品牌信号为零，先把实体块放上，
+// 目录收录页/Product Hunt/Pinterest 等真实档案上线后往这里填 URL（只填本站自己的档案，不填别的站）。
+export const BRAND_SAME_AS: string[] = [];
