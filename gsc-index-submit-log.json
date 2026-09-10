@@ -415,5 +415,19 @@
     ],
     "already_indexed_no_action": [],
     "quota_used": "2 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-10",
+    "action": "submitted",
+    "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。bmi-calculator/date-calculator均已收录。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：topsoil-calculator确认未收录提交成功(第一轮)。第二轮补提交rounding-calculator(同报告候选，确认未收录)。",
+    "submitted_urls": [
+      "https://calcbadger.com/topsoil-calculator/",
+      "https://calcbadger.com/rounding-calculator/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/bmi-calculator/",
+      "https://calcbadger.com/date-calculator/"
+    ],
+    "quota_used": "2 of shared account-wide daily quota"
   }
 ]
