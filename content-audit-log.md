@@ -2417,3 +2417,102 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "asphalt-calculator",
+  "last_audited": "2026-09-11",
+  "published_date": "2026-08-17",
+  "checklist": [
+    "公式正确性：热拌沥青145 lb/ft³与RAP 112 lb/ft³两个密度常量出处（Iowa DOT Section 2303 / Asphalt Institute Engineering FAQ / FHWA-RD-97-148）是否真实准确",
+    "参考表'tons per 100 sq ft by depth'6行数字是否与(100×深度ft×145)/2000公式吻合",
+    "AsphaltCalculator.tsx交互组件的输入验证/边界值处理是否有bug",
+    "竞品差异化（inchcalculator.com/gigacalculator.com等头部工具）是否仍成立",
+    "sources[].label是否符合本站08-26/08-27确立的'冒号'格式新惯例"
+  ],
+  "findings": [
+    {
+      "dimension": "公式/常量正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "WebSearch独立核实三条出处均真实存在、数字与官方原文一致：Iowa DOT ERL现行版（ia.iowadot.gov/erl/current/gs/content/2303.htm）确认145 lb/ft³为按重量估算招标数量的单位重量；Asphalt Institute Engineering FAQ确认现场沥青混合料密度范围142-148 lb/ft³；FHWA-RD-97-148确认RAP压实密度最大干密度范围1600-2000 kg/m³（100-125 lb/ft³），112 lb/ft³取自区间中点112.5的合理近似。参考表6行数字（1in=0.60/1.5in=0.91/2in=1.21/2.5in=1.51/3in=1.81/4in=2.42吨每100平方英尺）用公式(100×深度ft×145)/2000逐一复算全部精确吻合，无需修改。"
+    },
+    {
+      "dimension": "单元测试覆盖准确性",
+      "status": "未发现问题",
+      "detail": "npx vitest run tests/asphalt.test.ts 15/15通过（含slabVolumeCuFt/toFeet单位换算/withWaste/cuFtToCuYd/weightLb+lbToTons热拌与RAP两套密度场景）；全站npx vitest run 73个测试文件1358个测试全部通过。"
+    },
+    {
+      "dimension": "内嵌组件功能",
+      "status": "未发现问题",
+      "detail": "AsphaltCalculator.tsx为真实Preact交互组件（长/宽多单位+深度单位+热拌/RAP/自定义密度三态切换+可选单价），边界值判断lengthFt>0 && widthFt>0 && depthFt>0 && density>0正确排除零/负值输入，不会在无效输入下显示虚假结果。CalculatorIsland.astro按slug正确分发到该组件，src/pages/embed/[slug].astro复用同一组件生成/embed/asphalt-calculator/，npm run build成功生成两份产物无报错。"
+    },
+    {
+      "dimension": "机械化文风检查（check_prose_patterns.py，L-0819-9 FAQ复述）",
+      "status": "脚本报警，2处CONFIRMED已修复，1处REJECTED未改，迭代中新增3处已消除",
+      "detail": "初次运行报警3处FAQ与正文≥20字符逐字重合：FAQ#1（'unit weight the iowa dot's standard specifications'）、FAQ#3（'base or shoulder material rather than a'）、FAQ#6（'the custom density field'）。独立复核agent逐条判定：FAQ#1/FAQ#3均是与Section1第2段对应从句结构/措辞几乎一致的整句改写复述，CONFIRMED为真实问题；FAQ#6是页面上一个具体UI功能名称（自定义密度输入框），跟'thickness and width'一类技术短语性质相同，属不可避免重合，REJECTED。已重写FAQ#1/FAQ#3消除重复。本会话新增的'实质增强'小节又引入3处新的短语级重合（涉及FAQ#1新表述、FAQ#4已有表述、FAQ#6已有表述与新小节第3段），均为改写/新增内容自身导致、非原有问题重现，按已确认的判断框架（不可避免技术术语/UI功能名 vs 整句结构复述需消除）迭代4轮重写至exit 0，未额外重复spawn独立agent确认（与本站age-difference-calculator/board-foot-calculator先例一致：改写自身引入的短语级重合不改变已确认的判断标准本身）。"
+    },
+    {
+      "dimension": "站内标点风格一致性（sources[].label格式惯例）",
+      "status": "发现1处真实问题，已修复",
+      "detail": "3条sources[].label原用本站已废弃的em dash格式（'机构名 — 说明'），本工具2026-08-17发布时尚未确立08-26/08-27才出现的'冒号'格式新惯例（与gpa-calculator 2026-08-27审计发现的同类问题同一性质）。已全部改写为'机构名: 说明'冒号格式，未改动任何事实内容。"
+    },
+    {
+      "dimension": "竞品差异化",
+      "status": "确认存在真实差异化，已加固",
+      "detail": "WebSearch实测SERP头部竞品inchcalculator.com、gigacalculator.com页面全文：两者均只给出'compacted depth'输入框和固定/可选密度，均未提供'松铺（loose lift）vs压实（compacted）厚度'的区分说明，也均未提及RAP再生沥青与热拌的密度差异对比表述深度不及本页。本页原有的RAP密度预设选项本身已构成差异化，本次新增'实质增强'内容进一步加固（见下）。"
+    },
+    {
+      "dimension": "谷歌垃圾政策合规（Skill(google-spam-compliance)）",
+      "status": "PASS",
+      "detail": "三要素判定（投入/原创/附加价值均'有'）+11项政策逐条核对全部PASS，含'误导性功能'（工具站重点项）：计算器真实可交互、参考表与公式来源均可核实非编造；无隐藏文字/关键词堆砌/伪装门页/链接垃圾/机器生成流量/恶意行为。AI内容专属判定：非商品化（RAP密度预设+新增loose-vs-compacted技术点是本站独有角度）。AdSense变现：建筑/家装话题非限制类目，ads.txt正确。"
+    },
+    {
+      "dimension": "GEO审计（AI搜索友好度）",
+      "status": "未发现问题",
+      "detail": "本站无适用于工具页的99分制自动打分器，调用Skill(ai-seo)可提取性清单人工核对：coreSummary前置定义清晰、3个小节均以直接陈述开头、2条真实数字worked example+1个参考表+新增1个技术小节、6条FAQ配FAQPage schema、4条权威来源（新增CAPA技术简报一条）、'updated: 2026-09-11'时效信号明确、标题结构贴近query措辞、robots.txt放行GPTBot/ClaudeBot/PerplexityBot等AI爬虫。综合判定明显高于80分等效门槛。"
+    },
+    {
+      "dimension": "早期内容AI味补漏",
+      "status": "不适用",
+      "detail": "published='2026-08-17'晚于avoid-ai-writing技能接入日（2026-08-07），不触发存量内容全量回溯扫描。本会话新增/改写内容单独人工过检：0处em dash、0处弯引号、常见AI高频词（delve/robust/leverage/testament/underscore/showcase/vibrant/boasts/crucial/pivotal/landscape/seamless/tapestry/navigate/realm/intricate/multifaceted/holistic）零命中。"
+    },
+    {
+      "dimension": "外部引用链接腐烂",
+      "status": "未发现问题（含一项误判排查说明）",
+      "detail": "curl直接请求Iowa DOT ERL链接返回403，但WebSearch能直接检索并返回该页真实条文内容，判定为该.gov站点对非浏览器类客户端的常规反爬网关（与本站此前eCFR/Federal Register案例同一模式），非链接失效。Asphalt Institute、FHWA两条链接curl直接200。新增的Colorado Asphalt Pavement Association PDF链接curl 200，PDF内容经独立复核agent确认与转述一致。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "走site-toolkit共享pickRelatedGuides轮转机制+crossCategoryPool兜底，非硬编码链接，未见孤儿页风险；formula-standards-index.astro会在构建时自动统计本工具引用的Iowa DOT等政府来源，无需手动维护。"
+    },
+    {
+      "dimension": "Schema一致性",
+      "status": "未发现问题",
+      "detail": "WebApplication的dateModified随tool.updated自动更新为2026-09-11；FAQPage的6条items与页面渲染FAQ逐一对应（含改写后的FAQ#1/#3文本）；BreadcrumbList三级面包屑不受本次改动影响。build产物dist/asphalt-calculator/index.html人工核对确认0处em dash、含新小节标题与CAPA来源文本。"
+    },
+    {
+      "dimension": "AdSense政策合规",
+      "status": "未发现问题",
+      "detail": "curl核实ads.txt正确列出pub-5245502795720653；建筑/家装计算器为标准生活场景工具，无限制类目内容，无诱导误点布局。"
+    },
+    {
+      "dimension": "配图/图标可用性",
+      "status": "不适用",
+      "detail": "本工具页无正文配图，仅计算器UI+参考表，不涉及版权风险。"
+    }
+  ],
+  "actions_taken": [
+    "改写FAQ#1/FAQ#3消除与正文≥20字符逐字重合，事实内容不变；FAQ#6经独立复核判定为UI功能名不可避免重合，未改动",
+    "sources[].label 3条从em dash格式改为冒号格式，未改动任何事实内容",
+    "enhancement: 新增1个小节'Loose lift thickness vs. compacted depth: why the number you enter isn't what the crew shovels'（约330词，3段），内容为①热拌沥青现场摊铺（松铺）厚度与压实后厚度的比例关系（压实到1英寸需现场摊铺1.25英寸，压实到2英寸需摊铺2.5英寸）②该系数是施工方设定熨平板高度用的参考，不需要据此放大计算器的深度输入③翻新铺装因需找平不平整的既有路面，用料可能比简单L×W×深度计算多5-15%（区别于既有FAQ#4讲的5-10%浪费/压实损耗，已在文中显式区分两者不同成因）；出处Colorado Asphalt Pavement Association技术简报'A Paving Fundamental: Thickness-Yield-Smoothness'（James Scherocman, P.E.整理），新增为第4条sources",
+    "npx vitest run（全站73个测试文件1358个测试）+npm run build（123页）通过后，仅git add被改动的src/data/tools.ts，commit 8253be8 + push；CalcBadger为git连接CF Pages自动部署，无需手动触发deploy hook",
+    "push后curl轮询（?cb=$RANDOM绕缓存）约35秒确认200且含新小节'crew shovels'文本；seo_drift.py compare报1条WARNING（schema内容变化，FAQ+新增内容的预期结果）+1条INFO（H2从7个变8个，新增小节标题的预期结果），均非CRITICAL",
+    "node tools/submit-indexnow.mjs提交/asphalt-calculator/，Bing 200、Yandex 202；indexnow-submit-log.json commit d1de4e1；内容发布日志.md已追加记录标注'审计更新非新发布'"
+  ],
+  "independent_verification": "spawn 1个全新独立agent（约110秒，8次工具调用，正常完成，无卡死无需看门狗降级），一次性核实三类问题：①公式常量出处与数字（Iowa DOT/Asphalt Institute/FHWA三条+参考表6行数字）——全部CONFIRMED；②新增'实质增强'内容真实性（CAPA文档是否存在、压实系数是否有独立佐证、是否与现有正文/FAQ重复）——三项均CONFIRMED（含提醒新增内容与FAQ#4存在百分比表述混淆风险，已在正文显式区分处理）；③FAQ与正文重合审计——FAQ#1/#3 CONFIRMED需改写，FAQ#6 REJECTED不可避免重合。全部按此结论采纳，未出现分歧。",
+  "seo_score": "check_seo_field_stats.py：title 33字符z-score=-0.12、description 158字符z-score=-0.54，均在正常范围内，未触发疑似超标误判",
+  "geo_score": "未单独跑数值打分（本站无适用于工具页的99分制自动打分器）；按Skill(ai-seo)可提取性清单人工核对，10项中9-10项通过（唯一可能弱项'具名作者资质'为全站模板级已知限制，非本工具专属问题），明显超过80分等效门槛",
+  "escalation": null
+}
+```
