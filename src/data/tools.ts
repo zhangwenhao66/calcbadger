@@ -6231,4 +6231,124 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 700,
 	},
+	{
+		slug: 'words-per-minute-average',
+		category: 'Text Tools',
+		title: 'Words Per Minute (WPM) Average Calculator',
+		shortTitle: 'WPM Average',
+		description:
+			'Turn a word or character count, time taken, and error count into gross WPM, net WPM, and accuracy, then see it placed against published typing-speed research.',
+		updated: '2026-09-11',
+		published: '2026-09-11',
+		coreSummary:
+			'Gross WPM only measures how fast your fingers moved; net WPM subtracts your errors, prorated by time, which is the score typing certifications and employers actually use. Enter what you typed (in words or characters), how long it took, and how many mistakes went uncorrected, and this tool returns both numbers plus where they land against research-published typing-speed bands, from about 27 WPM for hunt-and-peck typing up to the 360 WPM stenotype world record.',
+		queries: [
+			'words per minute average',
+			'average wpm',
+			'average typing speed',
+			'what is a good wpm',
+			'wpm calculator',
+			'typing speed calculator',
+			'gross wpm vs net wpm',
+			'net wpm formula',
+			'how is wpm calculated',
+			'average words per minute typing',
+			'wpm formula',
+			'what is average typing speed',
+		],
+		sections: [
+			{
+				heading: 'Why gross WPM and net WPM are different numbers',
+				body: [
+					'Words per minute has a standard definition built for exactly this kind of comparison: since real words range from "a" to "rhinoceros," text-entry research measures every "word" as five characters, including spaces and punctuation, so a score does not depend on which words happened to be in the passage. Gross WPM is (characters typed / 5) / minutes, or simply words / minutes when you already have a word count. That figure by itself ignores mistakes entirely; a typist who mashes the keyboard fast and inaccurately can still post a high gross score.',
+					'Net WPM fixes that by deducting uncorrected errors, prorated by the same time, before reporting a final speed. It is the number typing certification programs, timed workplace tests, and most online typing tests report as your "real" score, precisely because it rewards accuracy along with raw speed rather than either alone. The gap between the two numbers is a rough measure of how much a test-taker\'s mistakes are costing them: a small gap means most keystrokes are landing correctly, a wide one means speed is being bought at accuracy\'s expense.',
+				],
+			},
+			{
+				heading: 'What counts as a typical, good, or exceptional typing speed',
+				body: [
+					'The most-cited baseline for ordinary computer use comes from a 1999 study of average computer users published at the ACM CHI conference: participants typed at 32.5 WPM when transcribing text they could see and only 19.0 WPM when composing text as they thought it up, since composing adds the mental work of deciding what to say next. That same study split typists into fast, moderate, and slow groups averaging 40, 35, and 23 WPM. A larger 2019 study of 37,000 volunteers found average two-thumb smartphone typing at 36.2 WPM with a 2.3% uncorrected-error rate, a useful comparison point now that a large share of casual typing happens on a phone rather than a full keyboard.',
+					"Above that everyday range, 911 dispatcher and emergency-operator hiring tests typically set a floor of 35 to 45 WPM (a hiring minimum, not an achieved average; experienced dispatchers commonly type 50-60+ WPM day to day), while skilled or professional typists are commonly cited in the 60 to 80 WPM range, and sustained speeds above 120 WPM mark an advanced typist on a standard keyboard. The far end of the scale belongs to stenotype machines, the specialized keyboards court reporters and captioners use: they are not typing English words letter by letter but chording phonetic shorthand, which is how the Guinness World Record for fastest realtime court reporting stands at 360 WPM with 97.23% accuracy, set by Mark Kislingbury in 2004 and still the record as of this writing.",
+				],
+			},
+			{
+				heading: 'A worked example',
+				body: [
+					'Say a timed test has you type for two minutes and you produce 90 words with 3 of them wrong and never corrected. Gross WPM is 90 / 2 = 45. Net WPM subtracts the error rate: 3 errors over 2 minutes is 1.5 WPM of penalty, so net WPM is 45 - 1.5 = 43.5. Accuracy is (90 - 3) / 90, or 96.7%. That net score of 43.5 WPM sits right around the top of the typical 911-dispatcher hiring floor cited above (35-45 WPM) and just short of the 60-80 WPM skilled/professional band: solidly average-to-good, not yet professional-fast, and nowhere near what a stenotype writer produces on specialized hardware.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Typing speed bands from published research',
+				headers: ['Typical typist', 'Net WPM range', 'Source'],
+				rows: [
+					['Hunt-and-peck (two-finger)', '27-37', 'Brown (1988), Human-Computer Interface Design Guidelines'],
+					['Average computer user, composing', '19', 'Karat et al. (1999), CHI \'99 Proceedings'],
+					['Average computer user, transcribing', '32.5', 'Karat et al. (1999), CHI \'99 Proceedings'],
+					['Average smartphone (two thumbs)', '36.2', 'Palin et al. (2019), MobileHCI \'19 Proceedings'],
+					['911 dispatcher/emergency operator (hiring minimum)', '35-45', 'Cross-checked across current dispatcher job-readiness resources (PrepOpedia, Climb the Ladder, CriticalTest Prep)'],
+					['Skilled/professional typist', '60-80', 'Cross-checked across typing-education sources; cited professional ranges vary by source'],
+					['Advanced/highly skilled typist', '120+', 'Ayres & Martinás (2005), On the Reappraisal of Microeconomics'],
+					['Stenotype world record (court reporting)', '360', 'Guinness World Records, Mark Kislingbury, 2004'],
+				],
+				note: 'Ranges reflect each cited study\'s own measurement method; they are not directly interchangeable since some measure gross speed and some measure sustained/net speed. Treat this as a rough map of where a score sits, not a single graded scale.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is a good WPM?',
+				answer:
+					'Somewhere around 40-45 net WPM clears the bar for solid everyday typing, matching the quicker group from the classic 1999 computer-user study cited below. Push into the 60-80 WPM band and you\'re at the level several typing-skills guides call accomplished, professional-caliber typing. On the hiring side, emergency-dispatch and 911-operator exams generally accept 35-45 WPM as good enough to pass.',
+			},
+			{
+				question: 'What is the difference between gross WPM and net WPM?',
+				answer:
+					'Gross WPM only clocks raw speed: words, or characters divided by five, over your time in minutes, with no penalty for mistakes. Net WPM knocks off your uncorrected errors from that figure, scaled to that same span of time, so it reflects text actually produced correctly rather than just keys pressed. Employers, typing-licensing exams, and most graded tests report the net figure.',
+			},
+			{
+				question: 'What is the average typing speed?',
+				answer:
+					'Karat and colleagues\' oft-cited computer-user research put copying speed at 32.5 WPM and composing-as-you-go at 19.0 WPM, with the quick, middling, and slow clusters they identified landing near 40, 35, and 23 respectively. A separate, far larger mobile-typing study put the typical two-thumb rate on a touchscreen at 36.2 words per minute.',
+			},
+			{
+				question: 'How is WPM calculated?',
+				answer:
+					'Text-entry researchers treat every five characters, counting the gaps and marks in between, as a single "word," so gross WPM comes out to characters entered divided by five, divided by minutes elapsed. Already know your word total instead of a character count? Divide that directly by minutes. Take mistakes that went uncorrected, weighted by that same stretch of time, off either version to land on net.',
+			},
+			{
+				question: 'What is the fastest typing speed ever recorded?',
+				answer:
+					"Court reporter Mark Kislingbury hit 360 WPM at 97.23% accuracy in 2004 on a stenotype, a specialized machine that chords phonetic shorthand instead of one keystroke per letter, and Guinness still lists it as his to hold for transcribing court proceedings live. Stick to an ordinary keyboard and you're looking at 120+ WPM before anyone would call your typing advanced.",
+			},
+			{
+				question: 'Why does my net WPM go down when I make errors, even if I caught and fixed them?',
+				answer:
+					'This calculator scores only uncorrected errors: mistakes left in the final text you typed. If you catch and fix an error while typing, it does not count against your net WPM here, though the time spent fixing it still counts against your gross WPM, since that clock never stops.',
+			},
+		],
+		sources: [
+			{
+				label: "Arif & Stuerzlinger (2009), \"Analysis of Text Entry Performance Metrics,\" IEEE TIC-STH '09 (WPM formula and the 5-character-per-word convention)",
+				url: 'https://web.archive.org/web/20150923174328/http://www.asarif.com/pub/papers/arif_ticsth09.pdf',
+			},
+			{
+				label: "Karat, Halverson, Horn & Karat (1999), CHI '99 Proceedings, ACM (average computer user typing speeds)",
+				url: 'https://doi.org/10.1145/302979.303160',
+			},
+			{
+				label: "Palin, Feit, Kim, Kristensson & Oulasvirta (2019), MobileHCI '19 Proceedings, ACM (37,000-participant mobile typing study)",
+				url: 'https://doi.org/10.1145/3338286.3340120',
+			},
+			{
+				label: 'Wikipedia: "Words per minute" (independent cross-check of the formula, convention, and cited figures)',
+				url: 'https://en.wikipedia.org/wiki/Words_per_minute',
+			},
+			{
+				label: 'Guinness World Records: "Fastest realtime court reporter (stenotype writing)"',
+				url: 'https://www.guinnessworldrecords.com/world-records/fastest-realtime-court-reporter-(stenotype-writing)',
+			},
+		],
+		embedHeight: 820,
+	},
 ];

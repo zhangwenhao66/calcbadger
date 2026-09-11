@@ -56,6 +56,7 @@ import PizzaCalculator from './calculators/PizzaCalculator';
 import PoolCalculator from './calculators/PoolCalculator';
 import ProratedRentCalculator from './calculators/ProratedRentCalculator';
 import RiceToWaterRatio from './calculators/RiceToWaterRatio';
+import WordsPerMinuteAverage from './calculators/WordsPerMinuteAverage';
 import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import RandomObjectGenerator from './calculators/RandomObjectGenerator';
@@ -141,6 +142,7 @@ const { slug } = Astro.props;
 {slug === 'sentence-counter' && <SentenceCounter client:load />}
 {slug === 'prorated-rent-calculator' && <ProratedRentCalculator client:load />}
 {slug === 'rice-to-water-ratio' && <RiceToWaterRatio client:load />}
+{slug === 'words-per-minute-average' && <WordsPerMinuteAverage client:load />}
 {slug === 'conduit-fill-calculator' && <ConduitFillCalculator client:load />}
 {slug === 'rounding-calculator' && <RoundingCalculator client:load />}
 {slug === 'wingdings-translator' && <WingdingsTranslator client:load />}
