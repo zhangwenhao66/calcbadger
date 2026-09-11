@@ -226,12 +226,17 @@
   "https://calcbadger.com/minecraft-circle-generator/": {
     "submitted_date": "2026-08-13",
     "last_submitted_date": "2026-08-13",
-    "verified_status": "pending"
+    "verified_status": "stale_not_indexed",
+    "last_checked_date": "2026-09-12",
+    "verified_method": "bwt_url_inspection",
+    "note": "2026-09-12: discovered 08 Sept（新鲜发现型），Page Fetch: Failed HTTP 4xx；curl绕缓存复核确认为真实404。查git log发现该页已于2026-08-24因spam-signal cleanup(c3635a1)被主动移除，属预期行为非异常，无需处理；该条IndexNow记录可视为陈旧数据"
   },
   "https://calcbadger.com/board-foot-calculator/": {
     "submitted_date": "2026-08-13",
     "last_submitted_date": "2026-09-03",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "last_checked_date": "2026-09-12",
+    "verified_method": "bwt_url_inspection"
   },
   "https://calcbadger.com/random-letter-generator/": {
     "submitted_date": "2026-08-16",
@@ -246,7 +251,9 @@
   "https://calcbadger.com/asphalt-calculator/": {
     "submitted_date": "2026-08-16",
     "last_submitted_date": "2026-09-11",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "last_checked_date": "2026-09-12",
+    "verified_method": "bwt_url_inspection"
   },
   "https://calcbadger.com/glitch-text-generator/": {
     "submitted_date": "2026-08-17",
