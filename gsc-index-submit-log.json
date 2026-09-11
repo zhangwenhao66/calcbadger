@@ -429,5 +429,19 @@
       "https://calcbadger.com/date-calculator/"
     ],
     "quota_used": "2 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-11",
+    "action": "submitted",
+    "reason": "今日新发布words-per-minute-average（每周2工具节奏），URL Inspection确认URL is unknown to Google，提交成功。补充第二轮：Discovered-not-indexed报告14条真实积压（大多为category归档页/已收录计算器页），逐个核查pizza-calculator/ffmi-calculator均已收录，number-base-converter确认Discovered-currently-not-indexed未提交过，追加提交。",
+    "submitted_urls": [
+      "https://calcbadger.com/words-per-minute-average/",
+      "https://calcbadger.com/number-base-converter/"
+    ],
+    "already_indexed_no_action": [
+      "https://calcbadger.com/pizza-calculator/",
+      "https://calcbadger.com/ffmi-calculator/"
+    ],
+    "quota_used": "2 of shared account-wide daily quota"
   }
 ]
