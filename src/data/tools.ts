@@ -3460,7 +3460,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Asphalt Calculator',
 		description:
 			'Estimate tons of hot mix or recycled asphalt for a driveway, lot, or base repair from paved area and compacted depth, with an optional material cost estimate.',
-		updated: '2026-08-17',
+		updated: '2026-09-11',
 		published: '2026-08-17',
 		coreSummary:
 			'Asphalt is ordered by weight, not area, because plants batch and truck it by the ton. The formula: volume (length x width x compacted depth) converts to weight using the mix\'s density, then weight in pounds divides by 2,000 to get tons. This calculator defaults to 145 lb/ft³ for hot mix asphalt, the planning unit weight the Iowa DOT\'s Standard Specifications use, and 112 lb/ft³ for reclaimed asphalt pavement (RAP), near the midpoint of the compacted-density range FHWA documents for recycled material.',
@@ -3492,6 +3492,14 @@ export const tools: Tool[] = [
 					"Use the hot mix preset for new pavement or an overlay: a driveway, parking lot, or road surface course. Use RAP for a base or sub-base layer built from milled, recycled asphalt rather than virgin mix; it's lighter per cubic foot than hot mix and is priced and sold differently (often by the ton at a lower rate, sometimes by the load). Neither preset covers bagged cold-patch material, since published cold-patch densities vary widely by product formulation and aren't consistently documented by a single standards body. That's what the custom density field is for. If a supplier or lab report gives you a specific unit weight, entering it directly will be more accurate than either preset.",
 				],
 			},
+			{
+				heading: 'Loose lift thickness vs. compacted depth: why the number you enter isn\'t what the crew shovels',
+				body: [
+					"This calculator's depth field asks for compacted depth, meaning the thickness left once a roller has worked the material, not the thickness a paver lays down fresh off the truck. Hot mix consolidates under the roller, so the loose lift going down is thicker than the finished result. The Colorado Asphalt Pavement Association's paving fundamentals brief, compiled by asphalt engineer James Scherocman, P.E., puts a number on that gap: a dense-graded hot mix layer typically compacts about 1/4 inch for every inch of finished thickness, so a crew has to place 1-1/4 inches loose to leave 1 inch compacted, and 2-1/2 inches loose to leave 2 inches compacted. Asphalt Magazine's paving rules of thumb describe the same factor independently (multiply the target compacted thickness by 1.25 to set the screed height), so it isn't a single-source figure.",
+					"That 1.25x factor is the paving crew's number, not yours. This calculator's tonnage output is built around the compacted depth you enter, since that's also the depth the plant's density figures assume and the depth a paving contract usually specifies, so there's no need to inflate your depth entry to account for the loose lift. If a contractor quotes a lay-down thickness noticeably larger than the finished depth you asked for, that's this same compaction factor showing up in their planning, not a markup.",
+					"This is a different question from the waste allowance covered in the FAQ below, which is about ordinary handling losses on a routine job, not the loose-to-compacted conversion. On an overlay over an uneven existing surface, the same Colorado Asphalt Pavement Association brief notes a further add-on can apply: because a paver's screed averages out dips and high spots rather than tracking them exactly, holding a minimum thickness everywhere a rutted or bumpy surface has low spots can call for 5 to 15% more mix than a flat length-times-width-times-depth calculation gives. That's stacked on top of the routine waste allowance rather than replacing it, and it applies specifically to resurfacing an uneven surface, not a new driveway built on a fresh, graded base.",
+				],
+			},
 		],
 		referenceTables: [
 			{
@@ -3512,7 +3520,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What density does this calculator use for hot mix asphalt?',
 				answer:
-					'145 lb/ft³ by default, the unit weight the Iowa DOT\'s Standard Specifications (Section 2303) use for converting hot-mix bid quantities to tons, which falls inside the 142-148 lb/ft³ in-place range published in the Asphalt Institute\'s Engineering FAQ. Real mixes vary within that range depending on aggregate type and air voids.',
+					"145 lb/ft³ by default. That figure comes from an Iowa state highway agency's planning specification for converting paving bids into tonnage, and it sits comfortably within the band a national asphalt trade group publishes for material already in place, roughly 142 to 148 pounds per cubic foot. Actual mixes shift within that band depending on the aggregate blend and how many air voids remain after rolling.",
 			},
 			{
 				question: 'Why is asphalt priced by the ton instead of by area?',
@@ -3522,7 +3530,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is RAP, and why does it use a different density?',
 				answer:
-					"RAP (reclaimed asphalt pavement) is old asphalt that's been milled up and reused, most often as base or shoulder material rather than a finished driving surface. It compacts less densely than fresh hot mix: FHWA documents a compacted range of 100-125 lb/ft³ for RAP, versus 142-148 lb/ft³ for hot mix, so using the hot-mix density on a RAP order would overstate the tonnage you need.",
+					"RAP is the industry short form for old asphalt pavement that's been reclaimed and milled up for reuse, typically underneath a wearing surface rather than as the surface itself. Being crushed and recycled instead of freshly mixed, it settles into a lighter compacted structure: roughly 100-125 lb/ft³ versus 142-148 lb/ft³ for hot mix, per FHWA's guidance on reused paving materials. Run a RAP order through the hot-mix density instead and you'll end up buying more tons than the job actually calls for.",
 			},
 			{
 				question: 'How much waste or compaction allowance should I add?',
@@ -3537,21 +3545,25 @@ export const tools: Tool[] = [
 			{
 				question: 'Can I use this for patching a pothole?',
 				answer:
-					"You can, for the volume-to-weight math, but small patch jobs are usually bought in pre-bagged cold-patch units rather than bulk tons, and cold-patch density varies by product. Enter the patch's dimensions and use the custom density field with a figure from the product's packaging or data sheet, since neither the hot-mix nor RAP preset represents cold patch.",
+					"You can, for the volume-to-weight math, but small patch jobs are usually bought in pre-bagged cold-patch units rather than bulk tons, and cold-patch density varies by product. Enter the patch's dimensions, switch the material choice to Custom density, and type in a figure from the product's packaging or data sheet, since neither the hot-mix nor RAP preset represents cold patch.",
 			},
 		],
 		sources: [
 			{
-				label: 'Iowa Department of Transportation — Standard Specifications, Section 2303, "Hot Mix Asphalt Mixtures" (145 lb/ft³ unit weight for tonnage conversion)',
+				label: 'Iowa Department of Transportation: Standard Specifications, Section 2303, "Hot Mix Asphalt Mixtures" (145 lb/ft³ unit weight for tonnage conversion)',
 				url: 'https://ia.iowadot.gov/erl/current/gs/content/2303.htm',
 			},
 			{
-				label: 'Asphalt Institute — Engineering FAQs (142-148 lb/ft³ in-place density range for asphalt mixture)',
+				label: 'Asphalt Institute: Engineering FAQs (142-148 lb/ft³ in-place density range for asphalt mixture)',
 				url: 'https://www.asphaltinstitute.org/engineering/frequently-asked-questions/asphalt-pavement-thickness-and-mix-design/',
 			},
 			{
-				label: 'Federal Highway Administration — FHWA-RD-97-148, "User Guidelines for Waste and Byproduct Materials in Pavement Construction," Reclaimed Asphalt Pavement material description (100-125 lb/ft³ compacted density range)',
+				label: 'Federal Highway Administration: FHWA-RD-97-148, "User Guidelines for Waste and Byproduct Materials in Pavement Construction," Reclaimed Asphalt Pavement material description (100-125 lb/ft³ compacted density range)',
 				url: 'https://www.fhwa.dot.gov/publications/research/infrastructure/pavements/97148/046.cfm',
+			},
+			{
+				label: 'Colorado Asphalt Pavement Association: "A Paving Fundamental: Thickness-Yield-Smoothness," compiled by James Scherocman, P.E. (loose lift vs. compacted thickness factor)',
+				url: 'https://www.co-asphalt.com/assets/docs/Thickness-Yield-Smoothness.pdf',
 			},
 		],
 		embedHeight: 820,
