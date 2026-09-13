@@ -39,6 +39,14 @@
 - **制作复杂度**：低到中。信息基本已经在各计算器页面里存在（`coreSummary`/数据来源字段已经写了来源），主要工作是提取、去重、按分类重新编排成一个索引页，不需要新查证据。
 - **备注**：可以作为其他三个新站同类"合集页"资产的模板参考（如果以后有需要）。
 
+**[同类反查 2026-09-13]**：`serp "calculator formula sources and standards"` 结果质量普遍很低（多为.gov/纯商业软件页），唯一勉强对口的是 solarcalculatorhq.com（Editorial and calculator standards页面，主题高度匹配：来源索引类页），对其做 backlinks 反查，1 个合格：
+
+| 来源域名 | 命中同类资产数 | 类型 | ETV | 外链结构 | 具体来源页 |
+|---|---|---|---|---|---|
+| surgepv.com | 1 | resource_page（太阳能行业网站） | 1,132 | 27.1条/域名，正常 | https://solarcalculatorhq.com/en-gb/calculators/solar-inverter-clipping-calculator/（锚文本"Solar Calculator HQ, 2026"） |
+
+未筛掉候选（其余候选域名多为博彩/可疑站，本身就不合格未列入门槛检查名单）。
+
 ## 4. 国际 GPA 换算对照工具（International GPA Scale Converter） `[待制作]`
 
 - **类别**：交互式工具
