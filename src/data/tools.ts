@@ -963,7 +963,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Length Converter',
 		description:
 			'Convert millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles, with reference tables for heights, tool sizes, and race distances.',
-		updated: '2026-08-04',
+		updated: '2026-09-13',
 		published: '2026-08-04',
 		coreSummary:
 			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once.',
@@ -1006,7 +1006,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Worked example: a race distance',
 				body: [
-					'A 10K race is defined as exactly 10 kilometers. In miles: 10 × 1,000 ÷ 1,609.344 = 6.2137 miles, which is why 10K races are sometimes advertised as "6.2 miles" in the US. A full marathon, defined as 42.195 km, works out to 26.2188 miles. The "26.2" bumper-sticker number is that value rounded to one decimal place, not a separately defined distance.',
+					'A 10K race is defined as exactly 10 kilometers. In miles: 10 × 1,000 ÷ 1,609.344 = 6.2137 miles, which is why 10K races are sometimes advertised as "6.2 miles" in the US. A full marathon, defined as 42.195 km, works out to 26.2188 miles. The "26.2" bumper-sticker number is that value rounded to one decimal place, not a separately defined distance. Runners turning a finish time into total seconds for pace math can do that step with the [time converter](/time-converter/).',
 				],
 			},
 		],
@@ -1113,7 +1113,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Weight Converter',
 		description:
 			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, stone, and US tons instantly, with reference tables for body weight, cooking, and dosing.',
-		updated: '2026-08-21',
+		updated: '2026-09-13',
 		published: '2026-08-04',
 		coreSummary:
 			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once.',
@@ -1168,7 +1168,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Worked example: a newborn\'s weight',
 				body: [
-					'A US hospital records a birth weight as 8 lb 6 oz, and a family abroad wants it in metric. Converting: 8 lb 6 oz is 134 oz total (8 × 16 + 6), and 134 × 28.349523125 = 3,798.84 g, or 3.799 kg. Baby-weight trackers usually show this as "3.8 kg," which is that figure rounded to one decimal place.',
+					'A US hospital records a birth weight as 8 lb 6 oz, and a family abroad wants it in metric. Converting: 8 lb 6 oz is 134 oz total (8 × 16 + 6), and 134 × 28.349523125 = 3,798.84 g, or 3.799 kg. Baby-weight trackers usually show this as "3.8 kg," which is that figure rounded to one decimal place. Parents comparing weight against age in weeks versus months can switch between those units with the [time converter](/time-converter/).',
 				],
 			},
 			{
@@ -1479,7 +1479,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Time Converter',
 		description:
 			'Convert between seconds, minutes, hours, days, weeks, months, and years instantly, with reference tables and worked examples for ages, projects, and countdowns.',
-		updated: '2026-08-19',
+		updated: '2026-09-13',
 		published: '2026-08-05',
 		coreSummary:
 			'A day is exactly 24 hours (86,400 seconds) and a week is exactly 7 days, both fixed by definition. A calendar month or year has no single fixed length (28-31 days per month, 365 or 366 days per year), so this converter uses the mean Gregorian month (30.436875 days) and mean Gregorian year (365.2425 days), the exact average over the calendar\'s 400-year leap cycle, not an estimate. Enter a duration in any of seven units and this tool converts it to the other six at once.',
@@ -1504,14 +1504,20 @@ export const tools: Tool[] = [
 				heading: 'Exact units, and units with no fixed length',
 				body: [
 					'Seconds through weeks convert by whole, unchanging numbers: an hour is always 60 minutes, a day is always 24 hours, and a week is always 7 days. The BIPM SI Brochure (the document that defines the modern metric system) lists minute, hour, and day among the non-SI units "accepted for use with the SI," fixed at exactly those ratios. There is nothing to average or estimate here.',
-					'Months and years are different: a calendar month runs anywhere from 28 to 31 days, and a calendar year is 365 days most of the time but 366 in a leap year, so "1 month" or "1 year" is not a single number of seconds the way "1 week" is. This converter uses the *mean* Gregorian month and year instead of picking one calendar year arbitrarily. The Gregorian calendar\'s own leap-year rule (a year divisible by 4 is a leap year, except century years, which are leap years only if divisible by 400) produces exactly 97 leap years in every 400-year span, per the US Naval Observatory\'s leap-year explainer, so 400 years always contain exactly 146,097 days. Dividing that cycle evenly gives a mean year of 365.2425 days and a mean month (one-twelfth of that) of 30.436875 days. Both are exact arithmetic consequences of the calendar\'s own rule, not estimates or rounded guesses.',
+					'Months and years are different: a calendar month runs anywhere from 28 to 31 days, and a calendar year is 365 days most of the time but 366 in a leap year, so "1 month" or "1 year" is not a single number of seconds the way "1 week" is. This converter uses the *mean* Gregorian month and year, not one calendar year picked arbitrarily. The Gregorian calendar\'s own leap-year rule (a year divisible by 4 is a leap year, except century years, which are leap years only if divisible by 400) produces exactly 97 leap years in every 400-year span, per the US Naval Observatory\'s leap-year explainer, so 400 years always contain exactly 146,097 days. Dividing that cycle evenly gives a mean year of 365.2425 days and a mean month (one-twelfth of that) of 30.436875 days. Both are exact arithmetic consequences of the calendar\'s own rule, not estimates or rounded guesses.',
 				],
 			},
 			{
 				heading: 'The seconds-per-unit behind this converter',
 				body: [
-					'1 minute = 60 s, 1 hour = 3,600 s, 1 day = 86,400 s, and 1 week = 604,800 s, all exact. The mean month is 2,629,746 s (30.436875 days) and the mean year is 31,556,952 s (365.2425 days), both derived from the 146,097-day, 400-year Gregorian cycle. Because months and years don\'t divide evenly into whole days, converting "1 year" to days gives 365.2425 rather than a round 365. That 0.2425-day remainder is exactly what leap days exist to correct for, spread out as one extra day roughly every four years instead of applied all at once.',
+					'1 minute = 60 s, 1 hour = 3,600 s, 1 day = 86,400 s, and 1 week = 604,800 s, all exact. The mean month is 2,629,746 s (30.436875 days) and the mean year is 31,556,952 s (365.2425 days), both derived from the 146,097-day, 400-year Gregorian cycle. Because months and years don\'t divide evenly into whole days, converting "1 year" to days gives 365.2425 rather than a round 365. That 0.2425-day remainder is exactly what leap days exist to correct for, spread out as one extra day roughly every four years, not applied all at once.',
 					'Where an exact conversion isn\'t possible (there is no whole number of weeks in a month, for instance), this tool reports the mean-calendar figure to six significant figures rather than rounding to a convenient but less accurate number like "4 weeks."',
+				],
+			},
+			{
+				heading: 'One asterisk on "exact": leap seconds',
+				body: [
+					'Every ratio this converter uses, 60 seconds to a minute, 24 hours to a day, and the rest, is exact by definition. What isn\'t perfectly steady is the second itself against how fast Earth actually turns. Since 1972, the world\'s civil clock (UTC) has absorbed 27 one-second nudges, called leap seconds, to stay within 0.9 seconds of the planet\'s slightly irregular rotation; the most recent was added on December 31, 2016. In November 2022, the General Conference on Weights and Measures, the same BIPM body behind the SI second used throughout this converter, voted to retire the leap second no later than 2035, letting civil time and astronomical time drift apart by more than a second for the first time since the practice began. None of the unit ratios above change because of this. It only means a small number of days since 1972 ran 86,401 seconds long instead of 86,400.',
 				],
 			},
 			{
@@ -1564,7 +1570,7 @@ export const tools: Tool[] = [
 		faq: [
 			{
 				question: 'How many seconds are in a day?',
-				answer: 'Exactly 86,400, from 24 hours × 60 minutes × 60 seconds. This is fixed by definition and never varies.',
+				answer: 'Exactly 86,400, from 24 hours times 60 minutes times 60 seconds, all whole numbers with nothing to average. It never changes from one day to the next.',
 			},
 			{
 				question: 'How many hours are in a week?',
@@ -1577,32 +1583,37 @@ export const tools: Tool[] = [
 			{
 				question: 'How many days are in a year?',
 				answer:
-					'365 in a common calendar year, 366 in a leap year. Averaged over the Gregorian calendar\'s 400-year leap cycle, the mean works out to 365.2425 days. That\'s the figure this converter uses for "1 year."',
+					'365 most years, 366 when a leap year falls. Spread over a full 400-year cycle, the average comes to 365.2425 days, and that\'s the figure this converter treats as "1 year."',
 			},
 			{
 				question: 'How many hours are in a year?',
 				answer:
-					'8,760 in a 365-day year, 8,784 in a leap year (366 days). Using the mean Gregorian year (365.2425 days), it works out to 8,765.82 hours.',
+					'8,760 in a 365-day year, 8,784 in one that has a leap day (366 days total). Multiply this converter\'s 365.2425-day average by 24 and the result is 8,765.82.',
 			},
 			{
 				question: 'How many seconds are in a year?',
 				answer:
-					'31,536,000 in a 365-day year, 31,622,400 in a leap year. The mean Gregorian year (365.2425 days) works out to 31,556,952 seconds.',
+					'31,536,000 in a 365-day year, 31,622,400 in a leap year. On this converter\'s 365.2425-day average, that comes to 31,556,952.',
 			},
 			{
 				question: 'How many minutes are in a year?',
 				answer:
-					'525,600 in a 365-day year, 527,040 in a leap year. The mean Gregorian year works out to 525,949.2 minutes.',
+					'525,600 in a 365-day year, 527,040 in a leap year. Applying this converter\'s 365.2425-day average gives 525,949.2.',
 			},
 			{
 				question: 'How many weeks are in a year?',
 				answer:
-					'52 weeks plus 1 extra day in a common year (2 extra days in a leap year), since 365 ÷ 7 = 52.14. ISO 8601\'s week-numbering calendar assigns most years 52 weeks but designates certain years as 53-week "long years."',
+					'Most years land on 52 whole weeks with a single day left over (two days left over when it\'s a leap year), since 365 ÷ 7 = 52.14. ISO 8601\'s week-numbering system calls most years 52 weeks but marks certain ones as 53-week "long years."',
 			},
 			{
 				question: 'How many weeks are in a month?',
 				answer:
-					'About 4.3, or precisely 4.348125 weeks using the mean Gregorian month (30.436875 days). Individual calendar months range from exactly 4 weeks (28-day February) to 4 weeks and 3 days (31-day months).',
+					'About 4.3, or precisely 4.348125 using this converter\'s 30.436875-day average month. A single calendar month ranges from exactly 4 weeks (28-day February) up to 4 weeks plus 3 days (any 31-day month).',
+			},
+			{
+				question: 'Is a second always exactly a second?',
+				answer:
+					'The ratios in this converter are, but the length of a day drifts against Earth\'s rotation by tiny amounts. To compensate, 27 one-second "leap seconds" have been inserted into civil time (UTC) since 1972, most recently at the close of 2016. A 2022 vote by the world\'s standards body will phase them out by 2035, so future dates won\'t carry this correction the way past ones did.',
 			},
 		],
 		sources: [
@@ -1613,6 +1624,14 @@ export const tools: Tool[] = [
 			{
 				label: 'US Naval Observatory — Leap Years FAQ',
 				url: 'https://aa.usno.navy.mil/faq/leap_years',
+			},
+			{
+				label: 'BIPM — Resolution 4 of the 27th CGPM (2022), on the future revision of Coordinated Universal Time',
+				url: 'https://www.bipm.org/en/cgpm-2022/resolution-4',
+			},
+			{
+				label: 'Wikipedia — "Leap second"',
+				url: 'https://en.wikipedia.org/wiki/Leap_second',
 			},
 		],
 		embedHeight: 740,
@@ -2984,7 +3003,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Duration Calculator',
 		description:
 			'Find the elapsed time between two clock times, add or subtract hours and minutes from a time, or calculate the duration between two full dates and times, with automatic overnight rollover.',
-		updated: '2026-08-11',
+		updated: '2026-09-13',
 		published: '2026-08-11',
 		coreSummary:
 			'An hour equals exactly 60 minutes and a minute equals exactly 60 seconds, fixed ratios from the BIPM SI Brochure, not estimates. When the end time entered is earlier than or the same as the start time, this calculator assumes the end falls on the next day, the standard convention for an overnight span such as a 10 PM to 6 AM shift, so the result is always a positive duration instead of a negative one.',
@@ -3002,7 +3021,7 @@ export const tools: Tool[] = [
 				heading: 'Three ways to measure elapsed time',
 				body: [
 					'"Between two times" answers the most common version of the question: given a start and an end clock reading, how much time passed. "Add/subtract" answers a different question: given one time and a duration, what time results, useful for figuring out when a task that started at 2:15 PM and runs for 3 hours 40 minutes will finish. "Two date-times" is for spans longer than a single day: enter a full start date and time and a full end date and time, and the result includes a day count along with hours and minutes.',
-					"All three modes convert clock readings into whole seconds first, then do the arithmetic in seconds before converting back, so a result of \"8h 30m\" and a result of \"8.5 hours\" always describe the identical span, just in two common formats.",
+					"All three modes convert clock readings into whole seconds first, then do the arithmetic in seconds before converting back, so a result of \"8h 30m\" and a result of \"8.5 hours\" always describe the identical span, just in two common formats. To take that resulting span further, into weeks, months, or years, feed the total into the [time converter](/time-converter/).",
 				],
 			},
 			{
