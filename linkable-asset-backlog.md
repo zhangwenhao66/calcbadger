@@ -74,3 +74,7 @@
 - **为什么会被引用**：承包商报价工具、装修预算博客、DIY 论坛在计算"该多买多少材料"时普遍需要引用一个损耗率参考，目前这类数字散落在各协会/经销商的 PDF 指南里、不便直接引用链接。做成统一索引页后可以直接和站内相关计算器互链（用户先查损耗率、再用计算器算实际用量），也是资源页替换/断链置换的合适目标。
 - **制作复杂度**：低到中——数据主要来自可信的行业协会/教育机构发布物，核实工作量中等，不需要前端交互，纯文字+表格。
 - **备注**：损耗率是行业经验值范围而非精确科学定律，页面要写清楚"仅供估算参考，实际以具体项目复杂度和材料浪费情况为准"。
+
+## 已否决 / 暂缓
+
+**2026-09-13 统计数据枢纽页筛查记录**（第四类资产，避免下次planning任务重复评估）——候选头词 **home improvement statistics 2026**。`Skill(keyword-screening)` v2分档：**B**（真实SERP开放位7个 `realtor.com`/`nar.realtor`/`rubyhome.com`/`greatdayimprovements.com`/`hiri.org`/`tooltroopers.com`/`windowanddoor.com`，最年轻开放域名tooltroopers.com注册28个月，超过18个月阈值，无年轻站证据）。已确认原始数据源：①美国人口普查局（Census Bureau）住宅建筑支出数据 ②National Association of Home Builders（NAHB）Remodeling Market Index ③Angi《State of Home Spending Pulse》年度报告 ④Home Improvement Research Institute（HIRI）。**分档和原始源均过线**，但CalcBadger自8/18起被整站压制、9/4起降为每周2个工具的低频维持状态，本任务硬性要求"压制中三站只做筛查记录，不进backlog待制作"，本条**不登记为待制作**，留档供压制解除后直接复用。
