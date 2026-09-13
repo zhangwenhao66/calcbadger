@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, ADSENSE_PUBLISHER_ID, GA4_ID, CLARITY_ID, SITE_ORIGIN, BRAND_SAME_AS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, ADSENSE_PUBLISHER_ID, GA4_ID, CLARITY_ID, SITE_ORIGIN, BRAND_SAME_AS, BRAND_DESCRIPTION, CONTACT_EMAIL, BRAND_KNOWS_ABOUT } from '../consts';
 import Organization from '../../vendor/site-toolkit/packages/schema/src/Organization.astro';
 
 interface Props {
@@ -86,7 +86,16 @@ const ogImageURL = new URL(ogImage, Astro.site);
 		<meta name="twitter:description" content={description} />
 
 		<!-- 品牌实体（2026-09-10）：publisher 级 Organization，sameAs 来自 consts.BRAND_SAME_AS -->
-		<Organization name={SITE_TITLE} url={`${SITE_ORIGIN}/`} logo={`${SITE_ORIGIN}/logo-512.png`} sameAs={BRAND_SAME_AS} />
+		<!-- 2026-09-13：补 description/contactPoint/knowsAbout，参考鸭老师《SEO的完整总结》实体信号一节 -->
+		<Organization
+			name={SITE_TITLE}
+			url={`${SITE_ORIGIN}/`}
+			logo={`${SITE_ORIGIN}/logo-512.png`}
+			sameAs={BRAND_SAME_AS}
+			description={BRAND_DESCRIPTION}
+			email={CONTACT_EMAIL}
+			knowsAbout={BRAND_KNOWS_ABOUT}
+		/>
 		<slot name="head" />
 	</head>
 	<body class="flex min-h-screen flex-col">
