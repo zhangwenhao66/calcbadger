@@ -2516,3 +2516,62 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "time-converter",
+  "last_audited": "2026-09-13",
+  "published_date": "2026-08-05",
+  "checklist": [
+    "7种时间单位互转常量（精确定义单位 vs 平均格里高利历月/年）是否与BIPM SI Brochure、USNO闰年规则一致",
+    "146,097天/400年循环→365.2425天/30.436875天两个推导数字是否算对",
+    "4个worked example（项目周期、年龄换算成秒等）数字是否吻合",
+    "竞品差异化——是否有真实增量信息",
+    "内链健康度——正文入链是否为0"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "Python独立复算：400年闰年数97个→146,097天→mean year 365.2425天→×86400=31,556,952秒，mean month=365.2425/12=30.436875天=2,629,746秒，与tests/time.test.ts 22个vitest期望值逐条比对全部一致。4个worked example数字（8个月→34.785周、30岁→946,708,560秒/10,957.275天、闰年漂移628,560秒等）逐条复算全部吻合。npx vitest run tests/time.test.ts 22/22通过。"
+    },
+    {
+      "dimension": "外链腐烂",
+      "status": "未发现问题",
+      "detail": "BIPM SI Brochure Annex 1、USNO Leap Years FAQ两条原有来源链接curl均200。"
+    },
+    {
+      "dimension": "机械散文检查（rather than/instead of密度 + FAQ复述L-0819-9）",
+      "status": "确认问题，已修复",
+      "detail": "check_prose_patterns.py检出①rather than/instead of密度超标（5次/966词）；②FAQ 7条answer与正文≥20字符逐字重合（涉及'fixed by definition'、'the Gregorian calendar's'、'the mean Gregorian'等短语）。均为机械可验证发现，未走独立agent复核。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "确认问题，已修复（本次落成动作）",
+      "detail": "internal_link_audit.py确认time-converter正文入链=0（29曝光@19.1排名的临门页候选）。从length-converter/weight-converter/time-duration-calculator三篇同分区文章正文各加1条上下文锚文本链接。"
+    },
+    {
+      "dimension": "竞品差异化 / 实质增量（CalcBadger专属规则）",
+      "status": "已补充真实增量",
+      "detail": "新增'leap seconds'一节+FAQ，三方交叉核实（BIPM Resolution 4页面+Wikipedia Leap second条目API直接抓取+3条独立二手报道）确认27次闰秒(1972起,最近2016-12-31)+2022年11月BIPM投票2035年前停用两组事实准确，构成典型竞品未覆盖的真实增量。"
+    },
+    {
+      "dimension": "EEAT / GEO / 时效性 / 合规 / AdSense / Schema / 配图",
+      "status": "未发现问题",
+      "detail": "GEO人工核对可提取性清单明显超过80分等效门槛；无YMYL/敏感内容；ads.txt正确；schema字段与tools.ts对应字段渲染一致。"
+    }
+  ],
+  "actions_taken": [
+    "改写2处对比框架用词（'instead of'→'not'句式）降到3次/1126词",
+    "重写全部7条与正文重合的FAQ answer消除逐字重合，数字/事实保持不变",
+    "顺手修复独立站/scripts/check_seo_field_stats.py严重bug：referenceTables等嵌套结构里同名title字段导致'全局第N个匹配'对齐彻底错位（实测time-converter真实title 14字符被错误对齐到另一条记录53字符的title），改为按slug切分记录后每条记录内只取第一个顶层同名字段，两站回归测试无regression",
+    "从length-converter/weight-converter/time-duration-calculator三篇文章正文各加1条锚文本链接指向time-converter，消除临门页入链=0问题",
+    "新增'One asterisk on exact: leap seconds'一节+1条FAQ+2条sources（BIPM Resolution 4、Wikipedia Leap second）",
+    "updated字段：time-converter及3篇被加链接的文章均已有published字段，直接改updated为2026-09-13",
+    "npx vitest run全站1358个测试通过，npm run build 123页成功，commit 57b2a52并push，绕缓存轮询确认线上生效，seo_drift.py对比仅WARNING+INFO无CRITICAL，IndexNow一次性提交4个URL（Bing/Yandex均200），内容发布日志.md追加记录"
+  ],
+  "seo_score": "修复check_seo_field_stats.py对齐bug后重新核对：title 14字符z-score=-0.93、description 160字符z-score=-0.45，均在正常范围内",
+  "geo_score": "未单独跑数值打分（本站无适用于工具页的99分制自动打分器）；按Skill(ai-seo)可提取性清单人工核对，明显超过80分等效门槛",
+  "escalation": null
+}
+```
