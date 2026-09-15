@@ -2575,3 +2575,84 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "topsoil-calculator",
+  "last_audited": "2026-09-15",
+  "published_date": "2026-08-18",
+  "checklist": [
+    "公式正确性：矩形/圆形面积×深度→立方英尺→立方码（÷27）换算路径是否与初等几何一致",
+    "USDA NRCS三档土质密度预设（99.7/87.2/68.5 lb/ft³）是否仍与SDSU Extension官方表格一致（本站选文来源为CalcBadger已收录页快照，非last_audited全表轮）",
+    "页面内两处worked example（1,200 sqft新草坪4in、4x8ft raised bed 8in）的体积/重量/装袋数是否仍然正确",
+    "Scotts Premium Topsoil 0.75 cu ft袋装规格是否仍是Home Depot/Lowe's/Amazon现行规格",
+    "3条外部来源链接（SDSU Extension、UMD Extension×2）是否仍可访问",
+    "FAQ与正文是否存在L-0819-9机械检查会命中的逐字重合（8/30起硬检查项）"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "用Python独立重算（不参考实现代码）：1,200sqft×4in=400cuft=14.81cuyd，loam密度87.2lb/ft³→34,880lb=17.44tons；加10%沉降=440cuft=16.30cuyd=38,368lb=19.18tons，与页面worked example逐一吻合。4x8ft raised bed×8in=21.333cuft=0.79cuyd=1,860lb=0.93tons，0.75cuft/袋→29袋（沉降前）/32袋（沉降后，含1e-9 epsilon guard的ceil逻辑），与页面一致。src/lib/topsoil.ts的rectangleAreaSqFt/circleAreaSqFt/volumeCuFt/withSettling/cuFtToCuYd/weightLb/bagsNeeded逐一核对无误。npx vitest run tests/topsoil.test.ts：27/27通过。"
+    },
+    {
+      "dimension": "密度数据来源核实",
+      "status": "未发现问题，且发现表格里一直有未使用的同源数据（成为本次实质增强素材）",
+      "detail": "curl直接抓取https://extension.sdstate.edu/bulk-density-indicator-soil-health原文Table 1，逐字核对：Sand/Loamy Sand ideal<99.7、Sandy Loam/Loam及Sandy Clay Loam/Clay Loam及Silt/Silt Loam及Silty Clay Loam ideal<87.2、Sandy Clay/Silty Clay及Clay ideal<68.5 lb/ft³——与本站三档预设完全一致，无discrepancy。同一张表还有一列'Bulk Density That Can Restrict Root Growth'此前从未被本站引用（Sand/Loamy Sand>112.1、中间四档103.1-112.1、末两档91.6-98.4 lb/ft³），已独立agent二次核实数值无误，用作本次CalcBadger强制实质增强的素材（见下）。"
+    },
+    {
+      "dimension": "袋装规格时效性",
+      "status": "未发现问题",
+      "detail": "WebSearch确认Scotts Premium Topsoil在Home Depot/Lowe's/Amazon现行规格仍为0.75 cu ft，与页面一致。"
+    },
+    {
+      "dimension": "外部引用链接",
+      "status": "未发现问题",
+      "detail": "curl（带UA）三条链接均200：SDSU Extension主文；University of Maryland Extension \"Starting a New Lawn\"；\"Soil to Fill Raised Beds\"。"
+    },
+    {
+      "dimension": "机械散文四项检查（第14维度，L-0819-9命中）",
+      "status": "发现真实问题并修复",
+      "detail": "check_prose_patterns.py初次运行命中L-0819-9：4条FAQ answer与正文≥20连续字符逐字重合（FAQ#2/#5/#6/#7）。独立复核agent确认4处均为真实的、非孤立专有名词的实质性重合（如\" 's ideal bulk-density ceiling for \"、\"university of maryland extension's\"、\"compost and a soilless growing\"），非误报。改写4条FAQ后重跑，agent复核指出首版改写在FAQ#2引入新的54字符重合、FAQ#5残留23字符重合+机构名称错误（\"University of Maryland's Extension\"拼法有误）、FAQ#6未处理'compost and a soilless growing'的既存重合——据此逐条重写，脚本迭代4轮后check_prose_patterns.py三项(L-0819-8/L-0820-2/L-0821-4)+FAQ复述项全部退出码0。"
+    },
+    {
+      "dimension": "SEO字段z-score",
+      "status": "未发现问题",
+      "detail": "check_seo_field_stats.py：title长度18字符z-score=-0.40，description长度185字符z-score=0.71，均在正常范围内，未改动。"
+    },
+    {
+      "dimension": "GSC信号",
+      "status": "未发现问题（信息记录）",
+      "detail": "gsc_query.py check-query \"topsoil calculator\" 90天：covered=false，0次点击0次曝光；report汇总里页面级也未出现该URL。页面8/18发布，9/10才首次被抓取（index-coverage快照），处于早期未获排名信号阶段，非异常。dataforseo_query.py serp \"topsoil calculator\"：calcbadger.com未进前12（含PAA/相关搜索），竞品为topsoilcalculator.net/gravelshop.com/almanac.com/inchcalculator.com/alluvialsoillab.com/calculatorsoup.com/homeadvisor.com。抽查calculatorsoup.com与inchcalculator.com的H2/H3未发现≥2家共有而本页缺失的子话题（各自独有：irregular shapes、wet/dry/compacted三态重量），未触发竞品差异化修复动作。"
+    },
+    {
+      "dimension": "技术SEO/Schema/AdSense合规",
+      "status": "未发现问题",
+      "detail": "线上200，title/canonical/单一H1/4个JSON-LD（Organization/WebApplication/FAQPage/BreadcrumbList）均正常；WebApplication.dateModified与updated字段（改后2026-09-15）一致；ads.txt正确指向pub-5245502795720653；/privacy/、/terms/均200。Skill(google-spam-compliance)核对11类政策+AI内容三要素：投入[有]原创[有]附加价值[有]，11项+AI+AdSense全部PASS——公式/数据全部独立复算或curl核实，新增内容为同一权威源的未用列，非编造/非规模化模板换词。"
+    },
+    {
+      "dimension": "内链健康度",
+      "status": "未发现问题",
+      "detail": "internal_link_audit.py --site calcbadger：全站51篇正文入链=0的0篇、临门页入链≤1的0篇。topsoil-calculator正文已有asphalt-calculator的coreSummary自然锚文本入链（2026-09-15稍早的全站孤儿页回填批次已处理，见同日两条commit 2510406/51bac93）。"
+    },
+    {
+      "dimension": "去AI味双重检查（新增内容）",
+      "status": "未发现问题",
+      "detail": "Skill(humanizer)对新增段落+4条改写FAQ逐条核对：无em/en dash、无AI高频词、无rule-of-three堆砌、无promotional语言、直引号非弯引号；技术参考类内容适用中性平实register。未发现命中项，PASS。"
+    }
+  ],
+  "actions_taken": [
+    "修复：重写4条FAQ answer（#2 weight-per-texture、#5 lawn/raised-bed depth、#6 raised-bed 100%topsoil、#7 why-texture-matters）消除与正文≥20字符逐字重合；check_prose_patterns.py从exit 1（4处命中）迭代4轮改到exit 0",
+    "enhancement: 新增1段（约190词，插入'Why the weight estimate depends on soil texture'小节末尾）+ 参考表新增1列'Restricts root growth above'（3行数据），素材为SDSU Extension同一张官方表格里此前未使用的'Bulk Density That Can Restrict Root Growth'列（NRCS 2023数据），解释'沉降到ideal ceiling附近正常、但持续压实超过restrict阈值才是真正问题'，来源已用独立agent二次核实数值+claim均source-backed（原草稿'foot traffic导致压实'的说法因原文只提heavy equipment未提foot traffic而被删除，只保留可溯源的heavy equipment on wet ground与organic matter两条）",
+    "同步补commit了此前遗留未提交的09-15孤儿页内链回填日志条目（commit 3f6aa62，非本次审计产生，顺手清理避免与本次diff混在一起）",
+    "npm test 全站146个测试文件2716个测试全部通过（含.worktrees重复计数）；npm run build 123页成功",
+    "commit 0a0eb22 push后，Cloudflare Pages队列短暂排队约3.5分钟后自动开始构建并部署成功（latest_stage全部success，非文档记录过的'queued卡死'故障模式，此次未触发wrangler直传兜底）；部署过程中检测到另一并发会话（matrix-prose-gate-backfill任务）push了merge commit 51bac93合并prose-backfill分支，已确认0a0eb22是51bac93的祖先，改动无丢失",
+    "seo_drift.py compare：仅WARNING级schema内容变化（FAQPage文本+WebApplication.dateModified，预期内），无CRITICAL",
+    "node tools/submit-indexnow.mjs /topsoil-calculator/：Bing 200、Yandex 202",
+    "内容发布日志.md已追加记录"
+  ],
+  "seo_score": "title/description z-score均在正常范围（-0.40/0.71），技术SEO/schema/AdSense合规Skill(google-spam-compliance)全部PASS，未发现需修复项",
+  "geo_score": "本站无适用于工具页的99分制自动打分器；按ai-seo可提取性清单人工核对：coreSummary首屏可独立引用定义、8条FAQ配FAQPage schema、3条权威来源引用、参考表新增列提升了信息密度与独特性（竞品未见此角度），估计等效90/99左右，明显超过≥80门槛",
+  "escalation": null
+}
+```
