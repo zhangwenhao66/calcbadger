@@ -53,3 +53,14 @@
 - **Deadline**：2026-09-21 17:00（鼠标真实点击日历控件选中）。
 - **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `2e82a30a4b3d7ea2f566a45c791b4379`。
 - **上线复核**：⏳ 待下次任务运行时补查。
+
+### 2026-09-15（周二，正常排期，SourceBottle任务恢复"最久未发布优先"遍历，本站排入本轮六站之一）
+
+- **问题标题**：Dietitians/trainers: a weight-loss plateau blamed on cheating or 'metabolic damage' - before the math explained it?
+- **角度**：绑定`calorie-calculator`工具页讲的真实机制——标准"减500卡/天=每周瘦1磅"规则出自1958年一次把体重变化当线性关系处理的粗略计算，NIH的Kevin Hall团队证明这个关系并不是线性的，随着体重下降身体维持所需热量本身也在下降，同样的缺口产生的效果会逐渐减弱；此外活动系数本身是自我估计非可穿戴设备实测数据，常常偏差很大。征集营养师/私人教练举出真实客户案例——一次减重平台期被归咎为"偷吃"或"代谢受损"，后来追查发现其实是这套数学假设本身没有跟上体重下降后的真实代谢需求，或活动量自报偏差过大。与此前问过的楼梯计算器（08-04）、摩尔浓度计算（08-12）、房贷月供漏项（08-18）、导管填充违规（08-25）完全不同的工具与受众，是CalcBadger首次用健康类工具页作绑定。
+- **绑定文章**：CalcBadger `calorie-calculator`（Calorie Calculator）。
+- **分类标签**：Topics = General + Health & Wellbeing（新组合，此前四条均未用过健康分类）；Countries = Australia + UK & Republic of Ireland + Canada + United States。
+- **表单设置**：Job title = Content Creator；Organisation = CalcBadger；Contact = Email；Unpaid；Email address 和 Contact email 均填 `contact@calcbadger.com`。
+- **Deadline**：2026-09-29 17:00（鼠标真实点击日历控件选中29日，未直接写文本框，符合SKILL.md第0条硬规则）。
+- **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `1f9034773ec1292c669d45539ad61467`。
+- **上线复核**：⏳ 待下次任务运行时补查。本次运行未做历史pending条目复核（时间所限），下次运行时应补做，包括08-25条目`2e82a30a4b3d7ea2f566a45c791b4379`。
