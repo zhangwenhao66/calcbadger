@@ -592,7 +592,7 @@ export const tools: Tool[] = [
 				heading: 'What the categories mean',
 				body: [
 					'CDC and WHO split adult BMI into four bands: **underweight** below 18.5, **healthy weight** 18.5–24.9, **overweight** 25–29.9, and **obesity** at 30 and above. Obesity is further split into Class 1 (30–34.9), Class 2 (35–39.9), and Class 3 or "severe obesity" (40 and above), which is the breakdown clinicians use to decide how urgently weight-related risk needs addressing.',
-					'These bands come from population studies linking BMI to the risk of conditions like type 2 diabetes and cardiovascular disease, rather than from any single ideal number. CDC is explicit that BMI is "a screening measure" and "not intended to diagnose disease." It flags who might benefit from a closer look, without passing judgment on any one person’s health.',
+					'These bands come from population studies linking BMI to the risk of conditions like type 2 diabetes and heart disease, not from any single ideal number. CDC is explicit that BMI is "a screening measure" and "not intended to diagnose disease." It flags who might benefit from a closer look, without passing judgment on any one person’s health.',
 				],
 			},
 			{
@@ -606,14 +606,14 @@ export const tools: Tool[] = [
 			{
 				heading: 'Where BMI gets the wrong answer',
 				body: [
-					'BMI cannot tell fat from muscle or bone, because it never measures either; it only relates total mass to height. CDC’s own FAQ says this outright: BMI "cannot distinguish fat mass from lean body mass." A muscular adult with low body fat can score "overweight" or "obese" on BMI while being metabolically healthy, and the reverse also happens: a sedentary adult with normal BMI but high visceral fat ("normal weight obesity") can carry real metabolic risk that BMI misses entirely.',
-					'BMI also says nothing about where fat is stored, and abdominal fat carries more cardiovascular risk than fat carried elsewhere at the same total BMI. Waist circumference or waist-to-height ratio catch this distinction; a BMI number by itself does not. For adults under 20, pregnant women, and older adults with age-related muscle loss, CDC directs people to age-specific tools instead of the adult calculator.',
+					'BMI cannot tell fat from muscle or bone, because it never measures either; it only weighs total body mass against height. CDC’s own FAQ says this outright: BMI "cannot distinguish fat mass from lean body mass." A muscular adult with low body fat can be flagged as heavier than healthy under BMI’s overweight or obesity thresholds while remaining metabolically healthy, and the reverse also happens: a sedentary adult with normal BMI but high visceral fat ("normal weight obesity") can carry real metabolic risk that BMI misses entirely.',
+					'BMI also has nothing to say about fat distribution across the body, and abdominal fat raises heart-disease risk more than fat stored elsewhere at the same total BMI. Waist circumference or waist-to-height ratio catch this distinction; a BMI number by itself does not. For adults under 20, pregnant women, and older adults with age-related muscle loss, CDC directs people to age-specific tools instead of the adult calculator.',
 				],
 			},
 			{
 				heading: 'Asian population cutoffs: a real distinction, backed by a specific study',
 				body: [
-					'In 2004 a WHO expert consultation reviewed evidence that Asian populations develop diabetes and cardiovascular risk at lower BMIs than the original WHO cutoffs assumed. At a given BMI, Asian adults tend to carry more body fat than European adults, which is the underlying reason the cutoffs shift. Published in *The Lancet* (2004;363:157–63), the consultation set out additional "public health action points" at BMI 23.0 and 27.5, plus 32.5 and 37.5 further along the same continuum, while keeping the original WHO/CDC cutoffs as the international default.',
+					'Reviewing the evidence in 2004, a WHO expert panel set lower BMI thresholds for people of Asian descent, since their diabetes and heart-disease risk climbs at BMI values the original categories did not flag. At a given BMI, Asian adults tend to carry more body fat than European adults, which is the underlying reason the cutoffs shift. Published in *The Lancet* (2004;363:157–63), the consultation set out additional "public health action points" at BMI 23.0 and 27.5, plus 32.5 and 37.5 further along the same continuum, while keeping the original WHO/CDC cutoffs as the international default.',
 					'This calculator defaults to the standard WHO/CDC bands and offers the Asian cutoffs as an explicit toggle instead of picking one silently. Which standard fits best depends on the population being assessed, and several national health agencies, including Singapore’s and Japan’s, have adopted the lower thresholds for exactly that reason.',
 				],
 			},
@@ -633,7 +633,7 @@ export const tools: Tool[] = [
 					["6'0\"", 'below 136 lb', '136–184 lb', '184–221 lb', 'above 221 lb'],
 					["6'2\"", 'below 144 lb', '144–195 lb', '195–234 lb', 'above 234 lb'],
 				],
-				note: 'Boundaries computed at BMI 18.5 / 25.0 / 30.0 using 703 × lb ÷ in² (rounded to the nearest pound). Use the calculator above for metric or exact heights.',
+				note: 'Boundaries computed at BMI 18.5 / 25.0 / 30.0 using 703 × lb ÷ in² (rounded to the nearest pound). Switch to metric units or enter a precise height in the tool near the top of this page.',
 			},
 		],
 		faq: [
@@ -3516,7 +3516,7 @@ export const tools: Tool[] = [
 				body: [
 					"This calculator's depth field asks for compacted depth, meaning the thickness left once a roller has worked the material, not the thickness a paver lays down fresh off the truck. Hot mix consolidates under the roller, so the loose lift going down is thicker than the finished result. The Colorado Asphalt Pavement Association's paving fundamentals brief, compiled by asphalt engineer James Scherocman, P.E., puts a number on that gap: a dense-graded hot mix layer typically compacts about 1/4 inch for every inch of finished thickness, so a crew has to place 1-1/4 inches loose to leave 1 inch compacted, and 2-1/2 inches loose to leave 2 inches compacted. Asphalt Magazine's paving rules of thumb describe the same factor independently (multiply the target compacted thickness by 1.25 to set the screed height), so it isn't a single-source figure.",
 					"That 1.25x factor is the paving crew's number, not yours. This calculator's tonnage output is built around the compacted depth you enter, since that's also the depth the plant's density figures assume and the depth a paving contract usually specifies, so there's no need to inflate your depth entry to account for the loose lift. If a contractor quotes a lay-down thickness noticeably larger than the finished depth you asked for, that's this same compaction factor showing up in their planning, not a markup.",
-					"This is a different question from the waste allowance covered in the FAQ below, which is about ordinary handling losses on a routine job, not the loose-to-compacted conversion. On an overlay over an uneven existing surface, the same Colorado Asphalt Pavement Association brief notes a further add-on can apply: because a paver's screed averages out dips and high spots rather than tracking them exactly, holding a minimum thickness everywhere a rutted or bumpy surface has low spots can call for 5 to 15% more mix than a flat length-times-width-times-depth calculation gives. That's stacked on top of the routine waste allowance rather than replacing it, and it applies specifically to resurfacing an uneven surface, not a new driveway built on a fresh, graded base.",
+					"This is a different question from the waste allowance covered in the FAQ below, which is about ordinary handling losses on a routine job, not the loose-to-compacted conversion. On an overlay over an uneven existing surface, the same Colorado Asphalt Pavement Association brief notes a further add-on can apply: because a paver's screed averages out dips and high spots rather than tracking them exactly, holding a minimum thickness everywhere a rutted or bumpy surface has low spots can call for 5 to 15% more mix than a flat length-times-width-times-depth calculation gives. That's an addition to the routine waste allowance, not a substitute for it, and it applies specifically to resurfacing an uneven surface, not a new driveway built on a fresh, graded base.",
 				],
 			},
 		],
