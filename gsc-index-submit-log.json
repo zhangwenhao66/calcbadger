@@ -1,472 +1,482 @@
 [
-    {
-        "date": "2026-08-02",
-        "action": "submitted_first_run_quota_hit",
-        "reason": "trafficsite-gsc-index-requests首次处理本站。calcbadger.com此前无gsc-index-submit-log.json，第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表，确认calcbadger.com（sc-domain:，DNS TXT验证）已是已验证property（内容发布日志.md提到的'sitemap-index.xml已提交，即时状态Couldn't fetch是新域名常态'）。本站首批5个工具已达'累计4篇上线'首次提交门槛类比标准（工具站以'工具'为发布单元，5个远超4篇门槛）。按发布顺序总表逐一用URL Inspection检查：cd-calculator提交成功（绿色'Indexing requested'弹窗）；square-footage-calculator提交时遇'Quota Exceeded'——本次运行across全部6站（hollowvane 1 + factcrumbs 2 + warcrumbs 2 + umberlore 5 + calcbadger 1 = 11）已耗尽共享账号级每日配额，本站排在处理顺序最后，仅赶上1个请求额度。",
-        "submitted_urls": [
-            "https://calcbadger.com/cd-calculator/"
-        ],
-        "index_status_before": "URL is not on Google (Discovered - currently not indexed)",
-        "quota_blocked": [
-            {
-                "url": "https://calcbadger.com/square-footage-calculator/",
-                "status_before": "Discovered - currently not indexed",
-                "submit_result": "Quota Exceeded（明确文字提示，非静默失败）"
-            }
-        ],
-        "not_yet_checked_carried_over": [
-            "https://calcbadger.com/stair-calculator/",
-            "https://calcbadger.com/sat-score-calculator/",
-            "https://calcbadger.com/molarity-calculator/"
-        ],
-        "quota_used": "1 successful of shared account-wide daily quota (11th request across all sites this run), then quota exhausted",
-        "quota_remaining": "0 — 下次运行需优先处理本站剩余4个工具（square-footage/stair/sat-score/molarity-calculator），因本站在处理顺序中排最后，历次配额耗尽风险最高，可考虑调整站点处理顺序轮换起点"
-    },
-    {
-        "date": "2026-08-03",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表确认calcbadger.com已是已验证property。今日新发布：coin-flip-simulator（第7个工具，当天3次节奏第1次）。本次运行首次采用两轮制配额稀缺模式（每站round1只取1个最高优先级页面），处理顺序按day-of-year(215) mod 7站=5=calcbadger轮换起点，本站排第1个。URL Inspection显示'URL is not on Google'（URL is unknown to Google），提交后清晰看到绿色'Indexing requested'弹窗成功标志。",
-        "submitted_urls": [
-            "https://calcbadger.com/coin-flip-simulator/"
-        ],
-        "index_status_before": "URL is not on Google (URL is unknown to Google)",
-        "quota_used": "1 of shared account-wide daily quota (1st request this run)",
-        "chrome_disconnect_note": "第二轮尝试提交carried-over的square-footage-calculator时Claude in Chrome扩展连接中断（'not connected'），重试2次未恢复；连接恢复后复核发现该URL已显示'URL is on Google'/'Page is indexed'（自然收录，未消耗配额，无需提交），并非配额问题导致的失败。连接恢复后继续清理本站剩余backlog：stair-calculator提交成功（绿色'Indexing requested'）；sat-score-calculator已自然收录无需提交；molarity-calculator提交成功（绿色'Indexing requested'）。本站5工具+coin-flip-simulator共6个页面backlog本次运行全部清空（3个成功提交+3个已自然收录）。",
-        "already_indexed_no_action": [
-            "https://calcbadger.com/square-footage-calculator/",
-            "https://calcbadger.com/sat-score-calculator/"
-        ],
-        "submitted_urls_round2": [
-            "https://calcbadger.com/stair-calculator/",
-            "https://calcbadger.com/molarity-calculator/"
-        ],
-        "quota_used_total_this_run": "3 of shared account-wide daily quota (1st, 9th, 10th requests this run)"
-    },
-    {
-        "date": "2026-08-04",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行，跨天连续游标机制首次运行。今日新发布2个工具（当天3次节奏中的temperature-converter/length-converter），取第1个temperature-converter（URL is not on Google）提交成功。第二轮取length-converter（同样未收录）提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/temperature-converter/",
-            "https://calcbadger.com/length-converter/"
-        ],
-        "quota_used": "2 of shared account-wide daily quota (6th and 16th requests this run)"
-    },
-    {
-        "date": "2026-08-05",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。今日新发布2个工具（mortgage-calculator/time-converter）。第一轮取mortgage-calculator（URL is not on Google）提交成功，第二轮取time-converter（同样未收录）提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/mortgage-calculator/",
-            "https://calcbadger.com/time-converter/"
-        ],
-        "quota_used": "2 requests this run (round 1 and round 2)"
-    },
-    {
-        "date": "2026-08-06",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。今日新发布2个工具（percentage-calculator/volume-converter，见内容发布日志.md），percentage-calculator同时也是build-index-queue.py代理排序全站最高值。第一轮取percentage-calculator（URL is not on Google）提交成功。第二轮因Chrome扩展断连未能到达本站，volume-converter及队列后续候选本次未检查。",
-        "submitted_urls": [
-            "https://calcbadger.com/percentage-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 request this run (round 1 only; round 2 not reached due to Chrome extension disconnect)"
-    },
-    {
-        "date": "2026-08-06",
-        "action": "submitted",
-        "reason": "第二轮（Chrome扩展重连后继续）：取今日新发布第二个工具volume-converter（URL is not on Google）提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/volume-converter/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 request (round 2, continuation after Chrome extension reconnect)"
-    },
-    {
-        "date": "2026-08-07",
-        "action": "no_action_all_indexed",
-        "reason": "trafficsite-gsc-index-requests例行运行。队列候选URL逐个检查（收入代理排序前8个）全部已'URL is on Google'（自然收录），未找到未收录候选，本站两轮均未消耗提交配额。",
-        "submitted_urls": [],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/",
-            "https://calcbadger.com/date-calculator/",
-            "https://calcbadger.com/concrete-calculator/",
-            "https://calcbadger.com/square-footage-calculator/",
-            "https://calcbadger.com/sat-score-calculator/",
-            "https://calcbadger.com/molarity-calculator/",
-            "https://calcbadger.com/stair-calculator/",
-            "https://calcbadger.com/weight-converter/"
-        ],
-        "quota_used": "0 requests (全部候选已自然收录)"
-    },
-    {
-        "date": "2026-08-08",
-        "action": "skipped_all_indexed",
-        "reason": "trafficsite-gsc-index-requests例行运行。队列内8个候选（收入代理排序前8）全部已'URL is on Google'（自然收录），未消耗提交配额，延续此前几轮该站的自然收录趋势。",
-        "submitted_urls": [],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/",
-            "https://calcbadger.com/date-calculator/",
-            "https://calcbadger.com/concrete-calculator/",
-            "https://calcbadger.com/square-footage-calculator/",
-            "https://calcbadger.com/sat-score-calculator/",
-            "https://calcbadger.com/molarity-calculator/",
-            "https://calcbadger.com/stair-calculator/",
-            "https://calcbadger.com/weight-converter/"
-        ],
-        "quota_used": "0 requests (全部候选已自然收录)"
-    },
-    {
-        "date": "2026-08-09",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。今日有第17个工具calorie-calculator新发布 + molarity-calculator审计更新，本次仅处理calorie-calculator以控制单站单轮配额：URL Inspection确认'URL is not on Google'，REQUEST INDEXING后确认'Indexing requested'。molarity-calculator留待下次运行处理。",
-        "submitted_urls": [
-            "https://calcbadger.com/calorie-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 request"
-    },
-    {
-        "date": "2026-08-10",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。今日两个新工具(tip-calculator/gpa-calculator)，tip-calculator查询确认'URL is unknown to Google'，REQUEST INDEXING后确认'Indexing requested'。gpa-calculator及上次运行(8/9)遗留的molarity-calculator本轮时间/配额限制未及查询，留待下次运行优先处理。",
-        "submitted_urls": [
-            "https://calcbadger.com/tip-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "not_checked_this_run": [
-            "https://calcbadger.com/gpa-calculator/",
-            "https://calcbadger.com/molarity-calculator/"
-        ],
-        "quota_used": "1 request"
-    },
-    {
-        "date": "2026-08-11",
-        "action": "submitted",
-        "reason": "游标第8站。今日新发布fraction-calculator（第23个工具，三模式设计：加减乘除/化简/互转，含mixed fraction calculator长尾并入）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/fraction-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 request"
-    },
-    {
-        "date": "2026-08-12",
-        "action": "submitted",
-        "reason": "游标第7站。今日新工具shape-volume-calculator（第26个工具，矩形棱柱/圆柱/球/圆锥体积表面积一并覆盖）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/shape-volume-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 request"
-    },
-    {
-        "date": "2026-08-13",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行。今日新发布Math Symbols工具（math-symbols，另有length-converter审计更新，因math-symbols为新发布优先检查）。URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功，等待约20秒确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/math-symbols/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota (7th request this run)"
-    },
-    {
-        "date": "2026-08-16",
-        "action": "submitted",
-        "reason": "按队列脚本代理排序检查候选：bmi-calculator已收录（跳过）。改查今日/近期新发布，board-foot-calculator（08-13发布，第31个工具）经URL Inspection确认'URL is not on Google'（Discovered - currently not indexed），REQUEST INDEXING提交成功确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/board-foot-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-16",
-        "action": "submitted",
-        "reason": "同日第二次运行（首次运行结尾因Claude in Chrome工具故障卡在Hollowvane，等待网络恢复后重试成功续跑）。GSC自身Page indexing报告'Discovered - currently not indexed'当前0页。改查build-index-queue.py队列高代理未提交候选：date-calculator/concrete-calculator/world-clock/minecraft-circle-generator连续4个均已收录（本站索引速度很快），reaction-time-test确认'Discovered - currently not indexed'，REQUEST INDEXING提交成功确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/reaction-time-test/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/date-calculator/",
-            "https://calcbadger.com/concrete-calculator/",
-            "https://calcbadger.com/world-clock/",
-            "https://calcbadger.com/minecraft-circle-generator/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-17",
-        "action": "submitted",
-        "reason": "今日新发布两个工具：Asphalt Calculator（第34个工具）与Glitch Text Generator（第35个工具，本日第二次运行）。URL Inspection确认asphalt-calculator已'URL is on Google'（已收录，CalcBadger索引速度一贯很快），glitch-text-generator为'URL is not on Google'，REQUEST INDEXING提交成功确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/glitch-text-generator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/asphalt-calculator/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-18",
-        "action": "submitted",
-        "reason": "今日新发布Small Text Generator（第38个工具），URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功确认'Indexing requested'。",
-        "submitted_urls": [
-            "https://calcbadger.com/small-text-generator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-19",
-        "action": "submitted",
-        "reason": "今日新发布Keg Calculator（keg-calculator，第41个工具），URL Inspection确认'URL is not on Google'（unknown to Google），REQUEST INDEXING提交成功确认'Indexing requested'。今日另有content-quality-audit审计更新time-converter（该URL历史已提交过，本轮未重复查询/提交）。",
-        "submitted_urls": [
-            "https://calcbadger.com/keg-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-20",
-        "action": "submitted",
-        "reason": "今日新发布prorated-rent-calculator（第44个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/prorated-rent-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-21",
-        "action": "submitted",
-        "reason": "今日无新工具发布（weight-converter新增stone单位是既有页面功能扩展，非新页面，不适用本任务）。改用build-index-queue.py收入代理排序，队列第一候选bmi-calculator已收录，选中Pages报告discovered-not-indexed候选中收入代理最高的gpa-calculator，确认URL is not on Google/Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/gpa-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-22",
-        "action": "submitted",
-        "reason": "今日新发布Pool Calculator（第49个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/pool-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-23",
-        "action": "submitted",
-        "reason": "今日新发布Age Difference Calculator（第52个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/age-difference-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-24",
-        "action": "submitted",
-        "reason": "今日新发布Words to Pages Calculator（第55个工具，calcbadger-tool-publishing任务，本日第一次运行）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/words-to-pages-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-25",
-        "action": "submitted",
-        "reason": "今日新发布Dead Pixel Test（第57个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。同日world-clock为content-quality-audit审计更新，本轮游标已轮到CalcBadger且新发布候选已提交成功，未额外查审计更新页（每站每轮限1个名额）。",
-        "submitted_urls": [
-            "https://calcbadger.com/dead-pixel-test/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-26",
-        "action": "submitted",
-        "reason": "今日新发布Keyboard Test（第58个工具），URL Inspection确认未收录（Discovered - currently not indexed），REQUEST INDEXING提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/keyboard-test/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": 1
-    },
-    {
-        "date": "2026-08-27",
-        "action": "submitted",
-        "reason": "今日新发布System of Equations Solver（第59个工具），URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/system-of-equations-solver/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-28",
-        "action": "submitted",
-        "reason": "今日新发布Number Base Converter工具（number-base-converter，第60个工具）：URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/number-base-converter/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-29",
-        "action": "submitted",
-        "reason": "今日随机休息未发布新工具。用build-index-queue.py队列遍历：bmi-calculator/date-calculator/concrete-calculator/world-clock均已收录，wingdings-translator显示Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/wingdings-translator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/",
-            "https://calcbadger.com/date-calculator/",
-            "https://calcbadger.com/concrete-calculator/",
-            "https://calcbadger.com/world-clock/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-30",
-        "action": "submitted",
-        "reason": "今日随机休息未发布新工具（发布日志R=1<15触发休息）。改走build-index-queue.py队列：bmi-calculator/date-calculator/concrete-calculator/world-clock共4个候选逐一URL Inspection均已实测收录（跳过不耗配额），第5个候选time-duration-calculator确认Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
-        "submitted_urls": [
-            "https://calcbadger.com/time-duration-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/",
-            "https://calcbadger.com/date-calculator/",
-            "https://calcbadger.com/concrete-calculator/",
-            "https://calcbadger.com/world-clock/"
-        ],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-08-31",
-        "action": "submitted",
-        "reason": "本站今日随机休息未发布（算法压制期）。Page indexing报告显示16个Discovered-currently-not-indexed（压制期常态），逐一核对proxy后确认markup-calculator（proxy 111858，从未提交过）URL is not on Google，REQUEST INDEXING提交成功确认Indexing requested。time-duration-calculator（proxy 184950更高但已submitted过历史记录）本次未再核查。",
-        "submitted_urls": [
-            "https://calcbadger.com/markup-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-01",
-        "action": "submitted",
-        "reason": "今日新发布electrical-converter（第61个工具），URL Inspection确认URL is not on Google，提交成功。第二轮查Page indexing报告discovered-currently-not-indexed列表，body-surface-area-calculator确认未收录，提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/electrical-converter/",
-            "https://calcbadger.com/body-surface-area-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-02",
-        "action": "submitted",
-        "reason": "trafficsite-gsc-index-requests例行运行，游标停留位DayAlmanac，CalcBadger排第10位（本轮最后一站）。今日新发布golf-club-distance-chart（Discovered-currently-not-indexed）提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/golf-club-distance-chart/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-03",
-        "action": "submitted",
-        "reason": "今日新发布rice-to-water-ratio，URL Inspection确认URL is not on Google。首次REQUEST INDEXING返回'We had a problem submitting your indexing request'瞬时错误，立即重试后成功，未额外消耗配额。",
-        "submitted_urls": [
-            "https://calcbadger.com/rice-to-water-ratio/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "1 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-04",
-        "action": "submitted",
-        "reason": "今日无新发布(每周2工具节奏，周二/周五)。body-surface-area-calculator/bmi-calculator查询均已收录(报告数据滞后)。Discovered-not-indexed报告(17条，压制期真实积压)：click-speed-test与conduit-fill-calculator确认未收录，均提交成功(2条)。",
-        "submitted_urls": [
-            "https://calcbadger.com/click-speed-test/",
-            "https://calcbadger.com/conduit-fill-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/body-surface-area-calculator/",
-            "https://calcbadger.com/bmi-calculator/"
-        ],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-09",
-        "action": "submitted",
-        "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：pizza-calculator与ffmi-calculator确认未收录，均提交成功(第一轮1条+第二轮补提交1条)。",
-        "submitted_urls": [
-            "https://calcbadger.com/pizza-calculator/",
-            "https://calcbadger.com/ffmi-calculator/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-10",
-        "action": "submitted",
-        "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。bmi-calculator/date-calculator均已收录。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：topsoil-calculator确认未收录提交成功(第一轮)。第二轮补提交rounding-calculator(同报告候选，确认未收录)。",
-        "submitted_urls": [
-            "https://calcbadger.com/topsoil-calculator/",
-            "https://calcbadger.com/rounding-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/bmi-calculator/",
-            "https://calcbadger.com/date-calculator/"
-        ],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-11",
-        "action": "submitted",
-        "reason": "今日新发布words-per-minute-average（每周2工具节奏），URL Inspection确认URL is unknown to Google，提交成功。补充第二轮：Discovered-not-indexed报告14条真实积压（大多为category归档页/已收录计算器页），逐个核查pizza-calculator/ffmi-calculator均已收录，number-base-converter确认Discovered-currently-not-indexed未提交过，追加提交。",
-        "submitted_urls": [
-            "https://calcbadger.com/words-per-minute-average/",
-            "https://calcbadger.com/number-base-converter/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/pizza-calculator/",
-            "https://calcbadger.com/ffmi-calculator/"
-        ],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-12",
-        "action": "submitted",
-        "reason": "今日无新发布（每周2工具节奏）。Page indexing报告Discovered-not-indexed 14条（含4个category归档页不提交+rounding-calculator/asphalt-calculator已收录）。第1-10行中提交真实内容页sentence-counter；第二轮翻页查11-14行，追加提交steps-to-miles-calculator（topsoil-calculator/wacc-calculator未查，留待后续）。",
-        "submitted_urls": [
-            "https://calcbadger.com/sentence-counter/",
-            "https://calcbadger.com/steps-to-miles-calculator/"
-        ],
-        "already_indexed_no_action": [
-            "https://calcbadger.com/rounding-calculator/",
-            "https://calcbadger.com/asphalt-calculator/"
-        ],
-        "quota_used": "2 of shared account-wide daily quota"
-    },
-    {
-        "date": "2026-09-13",
-        "action": "submitted",
-        "reason": "今日time-converter仅为审计更新非新发布不提交；老页未收录巡检队列头部wacc-calculator（Discovered-currently not indexed）提交成功；第二轮补充提交number-base-converter（同样Discovered-currently not indexed），提交成功。",
-        "submitted_urls": [
-            "https://calcbadger.com/wacc-calculator/",
-            "https://calcbadger.com/number-base-converter/"
-        ],
-        "already_indexed_no_action": [],
-        "quota_used": "2 of shared account-wide daily quota"
-    }
+ {
+  "date": "2026-08-02",
+  "action": "submitted_first_run_quota_hit",
+  "reason": "trafficsite-gsc-index-requests首次处理本站。calcbadger.com此前无gsc-index-submit-log.json，第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表，确认calcbadger.com（sc-domain:，DNS TXT验证）已是已验证property（内容发布日志.md提到的'sitemap-index.xml已提交，即时状态Couldn't fetch是新域名常态'）。本站首批5个工具已达'累计4篇上线'首次提交门槛类比标准（工具站以'工具'为发布单元，5个远超4篇门槛）。按发布顺序总表逐一用URL Inspection检查：cd-calculator提交成功（绿色'Indexing requested'弹窗）；square-footage-calculator提交时遇'Quota Exceeded'——本次运行across全部6站（hollowvane 1 + factcrumbs 2 + warcrumbs 2 + umberlore 5 + calcbadger 1 = 11）已耗尽共享账号级每日配额，本站排在处理顺序最后，仅赶上1个请求额度。",
+  "submitted_urls": [
+   "https://calcbadger.com/cd-calculator/"
+  ],
+  "index_status_before": "URL is not on Google (Discovered - currently not indexed)",
+  "quota_blocked": [
+   {
+    "url": "https://calcbadger.com/square-footage-calculator/",
+    "status_before": "Discovered - currently not indexed",
+    "submit_result": "Quota Exceeded（明确文字提示，非静默失败）"
+   }
+  ],
+  "not_yet_checked_carried_over": [
+   "https://calcbadger.com/stair-calculator/",
+   "https://calcbadger.com/sat-score-calculator/",
+   "https://calcbadger.com/molarity-calculator/"
+  ],
+  "quota_used": "1 successful of shared account-wide daily quota (11th request across all sites this run), then quota exhausted",
+  "quota_remaining": "0 — 下次运行需优先处理本站剩余4个工具（square-footage/stair/sat-score/molarity-calculator），因本站在处理顺序中排最后，历次配额耗尽风险最高，可考虑调整站点处理顺序轮换起点"
+ },
+ {
+  "date": "2026-08-03",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。第0步用Claude in Chrome核实search.google.com/search-console属性下拉列表确认calcbadger.com已是已验证property。今日新发布：coin-flip-simulator（第7个工具，当天3次节奏第1次）。本次运行首次采用两轮制配额稀缺模式（每站round1只取1个最高优先级页面），处理顺序按day-of-year(215) mod 7站=5=calcbadger轮换起点，本站排第1个。URL Inspection显示'URL is not on Google'（URL is unknown to Google），提交后清晰看到绿色'Indexing requested'弹窗成功标志。",
+  "submitted_urls": [
+   "https://calcbadger.com/coin-flip-simulator/"
+  ],
+  "index_status_before": "URL is not on Google (URL is unknown to Google)",
+  "quota_used": "1 of shared account-wide daily quota (1st request this run)",
+  "chrome_disconnect_note": "第二轮尝试提交carried-over的square-footage-calculator时Claude in Chrome扩展连接中断（'not connected'），重试2次未恢复；连接恢复后复核发现该URL已显示'URL is on Google'/'Page is indexed'（自然收录，未消耗配额，无需提交），并非配额问题导致的失败。连接恢复后继续清理本站剩余backlog：stair-calculator提交成功（绿色'Indexing requested'）；sat-score-calculator已自然收录无需提交；molarity-calculator提交成功（绿色'Indexing requested'）。本站5工具+coin-flip-simulator共6个页面backlog本次运行全部清空（3个成功提交+3个已自然收录）。",
+  "already_indexed_no_action": [
+   "https://calcbadger.com/square-footage-calculator/",
+   "https://calcbadger.com/sat-score-calculator/"
+  ],
+  "submitted_urls_round2": [
+   "https://calcbadger.com/stair-calculator/",
+   "https://calcbadger.com/molarity-calculator/"
+  ],
+  "quota_used_total_this_run": "3 of shared account-wide daily quota (1st, 9th, 10th requests this run)"
+ },
+ {
+  "date": "2026-08-04",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行，跨天连续游标机制首次运行。今日新发布2个工具（当天3次节奏中的temperature-converter/length-converter），取第1个temperature-converter（URL is not on Google）提交成功。第二轮取length-converter（同样未收录）提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/temperature-converter/",
+   "https://calcbadger.com/length-converter/"
+  ],
+  "quota_used": "2 of shared account-wide daily quota (6th and 16th requests this run)"
+ },
+ {
+  "date": "2026-08-05",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。今日新发布2个工具（mortgage-calculator/time-converter）。第一轮取mortgage-calculator（URL is not on Google）提交成功，第二轮取time-converter（同样未收录）提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/mortgage-calculator/",
+   "https://calcbadger.com/time-converter/"
+  ],
+  "quota_used": "2 requests this run (round 1 and round 2)"
+ },
+ {
+  "date": "2026-08-06",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。今日新发布2个工具（percentage-calculator/volume-converter，见内容发布日志.md），percentage-calculator同时也是build-index-queue.py代理排序全站最高值。第一轮取percentage-calculator（URL is not on Google）提交成功。第二轮因Chrome扩展断连未能到达本站，volume-converter及队列后续候选本次未检查。",
+  "submitted_urls": [
+   "https://calcbadger.com/percentage-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 request this run (round 1 only; round 2 not reached due to Chrome extension disconnect)"
+ },
+ {
+  "date": "2026-08-06",
+  "action": "submitted",
+  "reason": "第二轮（Chrome扩展重连后继续）：取今日新发布第二个工具volume-converter（URL is not on Google）提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/volume-converter/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 request (round 2, continuation after Chrome extension reconnect)"
+ },
+ {
+  "date": "2026-08-07",
+  "action": "no_action_all_indexed",
+  "reason": "trafficsite-gsc-index-requests例行运行。队列候选URL逐个检查（收入代理排序前8个）全部已'URL is on Google'（自然收录），未找到未收录候选，本站两轮均未消耗提交配额。",
+  "submitted_urls": [],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/",
+   "https://calcbadger.com/date-calculator/",
+   "https://calcbadger.com/concrete-calculator/",
+   "https://calcbadger.com/square-footage-calculator/",
+   "https://calcbadger.com/sat-score-calculator/",
+   "https://calcbadger.com/molarity-calculator/",
+   "https://calcbadger.com/stair-calculator/",
+   "https://calcbadger.com/weight-converter/"
+  ],
+  "quota_used": "0 requests (全部候选已自然收录)"
+ },
+ {
+  "date": "2026-08-08",
+  "action": "skipped_all_indexed",
+  "reason": "trafficsite-gsc-index-requests例行运行。队列内8个候选（收入代理排序前8）全部已'URL is on Google'（自然收录），未消耗提交配额，延续此前几轮该站的自然收录趋势。",
+  "submitted_urls": [],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/",
+   "https://calcbadger.com/date-calculator/",
+   "https://calcbadger.com/concrete-calculator/",
+   "https://calcbadger.com/square-footage-calculator/",
+   "https://calcbadger.com/sat-score-calculator/",
+   "https://calcbadger.com/molarity-calculator/",
+   "https://calcbadger.com/stair-calculator/",
+   "https://calcbadger.com/weight-converter/"
+  ],
+  "quota_used": "0 requests (全部候选已自然收录)"
+ },
+ {
+  "date": "2026-08-09",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。今日有第17个工具calorie-calculator新发布 + molarity-calculator审计更新，本次仅处理calorie-calculator以控制单站单轮配额：URL Inspection确认'URL is not on Google'，REQUEST INDEXING后确认'Indexing requested'。molarity-calculator留待下次运行处理。",
+  "submitted_urls": [
+   "https://calcbadger.com/calorie-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 request"
+ },
+ {
+  "date": "2026-08-10",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。今日两个新工具(tip-calculator/gpa-calculator)，tip-calculator查询确认'URL is unknown to Google'，REQUEST INDEXING后确认'Indexing requested'。gpa-calculator及上次运行(8/9)遗留的molarity-calculator本轮时间/配额限制未及查询，留待下次运行优先处理。",
+  "submitted_urls": [
+   "https://calcbadger.com/tip-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "not_checked_this_run": [
+   "https://calcbadger.com/gpa-calculator/",
+   "https://calcbadger.com/molarity-calculator/"
+  ],
+  "quota_used": "1 request"
+ },
+ {
+  "date": "2026-08-11",
+  "action": "submitted",
+  "reason": "游标第8站。今日新发布fraction-calculator（第23个工具，三模式设计：加减乘除/化简/互转，含mixed fraction calculator长尾并入）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/fraction-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 request"
+ },
+ {
+  "date": "2026-08-12",
+  "action": "submitted",
+  "reason": "游标第7站。今日新工具shape-volume-calculator（第26个工具，矩形棱柱/圆柱/球/圆锥体积表面积一并覆盖）URL Inspection显示未收录（URL is unknown to Google），REQUEST INDEXING后确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/shape-volume-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 request"
+ },
+ {
+  "date": "2026-08-13",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行。今日新发布Math Symbols工具（math-symbols，另有length-converter审计更新，因math-symbols为新发布优先检查）。URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功，等待约20秒确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/math-symbols/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota (7th request this run)"
+ },
+ {
+  "date": "2026-08-16",
+  "action": "submitted",
+  "reason": "按队列脚本代理排序检查候选：bmi-calculator已收录（跳过）。改查今日/近期新发布，board-foot-calculator（08-13发布，第31个工具）经URL Inspection确认'URL is not on Google'（Discovered - currently not indexed），REQUEST INDEXING提交成功确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/board-foot-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-16",
+  "action": "submitted",
+  "reason": "同日第二次运行（首次运行结尾因Claude in Chrome工具故障卡在Hollowvane，等待网络恢复后重试成功续跑）。GSC自身Page indexing报告'Discovered - currently not indexed'当前0页。改查build-index-queue.py队列高代理未提交候选：date-calculator/concrete-calculator/world-clock/minecraft-circle-generator连续4个均已收录（本站索引速度很快），reaction-time-test确认'Discovered - currently not indexed'，REQUEST INDEXING提交成功确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/reaction-time-test/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/date-calculator/",
+   "https://calcbadger.com/concrete-calculator/",
+   "https://calcbadger.com/world-clock/",
+   "https://calcbadger.com/minecraft-circle-generator/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-17",
+  "action": "submitted",
+  "reason": "今日新发布两个工具：Asphalt Calculator（第34个工具）与Glitch Text Generator（第35个工具，本日第二次运行）。URL Inspection确认asphalt-calculator已'URL is on Google'（已收录，CalcBadger索引速度一贯很快），glitch-text-generator为'URL is not on Google'，REQUEST INDEXING提交成功确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/glitch-text-generator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/asphalt-calculator/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-18",
+  "action": "submitted",
+  "reason": "今日新发布Small Text Generator（第38个工具），URL Inspection确认'URL is not on Google'，REQUEST INDEXING提交成功确认'Indexing requested'。",
+  "submitted_urls": [
+   "https://calcbadger.com/small-text-generator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-19",
+  "action": "submitted",
+  "reason": "今日新发布Keg Calculator（keg-calculator，第41个工具），URL Inspection确认'URL is not on Google'（unknown to Google），REQUEST INDEXING提交成功确认'Indexing requested'。今日另有content-quality-audit审计更新time-converter（该URL历史已提交过，本轮未重复查询/提交）。",
+  "submitted_urls": [
+   "https://calcbadger.com/keg-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-20",
+  "action": "submitted",
+  "reason": "今日新发布prorated-rent-calculator（第44个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/prorated-rent-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-21",
+  "action": "submitted",
+  "reason": "今日无新工具发布（weight-converter新增stone单位是既有页面功能扩展，非新页面，不适用本任务）。改用build-index-queue.py收入代理排序，队列第一候选bmi-calculator已收录，选中Pages报告discovered-not-indexed候选中收入代理最高的gpa-calculator，确认URL is not on Google/Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/gpa-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-22",
+  "action": "submitted",
+  "reason": "今日新发布Pool Calculator（第49个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/pool-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-23",
+  "action": "submitted",
+  "reason": "今日新发布Age Difference Calculator（第52个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/age-difference-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-24",
+  "action": "submitted",
+  "reason": "今日新发布Words to Pages Calculator（第55个工具，calcbadger-tool-publishing任务，本日第一次运行）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/words-to-pages-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-25",
+  "action": "submitted",
+  "reason": "今日新发布Dead Pixel Test（第57个工具，calcbadger-tool-publishing任务）。URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。同日world-clock为content-quality-audit审计更新，本轮游标已轮到CalcBadger且新发布候选已提交成功，未额外查审计更新页（每站每轮限1个名额）。",
+  "submitted_urls": [
+   "https://calcbadger.com/dead-pixel-test/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-26",
+  "action": "submitted",
+  "reason": "今日新发布Keyboard Test（第58个工具），URL Inspection确认未收录（Discovered - currently not indexed），REQUEST INDEXING提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/keyboard-test/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": 1
+ },
+ {
+  "date": "2026-08-27",
+  "action": "submitted",
+  "reason": "今日新发布System of Equations Solver（第59个工具），URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/system-of-equations-solver/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-28",
+  "action": "submitted",
+  "reason": "今日新发布Number Base Converter工具（number-base-converter，第60个工具）：URL Inspection确认URL is not on Google/unknown to Google，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/number-base-converter/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-29",
+  "action": "submitted",
+  "reason": "今日随机休息未发布新工具。用build-index-queue.py队列遍历：bmi-calculator/date-calculator/concrete-calculator/world-clock均已收录，wingdings-translator显示Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/wingdings-translator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/",
+   "https://calcbadger.com/date-calculator/",
+   "https://calcbadger.com/concrete-calculator/",
+   "https://calcbadger.com/world-clock/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-30",
+  "action": "submitted",
+  "reason": "今日随机休息未发布新工具（发布日志R=1<15触发休息）。改走build-index-queue.py队列：bmi-calculator/date-calculator/concrete-calculator/world-clock共4个候选逐一URL Inspection均已实测收录（跳过不耗配额），第5个候选time-duration-calculator确认Discovered-currently not indexed，REQUEST INDEXING提交成功确认Indexing requested。",
+  "submitted_urls": [
+   "https://calcbadger.com/time-duration-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/",
+   "https://calcbadger.com/date-calculator/",
+   "https://calcbadger.com/concrete-calculator/",
+   "https://calcbadger.com/world-clock/"
+  ],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-08-31",
+  "action": "submitted",
+  "reason": "本站今日随机休息未发布（算法压制期）。Page indexing报告显示16个Discovered-currently-not-indexed（压制期常态），逐一核对proxy后确认markup-calculator（proxy 111858，从未提交过）URL is not on Google，REQUEST INDEXING提交成功确认Indexing requested。time-duration-calculator（proxy 184950更高但已submitted过历史记录）本次未再核查。",
+  "submitted_urls": [
+   "https://calcbadger.com/markup-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-01",
+  "action": "submitted",
+  "reason": "今日新发布electrical-converter（第61个工具），URL Inspection确认URL is not on Google，提交成功。第二轮查Page indexing报告discovered-currently-not-indexed列表，body-surface-area-calculator确认未收录，提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/electrical-converter/",
+   "https://calcbadger.com/body-surface-area-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-02",
+  "action": "submitted",
+  "reason": "trafficsite-gsc-index-requests例行运行，游标停留位DayAlmanac，CalcBadger排第10位（本轮最后一站）。今日新发布golf-club-distance-chart（Discovered-currently-not-indexed）提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/golf-club-distance-chart/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-03",
+  "action": "submitted",
+  "reason": "今日新发布rice-to-water-ratio，URL Inspection确认URL is not on Google。首次REQUEST INDEXING返回'We had a problem submitting your indexing request'瞬时错误，立即重试后成功，未额外消耗配额。",
+  "submitted_urls": [
+   "https://calcbadger.com/rice-to-water-ratio/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-04",
+  "action": "submitted",
+  "reason": "今日无新发布(每周2工具节奏，周二/周五)。body-surface-area-calculator/bmi-calculator查询均已收录(报告数据滞后)。Discovered-not-indexed报告(17条，压制期真实积压)：click-speed-test与conduit-fill-calculator确认未收录，均提交成功(2条)。",
+  "submitted_urls": [
+   "https://calcbadger.com/click-speed-test/",
+   "https://calcbadger.com/conduit-fill-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/body-surface-area-calculator/",
+   "https://calcbadger.com/bmi-calculator/"
+  ],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-09",
+  "action": "submitted",
+  "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：pizza-calculator与ffmi-calculator确认未收录，均提交成功(第一轮1条+第二轮补提交1条)。",
+  "submitted_urls": [
+   "https://calcbadger.com/pizza-calculator/",
+   "https://calcbadger.com/ffmi-calculator/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-10",
+  "action": "submitted",
+  "reason": "今日无新发布(每周2工具节奏，周二/周五，今日周三)。bmi-calculator/date-calculator均已收录。Discovered-currently-not-indexed报告(14条，压制期持续真实积压)：topsoil-calculator确认未收录提交成功(第一轮)。第二轮补提交rounding-calculator(同报告候选，确认未收录)。",
+  "submitted_urls": [
+   "https://calcbadger.com/topsoil-calculator/",
+   "https://calcbadger.com/rounding-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/bmi-calculator/",
+   "https://calcbadger.com/date-calculator/"
+  ],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-11",
+  "action": "submitted",
+  "reason": "今日新发布words-per-minute-average（每周2工具节奏），URL Inspection确认URL is unknown to Google，提交成功。补充第二轮：Discovered-not-indexed报告14条真实积压（大多为category归档页/已收录计算器页），逐个核查pizza-calculator/ffmi-calculator均已收录，number-base-converter确认Discovered-currently-not-indexed未提交过，追加提交。",
+  "submitted_urls": [
+   "https://calcbadger.com/words-per-minute-average/",
+   "https://calcbadger.com/number-base-converter/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/pizza-calculator/",
+   "https://calcbadger.com/ffmi-calculator/"
+  ],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-12",
+  "action": "submitted",
+  "reason": "今日无新发布（每周2工具节奏）。Page indexing报告Discovered-not-indexed 14条（含4个category归档页不提交+rounding-calculator/asphalt-calculator已收录）。第1-10行中提交真实内容页sentence-counter；第二轮翻页查11-14行，追加提交steps-to-miles-calculator（topsoil-calculator/wacc-calculator未查，留待后续）。",
+  "submitted_urls": [
+   "https://calcbadger.com/sentence-counter/",
+   "https://calcbadger.com/steps-to-miles-calculator/"
+  ],
+  "already_indexed_no_action": [
+   "https://calcbadger.com/rounding-calculator/",
+   "https://calcbadger.com/asphalt-calculator/"
+  ],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-13",
+  "action": "submitted",
+  "reason": "今日time-converter仅为审计更新非新发布不提交；老页未收录巡检队列头部wacc-calculator（Discovered-currently not indexed）提交成功；第二轮补充提交number-base-converter（同样Discovered-currently not indexed），提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/wacc-calculator/",
+   "https://calcbadger.com/number-base-converter/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "2 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-15",
+  "action": "submitted",
+  "reason": "今日无新发布（每周二/五节奏，本次未见新工具条目）。老页未收录巡检刷新出1个候选number-base-converter（Discovered-currently not indexed），URL Inspection确认后提交成功。",
+  "submitted_urls": [
+   "https://calcbadger.com/number-base-converter/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_used": "1 of shared account-wide daily quota"
+ }
 ]
