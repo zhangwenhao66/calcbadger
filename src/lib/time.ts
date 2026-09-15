@@ -59,8 +59,7 @@ export function convertAll(value: number, from: TimeUnit): Record<TimeUnit, numb
  */
 export function roundSig(n: number, sig = 6): number {
 	if (n === 0 || !Number.isFinite(n)) return n;
-	const magnitude = Math.pow(10, sig - Math.ceil(Math.log10(Math.abs(n))));
-	return Math.round(n * magnitude) / magnitude;
+	return Number(n.toPrecision(sig));
 }
 
 /**

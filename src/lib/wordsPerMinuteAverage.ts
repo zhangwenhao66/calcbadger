@@ -149,14 +149,14 @@ export const WPM_BENCHMARKS: WpmBenchmark[] = [
 
 export function bandForWpm(wpm: number): WpmBenchmark | null {
 	if (!Number.isFinite(wpm) || wpm <= 0) return null;
-	// Find the closest band by midpoint distance so a value between two bands
-	// still returns a sensible neighbor rather than nothing.
+	// Find the closest band by edge distance (not midpoint) so a value between
+	// two bands returns whichever band's boundary it's actually nearest to —
+	// midpoint distance biases wide bands away from adjacent narrow/point bands.
 	let best: WpmBenchmark | null = null;
 	let bestDist = Infinity;
 	for (const b of WPM_BENCHMARKS) {
 		if (wpm >= b.low && wpm <= Math.max(b.high, b.low)) return b;
-		const mid = (b.low + b.high) / 2;
-		const dist = Math.abs(wpm - mid);
+		const dist = wpm < b.low ? b.low - wpm : wpm - b.high;
 		if (dist < bestDist) {
 			bestDist = dist;
 			best = b;

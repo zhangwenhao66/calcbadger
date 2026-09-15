@@ -118,11 +118,19 @@ describe('bandForWpm', () => {
 		expect(bandForWpm(300)?.label).toBe('Advanced/highly skilled typist');
 		expect(bandForWpm(359)?.label).toBe('Advanced/highly skilled typist');
 	});
-	it('10 WPM (below every band) falls back to the nearest band by midpoint (average composing, mid 19)', () => {
-		// Midpoints: hunt-and-peck 32, composing 19, transcribing 32.5, mobile 36.2,
-		// dispatcher 40, professional 70, advanced 120, stenotype 360.
-		// Distances from 10: 22, 9, 22.5, 26.2, 30, 60, 110, 350. Closest is composing (9).
+	it('10 WPM (below every band) falls back to the nearest band by edge distance (composing, edge 19)', () => {
+		// Edge distances from 10: hunt-and-peck |10-27|=17, composing |10-19|=9,
+		// transcribing |10-32.5|=22.5, mobile 26.2, dispatcher 25, professional 50,
+		// advanced 110, stenotype 350. Closest is composing (9).
 		expect(bandForWpm(10)?.label).toBe('Average computer user, composing text');
+	});
+	it('regression: 23-25.x WPM (below hunt-and-peck) stays nearest to hunt-and-peck, not the far composing point-band', () => {
+		// Midpoint-distance fallback used the wide hunt-and-peck band's *center* (32) to
+		// compute distance, so anything below ~25.5 got shoved into the composing
+		// point-band (19) even though 27 (hunt-and-peck's actual edge) is closer.
+		// Edge-distance fallback fixes this. check_band_table_midpoint_bug.py, 2026-09-16.
+		expect(bandForWpm(23)?.label).toBe('Hunt-and-peck (two-finger) typist');
+		expect(bandForWpm(25)?.label).toBe('Hunt-and-peck (two-finger) typist');
 	});
 	it('returns null for zero or negative WPM', () => {
 		expect(bandForWpm(0)).toBeNull();
