@@ -260,3 +260,25 @@ Best,
 Owen
 CalcBadger
 ```
+
+## 2026-09-15 — Woodworkers Journal (editor@woodworkersjournal.com) — 嵌入组件主动投放
+
+To: editor@woodworkersjournal.com
+Subject: An embeddable board foot calculator for your calculators roundup
+
+Hi,
+
+I came across "Best Apps and Calculators for Woodworkers" and noticed the board-foot section links out to a paid iOS app and an external online calculator, both off-page, rather than something a reader could use inline.
+
+I built a free board foot calculator at CalcBadger (https://calcbadger.com/board-foot-calculator/) that takes actual measured thickness, width, and length, handles the rough-sawn quarter-thickness shortcut (4/4, 8/4, and so on), adds a waste-percentage allowance, and estimates cost per board foot. It has an embeddable version too: https://calcbadger.com/embed/board-foot-calculator/, a plain iframe with no site branding or navigation, just the calculator, so it would sit inline in the article instead of sending a reader elsewhere.
+
+Happy to send the embed code if it's useful for that page, or for a future piece.
+
+Thanks,
+CalcBadger
+
+**Verification notes**: Target found via WebSearch (`woodworking blog "board foot calculator" resource page useful tools for woodworkers`) — Woodworkers Journal's "Best Apps and Calculators for Woodworkers" (author Sandor Nagyszalanczy) is a real, on-topic editorial roundup that lists a paid iOS app and links out to an external University of Missouri Extension online calculator, confirmed via live fetch. Dedup: `gmail_send.py list --query "woodworkersjournal"` → empty; no prior contact with this publication. Both `/board-foot-calculator/` and `/embed/board-foot-calculator/` confirmed 200; embed page confirmed to have no nav/header/logo (genuine stripped iframe version, not a duplicate or placeholder).
+
+**Independent review agent caught a real problem**: the draft originally targeted `online-editor@woodworkersjournal.com`, which the site's own `/contact-us/` page scopes explicitly to "eZine Feedback — please email your comments (especially compliments), but we'll also accept criticism and corrections" — the wrong channel for a tool-embed pitch. The same page lists `editor@woodworkersjournal.com` for "project questions" and "author questions," a much better fit. Retargeted to `editor@woodworkersjournal.com`; content and tone were otherwise verified clean (all four feature claims checked against the live calculator's compiled JS, no em dashes/AI-tells, reads as a specific one-off observation not a template). Not re-reviewed a second time since only the To: address changed and sending is withheld regardless (see below).
+
+**Status: ⛔ NOT SENT this run — blocked by the SES migration freeze** (see `独立站/待Owen处理事项.md` "SES迁移期间..." and `独立站/邮件发信基础设施迁移_AWS_SES_20260907.md`, both still open, checked at the start of this run before any send calls). Marked `drafted_blocked_by_ses_migration`; send once Owen completes the SES cutover.

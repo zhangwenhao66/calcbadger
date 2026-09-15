@@ -37,3 +37,17 @@ pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经�
 **第二轮独立复核 agent（全新实例，针对线上已部署状态重新核查）判定"可以发送"**：逐项核实——线上页面200、CSV端点200且133行、页面文案与邮件所述"132 sources/38 calculators/66 domains/76条58%"逐字一致、四类来源分类（government agency/standards body/peer-reviewed/reference work，邮件里"reference source"为同义措辞非事实出入）与页面一致、`gmail_send.py`全账号范围两次查询（`to:nancy@maxaeo.ai`与`maxaeo.ai`）均为空确认无重复发送、`nancy@maxaeo.ai`确系MaxAEO联系页真实列出的"Sales and partnerships"渠道、Chris Han原文确实包含邮件引用的"a transparent formula you can explain and stand behind out-cites a black box"这句话、git状态确认资产已提交无遗漏。
 
 **发送状态**：已发送 2026-08-18，`gmail_send.py send --from calcbadger`，Message ID `1a0137373d9dd097`，Thread ID同，From头核实为`CalcBadger <contact@calcbadger.com>`，正文与草稿一致、无Subject行泄漏。
+
+---
+
+## 2026-09-15 — fixed priority slot (embed-outreach focus, DialWick frozen)
+
+**Site selection**: CalcBadger took this run's fixed priority slot (per the 2026-09-04 revision) in place of DialWick, which was frozen 2026-09-13 by Owen decision (all LLM-involving tasks skip it entirely rather than treat it as merely suppressed). CalcBadger was the more overdue of the two compressed sites for this task (last processed 2026-08-18 vs. DialWick's 2026-09-12).
+
+**Order of work**: per the 2026-09-04 rule, CalcBadger's angle stays fixed as embed-component outreach to education/DIY/engineering resource pages (not new-asset creation — the site remains in its August-2026-spam-update suppression window, publishing at 2/week per the risk tracker).
+
+**Step 3 (embed pitch)**: WebSearch found Woodworkers Journal's "Best Apps and Calculators for Woodworkers" (real editorial roundup, author Sandor Nagyszalanczy), which lists a paid iOS board-foot app and an external online calculator rather than an inline tool. Drafted a pitch offering the board-foot-calculator embed (`/embed/board-foot-calculator/`). Passed self-review (humanizer/avoid-ai-writing: no em dashes, no negative-parallelism, no AI vocabulary). Independent review agent caught a real problem: the draft targeted `online-editor@` (scoped to reader feedback/corrections per the site's own contact page), not `editor@` (the "project/author questions" channel). Retargeted; content otherwise verified clean against the live pages. Full detail in `outreach-drafts.md`.
+
+**Status**: not sent — blocked by the SES migration freeze (checked at the start of this run per the 2026-09-12 SKILL.md addition, before any send calls). Stored in `outreach-drafts.md` marked `drafted_blocked_by_ses_migration`.
+
+**Step 2 / 3.5**: not re-executed this run (time budget went to sourcing and reviewing the new embed-pitch target above).
