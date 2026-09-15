@@ -2656,3 +2656,28 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "机械检查回溯_20260916",
+  "audited": "2026-09-16",
+  "source": "owen-opc-kit/docs/机械检查回溯发现_20260916.md",
+  "findings_fixed": [
+    {
+      "issue": "volume.ts/time.ts的roundSig()仍是修复前的IEEE-754浮点残留实现（Math.round(n*magnitude)/magnitude），length.ts/weight.ts已在此前修复为Number(n.toPrecision(sig))但未同步",
+      "script": "check_duplicate_function_drift.py --root src/lib --name roundSig",
+      "fix": "volume.ts、time.ts两处roundSig()改为Number(n.toPrecision(sig))，5处实现内容一致，复验exit 0",
+      "commit": "d9244ac"
+    },
+    {
+      "issue": "wordsPerMinuteAverage.ts的bandForWpm()兜底逻辑用中点距离找最近band，导致WPM 23-25.x（合理输入，如刚入门双指打字者）被错判到远端单点档Composing(19)而非实际更近的Hunt-and-peck区间档(27-37)；09-11只修复了表的高值端（120-360）同类问题，低值端从未被发现",
+      "script": "check_band_table_midpoint_bug.py --file src/lib/wordsPerMinuteAverage.ts --table WPM_BENCHMARKS",
+      "fix": "bandForWpm()兜底算法从中点距离改为边缘距离（wpm<b.low?b.low-wpm:wpm-b.high），从算法根源消除整类跳档，不用像09-11那样逐个给单点档打表级补丁；tests/wordsPerMinuteAverage.test.ts新增23/25 WPM回归用例，全站73个测试文件1359个测试全部通过",
+      "known_limitation": "check_band_table_midpoint_bug.py是离线复刻算法的静态表检查，不读取.ts里bandForWpm()的真实实现，只要表里同时存在单点档和区间档就会持续报FAIL，即使代码已换成边缘距离——已在脚本docstring里补记此局限，核实以单测通过为准，不看该脚本退出码",
+      "commit": "d9244ac"
+    }
+  ],
+  "verify": "npm run build 123页成功；npm test 73文件1359测试通过；push后Cloudflare Pages部署，curl绕缓存核实/words-per-minute-average/返回200",
+  "escalation": null
+}
+```
