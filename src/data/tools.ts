@@ -3694,7 +3694,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Topsoil Calculator',
 		description:
 			'Work out cubic yards, weight, and bag count for a lawn, garden bed, or raised bed from its shape, area, and fill depth, with soil-texture density presets sourced from USDA soil science.',
-		updated: '2026-08-18',
+		updated: '2026-09-15',
 		published: '2026-08-18',
 		coreSummary:
 			'Topsoil is ordered by volume: length x width x depth (or, for a round bed, pi x radius squared x depth), converted from cubic feet to cubic yards by dividing by 27. Weight is harder to pin to one number because it depends on both moisture and soil texture, so this calculator uses the USDA NRCS Soil Health Educators Guide\'s ideal bulk-density ceiling for sandy, loam, and clay-heavy soils, converted to pounds per cubic yard, as a texture-specific planning estimate rather than a single flat figure. None of that volume-and-weight math applies once the job moves from dirt to wiring: [conduit fill](/conduit-fill-calculator/) is governed by a fixed NEC percentage of a conduit\'s cross-sectional area, a completely different kind of capacity limit.',
@@ -3725,6 +3725,7 @@ export const tools: Tool[] = [
 				body: [
 					"A cubic yard of topsoil doesn't have one fixed weight, because bulk density (mass per unit volume) changes with how much sand, silt, clay, and organic matter the soil contains, plus how wet it is when it's weighed. Rather than pick one number and call it universal, this calculator's three texture presets come from the USDA NRCS Soil Health Educators Guide (2023), which publishes an ideal bulk-density ceiling for each texture group, the density a soil should stay at or under for roots to grow through it freely. Converted to pounds per cubic yard: sand and loamy sand top out around 2,692 lb, sandy loam through silt loam around 2,354 lb, and clay-heavy textures around 1,850 lb.",
 					"That NRCS table describes undisturbed or tilled soil in the ground, not necessarily loose, screened topsoil sitting in a supplier's stockpile, which tends to stay looser, and lighter per cubic yard, until it settles. Moisture matters too: wet soil can weigh noticeably more than the same soil dry, sometimes enough to swamp the difference between texture presets. Treat the preset as a planning estimate, and if a supplier gives you a lab-tested or load-ticket density, enter it directly with the custom option instead.",
+					"There's a second number in that same NRCS table worth knowing, because it answers a different question than the ideal ceiling this calculator uses. The ideal figures above describe soil light enough for roots to grow through freely; they are not the point where a soil actually becomes a problem. That same source also publishes a higher bulk-density threshold, the point past which root growth is measurably restricted: about 112 lb/ft³ for sandy soils, roughly 103 to 112 lb/ft³ across the loam-family textures this calculator groups together, and about 92 to 98 lb/ft³ for the clay-heavy end. A stockpile or a freshly delivered load sitting above the calculator's texture preset isn't automatically a problem; loose topsoil settles as it's watered and walked on, and some settling toward the ideal ceiling is expected and even accounted for by this calculator's settling allowance. What's worth watching for is soil that keeps compacting well past that ceiling and toward the restrictive threshold, which SDSU Extension attributes mainly to heavy equipment traveling over wet ground; working organic matter into compacted soil is one of the practices the same source lists for bringing bulk density back down.",
 				],
 			},
 		],
@@ -3743,13 +3744,13 @@ export const tools: Tool[] = [
 			},
 			{
 				title: 'Soil texture density presets (USDA NRCS ideal bulk density ceiling)',
-				headers: ['Texture preset', 'Density (g/cm³)', 'Density (lb/ft³)', 'Weight per cu yd'],
+				headers: ['Texture preset', 'Density (g/cm³)', 'Density (lb/ft³)', 'Weight per cu yd', 'Restricts root growth above'],
 				rows: [
-					['Sandy blend (sand, loamy sand)', '< 1.6', '99.7', '~2,692 lb'],
-					['Loam (sandy loam through silt loam)', '< 1.4', '87.2', '~2,354 lb'],
-					['Clay-heavy (sandy clay, silty clay, clay)', '< 1.1', '68.5', '~1,850 lb'],
+					['Sandy blend (sand, loamy sand)', '< 1.6', '99.7', '~2,692 lb', '112.1 lb/ft³'],
+					['Loam (sandy loam through silt loam)', '< 1.4', '87.2', '~2,354 lb', '103.1-112.1 lb/ft³'],
+					['Clay-heavy (sandy clay, silty clay, clay)', '< 1.1', '68.5', '~1,850 lb', '91.6-98.4 lb/ft³'],
 				],
-				note: 'Source: USDA NRCS Soil Health Educators Guide (2023), as tabulated by SDSU Extension. These are ceilings for healthy root growth in soil already in the ground, not a measured weight of bagged or bulk-delivered topsoil.',
+				note: 'Source: USDA NRCS Soil Health Educators Guide (2023), as tabulated by SDSU Extension. The first three data columns are ceilings for healthy root growth in soil already in the ground, not a measured weight of bagged or bulk-delivered topsoil; the last column is the same table\'s higher threshold, above which NRCS says root growth is measurably restricted.',
 			},
 		],
 		faq: [
@@ -3761,7 +3762,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How much does a cubic yard of topsoil weigh?',
 				answer:
-					"There's no single official figure, because weight depends on soil texture and moisture. This calculator uses USDA NRCS's ideal bulk-density ceiling for each texture: roughly 2,692 lb/cu yd for sandy soil, 2,354 lb/cu yd for loam, and 1,850 lb/cu yd for clay-heavy soil. Wetter soil weighs more than these dry-basis figures; a supplier's load ticket, if you have one, is more accurate than any preset.",
+					"There's no single official figure; both the soil's texture and its moisture level change the number. The three presets built into this tool translate to roughly 2,692 lb/cu yd for sandy soil, 2,354 lb/cu yd for loam, and 1,850 lb/cu yd for clay-heavy soil, the same USDA bulk-density data behind the reference table below. Wetter soil weighs more than these dry-basis numbers; a supplier's load ticket, if you have one, beats any preset.",
 			},
 			{
 				question: 'Should I buy topsoil in bags or bulk by the cubic yard?',
@@ -3776,17 +3777,17 @@ export const tools: Tool[] = [
 			{
 				question: 'How deep should topsoil be for a new lawn versus a raised bed?',
 				answer:
-					"For working amendments into an existing lawn area, University of Maryland Extension's guidance points to tilling the top 4-6 inches. Raised beds need more: at least 8 inches for shallow-rooting crops like leafy greens and beans, and 12-24 inches for deeper-rooting crops like tomatoes and peppers, per the same Extension's raised-bed guidance.",
+					"An already-established lawn just needs the top 4-6 inches worked over before mixing in new amendments. A raised bed sitting on pavement or hardscape needs much more: 8 inches minimum for shallow crops such as leafy greens and beans, 12 to 24 inches for deeper feeders like tomatoes and peppers. Both numbers come from the Extension resources cited in this page's sources list.",
 			},
 			{
 				question: 'Can I fill a raised bed with 100% topsoil?',
 				answer:
-					"University of Maryland Extension caps straight topsoil at about 20% of the mix by volume unless the bed is at least 16 inches deep, recommending compost and a soilless growing mix for the rest. Straight topsoil alone tends to compact and drain poorly in a contained bed compared with a blended mix.",
+					"Only in a deep bed. Straight topsoil is capped at roughly 20% of a raised bed's volume unless the bed runs at least 16 inches deep; the rest should be compost and other soil-free fill. Packed in alone, topsoil tends to compact hard and drain slowly once it's confined inside a bed.",
 			},
 			{
 				question: 'Why does the calculator ask for soil texture instead of using one weight for everyone?',
 				answer:
-					"Bulk density differs by texture: sandier soils pack denser than clay-heavy soils at the same moisture level, per USDA NRCS's published bulk-density figures. Picking the closest texture preset, or entering a custom density if you know one, gets you a closer weight estimate than a single flat number would.",
+					"Bulk density differs by texture: sandier soils pack denser than clay-heavy soils at the same moisture level, per USDA NRCS's published figures. Picking the closest texture preset, or entering your own density if a supplier gave you one, produces a weight estimate closer to reality than assuming every soil type behaves the same.",
 			},
 			{
 				question: 'Does the price estimate include delivery?',
