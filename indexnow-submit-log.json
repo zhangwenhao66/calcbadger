@@ -241,12 +241,16 @@
   "https://calcbadger.com/random-letter-generator/": {
     "submitted_date": "2026-08-16",
     "last_submitted_date": "2026-08-16",
-    "verified_status": "pending"
+    "verified_status": "stale_not_indexed",
+    "last_checked_date": "2026-09-15",
+    "verified_method": "bing_url_inspection"
   },
   "https://calcbadger.com/calligraphy-alphabet/": {
     "submitted_date": "2026-08-16",
     "last_submitted_date": "2026-08-16",
-    "verified_status": "pending"
+    "verified_status": "stale_not_indexed",
+    "last_checked_date": "2026-09-15",
+    "verified_method": "bing_url_inspection"
   },
   "https://calcbadger.com/asphalt-calculator/": {
     "submitted_date": "2026-08-16",
@@ -268,7 +272,9 @@
   "https://calcbadger.com/body-surface-area-calculator/": {
     "submitted_date": "2026-08-17",
     "last_submitted_date": "2026-08-17",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "last_checked_date": "2026-09-15",
+    "verified_method": "bing_url_inspection"
   },
   "https://calcbadger.com/small-text-generator/": {
     "submitted_date": "2026-08-18",
