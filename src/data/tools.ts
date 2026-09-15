@@ -73,7 +73,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity.',
+			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity. A company financing itself instead of a saver depositing cash faces the mirror-image question: [WACC](/wacc-calculator/) blends the cost of equity and after-tax cost of debt into one rate, the borrowing-side counterpart to the rate a CD pays a depositor.',
 		queries: ['cd calculator', 'certificate of deposit calculator', 'cd interest calculator'],
 		sections: [
 			{
@@ -171,7 +171,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'Square footage is length × width measured in feet. A 12 ft × 10 ft room is 120 sq ft. For L-shaped rooms, split the floor into two rectangles and add them; for circles use π × (diameter/2)²; for triangles use base × height ÷ 2. One square meter equals 10.764 sq ft.',
+			'Square footage is length × width measured in feet. A 12 ft × 10 ft room is 120 sq ft. For L-shaped rooms, split the floor into two rectangles and add them; for circles use π × (diameter/2)²; for triangles use base × height ÷ 2. One square meter equals 10.764 sq ft. Volume calculations for a specific structure follow the same length-times-width logic one dimension further: a [pool\'s volume in gallons](/pool-calculator/) starts from the same rectangular or circular area formula before multiplying by depth and a gallons-per-cubic-foot conversion.',
 		queries: [
 			'square footage calculator',
 			'sq ft calculator',
@@ -278,7 +278,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up. That is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each.',
+			'Divide the total rise (floor to floor) by the code maximum riser height of 7¾ in and round up. That is your riser count. Riser height = total rise ÷ riser count, treads = risers − 1, total run = treads × tread depth, and stringer length is the diagonal: √(rise² + run²). A 9 ft rise needs 14 risers of 7 11/16 in each. Once the stair layout is set, [figuring the concrete for the landing or footing beneath it](/concrete-calculator/) is a separate, pure-geometry calculation, length times width times thickness for a slab or footing.',
 		queries: ['stair calculator', 'stair stringer calculator', 'stair rise and run calculator'],
 		sections: [
 			{
@@ -384,7 +384,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'Count correct answers in each section of a paper SAT practice test (Reading & Writing out of 66, Math out of 54), then read the scaled score off College Board’s published conversion table. Answering everything right converts to 1580–1600; the scores come out as ranges because the real digital SAT is adaptive and a raw count alone cannot pin down one exact score.',
+			'Count correct answers in each section of a paper SAT practice test (Reading & Writing out of 66, Math out of 54), then read the scaled score off College Board’s published conversion table. Answering everything right converts to 1580–1600; the scores come out as ranges because the real digital SAT is adaptive and a raw count alone cannot pin down one exact score. College applications weigh that SAT score alongside a second number built from a completely different scale: [GPA](/gpa-calculator/) converts letter grades to grade points and averages them across credit hours, with Honors and AP courses adding a weighting boost most students don\'t realize can push the result past 4.0.',
 		queries: ['sat score calculator', 'sat raw score conversion', 'digital sat score calculator'],
 		sections: [
 			{
@@ -481,7 +481,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass.',
+			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass. Once a solution is prepared at that molarity, its temperature often needs converting too: [Celsius, Fahrenheit, and Kelvin](/temperature-converter/) convert by exact SI-defined formulas, with zero rounding error in the conversion itself.',
 		queries: ['molarity calculator', 'molar concentration calculator', 'grams to moles to molarity'],
 		sections: [
 			{
@@ -577,7 +577,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity.',
+			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity. BMI alone doesn\'t say how many calories a body needs to reach a different category: [this site\'s calorie calculator](/calorie-calculator/) works out BMR, maintenance calories, and a goal target using the Mifflin-St Jeor equation instead.',
 		queries: ['bmi calculator', 'bmi calculator for women', 'bmi chart', 'body mass index calculator'],
 		sections: [
 			{
@@ -689,7 +689,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-03',
 		published: '2026-08-03',
 		coreSummary:
-			'A single fair coin flip is 50/50, but the chance of an exact result over many flips follows the binomial distribution: P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k), where C(n,k) is the number of ways to choose which k flips landed heads. Flipping 10 fair coins and getting exactly 5 heads happens 24.6% of the time, not 50%, because there are many more ways to land close to half-and-half than to land on all heads or all tails.',
+			'A single fair coin flip is 50/50, but the chance of an exact result over many flips follows the binomial distribution: P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k), where C(n,k) is the number of ways to choose which k flips landed heads. Flipping 10 fair coins and getting exactly 5 heads happens 24.6% of the time, not 50%, because there are many more ways to land close to half-and-half than to land on all heads or all tails. A different kind of probability entirely, how fast a person responds rather than how a random outcome distributes, is what [this site\'s reaction time test](/reaction-time-test/) measures, timed against published research figures rather than a binomial formula.',
 		queries: [
 			'flip a coin',
 			'coin flip',
@@ -802,7 +802,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-04',
 		published: '2026-08-04',
 		coreSummary:
-			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two.',
+			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two. A chemistry lab reading a thermometer next to a solution is usually also working out concentration: [molarity](/molarity-calculator/) rearranges the same mass-molar mass-volume relationship to solve for whichever one of the three is unknown.',
 		queries: [
 			'celsius to fahrenheit',
 			'fahrenheit to celsius',
@@ -966,7 +966,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-13',
 		published: '2026-08-04',
 		coreSummary:
-			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once.',
+			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once. Mass conversions follow the identical exact-ratio logic, just with different fixed numbers: [a pound equals exactly 0.45359237 kilograms](/weight-converter/), fixed by the same 1959 international agreement that pinned down the inch and the mile.',
 		queries: [
 			'cm to inches',
 			'inches to cm',
@@ -1116,7 +1116,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-13',
 		published: '2026-08-04',
 		coreSummary:
-			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once.',
+			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once. Volume units are pinned down by an equally exact legal definition rather than a rounded measurement: [a US gallon equals exactly 3.785411784 liters](/volume-converter/), per NIST Handbook 44, with every other US customary volume unit defined as an exact ratio of that one figure.',
 		queries: [
 			'kg to lbs',
 			'lbs to kg',
@@ -1348,7 +1348,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-17',
 		published: '2026-08-05',
 		coreSummary:
-			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment.',
+			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment. Not every fixed financial product compounds the same way a mortgage amortizes, either: a [CD](/cd-calculator/) grows by straightforward compound interest on a lump sum, with no monthly payment schedule to amortize at all. Renting instead of owning comes with its own once-off calculation at move-in or move-out: [prorated rent](/prorated-rent-calculator/) depends entirely on which day-count convention the lease uses, actual days in the month, a flat 30-day banker\'s month, or the rent divided across a 365-day year, and the three methods give three different dollar answers for the same dates.',
 		queries: [
 			'mortgage calculator',
 			'home loan calculator',
@@ -1646,7 +1646,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-20',
 		published: '2026-08-05',
 		coreSummary:
-			'Concrete volume is just geometry: a slab, footing, or wall is length × width × thickness; a column, tube, or post hole is π × (diameter/2)² × depth. Divide cubic feet by 27 to get cubic yards for a ready-mix order. For bagged mix, QUIKRETE Concrete Mix (Product No. 1101) publishes exact yields: 40 lb bags give 0.30 ft³, 50 lb give 0.375 ft³, 60 lb give 0.45 ft³, and 80 lb give 0.60 ft³. Bags needed = volume ÷ yield, rounded up.',
+			'Concrete volume is just geometry: a slab, footing, or wall is length × width × thickness; a column, tube, or post hole is π × (diameter/2)² × depth. Divide cubic feet by 27 to get cubic yards for a ready-mix order. For bagged mix, QUIKRETE Concrete Mix (Product No. 1101) publishes exact yields: 40 lb bags give 0.30 ft³, 50 lb give 0.375 ft³, 60 lb give 0.45 ft³, and 80 lb give 0.60 ft³. Bags needed = volume ÷ yield, rounded up. Lumber for the formwork around that concrete pour is priced in a completely different unit: [board feet](/board-foot-calculator/) measures sawed wood by actual thickness, width, and length, not by the nominal size printed on the price tag.',
 		queries: [
 			'concrete calculator',
 			'how much concrete do i need',
@@ -1768,7 +1768,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-21',
 		published: '2026-08-06',
 		coreSummary:
-			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one — (new − old) ÷ |old| × 100 — and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula — |a − b| ÷ ((a + b) ÷ 2) × 100 — used when comparing two values where neither one is the reference.',
+			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one — (new − old) ÷ |old| × 100 — and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula — |a − b| ÷ ((a + b) ÷ 2) × 100 — used when comparing two values where neither one is the reference. Percentages are themselves just a special case of a more general kind of part-to-whole math: [fractions](/fraction-calculator/) need a common denominator to add or subtract, but not to multiply or divide, and every result reduces to lowest terms using the Euclidean algorithm.',
 		queries: [
 			'percentage calculator',
 			'percentage increase calculator',
@@ -1893,7 +1893,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-22',
 		published: '2026-08-06',
 		coreSummary:
-			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here (quart, pint, cup, fluid ounce, tablespoon, teaspoon) is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once.',
+			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here (quart, pint, cup, fluid ounce, tablespoon, teaspoon) is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once. A completely different kind of conversion, rewriting the same integer in a different counting system rather than a different physical unit, is what [the number base converter](/number-base-converter/) does, translating between binary, octal, decimal, and hexadecimal with exact integer arithmetic.',
 		queries: [
 			'volume converter',
 			'how many ounces in a cup',
@@ -2082,7 +2082,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-23',
 		published: '2026-08-06',
 		coreSummary:
-			'Every mode here runs on the proleptic Gregorian calendar, the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4), with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function.',
+			'Every mode here runs on the proleptic Gregorian calendar, the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4), with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function. A date calculation that also needs to account for time zones, not just calendar dates, is a separate problem: [the world clock](/world-clock/) reads live offsets and daylight-saving transitions straight from the IANA time zone database rather than a stored table, so it stays correct through DST changes.',
 		queries: [
 			'date calculator',
 			'days between two dates',
@@ -2221,7 +2221,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-09',
 		published: '2026-08-09',
 		coreSummary:
-			'Daily calorie needs break down into three separate numbers: basal metabolic rate (BMR) from the Mifflin-St Jeor equation (Am J Clin Nutr 1990;51:241-247), maintenance calories (TDEE) after multiplying BMR by an activity factor, and a goal calorie target after applying the conventional "3,500 kcal per pound" adjustment for weight loss or gain. The activity multiplier is a rough estimate of weekly movement, self-reported rather than measured, and the 500-calorie-per-pound-per-week rule is a linear approximation that runs faster than real weight change tends to, since the body\'s energy needs shift as weight changes (NIH/NIDDK Body Weight Planner research). Targets under about 1,200 cal/day for women or 1,500 cal/day for men are flagged separately, following the 2013 AHA/ACC/TOS obesity guideline\'s threshold for diets that call for medical supervision.',
+			'Daily calorie needs break down into three separate numbers: basal metabolic rate (BMR) from the Mifflin-St Jeor equation (Am J Clin Nutr 1990;51:241-247), maintenance calories (TDEE) after multiplying BMR by an activity factor, and a goal calorie target after applying the conventional "3,500 kcal per pound" adjustment for weight loss or gain. The activity multiplier is a rough estimate of weekly movement, self-reported rather than measured, and the 500-calorie-per-pound-per-week rule is a linear approximation that runs faster than real weight change tends to, since the body\'s energy needs shift as weight changes (NIH/NIDDK Body Weight Planner research). Targets under about 1,200 cal/day for women or 1,500 cal/day for men are flagged separately, following the 2013 AHA/ACC/TOS obesity guideline\'s threshold for diets that call for medical supervision. Turning some of that calorie target into activity means tracking distance walked, which doesn\'t reduce to one flat number either: [steps convert to miles through an individual stride length](/steps-to-miles-calculator/) estimated from height, not the popular 2,000-steps-per-mile rule of thumb.',
 		queries: [
 			'calorie calculator',
 			'how many calories should I eat',
@@ -2361,7 +2361,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-09',
 		published: '2026-08-09',
 		coreSummary:
-			'Every offset and daylight-saving transition here is read live from the IANA time zone database built into your browser (the same source every major OS uses) rather than a stored table of UTC offsets, so results stay correct through DST changes in either zone. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day.',
+			'Every offset and daylight-saving transition here is read live from the IANA time zone database built into your browser (the same source every major OS uses) rather than a stored table of UTC offsets, so results stay correct through DST changes in either zone. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day. Working out elapsed time between two clock readings, rather than converting one moment across time zones, is its own calculation: [time duration](/time-duration-calculator/) handles the overnight-rollover case automatically, assuming an end time earlier than the start time falls on the next day.',
 		queries: [
 			'world clock',
 			'time zone converter',
@@ -2516,7 +2516,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-10',
 		published: '2026-08-10',
 		coreSummary:
-			'Tip = base amount × (tip percent / 100). The "base amount" is where most tip calculators quietly guess wrong: etiquette authorities like the Emily Post Institute recommend tipping on the pre-tax subtotal, not the tax-inclusive total printed at the bottom of the receipt, since sales tax is a government charge that has nothing to do with the service. This calculator backs the subtotal out of a tax-inclusive total, computes the tip both ways so you can see the actual dollar gap, and splits the resulting total evenly across the table.',
+			'Tip = base amount × (tip percent / 100). The "base amount" is where most tip calculators quietly guess wrong: etiquette authorities like the Emily Post Institute recommend tipping on the pre-tax subtotal, not the tax-inclusive total printed at the bottom of the receipt, since sales tax is a government charge that has nothing to do with the service. This calculator backs the subtotal out of a tax-inclusive total, computes the tip both ways so you can see the actual dollar gap, and splits the resulting total evenly across the table. A monthly mortgage payment runs on the same idea of a recurring amount split into parts, just at a much larger scale and over a much longer schedule: [this site\'s mortgage calculator](/mortgage-calculator/) breaks a fixed-rate loan payment down into principal, interest, taxes, insurance, PMI, and HOA.',
 		queries: ['tip calculator', 'how much to tip', 'tip calculator split bill', 'do you tip before or after tax'],
 		sections: [
 			{
@@ -2663,7 +2663,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-10',
 		published: '2026-08-10',
 		coreSummary:
-			"This calculator converts each course's letter grade to grade points on the standard 4.0 scale, multiplies by credit hours, and averages the total across all credits. Switching to weighted mode adds a level boost (Honors +0.5, AP/IB +1.0) to each course before averaging, which is why a weighted GPA can climb past 4.0.",
+			"This calculator converts each course's letter grade to grade points on the standard 4.0 scale, multiplies by credit hours, and averages the total across all credits. Switching to weighted mode adds a level boost (Honors +0.5, AP/IB +1.0) to each course before averaging, which is why a weighted GPA can climb past 4.0. A different kind of academic estimate, how long a writing assignment needs to be, runs on its own separate convention: [words to pages](/words-to-pages-calculator/) uses the standard 250-words-per-page double-spaced baseline rather than anything grade-related.",
 		queries: [
 			'gpa calculator',
 			'how to calculate gpa',
@@ -2768,7 +2768,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-28',
 		published: '2026-08-10',
 		coreSummary:
-			"Simple reaction time measures how fast you can respond to a single expected signal, no choice involved, just detect and click. Published averages vary by measurement method: a Clemson University literature review cites roughly 190 ms as the accepted non-computer figure for over a century, and cites a further study putting computer-measured results around 268 ms. Woods et al. (2015) separately measured a 231 ms raw average (213 ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. This tool runs a short series of trials, times each one with the browser's performance clock from stimulus onset to click, and compares your average against those documented figures.",
+			"Simple reaction time measures how fast you can respond to a single expected signal, no choice involved, just detect and click. Published averages vary by measurement method: a Clemson University literature review cites roughly 190 ms as the accepted non-computer figure for over a century, and cites a further study putting computer-measured results around 268 ms. Woods et al. (2015) separately measured a 231 ms raw average (213 ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. This tool runs a short series of trials, times each one with the browser's performance clock from stimulus onset to click, and compares your average against those documented figures. A related but distinct measurement, how many times a finger can click in a row rather than how fast it responds once, is covered separately: [click speed](/click-speed-test/) is benchmarked against the clinical Finger Tapping Test instead of a reaction-time study.",
 		queries: [
 			'reaction time test',
 			'reaction time',
@@ -2873,7 +2873,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-11',
 		published: '2026-08-11',
 		coreSummary:
-			'Adding or subtracting fractions requires a common denominator first: a/b + c/d = (a×d + c×b) ÷ (b×d). Multiplying and dividing do not need one. Multiply straight across (a/b × c/d = a×c ÷ b×d), and divide by multiplying by the reciprocal (a/b ÷ c/d = a×d ÷ b×c). Every result is then reduced to lowest terms by dividing both terms by their greatest common divisor, found with the Euclidean algorithm. A mixed number like 2 3/4 is the same value as the improper fraction 11/4 (2×4+3 over 4), so operations on mixed numbers work by converting to an improper fraction first and converting back afterward.',
+			'Adding or subtracting fractions requires a common denominator first: a/b + c/d = (a×d + c×b) ÷ (b×d). Multiplying and dividing do not need one. Multiply straight across (a/b × c/d = a×c ÷ b×d), and divide by multiplying by the reciprocal (a/b ÷ c/d = a×d ÷ b×c). Every result is then reduced to lowest terms by dividing both terms by their greatest common divisor, found with the Euclidean algorithm. A mixed number like 2 3/4 is the same value as the improper fraction 11/4 (2×4+3 over 4), so operations on mixed numbers work by converting to an improper fraction first and converting back afterward. Geometry problems often produce fractional dimensions that need exactly this kind of arithmetic before they go into a formula like [volume and surface area](/shape-volume-calculator/), which covers a rectangular prism, cylinder, sphere, and cone from the same handful of dimensions.',
 		queries: [
 			'fraction calculator',
 			'mixed fraction calculator',
@@ -3006,7 +3006,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-13',
 		published: '2026-08-11',
 		coreSummary:
-			'An hour equals exactly 60 minutes and a minute equals exactly 60 seconds, fixed ratios from the BIPM SI Brochure, not estimates. When the end time entered is earlier than or the same as the start time, this calculator assumes the end falls on the next day, the standard convention for an overnight span such as a 10 PM to 6 AM shift, so the result is always a positive duration instead of a negative one.',
+			'An hour equals exactly 60 minutes and a minute equals exactly 60 seconds, fixed ratios from the BIPM SI Brochure, not estimates. When the end time entered is earlier than or the same as the start time, this calculator assumes the end falls on the next day, the standard convention for an overnight span such as a 10 PM to 6 AM shift, so the result is always a positive duration instead of a negative one. A duration measured in years rather than hours needs a calendar-aware calculation of its own: [the age gap between two people](/age-difference-calculator/) is reported in years, months, and days, plus what that gap represents as a percentage of the older person\'s age, a figure a plain date-difference count skips entirely.',
 		queries: [
 			'time duration calculator',
 			'time between two times calculator',
@@ -3125,7 +3125,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-12',
 		published: '2026-08-12',
 		coreSummary:
-			'Volume and surface area both come from the same handful of dimensions. Rectangular prism: volume = length × width × height, surface area = 2(lw + lh + wh). Cylinder: volume = πr²h, surface area = 2πr(r + h). Sphere: volume = (4/3)πr³, surface area = 4πr². Cone: volume = (1/3)πr²h, surface area = πr² + πrl, where l is the slant height, √(r² + h²). This tool takes the dimensions for whichever shape is selected and returns both figures at once.',
+			'Volume and surface area both come from the same handful of dimensions. Rectangular prism: volume = length × width × height, surface area = 2(lw + lh + wh). Cylinder: volume = πr²h, surface area = 2πr(r + h). Sphere: volume = (4/3)πr³, surface area = 4πr². Cone: volume = (1/3)πr²h, surface area = πr² + πrl, where l is the slant height, √(r² + h²). This tool takes the dimensions for whichever shape is selected and returns both figures at once. Whatever number comes out of a volume formula still has to be rounded to a sensible number of digits, and that step has its own hidden complexity: [rounding a number exactly halfway between two values](/rounding-calculator/), like 2.5, needs a tie-breaking rule, and different rules give different, equally valid answers.',
 		queries: [
 			'volume of a rectangular prism',
 			'surface area of a sphere',
@@ -3249,7 +3249,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-12',
 		published: '2026-08-12',
 		coreSummary:
-			'Steps convert to distance through stride length, not a fixed ratio: distance = steps × step length. Step length itself is estimated from height using the regression Hoeger et al. (2008) fit across walking and running speeds: step length ≈ height × 0.415 for men or height × 0.413 for women. At the U.S. average adult height (68.9in men, 63.5in women, CDC NHANES), 10,000 steps works out to about 4.51 miles for men and 4.14 miles for women. The "10,000 steps ≈ 5 miles" rule of thumb only holds for someone near that average height and overshoots for a shorter stride.',
+			'Steps convert to distance through stride length, not a fixed ratio: distance = steps × step length. Step length itself is estimated from height using the regression Hoeger et al. (2008) fit across walking and running speeds: step length ≈ height × 0.415 for men or height × 0.413 for women. At the U.S. average adult height (68.9in men, 63.5in women, CDC NHANES), 10,000 steps works out to about 4.51 miles for men and 4.14 miles for women. The "10,000 steps ≈ 5 miles" rule of thumb only holds for someone near that average height and overshoots for a shorter stride. Height feeds into a very different clinical calculation elsewhere on this site: [body surface area](/body-surface-area-calculator/) combines height and weight through the Mosteller or Du Bois formula to estimate total skin surface, used to scale chemotherapy doses rather than to measure how far someone walked. A different sport-specific distance estimate on this site scales similarly from one known personal measurement: [golf club distances](/golf-club-distance-chart/) can be rescaled from a single known driver distance to estimate every other club in the bag, the same one-measurement-predicts-the-rest logic as using height to estimate stride length.',
 		queries: [
 			'how many miles is 10000 steps',
 			'steps to miles',
@@ -3370,7 +3370,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-13',
 		published: '2026-08-13',
 		coreSummary:
-			'Board feet is the standard volume unit for sawed lumber: board feet = (thickness in inches x width in inches x length in feet) / 12, since one board foot equals 144 cubic inches (a 1"x12"x12" block). The formula needs the piece\'s actual measured dimensions, not the nominal size on the price tag. A rough-sawn "4/4" board is nominally 1 inch thick, but a surfaced one is usually thinner once the mill planes it smooth.',
+			'Board feet is the standard volume unit for sawed lumber: board feet = (thickness in inches x width in inches x length in feet) / 12, since one board foot equals 144 cubic inches (a 1"x12"x12" block). The formula needs the piece\'s actual measured dimensions, not the nominal size on the price tag. A rough-sawn "4/4" board is nominally 1 inch thick, but a surfaced one is usually thinner once the mill planes it smooth. Material for a driveway runs on yet another unit, weight rather than volume or board count: [asphalt](/asphalt-calculator/) is ordered by the ton, since paving plants batch and truck it by weight, not by the cubic foot.',
 		queries: [
 			'board foot calculator',
 			'board footage calculator',
@@ -3482,7 +3482,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-11',
 		published: '2026-08-17',
 		coreSummary:
-			'Asphalt is ordered by weight, not area, because plants batch and truck it by the ton. The formula: volume (length x width x compacted depth) converts to weight using the mix\'s density, then weight in pounds divides by 2,000 to get tons. This calculator defaults to 145 lb/ft³ for hot mix asphalt, the planning unit weight the Iowa DOT\'s Standard Specifications use, and 112 lb/ft³ for reclaimed asphalt pavement (RAP), near the midpoint of the compacted-density range FHWA documents for recycled material.',
+			'Asphalt is ordered by weight, not area, because plants batch and truck it by the ton. The formula: volume (length x width x compacted depth) converts to weight using the mix\'s density, then weight in pounds divides by 2,000 to get tons. This calculator defaults to 145 lb/ft³ for hot mix asphalt, the planning unit weight the Iowa DOT\'s Standard Specifications use, and 112 lb/ft³ for reclaimed asphalt pavement (RAP), near the midpoint of the compacted-density range FHWA documents for recycled material. A garden bed alongside that driveway needs the opposite kind of material entirely: [topsoil is still ordered by volume](/topsoil-calculator/), converted to cubic yards, with weight varying by moisture and soil texture rather than a fixed density like asphalt\'s.',
 		queries: [
 			'asphalt calculator',
 			'asphalt tonnage calculator',
@@ -3597,7 +3597,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-17',
 		published: '2026-08-17',
 		coreSummary:
-			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does.',
+			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. A related but distinct height-adjusted measurement looks at muscle instead of skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
 		queries: [
 			'body surface area calculator',
 			'bsa calculator',
@@ -3697,7 +3697,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-18',
 		published: '2026-08-18',
 		coreSummary:
-			'Topsoil is ordered by volume: length x width x depth (or, for a round bed, pi x radius squared x depth), converted from cubic feet to cubic yards by dividing by 27. Weight is harder to pin to one number because it depends on both moisture and soil texture, so this calculator uses the USDA NRCS Soil Health Educators Guide\'s ideal bulk-density ceiling for sandy, loam, and clay-heavy soils, converted to pounds per cubic yard, as a texture-specific planning estimate rather than a single flat figure.',
+			'Topsoil is ordered by volume: length x width x depth (or, for a round bed, pi x radius squared x depth), converted from cubic feet to cubic yards by dividing by 27. Weight is harder to pin to one number because it depends on both moisture and soil texture, so this calculator uses the USDA NRCS Soil Health Educators Guide\'s ideal bulk-density ceiling for sandy, loam, and clay-heavy soils, converted to pounds per cubic yard, as a texture-specific planning estimate rather than a single flat figure. None of that volume-and-weight math applies once the job moves from dirt to wiring: [conduit fill](/conduit-fill-calculator/) is governed by a fixed NEC percentage of a conduit\'s cross-sectional area, a completely different kind of capacity limit.',
 		queries: [
 			'topsoil calculator',
 			'how much topsoil do i need',
@@ -3820,7 +3820,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-19',
 		published: '2026-08-19',
 		coreSummary:
-			'Servings per keg = keg volume divided by serving size, rounded down. Keg volumes come from the fractional-barrel sizes the US Alcohol and Tobacco Tax and Trade Bureau authorizes under 27 CFR 25.11 and 25.156 (half barrel = 15.5 gal, quarter barrel = 7.75 gal, sixth barrel = 31/6 gal), plus the 5-gallon and metric kegs the same regulation covers. The default 12 oz serving is the NIAAA\'s standard-drink reference volume for beer near 5% ABV.',
+			'Servings per keg = keg volume divided by serving size, rounded down. Keg volumes come from the fractional-barrel sizes the US Alcohol and Tobacco Tax and Trade Bureau authorizes under 27 CFR 25.11 and 25.156 (half barrel = 15.5 gal, quarter barrel = 7.75 gal, sixth barrel = 31/6 gal), plus the 5-gallon and metric kegs the same regulation covers. The default 12 oz serving is the NIAAA\'s standard-drink reference volume for beer near 5% ABV. Estimating food for the same party runs on a comparably specific reference figure rather than a round number: [how many pizzas to order](/pizza-calculator/) multiplies a slices-per-person figure by appetite level, then divides by however many slices the chosen pizza size actually holds.',
 		queries: [
 			'keg calculator',
 			'how many beers in a keg',
@@ -3942,7 +3942,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-19',
 		published: '2026-08-19',
 		coreSummary:
-			'A sentence ends at a run of . ! or ? unless that single period sits inside a decimal number, follows a recognized abbreviation ("Dr.", "approx.", "p.m."), or follows a capital letter used as an initial. This tool also scores readability with Rudolf Flesch\'s 1948 Reading Ease formula and the Flesch-Kincaid Grade Level formula Kincaid et al. derived from it for a 1975 Navy readability study, and estimates reading time from Brysbaert\'s 2019 meta-analysis putting average adult silent non-fiction reading at 238 words per minute.',
+			'A sentence ends at a run of . ! or ? unless that single period sits inside a decimal number, follows a recognized abbreviation ("Dr.", "approx.", "p.m."), or follows a capital letter used as an initial. This tool also scores readability with Rudolf Flesch\'s 1948 Reading Ease formula and the Flesch-Kincaid Grade Level formula Kincaid et al. derived from it for a 1975 Navy readability study, and estimates reading time from Brysbaert\'s 2019 meta-analysis putting average adult silent non-fiction reading at 238 words per minute. Turning text into something other than a readability score is a completely different kind of transformation: [the Wingdings translator](/wingdings-translator/) converts characters into a symbol font\'s glyph set, using a Unicode workaround so the result renders on any device instead of only one with the font installed.',
 		queries: [
 			'sentence counter',
 			'sentence counter online',
@@ -4075,7 +4075,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-19',
 		published: '2026-08-19',
 		coreSummary:
-			'Markup% = (selling price - cost) / cost × 100. Margin% = (selling price - cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused.',
+			'Markup% = (selling price - cost) / cost × 100. Margin% = (selling price - cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused. Percentage-of-a-total math shows up in a much more everyday setting too: a [tip](/tip-calculator/) is the same kind of percent-of-base calculation, though restaurant etiquette says the base should be the pre-tax subtotal, not the tax-inclusive total most people tip from.',
 		queries: ['markup calculator', 'markup percentage calculator', 'markup vs margin calculator', 'how to calculate markup', 'markup to margin converter'],
 		sections: [
 			{
@@ -4262,7 +4262,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-20',
 		published: '2026-08-20',
 		coreSummary:
-			'NEC Chapter 9 caps how much of a conduit\'s cross-section conductors may occupy: 53% for one conductor, 31% for exactly two, 40% for three or more (60% for a nipple 24 in. or shorter). Fill percent = total conductor area ÷ conduit\'s 100%-fill area from Table 4, compared against that cap. Three 12 AWG THHN wires in a 1/2 in. EMT use 0.0399 sq in. against a 0.1216 sq in. allowance at 40% fill, about 13% full and well within limits.',
+			'NEC Chapter 9 caps how much of a conduit\'s cross-section conductors may occupy: 53% for one conductor, 31% for exactly two, 40% for three or more (60% for a nipple 24 in. or shorter). Fill percent = total conductor area ÷ conduit\'s 100%-fill area from Table 4, compared against that cap. Three 12 AWG THHN wires in a 1/2 in. EMT use 0.0399 sq in. against a 0.1216 sq in. allowance at 40% fill, about 13% full and well within limits. Code limits show up just as directly in stair construction: [a stair\'s riser height is capped by the IRC](/stair-calculator/) at 7¾ inches, the same kind of fixed regulatory ceiling that governs how much a conduit may be filled.',
 		queries: [
 			'conduit fill calculator',
 			'nec conduit fill chart',
@@ -4354,7 +4354,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-20',
 		published: '2026-08-20',
 		coreSummary:
-			'Rounding a number that falls exactly halfway (like 2.5 or -2.5) needs a tie-breaking rule, and different rules give different, equally valid answers: "half up" sends 2.5 to 3 but -2.5 to -2, while "half away from zero" sends both to 3 and -3. This calculator works from the exact decimal digits typed in, not a binary floating-point approximation of them, so a case like 1.005 rounds to 1.01 at 2 decimal places rather than the 1.00 that naive floating-point math sometimes produces.',
+			'Rounding a number that falls exactly halfway (like 2.5 or -2.5) needs a tie-breaking rule, and different rules give different, equally valid answers: "half up" sends 2.5 to 3 but -2.5 to -2, while "half away from zero" sends both to 3 and -3. This calculator works from the exact decimal digits typed in, not a binary floating-point approximation of them, so a case like 1.005 rounds to 1.01 at 2 decimal places rather than the 1.00 that naive floating-point math sometimes produces. A different category of math problem has an even less ambiguous outcome: [a system of linear equations](/system-of-equations-solver/) resolves to exactly one of three outcomes, one unique solution, no solution, or infinitely many, with Gaussian elimination revealing which one applies directly rather than by rounding anything.',
 		queries: [
 			'rounding calculator',
 			'round to nearest 10 calculator',
@@ -4479,7 +4479,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-21',
 		published: '2026-08-21',
 		coreSummary:
-			'Wingdings assigns a dingbat glyph to each printable ASCII character (space through ~), and Windows makes that same glyph set reachable a second way: at Unicode code point 0xF000 plus the ASCII code, the exact offset Microsoft\'s OpenType specification documents for symbol fonts. That trick only shows symbols on a device with Wingdings installed. This tool defaults to a different approach instead, swapping each character for its own standalone Unicode symbol equivalent so the output renders correctly on any device, with the Windows font code and a decoder available as separate modes.',
+			'Wingdings assigns a dingbat glyph to each printable ASCII character (space through ~), and Windows makes that same glyph set reachable a second way: at Unicode code point 0xF000 plus the ASCII code, the exact offset Microsoft\'s OpenType specification documents for symbol fonts. That trick only shows symbols on a device with Wingdings installed. This tool defaults to a different approach instead, swapping each character for its own standalone Unicode symbol equivalent so the output renders correctly on any device, with the Windows font code and a decoder available as separate modes. Measuring how fast someone types that text in the first place is a separate calculation with its own correction factor: [words per minute](/words-per-minute-average/) subtracts errors from the raw gross speed to get the net figure typing certifications actually use.',
 		queries: [
 			'wingdings translator',
 			'wingdings to text',
@@ -4611,7 +4611,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-21',
 		published: '2026-08-21',
 		coreSummary:
-			'Click speed measures raw clicking throughput over a fixed window (clicks divided by seconds), which is a different thing from reaction time (how fast you respond to a single signal). A well-documented clinical measure of natural single-finger speed, the Finger Tapping Test (Halstead, 1947; standardized by Reitan & Wolfson, 1985), puts a healthy young adult\'s dominant-hand average at roughly 5.0-5.5 taps per second when tapping continuously with one finger. This tool times a click session over a duration you pick, reports clicks per second and per minute, and compares the result against that clinical range, noting that scores well above it typically come from alternating multiple fingers rather than one finger tapping alone.',
+			'Click speed measures raw clicking throughput over a fixed window (clicks divided by seconds), which is a different thing from reaction time (how fast you respond to a single signal). A well-documented clinical measure of natural single-finger speed, the Finger Tapping Test (Halstead, 1947; standardized by Reitan & Wolfson, 1985), puts a healthy young adult\'s dominant-hand average at roughly 5.0-5.5 taps per second when tapping continuously with one finger. This tool times a click session over a duration you pick, reports clicks per second and per minute, and compares the result against that clinical range, noting that scores well above it typically come from alternating multiple fingers rather than one finger tapping alone. A completely different kind of "test yourself against a number" tool on this site runs on probability rather than physical speed: [flipping virtual coins](/coin-flip-simulator/) compares an actual run of flips against the binomial distribution\'s exact predicted odds.',
 		queries: [
 			'click speed test',
 			'cps test',
@@ -4716,7 +4716,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-22',
 		published: '2026-08-22',
 		coreSummary:
-			'Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round), or length x width x average depth x 6.7 (oval, using the stadium-shape multiplier Hayward\'s Aqua Rite manual publishes, since an oval pool is a rectangle with two semicircular ends, not a true ellipse), each times the exact 7.480519 gal/ft³ conversion. Salt dosing follows directly from the definition of ppm as mg of solute per liter: pounds of salt needed = (target ppm - current ppm) x gallons / 119,826, a unit-conversion identity that pool guides commonly round to "gallons / 120,000."',
+			'Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round), or length x width x average depth x 6.7 (oval, using the stadium-shape multiplier Hayward\'s Aqua Rite manual publishes, since an oval pool is a rectangle with two semicircular ends, not a true ellipse), each times the exact 7.480519 gal/ft³ conversion. Salt dosing follows directly from the definition of ppm as mg of solute per liter: pounds of salt needed = (target ppm - current ppm) x gallons / 119,826, a unit-conversion identity that pool guides commonly round to "gallons / 120,000." The area math behind step one of that volume formula, rectangular or circular, is exactly what [this site\'s square footage calculator](/square-footage-calculator/) covers on its own, for a room or yard rather than a pool basin.',
 		queries: [
 			'pool calculator',
 			'salt water pool calculator',
@@ -4842,7 +4842,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-22',
 		published: '2026-08-22',
 		coreSummary:
-			"This calculator multiplies each group by a slices-per-person figure (2 for a light adult appetite, 3 average, 4 hearty, 2 for a child) and divides the total by however many slices your chosen pizza size holds (6 small, 8 medium, 8 large, 12 extra-large), rounding up to a whole pizza. Serving heavy sides like wings or pasta cuts the estimate by 25%, the midpoint of the 20-30% range catering guides commonly cite. None of these figures are a physical law: pizzerias cut pies differently, so the calculator states the convention it uses, and the reference tables below show where it varies.",
+			"This calculator multiplies each group by a slices-per-person figure (2 for a light adult appetite, 3 average, 4 hearty, 2 for a child) and divides the total by however many slices your chosen pizza size holds (6 small, 8 medium, 8 large, 12 extra-large), rounding up to a whole pizza. Serving heavy sides like wings or pasta cuts the estimate by 25%, the midpoint of the 20-30% range catering guides commonly cite. None of these figures are a physical law: pizzerias cut pies differently, so the calculator states the convention it uses, and the reference tables below show where it varies. A side dish at that same gathering runs on its own fixed but non-universal ratio: [rice needs a different amount of water per cup depending on the variety](/rice-to-water-ratio/), from 1.25:1 for short-grain white up to 4:1 for arborio.",
 		queries: [
 			'pizza calculator',
 			'how many slices in a large pizza',
@@ -4985,7 +4985,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-09',
 		published: '2026-08-23',
 		coreSummary:
-			'Enter two birth dates and this calculator returns the calendar-aware years/months/days apart, the total days apart, each person\'s current age, and the gap expressed as a percentage of the older person\'s age. The percentage is the part a plain date-difference tool skips: a 5-year gap is a 20% difference between two 20- and 25-year-olds but only about 8% between two 60- and 65-year-olds, using the same 5 years both times.',
+			'Enter two birth dates and this calculator returns the calendar-aware years/months/days apart, the total days apart, each person\'s current age, and the gap expressed as a percentage of the older person\'s age. The percentage is the part a plain date-difference tool skips: a 5-year gap is a 20% difference between two 20- and 25-year-olds but only about 8% between two 60- and 65-year-olds, using the same 5 years both times. Finding that kind of exact calendar gap between two dates, without the percentage framing, is the more general version of the same problem: [this site\'s date calculator](/date-calculator/) reports both the total day count and a years/months/days breakdown between any two dates, or counts down to a specific one.',
 		queries: [
 			'age difference calculator',
 			'age gap calculator',
@@ -5121,7 +5121,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-23',
 		published: '2026-08-23',
 		coreSummary:
-			'WACC = (E/V × Re) + (D/V × Rd × (1 − Tc)), where V = E + D is total capital, Re is the cost of equity, and Rd is the pre-tax cost of debt. A company with $600M equity at a 10% cost of equity and $400M debt at a 6% pre-tax cost of debt (21% tax rate) has a WACC of (0.6 × 10%) + (0.4 × 4.74%) = 7.90%.',
+			'WACC = (E/V × Re) + (D/V × Rd × (1 − Tc)), where V = E + D is total capital, Re is the cost of equity, and Rd is the pre-tax cost of debt. A company with $600M equity at a 10% cost of equity and $400M debt at a 6% pre-tax cost of debt (21% tax rate) has a WACC of (0.6 × 10%) + (0.4 × 4.74%) = 7.90%. Once that cost-of-capital rate is set, a business still has to price what it sells above cost to actually earn a return on it: [markup and margin](/markup-calculator/) describe the same dollar of profit two different ways, and the two percentages are never equal.',
 		queries: [
 			'wacc calculator',
 			'weighted average cost of capital calculator',
@@ -5227,7 +5227,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-24',
 		published: '2026-08-24',
 		coreSummary:
-			'At the standard formatting baseline of 12-point Times New Roman with one-inch margins, a page holds about 250 words double-spaced or 500 words single-spaced. 1,000 words works out to about 4 pages double-spaced or 2 pages single-spaced.',
+			'At the standard formatting baseline of 12-point Times New Roman with one-inch margins, a page holds about 250 words double-spaced or 500 words single-spaced. 1,000 words works out to about 4 pages double-spaced or 2 pages single-spaced. Standardized test scoring runs on its own conversion table instead of a flat ratio: [the SAT\'s raw-to-scaled conversion](/sat-score-calculator/) comes straight from College Board\'s published practice-test table, not a simple word- or page-count formula.',
 		queries: [
 			'words to pages calculator',
 			'how many pages is 1000 words',
@@ -5347,7 +5347,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-24',
 		published: '2026-08-24',
 		coreSummary:
-			'FFMI measures muscle mass relative to height, independent of body fat: fat-free mass (weight minus fat) divided by height in meters squared. Normalized FFMI adjusts that number to a 1.80 m reference height so people of different heights compare fairly. Kouri et al. (1995) found that normalized FFMI in drug-free male athletes topped out at 25.0, while steroid users reached 28-32 — a threshold still used as a rough natural-vs-enhanced reference point.',
+			'FFMI measures muscle mass relative to height, independent of body fat: fat-free mass (weight minus fat) divided by height in meters squared. Normalized FFMI adjusts that number to a 1.80 m reference height so people of different heights compare fairly. Kouri et al. (1995) found that normalized FFMI in drug-free male athletes topped out at 25.0, while steroid users reached 28-32 — a threshold still used as a rough natural-vs-enhanced reference point. FFMI exists partly because a more familiar height-and-weight ratio doesn\'t distinguish muscle from fat at all: [BMI](/bmi-calculator/) uses the same two inputs, height and weight, but the CDC/WHO categories built on it say nothing about body composition.',
 		queries: ['ffmi calculator', 'fat free mass index calculator', 'normalized ffmi calculator', 'ffmi natural limit'],
 		sections: [
 			{
@@ -5446,7 +5446,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-25',
 		published: '2026-08-25',
 		coreSummary:
-			'A dead pixel test fills the screen with solid colors, one at a time, so a defective pixel stands out against a flat background instead of getting lost inside a normal image. A dark dot on white reveals a dead (always-off) pixel; a bright dot on black reveals a hot (always-on) pixel; the pure red, green, and blue screens isolate each sub-pixel channel so a stuck one shows up as an off-color speck. This tool runs that cycle in your browser, plus a faster color-flashing mode sometimes reported to help dislodge a merely stuck (as opposed to physically dead) sub-pixel, and a reference table showing how many such defects the historical ISO 13406-2 classification allowed per resolution before a panel fell outside spec.',
+			'A dead pixel test fills the screen with solid colors, one at a time, so a defective pixel stands out against a flat background instead of getting lost inside a normal image. A dark dot on white reveals a dead (always-off) pixel; a bright dot on black reveals a hot (always-on) pixel; the pure red, green, and blue screens isolate each sub-pixel channel so a stuck one shows up as an off-color speck. This tool runs that cycle in your browser, plus a faster color-flashing mode sometimes reported to help dislodge a merely stuck (as opposed to physically dead) sub-pixel, and a reference table showing how many such defects the historical ISO 13406-2 classification allowed per resolution before a panel fell outside spec. Testing an input device instead of a display needs a different method entirely: [the keyboard test](/keyboard-test/) lights up a virtual layout as physical keys are pressed and tracks rollover, how many keys the keyboard can register held down at once.',
 		queries: ['dead pixel test', 'dead pixel test online', 'stuck pixel test', 'how to check for dead pixels'],
 		sections: [
 			{
@@ -5556,7 +5556,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-26',
 		published: '2026-08-26',
 		coreSummary:
-			'A keyboard test lights up a virtual layout as you press physical keys, so you can confirm a key registers at all and see exactly which ones you have and have not tried yet. This tool also tracks how many keys it can detect held down at the same time, a property called key rollover: press just two keys and every keyboard should handle it, but push toward four, five, or more and a cheaper keyboard without per-key diodes may start dropping or "ghosting" a key rather than registering it. A reference table below explains what different rollover counts mean, including the 6-key ceiling built into the (largely obsolete) USB boot protocol, plus how the three common full-size physical layouts, ANSI, ISO, and JIS, differ in total key count.',
+			'A keyboard test lights up a virtual layout as you press physical keys, so you can confirm a key registers at all and see exactly which ones you have and have not tried yet. This tool also tracks how many keys it can detect held down at the same time, a property called key rollover: press just two keys and every keyboard should handle it, but push toward four, five, or more and a cheaper keyboard without per-key diodes may start dropping or "ghosting" a key rather than registering it. A reference table below explains what different rollover counts mean, including the 6-key ceiling built into the (largely obsolete) USB boot protocol, plus how the three common full-size physical layouts, ANSI, ISO, and JIS, differ in total key count. Testing the screen that keyboard\'s input shows up on is the complementary check: [a dead pixel test](/dead-pixel-test/) cycles through solid colors instead of a key layout, since a defective pixel stands out against a flat background instead of getting lost inside a normal image.',
 		queries: ['keyboard test', 'keyboard tester online', 'test keyboard keys', 'keyboard rollover test', 'n-key rollover test'],
 		sections: [
 			{
@@ -5661,7 +5661,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-27',
 		published: '2026-08-27',
 		coreSummary:
-			'A square system of linear equations (as many equations as unknowns) has exactly one of three outcomes: one unique solution, no solution, or infinitely many solutions. Which one applies isn\'t a guess. Gaussian elimination reveals it directly: if every unknown ends up with a distinct pivot row, the solution is unique. If elimination produces a row that says something like "0 = 0," that equation was redundant, and the system has infinitely many solutions along a line or plane. If elimination instead produces a row that says "0 = k" for some nonzero k, the equations contradict each other and there is no solution.',
+			'A square system of linear equations (as many equations as unknowns) has exactly one of three outcomes: one unique solution, no solution, or infinitely many solutions. Which one applies isn\'t a guess. Gaussian elimination reveals it directly: if every unknown ends up with a distinct pivot row, the solution is unique. If elimination produces a row that says something like "0 = 0," that equation was redundant, and the system has infinitely many solutions along a line or plane. If elimination instead produces a row that says "0 = k" for some nonzero k, the equations contradict each other and there is no solution. Percent problems are comparatively far more common day to day, and they hide their own kind of ambiguity: [percentage change and percent difference](/percentage-calculator/) are two different formulas that look similar but answer different questions, one comparing an old value to a new one and the other comparing two values where neither is the reference.',
 		queries: [
 			'system of equations solver',
 			'system of equations calculator',
@@ -5768,7 +5768,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-28',
 		published: '2026-08-28',
 		coreSummary:
-			'Binary, octal, decimal, and hexadecimal are four ways of writing the same integer using 2, 8, 10, or 16 symbols per digit. One hexadecimal digit always represents exactly 4 binary bits (since 2^4 = 16), which is why programmers use hex as shorthand for binary rather than decimal. Enter a number in any of the four bases and this tool converts it to the other three at once, using exact integer arithmetic so results never lose precision.',
+			'Binary, octal, decimal, and hexadecimal are four ways of writing the same integer using 2, 8, 10, or 16 symbols per digit. One hexadecimal digit always represents exactly 4 binary bits (since 2^4 = 16), which is why programmers use hex as shorthand for binary rather than decimal. Enter a number in any of the four bases and this tool converts it to the other three at once, using exact integer arithmetic so results never lose precision. Electrical quantities can\'t be converted between each other quite so directly: [watts, amps, and volts](/electrical-converter/) are three different physical quantities, so watts requires knowing voltage too, not just a fixed ratio the way binary converts to hex.',
 		queries: [
 			'decimal to binary',
 			'binary to decimal',
@@ -5888,7 +5888,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-01',
 		published: '2026-09-01',
 		coreSummary:
-			"Watts, amps, and volts are three different physical quantities, not three names for the same thing, so amps cannot be converted to watts without also knowing voltage: P (watts) = V (volts) x I (amps) is Watt's Law, the electrical version of Ohm's Law. AC circuits add a second factor, power factor (PF), for the phase difference between voltage and current; three-phase circuits add a further multiplier depending on whether the voltage reading is line-to-line or line-to-neutral. Enter any two of watts, amps, and volts (plus power factor for AC) and this tool solves for the third.",
+			"Watts, amps, and volts are three different physical quantities, not three names for the same thing, so amps cannot be converted to watts without also knowing voltage: P (watts) = V (volts) x I (amps) is Watt's Law, the electrical version of Ohm's Law. AC circuits add a second factor, power factor (PF), for the phase difference between voltage and current; three-phase circuits add a further multiplier depending on whether the voltage reading is line-to-line or line-to-neutral. Enter any two of watts, amps, and volts (plus power factor for AC) and this tool solves for the third. Physical length units, by contrast, convert through nothing but a fixed exact ratio: [an inch equals exactly 2.54 centimeters](/length-converter/), pinned down by the same 1959 international yard-and-pound agreement that also fixed the mile.",
 		queries: [
 			'amps to watts',
 			'watts to amps',
@@ -6135,7 +6135,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-03',
 		published: '2026-09-03',
 		coreSummary:
-			"Rice doesn't take one universal ratio of water. USA Rice's stovetop chart runs from 1.25 parts liquid per part rice for short-grain white up to 4:1 for arborio, with long-grain white, jasmine, and basmati all landing at 2:1 and brown or parboiled rice at 2.25:1. Enter an amount of dry rice, pick the type, and this tool multiplies by the matching ratio for the water needed and estimates the cooked yield.",
+			"Rice doesn't take one universal ratio of water. USA Rice's stovetop chart runs from 1.25 parts liquid per part rice for short-grain white up to 4:1 for arborio, with long-grain white, jasmine, and basmati all landing at 2:1 and brown or parboiled rice at 2.25:1. Enter an amount of dry rice, pick the type, and this tool multiplies by the matching ratio for the water needed and estimates the cooked yield. Serving size for a different party staple is set by federal regulation rather than a cooking chart: [a keg's serving count](/keg-calculator/) comes from the fractional-barrel volumes the US Alcohol and Tobacco Tax and Trade Bureau defines, divided by the NIAAA's standard 12 oz serving.",
 		queries: [
 			'rice to water ratio',
 			'rice water ratio',
@@ -6272,7 +6272,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-11',
 		published: '2026-09-11',
 		coreSummary:
-			'Gross WPM only measures how fast your fingers moved; net WPM subtracts your errors, prorated by time, which is the score typing certifications and employers actually use. Enter what you typed (in words or characters), how long it took, and how many mistakes went uncorrected, and this tool returns both numbers plus where they land against research-published typing-speed bands, from about 27 WPM for hunt-and-peck typing up to the 360 WPM stenotype world record.',
+			'Gross WPM only measures how fast your fingers moved; net WPM subtracts your errors, prorated by time, which is the score typing certifications and employers actually use. Enter what you typed (in words or characters), how long it took, and how many mistakes went uncorrected, and this tool returns both numbers plus where they land against research-published typing-speed bands, from about 27 WPM for hunt-and-peck typing up to the 360 WPM stenotype world record. Once typed, that same text can be scored for how easy it is to read rather than how fast it was produced: [this site\'s sentence counter](/sentence-counter/) applies Flesch\'s 1948 Reading Ease formula and its 1975 grade-level version to count sentences, words, and estimated reading time.',
 		queries: [
 			'words per minute average',
 			'average wpm',
