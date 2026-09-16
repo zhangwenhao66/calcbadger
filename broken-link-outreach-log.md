@@ -278,3 +278,9 @@ CalcBadger断链置换/嵌入投放战术累计已发送3封pitch（含1封跟�
 ### 遗留待办
 
 下轮：① 核实eventslv.com（09-09发出，10天满期后）；② 继续嵌入组件主动投放方向搜索，本轮NAHB/BYF/centraltech三个候选均未产出真实死链机会，需换新的资源页方向（如水泥/沥青DIY教程站、退伍军人技能培训资源页）。
+
+### 补记：清理09-15积压草稿（Woodworkers Journal嵌入组件pitch）
+
+处理完上述本轮工作后，发现`outreach-drafts.md`里还有一条09-15撰写、已过独立复核（含一次收件人纠错：`online-editor@`是eZine反馈专用渠道非合适对象，改用`editor@woodworkersjournal.com`）但因SES冻结未发送的候选——"Best Apps and Calculators for Woodworkers"缺嵌入式board-foot计算器。SES冻结已于09-15解除，本轮重新核实：WebSearch重新确认该文章仍列出同样的付费App+密苏里大学外部计算器（内容未变），`calcbadger.com/board-foot-calculator/`及`/embed/`版本均200存活，查重仍干净。直接发送（内容此前已复核，未改动，仅地址已纠正过）：`gmail_send.py send --from calcbadger --to editor@woodworkersjournal.com`，**Message ID `1a0aa5d40a324eeb`**。
+
+**累计口径更新**：CalcBadger断链置换/嵌入投放战术累计已发送 **4封**（含1封跟进）；已验证`not_replaced` 1条；eventslv.com（09-09）与Woodworkers Journal（本轮）均尚未到验证窗口。转化率0/3（不含本轮/未到期）。
