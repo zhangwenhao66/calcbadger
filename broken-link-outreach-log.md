@@ -258,3 +258,23 @@
 - 处置：**不发送**，草稿留在`outreach-drafts.md`标注"有问题"待修（需删除/改写Rounding那句为准确描述"Operations and Integers分区里只有1条视频"，且需另找该校非预约类的通用联系渠道），不计入本轮发送量。
 
 **累计口径**：CalcBadger断链置换/嵌入投放战术累计已发送3封pitch（含1封跟进）；已验证`not_replaced` 1条、`verified_live_backlink_confirmed` 0条，本轮新发1封（eventslv.com）尚未到10天验证窗口。转化率0/2（不含跟进和本轮新发未到验证期的1封）。
+
+---
+
+## 2026-09-16（第八次运行）— 「外链产能集中规则」2026-09-04修订：CalcBadger固定优先名额（与DialWick轮换，本轮轮到CalcBadger，DialWick上轮09-11已处理）
+
+### 第一部分：核实旧pitch
+
+eventslv.com（09-09发出，7天）未满10天窗口，跳过。East Central College候选（09-09标注"有问题"待修）本轮复议：原复核发现两处硬伤——①"Rounding"分区表述与页面实际结构不符，②`general_tutoring@eastcentral.edu`是学生预约通道单一用途邮箱。第②点是硬性红线（专用邮箱不可发送），与事实措辞是否修正无关，**放弃该候选**，不再留作待办。
+
+### 第二部分：嵌入组件主动投放
+
+WebSearch两轮定向搜索教育/DIY建筑贸易类资源页（NAHB Helpful Resources for Students、Build Your Future Classroom Materials、centraltech.edu Construction Trades），`broken_link_scan.py`扫描：NAHB页26条出站链接全部SOFT（社交分享链接/证书验证SSL问题，非真实失效）；BYF页20条出站链接全部SOFT（NCCER相关链接HTTP 503，服务端临时错误非确认失效）；centraltech.edu候选页本身404无法抓取。**本轮未发现真实DEAD链接，0条通过门槛**，如实记录未强凑候选。
+
+### 累计口径
+
+CalcBadger断链置换/嵌入投放战术累计已发送3封pitch（含1封跟进）；已验证`not_replaced` 1条、`verified_live_backlink_confirmed` 0条；eventslv.com（09-09）尚未到10天验证窗口。转化率0/2。
+
+### 遗留待办
+
+下轮：① 核实eventslv.com（09-09发出，10天满期后）；② 继续嵌入组件主动投放方向搜索，本轮NAHB/BYF/centraltech三个候选均未产出真实死链机会，需换新的资源页方向（如水泥/沥青DIY教程站、退伍军人技能培训资源页）。
