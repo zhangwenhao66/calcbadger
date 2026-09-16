@@ -3608,10 +3608,10 @@ export const tools: Tool[] = [
 		shortTitle: 'BSA Calculator',
 		description:
 			'Calculate body surface area from height and weight using the Mosteller or Du Bois formula, in US or metric units, with both results shown side by side.',
-		updated: '2026-08-17',
+		updated: '2026-09-16',
 		published: '2026-08-17',
 		coreSummary:
-			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. A related but distinct height-adjusted measurement looks at muscle instead of skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
+			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. A related but distinct height-adjusted measurement targets muscle, not skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
 		queries: [
 			'body surface area calculator',
 			'bsa calculator',
@@ -3629,15 +3629,22 @@ export const tools: Tool[] = [
 			{
 				heading: 'Where the two formulas diverge',
 				body: [
-					'For a person of average build, the two formulas land within roughly half a percent of each other. A 170 cm, 65 kg adult gets 1.754 m² from Du Bois and 1.752 m² from Mosteller, a difference too small to matter for any practical purpose. Run the same height at 100 kg instead of 65, though, and Mosteller starts running ahead: at 170 cm and 150 kg, Du Bois gives 2.502 m² while Mosteller gives 2.661 m², a gap of about 6%.',
-					"That spread traces back to how each formula was built. Du Bois derived his equation from just nine people of unstated build, and Mosteller's formula was fit to track Du Bois's numbers rather than measured against anyone directly, so neither one was calibrated on someone who looks like a 170 cm, 150 kg adult. This calculator shows both results side by side so that gap is visible rather than hidden: when the two formulas land close together, either number is fine to trust; when they start pulling apart, that's a sign the person being measured is outside the range either formula was really built for.",
+					'For a person of average build, the two formulas land within roughly half a percent of each other. A 170 cm, 65 kg adult gets 1.754 m² from Du Bois and 1.752 m² from Mosteller, a difference too small to matter for any practical purpose. Hold that same height but push the weight to 150 kg, though, and Mosteller starts running ahead: at 170 cm and 150 kg, Du Bois gives 2.502 m² while Mosteller gives 2.661 m², a gap of about 6%.',
+					"That spread traces back to how each formula was built. Du Bois derived his equation from just nine people of unstated build, and Mosteller's formula was fit to track Du Bois's numbers rather than measured against anyone directly, so neither one was calibrated on someone who looks like a 170 cm, 150 kg adult. This calculator shows both results side by side, so that gap is visible, not hidden: when the two formulas land close together, either number is fine to trust; when they start pulling apart, that's a sign the person being measured is outside the range either formula was really built for.",
+				],
+			},
+			{
+				heading: 'Neither formula is built for infants',
+				body: [
+					'Both Du Bois and Mosteller were built and checked against adult- or child-sized bodies, and both get less reliable as BSA drops below about 0.7 m² — roughly the size of a young child. A 1978 study that geometrically measured 81 subjects ranging from premature infants to adults found Du Bois increasingly underestimating surface area below that threshold, with the gap peaking at 7.96% in newborns.',
+					'That study derived a third formula built specifically to hold up at the small end: **SA(m²) = weight(kg)^0.5378 × height(cm)^0.3964 × 0.024265** (the Haycock formula), fit by regression to the 81 measured subjects with a correlation of r = 0.998 across the full range from under 0.2 m² to over 2.0 m². For exactly this reason, neonatal and pediatric dosing calculations more often reach for Haycock or another child-calibrated formula, not Du Bois or Mosteller; this calculator\'s two results are best trusted for older children and adults, not newborns or premature infants.',
 				],
 			},
 			{
 				heading: 'What BSA gets used for',
 				body: [
 					'BSA is not a weight-screening number the way BMI is. It does not have "healthy" or "overweight" categories. Its main clinical uses are all about scaling something else to body size more precisely than raw weight allows. Kidney function (glomerular filtration rate, GFR) is conventionally reported "per 1.73 m²" because 1.73 m² was the average adult BSA measured when that convention was set, and normalizing to it lets a small person\'s and a large person\'s kidney function be compared on the same scale. National Kidney Foundation guidance notes that this indexed number is what gets compared against normal ranges, while a non-indexed GFR (not divided by 1.73 m²) is what actually gets used for drug dosing, since dosing adequacy depends on absolute filtration capacity rather than filtration capacity scaled to a hypothetical 1.73 m² body.',
-					'Chemotherapy is the other major use: many regimens specify a dose "per m²" of BSA rather than a flat milligram amount, on the theory that BSA tracks blood volume and metabolic rate better than weight alone. Cardiac index (cardiac output divided by BSA) is a third, used to compare heart pump performance across differently sized patients. None of these uses require picking one formula as objectively "correct." Mosteller and Du Bois are both accepted, and a clinician\'s protocol usually specifies which one to use.',
+					'Chemotherapy is the other major use: many regimens specify a dose "per m²" of BSA, not a flat milligram amount, on the theory that BSA tracks blood volume and metabolic rate better than weight alone. Cardiac index (cardiac output divided by BSA) is a third, used to compare heart pump performance across differently sized patients. None of these uses require picking one formula as objectively "correct." Mosteller and Du Bois are both accepted, and a clinician\'s protocol usually specifies which one to use.',
 				],
 			},
 		],
@@ -3660,27 +3667,32 @@ export const tools: Tool[] = [
 			{
 				question: 'Should I use the Mosteller or Du Bois formula?',
 				answer:
-					'For most adults it barely matters: the two typically agree within about 1%. Mosteller is the one more commonly used in US clinical practice today because it is simpler to compute, but Du Bois is still widely accepted and is what many older studies and drug labels reference. If a specific protocol or drug label names one formula, use that one.',
+					"For most adults the difference barely matters: the two formulas nearly always come out within about one percent of one another. Mosteller is the one doctors reach for most often today in the US because it's quicker to compute, but Du Bois is still widely accepted and is what many older studies and drug labels reference. If a specific protocol or drug label names one formula, use that one.",
 			},
 			{
 				question: 'Why do the two formulas give slightly different numbers?',
 				answer:
-					"Du Bois fit a power-law curve to direct surface measurements of nine people in 1916. Mosteller's 1987 formula is a simpler square-root approximation that was checked against Du Bois's results rather than measured independently. They track each other closely for average-size adults but diverge more (Mosteller running higher) at higher weights, which is a known limitation of both formulas rather than a bug in either one.",
+					"Du Bois fit a power-law curve to measurements taken directly from nine people in 1916. Mosteller's 1987 formula is a simpler square-root approximation, checked against Du Bois's results but not verified with its own independent measurements. They stay close for average-size adults but pull apart more, with Mosteller reading higher, at higher weights — a known limitation shared by both formulas, not a flaw unique to either one.",
 			},
 			{
 				question: 'Is body surface area the same as BMI?',
 				answer:
-					"No. BMI (weight ÷ height²) is a weight-screening number with defined categories like \"healthy weight\" or \"obese.\" BSA estimates total skin surface area in square meters and has no such categories. It exists to scale drug doses and clinical measurements to body size, not to assess weight. See our [BMI calculator](/bmi-calculator/) for weight screening.",
+					"No. BMI (weight ÷ height²) sorts adults into categories like \"healthy weight\" or \"obese.\" BSA has no such categories — it's a square-meter figure for how much skin covers a person's body, used to scale drug doses and clinical measurements to body size, not to assess weight. See our [BMI calculator](/bmi-calculator/) for weight screening.",
 			},
 			{
 				question: 'Why is kidney function reported "per 1.73 m²"?',
 				answer:
-					'1.73 m² was the average adult body surface area measured when that reporting convention was established, so dividing GFR by a patient\'s own BSA and multiplying by 1.73 m² puts everyone on a common scale for comparing against normal ranges. The National Kidney Foundation notes that drug dosing works the other way around: it is normally based on the non-indexed GFR (not divided by BSA), since a dose needs to match a patient\'s actual filtration capacity rather than a capacity scaled to a hypothetical 1.73 m² body.',
+					'That 1.73 m² figure comes from an average taken across adults back when the reporting convention was first adopted, so dividing a patient\'s GFR by their own BSA and multiplying by 1.73 m² puts everyone on the same scale so results can be compared to a lab\'s published reference values. That same source notes that drug dosing works the other way around: it is normally based on GFR that hasn\'t been adjusted by BSA at all, since a dose needs to match what a patient\'s kidneys can actually filter, not a figure rescaled to an average-size reference person of 1.73 m².',
 			},
 			{
 				question: 'Can I use this calculator to figure out my own chemotherapy dose?',
 				answer:
 					"No. Use it to understand or double-check the BSA number a clinician has already calculated, not to determine a dose yourself. Drug dosing also depends on the specific regimen, dose-capping rules, and clinical judgment that this calculator does not account for.",
+			},
+			{
+				question: 'Can I use this calculator for a baby or premature infant?',
+				answer:
+					"No, not reliably. Newborns and premature infants fall in the surface-area range, below roughly 0.7 m², where these two general-purpose formulas are least accurate — Du Bois can run as much as 7.96% low at the newborn end, per the same 1978 measurement study cited above. If you're estimating BSA for an infant, look for a calculator built around the Haycock formula, which was fit specifically to that small-body range.",
 			},
 		],
 		sources: [
@@ -3692,6 +3704,11 @@ export const tools: Tool[] = [
 			{
 				label: 'Mosteller RD, "Simplified calculation of body-surface area," New England Journal of Medicine 317(17):1098 (1987)',
 				url: 'https://doi.org/10.1056/NEJM198710223171717',
+			},
+			{
+				label:
+					'Haycock GB, Schwartz GJ, Wisotsky DH, "Geometric method for measuring body surface area: a height-weight formula validated in infants, children, and adults," Journal of Pediatrics 93(1):62-66 (1978)',
+				url: 'https://doi.org/10.1016/s0022-3476(78)80601-5',
 			},
 			{
 				label:
