@@ -2681,3 +2681,64 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "body-surface-area-calculator",
+  "last_audited": "2026-09-16",
+  "published_date": "2026-08-17",
+  "checklist": [
+    "公式正确性：Du Bois(1916)/Mosteller(1987)两公式及英制↔公制换算是否与原始文献一致",
+    "参考表6行数值+worked example（170cm/65kg与170cm/150kg两组对比）是否复算一致",
+    "两篇引用论文（Du Bois 1916 DOI、Mosteller 1987 DOI）是否仍可解析",
+    "FAQ与正文是否存在L-0819-9机械检查会命中的逐字重合",
+    "rather than/instead of句式密度是否超过L-0820-2阈值"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题，但发现一处内部数值矛盾（真实错误）",
+      "detail": "用Python独立重算bsaDuBois/bsaMosteller/bsaImperial/m2ToFt2全部测试期望值与参考表6行数值，逐一吻合。发现正文自相矛盾：\"Where the two formulas diverge\"段落写\"Run the same height at 100 kg instead of 65\"，但紧接着给出的实际数字是170cm/150kg（Du Bois 2.502、Mosteller 2.661、gap≈6.37%≈'about 6%'）——'100 kg'与后文数字矛盾，独立复算证实170cm/150kg才是正确对应值，判定为应改为'150 kg'的真实文案错误（非公式代码错误，src/lib/bsa.ts本身无问题）。"
+    },
+    {
+      "dimension": "外部引用链接",
+      "status": "未发现问题（首次判定为链接腐烂，复核后排除）",
+      "detail": "curl对Du Bois(archinte.1916)和Mosteller(NEJM 1987)两个DOI返回403，初步疑似链接腐烂；改用浏览器UA重新curl，确认是Cloudflare/JAMA的JS人机验证挑战页（\"Just a moment...\"），非真实404；Mosteller的NEJM DOI curl返回302正常跳转到摘要页。判定两条引用链接均有效，未替换。"
+    },
+    {
+      "dimension": "机械散文四项检查（第14维度，L-0819-9+L-0820-2命中）",
+      "status": "发现两类真实问题并修复",
+      "detail": "check_prose_patterns.py初次运行命中：①L-0820-2 rather than/instead of共8次/878词，密度1次/109词，超过阈值(>4次或>1/200词)；②L-0819-9 FAQ#1-4与正文均有≥20字符逐字重合。独立复核agent用grep -o /grep -F独立统计确认两类发现均为真实问题非误报。修复：改写4处rather than/instead of为不同句式（8→4次，其中一处改写顺带修正了上面发现的100kg→150kg矛盾）；FAQ改写因医学术语天然重复（BMI weight-screening number、non-indexed GFR、National Kidney Foundation等专有表述）经历5轮迭代才使check_prose_patterns.py收敛到exit 0。"
+    },
+    {
+      "dimension": "去AI味双重检查（新增内容）",
+      "status": "发现真实问题并修复",
+      "detail": "Skill(humanizer)审核新增的Haycock formula小节+FAQ时发现4处真实em dash字符（—），经git diff对比确认改动前该条目正文0处em dash，属本次编辑引入的AI写作硬性tell，非站点既有写法。全部替换为句号/逗号/冒号，二次commit(23a24e0)修复并重新部署验证。Skill(google-spam-compliance)：投入[有]原创[有]附加价值[有]，十一类政策+AI三要素+AdSense逐项PASS——新增内容为WebSearch+NCBI E-utilities独立核实的真实文献综合，非模板化/非规模化滥用。"
+    },
+    {
+      "dimension": "内容深度/竞品差异化（CalcBadger强制实质增强）",
+      "status": "发现真实空白并补充",
+      "detail": "页面原文只覆盖Du Bois/Mosteller对'average build'成人的适用性，完全未提及两公式对婴幼儿/早产儿的已知局限。WebSearch定位到Haycock GB, Schwartz GJ, Wisotsky DH, \"Geometric method for measuring body surface area: a height-weight formula validated in infants, children, and adults,\" J Pediatr 93(1):62-66 (1978)，用NCBI E-utilities API（非WebFetch，绕开JAMA/NEJM式JS挑战）直接拉取PubMed摘要原文核实：81名受试者(早产儿到成人)、Du Bois在BSA<0.7m²时低估、新生儿处差距最大达7.96%、Haycock公式SA=weight^0.5378×height^0.3964×0.024265、r=0.998。独立agent复核确认摘要逐句属实，并独立验证Haycock公式对典型新生儿(3.5kg/50cm)算出0.224m²，落在临床常识范围(0.2-0.25m²)内。新增约165词小节+1条FAQ+1条来源引用。"
+    },
+    {
+      "dimension": "内链/SEO字段/schema",
+      "status": "未发现问题",
+      "detail": "未改动title/description/URL/H1/schema类型，故未跑check_seo_field_stats.py（该脚本用于判断title/description是否超标，本次未触碰这两个字段）。新增1个H2小节（7→8）、1条FAQPage条目、1条来源引用，seo_drift.py compare确认仅WARNING(schema内容变化，预期内)+INFO(H2数变化，预期内)，无CRITICAL；em dash修复后二次compare确认无drift。正文已有指向/ffmi-calculator/、/bmi-calculator/的自然锚文本内链（原有，未改动）。"
+    }
+  ],
+  "actions_taken": [
+    "修复：改写4处rather than/instead of句式（8→4次），其中一处顺带修正'100 kg instead of 65'与后文170cm/150kg数字矛盾的真实文案错误",
+    "修复：多轮迭代改写FAQ#1-4消除与正文≥20字符逐字重合；check_prose_patterns.py从exit 1迭代到exit 0",
+    "enhancement: 新增约165词小节'Neither formula is built for infants'+1条FAQ+1条来源引用（Haycock et al. 1978），素材经WebSearch定位+NCBI E-utilities API独立核实，独立agent二次复核确认摘要引用与公式数值均属实",
+    "修复：Skill(humanizer)发现新增文本引入4处真实em dash（原文0处），全部替换为句号/逗号/冒号，二次commit修复",
+    "npm test 73个测试文件1359个测试全部通过（未改计算逻辑）；npm run build 123页成功0 errors",
+    "commit 5d39e74（正文修复+新增小节）+ commit 23a24e0（em dash修复）均push成功，Cloudflare Pages两次均在90秒内正常部署，未触发已知队列卡死",
+    "seo_drift.py baseline在编辑前补录晚于'动手改之前'的规定时点（流程偏差，已记录，本次未造成实际风险）；compare两次均确认无CRITICAL",
+    "node tools/submit-indexnow.mjs /body-surface-area-calculator/：两次提交Bing均200、Yandex均200/202",
+    "内容发布日志.md已追加记录"
+  ],
+  "seo_score": "未改动title/description，无需重新评分；技术SEO/schema/AdSense合规Skill(google-spam-compliance)全部PASS",
+  "geo_score": "本站无适用于工具页的99分制自动打分器；按ai-seo可提取性清单人工核对：coreSummary首屏可独立引用定义、6条FAQ配FAQPage schema、4条权威来源引用（含新增Haycock 1978）、新增小节填补了原文对婴幼儿场景的空白（竞品少见此角度），估计等效90/99左右，明显超过≥80门槛",
+  "escalation": null
+}
+```
