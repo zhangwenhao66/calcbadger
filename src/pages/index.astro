@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, SITE_ORIGIN, SITE_TITLE } from '../consts';
 const categories = [...new Set(tools.map((t) => t.category))];
 ---
 
-<Layout>
+<Layout title="Free Online Calculators That Show Their Work">
 	<WebSite slot="head" name={SITE_TITLE} url={`${SITE_ORIGIN}/`} description={SITE_DESCRIPTION} />
 
 	{/* Nameplate strip instead of a hero: same words, instrument-plate form. */}
