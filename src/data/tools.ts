@@ -2261,6 +2261,13 @@ export const tools: Tool[] = [
 					"This calculator still uses the 3,500-kcal rule because it's simple, transparent, and close enough for a short-term estimate. Just don't treat week 1's math as a promise about week 12.",
 				],
 			},
+			{
+				heading: 'What a stalled plateau usually turns out to be',
+				body: [
+					'Annie Barry, a dietitian specializing in weight management and perimenopause with 20 years in practice at <a href="https://www.allroundwellness.com.au/" target="_blank" rel="noopener">All Round Wellness</a>, says a true plateau, the kind this calculator\'s math explains, is the rarest of three explanations she sees in clients who think they\'ve stalled. About 8 in 10 cases trace back to habit creep: the extra walk or the food tracking that quietly stopped, without feeling like cheating at the time. Another 1 in 10 is impatience, since a client\'s definition of a plateau (one to two weeks without a change) is shorter than what actually counts as one (three to four weeks or more).',
+					"The remaining 1 in 10, in her experience, is genuine, and even then her first move isn't cutting calories further. Most of her clients already have tight calorie budgets from desk jobs, so she looks first at whether there's room to add incidental movement before subtracting food.",
+				],
+			},
 		],
 		referenceTables: [
 			{
