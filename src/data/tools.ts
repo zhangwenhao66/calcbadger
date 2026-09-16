@@ -3636,7 +3636,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Neither formula is built for infants',
 				body: [
-					'Both Du Bois and Mosteller were built and checked against adult- or child-sized bodies, and both get less reliable as BSA drops below about 0.7 m² — roughly the size of a young child. A 1978 study that geometrically measured 81 subjects ranging from premature infants to adults found Du Bois increasingly underestimating surface area below that threshold, with the gap peaking at 7.96% in newborns.',
+					'Both Du Bois and Mosteller were built and checked against adult- or child-sized bodies, and both get less reliable as BSA drops below about 0.7 m², roughly the size of a young child. A 1978 study that geometrically measured 81 subjects ranging from premature infants to adults found Du Bois increasingly underestimating surface area below that threshold, with the gap peaking at 7.96% in newborns.',
 					'That study derived a third formula built specifically to hold up at the small end: **SA(m²) = weight(kg)^0.5378 × height(cm)^0.3964 × 0.024265** (the Haycock formula), fit by regression to the 81 measured subjects with a correlation of r = 0.998 across the full range from under 0.2 m² to over 2.0 m². For exactly this reason, neonatal and pediatric dosing calculations more often reach for Haycock or another child-calibrated formula, not Du Bois or Mosteller; this calculator\'s two results are best trusted for older children and adults, not newborns or premature infants.',
 				],
 			},
@@ -3672,12 +3672,12 @@ export const tools: Tool[] = [
 			{
 				question: 'Why do the two formulas give slightly different numbers?',
 				answer:
-					"Du Bois fit a power-law curve to measurements taken directly from nine people in 1916. Mosteller's 1987 formula is a simpler square-root approximation, checked against Du Bois's results but not verified with its own independent measurements. They stay close for average-size adults but pull apart more, with Mosteller reading higher, at higher weights — a known limitation shared by both formulas, not a flaw unique to either one.",
+					"Du Bois fit a power-law curve to measurements taken directly from nine people in 1916. Mosteller's 1987 formula is a simpler square-root approximation, checked against Du Bois's results but not verified with its own independent measurements. They stay close for average-size adults but pull apart more, with Mosteller reading higher, at higher weights. That's a known limitation shared by both formulas, not a flaw unique to either one.",
 			},
 			{
 				question: 'Is body surface area the same as BMI?',
 				answer:
-					"No. BMI (weight ÷ height²) sorts adults into categories like \"healthy weight\" or \"obese.\" BSA has no such categories — it's a square-meter figure for how much skin covers a person's body, used to scale drug doses and clinical measurements to body size, not to assess weight. See our [BMI calculator](/bmi-calculator/) for weight screening.",
+					"No. BMI (weight ÷ height²) sorts adults into categories like \"healthy weight\" or \"obese.\" BSA has no such categories. It's a square-meter figure for how much skin covers a person's body, used to scale drug doses and clinical measurements to body size, not to assess weight. See our [BMI calculator](/bmi-calculator/) for weight screening.",
 			},
 			{
 				question: 'Why is kidney function reported "per 1.73 m²"?',
@@ -3692,7 +3692,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Can I use this calculator for a baby or premature infant?',
 				answer:
-					"No, not reliably. Newborns and premature infants fall in the surface-area range, below roughly 0.7 m², where these two general-purpose formulas are least accurate — Du Bois can run as much as 7.96% low at the newborn end, per the same 1978 measurement study cited above. If you're estimating BSA for an infant, look for a calculator built around the Haycock formula, which was fit specifically to that small-body range.",
+					"No, not reliably. Newborns and premature infants fall in the surface-area range, below roughly 0.7 m², where these two general-purpose formulas are least accurate: Du Bois can run as much as 7.96% low at the newborn end, per the same 1978 measurement study cited above. If you're estimating BSA for an infant, look for a calculator built around the Haycock formula, which was fit specifically to that small-body range.",
 			},
 		],
 		sources: [
