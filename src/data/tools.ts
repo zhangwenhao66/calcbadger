@@ -2268,6 +2268,13 @@ export const tools: Tool[] = [
 					"The remaining 1 in 10, in her experience, is genuine, and even then her first move isn't cutting calories further. Most of her clients already have tight calorie budgets from desk jobs, so she looks first at whether there's room to add incidental movement before subtracting food.",
 				],
 			},
+			{
+				heading: 'A case with the numbers',
+				body: [
+					'Dr Shy Vishnumohan, a food scientist and accredited practising dietitian at <a href="https://www.meetdrshy.com.au/" target="_blank" rel="noopener">Dr Shy</a>, saw this play out with a client who had already lost about 6 kg and then plateaued for several weeks on the same eating pattern that had worked before. The cause wasn\'t cheating or a damaged metabolism: in a smaller body, energy needs were lower than at the start, and the client\'s incidental movement had quietly dropped too, so the original deficit had shrunk without anyone changing anything on purpose.',
+					"The fix wasn't cutting calories further. It was recalculating for the smaller body, keeping protein steady, protecting strength training, and finding realistic ways to add movement back in.",
+				],
+			},
 		],
 		referenceTables: [
 			{
