@@ -1,33 +1,26 @@
 #!/usr/bin/env node
-// Verifies src/lib/relatedGuides.ts's pickRelatedGuidesWithFallback() gives
-// every tool a non-empty related-tools sidebar AND at least one inbound
-// link from someone else's sidebar (no orphan pages), across the full
-// current tools.ts. Run after any change to the selection/fallback logic,
-// or to related-guides/site-toolkit, before shipping.
+// Bootstrap only -- see verify-related-guides-coverage-impl.mjs for what this
+// actually checks.
+//
+// src/data/tools.ts intentionally imports several ../lib/* modules without a
+// file extension (kept as-is on purpose -- see the comment at the top of
+// tools.ts about the Aug 2026 pruned generator pages). Astro's Vite bundler
+// resolves that fine, but plain `node` does not: its native ESM resolver
+// requires explicit extensions on relative specifiers, so any standalone
+// Node script that imports tools.ts (directly or transitively, as this
+// coverage check does via src/lib/relatedGuides.ts) fails with
+// ERR_MODULE_NOT_FOUND. Registering a resolve hook that retries with `.ts`
+// appended fixes that without touching tools.ts's intentionally-preserved
+// imports -- but the hook must be registered *before* the failing import is
+// linked, which a static `import` at the top of this same file would not
+// satisfy (static imports resolve before any of the module's own code runs).
+// Hence the bootstrap/impl split: register the hook, then dynamically import
+// the real implementation.
 //
 // Usage:
 //   node tools/verify-related-guides-coverage.mjs
 //   node tools/verify-related-guides-coverage.mjs --json > coverage.json
-//
-// Exit code: 0 if emptySidebar and neverLinked are both empty, 1 otherwise.
-import { tools } from '../src/data/tools.ts';
-import { verifyRelatedGuidesFallbackCoverage } from '../src/lib/relatedGuides.ts';
+import { register } from 'node:module';
 
-const report = verifyRelatedGuidesFallbackCoverage(tools);
-const asJson = process.argv.includes('--json');
-
-if (asJson) {
-	console.log(JSON.stringify(report, null, 2));
-} else {
-	console.log(
-		`total=${report.total} linkedTo=${report.linkedTo} coverage=${report.coveragePct.toFixed(1)}%`,
-	);
-	console.log('emptySidebar (page renders no related-tools section):', report.emptySidebar);
-	console.log('neverLinked (orphan: nobody links to this tool):', report.neverLinked);
-}
-
-const ok = report.emptySidebar.length === 0 && report.neverLinked.length === 0;
-if (!asJson) {
-	console.log(ok ? '\nPASS: 100% coverage, no orphan pages.' : '\nFAIL: see lists above.');
-}
-process.exit(ok ? 0 : 1);
+register('./ts-ext-resolve-hook-loader.mjs', import.meta.url);
+await import('./verify-related-guides-coverage-impl.mjs');
