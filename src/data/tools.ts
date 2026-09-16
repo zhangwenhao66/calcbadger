@@ -2319,22 +2319,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How many calories should I eat to lose weight?',
 				answer:
-					'Start from your maintenance calories (TDEE) and subtract 250 to 1,000 per day depending on how fast you want to lose weight. 500 fewer calories a day works out to roughly 1 lb/week under the standard 3,500-kcal estimate. This calculator does that subtraction for you once you pick a target rate.',
+					"Take the TDEE this tool gives you as your baseline, then subtract 250 to 1,000 calories a day depending on how fast you want to lose weight. Trimming 500 calories daily works out to roughly 1 lb/week under the standard 3,500-kcal estimate, and the Lose button above runs that subtraction automatically once you pick a rate.",
 			},
 			{
 				question: "What's the difference between BMR and TDEE?",
 				answer:
-					'BMR is the energy your body uses at complete rest: organs, temperature regulation, basic function. TDEE, or maintenance calories, is BMR multiplied by an activity factor to account for movement and exercise. TDEE is always higher than BMR, since the activity multipliers used here start at 1.2.',
+					"BMR is the energy your body burns just existing: organs, temperature regulation, basic function. TDEE goes by another name too, the calories needed just to hold your current weight steady, and it comes from multiplying that resting number by a factor for movement and exercise. TDEE always comes out higher than BMR, because even this tool's lowest setting is ×1.2 rather than ×1.",
 			},
 			{
 				question: 'Is eating 1,200 calories a day safe?',
 				answer:
-					'The 2013 AHA/ACC/TOS obesity guideline frames 1,200-1,500 cal/day for women and 1,500-1,800 cal/day for men as reduced-calorie diets meant to run under medical supervision, not as a default starting point. This calculator flags any "Lose" target under 1,200 cal/day for women or 1,500 cal/day for men for that reason.',
+					"The obesity-management guideline that AHA, ACC, and TOS jointly published in 2013 sets these ranges as reduced-calorie diets meant to be overseen by a clinician, not as a default starting point: 1,200 to 1,500 daily calories for women, 1,500 to 1,800 for men. This tool adds a warning whenever a Lose target drops below that floor: 1,200 daily calories for women, 1,500 for men.",
 			},
 			{
 				question: 'Why do different calculators give me different calorie numbers?',
 				answer:
-					'Most of the gap comes from two places: which BMR formula is used (Mifflin-St Jeor and the older Harris-Benedict typically differ by 5-10%) and which activity multiplier you pick, since "moderately active" isn\'t a precisely defined amount of movement. Two calculators using the same formula and the same activity level should land close together.',
+					"Most of the gap comes from two places: which BMR formula gets used (the newer Mifflin-St Jeor versus the older Harris-Benedict typically differ by 5-10%) and which movement setting you choose, since a moderate activity level isn't a precisely defined amount of movement. Two calculators using the same formula and the same activity level should land close together.",
 			},
 			{
 				question: 'Does this account for muscle mass or body fat percentage?',
@@ -2344,7 +2344,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Why does the deficit rule "run out" over time?',
 				answer:
-					"The 3,500-kcal-per-pound figure assumes a fixed relationship between deficit and fat loss, and that relationship doesn't hold as your weight actually changes. A lighter body needs fewer calories to maintain itself, so the same calorie deficit produces a shrinking amount of weekly loss instead of a constant pound a week. NIH researchers built the Body Weight Planner specifically to model that curve instead of the straight line.",
+					"The 3,500-kcal-per-pound figure assumes a fixed relationship between deficit and fat loss, and that relationship doesn't hold as your weight actually changes. A smaller body simply doesn't burn as much at rest, so the same daily shortfall yields less and less weekly loss instead of a constant pound a week. Federal researchers modeled exactly this shrinking-deficit curve instead of assuming a straight line, which is the science behind the tool cited in the sources below.",
 			},
 		],
 		sources: [
