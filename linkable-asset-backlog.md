@@ -45,6 +45,8 @@
 |---|---|---|---|---|---|
 | surgepv.com | 1 | resource_page（太阳能行业网站） | 1,132 | 27.1条/域名，正常 | https://solarcalculatorhq.com/en-gb/calculators/solar-inverter-clipping-calculator/（锚文本"Solar Calculator HQ, 2026"） |
 
+**[已联系 2026-09-16]** asset-distribution-outreach 已联系 surgepv.com（hello@surgepv.com），见 `独立站/资产分发外联台账.json`
+
 未筛掉候选（其余候选域名多为博彩/可疑站，本身就不合格未列入门槛检查名单）。
 
 ## 4. 国际 GPA 换算对照工具（International GPA Scale Converter） `[待制作]`
