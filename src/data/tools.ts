@@ -274,7 +274,7 @@ export const tools: Tool[] = [
 		title: 'Stair Calculator',
 		shortTitle: 'Stair Calculator',
 		description:
-			'Calculate stair layout from total rise: riser count, riser height in carpenter fractions, tread run, stringer length, and angle — checked against IRC limits.',
+			'Calculate stair layout from total rise: riser count, riser height in carpenter fractions, tread run, stringer length, and angle: checked against IRC limits.',
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
@@ -946,11 +946,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'NIST Special Publication 811 — Guide for the Use of the International System of Units (SI)',
+				label: 'NIST Special Publication 811, Guide for the Use of the International System of Units (SI)',
 				url: 'https://physics.nist.gov/cuu/pdf/sp811.pdf',
 			},
 			{
-				label: 'CDC — Definitions of Signs, Symptoms, and Conditions of Ill Travelers (fever threshold)',
+				label: 'CDC, Definitions of Signs, Symptoms, and Conditions of Ill Travelers (fever threshold)',
 				url: 'https://www.cdc.gov/port-health/php/definitions-symptoms-reportable-illness/index.html',
 			},
 		],
@@ -1096,11 +1096,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'NIST — SI Units: Length (1959 Federal Register Notice, inch = 25.4 mm exactly)',
+				label: 'NIST, SI Units: Length (1959 Federal Register Notice, inch = 25.4 mm exactly)',
 				url: 'https://www.nist.gov/pml/owm/si-units-length',
 			},
 			{
-				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				label: 'NIST Handbook 44 (2026), Appendix C, General Tables of Units of Measurement',
 				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
 			},
 		],
@@ -1324,15 +1324,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'NIST — SI Units: Mass',
+				label: 'NIST, SI Units: Mass',
 				url: 'https://www.nist.gov/pml/owm/si-units-mass',
 			},
 			{
-				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				label: 'NIST Handbook 44 (2026), Appendix C, General Tables of Units of Measurement',
 				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
 			},
 			{
-				label: 'legislation.gov.uk — Weights and Measures Act 1985, Schedule 1, Part VI (stone = 14 lb)',
+				label: 'legislation.gov.uk, Weights and Measures Act 1985, Schedule 1, Part VI (stone = 14 lb)',
 				url: 'https://www.legislation.gov.uk/ukpga/1985/72/schedule/1/part/VI/paragraph/wrapper1n2',
 			},
 		],
@@ -1458,15 +1458,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Regulation Z, 12 CFR Part 1026, Appendix J — actuarial method for closed-end credit',
+				label: 'Regulation Z, 12 CFR Part 1026, Appendix J, actuarial method for closed-end credit',
 				url: 'https://www.consumerfinance.gov/rules-policy/regulations/1026/j/',
 			},
 			{
-				label: 'CFPB — How do mortgage lenders calculate monthly payments?',
+				label: 'CFPB, How do mortgage lenders calculate monthly payments?',
 				url: 'https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/',
 			},
 			{
-				label: 'CFPB — Homeowners Protection Act (HPA / PMI Cancellation Act) examination procedures',
+				label: 'CFPB, Homeowners Protection Act (HPA / PMI Cancellation Act) examination procedures',
 				url: 'https://www.consumerfinance.gov/compliance/supervision-examinations/homeowners-protection-act-hpa-or-pmi-cancellation-act-examination-procedures/',
 			},
 		],
@@ -1618,19 +1618,19 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'BIPM SI Brochure — Annex 1: Units of time accepted for use with the SI',
+				label: 'BIPM SI Brochure, Annex 1: Units of time accepted for use with the SI',
 				url: 'https://www.bipm.org/en/publications/si-brochure/annex-1/time',
 			},
 			{
-				label: 'US Naval Observatory — Leap Years FAQ',
+				label: 'US Naval Observatory, Leap Years FAQ',
 				url: 'https://aa.usno.navy.mil/faq/leap_years',
 			},
 			{
-				label: 'BIPM — Resolution 4 of the 27th CGPM (2022), on the future revision of Coordinated Universal Time',
+				label: 'BIPM, Resolution 4 of the 27th CGPM (2022), on the future revision of Coordinated Universal Time',
 				url: 'https://www.bipm.org/en/cgpm-2022/resolution-4',
 			},
 			{
-				label: 'Wikipedia — "Leap second"',
+				label: 'Wikipedia, "Leap second"',
 				url: 'https://en.wikipedia.org/wiki/Leap_second',
 			},
 		],
@@ -1768,7 +1768,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-21',
 		published: '2026-08-06',
 		coreSummary:
-			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one — (new − old) ÷ |old| × 100 — and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula — |a − b| ÷ ((a + b) ÷ 2) × 100 — used when comparing two values where neither one is the reference. Percentages are themselves just a special case of a more general kind of part-to-whole math: [fractions](/fraction-calculator/) need a common denominator to add or subtract, but not to multiply or divide, and every result reduces to lowest terms using the Euclidean algorithm.',
+			'Percent means "parts per hundred" (BIPM SI Brochure §5.4.7), so every percentage question is one rearrangement of part = (percent ÷ 100) × whole. "Percentage change" measures a move from an old value to a new one, (new − old) ÷ |old| × 100, and always uses the old value as the base, which is why a 50% drop followed by a 50% rise does not return you to where you started (100 → 50 → 75, a net −25%). "Percent difference" is a different, symmetric formula, |a − b| ÷ ((a + b) ÷ 2) × 100, used when comparing two values where neither one is the reference. Percentages are themselves just a special case of a more general kind of part-to-whole math: [fractions](/fraction-calculator/) need a common denominator to add or subtract, but not to multiply or divide, and every result reduces to lowest terms using the Euclidean algorithm.',
 		queries: [
 			'percentage calculator',
 			'percentage increase calculator',
@@ -1873,11 +1873,11 @@ export const tools: Tool[] = [
 		sources: [
 			{
 				label:
-					'BIPM SI Brochure, 9th edition, §5.4.7 "Quantities with the unit one" — definition and use of the % symbol',
+					'BIPM SI Brochure, 9th edition, §5.4.7 "Quantities with the unit one", definition and use of the % symbol',
 				url: 'https://www.bipm.org/documents/20126/41483022/SI-Brochure-9.pdf',
 			},
 			{
-				label: 'Statistics How To — "Percent Error / Percent Difference: Definition, Examples"',
+				label: 'Statistics How To, "Percent Error / Percent Difference: Definition, Examples"',
 				url: 'https://www.statisticshowto.com/percent-error-difference/',
 			},
 		],
@@ -2054,19 +2054,19 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'NIST Handbook 44 (2026), Appendix C — General Tables of Units of Measurement',
+				label: 'NIST Handbook 44 (2026), Appendix C, General Tables of Units of Measurement',
 				url: 'https://www.nist.gov/system/files/documents/2025/12/30/appc-26-HB44-20251222.pdf',
 			},
 			{
-				label: 'U.S. Energy Information Administration — Glossary (Barrel)',
+				label: 'U.S. Energy Information Administration, Glossary (Barrel)',
 				url: 'https://www.eia.gov/tools/glossary/index.php?id=b',
 			},
 			{
-				label: 'Sizes, Inc. — "English wine gallon" (1707 231 in³ standard; US 1836 adoption; UK 1824 Imperial gallon split)',
+				label: 'Sizes, Inc., "English wine gallon" (1707 231 in³ standard; US 1836 adoption; UK 1824 Imperial gallon split)',
 				url: 'https://www.sizes.com/units/gallon_english_wine.htm',
 			},
 			{
-				label: 'eCFR — 27 CFR § 5.203, Standards of Fill (Container Sizes), TTB',
+				label: 'eCFR, 27 CFR § 5.203, Standards of Fill (Container Sizes), TTB',
 				url: 'https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-5/subpart-K/section-5.203',
 			},
 		],
@@ -2506,15 +2506,15 @@ export const tools: Tool[] = [
 				url: 'https://tc39.es/ecma402/',
 			},
 			{
-				label: 'Wikipedia — "Daylight saving time in Iran" (Iran\'s abolition of DST, effective September 2022)',
+				label: 'Wikipedia, "Daylight saving time in Iran" (Iran\'s abolition of DST, effective September 2022)',
 				url: 'https://en.wikipedia.org/wiki/Daylight_saving_time_in_Iran',
 			},
 			{
-				label: 'Wikipedia — "Time in India" (the 1906 adoption of UTC+5:30 as a compromise between two proposed one-hour zones)',
+				label: 'Wikipedia, "Time in India" (the 1906 adoption of UTC+5:30 as a compromise between two proposed one-hour zones)',
 				url: 'https://en.wikipedia.org/wiki/Time_in_India',
 			},
 			{
-				label: 'timeanddate.com — "Time Zone & Clock Changes in Lord Howe Island" (the island\'s 30-minute daylight-saving shift)',
+				label: 'timeanddate.com, "Time Zone & Clock Changes in Lord Howe Island" (the island\'s 30-minute daylight-saving shift)',
 				url: 'https://www.timeanddate.com/time/zone/australia/lord-howe-island',
 			},
 		],
@@ -2629,39 +2629,39 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'The Emily Post Institute — "Tipping Etiquette 101: A Comprehensive Guide on Tipping" (US tip percentages by service)',
+				label: 'The Emily Post Institute, "Tipping Etiquette 101: A Comprehensive Guide on Tipping" (US tip percentages by service)',
 				url: 'https://emilypost.com/advice/general-tipping-guide',
 			},
 			{
-				label: "UK Government legislation — Employment (Allocation of Tips) Act 2023 (legal requirement to pass tips to workers in full)",
+				label: "UK Government legislation, Employment (Allocation of Tips) Act 2023 (legal requirement to pass tips to workers in full)",
 				url: 'https://www.legislation.gov.uk/ukpga/2023/13',
 			},
 			{
-				label: 'French Ministry for the Economy (DGCCRF) — "Pourboire" (service compris legally included in menu prices since 1987)',
+				label: 'French Ministry for the Economy (DGCCRF), "Pourboire" (service compris legally included in menu prices since 1987)',
 				url: 'https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pourboire',
 			},
 			{
-				label: 'Japan Travel (official Japan National Tourism Organization site) — "Tipping in Japan"',
+				label: 'Japan Travel (official Japan National Tourism Organization site), "Tipping in Japan"',
 				url: 'https://www.japan.travel/en/plan/tipping-in-japan/',
 			},
 			{
-				label: 'Fair Work Ombudsman (Australian Government) — national minimum wage rates',
+				label: 'Fair Work Ombudsman (Australian Government), national minimum wage rates',
 				url: 'https://www.fairwork.gov.au/pay-and-wages/minimum-wages',
 			},
 			{
-				label: 'Lonely Planet — "Tipping customs in Asia" (mainland China conventions)',
+				label: 'Lonely Planet, "Tipping customs in Asia" (mainland China conventions)',
 				url: 'https://www.lonelyplanet.com/articles/tipping-customs-asia',
 			},
 			{
-				label: 'Cathay Pacific — "A complete guide to tipping in the Chinese Mainland" (tour guides as the common exception)',
+				label: 'Cathay Pacific, "A complete guide to tipping in the Chinese Mainland" (tour guides as the common exception)',
 				url: 'https://www.cathaypacific.com/cx/en_ID/inspiration/travel/tipping-in-china.html',
 			},
 			{
-				label: 'U.S. Department of Labor, Wage and Hour Division — Fact Sheet #15A: Ownership of Tips Under the FLSA',
+				label: 'U.S. Department of Labor, Wage and Hour Division, Fact Sheet #15A: Ownership of Tips Under the FLSA',
 				url: 'https://www.dol.gov/agencies/whd/fact-sheets/15a-flsa-tip-ownership',
 			},
 			{
-				label: 'Tax Foundation — 2026 State Sales Tax Rates (range and population-weighted average)',
+				label: 'Tax Foundation, 2026 State Sales Tax Rates (range and population-weighted average)',
 				url: 'https://taxfoundation.org/data/all/state/2026-sales-tax-rates-midyear/',
 			},
 		],
@@ -3119,11 +3119,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'BIPM SI Brochure — Annex 1: Units of time accepted for use with the SI (minute, hour, day as exact fixed ratios)',
+				label: 'BIPM SI Brochure, Annex 1: Units of time accepted for use with the SI (minute, hour, day as exact fixed ratios)',
 				url: 'https://www.bipm.org/en/publications/si-brochure/annex-1/time',
 			},
 			{
-				label: 'ECMA-262, the ECMAScript Language Specification — §21.4 "Date Objects" (proleptic Gregorian calendar convention used for the date-time mode)',
+				label: 'ECMA-262, the ECMAScript Language Specification, §21.4 "Date Objects" (proleptic Gregorian calendar convention used for the date-time mode)',
 				url: 'https://tc39.es/ecma262/#sec-date-objects',
 			},
 		],
@@ -3231,23 +3231,23 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Wolfram MathWorld — "Cuboid" (rectangular prism volume and surface area)',
+				label: 'Wolfram MathWorld, "Cuboid" (rectangular prism volume and surface area)',
 				url: 'https://mathworld.wolfram.com/Cuboid.html',
 			},
 			{
-				label: 'Wolfram MathWorld — "Cylinder"',
+				label: 'Wolfram MathWorld, "Cylinder"',
 				url: 'https://mathworld.wolfram.com/Cylinder.html',
 			},
 			{
-				label: 'Wolfram MathWorld — "Sphere"',
+				label: 'Wolfram MathWorld, "Sphere"',
 				url: 'https://mathworld.wolfram.com/Sphere.html',
 			},
 			{
-				label: 'Wolfram MathWorld — "Cone"',
+				label: 'Wolfram MathWorld, "Cone"',
 				url: 'https://mathworld.wolfram.com/Cone.html',
 			},
 			{
-				label: 'CalculatorSoup — "Cone Calculator" (cross-check for the cone total surface area formula)',
+				label: 'CalculatorSoup, "Cone Calculator" (cross-check for the cone total surface area formula)',
 				url: 'https://www.calculatorsoup.com/calculators/geometry-solids/cone.php',
 			},
 		],
@@ -3364,11 +3364,11 @@ export const tools: Tool[] = [
 		sources: [
 			{
 				label:
-					'Hoeger, W.W.K. et al., "One-Mile Step Count at Walking and Running Speeds," ACSM\'s Health & Fitness Journal, Vol. 12, No. 1, pp. 14-19 (2008) — source of the 0.415 (men) / 0.413 (women) step-length-to-height regression',
+					'Hoeger, W.W.K. et al., "One-Mile Step Count at Walking and Running Speeds," ACSM\'s Health & Fitness Journal, Vol. 12, No. 1, pp. 14-19 (2008), source of the 0.415 (men) / 0.413 (women) step-length-to-height regression',
 				url: 'https://journals.lww.com/acsm-healthfitness/Fulltext/2008/01000/ONE_MILE_STEP_COUNT_AT_WALKING_AND_RUNNING_SPEEDS.7.aspx',
 			},
 			{
-				label: 'CDC/NCHS, "Body Measurements" (FastStats) — U.S. average adult height, ages 20+, NHANES 2021-2023',
+				label: 'CDC/NCHS, "Body Measurements" (FastStats), U.S. average adult height, ages 20+, NHANES 2021-2023',
 				url: 'https://www.cdc.gov/nchs/fastats/body-measurements.htm',
 			},
 		],
@@ -3468,19 +3468,19 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'University of Wisconsin-Madison Division of Extension, Forestry, FEM-042 — "What Is A Board Foot?" (the sawed-lumber board-foot formula and definition)',
+				label: 'University of Wisconsin-Madison Division of Extension, Forestry, FEM-042, "What Is A Board Foot?" (the sawed-lumber board-foot formula and definition)',
 				url: 'https://forestry.extension.wisc.edu/files/2023/05/fem_042.pdf',
 			},
 			{
-				label: 'Wikipedia — "Board foot" (definition and formula, for general corroboration)',
+				label: 'Wikipedia, "Board foot" (definition and formula, for general corroboration)',
 				url: 'https://en.wikipedia.org/wiki/Board_foot',
 			},
 			{
-				label: 'NIST — DOC Voluntary Product Standard PS 20-20, "American Softwood Lumber Standard"',
+				label: 'NIST, DOC Voluntary Product Standard PS 20-20, "American Softwood Lumber Standard"',
 				url: 'https://www.nist.gov/document/doc-ps-20-20-american-softwood-lumber-standard',
 			},
 			{
-				label: 'Rockler — "What Does the Quarter System of Lumber Thickness Mean?"',
+				label: 'Rockler, "What Does the Quarter System of Lumber Thickness Mean?"',
 				url: 'https://www.rockler.com/learn/what-does-quarter-system-of-lumber-thickness-mean',
 			},
 		],
@@ -4186,11 +4186,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Corporate Finance Institute — "Markup: Learn How to Calculate Markup & Markup Percentage"',
+				label: 'Corporate Finance Institute, "Markup: Learn How to Calculate Markup & Markup Percentage"',
 				url: 'https://corporatefinanceinstitute.com/resources/accounting/markup/',
 			},
 			{
-				label: 'AccountingTools — "The difference between margin and markup"',
+				label: 'AccountingTools, "The difference between margin and markup"',
 				url: 'https://www.accountingtools.com/articles/what-is-the-difference-between-margin-and-markup.html',
 			},
 		],
@@ -4278,7 +4278,7 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'International Swaps and Derivatives Association — "30/360 Day Count Conventions" (2006 ISDA Definitions)',
+				label: 'International Swaps and Derivatives Association, "30/360 Day Count Conventions" (2006 ISDA Definitions)',
 				url: 'https://www.isda.org/2008/12/22/30-360-day-count-conventions/',
 			},
 		],
@@ -4366,11 +4366,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'NFPA — NFPA 70, National Electrical Code (NEC)',
+				label: 'NFPA, NFPA 70, National Electrical Code (NEC)',
 				url: 'https://www.nfpa.org/product/nfpa-70-national-electrical-code-nec/p0070code',
 			},
 			{
-				label: 'UpCodes — National Electrical Code, 2023 (NFPA 70), free online read',
+				label: 'UpCodes, National Electrical Code, 2023 (NFPA 70), free online read',
 				url: 'https://up.codes/code/nfpa-70-national-electrical-code-2023',
 			},
 		],
@@ -4487,15 +4487,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Wikipedia — "Rounding" (tie-breaking rules and directed-rounding definitions)',
+				label: 'Wikipedia, "Rounding" (tie-breaking rules and directed-rounding definitions)',
 				url: 'https://en.wikipedia.org/wiki/Rounding',
 			},
 			{
-				label: 'Wikipedia — "IEEE 754" (round-to-nearest-ties-to-even as the binary default)',
+				label: 'Wikipedia, "IEEE 754" (round-to-nearest-ties-to-even as the binary default)',
 				url: 'https://en.wikipedia.org/wiki/IEEE_754',
 			},
 			{
-				label: 'ASTM International — "How Do You Round Fractions? Significant Digits and Converting to a Decimal" (ASTM E29 practice)',
+				label: 'ASTM International, "How Do You Round Fractions? Significant Digits and Converting to a Decimal" (ASTM E29 practice)',
 				url: 'https://www.astm.org/news/how-to-round-fractions-decimals',
 			},
 		],
@@ -4623,11 +4623,11 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Microsoft Typography — "Recommendations for OpenType Fonts," Non-Standard (Symbol) Fonts',
+				label: 'Microsoft Typography, "Recommendations for OpenType Fonts," Non-Standard (Symbol) Fonts',
 				url: 'https://learn.microsoft.com/en-us/typography/opentype/spec/recom',
 			},
 			{
-				label: 'Wikipedia — "Wingdings" (character-to-Unicode compatibility table)',
+				label: 'Wikipedia, "Wingdings" (character-to-Unicode compatibility table)',
 				url: 'https://en.wikipedia.org/wiki/Wingdings',
 			},
 		],
@@ -4732,7 +4732,7 @@ export const tools: Tool[] = [
 				url: 'https://pubmed.ncbi.nlm.nih.gov/8337069/',
 			},
 			{
-				label: 'Millisecond — "Finger Tapping Test" test library (protocol description, citing Halstead, 1947, and Reitan & Wolfson, 1985)',
+				label: 'Millisecond, "Finger Tapping Test" test library (protocol description, citing Halstead, 1947, and Reitan & Wolfson, 1985)',
 				url: 'https://www.millisecond.com/library/fingertapping',
 			},
 		],
@@ -4993,15 +4993,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'PMQ Pizza — "Pizza Slice Cutting Guide" (PMQ Think Tank, the pizza industry trade forum) — small/medium/large slice-count convention',
+				label: 'PMQ Pizza, "Pizza Slice Cutting Guide" (PMQ Think Tank, the pizza industry trade forum), small/medium/large slice-count convention',
 				url: 'https://thinktank.pmq.com/threads/pizza-slice-cutting-guide.6278/',
 			},
 			{
-				label: 'PMQ Pizza — "Can Cutting Pizzas into Bigger Slices Save Labor Costs?" (documented example of a chain changing its slice count)',
+				label: 'PMQ Pizza, "Can Cutting Pizzas into Bigger Slices Save Labor Costs?" (documented example of a chain changing its slice count)',
 				url: 'https://www.pmq.com/bigger-slices-at-jets-pizza/',
 			},
 			{
-				label: "Pizza Hut — Office & Corporate Lunch Catering (official group-ordering guidance, the \"Rule of 3\")",
+				label: "Pizza Hut, Office & Corporate Lunch Catering (official group-ordering guidance, the \"Rule of 3\")",
 				url: 'https://www.pizzahut.com/c/content/office-lunch',
 			},
 		],
@@ -5129,15 +5129,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Wikipedia — "Age disparity in sexual relationships," §"Half-your-age-plus-seven" rule',
+				label: 'Wikipedia, "Age disparity in sexual relationships," §"Half-your-age-plus-seven" rule',
 				url: 'https://en.wikipedia.org/wiki/Age_disparity_in_sexual_relationships',
 			},
 			{
-				label: 'xkcd #314, "Dating Pools" (2007) — origin of the "Standard Creepiness Rule" phrasing',
+				label: 'xkcd #314, "Dating Pools" (2007), origin of the "Standard Creepiness Rule" phrasing',
 				url: 'https://xkcd.com/314/',
 			},
 			{
-				label: 'Pew Research Center — "A growing share of U.S. husbands and wives are roughly the same age" (Aug. 2024), analysis of U.S. Census Bureau data',
+				label: 'Pew Research Center, "A growing share of U.S. husbands and wives are roughly the same age" (Aug. 2024), analysis of U.S. Census Bureau data',
 				url: 'https://www.pewresearch.org/short-reads/2024/08/15/a-growing-share-of-us-husbands-and-wives-are-roughly-the-same-age/',
 			},
 		],
@@ -5243,7 +5243,7 @@ export const tools: Tool[] = [
 				url: 'https://pages.stern.nyu.edu/~adamodar/New_Home_Page/lectures/dcfinput.html',
 			},
 			{
-				label: '26 U.S.C. § 11 — flat 21% corporate income tax rate',
+				label: '26 U.S.C. § 11, flat 21% corporate income tax rate',
 				url: 'https://www.law.cornell.edu/uscode/text/26/11',
 			},
 		],
@@ -5379,7 +5379,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-24',
 		published: '2026-08-24',
 		coreSummary:
-			'FFMI measures muscle mass relative to height, independent of body fat: fat-free mass (weight minus fat) divided by height in meters squared. Normalized FFMI adjusts that number to a 1.80 m reference height so people of different heights compare fairly. Kouri et al. (1995) found that normalized FFMI in drug-free male athletes topped out at 25.0, while steroid users reached 28-32 — a threshold still used as a rough natural-vs-enhanced reference point. FFMI exists partly because a more familiar height-and-weight ratio doesn\'t distinguish muscle from fat at all: [BMI](/bmi-calculator/) uses the same two inputs, height and weight, but the CDC/WHO categories built on it say nothing about body composition.',
+			'FFMI measures muscle mass relative to height, independent of body fat: fat-free mass (weight minus fat) divided by height in meters squared. Normalized FFMI adjusts that number to a 1.80 m reference height so people of different heights compare fairly. Kouri et al. (1995) found that normalized FFMI in drug-free male athletes topped out at 25.0, while steroid users reached 28-32: a threshold still used as a rough natural-vs-enhanced reference point. FFMI exists partly because a more familiar height-and-weight ratio doesn\'t distinguish muscle from fat at all: [BMI](/bmi-calculator/) uses the same two inputs, height and weight, but the CDC/WHO categories built on it say nothing about body composition.',
 		queries: ['ffmi calculator', 'fat free mass index calculator', 'normalized ffmi calculator', 'ffmi natural limit'],
 		sections: [
 			{
@@ -5462,7 +5462,7 @@ export const tools: Tool[] = [
 		sources: [
 			{
 				label:
-					'Kouri EM, Pope HG Jr, Katz DL, Oliva P (1995). "Fat-free mass index in users and nonusers of anabolic-androgenic steroids." Clinical Journal of Sport Medicine 5(4):223-228 — the formula, normalization constant, and the 25.0 natural-limit finding',
+					'Kouri EM, Pope HG Jr, Katz DL, Oliva P (1995). "Fat-free mass index in users and nonusers of anabolic-androgenic steroids." Clinical Journal of Sport Medicine 5(4):223-228, the formula, normalization constant, and the 25.0 natural-limit finding',
 				url: 'https://pubmed.ncbi.nlm.nih.gov/7496846/',
 			},
 		],
@@ -5896,15 +5896,15 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Wikipedia — "Positional notation" (place-value systems and base conversion)',
+				label: 'Wikipedia, "Positional notation" (place-value systems and base conversion)',
 				url: 'https://en.wikipedia.org/wiki/Positional_notation',
 			},
 			{
-				label: 'Wikipedia — "Hexadecimal" (base-16 digits, byte/nibble grouping)',
+				label: 'Wikipedia, "Hexadecimal" (base-16 digits, byte/nibble grouping)',
 				url: 'https://en.wikipedia.org/wiki/Hexadecimal',
 			},
 			{
-				label: 'Wikipedia — "Binary number" (base-2 arithmetic and computing use)',
+				label: 'Wikipedia, "Binary number" (base-2 arithmetic and computing use)',
 				url: 'https://en.wikipedia.org/wiki/Binary_number',
 			},
 		],
@@ -6022,23 +6022,23 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'Wikipedia — "Ohm\'s law" (voltage, current, resistance relationship)',
+				label: 'Wikipedia, "Ohm\'s law" (voltage, current, resistance relationship)',
 				url: 'https://en.wikipedia.org/wiki/Ohm%27s_law',
 			},
 			{
-				label: 'Wikipedia — "Electric power" (P = V x I and power in AC circuits)',
+				label: 'Wikipedia, "Electric power" (P = V x I and power in AC circuits)',
 				url: 'https://en.wikipedia.org/wiki/Electric_power',
 			},
 			{
-				label: 'Wikipedia — "Power factor" (real vs. apparent power in AC circuits)',
+				label: 'Wikipedia, "Power factor" (real vs. apparent power in AC circuits)',
 				url: 'https://en.wikipedia.org/wiki/Power_factor',
 			},
 			{
-				label: 'Wikipedia — "Three-phase electric power" (line-to-line vs. line-to-neutral formulas)',
+				label: 'Wikipedia, "Three-phase electric power" (line-to-line vs. line-to-neutral formulas)',
 				url: 'https://en.wikipedia.org/wiki/Three-phase_electric_power',
 			},
 			{
-				label: 'Wikipedia — "IEC 60038" (standard mains voltages by region)',
+				label: 'Wikipedia, "IEC 60038" (standard mains voltages by region)',
 				url: 'https://en.wikipedia.org/wiki/IEC_60038',
 			},
 		],
@@ -6139,19 +6139,19 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
-				label: 'TrackMan — "What is Club Speed?" (average amateur and Tour clubhead speed/distance data)',
+				label: 'TrackMan, "What is Club Speed?" (average amateur and Tour clubhead speed/distance data)',
 				url: 'https://www.trackman.com/blog/golf/what-is-club-speed',
 			},
 			{
-				label: 'Golf.com — "This is how far PGA and LPGA Tour players hit it with every club"',
+				label: 'Golf.com, "This is how far PGA and LPGA Tour players hit it with every club"',
 				url: 'https://golf.com/instruction/driving/this-is-how-far-pga-and-lpga-tour-players-hit-it-with-every-club/',
 			},
 			{
-				label: 'PlayBetter — "Golf Club Distance Charts for Men and Women" (skill-level distance chart)',
+				label: 'PlayBetter, "Golf Club Distance Charts for Men and Women" (skill-level distance chart)',
 				url: 'https://www.playbetter.com/blogs/golf-tips/golf-club-distances-how-far-should-you-hit-your-clubs',
 			},
 			{
-				label: 'MyGolfSpy — "Golf Club Gapping Tool" (healthy gap-range guidance)',
+				label: 'MyGolfSpy, "Golf Club Gapping Tool" (healthy gap-range guidance)',
 				url: 'https://mygolfspy.com/news-opinion/instruction/golf-club-gapping-tool/',
 			},
 		],
