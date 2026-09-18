@@ -2468,32 +2468,32 @@ export const tools: Tool[] = [
 			{
 				question: 'What time is it in a specific city right now?',
 				answer:
-					"Switch to World clock mode above and pick the city. The display updates every second from your device's clock combined with that city's current IANA time zone rule, including whether daylight saving is currently in effect there.",
+					"Switch to World clock mode above and pick the city. The display updates every second from your device's clock combined with that city's current IANA time zone rule, factoring in daylight saving automatically if that city currently observes it.",
 			},
 			{
 				question: 'How do I convert a meeting time to another time zone?',
 				answer:
-					'Switch to Convert a time, enter the date and time in the "From" city, and pick the "To" city. The result shows the exact local time there, plus whether the date shifts forward or back a day and how many hours apart the two zones currently are.',
+					'Switch to Convert a time, enter the date and time in the "From" city, and pick the "To" city. The result shows the exact local time there, plus a flag for a rollover onto the day before or after, and how many hours apart the two zones currently are.',
 			},
 			{
 				question: 'Why does the time difference between two cities change throughout the year?',
 				answer:
-					"Whenever one or both cities observe daylight saving, the gap between them shifts by an hour twice a year as each city's clocks move independently. Northern and Southern Hemisphere zones observe daylight saving in opposite seasons, so the size of that shift, and sometimes its direction, depends on which two zones you're comparing.",
+					"Whenever one or both cities observe daylight saving, the gap between them shifts by an hour twice a year as each city's clocks move independently. Places above and below the equator run their clock-shifting seasons on opposite halves of the calendar, so the size of that shift, and sometimes its direction, depends on which two zones you're comparing.",
 			},
 			{
 				question: "Why isn't \"time in Brazil\" or \"time in Russia\" a single simple answer?",
 				answer:
-					"Both countries span several official time zones. This page's country-level entries use the zone that the large majority of that country's population and searches for it actually mean, Brasília time for Brazil and Moscow time for Russia, rather than trying to force one answer to cover zones most searchers weren't asking about.",
+					"Brazil and Russia are each split across multiple legal time zones. This page picks whichever single zone most people, and most searches, actually mean when they type that country's name, the capital-region time in each case, since averaging across a whole country would answer a question nobody visiting a specific city was asking.",
 			},
 			{
 				question: 'Are half-hour and 45-minute time zones a mistake?',
 				answer:
-					'No. India (UTC+5:30), Nepal (UTC+5:45), and the Chatham Islands (UTC+12:45/+13:45) all use non-whole-hour offsets on purpose, usually the result of a historical decision to split the difference between neighboring whole-hour zones rather than adopt one of them outright.',
+					'No. India (UTC+5:30), Nepal (UTC+5:45), and the remote Chathams out past New Zealand (UTC+12:45/+13:45) all use non-whole-hour offsets on purpose, usually the result of a historical decision to split the difference between neighboring whole-hour zones rather than adopt one of them outright.',
 			},
 			{
 				question: 'Does this tool account for the International Date Line?',
 				answer:
-					'Yes. Converting a time near midnight between zones on opposite sides of the date line can shift the calendar date by a full day in either direction. The "day difference" result reflects that automatically instead of only showing a clock face with no date.',
+					'Yes. Converting a time near midnight between zones on opposite sides of the date line can push the calendar onto a different date entirely, a day earlier or later depending on direction. The "day difference" result reflects that automatically instead of only showing a clock face with no date.',
 			},
 		],
 		sources: [
@@ -2544,7 +2544,7 @@ export const tools: Tool[] = [
 				heading: 'Pre-tax or post-tax: which base is correct',
 				body: [
 					"The etiquette convention favors tipping on the pre-tax subtotal. The Emily Post Institute's tipping guide treats sales tax as a government charge that has nothing to do with the quality of service, so it should not inflate the tip base. Servers themselves often prefer the opposite, tipping on the tax-inclusive total, since it pays out slightly more, though the published guidance still sides with the pre-tax convention over the server's preference.",
-					"In practice the dollar difference is small at typical US sales tax rates. Combined state and local rates run from 0% (five states charge no statewide sales tax at all) up to just over 10% in the highest-tax states, with a population-weighted national average around 7.5% (Tax Foundation). On a $106 tax-inclusive total with a 6% tax rate and a 20% tip, pre-tax tipping comes to $20.00 and post-tax tipping comes to $21.20, a $1.20 gap. It grows with the tax rate and the bill size, which is why this calculator shows both numbers instead of picking one silently.",
+					"In practice the dollar difference is small at typical US sales tax rates. Combined state and local rates run from 0% (five states charge no statewide sales tax at all) up to just over 10% in the highest-tax states, with a population-weighted national average around 7.5% (Tax Foundation). On a $106 tax-inclusive total with a 6% tax rate and a 20% tip, pre-tax tipping comes to $20.00 and post-tax tipping comes to $21.20, a $1.20 gap. It grows with the tax rate and the bill size, which is why this calculator shows both numbers so nothing gets picked for you silently.",
 				],
 			},
 			{
@@ -2578,7 +2578,7 @@ export const tools: Tool[] = [
 					['Bar / bartender', '$1-2 per drink, or 15-20% of the tab'],
 					['Rideshare / taxi', '15-20% of the fare, plus $1 per bag handled'],
 					['Hair salon, spa, massage, personal training', '15-20% of the service price'],
-					['Hotel housekeeping', '$2-5 per day, left daily rather than only at checkout'],
+					['Hotel housekeeping', '$2-5 per day, left daily, not saved up for checkout'],
 				],
 			},
 			{
@@ -2599,27 +2599,27 @@ export const tools: Tool[] = [
 			{
 				question: 'Do you tip before or after tax?',
 				answer:
-					'Etiquette authorities including the Emily Post Institute recommend tipping on the pre-tax subtotal, since sales tax is a government charge unrelated to the service. The dollar difference is usually small at typical US sales tax rates, but it grows with the bill size and the tax rate, so this calculator shows both numbers.',
+					'Etiquette guides, including a well-known American manners institute, say tip on the number before sales tax gets added, since that tax funds government, not the person serving you. At ordinary US sales tax rates the dollar gap barely registers, but it grows with the bill size and the tax rate, which is why both figures show up here.',
 			},
 			{
 				question: 'How much should I tip at a restaurant?',
 				answer:
-					'15-20% of the bill for standard sit-down service is the conventional US range (Emily Post Institute). Delivery runs 10-15%, and takeout tipping is discretionary, often around 10% or a few dollars.',
+					'A fifth of the bill, give or take a few points, is the conventional US range for standard sit-down service, per the same etiquette authority cited above. Delivery runs 10-15%, and takeout tipping is entirely optional, with people commonly rounding up to a nearby dollar amount or tossing in a modest one-tenth of the total.',
 			},
 			{
 				question: 'Is tipping required by law in the US?',
 				answer:
-					"No. There is no federal or state law requiring a customer to tip a set percentage. What US law does regulate is who the tip belongs to once given: employers generally cannot keep tips that customers intend for staff. The tip percentage itself is a social convention, not a legal requirement.",
+					"No. There is no federal or state law requiring a customer to tip a set percentage. What US law does regulate is who the tip belongs to once given: employers generally cannot keep tips that customers intend for staff. What you actually hand over is a social convention, not a legal requirement.",
 			},
 			{
 				question: "Do I have to tip if the bill already includes a service charge?",
 				answer:
-					"Check the receipt before adding more. In the UK, a service charge (commonly around 10-12.5%) is frequently already added, and by law it must be passed on to staff in full, so an extra tip on top is optional. France legally bakes service into the listed menu price, so no further tip is expected. Adding a full second tip on top of an included service charge over-tips the staff without meaning to.",
+					"Check the receipt before adding more. In the UK, a service charge (commonly around 10-12.5%) is frequently already added, and by law it must be passed on to staff in full, so an extra tip on top is optional. France legally bakes service into the listed menu price, so no further tip is expected. Layering a full second tip on top of a charge that is already there over-tips the staff without meaning to.",
 			},
 			{
 				question: 'Is it rude to tip in Japan?',
 				answer:
-					"It is not considered rude exactly, but it is unusual and can create an awkward moment; staff may try to return the money. Japan's tourism authority describes tipping as simply not customary there, since excellent service is treated as standard rather than something extra payment buys.",
+					"It is not considered rude exactly, but it is unusual and can create an awkward moment; staff may try to return the money. Japan's tourism authority describes tipping as simply not customary there, since good service is just what's expected rather than something extra payment buys.",
 			},
 			{
 				question: 'How do I split a tip evenly among a group?',
@@ -2737,22 +2737,22 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the formula for GPA?',
 				answer:
-					"GPA = total quality points ÷ total credit hours, where each course's quality points equal its grade points (from the 4.0 scale) multiplied by its credit hours. A 3-credit A (4.0 points) contributes 12 quality points; a 1-credit A contributes 4. Add up quality points and credit hours across every course, then divide, to get the credit-weighted average.",
+					"GPA = total quality points ÷ total credit hours, where each course's quality points come from its grade points (off the 4.0 scale) scaled up by however many credits it's worth. A 3-credit A (4.0 points) contributes 12 quality points; a 1-credit A contributes 4. Add up quality points and credit hours across every course, then divide, to get the final number, weighted by how much credit each course carried.",
 			},
 			{
 				question: "What's the difference between weighted and unweighted GPA?",
 				answer:
-					"Unweighted GPA scores every course on the same 4.0 scale regardless of difficulty. Weighted GPA adds a level boost (commonly +0.5 for Honors and +1.0 for AP or IB) to each course's grade points before averaging, so tougher courses can push the result above 4.0. Both describe the same grades; they just answer different questions (raw grade average vs. grade average adjusted for course difficulty).",
+					"Unweighted GPA scores every course on the same 4.0 scale no matter how hard the class was. The weighted version tacks a level boost onto each course's numeric score ahead of averaging, half a point for Honors and a full point for AP or IB is the usual convention, so tougher courses can push the result above 4.0. Both describe the same grades; they just answer different questions (raw grade average vs. grade average adjusted for course difficulty).",
 			},
 			{
 				question: 'Can a weighted GPA go above 4.0?',
 				answer:
-					"Yes, and that's expected. An A in an AP or IB class scores 5.0 in weighted mode (4.0 base + 1.0 boost), so a student with mostly A's in advanced courses can land well above 4.0. An unweighted GPA cannot exceed 4.0 (or 4.3 at schools that give A+ a bonus decimal), since it has no mechanism to add extra points for course difficulty.",
+					"Yes, and that's expected. An A in an AP or IB class scores a full 5.0 once the weighting kicks in (the 4.0 base plus a 1.0 boost), so a student with mostly A's in advanced courses can land well above 4.0. An unweighted GPA cannot exceed 4.0 (or 4.3 at schools that give A+ a bonus decimal), since it has no mechanism to add extra points for course difficulty.",
 			},
 			{
 				question: 'Do colleges look at weighted or unweighted GPA?',
 				answer:
-					"Both, generally. Many colleges recalculate applicants' GPA on their own consistent scale during admissions review, since high schools use different weighting policies, so a weighted GPA from one school isn't directly comparable to another's. Reporting both numbers, and letting your transcript and school profile explain the weighting policy behind them, is standard practice.",
+					"Both, generally. Many colleges run every applicant's transcript back through one shared scale of their own choosing when reviewing files, since high schools use different weighting policies, so a weighted GPA from one school isn't directly comparable to another's. Reporting both numbers, and letting your transcript and school profile explain the weighting policy behind them, is standard practice.",
 			},
 			{
 				question: 'Does a Pass/Fail or Incomplete grade count toward GPA?',
