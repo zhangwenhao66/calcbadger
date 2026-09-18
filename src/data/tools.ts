@@ -122,12 +122,12 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between APY and interest rate on a CD?',
 				answer:
-					'The interest rate (nominal rate) is the raw annual rate before compounding. APY is the rate after compounding is included, defined by Regulation DD as (1 + r/n)^n − 1. Banks must disclose APY, so that is almost always the number in the ad. Compare CDs by APY and the compounding schedule stops mattering.',
+					'The interest rate, or nominal rate, is what the bank quotes before any compounding is applied. APY is the rate after compounding is included, defined by Regulation DD as (1 + r/n)^n − 1. Federal rules require the APY figure in advertising, so that is almost always the number you see. Compare CDs by APY and you can stop worrying about how often each one compounds.',
 			},
 			{
 				question: 'Is CD interest taxed?',
 				answer:
-					'Yes. Interest is ordinary income for federal tax in the year the bank credits it to the CD, even if the term has not ended. The bank reports it on a 1099-INT. CDs held inside an IRA follow the retirement account rules instead.',
+					'Yes. Interest is ordinary income for federal tax in the year it lands in the CD, even if the term has not ended. The bank reports it on a 1099-INT. CDs held inside an IRA follow the retirement account rules instead.',
 			},
 			{
 				question: 'Are CDs FDIC insured?',
@@ -142,7 +142,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Does daily vs. monthly compounding matter much?',
 				answer:
-					'Barely. At 4.5% on $10,000 for a year, daily compounding beats monthly by less than a dollar. A 0.1 percentage point difference in APY matters more than any compounding schedule, which is why comparing APY directly is the sane way to shop.',
+					'Barely. On a $10,000 balance at 4.5%, going from monthly to daily compounding adds back less than a dollar over twelve months. A 0.1 percentage point difference in APY outweighs anything gained from compounding more often, which is why comparing APY directly is the sane way to shop.',
 			},
 		],
 		sources: [
@@ -233,12 +233,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How do I convert square feet to square meters?',
 				answer:
-					'Multiply by 0.0929. Going the other way, multiply square meters by 10.764. The factor is exact because a foot is defined as exactly 0.3048 m.',
+					'Multiply by 0.0929. Going the other way, multiply square meters by 10.764. The factor is exact because one foot equals precisely 0.3048 meters by international definition.',
 			},
 			{
 				question: 'How do I calculate square footage of an odd-shaped room?',
 				answer:
-					'Split the floor into rectangles (and triangles if walls run at an angle), calculate each piece, and add them up. Any straight-walled shape can be decomposed this way; only genuinely curved walls need the circle formula.',
+					'Break the floor into rectangles (and triangles if walls run at an angle), calculate each piece, and add them up. This trick of breaking a floor plan into simple pieces works for anything made of straight walls; only genuinely curved walls need the circle formula.',
 			},
 			{
 				question: 'How much extra flooring should I buy?',
@@ -436,17 +436,17 @@ export const tools: Tool[] = [
 			{
 				question: 'Does the SAT take points off for wrong answers?',
 				answer:
-					'No. Since 2016 the raw score is simply the number of correct answers. Never leave a question blank.',
+					'No. Since 2016 the raw score has simply been a tally of correct answers. Never leave a question blank.',
 			},
 			{
 				question: 'How many questions is the digital SAT?',
 				answer:
-					'The adaptive digital SAT in Bluebook has 54 Reading & Writing questions and 44 Math questions across two modules per section. The paper practice tests this calculator scores are longer (66 and 54) because a non-adaptive test needs more questions to measure the same range.',
+					'Bluebook\'s adaptive digital SAT runs 54 Reading & Writing items and 44 Math items across two modules per section. The paper practice tests this calculator scores are longer (66 and 54) because a non-adaptive format needs more questions to measure the same range.',
 			},
 			{
 				question: 'Why do I get a score range instead of one number?',
 				answer:
-					'Because the official paper-test worksheet reports ranges. The real test is adaptive, so a raw count maps to a span of plausible scaled scores depending on module difficulty; College Board publishes that span rather than pretending to more precision.',
+					'Because the official paper-test worksheet reports ranges. The real test is adaptive, so a raw count maps to a span of plausible scaled scores depending on module difficulty; that\'s the span College Board itself publishes, rather than pretending to more precision.',
 			},
 			{
 				question: 'Can I score a Bluebook practice test with this?',
@@ -456,7 +456,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What raw score do I need for a 1400?',
 				answer:
-					'On this table, a raw 58 in Reading & Writing (680–700) plus a raw 46 in Math (690–720) gives a combined 1370–1420, straddling 1400. Other practice tests will differ by a few raw points either way.',
+					'On this table, a raw 58 for the Reading and Writing section (680–700) plus a raw 46 for Math (690–720) gives a combined 1370–1420, straddling 1400. Other practice tests will differ by a few raw points either way.',
 			},
 		],
 		sources: [
@@ -537,17 +537,17 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between molarity and moles?',
 				answer:
-					'Moles measure an amount of substance; molarity measures how concentrated it is: moles per liter of solution. Half a mole in half a liter and one mole in one liter are different amounts at the same 1 M concentration.',
+					'Moles count how much stuff you have, atoms, molecules, whatever\'s dissolved; molarity measures how concentrated it is: moles for every liter of the total solution. Half a mole in half a liter and one mole in one liter are different amounts at the same 1 M concentration.',
 			},
 			{
 				question: 'Is molarity affected by temperature?',
 				answer:
-					'Slightly, yes. Warming a solution expands its volume, so the same moles sit in more liters and molarity drops a little. Molality (per kg of solvent) does not change with temperature, which is why it is preferred for temperature-dependent property calculations.',
+					'Slightly, yes. Warming a solution expands its volume, so the same moles sit in more liters and molarity drops a little. Molality (per kg of solvent) stays fixed regardless of heat, which is why chemists reach for it instead whenever a calculation is sensitive to temperature.',
 			},
 			{
 				question: 'Why use a volumetric flask instead of a beaker?',
 				answer:
-					'Because molarity is defined per liter of final solution. A volumetric flask lets you dissolve the solute first and then fill to a calibrated line, so the final volume, not the added water, is exactly right. Beaker graduations are far less accurate.',
+					'Because molarity is defined against the total volume once everything is dissolved and diluted to the mark. A volumetric flask lets you dissolve the solute first and then fill to a calibrated line, so the final volume, not the added water, is exactly right. Beaker graduations are far less accurate.',
 			},
 			{
 				question: 'What does a 1 M solution mean in practice?',
@@ -916,17 +916,17 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you convert Fahrenheit to Celsius?',
 				answer:
-					'Subtract 32 from the Fahrenheit value, then multiply by 5/9: °C = (°F − 32) × 5/9. For example, (68°F − 32) × 5/9 = 36 × 5/9 = 20°C.',
+					'Subtract 32 from the Fahrenheit value, then multiply what\'s left by 5/9. Taking 68°F as an example: 68 minus 32 is 36, and 36 × 5/9 comes out to 20°C.',
 			},
 			{
 				question: 'What is 180°C in Fahrenheit?',
 				answer:
-					'180°C = 356°F exactly (180 × 9/5 + 32 = 356). It is a common oven-temperature conversion; most US ovens round it to the nearest dial setting, typically 350°F.',
+					'180°C = 356°F exactly (180 × 9/5 + 32 = 356). It is a common oven-temperature conversion; most US ovens round it to the nearest dial position, usually landing on 350°F.',
 			},
 			{
 				question: 'Is 38°C a fever?',
 				answer:
-					'Yes. The CDC defines fever as a measured temperature of 100.4°F (38°C) or greater. Normal body temperature is commonly cited around 37°C/98.6°F, but it varies somewhat by person and time of day, so a reading in between (37.5–37.9°C) is sometimes called a low-grade fever depending on the source.',
+					'Yes. CDC guidance puts the fever line at a measured 100.4 on the Fahrenheit scale, equivalently 38 Celsius, or above. A typical baseline runs around 37°C/98.6°F, but it varies somewhat by person and time of day, so a reading in between (37.5–37.9°C) is sometimes called a low-grade fever depending on the source.',
 			},
 			{
 				question: 'What is absolute zero in Fahrenheit and Celsius?',
@@ -936,12 +936,12 @@ export const tools: Tool[] = [
 			{
 				question: 'Why does Kelvin not use the degree symbol?',
 				answer:
-					'Kelvin is an absolute scale tied to a physical zero point rather than an arbitrary reference like water freezing, so the SI convention writes it as a plain unit ("300 K"), not a degree ("300°K"). Celsius and Fahrenheit keep the degree symbol because they are relative scales built around chosen reference points.',
+					'Kelvin is an absolute scale tied to a physical zero point rather than a chosen benchmark like water freezing, so the SI convention writes it as a plain unit ("300 K"), not a degree ("300°K"). By contrast, both of the other two scales keep the degree symbol because they\'re relative, built around chosen reference points rather than a physical zero.',
 			},
 			{
 				question: 'Does a 1-degree change mean the same thing on every scale?',
 				answer:
-					'No. This trips people up specifically when converting a *change* in temperature rather than a single reading. A 1°C change equals a 1.8°F change (or 1 K, since Kelvin and Celsius move at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
+					'No. This trips people up specifically when converting a *change* in temperature rather than a single reading. Moving the needle by 1°C corresponds to a 1.8°F move (or 1 K, since Kelvin and Celsius track at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
 			},
 		],
 		sources: [
@@ -1066,11 +1066,11 @@ export const tools: Tool[] = [
 			{
 				question: 'How many inches are in a centimeter?',
 				answer:
-					'1 centimeter equals 0.393701 inches (1 ÷ 2.54). To convert centimeters to inches, divide by 2.54; to go the other way, multiply inches by 2.54.',
+					'1 centimeter equals 0.393701 inches (1 ÷ 2.54). To turn a cm figure into inches, divide by 2.54; to go the other way, multiply inches by 2.54.',
 			},
 			{
 				question: 'How many centimeters are in an inch?',
-				answer: '1 inch equals exactly 2.54 centimeters. This has been the legal, exact definition since the 1959 International Yard and Pound Agreement.',
+				answer: 'One inch is defined as precisely 2.54 centimeters. This has been the legal, exact definition since the 1959 agreement that standardized these units across English-speaking countries.',
 			},
 			{
 				question: 'How many feet are in a mile?',
@@ -1083,7 +1083,7 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many millimeters are in an inch?',
-				answer: '1 inch equals exactly 25.4 millimeters. This is the same 1959-defined exact relationship as the centimeter conversion, just expressed at a finer scale (2.54 cm × 10).',
+				answer: 'One inch works out to exactly 25.4 millimeters. This is the same 1959-defined exact relationship as the centimeter conversion, just expressed at a finer scale (2.54 cm × 10).',
 			},
 			{
 				question: 'Is a mile longer than a kilometer?',
