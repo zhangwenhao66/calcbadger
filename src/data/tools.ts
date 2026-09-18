@@ -4107,20 +4107,20 @@ export const tools: Tool[] = [
 		updated: '2026-08-19',
 		published: '2026-08-19',
 		coreSummary:
-			'Markup% = (selling price - cost) / cost × 100. Margin% = (selling price - cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused. Percentage-of-a-total math shows up in a much more everyday setting too: a [tip](/tip-calculator/) is the same kind of percent-of-base calculation, though restaurant etiquette says the base should be the pre-tax subtotal, not the tax-inclusive total most people tip from.',
+			'Markup% = (selling price − cost) / cost × 100. Margin% = (selling price − cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused. Percentage-of-a-total math shows up in a much more everyday setting too: a [tip](/tip-calculator/) is the same kind of percent-of-base calculation, though restaurant etiquette says the base should be the pre-tax subtotal, not the tax-inclusive total most people tip from.',
 		queries: ['markup calculator', 'markup percentage calculator', 'markup vs margin calculator', 'how to calculate markup', 'markup to margin converter'],
 		sections: [
 			{
 				heading: 'How markup is calculated',
 				body: [
-					'Markup is profit expressed as a percentage of cost: **markup% = (selling price - cost) / cost × 100**. Rearranged, that gives the other two directions this calculator solves: **selling price = cost × (1 + markup% / 100)**, and **cost = selling price / (1 + markup% / 100)**.',
+					'Markup is profit expressed as a percentage of cost: **markup% = (selling price − cost) / cost × 100**. Rearranged, that gives the other two directions this calculator solves: **selling price = cost × (1 + markup% / 100)**, and **cost = selling price / (1 + markup% / 100)**.',
 					'A $40 item marked up 35% sells for $40 × 1.35 = $54.00, for a $14.00 profit. That $14.00 is 35% of the $40.00 cost, which is exactly the markup percent that went in. The formula is circular by design, since markup is defined relative to cost.',
 				],
 			},
 			{
 				heading: 'Markup vs. margin: the number that trips people up',
 				body: [
-					'Markup and margin both describe the same profit dollar, but they divide it by a different base. Markup divides by cost; margin (sometimes "gross margin" or "gross profit margin") divides by the selling price instead: **margin% = (selling price - cost) / selling price × 100**. Because the selling price is always larger than the cost on a profitable sale, margin% is always the smaller of the two numbers for the same transaction (Corporate Finance Institute; AccountingTools).',
+					'Markup and margin both describe the same profit dollar, but they divide it by a different base. Markup divides by cost; margin (sometimes "gross margin" or "gross profit margin") divides by the selling price instead: **margin% = (selling price − cost) / selling price × 100**. Because the selling price is always larger than the cost on a profitable sale, margin% is always the smaller of the two numbers for the same transaction (Corporate Finance Institute; AccountingTools).',
 					'Cost $70, sell at $100: profit is $30. As markup, that $30 is 42.86% of the $70 cost. As margin, the same $30 is 30% of the $100 price. Using one number where the other is meant (for example, trying to hit a 30% profit margin by adding a flat 30% markup to cost) undershoots the actual margin target, because 30% markup on $70 only lands at 23.08% margin, not 30%.',
 				],
 			},
@@ -4161,27 +4161,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between markup and margin?',
 				answer:
-					'Markup divides profit by cost: markup% = (price - cost) / cost × 100. Margin divides the same profit by the selling price instead: margin% = (price - cost) / price × 100. Because the selling price is larger than the cost, margin% is always lower than markup% for the same sale (Corporate Finance Institute; AccountingTools).',
+					'Markup divides profit by cost; margin takes that identical profit dollar and sets it against what the customer actually paid. Run the numbers both ways and margin comes out smaller every time, since it\'s dividing the identical profit dollar by a bigger number.',
 			},
 			{
 				question: 'How do I calculate markup percentage?',
 				answer:
-					'Subtract the cost from the selling price to get profit, then divide profit by the cost and multiply by 100: markup% = (selling price - cost) / cost × 100. A $70 cost sold at $100 has a $30 profit, which is 42.86% of the $70 cost.',
+					'Subtract the cost from the selling price to get profit, then run that profit dollar over the cost and scale it to a percentage: the formula shown further up. A $70 cost sold at $100 clears a $30 profit, and $30 works out to 42.86% once you set it against that $70 cost.',
 			},
 			{
 				question: 'If I want a 30% profit margin, what markup should I use?',
 				answer:
-					'A 30% profit margin needs a 42.86% markup, not a 30% markup. Adding a flat 30% markup to cost only produces a 23.08% margin. To hit a target margin, convert it to the matching markup first: markup% = margin% / (1 - margin% / 100). That is also why this calculator always shows both numbers instead of just the one you entered.',
+					'Aiming for a 30-cents-on-the-dollar profit margin actually calls for a 42.86% markup, not a matching 30%. Marking cost up by a flat 30% instead only lands at a 23.08% margin. To hit a target margin, convert it to the matching markup first: markup% = margin% / (1 - margin% / 100). That is also why this calculator always shows both numbers instead of just the one you entered.',
 			},
 			{
 				question: 'What does 100% markup mean?',
 				answer:
-					'It means the selling price is double the cost: a $50 cost marked up 100% sells for $100, for a $50 profit. In retail, doubling cost to set price is sometimes called "keystone" pricing. A 100% markup works out to a 50% margin, not 100%, since margin measures the same profit against the larger selling price instead of the cost.',
+					'It means the price you charge ends up twice the cost: a $50 cost marked up 100% sells for $100, for a $50 profit. In retail, doubling cost to set price is sometimes called "keystone" pricing. A 100% markup works out to a 50% margin, not 100%, since margin is that same profit weighed against what the customer actually paid, a bigger number than cost.',
 			},
 			{
 				question: 'Is markup the same as profit margin?',
 				answer:
-					'No, they describe the same profit dollar but are not numerically equal except when profit is $0. Markup is profit over cost; margin (gross profit margin) is profit over selling price. Mixing the two up when setting prices is a common pricing mistake, since a markup percentage always understates the resulting margin percentage.',
+					'No. Both track the identical dollar of profit, just measured against a different base, and they only land on the same number when profit is $0. Markup is profit over cost; margin is that same profit set against what you actually charged. Confusing the two when setting prices is a common pricing mistake, since going by the markup number alone will always overstate what actually lands in profit terms.',
 			},
 		],
 		sources: [
@@ -4253,22 +4253,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you calculate prorated rent?',
 				answer:
-					'Divide the monthly rent by a day-count denominator to get a daily rate, then multiply by the number of days occupied. The denominator is where methods differ: the actual number of days in that month, a flat 30, or the yearly rent divided by 365 (366 in a leap year). For a $1,500 lease with 12 days occupied in a 31-day month, that gives $580.65, $600.00, or $591.78 depending on which denominator the lease uses.',
+					'Take the monthly rent, divide by a day-count denominator to land on a daily rate, then scale that up by however many days were occupied. The denominator is where methods differ: how many days that particular month actually has, a flat thirty, or the yearly rent divided by 365 (366 in a leap year). Run the same $1,500 lease and 12 occupied days through all three, and you land on $580.65, $600.00, or $591.78, purely from which denominator the lease uses.',
 			},
 			{
 				question: 'Does the day you move in count as a full day of rent?',
 				answer:
-					'In the most common convention, yes. The move-in date itself is counted as an occupied day, and the days-occupied count runs from that date through the end of the month. Some leases instead start counting from the day after move-in; check the lease language, since that shifts every total by exactly one day\'s rent.',
+					'In the most common convention, yes. The move-in date itself gets counted as a day you occupied the place, and the days-occupied tally runs from that date through the end of the month. Read the lease carefully, since a document that starts the clock the day after move-in instead will shift every figure by precisely one day of rent.',
 			},
 			{
 				question: 'What is the "banker\'s month" method?',
 				answer:
-					'It treats every month as exactly 30 days for rent math, regardless of whether the real month has 28, 29, 30, or 31 days. It is the same 30/360 day-count convention the International Swaps and Derivatives Association formally defines for bond and loan interest accrual, applied to a monthly rent figure instead of a coupon payment.',
+					'For rent math purposes, this method pretends every month runs exactly thirty days, no matter whether the real one lasts 28, 29, 30, or 31. It is the same day-counting shortcut that a major bond-market trade group formally writes into its rulebook for how loan and bond interest builds up, borrowed here for a monthly rent figure rather than a bond coupon.',
 			},
 			{
 				question: 'Why do I get a different prorated amount than my landlord calculated?',
 				answer:
-					'Almost always because you are using different day-count methods. The actual-days, banker\'s-month, and annual (365) conventions only agree exactly in a 30-day month (April, June, September, November); in every other month they produce three different totals for the identical move-in or move-out date. Check the lease for which method it specifies before assuming either number is wrong.',
+					'Almost always because you are using different day-count methods. The actual-days, banker\'s-month, and annual (365) conventions only agree exactly when the calendar hands you a genuinely 30-day-long month; any other month, they hand back three different totals for one single arrival or departure date. Check the lease for which method it specifies before assuming either number is wrong.',
 			},
 			{
 				question: 'Is there a federal law that sets the prorated rent method?',
@@ -4341,12 +4341,12 @@ export const tools: Tool[] = [
 			{
 				question: 'What is conduit fill percentage?',
 				answer:
-					'It is the share of a conduit\'s internal cross-sectional area that the conductors inside it occupy, measured against the area NEC Chapter 9 Table 4 lists for that conduit type and trade size at 100% fill. NEC Chapter 9, Table 1 then caps how much of that 100% area is allowed to actually be used: 53% for one conductor, 31% for two, 40% for three or more.',
+					'It is the share of the space inside a conduit, cross-section wise, that the conductors inside it occupy, measured against the area NEC Chapter 9 Table 4 lists for that conduit type and trade size at 100% fill. A separate section of the same code chapter then caps how much of that full area may actually be used, and it steps down as the conductor count sharing that raceway goes up.',
 			},
 			{
 				question: 'How many 12 AWG wires fit in a 3/4 inch EMT conduit?',
 				answer:
-					'Up to 16, per NEC Annex C, Table C.1, which is built from the same Chapter 9 area tables and percentage rule this calculator uses. 16 conductors at 0.0133 sq in. each use 0.2128 sq in. against a 3/4 in. EMT\'s 40%-fill allowance of 0.2132 sq in.; a 17th conductor would push the total past that limit.',
+					'Up to 16, per the NEC\'s own annex table for this exact combination, which is built from the same Chapter 9 area tables and percentage rule this calculator uses. 16 conductors at 0.0133 sq in. each use 0.2128 sq in. against a 3/4 in. EMT\'s 40%-fill allowance of 0.2132 sq in.; a 17th conductor would push the total past that limit.',
 			},
 			{
 				question: 'Does the ground wire count toward conduit fill?',
@@ -4356,12 +4356,12 @@ export const tools: Tool[] = [
 			{
 				question: 'What counts as a nipple, and why does it get 60% fill?',
 				answer:
-					'A nipple is a conduit run of 24 in. or less connecting two enclosures. NEC Chapter 9, Table 1 exempts it from the usual 31%/40% conductor-count rule and allows a flat 60% fill instead, because a run that short is not pulled the way a long branch run is, which removes the jamming risk the lower percentages are meant to guard against.',
+					'A nipple is a short conduit run, 24 in. or less, connecting two enclosures. The same code table that sets the ordinary conductor-count percentages carves out an exception here, allowing a flat 60% fill instead, because a run that short is not pulled the way a long branch run is, which removes the jamming risk the lower percentages are meant to guard against.',
 			},
 			{
 				question: 'Does conduit fill work the same for EMT, RMC, IMC, and PVC?',
 				answer:
-					'The 53%/31%/40% percentage rule is identical across conduit types. What differs is the internal area behind it: EMT, IMC, RMC, and PVC Schedule 40 each have a different wall thickness for a given trade size, so the same "1 inch" label holds a slightly different amount of conductor area depending on which one is installed.',
+					'Those percentage caps by conductor count read the same no matter which conduit type is in play. What differs is how much usable space sits behind that percentage: the four common raceway materials each carry a different wall thickness at a given trade size, so the same "1 inch" label holds a slightly different amount of conductor area depending on which one is installed.',
 			},
 		],
 		sources: [
