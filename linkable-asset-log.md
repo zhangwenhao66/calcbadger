@@ -51,3 +51,7 @@ pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经�
 **Status**: not sent — blocked by the SES migration freeze (checked at the start of this run per the 2026-09-12 SKILL.md addition, before any send calls). Stored in `outreach-drafts.md` marked `drafted_blocked_by_ses_migration`.
 
 **Step 2 / 3.5**: not re-executed this run (time budget went to sourcing and reviewing the new embed-pitch target above).
+
+## 2026-09-18 — 更正：9/15条目"未发送"状态已过期
+
+上面9/15条目记录的board-foot-calculator→Woodworkers Journal pitch，当时确实因ZeptoMail迁移窗口未发送，但迁移完成后已于**2026-09-16 13:17 UTC**补发成功（收件人`editor@woodworkersjournal.com`，Message ID `1a0aa5d40a324eeb`，详细verification notes见`outreach-drafts.md`对应条目，其Status字段已正确更新为SENT）。本条目补记是因为9/18的COO首轮分析报告只读了本文件的9/15条目就误判"仍未发送"，核实`gmail_send.py list`真实发信记录后发现9/16已经发出——本文件的历史条目不回改，仅在此追加订正，避免以后再被误读。

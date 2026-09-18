@@ -685,7 +685,7 @@ export const tools: Tool[] = [
 		title: 'Coin Flip Simulator & Probability Calculator',
 		shortTitle: 'Coin Flip',
 		description:
-			'Flip 1-500 virtual coins (fair or weighted) and see the heads/tails split and longest streak, or use the probability calculator for exact binomial odds.',
+			'This coin flip simulator flips 1-500 virtual coins (fair or weighted) and shows the heads/tails split and longest streak, or use the probability calculator for exact binomial odds on any specific outcome.',
 		updated: '2026-08-03',
 		published: '2026-08-03',
 		coreSummary:
@@ -762,17 +762,17 @@ export const tools: Tool[] = [
 			{
 				question: 'Why is it not 50/50 to get an even split of heads and tails?',
 				answer:
-					'A single flip is 50/50, but a set of flips landing exactly half-and-half is a different question: it depends on how many distinct sequences produce that count. There are 252 ten-flip sequences with exactly 5 heads versus only 1 with all 10 heads, which is why 5-5 (24.6%) is far more likely than 10-0 (0.098%) even though no single sequence is favored over another.',
+					'Each flip on its own is 50/50, but landing exactly half-and-half over a whole set is a different question: it depends on how many distinct sequences produce that count. There are 252 ten-flip sequences with exactly 5 heads versus only 1 with all 10 heads, which is why 5-5 comes up 24.6% of the time against just 0.098% for 10-0, even though no single sequence is favored over another.',
 			},
 			{
 				question: 'How do I calculate the odds of a weighted or biased coin?',
 				answer:
-					'Use the same binomial formula P(x) = C(n,x) × p^x × (1−p)^(n−x), substituting the actual chance of heads for p instead of 0.5. This calculator accepts any probability from 0% to 100%, so the same math answers a weighted coin, a biased die face, or any other fixed-probability trial.',
+					'It uses the same binomial formula shown above, just with the actual chance of heads swapped in for p instead of 0.5. This calculator accepts any probability from 0% to 100%, so it works equally well for a weighted coin, a biased die face, or any other fixed-probability trial.',
 			},
 			{
 				question: 'How many coin flips does it take to prove a coin is unfair?',
 				answer:
-					'There is no fixed number: it comes down to how unlikely the observed result would be under a fair coin. 15 heads out of 20 has about a 2% chance under fairness (mild evidence); to get below the stricter 1-in-1,000 threshold often used in quality control, you would need either a larger sample or a more lopsided split. More flips shrink the probability of a fair coin producing an extreme result by chance.',
+					'There is no fixed number: it comes down to how unlikely the observed result would be under a fair coin. The worked example above lands at about a 2% chance under fairness, which counts as mild evidence; to get below the stricter 1-in-1,000 threshold often used in quality control, you would need either a larger sample or a more lopsided split. Add more flips and a fair coin becomes less and less likely to throw an extreme result by chance.',
 			},
 			{
 				question: 'What is the longest heads streak I should expect in 100 flips?',
@@ -4639,7 +4639,7 @@ export const tools: Tool[] = [
 		title: 'Click Speed Test',
 		shortTitle: 'Click Speed Test',
 		description:
-			'Measure your clicks per second (CPS) and clicks per minute over a timer you choose, then compare your result against the clinical single-finger tapping range from neuropsychology research.',
+			'Use this click speed test to check your clicks per second (CPS) and clicks per minute over a timer you choose, then compare your result against the clinical single-finger tapping range from neuropsychology research.',
 		updated: '2026-08-21',
 		published: '2026-08-21',
 		coreSummary:
@@ -4685,7 +4685,7 @@ export const tools: Tool[] = [
 					['210', '30s', '7.00', '420'],
 					['300', '60s', '5.00', '300'],
 				],
-				note: 'CPS = clicks ÷ duration in seconds; CPM = CPS × 60. Shorter windows tend to produce higher CPS because a maximal burst is easier to sustain briefly than for a full minute.',
+				note: 'CPS = clicks ÷ duration in seconds; CPM = CPS × 60. Shorter windows tend to produce higher CPS because a short burst holds up better than a sustained pace does over a full minute.',
 			},
 			{
 				title: 'How this tool classifies your CPS',
@@ -4703,27 +4703,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a good CPS (clicks per second) score?',
 				answer:
-					'It depends on what you\'re comparing it to. Continuous single-finger tapping in the clinical Finger Tapping Test literature (Ruff & Parker, 1993, and later replications) averages roughly 5.0-5.5 taps per second for a healthy young adult\'s dominant hand. Click-speed-test communities report much higher numbers, but those typically come from alternating multiple fingers or specialized techniques, not single-finger tapping, so the two aren\'t measuring the same thing.',
+					'It depends on what you\'re comparing it to. The clinical baseline cited above works out to about 5 to 5.5 continuous taps a second from one finger. Click-speed-test communities report much higher numbers, but those results usually rely on alternating two or more fingers or a named technique rather than tapping with just one, so the two aren\'t measuring the same thing.',
 			},
 			{
 				question: 'What is the difference between a click speed test and a reaction time test?',
 				answer:
-					'A click speed test measures throughput: how many clicks you can produce in a fixed window. A reaction time test measures latency: how long it takes to respond to a single, unpredictable signal. They test different skills, and a high score on one does not imply a high score on the other.',
+					'A click speed test measures throughput: how many clicks you can produce in a fixed window. Reaction time is a separate skill: it measures the delay between seeing an unpredictable cue and reacting to it. They test different skills, and a high score on one does not imply a high score on the other.',
 			},
 			{
 				question: 'What are jitter clicking and butterfly clicking?',
 				answer:
-					"They're named techniques some gamers use to exceed natural single-finger tapping speed: jitter clicking tenses the forearm to make a finger vibrate rapidly against the mouse button, and butterfly clicking alternates two fingers rapidly on the same button. Both are widely documented within gaming communities, but the specific CPS thresholds associated with them are community convention, not a peer-reviewed measurement.",
+					"They're named techniques some gamers use to push CPS past what a single hand can normally sustain. Jitter clicking tenses the forearm so a finger vibrates rapidly against the mouse button, while the butterfly technique taps two fingers back and forth on the same button. Both are widely documented within gaming communities, but the specific CPS thresholds associated with them are community convention, not a peer-reviewed measurement.",
 			},
 			{
 				question: 'Why does my CPS change depending on the test duration?',
 				answer:
-					"A short window (1 or 5 seconds) captures a maximal burst, which is easier to sustain briefly than for a full minute. A longer window (30 or 60 seconds) averages that burst against fatigue and rhythm-holding, so it typically produces a lower, more sustainable rate. Neither number is more correct: they describe burst speed versus sustained rate.",
+					"A short window (1 or 5 seconds) captures a maximal burst, which holds up better over a few seconds than across a full minute. A longer window (30 or 60 seconds) averages that burst against tiring muscles and a harder-to-hold rhythm, so it typically produces a lower, more sustainable rate. One isn't more correct than the other: they're measuring two different things, a sprint versus a pace you could hold.",
 			},
 			{
 				question: 'Can this tool detect clicking macros or verify esports records?',
 				answer:
-					"No. This is a simple browser-based timer and counter with no anti-cheat detection, and it is not a validated or officially recognized record-keeping tool. It's useful for casual comparison against your own past results or the documented clinical range above, not for verifying competitive claims.",
+					"No. This is a simple browser-based timer and counter with no anti-cheat detection, and it is not a validated or officially recognized record-keeping tool. It's useful for casual comparison against your own past results or the clinical range cited above, not for verifying competitive claims.",
 			},
 		],
 		sources: [
