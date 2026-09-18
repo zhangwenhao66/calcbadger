@@ -1842,7 +1842,7 @@ export const tools: Tool[] = [
 		faq: [
 			{
 				question: 'What is 20 percent of 50?',
-				answer: '10. Percent of a number is percent ÷ 100 × whole, so 20 ÷ 100 × 50 = 0.20 × 50 = 10.',
+				answer: '10. Take the percent, divide by 100, and multiply by the whole: 20 ÷ 100 × 50 = 0.20 × 50 = 10.',
 			},
 			{
 				question: 'How do you calculate a percentage increase?',
@@ -1852,22 +1852,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How does a percent-off (discount) calculator work?',
 				answer:
-					'Multiply the original price by the discount percentage to get the amount saved (original × discount ÷ 100), then subtract that from the original price to get the sale price. A $100 item at 20% off saves $20, for a sale price of $80.',
+					'Multiply the sticker price by the discount percentage to get the amount saved (price × discount ÷ 100), then subtract that from what you started with to get the sale price. A $100 item at 20% off saves $20, for a sale price of $80.',
 			},
 			{
 				question: 'What is the difference between percent change and percent difference?',
 				answer:
-					'Percent change compares a value to itself over time or before/after, always dividing by the earlier ("old") value, so the order of the two numbers matters. Percent difference compares two independent values where neither is a reference point, dividing by their average instead, so swapping the two numbers gives the same answer. The same pair of numbers can produce two different results depending on which formula fits the question.',
+					'Percent change compares a value to itself over time or before/after, always dividing by the earlier ("old") value, so the order of the two numbers matters. When two numbers stand on equal footing, with neither one a baseline for the other, dividing by the midpoint between them is the fairer comparison, so swapping the two numbers gives the same answer. The same pair of numbers can produce two different results depending on which formula fits the question.',
 			},
 			{
 				question: 'How do I find what percentage one number is of another?',
 				answer:
-					'Divide the part by the whole and multiply by 100: part ÷ whole × 100. 10 out of 40 is 10 ÷ 40 × 100 = 25%. This is what the "Find the percent" option in a Basic percentage calculator solves for.',
+					'Divide the part by the whole and multiply by 100: part ÷ whole × 100. 10 out of 40 is 10 ÷ 40 × 100 = 25%. This is what the "Find the percent" option on this tool solves for.',
 			},
 			{
 				question: 'Does a 10% decrease followed by a 10% increase get back to the original number?',
 				answer:
-					'No. A 10% decrease and the following 10% increase are calculated against different base numbers, so they do not cancel. $100 minus 10% is $90; $90 plus 10% of $90 (which is $9) is $99, one dollar short of the original $100. The gap grows with larger percentages: a 50% drop needs a 100% rise, not 50%, to fully recover.',
+					'No. A 10% decrease and the following 10% increase are measured against different base numbers, so they do not cancel. $100 minus 10% is $90; $90 plus 10% of $90 (which is $9) is $99, one dollar short of the original $100. The gap grows with larger percentages: a 50% drop needs a 100% rise, not 50%, to fully recover.',
 			},
 		],
 		sources: [
@@ -2037,11 +2037,11 @@ export const tools: Tool[] = [
 			},
 			{
 				question: "What's the difference between a fluid ounce and a regular ounce?",
-				answer: 'A fluid ounce (fl oz) measures volume: 1/128 of a US gallon. A regular ounce (oz) measures weight: 1/16 of a pound. They only roughly coincide for water; for other substances (like flour or sugar), 1 cup by volume and 8 oz by weight are different amounts.',
+				answer: 'A fluid ounce (fl oz) measures volume: 1/128 of a US gallon. A regular ounce (oz) measures weight: one sixteenth of a pound. The two only roughly line up for water; for other substances (like flour or sugar), 1 cup by volume and 8 oz by weight are different amounts.',
 			},
 			{
 				question: 'How many gallons are in an oil barrel?',
-				answer: 'Exactly 42 US gallons, per the US Energy Information Administration, a standard fixed by the 19th-century petroleum industry and unrelated to gas-pump gallons.',
+				answer: '42 US gallons on the nose, per the same federal energy-statistics agency cited above, a standard fixed by the 19th-century petroleum industry and unrelated to gas-pump gallons.',
 			},
 			{
 				question: 'How many shots are in a fifth?',
@@ -2049,7 +2049,7 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many bottles of water are in a gallon?',
-				answer: 'About 7.6 standard single-serving water bottles. Most disposable water bottles hold 500 mL (labeled 16.9 fl oz), and a US gallon is 3.785411784 liters, so 3.785411784 ÷ 0.5 = 7.57 bottles. A case of 24 bottles at that size holds a little over 3 gallons.',
+				answer: 'About 7.6 standard single-serving water bottles. Most disposable water bottles hold 500 mL (labeled 16.9 fl oz); dividing the exact liters-per-gallon figure from the table above (3.785411784) by 0.5 gives 7.57 bottles. A case of 24 bottles at that size holds a little over 3 gallons.',
 			},
 		],
 		sources: [
@@ -2167,12 +2167,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How do I find the number of days between two dates?',
 				answer:
-					'Use "Difference" mode and enter the start and end dates. The calculator returns the exact total day count and a calendar-style years/months/days breakdown; both measure the same span, just in different units.',
+					'Use "Difference" mode and enter the start and end dates. The calculator hands back a straight day tally alongside a broken-out years, months, and days figure; both numbers describe the identical stretch of time, just sliced differently.',
 			},
 			{
 				question: 'How do I add or subtract days from a date?',
 				answer:
-					'Use "Shift date" mode, enter a date and a number of days, and choose Add or Subtract. Adding 30 days to January 1, 2026 gives January 31, 2026; the mode defaults to today\'s date so it is ready to use immediately.',
+					'Use "Shift date" mode, enter a date and a number of days, and choose Add or Subtract. Adding 30 days to January 1, 2026 gives January 31, 2026; the field starts pre-filled with whatever day it is right now, so it is ready to use immediately.',
 			},
 			{
 				question: 'Why does "days until Christmas" show a different number tomorrow?',
@@ -2182,17 +2182,17 @@ export const tools: Tool[] = [
 			{
 				question: 'How is the date of Thanksgiving calculated?',
 				answer:
-					'US Thanksgiving is fixed by law (5 U.S.C. § 6103) as the fourth Thursday in November, not a fixed calendar date, which is why it falls anywhere from November 22 to November 28 depending on the year. This calculator computes it from that rule rather than a stored list of dates.',
+					'US Thanksgiving is fixed by law (5 U.S.C. § 6103) to always land on a particular weekday in November rather than pinned to one calendar square, which is why it falls anywhere from November 22 to November 28 depending on the year. This calculator works it out fresh from that rule every time, instead of looking it up on a pre-built list.',
 			},
 			{
 				question: "What's the difference between 'total days' and 'years, months, days'?",
 				answer:
-					'Total days is a plain count of calendar days between two dates. Years/months/days is a calendar-aware breakdown (full years, then full months, then remaining days), the same convention used to describe someone\'s age. They can disagree by a day for an anniversary of February 29 measured in a non-leap year, a documented edge case with more than one accepted convention.',
+					'Total days simply tallies every calendar day between the two dates. The calendar-aware version breaks it into whole years first, whole months next, whatever days are left over last, the same convention used to describe someone\'s age. The two can land a day apart when someone born on February 29 has their birthday tracked in a year that isn\'t a leap year, a known quirk with more than one accepted way of handling it.',
 			},
 			{
 				question: 'Does this account for time zones or daylight saving time?',
 				answer:
-					'No. Every calculation here works with plain calendar dates and has no time-of-day component, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
+					'No. Every calculation here works with plain calendar dates, with nothing tracked down to the hour or minute, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
 			},
 		],
 		sources: [
