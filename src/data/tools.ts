@@ -1174,14 +1174,14 @@ export const tools: Tool[] = [
 			{
 				heading: 'Worked example: a medication dose',
 				body: [
-					'A prescription label reads "levothyroxine 200 mcg," and a pharmacy reference lists the same drug in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams instead of micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly rather than assuming the number carries over.',
+					'A prescription label reads "levothyroxine 200 mcg," and a pharmacy reference lists the same drug in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams when the real value is in micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly; never assume the number carries over unchanged.',
 				],
 			},
 			{
 				heading: 'The stone: a UK and Ireland body-weight custom',
 				body: [
 					'The stone predates the 1959 pound by centuries as a medieval English trade weight, but its modern value is not a separate definition: the Weights and Measures Act 1985 (Schedule 1, Part VI) fixes it at exactly 14 avoirdupois pounds, so it inherits the same 0.45359237 kg pound as the rest of this converter. 14 × 0.45359237 kg = 6.35029318 kg exactly, with no independent rounding of its own.',
-					'That same Act pushed most UK goods sold by weight onto the metric kilogram for trade purposes. Body weight was never really part of that shift in everyday practice: bathroom scales, GP surgery records, and ordinary conversation across the UK and Ireland still run in stone and pounds (a person might be described as "11 stone 3," meaning 11 st plus 3 remaining lb), which is why this converter treats stone primarily as a body-weight unit rather than a general trade one.',
+					'That same Act pushed most UK goods sold by weight onto the metric kilogram for trade purposes. Body weight was never really part of that shift in everyday practice: bathroom scales, GP surgery records, and ordinary conversation across the UK and Ireland still run in stone and pounds (a person might be described as "11 stone 3," meaning 11 st plus 3 remaining lb), which is why this converter treats stone as a body-weight unit, not a general trade one.',
 				],
 			},
 			{
@@ -1279,11 +1279,11 @@ export const tools: Tool[] = [
 		faq: [
 			{
 				question: 'How many pounds are in a kilogram?',
-				answer: '1 kilogram equals approximately 2.204623 pounds. To convert kilograms to pounds, divide by 0.45359237; to go the other way, multiply pounds by 0.45359237.',
+				answer: '1 kilogram equals approximately 2.204623 pounds. To turn a kg figure into pounds, divide by 0.45359237; to go the other way, multiply pounds by 0.45359237.',
 			},
 			{
 				question: 'How many kilograms are in a pound?',
-				answer: '1 pound equals exactly 0.45359237 kilograms. This has been the legal, exact definition since the 1959 International Yard and Pound Agreement.',
+				answer: 'One pound is fixed at 0.45359237 kg exactly, a figure locked in by an international standards treaty signed back in 1959.',
 			},
 			{
 				question: 'How many ounces are in a pound?',
@@ -1295,11 +1295,11 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many grams are in an ounce?',
-				answer: '1 ounce equals exactly 28.349523125 grams (1 pound ÷ 16, and 1 pound is fixed at 453.59237 g by the 1959 agreement).',
+				answer: 'One ounce comes to 28.349523125 grams down to the exact fraction (1 pound ÷ 16, with the pound itself fixed at 453.59237 g by the 1959 agreement).',
 			},
 			{
 				question: 'Is a US ton the same as a metric tonne?',
-				answer: 'No. A US (short) ton is exactly 2,000 pounds, or 907.18474 kg. A metric tonne is exactly 1,000 kg, about 10% heavier than a US ton. This converter uses the US short ton, the one used in US freight, agriculture, and construction contexts.',
+				answer: 'No. A US (short) ton is exactly 2,000 pounds, or 907.18474 kg. A metric tonne is exactly 1,000 kg, about 10% heavier than a US ton. The short ton is the one built into this tool, matching US freight, agriculture, and construction usage.',
 			},
 			{
 				question: 'How many milligrams are in a gram?',
@@ -1307,15 +1307,15 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many kilograms are in a stone?',
-				answer: '1 stone equals exactly 6.35029318 kilograms. It is defined as 14 avoirdupois pounds (Weights and Measures Act 1985, Schedule 1, Part VI), and 14 × 0.45359237 kg gives that exact figure.',
+				answer: '1 stone equals exactly 6.35029318 kilograms. A UK statute from that same year sets a stone at fourteen pounds avoirdupois, which multiplies out to that exact metric figure using the same pound-to-kilogram conversion this whole tool relies on.',
 			},
 			{
 				question: 'How many pounds are in a stone?',
-				answer: 'There are exactly 14 pounds in a stone. This is a legal definition under UK law (Weights and Measures Act 1985), not an approximation.',
+				answer: 'There are exactly 14 pounds in a stone. It\'s set in UK statute, not an approximation someone settled on by convention.',
 			},
 			{
 				question: 'Why do UK and Irish scales show weight in stone instead of kilograms?',
-				answer: 'The Weights and Measures Act 1985 pushed most UK goods sold by weight onto the metric kilogram for trade, but that shift never really extended to personal body weight in everyday practice, so UK and Ireland bathroom scales, GP surgery records, and ordinary speech still default to stone and pounds even though the country is otherwise metric.',
+				answer: 'The same 1985 law that moved most UK retail weights over to the metric system never really touched how people talk about their own weight day to day, so people in both countries still get weighed, recorded, and give their own weight in stone-and-pounds terms even though the UK is otherwise metric.',
 			},
 			{
 				question: 'How do I convert kilograms to stone and pounds?',
@@ -1348,7 +1348,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-17',
 		published: '2026-08-05',
 		coreSummary:
-			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment. Not every fixed financial product compounds the same way a mortgage amortizes, either: a [CD](/cd-calculator/) grows by straightforward compound interest on a lump sum, with no monthly payment schedule to amortize at all. Renting instead of owning comes with its own once-off calculation at move-in or move-out: [prorated rent](/prorated-rent-calculator/) depends entirely on which day-count convention the lease uses, actual days in the month, a flat 30-day banker\'s month, or the rent divided across a 365-day year, and the three methods give three different dollar answers for the same dates.',
+			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment. Not every fixed financial product compounds the same way a mortgage amortizes, either: a [CD](/cd-calculator/) grows by straightforward compound interest on a lump sum, with no monthly payment schedule to amortize at all. A renter, not a mortgage-holder, still runs into a once-off calculation at move-in or move-out: [prorated rent](/prorated-rent-calculator/) depends entirely on which day-count convention the lease uses, actual days in the month, a flat 30-day banker\'s month, or the rent divided across a 365-day year, and the three methods give three different dollar answers for the same dates.',
 		queries: [
 			'mortgage calculator',
 			'home loan calculator',
@@ -1433,22 +1433,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How is a monthly mortgage payment calculated?',
 				answer:
-					'Principal & interest use the level-payment amortization formula M = P[r(1+r)ⁿ]/[(1+r)ⁿ−1], where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of monthly payments. Property tax, homeowners insurance, PMI and HOA dues are added on top as flat monthly amounts; they are not part of the amortization formula itself.',
+					'The loan payoff math above runs on the standard level-payment schedule lenders use everywhere. In that formula, P is what you borrowed, r is the rate per month (just the annual rate split twelve ways), and n is however many monthly payments the loan runs for. The tax bill, insurance premium, PMI charge, and HOA dues all ride along as separate monthly line items on top of that; none of them enter the amortization math itself.',
 			},
 			{
 				question: 'What down payment do I need to avoid PMI?',
 				answer:
-					'On a conventional loan, putting down at least 20% of the home price generally avoids private mortgage insurance. Below 20%, PMI is standard, but the Homeowners Protection Act requires it to be automatically canceled once the loan balance is first scheduled to reach 78% of the home\'s original value, provided payments are current.',
+					'Putting at least a fifth of the home price down generally avoids the insurance lenders require to protect themselves on thinner-equity loans. Below that threshold it\'s standard, but the 1998 federal statute governing its cancellation forces it to end automatically the moment the payoff math shows the balance crossing below 78% of what the home was originally worth, as long as payments stay current.',
 			},
 			{
 				question: 'Should I choose a 15-year or 30-year mortgage?',
 				answer:
-					'A 30-year term has a lower required monthly payment and more flexibility; a 15-year term has a higher payment but typically a lower rate and dramatically less total interest, since less time means less interest accrues and more of each payment is principal from the start. On a $320,000 loan, the difference in lifetime interest can exceed $240,000.',
+					'A 30-year term has a lower required monthly payment and more flexibility; a 15-year term has a higher payment but typically a lower rate and dramatically less total interest, since less time means less interest accrues and more of each payment is principal from the start. On a $320,000 loan, the gap in what you pay in interest over the full life of the loan can exceed $240,000.',
 			},
 			{
 				question: 'Why does my total payment include more than principal and interest?',
 				answer:
-					'Most US lenders collect property tax and homeowners insurance monthly through an escrow account and pay the annual bills on your behalf, and PMI (if required) and HOA dues are billed on the same monthly cycle. Principal & interest is fixed by the loan terms; the escrow and PMI portions can change if tax assessments, insurance premiums, or PMI eligibility change.',
+					'Most US lenders collect the local tax bill and the homeowner\'s insurance premium monthly, holds it in escrow, then pays each annual bill on your behalf, and PMI (if required) and HOA dues are billed on the same monthly cycle. The payment toward the loan itself is locked in by the loan terms; the escrow and PMI portions can change if tax assessments, insurance premiums, or PMI eligibility change.',
 			},
 			{
 				question: 'Does paying extra toward principal actually save money?',
@@ -1718,32 +1718,32 @@ export const tools: Tool[] = [
 			{
 				question: 'How much concrete do I need for a 10x10 slab?',
 				answer:
-					'At a standard 4 in thickness, a 10 × 10 ft slab is 33.33 cubic feet, or about 1.23 cubic yards. Add a 5-10% waste allowance before ordering, roughly 1.30-1.36 cubic yards, or about 59-62 bags of 80 lb mix.',
+					'At a standard 4 in thickness, a 10 × 10 ft slab is 33.33 cubic feet, or about 1.23 cubic yards. Order 5-10% over that figure to cover waste, roughly 1.30-1.36 cubic yards, or about 59-62 bags of 80 lb mix.',
 			},
 			{
 				question: 'How many 80 lb bags of concrete are in a cubic yard?',
 				answer:
-					'45 bags. An 80 lb bag of QUIKRETE Concrete Mix yields 0.60 cubic feet, and a cubic yard is 27 cubic feet, so 27 ÷ 0.60 = 45 bags exactly, before any waste allowance.',
+					'45 bags. An 80 lb bag of that mix yields 0.60 cubic feet, and a cubic yard is 27 cubic feet, so 27 ÷ 0.60 = 45 bags exactly, not counting any extra for waste.',
 			},
 			{
 				question: 'How deep should a fence post hole be?',
 				answer:
-					"QUIKRETE's installation guidance calls for a hole about 3 times the post's diameter across, with a depth equal to roughly 1/3 of the post's overall height. A 6 ft fence post typically needs a hole around 2 ft deep, adjusted for frost depth and local code in cold climates.",
+					"QUIKRETE's installation guidance calls for a hole about 3 times the post's diameter across, with a depth that works out to roughly a third of however tall the post stands above ground. A 6 ft fence post typically needs a hole around 2 ft deep, adjusted for frost depth and local code in cold climates.",
 			},
 			{
 				question: 'Should I use bags or order ready-mix concrete?',
 				answer:
-					'Bags make sense up to roughly a cubic yard: small slabs, footings, and post holes a couple of people can mix by hand in an afternoon. Beyond that, a ready-mix truck delivers a uniform batch in one pour and usually costs less in total than the labor of opening and mixing 60-plus bags, even after the delivery minimum.',
+					'Bags make sense up to about 27 cubic feet of concrete: small slabs, footings, and post holes that two people working together can mix by hand in an afternoon. Beyond that, a ready-mix truck delivers a uniform batch in one pour and usually costs less in total than the labor of opening and mixing 60-plus bags, even once you factor in what the ready-mix company charges for a small order.',
 			},
 			{
 				question: 'How much extra concrete should I order for waste?',
 				answer:
-					'5-10% above the calculated volume is standard: the low end for a clean rectangular slab poured against tight forms, the high end for irregular shapes or hand-dug post holes where the excavation is uneven.',
+					'5-10% above the calculated volume is standard: the low end for a simple rectangular pour with tight, well-built forms, the high end for oddly shaped or hand-dug post holes where the excavation runs uneven.',
 			},
 			{
 				question: 'What is the difference between 60 lb and 80 lb bags?',
 				answer:
-					'Both are the same QUIKRETE Concrete Mix formula, just packaged in different weights. An 80 lb bag yields 0.60 cubic feet and a 60 lb bag yields 0.45 cubic feet, so the 80 lb bag delivers more concrete per bag (fewer bags to carry for the same pour) but is proportionally heavier to lift.',
+					'Both are the same underlying mix formula from the same manufacturer, just packaged in different weights. An 80 lb bag yields 0.60 cubic feet and a 60 lb bag yields 0.45 cubic feet, so the 80 lb bag delivers more concrete per bag (fewer bags to carry for the same pour) but is proportionally heavier to lift.',
 			},
 		],
 		sources: [
