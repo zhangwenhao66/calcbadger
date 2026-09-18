@@ -3338,7 +3338,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How many miles is 10,000 steps?',
 				answer:
-					'About 4.5-5 miles for most adults, but it depends on height: roughly 4.51 miles at the U.S. average male height (68.9in) and 4.14 miles at the average female height (63.5in), using a step length of 0.415 × height for men and 0.413 × height for women.',
+					'About 4.5-5 miles for most adults, but it depends on height: roughly 4.51 miles at a typical adult male height of 68.9in and 4.14 miles at 63.5in, typical for an adult woman, using the 0.415-for-men and 0.413-for-women stride-to-height ratios shown above.',
 			},
 			{
 				question: 'How many steps are in a mile?',
@@ -3348,12 +3348,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How many steps is 5 miles?',
 				answer:
-					"Around 11,000-12,000 steps depending on height and stride: about 11,079 steps at the U.S. average male height (68.9in), or roughly 12,080 steps at the average female height (63.5in).",
+					"Around 11,000-12,000 steps depending on height and stride: about 11,079 steps for a man at the typical American height of 68.9in, or roughly 12,080 steps for a woman at 63.5in.",
 			},
 			{
 				question: 'Why not just use 2,000 steps per mile for everyone?',
 				answer:
-					"Because a flat ratio like that ignores how much height varies from person to person. It comes from an average step length around 28-31in, which fits a roughly 5'9\"-6'0\" stride but overstates the distance for someone with a shorter stride, sometimes by close to half a mile over a 10,000-step walk.",
+					"Because a flat ratio like that ignores how much height varies from person to person. It assumes a stride somewhere in the high 20s to low 30s in inches, which fits someone in the roughly 5\'9\"-6\'0\" range but overstates the distance for someone with a shorter stride, sometimes by close to half a mile over a 10,000-step walk.",
 			},
 			{
 				question: 'Does this account for running instead of walking?',
@@ -3911,12 +3911,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How many beers are in a keg?',
 				answer:
-					"It depends on the keg size and the serving size. A standard half barrel (15.5 gal, what most people mean by \"a keg\") holds about 165 twelve-ounce beers or 124 sixteen-ounce pints. A quarter barrel holds about 82 twelve-ounce beers, and a sixth barrel (sixtel) holds about 55.",
+					"It depends on the keg size and the serving size. A standard half barrel, 15.5 gallons, is what comes to mind for most people when someone says \"keg\", and holds about 165 twelve-ounce beers or 124 sixteen-ounce pints. A quarter barrel holds about 82 twelve-ounce beers, while the smaller sixtel size gets you around 55.",
 			},
 			{
 				question: 'What\'s the difference between a keg and a barrel?',
 				answer:
-					'A barrel is the legal unit, 31 gallons under 27 CFR 25.11. A keg is a container holding some authorized fraction of that barrel, most commonly a half barrel (15.5 gal) or a quarter barrel (7.75 gal), plus some sizes like the 5-gallon corny keg and metric 30 L/50 L kegs that TTB authorizes separately rather than as a barrel fraction.',
+					'A barrel is the legal unit, fixed at 31 gallons by the federal alcohol regulation cited above. A keg is a container holding some authorized fraction of that barrel, most commonly a half barrel (15.5 gal) or a quarter barrel (7.75 gal), plus some sizes like the 5-gallon corny keg and metric 30 L/50 L kegs that TTB authorizes separately rather than as a barrel fraction.',
 			},
 			{
 				question: 'How many kegs do I need for a party?',
@@ -3926,7 +3926,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Is a UK pint the same as a US pint?',
 				answer:
-					'No. A US pint pour is 16 US fluid ounces (473.2 mL). A UK or Irish imperial pint is 20 imperial fluid ounces (568.3 mL). Even though each imperial fluid ounce is slightly smaller than a US one, counting 20 of them instead of 16 still lands an imperial pint about 20% bigger than a US pint, not just "4 more ounces."',
+					'No. Pour a US pint and you get 16 US fluid ounces, 473.2 mL. Cross the Atlantic and a UK or Irish pint pours out to 568.3 mL instead, counted in a slightly smaller unit. Even so, counting 20 of that smaller unit instead of 16 US ones still leaves the imperial version roughly a fifth larger, not just "4 more ounces."',
 			},
 			{
 				question: 'Why do keg-serving numbers differ between calculators?',
@@ -3936,12 +3936,12 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a corny keg, and why is it 5 gallons instead of a barrel fraction?',
 				answer:
-					'A Cornelius or "corny" keg is a 5-gallon stainless container, originally built for soda-fountain syrup, that homebrewers adopted because it\'s cheap, easy to clean, and fits a standard kegerator. TTB authorizes it as a keg size, but it isn\'t a fraction of the 31-gallon barrel the way half, quarter, and sixth barrels are.',
+					'A Cornelius or "corny" keg holds 5 gallons in a stainless shell, built originally to dispense syrup at soda fountains, that homebrewers adopted because it\'s cheap, easy to clean, and fits a standard kegerator. The federal regulator recognizes it, but it isn\'t a fraction of the 31-gallon barrel the way half, quarter, and sixth barrels are.',
 			},
 			{
 				question: 'How much beer should I budget for foam and spillage?',
 				answer:
-					"There's no single official figure, and it depends heavily on the dispensing setup. Draft-technology vendor BevTeq puts typical commercial bar and restaurant draft-beer waste in the 15-25% range, mostly from foam, with well-run systems doing better; the Siebel Institute of Technology's draft-loss guidance covers the same foam-waste mechanism without giving its own percentage. A home kegerator or party pump doesn't have a published equivalent, so this calculator defaults its waste field to 0% and leaves the allowance up to you rather than assuming a number.",
+					"There's no single official figure, and it depends heavily on the dispensing setup. Industry sources put typical commercial pour loss somewhere between a seventh and a quarter of the keg, mostly lost to foam, with well-run systems doing better; a well-known bartending school points to that same foam-waste mechanism in its own material without giving its own percentage. Casual setups outside a commercial bar, whether that's a countertop tap or a pump rented for a party, have nothing comparable published, so this calculator defaults its waste field to 0% and leaves the allowance up to you rather than assuming a figure.",
 			},
 		],
 		sources: [
@@ -4042,27 +4042,27 @@ export const tools: Tool[] = [
 			{
 				question: 'How does this tool count sentences?',
 				answer:
-					'It looks for a period, question mark, or exclamation point, then checks whether that punctuation actually ends a sentence. A period doesn\'t count as an ending when it sits between two digits (a decimal), follows a recognized abbreviation like "Dr." or "approx.", follows a dotted abbreviation like "p.m." or "U.S.", or follows a lone capital letter used as an initial. Everything else counts as a sentence boundary.',
+					'It watches for the marks that usually close a sentence, a period, a question mark, an exclamation point, then checks whether that particular one actually does the job here. A period doesn\'t count as an ending when it separates the two halves of a decimal number, sits right after one of a handful of common short forms, "Dr." and "approx." among them, trails a multi-letter abbreviation with its own internal dots, "a.m." or "e.g." for instance, or comes right after a bare capital letter marking an initial in someone\'s name. Everything else counts as a sentence boundary.',
 			},
 			{
 				question: 'Does the sentence count ever get it wrong?',
 				answer:
-					'Yes, in a couple of predictable ways. It always reads an abbreviation\'s period as continuing the sentence, so on the rare occasion a sentence actually ends right after "Inc." or "etc.", this tool merges it with the sentence that follows instead of splitting it. It can also split too eagerly in text this heuristic doesn\'t recognize as a special case, such as a period inside a URL ("example.com") or after a bare numbered-list marker ("1."). There\'s no punctuation-only rule that resolves every case, since abbreviations, web addresses, and list numbers all share the same period character with nothing else to distinguish them.',
+					'Yes, in a couple of predictable ways. It always reads a period after a known abbreviation as running the sentence on, so on the rare occasion a sentence actually stops cold right there, this tool glues it onto whatever comes next instead of splitting it off. It can also split too eagerly in text this heuristic doesn\'t recognize as a special case, such as a period inside a URL ("example.com") or after a bare numbered-list marker ("1."). No rule based on punctuation alone gets every case right, since abbreviations, web addresses, and list numbers all lean on that same period character, and punctuation alone can\'t tell them apart.',
 			},
 			{
 				question: 'What is a Flesch Reading Ease score?',
 				answer:
-					'A 0-to-100 score (206.835 minus 1.015 times average words per sentence, minus 84.6 times average syllables per word) where higher means easier to read. A score of 90-100 is "very easy," roughly what an 11-year-old can follow; a score under 30 is "very confusing," typical of dense academic or legal writing. Rudolf Flesch published the formula in 1948; Kincaid, Fishburne, Rogers, and Chissom reused it for a 1975 US Navy study that derived the grade-level score below from the same inputs.',
+					'A 0-to-100 score built from two ingredients working against readability, more words packed into each sentence and more syllables packed into each word, where higher still means easier to read, built from the exact formula given above, run on the same underlying counts. A score of 90-100 is "very easy," roughly what an 11-year-old can follow; a score under 30 is "very confusing," typical of dense academic or legal writing. That scoring formula dates to the late 1940s; a separate research team adapted it for a mid-1970s US Navy study that derived the grade-level score below by reusing the raw counts already tallied for the first score.',
 			},
 			{
 				question: 'What Flesch-Kincaid grade level should general web content aim for?',
 				answer:
-					'There\'s no single official target, but a grade level in the roughly 6-to-9 range (matching a Flesch Reading Ease score in the 60s to low 80s) is a common aim for content meant for a broad adult audience, since it stays readable without sounding like it\'s written for children. Technical or specialist content naturally scores lower on ease and higher on grade level, and that\'s expected for its audience.',
+					'There\'s no single official target, but landing a grade level somewhere in the 6-to-9 range, which corresponds to an ease score in the 60s to low 80s, is a common aim for content meant for a broad adult audience, since it stays readable without sounding like it\'s written for children. Technical or specialist content naturally scores lower on ease and higher on grade level, and that\'s expected for its audience.',
 			},
 			{
 				question: 'How is the estimated reading time calculated?',
 				answer:
-					'Word count divided by 238 words per minute, the average adult silent non-fiction reading rate from Brysbaert\'s 2019 meta-analysis of 190 studies. It\'s a population average; a faster or slower individual reader will finish sooner or later than the estimate shown.',
+					'Take the word count and divide it by 238, the pace a typical adult gets through non-fiction text silently, per a large 2019 research review spanning nearly 200 studies. It\'s a population average; a faster or slower individual reader will finish sooner or later than the estimate shown.',
 			},
 			{
 				question: 'Why do "characters with spaces" and "characters without spaces" differ so much?',
@@ -4072,7 +4072,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How accurate is the syllable count?',
 				answer:
-					'It\'s an estimate, not a dictionary lookup. The tool counts groups of vowel letters in each word and adjusts for a silent trailing "e", which gets most common English words right but can be off by a syllable or two on irregular spellings. Because both Flesch formulas average syllables across every word in the text, an occasional single-word miss shifts the final score by a few points at most.',
+					'It\'s an estimate, not a dictionary lookup. The tool clusters consecutive vowels within each word as a rough stand-in for syllable count and adjusts for a silent trailing "e", which gets most common English words right but can be thrown off on words with an unusual or irregular spelling. Because the scoring here rests on syllable counts pooled across every word in the text, an occasional single-word miss nudges the final number only slightly, nowhere near enough to matter.',
 			},
 		],
 		sources: [
