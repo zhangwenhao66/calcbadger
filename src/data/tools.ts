@@ -4457,27 +4457,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between "round half up" and "round half away from zero"?',
 				answer:
-					'They agree for positive numbers but disagree for negative ones. Half up (toward +∞) sends -2.5 to -2; half away from zero sends -2.5 to -3. Some languages, including Java and Python, label the away-from-zero behavior "half up," which is the textbook name for the toward-+∞ version. That is a documented source of cross-tool disagreement on negative ties.',
+					'They agree for positive numbers but disagree for negative ones. Half up sends -2.5 to -2, pushing every tie in the positive direction regardless of sign; the other convention instead pushes any tie further away from zero, landing on -3 here. Some languages, including Java and Python, confusingly label that second, outward-pushing behavior "half up" too, a naming clash that\'s tripped up plenty of people comparing results across different tools.',
 			},
 			{
 				question: "What is banker's rounding and why do some calculators use it by default?",
 				answer:
-					"Banker's rounding (\"half to even\") breaks an exact tie toward whichever candidate is even: 2.5 rounds to 2, but 3.5 rounds to 4. It's the default rounding mode for IEEE 754 binary floating-point arithmetic and the recommended default for decimal, which is why it's the built-in behavior of Python's round() and some spreadsheet and database engines. Always rounding ties the same direction biases a large sum upward or downward over many values; alternating largely cancels that bias out.",
+					"Banker's rounding, also called \"half to even,\" picks whichever of the two neighboring numbers is even: 2.5 rounds to 2, but 3.5 rounds to 4. This flips the usual assumption that a .5 always rounds upward, and Python defaults to it in its own built-in rounding call, as do a handful of other programming and data tools. Consistently rounding every tie the same way biases a large sum upward or downward across many values; splitting ties between both directions keeps that drift from building up.",
 			},
 			{
 				question: 'How do I round to 2 decimal places without a floating-point error?',
 				answer:
-					'The error people run into is a real IEEE 754 quirk: 1.005 is actually stored as roughly 1.00499999999999989, so naive floating-point rounding gives 1.00 instead of 1.01. This calculator avoids it by rounding the exact decimal digits you type rather than converting through binary floating point first, so 1.005 correctly rounds to 1.01 at 2 decimal places.',
+					'The error people run into is a real IEEE 754 quirk: computers can\'t store 1.005 exactly in binary, so the stored value lands a hair under it, and a rounding routine that trusts that stored binary value directly ends up giving 1.00 instead of 1.01. This tool gets around that trap by treating your input as exact text rather than running it through that same lossy conversion first, so 1.005 lands correctly on 1.01 once you round it to that same precision.',
 			},
 			{
 				question: 'What is the difference between decimal places and significant figures?',
 				answer:
-					'Decimal places count digits after the decimal point only. Significant figures count meaningful digits starting from the first nonzero digit, ignoring leading zeros: 0.0034567 rounds to 0.00 at 2 decimal places but to 0.0035 at 2 significant figures.',
+					'Decimal places only tally digits sitting to the right of that dot. The other method pays no attention to the decimal point at all, and instead starts its count from the first non-zero digit: Take 0.0034567: round it two places past the decimal and you get 0.00, but keep only its first two meaningful digits and you land on 0.0035 instead.',
 			},
 			{
 				question: 'Does 995 rounded to 2 significant figures become 1000?',
 				answer:
-					'Yes, but not because 995 is nearer to 1000. It sits exactly halfway between the two 2-significant-figure candidates, 990 and 1000, an exact tie. The default tie-breaking rule here (half up, ties toward +∞) sends it to 1000. Because 1000 written as plain digits looks like it could have up to 4 significant figures, this calculator also shows the result in scientific notation (1.0 × 10³) to make the 2-significant-figure precision unambiguous.',
+					'Yes, but not because 995 is nearer to 1000. It falls precisely midway between 990 and 1000, the two nearest options at that level of precision, a genuine tie. The tie-breaking rule active on this page defaults to pushing exact ties upward toward the larger of the two options, landing this one on 1000. Because writing 1000 as plain digits leaves it unclear how many of those digits are actually meaningful, this tool also shows the answer as 1.0 × 10³, which makes the intended precision unambiguous at a glance.',
 			},
 			{
 				question: 'How is truncating different from rounding down?',
@@ -4593,32 +4593,32 @@ export const tools: Tool[] = [
 			{
 				question: 'Why does the "Windows font code" output show empty boxes instead of symbols?',
 				answer:
-					'That mode reproduces the real Wingdings font mechanism, which only displays correctly on a device that has the Wingdings font installed. Windows ships it by default, so most Windows browsers and Word show it correctly; Mac, Linux, and most mobile browsers don\'t have the font and show boxes instead. The text you copy is still correct. Pasting it somewhere with Wingdings installed will show the symbols.',
+					'That mode does exactly what the real font itself does under the hood, so it only renders correctly wherever that specific font is actually installed and available. Windows machines have it preinstalled by default, so most Windows browsers and Word show it correctly; Mac, Linux, and most mobile browsers don\'t have the font and show boxes instead. What you copy is still the right underlying text either way. Paste it into a document or app running on a machine that has that particular typeface, and the symbols will appear.',
 			},
 			{
 				question: 'What is the difference between "Symbol preview" and "Windows font code" mode?',
 				answer:
-					'Symbol preview swaps each character for its own separate Unicode symbol, so it renders identically on any device with no font dependency. Windows font code reproduces the actual Wingdings mechanism (shifting each character by 0xF000), which only displays as symbols where the Wingdings font is present.',
+					'Symbol preview takes a different route entirely, mapping each letter onto its own dedicated Unicode glyph, so it renders identically on any device with no font dependency. That alternate option runs the identical shift-by-0xF000 math a real Wingdings font applies internally, which shows correctly only on a machine set up with that particular typeface.',
 			},
 			{
 				question: 'How do I convert Wingdings symbols back into readable text?',
 				answer:
-					'Switch to "Decode to text" mode and paste in the symbol text. The decoder subtracts the 0xF000 offset back off each character to recover the original letters, and it works even if your own device can\'t display the symbols themselves.',
+					'Switch to "Decode to text" mode and paste in the symbol text. Feed the decoder that symbol text and it reverses the numeric shift to reconstruct your plain-text message, and it works even on hardware where those symbols would never render at all.',
 			},
 			{
 				question: 'Do I need Microsoft Office or Windows installed to use this tool?',
 				answer:
-					'No. The default symbol preview mode uses standard Unicode characters that render in any modern browser. Only the "Windows font code" mode depends on having the actual Wingdings font available to display correctly, and that mode is optional.',
+					'No. By default, this tool works entirely off standard Unicode characters that render in any modern browser. Only the alternate mode, the one that leans on the actual font mechanism, has that requirement, and using it at all is entirely optional.',
 			},
 			{
 				question: 'Does uppercase and lowercase of the same letter give the same Wingdings symbol?',
 				answer:
-					'No. Wingdings assigns a glyph to each ASCII character code, and uppercase and lowercase letters have different codes, so they map to unrelated symbols: capital "A" becomes a victory-hand gesture, while lowercase "a" becomes the zodiac sign Cancer.',
+					'No. The font maps a distinct glyph onto every individual ASCII code point, and uppercase and lowercase letters sit at different code points, so they map to unrelated symbols: capital "A" becomes a victory-hand gesture, while lowercase "a" becomes the zodiac sign Cancer.',
 			},
 			{
 				question: 'Is this tool using the actual copyrighted Wingdings font file?',
 				answer:
-					'No font file is embedded or distributed here. The default mode uses standard, freely available Unicode characters; the "Windows font code" mode only references the Wingdings font by name in CSS, the same way a webpage might reference "Arial," and it displays correctly if that font already happens to be installed on the visitor\'s own device.',
+					'No font file is embedded or distributed here. The default mode uses standard, freely available Unicode characters; that alternate mode simply names Wingdings inside a CSS style rule, the same way any ordinary webpage might reference "Arial," and it renders as intended only when a visitor happens to already have that particular typeface on their machine.',
 			},
 		],
 		sources: [
@@ -4748,7 +4748,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-22',
 		published: '2026-08-22',
 		coreSummary:
-			'Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round), or length x width x average depth x 6.7 (oval, using the stadium-shape multiplier Hayward\'s Aqua Rite manual publishes, since an oval pool is a rectangle with two semicircular ends, not a true ellipse), each times the exact 7.480519 gal/ft³ conversion. Salt dosing follows directly from the definition of ppm as mg of solute per liter: pounds of salt needed = (target ppm - current ppm) x gallons / 119,826, a unit-conversion identity that pool guides commonly round to "gallons / 120,000." The area math behind step one of that volume formula, rectangular or circular, is exactly what [this site\'s square footage calculator](/square-footage-calculator/) covers on its own, for a room or yard rather than a pool basin.',
+			'Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round), or length x width x average depth x 6.7 (oval, using the stadium-shape multiplier Hayward\'s Aqua Rite manual publishes, since an oval pool is a rectangle with two semicircular ends, not a true ellipse), each times the exact 7.480519 gal/ft³ conversion. Salt dosing follows directly from the definition of ppm as mg of solute per liter: pounds of salt needed = (target ppm − current ppm) x gallons / 119,826, a unit-conversion identity that pool guides commonly round to "gallons / 120,000." The area math behind step one of that volume formula, rectangular or circular, is exactly what [this site\'s square footage calculator](/square-footage-calculator/) covers on its own, for a room or yard rather than a pool basin.',
 		queries: [
 			'pool calculator',
 			'salt water pool calculator',
@@ -4776,7 +4776,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'The salt math, from the definition of ppm',
 				body: [
-					'A concentration in parts per million is milligrams of solute per liter of solution. That definition alone is enough to derive the dosing formula without relying on any pool-specific figure. One pound of salt is exactly 453,592.37 mg (the international avoirdupois pound), and one US gallon is exactly 3.785411784 liters. Dissolving that one pound into G gallons raises the concentration by 453,592.37 / (G x 3.785411784) ppm. Rearranged for how many pounds raise a G-gallon pool by a given ppm increase: pounds = (target ppm - current ppm) x G / 119,826.4, a unit-conversion identity, not a number specific to any brand of salt or cell.',
+					'A concentration in parts per million is milligrams of solute per liter of solution. That definition alone is enough to derive the dosing formula without relying on any pool-specific figure. One pound of salt is exactly 453,592.37 mg (the international avoirdupois pound), and one US gallon is exactly 3.785411784 liters. Dissolving that one pound into G gallons raises the concentration by 453,592.37 / (G x 3.785411784) ppm. Rearranged for how many pounds raise a G-gallon pool by a given ppm increase: pounds = (target ppm − current ppm) x G / 119,826.4, a unit-conversion identity, not a number specific to any brand of salt or cell.',
 					"Pool and salt-cell literature commonly rounds that 119,826 constant to \"120,000\" for easier mental math (a 0.15% rounding, immaterial for a chemical you're adding gradually and retesting). This calculator keeps the unrounded constant. Worked example: an 8,000-gallon pool testing at 1,000 ppm, targeting the commonly cited optimal of 3,200 ppm, needs (3,200 - 1,000) x 8,000 / 119,826.4 = 146.9 lb of salt.",
 				],
 			},
@@ -4819,27 +4819,27 @@ export const tools: Tool[] = [
 			{
 				question: 'How many gallons is my pool?',
 				answer:
-					"It depends on shape. Rectangular: length x width x average depth x 7.480519. Round: pi x radius² x average depth x 7.480519. Oval (built as a rounded rectangle, not a true ellipse): length x width x average depth x 6.7, the multiplier Hayward's Aqua Rite manual publishes. Average depth is the shallow-end depth plus the deep-end depth, divided by 2.",
+					"It depends on shape, though the underlying idea is always volume in cubic feet times the constant that converts to gallons (7.480519). For a rectangle, that means length times width times average depth. Round pools swap in pi times radius squared. Oval pools, which industry usage actually builds as a rounded rectangle rather than a proper mathematical oval, use a lower factor around 6.7, sourced from the same salt-cell manufacturer's manual referenced elsewhere on this page. Average depth is the shallow-end depth plus the deep-end depth, divided by 2.",
 			},
 			{
 				question: 'How much salt do I need to add to my pool?',
 				answer:
-					'Pounds of salt = (target ppm - current ppm) x gallons / 119,826.4, derived directly from ppm meaning milligrams per liter, an exact pound, and an exact gallon-to-liter conversion. An 8,000-gallon pool going from 1,000 ppm to a 3,200 ppm target needs about 147 lb.',
+					'The salt-needed formula comes straight from what ppm actually means (milligrams per liter), combined with an exact pound and an exact gallon-to-liter conversion, and it\'s the same formula shown further up on this page. Take a pool holding 8,000 gallons that needs to climb from 1,000 ppm to a 3,200 ppm target: that works out to about 147 lb of salt.',
 			},
 			{
 				question: 'What salt level should my saltwater pool be at?',
 				answer:
-					"Hayward's Aqua Rite manual specifies 2,700-3,400 ppm as the ideal range for its cells, with 3,200 ppm as the optimal target. Below 2,700 ppm the cell's \"Check Salt\" warning starts flashing (and below roughly 2,400 ppm it shuts down); above about 3,500-4,000 ppm the water can start to taste noticeably salty. Other cell manufacturers publish similar but not always identical ranges, so check your unit's manual.",
+					"The manufacturer's own manual for a widely used salt-cell system spells out a specific target band, and 3,200 ppm sits at the sweet spot within it. Below 2,700 ppm the cell's \"Check Salt\" warning starts flashing (and below roughly 2,400 ppm it shuts down); above about 3,500-4,000 ppm the water can start to taste noticeably salty. Other cell manufacturers publish similar but not always identical ranges, so check your unit's manual.",
 			},
 			{
 				question: 'Why is the oval pool formula different from a true ellipse?',
 				answer:
-					"Because an \"oval\" pool isn't actually shaped like a mathematical ellipse. It's a stadium or racetrack outline, a rectangle with a semicircle capping each end. That shape holds more water than a true ellipse of the same length and width would, since the rounded ends bulge out past where an ellipse's curve falls. This calculator uses the 6.7 multiplier Hayward's manual publishes for that real-world shape rather than a from-scratch ellipse formula, which would understate the volume by roughly 12%.",
+					"Because the pool-industry term \"oval\" doesn't refer to a true, mathematically-defined ellipse at all. Picture a running-track outline instead, straight sides with a rounded cap at each end. Water fills more of that footprint than a strict oval shape ever could, because those two rounded caps push outward well past where a smooth curved boundary would naturally taper in. This calculator's 6.7 multiplier for that real-world shape comes from the same pool-industry source cited elsewhere on this page, rather than a from-scratch ellipse formula, which would understate the volume by roughly 12%.",
 			},
 			{
 				question: "Can I lower my pool's salt level if it's too high?",
 				answer:
-					"Not by adding anything. The only way to reduce salt concentration is diluting it, by partially draining the pool and refilling with fresh water, then retesting. There's no chemical additive that removes dissolved salt. This calculator returns zero pounds (not a negative number) whenever your current reading is already at or above your target.",
+					"Not by adding anything. Diluting is the only real fix: drain part of the pool, refill with fresh water, and retest. There's no chemical additive that removes dissolved salt. If you're already sitting at or past your target number, this tool simply shows zero rather than a negative figure.",
 			},
 			{
 				question: 'Does salt evaporate out of a pool, or does it need to be topped up regularly?',
