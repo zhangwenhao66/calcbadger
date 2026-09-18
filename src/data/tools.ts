@@ -3135,7 +3135,7 @@ export const tools: Tool[] = [
 		title: 'Shape Volume & Surface Area Calculator',
 		shortTitle: 'Shape Volume Calculator',
 		description:
-			'Find the volume and surface area of a rectangular prism, cylinder, sphere, or cone. Enter the dimensions in ft, in, yd, m, or cm and get both numbers at once.',
+			'This shape volume calculator finds the volume and surface area of a rectangular prism, cylinder, sphere, or cone, the everyday 3D shapes most volume questions come down to. Enter the dimensions in ft, in, yd, m, or cm and get both numbers at once.',
 		updated: '2026-08-12',
 		published: '2026-08-12',
 		coreSummary:
@@ -3201,7 +3201,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you find the volume of a rectangular prism?',
 				answer:
-					'Multiply length × width × height. All three measurements need to be in the same unit; a 3 ft × 4 ft × 5 ft box has a volume of 60 cubic feet.',
+					'Multiply the three edge lengths together. All three measurements need to be in the same unit; a 3 ft × 4 ft × 5 ft box has a volume of 60 cubic feet.',
 			},
 			{
 				question: 'What is the formula for the surface area of a sphere?',
@@ -3211,12 +3211,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you find the volume of a cylinder?',
 				answer:
-					'Volume = πr²h: the area of the circular base (πr²) times the height. A cylinder with a 3 ft radius and 10 ft height has a volume of π × 9 × 10 = 90π, about 282.74 cubic feet.',
+					'Volume equals the circular base area, π times radius squared, multiplied by the height. A cylinder with a 3 ft radius and 10 ft height has a volume of π × 9 × 10 = 90π, about 282.74 cubic feet.',
 			},
 			{
 				question: "What is a cone's surface area formula?",
 				answer:
-					'Total surface area = πr² + πrl, where l is the slant height, √(r² + h²). The πr² term is the flat circular base and πrl is the slanted side. For a lateral-only figure (no base), use just πrl.',
+					'Two terms get summed: πr² covers the flat circular base, and πrl covers the cone\'s sloped surface, where l is worked out from the radius and height via the Pythagorean relationship. If the shape has no base at all, drop the πr² term and use just πrl.',
 			},
 			{
 				question: 'Does this calculator use radius or diameter?',
@@ -3226,7 +3226,7 @@ export const tools: Tool[] = [
 			{
 				question: "Why is a cone's volume one third of a cylinder's?",
 				answer:
-					"Because (1/3)πr²h versus πr²h for a cylinder sharing the same base and height. This is a general result for any cone or pyramid against a prism with a matching base and height, not something specific to circular cones.",
+					"Because a cone's formula is exactly one-third of a matching cylinder's: (1/3)πr²h against πr²h whenever the two shapes share a base radius and stand equally tall. This is a general result for any cone or pyramid measured against a prism of matching footprint, not something specific to circular cones.",
 			},
 		],
 		sources: [
