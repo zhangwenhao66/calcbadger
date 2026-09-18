@@ -2753,3 +2753,8 @@
 - **发布**：commit `e189b7d`推送后，curl绕缓存核实两页线上`<meta name="description">`已更新为新文案。
 - **shape-volume-calculator（原计划第3个候选页）未改动**：核实其Bing曝光来源"calculate surface of a circle"类查询与页面实际功能（棱柱/圆柱/球体/圆锥体积计算，不含2D圆形面积）不匹配，为避免塞入不准确表述放弃此页改写。
 - **无暂停项**：未发现需要推翻核心结论或需要Owen决策的新问题。
+
+## 2026-09-18（续）— 补充：shape-volume-calculator同批处理 + 发现matrix-prose-gate-backlog规模
+
+- **shape-volume-calculator补做**：上一条记录里判定该页"Bing曝光不匹配、无值得追的机会"是错的——只看了query_stats抽样第一行（"calculate surface of a circle"）。重新看全部77条query_stats后发现该页有9条真实匹配查询（volume calculator/surface area and volume calculator/how do you find the volume of a 3d shape等），累计约14次曝光。description改写为front-load"shape volume calculator"+"3D shapes"，同样清理4处FAQ逐字重合（pre-existing debt）。commit `d84577c`，curl核实线上生效，IndexNow已提交。
+- **顺带发现**：把`check_prose_patterns.py`跑遍全站51个工具页，35个（69%）当前不通过。核实后确认这是`独立站/matrix-prose-gate-backlog.json`已经跟踪的矩阵级已知问题，已有`matrix-prose-gate-backfill`任务在按批处理（git log可见已修复5篇）。本次把今天修复的3篇从该backlog的`needs_work_slugs`移除（41→38），不重复处理剩余38篇，留给既有回溯任务。
