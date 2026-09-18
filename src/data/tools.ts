@@ -5436,27 +5436,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a good FFMI?',
 				answer:
-					'There is no single peer-reviewed "good" cutoff, but Kouri et al.\'s 1995 study found normalized FFMI in drug-free male athletes topped out around 25, with steroid users running 28-32. A normalized FFMI in the high teens to low twenties is common among people with meaningful training experience; values approaching 25 sit at the edge of what that study found achievable naturally.',
+					'There is no single peer-reviewed "good" cutoff, but that same landmark 1995 research put the natural ceiling for men at around 25, with steroid users running 28-32. A score in the high teens to low twenties is common among people with meaningful training experience; values approaching 25 sit at the edge of what that study found achievable naturally.',
 			},
 			{
 				question: 'What counts as a natural FFMI limit?',
 				answer:
-					'Kouri et al. (1995) found normalized FFMI among drug-free male athletes did not exceed 25.0, and a separate sample of pre-steroid-era Mr. America winners (1939-1959) averaged 25.4. That figure comes from a male-only sample; there is no equivalent published natural-limit number for women.',
+					'That same research also found the group of men who trained without drugs never broke a normalized score of 25.0, and a separate group of pre-steroid-era winners of a well-known bodybuilding title (1939-1959) averaged 25.4. Both of those data sets only ever looked at men, and nobody has published a comparable ceiling figure worked out from a female-only sample.',
 			},
 			{
 				question: 'Why does FFMI use body fat percentage instead of just weight and height?',
 				answer:
-					'Weight and height alone (as in BMI) cannot separate muscle from fat, so two people at the same weight and height but different body fat percentages would get the same score despite very different muscle mass. FFMI backs out the fat portion first so the number reflects lean mass specifically.',
+					'Weight and height alone (as in BMI) cannot separate muscle from fat, so two people at the same weight and height but different levels of leanness would get the same score despite very different muscle mass. FFMI backs out the fat portion first so the number reflects lean mass specifically.',
 			},
 			{
 				question: 'Why does normalized FFMI differ from raw FFMI?',
 				answer:
-					'Raw FFMI (fat-free mass ÷ height²) still gives taller people a slight edge, similar to how BMI behaves. Kouri et al. added a correction, 6.3 × (1.80 − height in meters), so scores from people of different heights land on the same comparative scale, referenced to a 1.80 m (5\'11") man.',
+					'Raw FFMI (fat-free mass ÷ height²) still gives taller people a slight edge, similar to how BMI behaves. The correction term added to fix that, applied above, so tall and short athletes alike land on the same comparative scale, referenced to a 1.80 m (5\'11") man.',
 			},
 			{
 				question: 'Does this calculator estimate my body fat percentage?',
 				answer:
-					'No — you supply the body fat percentage as an input. FFMI\'s accuracy depends entirely on how accurate that number is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
+					'No — you\'re the one plugging that number in. FFMI\'s accuracy depends entirely on how accurate that input is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
 			},
 		],
 		sources: [
@@ -5543,27 +5543,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a dead pixel exactly?',
 				answer:
-					"Strictly, a dead pixel (also called a dark dot defect) is a pixel stuck fully off, showing as a black dot regardless of what the screen is displaying. People often use \"dead pixel\" loosely to also cover hot pixels (stuck on) and stuck sub-pixels (one of the three red/green/blue components frozen), which are technically different defects with different likely causes.",
+					"Strictly speaking, a dead pixel (also called a dark dot defect) never lights up at all, showing as a black dot no matter what colors surround it. People often use \"dead pixel\" loosely to also cover hot pixels (stuck on) and stuck sub-pixels (one of the three red/green/blue components frozen), even though each has its own distinct cause under the hood.",
 			},
 			{
 				question: 'How many dead pixels is considered normal?',
 				answer:
-					"There's no universal number: it depends entirely on the manufacturer's own policy, and policies vary widely. The historical ISO 13406-2 Class II standard, which most manufacturers have referenced, allowed 2 hot and 2 dead pixels per million pixels (about 4 of each on a 1920x1080 monitor), but that standard was withdrawn and manufacturers are not bound to follow it. Check your specific manufacturer's current warranty page rather than assuming a universal threshold.",
+					"There's no universal number: every manufacturer publishes its own policy, and those policies vary widely. An older, now-withdrawn standard that many display makers have leaned on over the years permitted 2 hot and 2 dead pixels for every million pixels on screen (about 4 of each on a 1920x1080 monitor), but that standard was withdrawn and manufacturers are not bound to follow it. What actually decides whether you get a replacement lives in your specific brand's own published policy, not in that old, since-withdrawn standard.",
 			},
 			{
 				question: 'Can a dead pixel fix itself, or be fixed?',
 				answer:
-					"A dead pixel (failed transistor) generally cannot be fixed. A stuck sub-pixel, where the liquid crystal material is jammed rather than the transistor failed, sometimes responds to rapid color-flashing, the technique this tool's pixel-refresh mode runs, though there's no guarantee it works and it has no effect on a dead or hot pixel.",
+					"A dead pixel (failed transistor) generally cannot be fixed. That third category works differently: a physically jammed layer behind the glass, not a burned-out electrical component, and some users report luck clearing that particular defect by rapidly cycling colors on and off, the same trick this tool's refresh feature runs, though there's no guarantee it works, and a genuinely dead or stuck-on pixel won't respond to it at all.",
 			},
 			{
 				question: 'How do I tell a dead pixel apart from dust or a smudge?',
 				answer:
-					'Wipe the screen with a dry microfiber cloth first. Dust and smudges wipe away; a pixel-level defect does not, and it stays in the exact same screen location across every color in the test and every viewing angle.',
+					"Give the panel a once-over with a dry, lint-free cloth before assuming the worst. Dust and smudges wipe away; a genuine pixel-level defect won't budge, staying put at the same spot regardless of which test color is showing or what angle you're viewing from.",
 			},
 			{
 				question: 'Will a photo of my screen show a dead pixel?',
 				answer:
-					"Not reliably. A camera captures the light coming off the screen, and a stuck sub-pixel's exact color and brightness relative to its neighbors often gets lost in a photo's compression and color processing, even when it's clearly visible to your eye in person. Look at the screen directly rather than relying on a photo to confirm a defect.",
+					"Not reliably. A camera captures the light coming off the screen, and the faint color and brightness mismatch that kind of defect shows against its neighbors often washes out once a photo's compression and color processing get involved, even when it's clearly visible to your eye in person. Look at the screen directly rather than relying on a photo to confirm a defect.",
 			},
 		],
 		sources: [
@@ -5617,7 +5617,7 @@ export const tools: Tool[] = [
 				body: [
 					'Hold W, A, S, and D at once, a common gaming combination: that is 4 non-modifier keys, landing in the typical 3-to-5 matrix rollover range most keyboards handle for common sequences, well short of the boot-protocol ceiling.',
 					'Hold Ctrl, Shift, and Escape together (the Windows Task Manager shortcut): Ctrl and Shift are both exempt modifier keys under the boot-protocol accounting above, so only Escape counts as a non-modifier key, for a rollover of 1, the simplest baseline case regardless of how many modifiers rode along with it.',
-					'Braille input is an extreme real-world case: Braille2000 and similar braille-keyboard software require up to six keys pressed at once to form a single character, landing exactly at the boot-protocol\'s 6-key ceiling, which is part of why braille and stenography keyboards are built with full per-key diode isolation rather than a cost-cut matrix.',
+					'Braille input is an extreme real-world case: Braille2000 and similar braille-keyboard software require up to six keys pressed at once to form a single character, landing exactly at the boot-protocol\'s 6-key ceiling, which is part of why braille and stenography keyboards get built with full per-key diode isolation, not the cost-cut matrix wiring found in ordinary keyboards.',
 				],
 			},
 		],
@@ -5648,27 +5648,27 @@ export const tools: Tool[] = [
 			{
 				question: 'Why does my keyboard drop a key when I press three or more at once?',
 				answer:
-					'It is likely a matrix keyboard without per-key diodes, which can misdetect ("ghost") or refuse ("jam") a key when a specific combination of three or more keys completes an unintended electrical path through the row/column grid. This is a hardware design tradeoff for cost, not necessarily a defect, and it typically only affects uncommon key combinations rather than everyday typing.',
+					'It is likely a keyboard wired the ordinary, budget way, with no diode isolating each individual key, which can misdetect ("ghost") or refuse ("jam") a key when a specific combination of three or more keys completes an unintended electrical path through the row/column grid. This is a hardware design tradeoff for cost, not necessarily a defect, and it typically only affects uncommon key combinations rather than everyday typing.',
 			},
 			{
 				question: 'What does "key rollover" mean?',
 				answer:
-					'It is how many keys a keyboard can correctly detect held down at the same time. Two-key rollover, correctly handling any two keys together, is the baseline every keyboard should meet. Higher counts (n-key rollover, or NKRO) require the keyboard to scan every key independently rather than sharing wires across a matrix, which is common on gaming and mechanical keyboards but not universal.',
+					'It is how many keys a keyboard can correctly recognize as pressed simultaneously. Handling any two keys correctly together, called two-key rollover, is a bar every keyboard on the market ought to clear. Higher counts (n-key rollover, or NKRO) require the keyboard to scan every key independently rather than sharing wires across a matrix, which is common on gaming and mechanical keyboards but not universal.',
 			},
 			{
 				question: "Why does this tool show more than 6 keys held, if USB caps out at 6?",
 				answer:
-					'The 6-key figure is specific to the USB HID "boot protocol", an optional, simplified format meant only for BIOS-level input before an operating system has loaded. Windows, macOS, and Linux all use the unrestricted "report protocol" once booted, which supports full n-key rollover if the keyboard hardware itself supports it, so seeing well past 6 keys in a normal browser session is expected on capable hardware.',
+					'The 6-key figure is specific to the USB HID "boot protocol", an optional, simplified format meant only for BIOS-level input before an operating system has loaded. Once any modern OS takes over, everything shifts to the unrestricted "report protocol" format once booted, which lifts that ceiling entirely and lets the physical keyboard show off whatever rollover it\'s actually capable of, so seeing well past 6 keys in a normal browser session is expected on capable hardware.',
 			},
 			{
 				question: 'Does this test detect a broken or "chattering" key?',
 				answer:
-					"It reliably shows a fully dead key, since a key that sends no signal at all will never light up here no matter how many times you press it. It cannot reliably catch chatter, where a worn switch occasionally fires two keydown events from a single press, since a fast double-fire and a legitimate rapid press can look the same in the event log.",
+					"It reliably shows a fully dead key, since a key sending no signal whatsoever simply won't register here, however forcefully or however often you mash it. It cannot reliably catch a worn switch double-firing on a single press, sometimes called chatter, from a single press, since a fast double-fire and a legitimate rapid press can look the same in the event log.",
 			},
 			{
 				question: 'How many keys does a full-size keyboard have?',
 				answer:
-					'It depends on the physical layout standard: 104 for the US ANSI layout, 105 for the ISO layout common outside the US, and 109 for the Japanese JIS layout, which adds a split space bar and extra input-mode keys. Individual manufacturers\' "extended" keyboards can add a handful more for dedicated media or function controls.',
+					"It depends on the physical layout standard: 104 for the US ANSI layout, 105 for the ISO layout common outside the US, and 109 for the Japanese JIS layout, which splits the space bar in half and tacks on extra keys for switching input modes. A few brands sell \"extended\" versions with extra keys thrown in for dedicated media or function controls.",
 			},
 		],
 		sources: [
@@ -5729,8 +5729,8 @@ export const tools: Tool[] = [
 			{
 				heading: 'A worked example, step by step',
 				body: [
-					'Take x + y + z = 6, 2y + 5z = -4, and 2x + 5y - z = 27 (the default values loaded in the 3-equation mode above). The second equation already has no x term, so use the first equation to remove x from the third: multiply the first equation by 2 and subtract it from the third, giving (2x + 5y - z) - 2(x + y + z) = 27 - 12, which simplifies to 3y - 3z = 15, or y - z = 5.',
-					'Now two equations remain in y and z: 2y + 5z = -4 and y - z = 5. Multiply the second by 2 and subtract from the first: (2y + 5z) - 2(y - z) = -4 - 10, which simplifies to 7z = -14, so z = -2. Substituting back, y - (-2) = 5 gives y = 3, and x + 3 + (-2) = 6 gives x = 5. Every step here is the same elimination logic the calculator runs automatically, just carried out on paper for one specific case.',
+					'Take x + y + z = 6, 2y + 5z = -4, and 2x + 5y − z = 27 (the default values loaded in the 3-equation mode above). The second equation already has no x term, so use the first equation to remove x from the third: multiply the first equation by 2 and subtract it from the third, giving (2x + 5y − z) − 2(x + y + z) = 27 − 12, which simplifies to 3y − 3z = 15, or y − z = 5.',
+					'Now two equations remain in y and z: 2y + 5z = -4 and y − z = 5. Multiply the second by 2 and subtract from the first: (2y + 5z) − 2(y − z) = -4 − 10, which simplifies to 7z = -14, so z = -2. Substituting back, y − (-2) = 5 gives y = 3, and x + 3 + (-2) = 6 gives x = 5. Every step here is the same elimination logic the calculator runs automatically, just carried out on paper for one specific case.',
 				],
 			},
 		],
@@ -5739,7 +5739,7 @@ export const tools: Tool[] = [
 				title: 'Each outcome type, worked in full',
 				headers: ['System', 'Outcome', 'Result'],
 				rows: [
-					['2x + 3y = 8 and x - y = -1', 'Unique solution', 'x = 1, y = 2'],
+					['2x + 3y = 8 and x − y = -1', 'Unique solution', 'x = 1, y = 2'],
 					['x + y = 2 and x + y = 5', 'No solution', 'The lines are parallel; no x, y pair satisfies both'],
 					['2x + y = 5 and 4x + 2y = 10', 'Infinitely many solutions', 'The second equation is the first one doubled; every point on the line 2x + y = 5 works'],
 					['x+y+z=6, 2y+5z=-4, 2x+5y-z=27', 'Unique solution', 'x = 5, y = 3, z = -2'],
@@ -5751,27 +5751,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What does it mean when a system of equations has no solution?',
 				answer:
-					'It means the equations contradict each other: no combination of values for the unknowns can make every equation true at once. Geometrically in two dimensions, this is two parallel lines that never cross, like x + y = 2 and x + y = 5, which share a slope but not an intercept.',
+					'It means the system asks for something impossible: no combination of values for the unknowns can make every equation true at once. Picture it on a graph with two variables: two parallel lines that never cross, the same shape as the first no-solution example in the table above, which share a slope but not an intercept.',
 			},
 			{
 				question: 'What does "infinitely many solutions" mean?',
 				answer:
-					'It means at least one equation is redundant: it doesn\'t narrow down the answer beyond what the other equations already establish. In two dimensions this happens when both equations describe the same line (like 2x + y = 5 and 4x + 2y = 10), so every point on that line is a valid answer, not just one.',
+					'It means at least one equation is redundant: on its own, it adds nothing the rest of the system hasn\'t already pinned down. On a graph, this happens when both equations trace out the exact same line, the same shape behind the infinite-solutions row in that table above, so any coordinate sitting on that shared line counts as a valid answer, not just one.',
 			},
 			{
 				question: 'Can this tool solve a system with more equations than unknowns, or nonlinear equations?',
 				answer:
-					'No. This solver handles square linear systems only (2 equations with 2 unknowns, or 3 with 3), where every term is a constant times a single variable. It doesn\'t handle systems with a different number of equations than unknowns, or equations where a variable is squared, multiplied by another variable, or inside a function like sine or a logarithm.',
+					'No. This solver only takes on square linear systems (2 equations with 2 unknowns, or 3 with 3), where every term is a plain number multiplied by a single unknown. It won\'t take on systems with a different number of equations than unknowns, or anything nonlinear, an unknown raised to a power, two unknowns multiplied together, or one buried inside a sine, log, or exponential.',
 			},
 			{
 				question: 'What is the difference between the elimination method and Cramer\'s rule?',
 				answer:
-					'Both solve the same linear systems and agree on every answer; they differ in mechanism. Cramer\'s rule computes the solution directly from determinants of the coefficient matrix, which is compact for 2x2 and 3x3 systems but requires a separate divide-by-zero check to detect the no-solution and infinite-solutions cases. Gaussian elimination, used here, builds the answer through row operations and surfaces those two cases as a natural byproduct of the same process, which is also why it scales better to larger systems.',
+					'Both arrive at identical answers for the same linear systems; they differ in mechanism. Cramer\'s rule pulls the answer straight out of the coefficient matrix\'s determinants, compact for 2x2 and 3x3 systems but requiring a separate divide-by-zero check to detect the no-solution and infinite-solutions cases. The row-reduction approach used here builds the answer through row operations, so those two cases show up as a normal part of the arithmetic rather than something the tool has to test for on the side, which is also why it scales better to larger systems.',
 			},
 			{
 				question: 'Why do I need to enter a 0 for a variable that isn\'t in one of my equations?',
 				answer:
-					'Because the solver needs a coefficient for every variable in every equation to set up the elimination correctly. An equation like 2y + 5z = -4 has no x term, which is the same as saying its x-coefficient is 0: entering 0 there is mathematically required, not optional formatting.',
+					'Because the row-by-row process this tool runs under the hood needs a number attached to every unknown in every row to line up correctly. An equation like 2y + 5z = -4 has no x term, meaning that column just carries a zero: filling it in with 0 is mathematically required, not optional formatting.',
 			},
 		],
 		sources: [
@@ -5820,7 +5820,7 @@ export const tools: Tool[] = [
 				heading: 'Four alphabets for the same number',
 				body: [
 					"A number itself doesn't change when it's written in a different base. Only the symbols and the place values behind them do. Decimal (base 10) uses ten digits and place values that are powers of ten (ones, tens, hundreds); binary (base 2) uses two digits and place values that are powers of two; octal (base 8) and hexadecimal (base 16) work the same way with eight and sixteen digits respectively. Hex needs six extra symbols beyond 0-9, so it borrows a-f to stand for the values 10 through 15.",
-					'Binary is the one computers actually use internally, because a transistor or a magnetic domain is most reliably read as one of two states (on/off, charged/uncharged) rather than ten. Octal and hexadecimal exist purely for human convenience: both are powers of two themselves (8 = 2^3, 16 = 2^4), so converting between them and binary is a matter of grouping bits rather than doing arithmetic, which is why programmers reach for hex instead of decimal when they want a compact, readable stand-in for a raw binary value.',
+					'Binary is the one computers actually use internally, because a transistor or a magnetic domain is most reliably read as one of two states (on/off, charged/uncharged) rather than ten. Octal and hexadecimal exist purely for human convenience: both are powers of two themselves (8 = 2^3, 16 = 2^4), so converting between them and binary is a matter of grouping bits rather than doing arithmetic, which is why programmers reach for hex over decimal when they want a compact, readable stand-in for a raw binary value.',
 				],
 			},
 			{
@@ -5833,7 +5833,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Why hex is grouped binary, not a separate system',
 				body: [
-					"Because 16 is 2 to the 4th power, exactly one hexadecimal digit always covers exactly 4 binary bits, with no leftover or overlap: split a binary string into groups of 4 from the right and convert each group to a single hex digit (0-9, then a-f for 10-15) to get the same value. That clean 4-bit alignment is why a byte (8 bits) is always exactly 2 hex digits, from 00 to ff, and why colors on the web are written as 6 hex digits (#RRGGBB) instead of 24 binary digits or an 8-million-plus decimal number. Octal has the same relationship at 3 bits per digit (2^3 = 8), which is why older Unix file permission codes (like chmod 755) are written in octal rather than decimal.",
+					"Because 16 is 2 to the 4th power, exactly one hexadecimal digit always covers exactly 4 binary bits, with no leftover or overlap: split a binary string into groups of 4 from the right and convert each group to a single hex digit (0-9, then a-f for 10-15) to get the same value. That clean 4-bit alignment is why a byte (8 bits) is always exactly 2 hex digits, from 00 to ff, and why colors on the web get written as 6 compact hex digits (#RRGGBB), a lot easier to read than a sprawling 24-digit binary string or an 8-million-plus decimal number would be. Octal has the same relationship at 3 bits per digit (2^3 = 8), which is why older Unix file permission codes (like chmod 755) are written in octal rather than decimal.",
 				],
 			},
 		],
@@ -5873,7 +5873,7 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you convert decimal to binary by hand?',
 				answer:
-					'Repeatedly divide by 2 and record each remainder, then read the remainders from last to first. For example, 13 ÷ 2 = 6 r1, 6 ÷ 2 = 3 r0, 3 ÷ 2 = 1 r1, 1 ÷ 2 = 0 r1. Reading bottom to top gives 1101.',
+					'Repeatedly divide by 2 and record each remainder, then flip the order of those remainders, reading the last one out first. For example, 13 ÷ 2 = 6 r1, 6 ÷ 2 = 3 r0, 3 ÷ 2 = 1 r1, 1 ÷ 2 = 0 r1. Reading bottom to top gives 1101.',
 			},
 			{
 				question: 'What is 255 in hexadecimal?',
@@ -5882,16 +5882,16 @@ export const tools: Tool[] = [
 			{
 				question: 'Why do computers use binary instead of decimal?',
 				answer:
-					"Computer hardware stores and switches information most reliably as one of two physical states (a transistor on or off, a magnetic domain in one direction or the other), so representing data as base-2 digits maps directly onto the hardware. A base-10 system would need components that reliably hold ten distinct states, which is far less reliable to build at the scale of billions of transistors.",
+					"Computer hardware stores and switches information most reliably as one of two physical states, a transistor flipped on or off, a tiny magnetized region pointing one way or the other, so representing data as base-2 digits maps directly onto the hardware. A base-10 system would need components that reliably hold ten distinct states, which is far less reliable to build at the scale of billions of transistors.",
 			},
 			{
 				question: 'How many bits are in a hex digit?',
-				answer: 'Exactly 4, because 2^4 = 16, the number of symbols hexadecimal uses. That is why a byte (8 bits) is always written as exactly 2 hex digits.',
+				answer: 'Exactly 4, because 2^4 = 16, the number of symbols hexadecimal uses. That clean split is why a full byte, 8 bits, boils down to precisely 2 hex digits every time.',
 			},
 			{
 				question: 'What is the difference between octal and hexadecimal?',
 				answer:
-					'Both are shorthand for binary rather than independent number systems in practice. Octal groups binary digits in threes (2^3 = 8 symbols), hexadecimal groups them in fours (2^4 = 16 symbols). Hex is far more common today; octal mainly survives in Unix file-permission notation like chmod 755.',
+					'Both exist as convenient stand-ins for binary, not as genuinely separate number systems people compute in day to day. Octal groups binary digits in threes (2^3 = 8 symbols), hexadecimal groups them in fours (2^4 = 16 symbols). Hex is far more common today; octal mainly survives in Unix file-permission notation like chmod 755.',
 			},
 		],
 		sources: [
