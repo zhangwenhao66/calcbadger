@@ -2765,3 +2765,24 @@
 - **修复**：两页description精简重写，保留短语和全部事实数字，砍掉冗余从句。复查`check_seo_field_stats.py`：215→179字符(z=0.37)、247→184字符(z=0.60)，均回到正常区间；`check_prose_patterns.py`复查仍exit 0。
 - **顺手核实**：`check_sources_urls.py`给click-speed-test的1条SOFT警告（millisecond.com SSL证书校验失败）——curl换真实浏览器UA返回200，确认反爬假阳性，来源链接本身有效。三页`/embed/<slug>/`版本curl核实均200。
 - **验证**：npm test 1359/1359通过；npm run build 123页0 errors；commit `eb9fc72`推送部署，curl绕缓存核实线上description已更新；IndexNow已提交。
+
+## 2026-09-18 — 补充分区枢纽内链（矩阵级结构性缺口，压制期低风险动作，Owen批准纳入）
+
+```json
+{
+  "trigger": "矩阵级分析（涨页特征对照_20260913.md）发现14站正文0%链接回自己的分区/hub页；本任务是低优先级卫生工作，不是增长杠杆，加内链不改变文章排名/CTR。CalcBadger当前处于8月垃圾更新算法压制期（抓取需求塌方型），Owen在本轮工作中明确确认压制中站点也一并处理，本次只做3个工具页各加1句内链，不涉及新页面/标题/页型/结构改动，符合压制期playbook（已发布页面不删不noindex不批量改写）",
+  "actions": [
+    {
+      "type": "分区枢纽内链",
+      "pages": [
+        {"slug": "bmi-calculator", "category": "Health", "hub": "/category/health/"},
+        {"slug": "mortgage-calculator", "category": "Finance", "hub": "/category/finance/"},
+        {"slug": "percentage-calculator", "category": "Math", "hub": "/category/math/"}
+      ],
+      "detail": "每个工具在最后一个正文小节末尾自然位置加一句指向该工具分类hub页的句子，措辞逐篇手写各不相同。句子过Skill(humanizer)后插入，跑check_bridge_sentences.py确认新句均未产生新候选（bmi-calculator 0候选，mortgage-calculator/percentage-calculator各命中2条与本次改动无关的旧候选：cd-calculator/prorated-rent-calculator，属存量债务不在本次处理），check_prose_patterns.py三者均退出码0。编辑期间发现tools.ts被另一并发会话同步编辑（FFMI/dead-pixel等FAQ措辞润色），已用git手工patch只提交本次新增的3处内链句，未混入或覆盖并发会话的改动。npm run build 0报错，commit 5998785。"
+    }
+  ],
+  "verification": "绕缓存curl三篇线上均已生效(Health/Finance/Math hub均命中)；IndexNow已提交3个URL(Bing 200/Yandex 200，commit 49e0699)",
+  "escalation": null
+}
+```
