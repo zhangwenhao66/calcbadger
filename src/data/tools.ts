@@ -2837,12 +2837,12 @@ export const tools: Tool[] = [
 			{
 				question: 'What is a good reaction time?',
 				answer:
-					"It depends on how the test measures it. A Clemson University literature review cites roughly 190ms as the century-old, non-computer baseline for college-age adults, and cites a further study putting computer-measured results around 268ms. Woods et al. (2015) separately measured a 231ms average (213ms after correcting for hardware delay) across 1,469 people on a calibrated computer test. A browser-based score anywhere in that range is ordinary; the reaction-time literature does not agree on one single number.",
+					"It depends on how the test measures it. One frequently cited review out of Clemson puts the century-old, non-computer baseline for a typical undergraduate at about 190ms, and points to a separate study whose computer-measured figure lands near 268ms. A separate large-sample study (Woods and colleagues, 2015) landed closer to the middle of that range once hardware lag was accounted for. A browser-based score anywhere in that range is ordinary; the reaction-time literature does not agree on one single number.",
 			},
 			{
 				question: 'What is the difference between simple and choice reaction time?',
 				answer:
-					'Simple reaction time is one expected signal and one response, which is what this tool measures. Choice reaction time adds a decision (click one button for a red light, a different button for a blue one) and is consistently slower, because the brain has to identify which stimulus appeared before it can select the matching response.',
+					'This particular test sticks to the simplest version of the task: one expected signal, one response. A harder variant tacks on a decision (click one button for a red light, a different button for a blue one) and reliably comes out slower, because the brain has to identify which stimulus appeared before it can select the matching response.',
 			},
 			{
 				question: 'Why does my reaction time change every time I take the test?',
@@ -2852,17 +2852,17 @@ export const tools: Tool[] = [
 			{
 				question: 'Does age affect reaction time?',
 				answer:
-					'Yes. Woods et al. (2015) measured simple reaction time lengthening by about 0.55ms per year of age across a 1,469-person sample spanning ages 18 to 65, and found the increase was mainly due to slower motor output rather than slower mental processing. This tool does not ask for or adjust by age.',
+					'Yes. The same 2015 study found the numbers creeping up by roughly half a millisecond for each additional year in a sample that ran from age 18 up to 65, and pinned most of that slowdown on the body\'s response getting slower, not the brain\'s decision-making. This tool does not ask for or adjust by age.',
 			},
 			{
 				question: 'Why might a browser-based test run slower than a lab study?',
 				answer:
-					"Woods et al. (2015) found that measured reaction times differ across laboratories partly because of timing delays introduced by the specific computer hardware and software used to measure them, not because the people being tested are actually slower. A browser test adds its own hardware and software on top of whatever device you happen to be using, so a slower-than-expected result may say more about your setup than about your actual reaction speed.",
+					"That same study found that measured reaction times differ across laboratories partly because of timing delays baked into whatever rig, screen and input device included, was used to measure them, not because the people being tested are actually slower. A browser test tacks its own delay onto whichever phone or laptop happens to be in front of you, so a slower-than-expected result may say more about your setup than about your actual reaction speed.",
 			},
 			{
 				question: 'Can this test diagnose ADHD, concussion, or a neurological condition?',
 				answer:
-					'No. This is a descriptive comparison against figures from published research, run on uncontrolled consumer hardware, not a validated clinical instrument. Reaction time is one symptom clinicians consider, but only inside a controlled, calibrated testing environment. A single browser-based score cannot diagnose anything.',
+					'No. This is a descriptive comparison against numbers pulled from academic studies, run on uncontrolled consumer hardware, not a validated clinical instrument. Reaction time is one symptom clinicians consider, but only inside a controlled, calibrated testing environment. A single browser-based score cannot diagnose anything.',
 			},
 		],
 		sources: [
@@ -2964,32 +2964,32 @@ export const tools: Tool[] = [
 			{
 				question: 'How do you add fractions with different denominators?',
 				answer:
-					'Rewrite both fractions over a shared denominator, then add the numerators. The simplest shared denominator is the product of the two original denominators: for a/b + c/d, use (a×d + c×b) ÷ (b×d). For example, 2/3 + 5/4 = (2×4 + 5×3) ÷ (3×4) = 23/12.',
+					'Put both fractions on a common bottom number first, then add what\'s on top. The easiest bottom number to use is just the two originals multiplied together, which is the general rule shown above. Plugging in real numbers, 2/3 + 5/4 = (2×4 + 5×3) ÷ (3×4) = 23/12.',
 			},
 			{
 				question: 'How do you divide fractions?',
 				answer:
-					'Multiply the first fraction by the reciprocal (flip) of the second: a/b ÷ c/d = a/b × d/c. For example, 1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2. Dividing by a fraction that equals zero is undefined.',
+					'Turn the divisor upside down to get its reciprocal, then multiply: a/b ÷ c/d = a/b × d/c. Working through 1/2 divided by 1/4 that way lands on 2. There\'s no defined answer when the fraction you\'re dividing by works out to zero, like 0/5.',
 			},
 			{
 				question: 'How do you simplify a fraction to lowest terms?',
 				answer:
-					'Find the greatest common divisor (GCD) of the numerator and denominator, then divide both by it. 8/12 has a GCD of 4, so it simplifies to 2/3. The Euclidean algorithm (repeatedly dividing and taking the remainder) is the standard way to find the GCD without listing every factor.',
+					'Find the largest number that divides evenly into both the top and bottom, then divide both by it. 8/12 has a largest common factor of 4, so it simplifies to 2/3. Repeatedly dividing and keeping the remainder, a method with an old Greek name attached, gets you there without listing every factor by hand.',
 			},
 			{
 				question: 'How do you convert a mixed number to an improper fraction?',
 				answer:
-					'Multiply the whole number by the denominator, add the numerator, and keep the same denominator. 2 3/4 becomes (2×4 + 3) ÷ 4 = 11/4.',
+					'Scale the whole number up by however big the bottom number is, fold in the numerator on top of that, and carry the original bottom number through unchanged. 2 3/4 becomes (2×4 + 3) ÷ 4 = 11/4.',
 			},
 			{
 				question: 'How do you convert an improper fraction to a mixed number?',
 				answer:
-					'Divide the numerator by the denominator. The whole-number part of the quotient is the mixed number\'s whole part; the remainder becomes the new numerator over the same denominator. 11/4 is 2 remainder 3, so it becomes 2 3/4.',
+					'Divide top by bottom. Whatever whole number comes out of that division becomes the mixed number\'s whole part; whatever\'s left over becomes the new top number, still sitting over the original bottom number. Working that division out for 11/4 gives 2 remainder 3, landing on 2 3/4.',
 			},
 			{
 				question: 'How do you convert a fraction to a decimal or a percent?',
 				answer:
-					'Divide the numerator by the denominator to get a decimal (3/4 = 0.75); multiply that decimal by 100 to get a percent (0.75 = 75%). A fraction whose denominator has prime factors other than 2 or 5 (like 1/3) produces a repeating decimal rather than a terminating one.',
+					'Work out top divided by bottom to land on a decimal (3/4 = 0.75); multiply that decimal by 100 to get a percent (0.75 = 75%). A fraction whose denominator has prime factors other than 2 or 5 (like 1/3) produces a repeating decimal rather than a terminating one.',
 			},
 		],
 		sources: [
@@ -3089,22 +3089,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How do I calculate the time between two clock times?',
 				answer:
-					'Use "Between two times," enter the start and end hour and minute, and the calculator returns the elapsed duration in hours and minutes, decimal hours, and total minutes at once.',
+					'Enter the start and end hour and minute under the two-clock-times mode, and the calculator returns the elapsed duration in hours and minutes, decimal hours, and total minutes at once.',
 			},
 			{
 				question: 'What happens if the end time is earlier than the start time?',
 				answer:
-					'The calculator assumes the end time falls on the next day rather than returning a negative result. A 10:00 PM to 6:00 AM entry is treated as an 8-hour overnight span, not negative 16 hours.',
+					'When the second clock reading looks earlier than the first, the calculator treats it as having rolled into the next day instead of handing back a result below zero. An 11:00 PM start with a 7:00 AM end reads as an 8-hour overnight stretch, not negative 16 hours.',
 			},
 			{
 				question: 'How do I add or subtract hours and minutes from a time?',
 				answer:
-					'Use "Add/subtract," enter a starting time and a duration in hours and minutes, and choose Add or Subtract. If the result crosses midnight, the calculator reports how many days forward or back it lands.',
+					'Switch to the add-or-subtract mode, enter a starting clock reading and a length of hours and minutes, and pick Add or Subtract. If the result crosses midnight, the calculator reports how many days forward or back it lands.',
 			},
 			{
 				question: 'What is the difference between "Between two times" and "Two date-times" modes?',
 				answer:
-					'"Between two times" works on a single 24-hour clock and assumes at most one overnight rollover. "Two date-times" takes a full calendar date alongside each time, so it correctly reports spans of several days, not just a same-day or overnight difference.',
+					'The two-clock-times mode works on a single 24-hour clock and assumes at most one midnight crossing. Pairing full calendar dates with each time instead lets the tool correctly report spans of several days, not just a same-day or overnight difference.',
 			},
 			{
 				question: 'How do I convert 8 hours 30 minutes into decimal hours?',
