@@ -4959,12 +4959,12 @@ export const tools: Tool[] = [
 			{
 				question: 'How many slices are in a large pizza?',
 				answer:
-					'Most large pizzas (around 14") are cut into 8 slices, the convention PMQ Pizza\'s industry trade forum reports as standard. Some pizzerias cut large pizzas into 10 slices instead, and thin-crust or "party cut" styles can run higher, so it is worth confirming with the specific pizzeria if an exact count matters.',
+					'Most large pizzas (around 14") get cut into 8 wedges, the count a trade publication for the pizzeria industry reports as standard. Some pizzerias cut large pizzas into 10 slices instead, and thin-crust or "party cut" styles can run higher, so it is worth confirming with the specific pizzeria whenever a precise slice tally is important.',
 			},
 			{
 				question: 'How many people does a large pizza feed?',
 				answer:
-					'About 2 to 4 people, depending on appetite: 2 hearty eaters at 4 slices each, 2 average eaters at 3 slices each (with 2 slices left over from the 8), or up to 4 light eaters at 2 slices each. Pizza Hut\'s own catering guidance uses a similar shorthand, treating one large pizza as feeding roughly 3 adults.',
+					'About 2 to 4 people, depending on appetite: 2 hearty eaters at 4 slices each, 2 average eaters at 3 slices each (2 slices go unclaimed out of the 8), or up to 4 light eaters at 2 slices each. That same major chain\'s catering material uses a similar shorthand, treating one large pizza as feeding roughly 3 adults.',
 			},
 			{
 				question: 'How many slices are in a medium pizza?',
@@ -4973,22 +4973,22 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many slices are in a small pizza?',
-				answer: '6 slices is the standard convention for a small (roughly 10") pizza, per PMQ Pizza\'s trade forum.',
+				answer: '6 slices is the standard convention for a small (roughly 10") pizza, per that same industry trade publication.',
 			},
 			{
 				question: 'How many pizzas do I need for a group?',
 				answer:
-					'Enter the number of adults and children above, pick an appetite level and pizza size, and the calculator rounds up to the number of whole pizzas needed. As a rough mental-math shortcut, the catering-industry "3/8 rule" says roughly 3 slices per adult and 8 slices per pizza, so multiply headcount by 3 and divide by 8.',
+					'Enter the number of adults and children above, pick an appetite level and pizza size, and the calculator rounds up to the number of whole pizzas needed. Doing this by hand instead, figure roughly 3 slices for each adult and about 8 slices coming out of a whole pie, then run the numbers as 3 times the headcount, divided by 8.',
 			},
 			{
 				question: 'Does ordering sides change how many pizzas I need?',
 				answer:
-					"A widely repeated catering rule of thumb suggests cutting the pizza order by roughly 20% to 30% when heavy sides like wings, pasta, or a full salad spread are also on the table, since guests fill up on those instead of extra slices. No single authority publishes this figure, so treat it as informal guidance rather than a measured average; this calculator uses the 25% midpoint as an optional toggle rather than baking it in by default.",
+					"A commonly cited planning guideline suggests trimming the pizza order by roughly a fifth to a third whenever the spread also includes filling extras like chicken wings, a pasta dish, or a big salad, since guests fill up on those rather than extra slices. No single authority publishes this figure, so treat it as informal guidance rather than a measured average; this tool offers the 25% midpoint as an optional toggle you can switch on, not something applied automatically.",
 			},
 			{
 				question: 'How many pizza slices should a kid eat?',
 				answer:
-					"Pizzeria-published ordering guides commonly budget 2 slices per child roughly ages 3 to 10, regardless of how hungry the adults in the group are expected to be. This calculator applies that fixed number to the children field no matter which appetite level is selected for adults.",
+					"Guides published by pizzerias themselves commonly budget 2 slices for each child somewhere in the 3-to-10 age bracket, regardless of how hungry the adults in the group are expected to be. This tool sticks to that flat per-child number field no matter which appetite level is selected for adults.",
 			},
 		],
 		sources: [
@@ -5164,7 +5164,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'What WACC is for',
 				body: [
-					"WACC blends what a company pays its shareholders and its lenders into one rate: the minimum return a project or investment has to clear before it creates value rather than destroying it. It shows up as the discount rate in a discounted-cash-flow valuation and as the hurdle rate finance teams compare a project's expected return against.",
+					"WACC blends what a company pays its shareholders and its lenders into one rate: the minimum return a project or investment has to clear before it creates value rather than destroying it. It shows up as the discount rate in a discounted-cash-flow valuation and as the bar finance teams hold a project's projected return up against.",
 					'Because it mixes two very different capital sources, WACC needs three things for each: how much of the company is funded by that source (its weight), what that source costs, and, for debt only, a tax adjustment, since interest payments are deductible and dividends are not.',
 				],
 			},
@@ -5191,7 +5191,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Use market value, not book value',
 				body: [
-					"The E and D in E/V and D/V should be market values: equity's market capitalization (share price × shares outstanding), not the book equity on the balance sheet, and debt at its current market price where it trades, or face value as a reasonable stand-in when it does not trade actively. Book equity reflects historical accounting entries, not what investors would pay for the company today, so mixing book equity with market debt (or the reverse) skews the weights and the resulting WACC.",
+					"The E and D in E/V and D/V should be market values: equity's market capitalization (share price × shares outstanding), not the book equity recorded on financial statements, and debt at its current market price where it trades, or face value as a reasonable stand-in when it does not trade actively. Book equity reflects historical accounting entries, not what investors would pay for the company today, so mixing book equity with market debt (or the reverse) skews the weights and the resulting WACC.",
 				],
 			},
 		],
@@ -5214,27 +5214,27 @@ export const tools: Tool[] = [
 			{
 				question: 'What counts as a "good" WACC?',
 				answer:
-					"There is no universal good number. WACC runs lower for stable, mostly debt-funded businesses like regulated utilities and higher for volatile, mostly equity-funded ones like early-stage software or biotech, since both a higher beta and a smaller debt share push it up. What matters is comparing a project's expected return against its own company's WACC, not against another industry's.",
+					"There is no universal good number. Stable, mostly debt-funded businesses like regulated utilities tend to post a lower figure here, while volatile, mostly equity-funded ones like early-stage software or biotech run higher, since this rate reflects how much a company must clear to satisfy everyone who financed it, since both a higher beta and a smaller debt share push it up. What matters is comparing a project's expected return against its own company's WACC, not against another industry's.",
 			},
 			{
 				question: 'Why does debt get a tax adjustment but equity does not?',
 				answer:
-					'Interest paid to lenders is a deductible business expense, so it lowers the company\'s taxable income; dividends paid to shareholders come out of after-tax profit and get no such deduction. Multiplying the pre-tax cost of debt by (1 − Tc) reflects that only the after-tax cost is actually borne by the company.',
+					'Interest paid to lenders is a deductible business expense, so it lowers the company\'s taxable income; dividends paid to shareholders come out of after-tax profit and get no such deduction. Taking that lender rate before any tax adjustment and multiplying by (1 − Tc) reflects that only what actually comes out of company\'s pocket, net of that tax break, is the real cost.',
 			},
 			{
 				question: 'Can I use book value instead of market value for the weights?',
 				answer:
-					"You can, but it will usually distort the result. Market value of equity (share price × shares outstanding) reflects what investors currently think the company is worth; book equity is a historical accounting figure that can be far lower or higher. Market value of debt is less commonly available, so face value on the balance sheet is the standard workaround when the debt does not trade actively.",
+					"You can, but it will usually distort the result. What the stock market currently prices a company at (multiply the share price by however many shares are outstanding) reflects what investors currently think the company is worth; the number on the balance sheet reflects old accounting entries and can be far lower or higher. Market value of debt is less commonly available, so its face value on the balance sheet stands in as the standard workaround whenever it doesn't see much day-to-day trading.",
 			},
 			{
 				question: 'Does WACC change over time?',
 				answer:
-					"Yes. Interest rates move the risk-free rate and cost of debt, a company's stock price moves its equity weight, and its beta and credit terms shift as its business and leverage change. WACC used for a long-lived project is usually treated as a snapshot estimate, not a rate the company recalculates for every cash flow year.",
+					"Yes. Interest rates move the government-bond benchmark and cost of debt, a company's stock price moves its equity weight, and its beta and credit terms shift as its business and leverage change. WACC used for a long-lived project is usually treated as a snapshot estimate, not a rate the company recalculates for every cash flow year.",
 			},
 			{
 				question: 'What if a company has no debt?',
 				answer:
-					'With D = 0, the debt term drops out and WACC simply equals the cost of equity, since the entire capital structure is equity-funded. This calculator handles that case automatically: set debt to 0 and the after-tax cost of debt term contributes nothing to the result.',
+					'With D = 0, the debt term drops out and WACC collapses to just Re, since the entire capital structure is equity-funded. This calculator handles that case automatically: set debt to 0 and the lender-rate-after-tax portion of debt term contributes nothing to the result.',
 			},
 		],
 		sources: [
@@ -5259,7 +5259,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-24',
 		published: '2026-08-24',
 		coreSummary:
-			'At the standard formatting baseline of 12-point Times New Roman with one-inch margins, a page holds about 250 words double-spaced or 500 words single-spaced. 1,000 words works out to about 4 pages double-spaced or 2 pages single-spaced. Standardized test scoring runs on its own conversion table instead of a flat ratio: [the SAT\'s raw-to-scaled conversion](/sat-score-calculator/) comes straight from College Board\'s published practice-test table, not a simple word- or page-count formula.',
+			'At the standard formatting baseline of 12-point Times New Roman with one-inch margins, a page holds about 250 words double-spaced or 500 words single-spaced. 1,000 words works out to about 4 pages double-spaced or 2 pages single-spaced. Standardized test scoring works on an entirely different kind of lookup, not a flat ratio: [the SAT\'s raw-to-scaled conversion](/sat-score-calculator/) comes straight from College Board\'s published practice-test table, not a simple word- or page-count formula.',
 		queries: [
 			'words to pages calculator',
 			'how many pages is 1000 words',
@@ -5325,22 +5325,22 @@ export const tools: Tool[] = [
 			{
 				question: 'How many pages is 1,000 words double-spaced?',
 				answer:
-					'About 4 pages at 12-point Times New Roman with one-inch margins, using the standard 250-words-per-page convention. Single-spaced, the same 1,000 words runs about 2 pages.',
+					'That runs about 4 pages under the same default assumptions this tool\'s table above uses. Switch to single spacing and that identical word count comes down to about 2 pages.',
 			},
 			{
 				question: 'How many pages is 500 words?',
 				answer:
-					'About 2 pages double-spaced or 1 page single-spaced, at 12pt Times New Roman. That is a short essay or a long blog intro, well short of a full research paper.',
+					'Turn on double spacing and that lands around 2 sheets of paper, or a single sheet if you switch to single spacing, using the same standard font setup. That is a short essay or a long blog intro, well short of a full research paper.',
 			},
 			{
 				question: 'How many pages is 2,000 words double-spaced?',
 				answer:
-					'About 8 pages at 12pt Times New Roman double-spaced, or 4 pages single-spaced. That is a typical length for a college research paper assignment.',
+					'That lands around 8 pages once double-spaced under the same standard font setup, or 4 pages if you switch to single spacing. That is a typical length for a college research paper assignment.',
 			},
 			{
 				question: 'Does the font I pick change the page count?',
 				answer:
-					'Yes, though not as much as line spacing does. Switching from Times New Roman to a narrower font like Calibri can shrink a document by roughly 10 to 15 percent at the same point size, since Calibri fits more characters per line. Switching from double- to single-spacing has a much bigger effect: it roughly doubles how many words fit per page.',
+					'Yes, though the effect is smaller than what line spacing does. Switching to a narrower typeface like Calibri instead of the default can shrink a document by roughly 10 to 15 percent at the same point size, since that font fits more characters per line. Switching from double- to single-spacing has a much bigger effect: it roughly doubles the word capacity of a single sheet.',
 			},
 			{
 				question: 'Why do teachers ask for double-spaced pages instead of just giving a word count?',
@@ -5350,7 +5350,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Is 250 words per page an exact number?',
 				answer:
-					'No, it is a rule of thumb for standard formatting: 12pt Times New Roman, one-inch margins, plain paragraphs. Real documents vary with margin width, paragraph length, headings, and block quotes. For a submission where the exact page count matters, format the document and check the actual page counter rather than relying on this estimate.',
+					'No, it is a rule of thumb built around one particular formatting setup: 12-point font, standard margins, and body text with nothing extra layered on. Real documents vary with margin width, paragraph length, headings, and block quotes. Whenever the exact page count matters, open the file in whatever program you actually wrote it in and read what its own counter reports instead of leaning on this estimate.',
 			},
 		],
 		sources: [
