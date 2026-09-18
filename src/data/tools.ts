@@ -3135,7 +3135,7 @@ export const tools: Tool[] = [
 		title: 'Shape Volume & Surface Area Calculator',
 		shortTitle: 'Shape Volume Calculator',
 		description:
-			'This shape volume calculator finds the volume and surface area of a rectangular prism, cylinder, sphere, or cone, the everyday 3D shapes most volume questions come down to. Enter the dimensions in ft, in, yd, m, or cm and get both numbers at once.',
+			'This shape volume calculator finds the volume and surface area of a rectangular prism, cylinder, sphere, or cone. Enter dimensions in ft, in, yd, m, or cm and get both numbers at once.',
 		updated: '2026-08-12',
 		published: '2026-08-12',
 		coreSummary:
@@ -4639,7 +4639,7 @@ export const tools: Tool[] = [
 		title: 'Click Speed Test',
 		shortTitle: 'Click Speed Test',
 		description:
-			'Use this click speed test to check your clicks per second (CPS) and clicks per minute over a timer you choose, then compare your result against the clinical single-finger tapping range from neuropsychology research.',
+			'Use this click speed test to check your clicks per second (CPS) and clicks per minute, then compare against the clinical single-finger tapping range from neuropsychology research.',
 		updated: '2026-08-21',
 		published: '2026-08-21',
 		coreSummary:
