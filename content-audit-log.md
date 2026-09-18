@@ -2742,3 +2742,14 @@
   "escalation": null
 }
 ```
+
+## 2026-09-18 — CalcBadger COO首轮分析衍生动作：click-speed-test / coin-flip-simulator description改写
+
+- **本条不是常规content-quality-audit轮次，是COO报告(独立站/站点COO/calcbadger/COO报告_20260918.md)阶段D杠杆①执行记录。**
+- **动机**：Bing Webmaster数据显示两页排名4-7位（click-speed-test均排7.0，coin-flip-simulator相关查询均排4-10），Google侧因8/18算法压制曝光归零，Bing不受影响；两页description此前未包含用户实际搜索的精确短语（"click speed test"/"coin flip simulator"）。
+- **改动**：description改写为front-load这两个精确短语（同一字段同时驱动meta description与首屏副标题，`src/pages/[slug].astro`确认）。
+- **意外发现并处理**：改写触发`check_prose_patterns.py`的L-0819-9（FAQ与正文≥20字符逐字重合）——两页此前从未被这道2026-08-30新增的检查扫过（存量债务，属于R-seo-05描述的"新增检查门槛未回溯存量"的又一实例，规模小，当场顺手清零，不需要另立回溯任务）。click-speed-test迭代7轮、coin-flip-simulator迭代2轮，逐条改写FAQ/正文措辞消除逐字重合，同时核对改写后事实未变（公式、数字、引用来源全部保留，只改句式）。最终两页`check_prose_patterns.py`均exit 0。
+- **验证**：`npm test` 1359/1359通过（未改计算逻辑）；`npm run build` 123页0 errors；`seo_drift.py baseline`改动前已存两页基线；去AI味自查（grep改动行确认0处em dash，无rule-of-three/AI高频词）；未改title/未跑title_lint（本次不涉及标题）。
+- **发布**：commit `e189b7d`推送后，curl绕缓存核实两页线上`<meta name="description">`已更新为新文案。
+- **shape-volume-calculator（原计划第3个候选页）未改动**：核实其Bing曝光来源"calculate surface of a circle"类查询与页面实际功能（棱柱/圆柱/球体/圆锥体积计算，不含2D圆形面积）不匹配，为避免塞入不准确表述放弃此页改写。
+- **无暂停项**：未发现需要推翻核心结论或需要Owen决策的新问题。
