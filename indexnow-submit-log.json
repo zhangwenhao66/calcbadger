@@ -51,7 +51,7 @@
     "submitted_date": "2026-08-02",
     "verified_status": "stale_not_indexed",
     "note": "content-quality-audit fix resubmit (2026-08-03): meta description shortened from 220 to 153 chars; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202 | 2026-08-17: Discovered but not crawled，discovered 02 Aug 2026，账龄15天，超过14天阈值判定为stale",
-    "last_submitted_date": "2026-08-03",
+    "last_submitted_date": "2026-09-18",
     "last_checked_date": "2026-08-17",
     "verified_method": "bwt_url_inspection"
   },
@@ -89,7 +89,7 @@
   },
   "https://calcbadger.com/mortgage-calculator/": {
     "submitted_date": "2026-08-04",
-    "last_submitted_date": "2026-08-26",
+    "last_submitted_date": "2026-09-18",
     "verified_status": "stale_not_indexed",
     "last_checked_date": "2026-08-28",
     "verified_method": "bwt_url_inspection",
@@ -113,7 +113,7 @@
   },
   "https://calcbadger.com/percentage-calculator/": {
     "submitted_date": "2026-08-05",
-    "last_submitted_date": "2026-08-05",
+    "last_submitted_date": "2026-09-18",
     "verified_status": "stale_not_indexed",
     "last_checked_date": "2026-08-28",
     "verified_method": "bwt_url_inspection",
