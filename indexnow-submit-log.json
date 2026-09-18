@@ -59,7 +59,7 @@
     "submitted_date": "2026-08-03",
     "verified_status": "stale_not_indexed",
     "note": "daily tool #7 (2026-08-03), run 1/3 of the day; Bing 200 / Yandex 202 | discovered 04 Aug, account age exactly 14 days, boundary — near stale threshold",
-    "last_submitted_date": "2026-08-10",
+    "last_submitted_date": "2026-09-18",
     "last_checked_date": "2026-08-20",
     "verified_method": "bwt_url_inspection"
   },
@@ -339,7 +339,7 @@
   },
   "https://calcbadger.com/click-speed-test/": {
     "submitted_date": "2026-08-21",
-    "last_submitted_date": "2026-08-21",
+    "last_submitted_date": "2026-09-18",
     "verified_status": "pending"
   },
   "https://calcbadger.com/pool-calculator/": {
