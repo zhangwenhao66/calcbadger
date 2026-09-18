@@ -2758,3 +2758,10 @@
 
 - **shape-volume-calculator补做**：上一条记录里判定该页"Bing曝光不匹配、无值得追的机会"是错的——只看了query_stats抽样第一行（"calculate surface of a circle"）。重新看全部77条query_stats后发现该页有9条真实匹配查询（volume calculator/surface area and volume calculator/how do you find the volume of a 3d shape等），累计约14次曝光。description改写为front-load"shape volume calculator"+"3D shapes"，同样清理4处FAQ逐字重合（pre-existing debt）。commit `d84577c`，curl核实线上生效，IndexNow已提交。
 - **顺带发现**：把`check_prose_patterns.py`跑遍全站51个工具页，35个（69%）当前不通过。核实后确认这是`独立站/matrix-prose-gate-backlog.json`已经跟踪的矩阵级已知问题，已有`matrix-prose-gate-backfill`任务在按批处理（git log可见已修复5篇）。本次把今天修复的3篇从该backlog的`needs_work_slugs`移除（41→38），不重复处理剩余38篇，留给既有回溯任务。
+
+## 2026-09-18（再续）— 补跑完整检查套件，发现并修复description长度回归
+
+- **起因**：前两条记录只手动跑了`check_prose_patterns.py`，没按SKILL要求跑完整的`run_checks.py`总运行器。补跑后`check_seo_field_stats.py`报click-speed-test（215字符，z=1.69）和shape-volume-calculator（247字符，z=2.98，全站第2长）为离群值——是本次front-load关键短语时把描述写宽了。
+- **修复**：两页description精简重写，保留短语和全部事实数字，砍掉冗余从句。复查`check_seo_field_stats.py`：215→179字符(z=0.37)、247→184字符(z=0.60)，均回到正常区间；`check_prose_patterns.py`复查仍exit 0。
+- **顺手核实**：`check_sources_urls.py`给click-speed-test的1条SOFT警告（millisecond.com SSL证书校验失败）——curl换真实浏览器UA返回200，确认反爬假阳性，来源链接本身有效。三页`/embed/<slug>/`版本curl核实均200。
+- **验证**：npm test 1359/1359通过；npm run build 123页0 errors；commit `eb9fc72`推送部署，curl绕缓存核实线上description已更新；IndexNow已提交。
