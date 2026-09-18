@@ -359,8 +359,9 @@
   },
   "https://calcbadger.com/age-difference-calculator/": {
     "submitted_date": "2026-08-23",
-    "last_submitted_date": "2026-08-23",
-    "verified_status": "pending"
+    "last_submitted_date": "2026-09-18",
+    "verified_status": "pending",
+    "note": "resubmit after fixing double-domain-prefix bug (2026-09-18)"
   },
   "https://calcbadger.com/random-object-generator/": {
     "submitted_date": "2026-08-23",
@@ -416,11 +417,6 @@
   "https://calcbadger.com/rice-to-water-ratio/": {
     "submitted_date": "2026-09-03",
     "last_submitted_date": "2026-09-03",
-    "verified_status": "pending"
-  },
-  "https://calcbadger.com/https://calcbadger.com/age-difference-calculator/": {
-    "submitted_date": "2026-09-09",
-    "last_submitted_date": "2026-09-09",
     "verified_status": "pending"
   },
   "https://calcbadger.com/words-per-minute-average/": {

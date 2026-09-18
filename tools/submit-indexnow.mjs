@@ -120,7 +120,18 @@ async function run() {
 
   let urls;
   if (explicitPaths.length > 0) {
-    urls = explicitPaths.map(p => `https://${SITE.host}${p.startsWith('/') ? p : '/' + p}`);
+    // Normalize each arg to a bare pathname before rebuilding the full URL.
+    // A full URL passed in used to slip past the naive p.startsWith('/')
+    // check and get double-prefixed into https://host/https://host/slug/
+    // -- a malformed URL that was then really POSTed to Bing/Yandex as a
+    // no-op submission (see factcrumbs commit 6b41fb1, 2026-09-18).
+    urls = explicitPaths.map(p => {
+      let path = p;
+      if (/^https?:\/\//i.test(p)) {
+        path = new URL(p).pathname;
+      }
+      return `https://${SITE.host}${path.startsWith('/') ? path : '/' + path}`;
+    });
     console.log(`  Submitting ${urls.length} explicit URL(s)`);
   } else if (fullMode) {
     urls = await fetchSitemapUrls(SITE.sitemap);
