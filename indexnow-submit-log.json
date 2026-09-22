@@ -283,7 +283,10 @@
   "https://calcbadger.com/small-text-generator/": {
     "submitted_date": "2026-08-18",
     "last_submitted_date": "2026-08-18",
-    "verified_status": "pending"
+    "verified_status": "stale_not_indexed",
+    "last_checked_date": "2026-09-23",
+    "verified_method": "bwt_url_inspection",
+    "note": " | 2026-09-23: Page Fetch Failed HTTP 4xx; curl绕缓存复核确认真实404, 未找到对应prune commit, 原因待查"
   },
   "https://calcbadger.com/formula-standards-index/": {
     "submitted_date": "2026-08-18",
@@ -295,12 +298,18 @@
   "https://calcbadger.com/gender-symbols/": {
     "submitted_date": "2026-08-18",
     "last_submitted_date": "2026-08-18",
-    "verified_status": "pending"
+    "verified_status": "stale_not_indexed",
+    "last_checked_date": "2026-09-23",
+    "verified_method": "bwt_url_inspection",
+    "note": " | 2026-09-23: discovered date '01 Jan 2006' 哨兵异常, discovered but not crawled"
   },
   "https://calcbadger.com/topsoil-calculator/": {
     "submitted_date": "2026-08-18",
     "last_submitted_date": "2026-09-15",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "last_checked_date": "2026-09-23",
+    "verified_method": "bwt_url_inspection",
+    "note": " | 2026-09-23: 1 SEO/GEO issue: Meta Description too long/short"
   },
   "https://calcbadger.com/keg-calculator/": {
     "submitted_date": "2026-08-19",
