@@ -2288,6 +2288,13 @@ export const tools: Tool[] = [
 					"The fix wasn't cutting calories further. It was recalculating for the smaller body, keeping protein steady, protecting strength training, and finding realistic ways to add movement back in.",
 				],
 			},
+			{
+				heading: 'When the numbers being tracked are wrong',
+				body: [
+					'Loz Antonenko, a nutrition and fitness coach at <a href="https://lozlife.com/" target="_blank" rel="noopener">Loz Life</a> and AUSactive\'s National Personal Trainer of the Year, points to a second mechanism that has nothing to do with metabolism. A client insisted he was sticking to 1,900 calories a day and got defensive when asked to weigh his food for two weeks. He wasn\'t lying, he just wasn\'t counting the oil in the pan, the milk in four coffees, or the kids\' leftovers eaten standing at the bench. Weighed honestly, his real intake ran several hundred calories higher than what he\'d logged, in line with what research on self-reported intake tends to find.',
+					"The other half of the same problem runs the other direction: a fitness watch crediting more calories burned than a workout actually used. Fixing the plateau meant fixing the measurement, not cutting food further.",
+				],
+			},
 		],
 		referenceTables: [
 			{
