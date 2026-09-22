@@ -6427,4 +6427,124 @@ export const tools: Tool[] = [
 		],
 		embedHeight: 820,
 	},
+	{
+		slug: 'dice-roller',
+		category: 'Games',
+		title: 'Dice Roller & Probability Calculator',
+		shortTitle: 'Dice Roller',
+		description:
+			'Roll 1-20 dice from d4 to d100 with a modifier, plus D&D 5th Edition advantage/disadvantage on a d20, or switch to the probability calculator for the exact odds of hitting any total.',
+		updated: '2026-09-22',
+		published: '2026-09-22',
+		coreSummary:
+			"Roll 1 to 20 dice of any common size (d4 through d100), add a flat modifier, and on a d20 apply D&D 5th Edition's advantage or disadvantage: roll two d20s and keep the higher (advantage) or lower (disadvantage), the official rule from the game's System Reference Document. Switch to the probability calculator for the exact odds of any total rather than an estimate: it builds the full sum distribution by convolving each die's equally-likely outcomes, the same math behind the classic 2d6 table where 7 comes up six times as often as 2 or 12. A different kind of randomness built on the same idea, one outcome that is 50/50 instead of 1-in-d, is what [the coin flip simulator](/coin-flip-simulator/) works out with the binomial formula instead.",
+		queries: ['dnd dice roller', 'dice roller', 'd20 roller', 'advantage and disadvantage roll'],
+		sections: [
+			{
+				heading: 'Why every face on a die is equally likely',
+				body: [
+					"A fair die with d faces is what statisticians call a discrete uniform distribution: each of the d outcomes has exactly the same 1/d chance, with no face favored over another. For that distribution, the mean is (d + 1) / 2 and the variance is (d² − 1) / 12 (Weisstein, \"Discrete Uniform Distribution,\" Wolfram MathWorld). A d6 averages 3.5 (there is no face showing 3.5, but that is where repeated rolls center), a d20 averages 10.5, and a d100 averages 50.5.",
+					"That single-die formula is the building block for everything else on this page. Roll more than one die and add them up, and the total's average and spread follow directly from it: for n dice of d faces, the expected total is n × (d + 1) / 2 and its variance is n × (d² − 1) / 12, because expectation and variance both add across independent draws.",
+				],
+			},
+			{
+				heading: "Summing dice: why 7 is the most common roll on two d6s",
+				body: [
+					'A single d6 roll is uniform, every face equally likely, but the sum of two d6 rolls is not, because there are more ways to add up to some totals than others. There is only one combination that makes 2 (a 1 and a 1) and only one that makes 12 (a 6 and a 6), but six different combinations make 7 (1-6, 2-5, 3-4, 4-3, 5-2, 6-1). Out of the 36 equally likely combinations two dice can land on, that puts 7 at 16.67% and pushes 2 and 12 down to 2.78% each.',
+					"This tool computes that kind of distribution exactly, for any number of dice and any die size, by convolution: start with one die's uniform distribution, then repeatedly combine it with another copy of itself, once per additional die. Each combination step is exact because every die is an independent draw from the same distribution, so the result is the real probability, not a simulated approximation from sampling.",
+				],
+			},
+			{
+				heading: 'Advantage and disadvantage: what rolling twice actually buys you',
+				body: [
+					'D&D 5th Edition\'s System Reference Document 5.1 states the rule directly: "you roll a second d20 when you make the roll. Use the higher of the two rolls if you have advantage, and use the lower roll if you have disadvantage" (p.76). It is specific to a single d20 check, save, or attack roll, not to dice pools in general, which is why this tool only offers it when the dice type is set to d20.',
+					'The effect on your odds grows as the target number gets harder to hit. Needing a 15 or better on a plain d20 is a 30% shot (six faces out of twenty clear it). Roll with advantage and the odds rise to 51%, because the only way to miss is for both d20s to come up under 15: squaring the 70% miss chance gives 49%, so the hit chance is 1 − 0.49 = 51%, not the 60% a naive "just double it" guess would give. Disadvantage cuts the other way: squaring the 30% hit chance itself drops it to 9%, since now both rolls need to clear the bar.',
+				],
+			},
+			{
+				heading: 'Worked example: a +3 attack against DC (or AC) 15',
+				body: [
+					"A d20 roll with a +3 modifier needs a raw roll of 12 or higher to reach a total of 15, since 12 + 3 = 15. On a plain roll, that's 9 faces out of 20 that clear 12, for 45%. With advantage, the chance of both rolls landing under 12 is (11/20)², so the chance of at least one clearing it is 1 − 0.3025 = 69.75%. With disadvantage, both rolls need to clear 12, which is (9/20)² = 20.25%.",
+					"The same math works without a d20 or a fixed +3: entering any dice count, die size, modifier, and target into the probability calculator below runs the identical convolution and reads off the exact chance for that combination, for example a 3d6 damage roll with a +2 modifier reaching 15 total comes out to 7/27, about 25.93%, a number the calculator will confirm instantly rather than requiring you to work the fractions by hand.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Sum of two d6, all 11 possible totals',
+				headers: ['Total', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+				rows: [
+					[
+						'Probability',
+						'2.78%',
+						'5.56%',
+						'8.33%',
+						'11.11%',
+						'13.89%',
+						'16.67%',
+						'13.89%',
+						'11.11%',
+						'8.33%',
+						'5.56%',
+						'2.78%',
+					],
+				],
+				note: 'Out of 36 equally likely combinations. The distribution peaks at 7 because more combinations of two dice add up to 7 than to any other total, not because 7 is favored by the dice themselves.',
+			},
+			{
+				title: 'Chance of hitting a DC on a d20, no modifier',
+				headers: ['DC', 'Normal', 'Advantage', 'Disadvantage'],
+				rows: [
+					['5', '80%', '96%', '64%'],
+					['10', '55%', '79.75%', '30.25%'],
+					['15', '30%', '51%', '9%'],
+					['20', '5%', '9.75%', '0.25%'],
+				],
+				note: 'Normal = (21 − DC) / 20. Advantage = 1 − (chance of missing)². Disadvantage = (chance of hitting)². The gap between advantage and disadvantage widens sharply as the DC climbs.',
+			},
+		],
+		faq: [
+			{
+				question: 'What is the difference between advantage and disadvantage in D&D?',
+				answer:
+					"Both swap a single d20 roll for two of them, then pick one result: advantage takes whichever came out on top, disadvantage takes whichever came out lowest. Per the SRD 5.1 rulebook, stacking several favorable or unfavorable sources at once still only earns that one extra die, not a pile of them, and if a roll somehow qualifies for both bonuses simultaneously, they cancel each other out and you're back to a plain single roll.",
+			},
+			{
+				question: 'Why is rolling 7 on two six-sided dice more likely than rolling 2 or 12?',
+				answer:
+					"It comes down to how many ways the dice can land on each number, not because either die is weighted toward a particular face. A 2 only happens one way (both dice show a 1), and a 12 only happens one way too (both show a 6), but a 7 can happen six different ways depending on which face lands on which die. More paths to the same total means that total shows up more often across many rolls.",
+			},
+			{
+				question: "How is the probability calculator different from just simulating a lot of rolls?",
+				answer:
+					"There's no simulation involved. The tool works out every possible way the dice could land, tallies which totals those add up to, and reports the resulting percentages directly, so what you see is the actual math rather than a number that would drift slightly depending on how many random trials you ran.",
+			},
+			{
+				question: 'Does advantage or disadvantage work with more than one d20 at a time?',
+				answer:
+					'Not under the game\'s standard rules, no: it\'s built specifically around one check, one save, or one attack, where a pair of d20s gets rolled and only one of them counts. The dice roller above mirrors that scope, so that toggle only shows up once you\'ve picked d20 as the die and left the dice count at one.',
+			},
+			{
+				question: 'Is this tool affiliated with Wizards of the Coast or Dungeons & Dragons?',
+				answer:
+					"No affiliation. This page is an independent, general-purpose randomizer; it happens to model one specific D&D mechanic accurately because that mechanic is documented in a freely licensed rulebook, not because Wizards of the Coast built or endorsed it. D&D and Dungeons & Dragons remain that company's trademarks.",
+			},
+			{
+				question: 'What does the modifier field actually change?',
+				answer:
+					"It's a flat bonus or penalty tacked onto the dice total afterward, the same way a character sheet adds a Strength bonus to a damage roll. Set a target of 15 with a +3 modifier, for instance, and the tool is really asking how often the dice alone land on 12 or above, since 12 plus that modifier clears 15.",
+			},
+		],
+		sources: [
+			{
+				label: 'Weisstein, Eric W. "Discrete Uniform Distribution," Wolfram MathWorld',
+				url: 'https://mathworld.wolfram.com/DiscreteUniformDistribution.html',
+			},
+			{
+				label: 'This work includes material taken from the System Reference Document 5.1 ("SRD 5.1") by Wizards of the Coast LLC and available at https://dnd.wizards.com/resources/systems-reference-document. The SRD 5.1 is licensed under the Creative Commons Attribution 4.0 International License available at https://creativecommons.org/licenses/by/4.0/legalcode. (Advantage and Disadvantage rule, p.76)',
+				url: 'https://media.wizards.com/2023/downloads/dnd/SRD_CC_v5.1.pdf',
+			},
+		],
+		embedHeight: 760,
+	},
 ];
