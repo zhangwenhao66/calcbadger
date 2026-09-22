@@ -282,3 +282,30 @@ CalcBadger
 **Independent review agent caught a real problem**: the draft originally targeted `online-editor@woodworkersjournal.com`, which the site's own `/contact-us/` page scopes explicitly to "eZine Feedback — please email your comments (especially compliments), but we'll also accept criticism and corrections" — the wrong channel for a tool-embed pitch. The same page lists `editor@woodworkersjournal.com` for "project questions" and "author questions," a much better fit. Retargeted to `editor@woodworkersjournal.com`; content and tone were otherwise verified clean (all four feature claims checked against the live calculator's compiled JS, no em dashes/AI-tells, reads as a specific one-off observation not a template). Not re-reviewed a second time since only the To: address changed and sending is withheld regardless (see below).
 
 **Status: SENT (2026-09-16).** SES freeze lifted 2026-09-15 (matrix now on ZeptoMail). Re-confirmed page/content unchanged (WebSearch re-surfaced the same iOS app + University of Missouri calculator listing) and dedup still clean before sending. `gmail_send.py send --from calcbadger --to editor@woodworkersjournal.com`, Message ID `1a0aa5d40a324eeb`.
+
+## 2026-09-22 — Camosun College Library, Carpentry LibGuide (library@camosun.ca) — 嵌入组件主动投放
+
+To: library@camosun.ca
+Subject: A stair-layout calculator for your Carpentry guide's estimating section
+
+Hi,
+
+I was looking at the Carpentry program guide's Estimating supplies section and noticed it links out to Graniterock's materials calculators, which are handy for concrete and aggregate but don't cover stair layout.
+
+We built a free stair calculator at CalcBadger that takes total rise and works out riser count, riser height in carpenter-friendly fractions, tread run, stringer length, and the resulting angle: https://calcbadger.com/stair-calculator/. It checks the numbers against IRC limits, which is a US code, so a Canadian program should cross-check it against BC Building Code specifics before relying on it. The layout math itself doesn't change, only which limits apply.
+
+There's also an embeddable version if you'd rather it sit directly on the page: https://calcbadger.com/embed/stair-calculator/. It's a plain iframe with no branding beyond a small credit line.
+
+Happy to send more detail, or just leave this here for whenever it's useful.
+
+Best,
+Owen
+CalcBadger
+
+**Verification notes**: Target found via WebSearch (`site:edu "useful links" OR "helpful links" carpentry OR construction "stair calculator" OR "concrete calculator" OR "asphalt calculator"`) — Camosun College (Victoria, BC) Library's "CARP: Carpentry" LibGuide, `/carp/websites` page, confirmed live via curl (200). The "Estimating supplies" section currently has exactly one resource, a link to Graniterock Company's materials calculators (concrete/aggregate focused, US company); no stair-layout tool is listed. `stair-calculator`'s actual fields (riser count, riser height in carpenter fractions, tread run, stringer length, angle, checked against IRC limits) confirmed against `src/data/tools.ts`. Both `/stair-calculator/` and `/embed/stair-calculator/` confirmed 200. Contact `library@camosun.ca` is the page's own listed generic library contact (LibGuides don't expose a named subject-librarian email on this particular guide page); this is the same category of "general department inbox" channel as the already-successful `general_tutoring@eastcentral.edu` pitch, not a single-purpose (legal/privacy/sales) address. Dedup: `gmail_send.py list --query "to:library@camosun.ca"` → empty; `outreach-drafts.md` grep for "camosun" → no prior entry.
+
+**Honesty note included in the pitch itself**: IRC (International Residential Code) is a US code; Camosun is a Canadian (BC) institution using the BC Building Code. Rather than omit this or overclaim direct applicability, the email states the caveat plainly, consistent with this site's practice of not overstating scope (see board-foot-calculator's rough-sawn-shortcut framing, pool-calculator's oval-vs-ellipse note).
+
+**Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no AI-vocabulary hits, no rule-of-three padding, no vague endorsement phrasing (reworded away from an initial "worth double-checking" construction to a direct recommendation), sign-off matches this log's established voice (not a newly-injected persona).
+
+**Status: DRAFTED, NOT SENT — awaiting explicit send confirmation.** Per the standing rule that outbound email to a third party always needs the user's explicit go-ahead in chat before sending, this is staged here and not queued for auto-send by any scheduled task.
