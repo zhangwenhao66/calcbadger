@@ -308,4 +308,4 @@ CalcBadger
 
 **Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no AI-vocabulary hits, no rule-of-three padding, no vague endorsement phrasing (reworded away from an initial "worth double-checking" construction to a direct recommendation), sign-off matches this log's established voice (not a newly-injected persona).
 
-**Status: DRAFTED, NOT SENT — awaiting explicit send confirmation.** Per the standing rule that outbound email to a third party always needs the user's explicit go-ahead in chat before sending, this is staged here and not queued for auto-send by any scheduled task.
+**Status: SENT (2026-09-22).** User confirmed send in chat. Re-verified before sending: `/stair-calculator/` and `/embed/stair-calculator/` both 200 (the embed URL and the Gmail dedup query each hit a transient network error on first try, both retried clean); `gmail_send.py list --query "to:library@camosun.ca"` still empty. `gmail_send.py send --from calcbadger --to library@camosun.ca`, Message ID `1a0c830299a2fbf8`.
