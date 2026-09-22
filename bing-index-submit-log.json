@@ -54,5 +54,14 @@
       "https://calcbadger.com/words-per-minute-average/"
     ],
     "method": "SubmitUrlBatch"
+  },
+  {
+    "date": "2026-09-22",
+    "site": "calcbadger.com",
+    "action": "submitted",
+    "submitted_urls": [
+      "https://calcbadger.com/dice-roller/"
+    ],
+    "method": "SubmitUrl"
   }
 ]
