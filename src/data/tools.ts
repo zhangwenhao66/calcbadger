@@ -524,11 +524,19 @@ export const tools: Tool[] = [
 					['Glucose', 'C₆H₁₂O₆', '180.16 g/mol', '180.16 g'],
 					['Sodium bicarbonate', 'NaHCO₃', '84.01 g/mol', '84.01 g'],
 					['Calcium carbonate', 'CaCO₃', '100.09 g/mol', '100.09 g'],
+					['Sucrose', 'C₁₂H₂₂O₁₁', '342.30 g/mol', '342.30 g'],
+					['Acetic acid', 'CH₃COOH', '60.05 g/mol', '60.05 g'],
+					['Sulfuric acid', 'H₂SO₄', '98.08 g/mol', '98.08 g'],
 				],
 				note: 'For 1 L of 0.1 M, divide the last column by 10.',
 			},
 		],
 		faq: [
+			{
+				question: 'What are the four molarity formulas?',
+				answer:
+					'One equation covers all four, just isolated for whichever piece is unknown: divide mass by molar mass times volume to get molarity; multiply molarity by molar mass and by volume to get mass; divide mass by molarity times molar mass to get volume; divide mass by molarity times volume to get molar mass. Plug in the three numbers you have and solve for the fourth.',
+			},
 			{
 				question: 'How do I calculate molarity from grams?',
 				answer:
@@ -778,6 +786,11 @@ export const tools: Tool[] = [
 				question: 'What is the longest heads streak I should expect in 100 flips?',
 				answer:
 					'Long streaks are far more common in a long run of flips than intuition suggests. A run of 5+ heads in a row shows up in most 100-flip sessions purely by chance. This calculator reports the actual longest streak from each simulated run rather than a single "expected" number, since streak length varies a lot from session to session even at the same flip count.',
+			},
+			{
+				question: 'On average, how many heads should n flips produce, and how much does that vary?',
+				answer:
+					'The average (expected) count is n × p, so 10 fair flips average out to 5 heads. How far a real run tends to stray from that average is given by the standard deviation, the square root of n × p × (1 − p): for 10 fair flips that works out to the square root of 2.5, about 1.58. Landing 3 to 7 heads out of 10 stays within roughly one standard deviation of the average and should feel unremarkable; a run needs to reach the extremes, 0 or 10, before it counts as genuinely rare.',
 			},
 		],
 		sources: [
