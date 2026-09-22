@@ -3631,7 +3631,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-22',
 		published: '2026-08-17',
 		coreSummary:
-			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. A related but distinct height-adjusted measurement targets muscle, not skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
+			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. FFMI targets muscle, not skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
 		queries: [
 			'body surface area calculator',
 			'bsa calculator',
