@@ -2797,3 +2797,16 @@
 - **发布**：commit `171d4a4`（本次收尾batch10）推送，此前batch1-9共9次独立commit已在9/18当天陆续推送（`bfb8a03`起至`15b253c`止）。
 - **backlog同步**：`独立站/matrix-prose-gate-backlog.json`的`calcbadger`条目`needs_work_slugs`/`needs_work_count`/`prose_fail_count`已清零；`bridge_candidate_count`（20，对应`check_bridge_sentences.py`独立检查项）不在本次范围内，未动，留给对应的桥接句回溯工作处理。
 - **未覆盖范围（如实说明，不夸大）**：本次"全部做完"专指用户当时讨论的这一具体backlog（check_prose_patterns.py的35篇存量债务），不代表CalcBadger站已穷尽所有可能的优化空间；桥接句候选（20条）、以及未来新发布文章的持续质检仍按各自既定机制运行。
+
+## 2026-09-22 — 30天计划W1-W2缺口补做：GEO内容增强 + 新增外链外联草稿 + 发文任务停摆的发现
+
+- **背景**：9/18的30天计划把"补充可下载数据/更明确的结构化FAQ"（杠杆⑤a，molarity-calculator/click-speed-test/coin-flip-simulator三页）、"新增1-2个嵌入组件教育/DIY/工程类资源页pitch"（杠杆①W2）列为待做项，用户明确要求"这些还没做的你把现在能做的都做完"。
+- **GEO增强（molarity-calculator + coin-flip-simulator，click-speed-test评估后判定无需改动）**：
+  - molarity-calculator：PubChem摩尔质量参考表新增3种常见实验室化合物（蔗糖342.30 g/mol、乙酸60.05 g/mol、硫酸98.08 g/mol，数值经WebSearch交叉核实PubChem数据）；新增1条FAQ"What are the four molarity formulas?"，把摩尔浓度公式的四种变形整合成一段可直接引用的文字。首版FAQ措辞与正文粗体公式/"relation solved for a different"两处分别产生新的逐字重合，改写两轮后`check_prose_patterns.py`退出码0。
+  - coin-flip-simulator：新增1条FAQ回答"期望命中次数与标准差"（均值=n×p、标准差=√(n×p×(1-p))），这是页面已有二项分布公式的直接推论，不需要新的外部引用，填补了"抛硬币统计"这个常见搜索意图此前页面没有覆盖的一个点。
+  - click-speed-test：核实后判定该页已有2个参考表+5条FAQ+一手临床文献引用（Ruff & Parker 1993），是三页里结构化程度最高的一个；尝试用同一篇论文的"非惯用手"数据做补充，但WebSearch只找到"惯用手比非惯用手多约10%"这类转述性说法，找不到可直接核实的具体数字，为避免编造不可验证的具体统计量，判定不追加，维持原状而非为了凑数硬加。
+  - **验证**：全站51个工具页用`extract_article_text()`+`run_checks()`逐篇重跑`check_prose_patterns.py`，0篇不通过；`npm test`73/73文件1359/1359用例通过；`npm run build`123页0 errors；`run_checks.py`总运行器对两篇改动页跑单篇模式，除站级已知的singleton分类问题（Real Estate/Sports各仅1个工具，9/15已有的跨分类互链方案，与本次改动无关）外无新增不通过项。
+  - **发布**：commit `447bca4`推送，curl绕缓存核实两页线上均已生效；`node tools/submit-indexnow.mjs`提交两个URL，Bing 200/Yandex 202（commit `50abb07`）。
+- **新增外链外联草稿（未发送）**：WebSearch找到Camosun College（加拿大BC省）图书馆Carpentry项目LibGuide（`camosun.libguides.com/carp/websites`），其"Estimating supplies"分区目前只链了一个美国建材公司（Graniterock）的材料计算器，没有楼梯放样类工具，与本站`stair-calculator`直接对应且非硬凑。草稿过`Skill(humanizer)`+`Skill(avoid-ai-writing)`后写入`outreach-drafts.md`（commit `0aaf5f4`），邮件正文如实写明"IRC是美国规范、BC项目应对照BC Building Code复核"这一限制，不夸大适用范围。**按外部邮件发送前必须每次征得用户明确同意的规则，本条只完成起草，未发送**，已在草稿记录里标注"DRAFTED, NOT SENT"。
+- **重要发现：calcbadger-tool-publishing定时任务自9/11起未再真正运行**——核对当前生效的`scheduled-tasks.json`分区（`ca1a5b80.../96d247b5...`，2026-09-22当天有更新，89个任务中判定为真正生效的一份），该任务`enabled: true`（未被停用），但`lastRunAt`停留在`2026-09-11T04:24:42.342Z`，此后两个应发文窗口（9/15周二、9/18周五）均未见执行痕迹（`内容发布日志.md`最后一条工具发布记录是9/3的Rice to Water Ratio Calculator，9/15、9/16的两条记录都是`content-quality-audit`审计而非`tool-publishing`新工具发布）。这意味着9/18计划里"杠杆②每周2个工具AI引用型选题优先"这条政策自写入SKILL.md以来还没有一次真实的发布运行去验证；"W1-W2实际执行验证"这一项因此不是"暂时查不到"，而是"结构性没有发生"——任务配置层面是开着的，但没有真正触发，具体原因（App未在cron时刻保持运行、还是其他调度层问题）超出本会话能诊断的范围。本会话未擅自用`run_scheduled_task`工具补跑这个任务，因为那相当于在本次交互会话里执行一整个独立的内容发布流程（新页面、部署、IndexNow提交），是否要这么做需要用户当场决定，已在对话中单独说明并等待答复，不在审计日志这类记录里自行决定执行。
+- **无暂停项**：以上均为如实记录，未触碰作战数据台（随本轮工作统一在对话中同步）。
