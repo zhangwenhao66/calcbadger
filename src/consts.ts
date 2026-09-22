@@ -14,7 +14,7 @@ export const CLARITY_ID = 'y14zwvco3j';
 
 // 品牌实体的外部档案（Organization schema 的 sameAs）。2026-09-10 建：矩阵站品牌信号为零，先把实体块放上，
 // 目录收录页/Product Hunt/Pinterest 等真实档案上线后往这里填 URL（只填本站自己的档案，不填别的站）。
-export const BRAND_SAME_AS: string[] = [];
+export const BRAND_SAME_AS: string[] = ['https://launchsoar.com/item/calcbadger'];
 
 // Organization schema 的实体字段（2026-09-13）：description 复用 SITE_DESCRIPTION（站点已有的一句话定位，不新编）；
 // email 与 /about/ 页上公开的联系邮箱一致；knowsAbout 取自本站分区名，不堆关键词。
