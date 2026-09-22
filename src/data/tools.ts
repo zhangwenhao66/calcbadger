@@ -3628,7 +3628,7 @@ export const tools: Tool[] = [
 		shortTitle: 'BSA Calculator',
 		description:
 			'Calculate body surface area from height and weight using the Mosteller or Du Bois formula, in US or metric units, with both results shown side by side.',
-		updated: '2026-09-16',
+		updated: '2026-09-22',
 		published: '2026-08-17',
 		coreSummary:
 			'Body surface area (BSA) estimates total skin surface from height and weight. The Mosteller formula (1987) is BSA(m²) = √(height(cm) × weight(kg) ÷ 3600); the older Du Bois formula (1916) is BSA(m²) = 0.007184 × height(cm)^0.725 × weight(kg)^0.425. For a person of average adult build the two agree within about 1%; they diverge more at the extremes of height and weight. BSA is used clinically to normalize kidney function (GFR "per 1.73 m²"), scale chemotherapy doses, and compute cardiac index, rather than to screen weight the way BMI does. A related but distinct height-adjusted measurement targets muscle, not skin: [FFMI](/ffmi-calculator/) normalizes fat-free mass to a 1.80 m reference height, with a documented natural ceiling around 25 that steroid users typically exceed.',
@@ -3667,6 +3667,13 @@ export const tools: Tool[] = [
 					'Chemotherapy is the other major use: many regimens specify a dose "per m²" of BSA, not a flat milligram amount, on the theory that BSA tracks blood volume and metabolic rate better than weight alone. Cardiac index (cardiac output divided by BSA) is a third, used to compare heart pump performance across differently sized patients. None of these uses require picking one formula as objectively "correct." Mosteller and Du Bois are both accepted, and a clinician\'s protocol usually specifies which one to use.',
 				],
 			},
+			{
+				heading: 'Average BSA by age and sex',
+				body: [
+					'There is no single "normal" BSA the way there is a normal blood pressure range. What counts as typical shifts with age and sex mostly because average height and weight shift with age and sex. The EPA\'s Exposure Factors Handbook estimated mean total body surface area for U.S. adults from NHANES 2005-2006 height and weight data, broken out by age band and sex, shown below.',
+					'Two patterns stand out. Mean BSA for men peaks in the 40-to-49 age band at 2.15 m² and declines afterward, down to 1.92 m² for those 80 and older. The female pattern stays flatter through midlife, from 1.81 to 1.89 m² between ages 21 and 60, before a similar late-life decline to 1.69 m². These are population averages from a national health survey, not a target to hold a personal result against. An individual\'s BSA tracks their own height and weight, not their age bracket.',
+				],
+			},
 		],
 		referenceTables: [
 			{
@@ -3681,6 +3688,20 @@ export const tools: Tool[] = [
 					['190 cm (6\'3")', '100 kg (220 lb)', '2.283', '2.297', '+0.64%'],
 				],
 				note: 'Computed directly from both formulas (0.007184 × H^0.725 × W^0.425 for Du Bois, √(H×W/3600) for Mosteller); imperial weights rounded to the nearest pound. Use the calculator above for exact figures at any height and weight.',
+			},
+			{
+				title: 'Average adult BSA by age and sex (EPA/NHANES data)',
+				headers: ['Age group', 'Male, mean BSA', 'Female, mean BSA'],
+				rows: [
+					['21-30 years', '2.05 m²', '1.81 m²'],
+					['30-39 years', '2.10 m²', '1.85 m²'],
+					['40-49 years', '2.15 m²', '1.88 m²'],
+					['50-59 years', '2.11 m²', '1.89 m²'],
+					['60-69 years', '2.08 m²', '1.88 m²'],
+					['70-79 years', '2.05 m²', '1.77 m²'],
+					['80+ years', '1.92 m²', '1.69 m²'],
+				],
+				note: 'Mean values from the U.S. EPA\'s analysis of NHANES 2005-2006 height and weight data, published in the Exposure Factors Handbook (2011), Table 7-1. These are population averages for reference, not individual normal ranges; use the calculator above for a personal estimate from actual height and weight.',
 			},
 		],
 		faq: [
@@ -3734,6 +3755,11 @@ export const tools: Tool[] = [
 				label:
 					'National Kidney Foundation, "Frequently Asked Questions About GFR Estimates" (2022), Q6 (1.73 m² indexing, Du Bois formula) and Q44 (indexed vs. non-indexed eGFR for drug dosing)',
 				url: 'https://www.kidney.org/sites/default/files/441-8491_2202_faqs_aboutgfr_v5.pdf',
+			},
+			{
+				label:
+					'U.S. Environmental Protection Agency, Exposure Factors Handbook (2011 ed.), Chapter 7: Dermal Exposure Factors, Table 7-1 (mean total body surface area by age and sex, U.S. EPA analysis of NHANES 2005-2006 data)',
+				url: 'https://www.epa.gov/sites/default/files/2015-09/documents/efh-chapter07.pdf',
 			},
 		],
 		embedHeight: 700,
