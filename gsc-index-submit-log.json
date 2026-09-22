@@ -489,5 +489,17 @@
   "already_indexed_no_action": [],
   "quota_exceeded_attempted": [],
   "quota_used": "1 of shared account-wide daily quota"
+ },
+ {
+  "date": "2026-09-22",
+  "action": "submitted",
+  "reason": "今日新工具dice-roller（第52个工具），URL Inspection确认URL unknown to Google，提交成功。老页未收录巡检（unindexed_pages.py）额外发现number-base-converter（Discovered-not-indexed），第二轮提交成功。本站仍在'每周2个工具'低频维持节奏（抓取需求塌方型压制，见风险追踪9-16节），索引提交照常做。",
+  "submitted_urls": [
+   "https://calcbadger.com/dice-roller/",
+   "https://calcbadger.com/number-base-converter/"
+  ],
+  "already_indexed_no_action": [],
+  "quota_exceeded_attempted": [],
+  "quota_used": "2 of shared account-wide daily quota"
  }
 ]
