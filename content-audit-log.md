@@ -2810,3 +2810,58 @@
 - **新增外链外联草稿（未发送）**：WebSearch找到Camosun College（加拿大BC省）图书馆Carpentry项目LibGuide（`camosun.libguides.com/carp/websites`），其"Estimating supplies"分区目前只链了一个美国建材公司（Graniterock）的材料计算器，没有楼梯放样类工具，与本站`stair-calculator`直接对应且非硬凑。草稿过`Skill(humanizer)`+`Skill(avoid-ai-writing)`后写入`outreach-drafts.md`（commit `0aaf5f4`），邮件正文如实写明"IRC是美国规范、BC项目应对照BC Building Code复核"这一限制，不夸大适用范围。**按外部邮件发送前必须每次征得用户明确同意的规则，本条只完成起草，未发送**，已在草稿记录里标注"DRAFTED, NOT SENT"。
 - **重要发现：calcbadger-tool-publishing定时任务自9/11起未再真正运行**——核对当前生效的`scheduled-tasks.json`分区（`ca1a5b80.../96d247b5...`，2026-09-22当天有更新，89个任务中判定为真正生效的一份），该任务`enabled: true`（未被停用），但`lastRunAt`停留在`2026-09-11T04:24:42.342Z`，此后两个应发文窗口（9/15周二、9/18周五）均未见执行痕迹（`内容发布日志.md`最后一条工具发布记录是9/3的Rice to Water Ratio Calculator，9/15、9/16的两条记录都是`content-quality-audit`审计而非`tool-publishing`新工具发布）。这意味着9/18计划里"杠杆②每周2个工具AI引用型选题优先"这条政策自写入SKILL.md以来还没有一次真实的发布运行去验证；"W1-W2实际执行验证"这一项因此不是"暂时查不到"，而是"结构性没有发生"——任务配置层面是开着的，但没有真正触发，具体原因（App未在cron时刻保持运行、还是其他调度层问题）超出本会话能诊断的范围。本会话未擅自用`run_scheduled_task`工具补跑这个任务，因为那相当于在本次交互会话里执行一整个独立的内容发布流程（新页面、部署、IndexNow提交），是否要这么做需要用户当场决定，已在对话中单独说明并等待答复，不在审计日志这类记录里自行决定执行。
 - **无暂停项**：以上均为如实记录，未触碰作战数据台（随本轮工作统一在对话中同步）。
+
+```json
+{
+  "tool_slug": "body-surface-area-calculator",
+  "last_audited": "2026-09-22",
+  "published_date": "2026-08-17",
+  "checklist": [
+    "Du Bois/Mosteller/Haycock三条公式常数与指数是否与原始文献（Arch Intern Med 1916、NEJM 1987、J Pediatr 1978）一致",
+    "src/lib/bsa.ts实现与tests/bsa.test.ts期望值是否与独立重算一致",
+    "Haycock 7.96%新生儿误差、81名受试者、r=0.998相关系数等具体数字是否准确",
+    "GFR 1.73m²标准化说法是否符合NKF口径，是否存在YMYL越界建议（如暗示可自行计算化疗剂量）",
+    "竞品差异化：SERP前十是否已有按年龄/性别细分的BSA数据，本页能否补一块真实增量"
+  ],
+  "findings": [
+    {
+      "dimension": "公式正确性（最高优先级）",
+      "status": "未发现问题",
+      "detail": "独立Python重算Du Bois(0.007184×H^0.725×W^0.425)与Mosteller(√(H×W/3600))公式，170/65cm-kg、150/45、160/55、175/75、180/85、190/100六组参考表数值与170/150cm-kg worked example（gap≈6.37%，页面写'about 6%'）全部吻合；src/lib/bsa.ts实现与公式一致。npx vitest run tests/bsa.test.ts：15/15通过，15条期望值逐条独立重算（含imperial换算70in/180lb、64in/130lb两组）全部一致。"
+    },
+    {
+      "dimension": "事实准确性（Haycock公式与来源核实）",
+      "status": "未发现问题",
+      "detail": "WebSearch核对Haycock, Schwartz, Wisotsky (J Pediatr 1978)原始文献：81名受试者（早产儿至成人）、Du Bois在新生儿端误差达7.96%、Haycock公式SA=0.024265×H^0.3964×W^0.5378、r=0.998、适用范围<0.2m²至>2.0m²，与页面正文逐项吻合，非编造。三条DOI来源（Du Bois/Mosteller均403、Haycock 200）核实为期刊反爬网关拦截自动化客户端UA，非链接失效（cd-calculator审计已确立同类先例，人工浏览器可正常访问，curl换浏览器UA仍403）。"
+    },
+    {
+      "dimension": "EEAT/YMYL边界",
+      "status": "未发现问题",
+      "detail": "FAQ'Can I use this calculator to figure out my own chemotherapy dose?'明确答'No'并说明仅用于核对临床医生已算出的数字，不构成剂量建议；页面未出现暗示自行诊疗的表述。NKF 1.73m²标准化说法与National Kidney Foundation FAQ (2022) Q6/Q44口径一致。"
+    },
+    {
+      "dimension": "竞品差异化（实质增强，CalcBadger压制期专属规则）",
+      "status": "发现真实增量机会并已修复",
+      "detail": "DataForSEO实测SERP前十（mdcalc/calculator.net/merckmanuals/thepetoncologist等）均未提供按年龄段+性别细分的BSA平均值。用EPA《Exposure Factors Handbook》(2011) Chapter 7 Table 7-1（NHANES 2005-2006数据）新增参考表+说明段，回答PAA候选'what is the normal BSA by age'/'what is a normal BSA for a woman'。新增14个数值（男女各7个年龄段均值）下载官方PDF独立提取核对，并经独立agent二次复核，CONFIRMED全部准确（含两条趋势性论断：男性40-49岁达峰2.15m²后递减至80+岁1.92m²；女性21-60岁在1.81-1.89m²间波动后递减至80+岁1.69m²）。"
+    },
+    {
+      "dimension": "技术SEO/GEO/schema/内链",
+      "status": "未发现问题",
+      "detail": "线上title 44字符、meta description 151字符（原为对齐首屏导语，未改动）、canonical自指、单一H1、robots meta无noindex；schema含WebApplication+FAQPage(6条)+BreadcrumbList；本站仅5-52个工具，pickRelatedGuides轮转+跨分类兜底覆盖，无孤儿风险；WebApplication的dateModified随updated字段自动同步。"
+    },
+    {
+      "dimension": "机械散文检查（第14项）+桥接句开场（L-0922-1，顺手修复）",
+      "status": "均通过，且顺手修复1项非阻断性提示",
+      "detail": "check_prose_patterns.py四项全过（对比框架4次/1300词、连字符0处、FAQ复述0处）。check_bridge_opener_reuse.py（当天早些时候新增的仅提示级检查）发现本文coreSummary结尾使用'A related but distinct X'对比性开场，与reaction-time-test同属该模板复用的2篇之一——趁本次单篇编辑窗口顺手改写为平实表述（'FFMI targets muscle, not skin'），不涉及事实变动，重跑确认已不再命中，不构成R-seo-03禁止的压制期批量改写（仅动了本次本来就要编辑的这一篇）。"
+    }
+  ],
+  "actions_taken": [
+    "新增referenceTable「Average adult BSA by age and sex (EPA/NHANES data)」+ 一段说明文字（约120词）+ 1条EPA来源引用，updated改为2026-09-22（commit a0d0791）",
+    "enhancement: 补充EPA/NHANES按年龄+性别细分的BSA均值数据（本站SERP前十竞品均无此维度），回答PAA候选'normal BSA by age/sex'，14个数值均下载官方PDF独立核对+独立agent二次verification，CONFIRMED",
+    "顺手修复coreSummary结尾FFMI跳转句的对比性开场模板复用（commit a60ee32，非批量改写，仅本次编辑窗口内的单篇顺手修复）"
+  ],
+  "seo_score": "未发现问题，无需改动",
+  "geo_score": "增强后更优（新增权威数据来源+回答未覆盖的PAA问法）",
+  "escalation": null
+}
+```
