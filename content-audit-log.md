@@ -2867,3 +2867,24 @@
   "escalation": null
 }
 ```
+
+```json
+{
+  "tool_slug": "click-speed-test",
+  "last_audited": "2026-09-23",
+  "published_date": "2026-08-21",
+  "findings": [
+    "公式/单元测试12项逐条核对，均正确（worked examples表5行手算复核一致）",
+    "事实性：Ruff & Parker(1993) PubMed链接、Millisecond Finger Tapping Test链接均存活；50-55 taps/10秒临床基线经独立信源交叉核对未发现编造",
+    "竞品差异化：真实SERP未进前10；PAA抓到'Is 14 clicks in 1 second good?'/'Is 70 clicks in 5 seconds impressive?'两条本站FAQ未覆盖的问法",
+    "技术SEO：title/description长度z-score均在正常范围；内链inbound=1（非孤儿页，来自reaction-time-test）"
+  ],
+  "actions_taken": [
+    "新增2条FAQ回答PAA问法，数据基于本文已sourced的CPS分级表计算(14/1=14CPS、70/5=14CPS)，非编造（commit d6e5710）",
+    "updated改为2026-09-23"
+  ],
+  "seo_score": "未发现问题，无需改动",
+  "geo_score": "增强后更优（补充2条真实PAA问法的FAQ覆盖）",
+  "escalation": null
+}
+```
