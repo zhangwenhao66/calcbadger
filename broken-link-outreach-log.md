@@ -284,3 +284,29 @@ CalcBadger断链置换/嵌入投放战术累计已发送3封pitch（含1封跟�
 处理完上述本轮工作后，发现`outreach-drafts.md`里还有一条09-15撰写、已过独立复核（含一次收件人纠错：`online-editor@`是eZine反馈专用渠道非合适对象，改用`editor@woodworkersjournal.com`）但因SES冻结未发送的候选——"Best Apps and Calculators for Woodworkers"缺嵌入式board-foot计算器。SES冻结已于09-15解除，本轮重新核实：WebSearch重新确认该文章仍列出同样的付费App+密苏里大学外部计算器（内容未变），`calcbadger.com/board-foot-calculator/`及`/embed/`版本均200存活，查重仍干净。直接发送（内容此前已复核，未改动，仅地址已纠正过）：`gmail_send.py send --from calcbadger --to editor@woodworkersjournal.com`，**Message ID `1a0aa5d40a324eeb`**。
 
 **累计口径更新**：CalcBadger断链置换/嵌入投放战术累计已发送 **4封**（含1封跟进）；已验证`not_replaced` 1条；eventslv.com（09-09）与Woodworkers Journal（本轮）均尚未到验证窗口。转化率0/3（不含本轮/未到期）。
+
+---
+
+## 2026-09-23（第九次运行）— 「外链产能集中规则」CalcBadger固定优先名额（DialWick 2026-09-13起整站冻结，所有走大模型的定时任务一律跳过，本轮起不再与CalcBadger轮换，名额直接给CalcBadger）
+
+### 第一部分：核实旧pitch
+
+eventslv.com（09-09发出，Message ID `1a08650d620fed51`）距今14天，此前从未验证过：
+- curl独立复核目标页`https://eventslv.com/how-many-kegs-for-100-guests/`：HTTP 200，全文grep无"calcbadger"字样，判定**`not_replaced`**。
+- `dataforseo_query.py backlinks calcbadger.com --limit 100`：外链明细未查到eventslv.com。
+- `gmail_send.py list --query "from:eventslv.com"`返回空，零回复。
+- 目标是真实营业的拉斯维加斯活动租赁公司（原记录已核实），满足跟进条件。已发送简短跟进（过humanizer+avoid-ai-writing无需改动，未重用先前"No obligation either way"类模板句），`gmail_send.py send --from calcbadger --to rentals@eventslv.com --reply-to 1a08650d620fed51`，**Message ID `1a0ce5f1eabc3c7b`**。标记**`verified_not_replaced_followed_up_once`**。
+
+Woodworkers Journal（本轮同日09-16发出，Message ID `1a0aa5d40a324eeb`）距今7天，未满10天窗口，跳过。
+
+### 第二部分：嵌入组件主动投放——新方向搜索
+
+按上轮遗留待办换新方向：水泥/沥青DIY教程站、退伍军人技能培训资源页。WebSearch多轮（"driveway/patio concrete DIY blog resources links tools calculators list"、"veteran skills training electrician/HVAC trade resource page useful links apprenticeship calculators"、"resources DIY concrete calculator inurl:resources"）：命中结果全部是同类计算器竞品站（concretecalcs.com/concretegator.com/DIYdigits等，本身就是计算器工具站，不是会外链引用第三方资源的编辑型页面，不构成断链置换目标）或退伍军人技能培训的政府/机构说明页（apprenticeship.gov、CalVet等，未发现列出会失效的第三方资源链接的"links/resources"页结构）。**本轮未找到符合"资源页+真实死链+主题对应"结构的新候选，如实记录未强凑，0条通过门槛**。
+
+### 累计口径
+
+CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟进：eventslv.com本轮、此前thelawnturflaying）；已验证`not_replaced` 2条（thelawnturflaying、eventslv.com）；Woodworkers Journal（09-16）尚未到验证窗口；`verified_live_backlink_confirmed` 0条，转化率0/4（不含未到期）。
+
+### 遗留待办
+
+下轮：①核实Woodworkers Journal（09-16发出，满10天后）；②继续嵌入组件方向搜索，本轮水泥/沥青/退伍军人三个方向均未产出真实候选，需换新角度（如DIY木工论坛的project-resources帖、家庭教育STEM资源页里的measurement/geometry计算器缺口）。
