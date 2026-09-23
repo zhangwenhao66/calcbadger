@@ -87,7 +87,7 @@ function md(text: string): string {
 		<div class="spec-note mt-8">
 			<p class="spec-note-tab m-0">Spec</p>
 			<p class="spec-note-body m-0 text-[1rem] leading-relaxed text-[var(--ink)]">
-				{tool.coreSummary}
+				<Fragment set:html={md(tool.coreSummary)} />
 			</p>
 		</div>
 
