@@ -4711,7 +4711,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Click Speed Test',
 		description:
 			'Use this click speed test to check your clicks per second (CPS) and clicks per minute, then compare against the clinical single-finger tapping range from neuropsychology research.',
-		updated: '2026-08-21',
+		updated: '2026-09-23',
 		published: '2026-08-21',
 		coreSummary:
 			'Click speed measures raw clicking throughput over a fixed window (clicks divided by seconds), which is a different thing from reaction time (how fast you respond to a single signal). A well-documented clinical measure of natural single-finger speed, the Finger Tapping Test (Halstead, 1947; standardized by Reitan & Wolfson, 1985), puts a healthy young adult\'s dominant-hand average at roughly 5.0-5.5 taps per second when tapping continuously with one finger. This tool times a click session over a duration you pick, reports clicks per second and per minute, and compares the result against that clinical range, noting that scores well above it typically come from alternating multiple fingers rather than one finger tapping alone. For probability instead of physical speed, [this site\'s coin flip simulator](/coin-flip-simulator/) runs the same "test yourself against a number" idea in a different direction, checking an actual run of flips against the binomial distribution\'s exact predicted odds.',
@@ -4795,6 +4795,16 @@ export const tools: Tool[] = [
 				question: 'Can this tool detect clicking macros or verify esports records?',
 				answer:
 					"No. This is a simple browser-based timer and counter with no anti-cheat detection, and it is not a validated or officially recognized record-keeping tool. It's useful for casual comparison against your own past results or the clinical range cited above, not for verifying competitive claims.",
+			},
+			{
+				question: 'Is 14 clicks in 1 second good?',
+				answer:
+					"14 clicks in 1 second is 14 CPS, which this tool's classification puts in the 7.01-15.0 band, well above the dominant-hand clinical average of about five taps per second. A score in that range usually points to multi-finger technique, since one finger alone rarely holds that pace. A 1-second score measures peak burst speed only, so it doesn't tell you what the same person could sustain over 10 or 60 seconds.",
+			},
+			{
+				question: 'Is 70 clicks in 5 seconds impressive?',
+				answer:
+					"70 clicks over 5 seconds also works out to 14 CPS, so it lands in the same band as 14 clicks in 1 second. Holding that pace for a full 5 seconds takes more than a single quick burst, because muscles tire and the rhythm gets harder to keep steady as the window stretches out. This tool doesn't score that difficulty difference separately, so results are only comparable within the same test duration.",
 			},
 		],
 		sources: [
