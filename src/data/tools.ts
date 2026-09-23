@@ -144,6 +144,11 @@ export const tools: Tool[] = [
 				answer:
 					'Barely. On a $10,000 balance at 4.5%, going from monthly to daily compounding adds back less than a dollar over twelve months. A 0.1 percentage point difference in APY outweighs anything gained from compounding more often, which is why comparing APY directly is the sane way to shop.',
 			},
+			{
+				question: 'Should I make a deposit decision based only on this calculator?',
+				answer:
+					"Treat the result as an estimate, not financial advice. Actual returns depend on the bank's exact compounding terms, any early-withdrawal penalty, and your tax situation, so confirm the numbers with the bank and, for larger sums, a financial advisor before committing funds.",
+			},
 		],
 		sources: [
 			{
@@ -669,6 +674,11 @@ export const tools: Tool[] = [
 				question: 'Does BMI account for muscle mass?',
 				answer:
 					'No. BMI only relates total body weight to height, so it cannot separate muscle from fat. Very muscular people are routinely classified "overweight" or "obese" by BMI despite low body fat, which is the formula’s best-known limitation.',
+			},
+			{
+				question: 'Can I make medical decisions based on my BMI result?',
+				answer:
+					"No. This calculator is for informational purposes only and isn't a substitute for professional medical advice. If a result concerns you, or you're managing a health condition where body composition matters, talk to a doctor or registered dietitian who can weigh it alongside your full health picture.",
 			},
 		],
 		sources: [
@@ -1467,6 +1477,11 @@ export const tools: Tool[] = [
 				question: 'Does paying extra toward principal actually save money?',
 				answer:
 					'Yes. Because interest is charged on the outstanding balance each month, any extra amount applied directly to principal reduces every subsequent month\'s interest charge for the rest of the loan, which is why voluntary extra payments shorten a loan\'s effective payoff time without refinancing.',
+			},
+			{
+				question: 'Can I use this number to decide how much house I can afford?',
+				answer:
+					"Use it as a starting estimate, not a lending decision. It doesn't account for your credit profile, debt-to-income ratio, property taxes, insurance, or PMI the way a real loan estimate does. This isn't financial advice, and an actual affordability figure should come from a lender or a financial advisor.",
 			},
 		],
 		sources: [
@@ -2365,6 +2380,11 @@ export const tools: Tool[] = [
 				question: 'Why does the deficit rule "run out" over time?',
 				answer:
 					"The 3,500-kcal-per-pound figure assumes a fixed relationship between deficit and fat loss, and that relationship doesn't hold as your weight actually changes. A smaller body simply doesn't burn as much at rest, so the same daily shortfall yields less and less weekly loss instead of a constant pound a week. Federal researchers modeled exactly this shrinking-deficit curve instead of assuming a straight line, which is the science behind the tool cited in the sources below.",
+			},
+			{
+				question: 'Is this calculator safe to use without talking to a doctor?',
+				answer:
+					"It gives a starting estimate for someone with no complicating health conditions, not medical advice. Anyone pregnant or breastfeeding, under 18, or managing diabetes, an eating disorder, or another condition that affects metabolism should get a target from a doctor or registered dietitian instead of relying on this tool.",
 			},
 		],
 		sources: [
@@ -3734,6 +3754,11 @@ export const tools: Tool[] = [
 				question: 'Can I use this calculator for a baby or premature infant?',
 				answer:
 					"No, not reliably. Newborns and premature infants fall in the surface-area range, below roughly 0.7 m², where these two general-purpose formulas are least accurate: Du Bois can run as much as 7.96% low at the newborn end, per the same 1978 measurement study cited above. If you're estimating BSA for an infant, look for a calculator built around the Haycock formula, which was fit specifically to that small-body range.",
+			},
+			{
+				question: 'Can I use this BSA figure to calculate a medication dose?',
+				answer:
+					"Don't calculate your own dose from this number. BSA-based dosing, used for chemotherapy and some other drugs, is handled by a clinician with validated software and the patient's full chart, not a public calculator. Use this tool for reference only, never to determine or adjust a medication dose.",
 			},
 		],
 		sources: [
@@ -5282,6 +5307,11 @@ export const tools: Tool[] = [
 				answer:
 					'With D = 0, the debt term drops out and WACC collapses to just Re, since the entire capital structure is equity-funded. This calculator handles that case automatically: set debt to 0 and the lender-rate-after-tax portion of debt term contributes nothing to the result.',
 			},
+			{
+				question: 'Can I use this WACC figure directly in a valuation without adjustment?',
+				answer:
+					"Treat it as a starting point, not a final input. Real-world valuations often layer on a company-specific risk premium, a size premium, or a different beta source depending on the analysis. This calculator is for informational purposes only and isn't a substitute for professional financial or accounting advice.",
+			},
 		],
 		sources: [
 			{
@@ -5503,6 +5533,11 @@ export const tools: Tool[] = [
 				question: 'Does this calculator estimate my body fat percentage?',
 				answer:
 					'No — you\'re the one plugging that number in. FFMI\'s accuracy depends entirely on how accurate that input is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
+			},
+			{
+				question: 'Is FFMI a medical diagnostic tool?',
+				answer:
+					"No. It's a body-composition reference number used in bodybuilding and research, not a diagnosis. This calculator is for informational purposes only, and if you're using it to guide training or nutrition changes around a health condition, check with a doctor or registered dietitian first.",
 			},
 		],
 		sources: [
