@@ -1481,7 +1481,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Can I use this number to decide how much house I can afford?',
 				answer:
-					"Use it as a starting estimate, not a lending decision. It doesn't account for your credit profile, debt-to-income ratio, property taxes, insurance, or PMI the way a real loan estimate does. This isn't financial advice, and an actual affordability figure should come from a lender or a financial advisor.",
+					"Use it as a starting estimate, not a lending decision. It doesn't account for your credit profile, debt-to-income ratio, property taxes, insurance, or PMI the way a lender's loan estimate does. This isn't financial advice, and an affordability figure you can rely on should come from a lender or a financial advisor.",
 			},
 		],
 		sources: [
