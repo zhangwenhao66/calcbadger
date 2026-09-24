@@ -2888,3 +2888,12 @@
   "escalation": null
 }
 ```
+
+## PAA-FAQ批强(daily-task, 2026-09-24, 压制期放开)
+- 范围：Owen 2026-09-24 批准，最多8页，只新增FAQ。处理8页，新增9条FAQ，跳过26条。
+- 新增：bmi-calculator 3（23 BMI/140lb 5'4"/semaglutide，来源CDC BMI分类+FDA Wegovy标签重新核实）；temperature-converter 2（100°F≠40°C、F转C快速估算，纯算术）；calorie-calculator 1（按年龄，Dietary Guidelines 2020-2025）；rice-to-water-ratio 1（2:1 vs 1.5:1，USA Rice既有来源）。
+- 未新增页：words-to-pages-calculator、time-converter、volume-converter、gpa-calculator（重复/无可靠通用来源/主题错配，均已 --reject 登记）。
+- 跳过明细：与既有FAQ重复或无可靠来源，1000卡路里因无法核实权威来源不写医疗建议。
+- 去AI味：Skill(humanizer)→Skill(avoid-ai-writing) 已调用，数字/专名核对无误。
+- 机械检查 check_prose_patterns.py（4个改动slug）：初次 calorie/rice 各1处FAQ与正文重合（我的新增），改写后全部退出码0，通过。
+- npm run build 通过。

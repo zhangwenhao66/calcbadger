@@ -680,6 +680,21 @@ export const tools: Tool[] = [
 				answer:
 					"No. This calculator is for informational purposes only and isn't a substitute for professional medical advice. If a result concerns you, or you're managing a health condition where body composition matters, talk to a doctor or registered dietitian who can weigh it alongside your full health picture.",
 			},
+			{
+				question: 'Is a 23 BMI chubby?',
+				answer:
+					'No. CDC puts a healthy weight at a BMI of 18.5 up to 25, so 23 sits in the middle of that range. The exception is the Asian population option above, where the 2004 WHO cutoffs start overweight at 23.',
+			},
+			{
+				question: 'Is 140 pounds fat for a 5\'4" female?',
+				answer:
+					'Not by BMI. At 5\'4" and 140 lb the BMI is about 24.0, which CDC counts as a healthy weight (18.5 up to 25). That is near the top of the band, since 25 would start at roughly 146 lb at that height. BMI says nothing about body fat directly, so treat it as a screening number.',
+			},
+			{
+				question: 'What BMI do you need for semaglutide?',
+				answer:
+					'The FDA label for Wegovy (semaglutide) covers adults with obesity (BMI of 30 or higher) and adults with overweight (BMI of 27 or higher) who also have at least one weight-related condition. Whether you qualify is a prescriber\'s decision, so bring your BMI result and health history to a doctor.',
+			},
 		],
 		sources: [
 			{
@@ -965,6 +980,16 @@ export const tools: Tool[] = [
 				question: 'Does a 1-degree change mean the same thing on every scale?',
 				answer:
 					'No. This trips people up specifically when converting a *change* in temperature rather than a single reading. Moving the needle by 1°C corresponds to a 1.8°F move (or 1 K, since Kelvin and Celsius track at the same rate). Converting a temperature difference uses only the multiplier (×9/5 or ×5/9), not the +32/−32 offset, which only applies to single-point readings.',
+			},
+			{
+				question: 'Is 100 Fahrenheit 40 Celsius?',
+				answer:
+					'No. 100°F is about 37.8°C ((100 − 32) × 5/9 = 37.78). A reading of 40°C works out to 104°F.',
+			},
+			{
+				question: 'What\'s the easiest way to convert from Fahrenheit to Celsius?',
+				answer:
+					'For a rough mental estimate, subtract 30 and halve it. 68°F gives 38, then 19°C, against an exact 20°C. Going the other way, double the Celsius value and add 30. The shortcut drifts further off as temperatures get more extreme, so use the exact formula (subtract 32, multiply by 5/9) when it matters.',
 			},
 		],
 		sources: [
@@ -2385,6 +2410,11 @@ export const tools: Tool[] = [
 				question: 'Is this calculator safe to use without talking to a doctor?',
 				answer:
 					"It gives a starting estimate for someone with no complicating health conditions, not medical advice. Anyone pregnant or breastfeeding, under 18, or managing diabetes, an eating disorder, or another condition that affects metabolism should get a target from a doctor or registered dietitian instead of relying on this tool.",
+			},
+			{
+				question: 'How many calories should I eat per day by age?',
+				answer:
+					'The Dietary Guidelines for Americans 2020-2025 give estimates by age, sex, and activity. Women aged 26 to 30 need about 1,800 (sedentary) to 2,000 (moderately active) calories, and women 51 to 60 about 1,600 to 1,800. Men aged 26 to 35 need about 2,400 to 2,600, and men 56 to 60 about 2,200 to 2,400. These are population averages, so the tool on this page, which starts from your own height and weight, gets closer.',
 			},
 		],
 		sources: [
@@ -6367,6 +6397,11 @@ export const tools: Tool[] = [
 				question: 'How much does 1 cup of dry rice make when cooked?',
 				answer:
 					'About 3 cups, for rice cooked at the 2:1 ratio, since a cup of dry rice plus its two cups of added water settle into three cups once everything\'s absorbed (see the yield note above for USA Rice\'s exact wording). This calculator extends the same dry-plus-absorbed-liquid logic across the other ratios, so arborio (4:1) yields closer to 5 cups cooked per cup of dry rice.',
+			},
+			{
+				question: 'Is rice 2 to 1 or 1.5 to 1?',
+				answer:
+					'It depends on the grain. Per USA Rice\'s chart, long-grain white, basmati, and jasmine take 2 parts water to 1 part rice, while medium grain takes 1.5 to 1. Pick your rice type in the calculator above to get the ratio for yours.',
 			},
 		],
 		sources: [
