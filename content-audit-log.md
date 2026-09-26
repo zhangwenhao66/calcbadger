@@ -2897,3 +2897,11 @@
 - 去AI味：Skill(humanizer)→Skill(avoid-ai-writing) 已调用，数字/专名核对无误。
 - 机械检查 check_prose_patterns.py（4个改动slug）：初次 calorie/rice 各1处FAQ与正文重合（我的新增），改写后全部退出码0，通过。
 - npm run build 通过。
+
+## PAA-FAQ批强(daily-task, 2026-09-26)（压制期放开，Owen 2026-09-24 批准小批量，只新增FAQ）
+- 处理8个slug，新增8条FAQ：stair-calculator 1（5级踏步2x12长度，勾股推算）；length-converter 2（3/4 cm vs 1 in；10 cm 换算）；date-calculator 1（sleeps until Christmas）；topsoil-calculator 2（独轮车每立方码车数；1吨覆盖面积，用页面loam预设密度推算）；wacc-calculator 1（公式）。
+- 无新增：golf-club-distance-chart、click-speed-test、dead-pixel-test（无可靠来源/重复，已 --reject 登记；golf 的 250 码占比只有二手摘要未能核实原报告；dead pixel 各品牌政策说法互相矛盾）。
+- 跳过共17条，均已 --reject 登记（其中 length-converter "Is 4 cm 1 inch?" 已并入新增FAQ，误登记为reject，无害）。
+- 去AI味：Skill(humanizer)→Skill(avoid-ai-writing) 已真实调用，数字核对。
+- 机检 check_prose_patterns.py（5个改动slug）：stair/date/wacc 初次FAQ与正文重合（我的新增），改写后全部退出码0。
+- 存量债务：本批未发现。npm run build 通过。

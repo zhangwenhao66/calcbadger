@@ -366,6 +366,11 @@ export const tools: Tool[] = [
 				answer:
 					'Yes, same IRC limits. Measure total rise from the deck surface to where the stair lands (which may be a pad poured after the fact; account for its height), and remember treads built from two 5.5 in deck boards give an 11 in tread that beats the 10 in minimum comfortably.',
 			},
+			{
+				question: 'How long does a 2x12 need to be for a 5-step stringer?',
+				answer:
+					'Take five risers at about 7½ in each (37½ in of rise) and four treads at 10 in (40 in of run). The board runs along the hypotenuse of that triangle, √(37.5² + 40²) ≈ 54.8 in, or just under 4 ft 7 in. Add a little for the top and bottom cuts and a 6 ft board covers it. Your own rise and tread depth change the number, so run your measurements through the calculator first.',
+			},
 		],
 		sources: [
 			{
@@ -1140,6 +1145,16 @@ export const tools: Tool[] = [
 			{
 				question: 'How many yards are in a mile?',
 				answer: 'There are exactly 1,760 yards in a mile (5,280 feet ÷ 3 feet per yard).',
+			},
+			{
+				question: 'Is 3 cm or 4 cm the same as 1 inch?',
+				answer:
+					'No. One inch is exactly 2.54 cm, so 3 cm is about 1.18 in and 4 cm is about 1.57 in. Treating 2.5 cm as an inch is a fair shortcut, since it lands within 2% of the real value.',
+			},
+			{
+				question: 'What does 10 cm look like in inches?',
+				answer:
+					'10 cm is 3.937 in, just under 4 in (about 3 15/16 in on a tape measure).',
 			},
 		],
 		sources: [
@@ -2246,6 +2261,11 @@ export const tools: Tool[] = [
 				question: 'Does this account for time zones or daylight saving time?',
 				answer:
 					'No. Every calculation here works with plain calendar dates, with nothing tracked down to the hour or minute, so time zones and daylight saving shifts never affect the result. "Days until" reads today\'s calendar date from your device, not a specific moment in time.',
+			},
+			{
+				question: 'How many sleeps until Christmas?',
+				answer:
+					'Sleeps are nights, so the sleep count and the day count until the date match. If Christmas is 10 days away, that is 10 sleeps, and on Christmas Eve there is 1 sleep left. Set the target to December 25 and read the day count.',
 			},
 		],
 		sources: [
@@ -3926,6 +3946,16 @@ export const tools: Tool[] = [
 				answer:
 					"No, the optional price field multiplies your cubic-yard total by a per-cubic-yard material price you enter, so it estimates material cost only. Delivery fees, minimum-order charges, and any spreading labor are separate and vary by supplier.",
 			},
+			{
+				question: 'How many wheelbarrows of topsoil are in a cubic yard?',
+				answer:
+					'A cubic yard is 27 cubic feet. A 3 cu ft wheelbarrow takes about 9 level loads, and a 6 cu ft contractor wheelbarrow takes about 4.5. Sizes vary by model, so check the cubic-foot rating on yours.',
+			},
+			{
+				question: 'How much area does 1 ton of topsoil cover?',
+				answer:
+					'It depends on depth and soil type. With this calculator\'s loam preset of about 2,354 lb per cubic yard, a 2,000 lb ton is roughly 0.85 cubic yards, or 23 cubic feet. That covers about 137 square feet at 2 inches deep, or 92 square feet at 3 inches. Sandy soil is denser, so a ton covers less area, and wet soil weighs more than these dry-basis numbers.',
+			},
 		],
 		sources: [
 			{
@@ -5351,6 +5381,11 @@ export const tools: Tool[] = [
 				question: 'Can I use this WACC figure directly in a valuation without adjustment?',
 				answer:
 					"Treat it as a starting point, not a final input. Real-world valuations often layer on a company-specific risk premium, a size premium, or a different beta source depending on the analysis. This calculator is for informational purposes only and isn't a substitute for professional financial or accounting advice.",
+			},
+			{
+				question: 'How do you calculate WACC?',
+				answer:
+					'Scale the equity return and the tax-adjusted borrowing rate by the slice of financing each one supplies, then add the two pieces. The formula reads WACC = E/V × Re + D/V × Rd × (1 - Tc). E and D are the market values of equity and debt, V is their sum, Re and Rd are the returns equity holders and lenders require, and Tc is the corporate tax rate. Enter those inputs above and the calculator does the arithmetic.',
 			},
 		],
 		sources: [
