@@ -310,3 +310,9 @@ CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟�
 ### 遗留待办
 
 下轮：①核实Woodworkers Journal（09-16发出，满10天后）；②继续嵌入组件方向搜索，本轮水泥/沥青/退伍军人三个方向均未产出真实候选，需换新角度（如DIY木工论坛的project-resources帖、家庭教育STEM资源页里的measurement/geometry计算器缺口）。
+
+---
+
+## 2026-09-26 trafficsite-broken-link-building（外链产能集中规则：11-30位曝光 UmberLore 614 / WageLark 567 / MythCairn 396 前三；DialWick冻结，固定名额给CalcBadger）
+
+第0步：Woodworkers Journal（09-16，editor@woodworkersjournal.com）curl访问返回403（WAF），判定 `page_unreachable`；外链明细13条无woodworkersjournal，零回复。第二部分未做新挖掘（上轮三个方向无产出）。未发送。累计口径：已发送5封 / 到手0条 / 0%。
