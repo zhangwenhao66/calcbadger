@@ -41,36 +41,97 @@ const ogImageURL = new URL(ogImage, Astro.site);
 		<meta name="robots" content="max-image-preview:large" />
 
 		<meta name="google-adsense-account" content={ADSENSE_PUBLISHER_ID} />
-		<script
-			async
-			src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUBLISHER_ID}`}
-			crossorigin="anonymous"></script>
+		<!-- Consent gate. AdSense, Adsterra, GA4 and Clarity all set cookies. Visitors whose browser time zone is in Europe (a rough
+		     stand-in for EEA/UK/CH) are asked first; elsewhere they load by default. A stored "denied" choice or Global Privacy
+		     Control blocks them everywhere. Ad scripts are inert type="text/plain" tags until granted; GA4/Clarity run on the
+		     production hostname only. -->
+		<script type="text/plain" data-consent="ads" async crossorigin="anonymous" src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUBLISHER_ID}`}></script>
+		<script is:inline define:vars={{ GA4_ID, CLARITY_ID }}>
+			(function () {
+				var KEY = 'cb-consent';
+				var h = location.hostname;
+				var prod = h === 'calcbadger.com' || h === 'www.calcbadger.com';
+				var tz = '';
+				try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+				var eea = /^(Europe\/|Atlantic\/(Canary|Madeira|Azores|Faroe|Reykjavik)|Arctic\/Longyearbyen)/.test(tz);
+				var stored = '';
+				try { stored = localStorage.getItem(KEY) || ''; } catch (e) {}
+				var gpc = !!navigator.globalPrivacyControl;
+				var state = stored || (gpc ? 'denied' : eea ? 'ask' : 'granted');
+				var root = document.documentElement;
+				var loaded = false;
 
-		<script
-			async
-			src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
-		<script is:inline define:vars={{ GA4_ID }}>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-			gtag('config', GA4_ID);
-		</script>
+				// Ad tags depend on each other through the global atOptions, so they must run one at a time, in page order:
+				// an external script is followed only after it has loaded, an inline one runs at once.
+				function loadAds() {
+					var nodes = [].slice.call(document.querySelectorAll('script[type="text/plain"][data-consent="ads"]'));
+					(function next(i) {
+						if (i >= nodes.length) return;
+						var old = nodes[i];
+						var s = document.createElement('script');
+						for (var k = 0; k < old.attributes.length; k++) {
+							var at = old.attributes[k];
+							if (at.name === 'type' || at.name === 'data-consent') continue;
+							s.setAttribute(at.name, at.value);
+						}
+						if (old.src) {
+							s.onload = s.onerror = function () { next(i + 1); };
+							old.parentNode.replaceChild(s, old);
+						} else {
+							s.text = old.text;
+							old.parentNode.replaceChild(s, old);
+							next(i + 1);
+						}
+					})(0);
+				}
+				function loadAnalytics() {
+					if (!prod) return;
+					var g = document.createElement('script');
+					g.async = true;
+					g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+					document.head.appendChild(g);
+					window.dataLayer = window.dataLayer || [];
+					window.gtag = function () { window.dataLayer.push(arguments); };
+					window.gtag('js', new Date());
+					window.gtag('config', GA4_ID);
+					(function (c, l, a, r, i, t, y) {
+						c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+						t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i + '?ref=bwt';
+						y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+					})(window, document, 'clarity', 'script', CLARITY_ID);
+				}
+				function grant() {
+					if (loaded) return;
+					loaded = true;
+					root.classList.remove('ads-off');
+					loadAds();
+					loadAnalytics();
+				}
+				function choose(value) {
+					try { localStorage.setItem(KEY, value); } catch (e) {}
+					var bar = document.getElementById('consent-bar');
+					if (bar) bar.hidden = true;
+					if (value === 'granted') grant(); else if (loaded) location.reload(); else root.classList.add('ads-off');
+				}
 
-		<script is:inline define:vars={{ CLARITY_ID }}>
-			(function (c, l, a, r, i, t, y) {
-				c[a] =
-					c[a] ||
-					function () {
-						(c[a].q = c[a].q || []).push(arguments);
-					};
-				t = l.createElement(r);
-				t.async = 1;
-				t.src = 'https://www.clarity.ms/tag/' + i + '?ref=bwt';
-				y = l.getElementsByTagName(r)[0];
-				y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', CLARITY_ID);
+				if (state === 'granted') {
+					// Ad tags sit further down the page than this script, so wait until they are parsed.
+					if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', grant); else grant();
+				} else {
+					root.classList.add('ads-off');
+				}
+
+				document.addEventListener('DOMContentLoaded', function () {
+					var bar = document.getElementById('consent-bar');
+					if (!bar) return;
+					if (state === 'ask') bar.hidden = false;
+					document.getElementById('consent-accept').addEventListener('click', function () { choose('granted'); });
+					document.getElementById('consent-decline').addEventListener('click', function () { choose('denied'); });
+					document.querySelectorAll('[data-consent-open]').forEach(function (b) {
+						b.addEventListener('click', function () { bar.hidden = false; document.getElementById('consent-decline').focus(); });
+					});
+				});
+			})();
 		</script>
 
 		<title>{pageTitle}</title>
@@ -104,5 +165,12 @@ const ogImageURL = new URL(ogImage, Astro.site);
 			<slot />
 		</main>
 		<Footer />
+		<div id="consent-bar" class="consent-bar" role="dialog" aria-label="Cookie choices" hidden>
+			<p>CalcBadger uses Google Analytics, Microsoft Clarity, Google AdSense and Adsterra, which set cookies. Accept and they load; decline and none of them run, and no ads appear. More on the <a href="/privacy/">privacy page</a>.</p>
+			<div class="consent-actions">
+				<button type="button" id="consent-decline">Decline</button>
+				<button type="button" id="consent-accept">Accept</button>
+			</div>
+		</div>
 	</body>
 </html>

@@ -1484,3 +1484,16 @@ h3 {
 		transform: none;
 	}
 }
+
+/* ---------- Cookie choices ---------- */
+html.ads-off .adsterra-slots { display: none !important; }
+.foot-link { font: inherit; padding: 0; border: 0; background: none; cursor: pointer; }
+.consent-bar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; max-width: 720px; margin: 0 auto; padding: 14px 16px; background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-bottom: 3px solid var(--chassis); border-radius: 10px; box-shadow: 0 10px 30px -12px rgb(24 24 27 / 0.45); font-size: 0.95rem; }
+.consent-bar[hidden] { display: none; }
+.consent-bar p { margin: 0 0 12px; }
+.consent-bar a { color: var(--op-dark); }
+.consent-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.consent-actions button { font: inherit; font-weight: 600; min-height: 44px; padding: 8px 22px; border: 1px solid var(--chassis); border-radius: 9px; cursor: pointer; }
+#consent-decline { background: var(--card); color: var(--chassis); }
+#consent-accept { background: var(--chassis); color: #fff; }
+.consent-actions button:focus-visible, .foot-link:focus-visible { outline: 2px solid var(--op-dark); outline-offset: 2px; }
