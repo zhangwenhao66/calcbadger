@@ -763,6 +763,63 @@ h3 {
 	}
 }
 
+/* ---------- Mouse Test ---------- */
+.mousetest-area {
+	border: 1px dashed var(--chassis-rule);
+	border-radius: 12px;
+	background: var(--chassis);
+	padding: 1.1rem;
+	min-height: 9rem;
+	touch-action: none;
+	cursor: crosshair;
+	user-select: none;
+}
+.mousetest-area-label {
+	margin: 0 0 0.8rem;
+	font-size: 0.8rem;
+	color: var(--chassis-text-dim, var(--chassis-text));
+	opacity: 0.75;
+}
+.mousetest-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.mousetest-btn {
+	flex: 1 1 7rem;
+	text-align: center;
+	padding: 0.6rem 0.5rem;
+	border-radius: 8px;
+	border: 1px solid var(--chassis-rule);
+	background: var(--chassis-raised);
+	color: var(--chassis-text);
+	font-size: 0.78rem;
+	font-weight: 600;
+	transition:
+		background-color 90ms ease,
+		border-color 90ms ease,
+		transform 90ms ease;
+}
+.mousetest-btn.active {
+	background: var(--op);
+	border-color: var(--op-dark);
+	color: #fff;
+	transform: scale(0.96);
+}
+.mousetest-btn.tested {
+	border-color: var(--good);
+	box-shadow: inset 0 0 0 1px var(--good);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mousetest-btn {
+		transition: none;
+	}
+	.mousetest-btn.active {
+		transform: none;
+	}
+}
+
 /* ---------- Cursive Alphabet Generator ---------- */
 /* Page pruned in c3635a1 (spam-update page-mix cleanup) — kept intentionally, see src/data/tools.ts import comment. */
 .cursive-text-input {

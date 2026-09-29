@@ -5769,7 +5769,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-26',
 		published: '2026-08-26',
 		coreSummary:
-			'A keyboard test lights up a virtual layout as you press physical keys, so you can confirm a key registers at all and see exactly which ones you have and have not tried yet. This tool also tracks how many keys it can detect held down at the same time, a property called key rollover: press just two keys and every keyboard should handle it, but push toward four, five, or more and a cheaper keyboard without per-key diodes may start dropping or "ghosting" a key rather than registering it. A reference table below explains what different rollover counts mean, including the 6-key ceiling built into the (largely obsolete) USB boot protocol, plus how the three common full-size physical layouts, ANSI, ISO, and JIS, differ in total key count. Testing the screen that keyboard\'s input shows up on is the complementary check: [a dead pixel test](/dead-pixel-test/) cycles through solid colors instead of a key layout, since a defective pixel stands out against a flat background instead of getting lost inside a normal image.',
+			'A keyboard test lights up a virtual layout as you press physical keys, so you can confirm a key registers at all and see exactly which ones you have and have not tried yet. This tool also tracks how many keys it can detect held down at the same time, a property called key rollover: press just two keys and every keyboard should handle it, but push toward four, five, or more and a cheaper keyboard without per-key diodes may start dropping or "ghosting" a key rather than registering it. A reference table below explains what different rollover counts mean, including the 6-key ceiling built into the (largely obsolete) USB boot protocol, plus how the three common full-size physical layouts, ANSI, ISO, and JIS, differ in total key count. Testing the screen that keyboard\'s input shows up on is the complementary check: [a dead pixel test](/dead-pixel-test/) cycles through solid colors instead of a key layout, since a defective pixel stands out against a flat background instead of getting lost inside a normal image. Checking the other half of a standard input setup takes [a mouse test](/mouse-test/), which watches for the same kind of silent failure on buttons, double-click timing, and how often the device reports its position.',
 		queries: ['keyboard test', 'keyboard tester online', 'test keyboard keys', 'keyboard rollover test', 'n-key rollover test'],
 		sections: [
 			{
@@ -5863,6 +5863,136 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 780,
+	},
+	{
+		slug: 'mouse-test',
+		category: 'Tech',
+		title: 'Mouse Test',
+		shortTitle: 'Mouse Test',
+		description:
+			'Test all five common mouse buttons (right-click included), measure your double-click interval against the default Windows setting, estimate the report rate, and count scroll ticks.',
+		updated: '2026-09-29',
+		published: '2026-09-29',
+		coreSummary:
+			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks landing outside that range on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once.",
+		queries: [
+			'mouse test',
+			'mouse tester online',
+			'test mouse buttons',
+			'mouse polling rate test',
+			'double click speed test',
+			'mouse click test',
+		],
+		sections: [
+			{
+				heading: 'Four separate checks, not one',
+				body: [
+					"Each button tile above turns solid on the way down and keeps a green outline once it has fired, confirming that specific switch sends a signal at all; right-click is captured here as a fifth button test rather than opening the usual context menu, since that menu would just get in the way of the test. The other three checks run independently of the buttons: the timing gap between two left clicks, whether the wheel produces a tick for each direction, and roughly how often the sensor reports its position while moving.",
+					"None of that catches a switch failing in a noisier way than total silence. Contact bounce, where a worn switch fires two rapid signals from one physical press, produces a timing gap that looks exactly like a real fast double-click in the log, so there's no way to tell the two apart from the reading alone. A sensor that has started skipping or jittering mid-movement similarly won't show up as a clean pass/fail here, the way a switch that never registers at all does.",
+				],
+			},
+			{
+				heading: 'Double-click timing and what the number means',
+				body: [
+					"Every time the left button is pressed twice, this tool measures the gap between the two presses and checks it against Windows' own double-click window. That window is a real operating-system setting (the registry value behind it is literally named DoubleClickSpeed), not a browser guess: Microsoft's .NET documentation defines it as \"the maximum number of milliseconds that may elapse between a first click and a second click for the OS to consider the mouse action a double-click,\" and community guides to that same control consistently report an out-of-the-box default of 500 ms with an adjustable range of roughly 200 to 900 ms.",
+					"A gap that lands well inside that range on an unmodified system would register as a double-click; a gap past the slowest end of the range (900 ms) would register as two separate single clicks, regardless of intent. macOS handles the same idea differently. Apple's Accessibility settings expose it as a relative slider (System Settings > Accessibility > Pointer Control > Double-click speed), with no single documented millisecond default to compare against on that platform.",
+				],
+			},
+			{
+				heading: 'Estimating report rate, and why the number has an asterisk',
+				body: [
+					'A mouse doesn\'t send a continuous stream of position data; it reports its position at a fixed interval over USB, and that interval is the polling rate (also called report rate), typically 125 Hz (one report every 8 ms) on ordinary mice and 500-1000+ Hz on mice marketed for gaming. This tool estimates that rate from the timing between movement events while the pointer is inside the test area.',
+					"The asterisk: Chromium and Firefox both batch, or coalesce, continuous pointer-movement events and only hand them to page JavaScript right before the next screen refresh, a documented performance optimization (a typical mouse can report movement roughly 100 times a second while a typical display refreshes only 60 times a second, so batching avoids redundant work). Those two browsers expose a way around it, the PointerEvent.getCoalescedEvents() method, which recovers the individual pre-batching samples and is what this tool uses automatically when available. That method only reached Safari in version 18.2 (December 2024), so a copy of Safari older than that caps this reading near the display's refresh rate, not the mouse's true hardware rate. The tool labels which method it used so that distinction isn't hidden.",
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					'Two clicks land 340 ms apart: that\'s past the 500 ms default but still inside the 200-900 ms adjustable range, so it would only register as a double-click if that Windows setting had been loosened from its out-of-the-box value toward the slow end.',
+					'The report-rate reading in Chrome settles around 125 Hz on an ordinary office mouse: that matches an 8 ms interval between reports, consistent with the industry-standard 125 Hz baseline most non-gaming mice ship with.',
+					"The same test in a pre-18.2 copy of Safari shows a reading that won't climb past roughly 60-144 Hz even on a mouse known to support 1000 Hz: that's the display-refresh ceiling described above, not a fault with the mouse.",
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Double-click interval vs. the Windows default window',
+				headers: ['Measured interval', 'Tier', 'What it means'],
+				rows: [
+					['0-200 ms', 'Faster than the fastest default setting', "At or under the fastest end of Windows' adjustable range."],
+					['201-500 ms', 'Within the out-of-the-box default', "Under Windows' commonly documented 500 ms default."],
+					['501-900 ms', 'Slower than default, but within range', 'Past the default but still inside the adjustable 200-900 ms window.'],
+					['901 ms+', 'Slower than any default window', 'Most systems on default settings would read this as two separate clicks.'],
+				],
+				note: "Figures describe Windows' DoubleClickSpeed control; macOS uses a relative slider with no single published millisecond default.",
+			},
+			{
+				title: 'Common mouse report (polling) rates',
+				headers: ['Rate', 'Report interval', 'Typical device class'],
+				rows: [
+					['125 Hz', '8 ms', 'Standard office/consumer mice (USB HID baseline)'],
+					['500 Hz', '2 ms', 'Mid-tier and older gaming mice'],
+					['1000 Hz', '1 ms', 'Most current gaming mice'],
+					['2000-8000 Hz', '0.5-0.125 ms', 'High-end gaming mice, often needing a dedicated dongle/software'],
+				],
+				note: 'A higher report rate reduces how stale the reported position can be between updates; it does not by itself change the sensor\'s tracking accuracy (DPI/CPI).',
+			},
+		],
+		faq: [
+			{
+				question: 'How can I test if my mouse is good?',
+				answer:
+					'Run through all three checks above: click every button (including right and any side buttons) to confirm each one registers, double-click a few times to see how consistent the timing is, and scroll both directions to check for skipped or doubled ticks. A mouse that registers every button, keeps a fairly steady click-to-click rhythm, and scrolls smoothly is behaving normally; a button that never lights up, or a wired mouse whose estimated Hz swings wildly between attempts, points at a hardware problem worth investigating further.',
+			},
+			{
+				question: "Why can't this tool tell me my mouse's DPI?",
+				answer:
+					"DPI (dots per inch, sometimes called CPI) is a setting baked into the mouse's own sensor firmware. A browser only ever sees pixel movement after Windows or macOS has already applied that DPI setting plus its own pointer-acceleration curve, and no web API exposes the raw sensor count needed to calculate DPI directly. Checking or changing DPI reliably requires the mouse manufacturer's own configuration software, or a physical test (moving the mouse a measured real-world distance and counting on-screen pixels moved, with pointer acceleration disabled).",
+			},
+			{
+				question: 'Why does my double-click interval vary between attempts?',
+				answer:
+					"Human finger movement has natural timing variability of tens of milliseconds even when someone is trying to click at a consistent speed, and the browser's own event-timing pipeline adds a small amount of jitter on top of that. Expect your readings to cluster in a range, not repeat an identical number every time.",
+			},
+			{
+				question: "Why does my report-rate reading stay around 60-144 Hz even though my mouse supports 1000 Hz?",
+				answer:
+					"That 60-144 Hz range is a strong match for common display refresh rates rather than for the mouse itself, which points at the browser rather than the hardware. Your browser most likely can't unpack the batched movement samples this tool needs for a finer reading, either because it never added that ability or because it's running a build from before Apple shipped it to Safari in late 2024. This tool reports which of the two methods it managed to use, so a 'raw' result in that range reflects a real technical limit, not a broken mouse.",
+			},
+			{
+				question: "What's a good double-click speed?",
+				answer:
+					"There isn't a single universally 'good' number. It comes down to matching your own reflexes to a setting you're comfortable with, inside the roughly 200-900 ms range Windows allows. Landing consistently within Windows' 500 ms default with no adjustment needed is a reasonable sign of typical clicking speed; someone who needs the setting loosened toward 900 ms to reliably trigger double-clicks isn't doing anything wrong, that's exactly why the setting is adjustable.",
+			},
+		],
+		sources: [
+			{
+				label:
+					'Microsoft Learn: SystemInformation.DoubleClickTime Property (defines the double-click timing window the OS checks against)',
+				url: 'https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.systeminformation.doubleclicktime',
+			},
+			{
+				label: 'Computer Hope: "How to Increase or Decrease the Mouse Double-click Speed" (default 500 ms, adjustable 200-900 ms range, Windows registry DoubleClickSpeed value)',
+				url: 'https://www.computerhope.com/issues/ch000816.htm',
+			},
+			{
+				label: "Apple Support: \"Change mouse or trackpad tracking, double-click, and scrolling speed on Mac\" (macOS's relative slider, no fixed millisecond default)",
+				url: 'https://support.apple.com/guide/mac-help/change-your-mouse-or-trackpads-response-speed-mchlp1138/mac',
+			},
+			{
+				label: 'MDN Web Docs: PointerEvent.getCoalescedEvents() (recovers pre-coalescing pointer samples; browser support)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/getCoalescedEvents',
+			},
+			{
+				label: 'Chrome Developers: "Inside look at modern web browser (part 4)" (explains why continuous input events like mousemove are coalesced to once per animation frame)',
+				url: 'https://developer.chrome.com/blog/inside-browser-part4',
+			},
+			{
+				label: 'MDN Web Docs: MouseEvent.button (button-code mapping: 0=left, 1=middle, 2=right, 3=back, 4=forward)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button',
+			},
+		],
+		embedHeight: 620,
 	},
 	{
 		slug: 'system-of-equations-solver',
