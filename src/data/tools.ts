@@ -70,7 +70,7 @@ export const tools: Tool[] = [
 		shortTitle: 'CD Calculator',
 		description:
 			'Work out what a certificate of deposit will be worth at maturity: final balance, total interest, and the effective APY for any rate, compounding schedule, and term.',
-		updated: '2026-08-02',
+		updated: '2026-09-29',
 		published: '2026-08-02',
 		coreSummary:
 			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity. A company financing itself instead of a saver depositing cash faces the mirror-image question: [WACC](/wacc-calculator/) blends the cost of equity and after-tax cost of debt into one rate, the borrowing-side counterpart to the rate a CD pays a depositor.',
@@ -104,6 +104,12 @@ export const tools: Tool[] = [
 					'If there is a real chance you will need the cash, compare the after-penalty result against a high-yield savings account before committing. A CD paying 0.5 percentage points more than a savings account stops being the better deal the moment a 6-month interest penalty lands on it.',
 				],
 			},
+			{
+				heading: 'What the average bank is actually paying right now',
+				body: [
+					"The FDIC publishes a National Rate for CD deposits under $100,000 every month, an average weighted by each bank's share of domestic deposits, and it is far lower than the top rates advertised by online banks and rate-comparison sites. As of the FDIC's September 21, 2026 release, the national average sits at 1.73% for a 12-month CD and 1.36% for a 36-month CD; the table below has the full term ladder. This number exists mainly to set the National Rate Cap (national rate plus 75 basis points, or 120% of a comparable Treasury yield if that is higher) that caps what a bank flagged as less than well-capitalized is allowed to offer, not as a shopping benchmark, so do not mistake it for what a competitive online bank will pay. It is still a useful floor: if an offer is at or below the national average for that term, better rates are available elsewhere without taking on more risk.",
+				],
+			},
 		],
 		referenceTables: [
 			{
@@ -116,6 +122,21 @@ export const tools: Tool[] = [
 					['5.0%', '$10,500.00', '$11,025.00', '$11,576.25', '$12,762.82'],
 				],
 				note: 'Computed as 10,000 × (1 + APY)^years, interest left to compound until maturity.',
+			},
+			{
+				title: 'FDIC national average CD rate by term (deposits under $100,000)',
+				headers: ['Term', 'National Rate (APY)'],
+				rows: [
+					['1 month', '0.23%'],
+					['3 month', '1.13%'],
+					['6 month', '1.41%'],
+					['12 month', '1.73%'],
+					['24 month', '1.61%'],
+					['36 month', '1.36%'],
+					['48 month', '1.28%'],
+					['60 month', '1.38%'],
+				],
+				note: "Source: FDIC National Rates and Rate Caps, release dated September 21, 2026 — the average rate paid across all insured institutions for that term, not the best rate available. Updated monthly by the FDIC; check the source link for the current figure.",
 			},
 		],
 		faq: [
@@ -162,6 +183,10 @@ export const tools: Tool[] = [
 			{
 				label: 'FDIC: deposit insurance coverage',
 				url: 'https://www.fdic.gov/resources/deposit-insurance/',
+			},
+			{
+				label: 'FDIC National Rates and Rate Caps (national average CD rates by term, September 21, 2026 release)',
+				url: 'https://www.fdic.gov/national-rates-and-rate-caps',
 			},
 		],
 		embedHeight: 660,
