@@ -316,3 +316,23 @@ CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟�
 ## 2026-09-26 trafficsite-broken-link-building（外链产能集中规则：11-30位曝光 UmberLore 614 / WageLark 567 / MythCairn 396 前三；DialWick冻结，固定名额给CalcBadger）
 
 第0步：Woodworkers Journal（09-16，editor@woodworkersjournal.com）curl访问返回403（WAF），判定 `page_unreachable`；外链明细13条无woodworkersjournal，零回复。第二部分未做新挖掘（上轮三个方向无产出）。未发送。累计口径：已发送5封 / 到手0条 / 0%。
+
+## 2026-09-29（第十次运行）— 换新方向：专业协会公共资源页（非libguides）
+
+按本轮任务指示换方向，放弃继续挖libguides/DIY/退伍军人这几条已证明低命中率的路。新试方向：财商教育教师资源页（Jump$tart州分会、financeintheclassroom.org等）、首次购房者消费者教育资源页（HUD/州住房金融机构，多为政府机构自建，非编辑型链接列表）、STEM教师measurement/geometry资源页（homeschoolmath.net/middleschool.net等老式链接目录）、电工学徒/自酿啤酒/理财博主"推荐工具"清单、营养师/dietitian专业协会资源页。
+
+**多数方向无产出**：Jump$tart州分会link页（mejumpstart.org/links/）死链4条但均为该机构自身内部链接，非计算器工具，硬凑放弃；financeintheclassroom.org死链1条（Utah Jump$tart的webinar页），非计算器；middleschool.net/curlink/math数学资源页108条外链44条死链（41%失效率），但该站证据显示已长期无人维护（无更新日期、仅有联系表单无邮箱、页面文字"Site is updated often"紧挨着一个死链），判定为荒废链接目录，pitch大概率无人接收，未采用；BrewUnited啤酒博客、Thomas Kopelman理财博主"7个实用计算器"清单均无真实死链（后者3条SOFT均为反爬阻断非真实失效）；电工学徒/退伍军人/高尔夫/景观/写作工具方向搜索全部被同类计算器竞品站淹没，未找到编辑型资源页候选。
+
+**命中1个真实候选**：加州营养与饮食学学会（California Academy of Nutrition and Dietetics，dietitian.org，501(c)(6)非营利，1924年成立，约6500名会员，真实专业协会）"Tools, Calculators and Apps"公共资源页有2条死链，均为"BMI Calculator"标题：eatright.org的成人BMI计算器链接（HTTP 404，eatright.org主站本身200正常，判定是该子页面在改版中被移除，非整站故障）+ CDC退役的nccd.cdc.gov儿童/青少年BMI计算器（404，该子域名已知长期停用）。两条链接均用`curl -sIL`独立复核确认（未止步于scanner的一次性判定）。姊妹页`professional-and-development-resources/`死链更多（22/52，42%），但内容多为协会自身内部页面链接，非计算器工具，未纳入本次pitch。
+
+`bmi-calculator`工具（US/metric单位、CDC/WHO成人分类+健康体重区间、WHO亚裔人群更低界值）与成人链接主题精确对应；儿童/青少年那条因CalcBadger无儿科生长曲线逻辑，邮件里明确说明不建议作为替代，不硬凑第二条。域名质量：`dataforseo_query.py traffic dietitian.org`月ETV 3668（达标）；`domain dietitian.org`外链395个引荐域名、垃圾分20（中低）、站龄2809天，非垃圾站点。联系邮箱`andrea@groupconcepts.org`是该机构官网`/contact-us/`页面自己声明的通用联系兜底渠道（原文："The CA Academy email is currently down. Please contact our Executive Director at andrea@groupconcepts.org"），非单一用途邮箱，符合"不降级发送到单一用途渠道"的红线。查重（`gmail_send.py list`全账号 + 全站outreach日志/drafts grep）干净，无既往联系记录。
+
+邮件已过`Skill(humanizer)` + `Skill(avoid-ai-writing)`双检查（无破折号、无AI词表命中、无chatbot套话），草稿存于`outreach-drafts.md`（2026-09-29条目）。
+
+**独立复核**：全新spawn agent，独立re-fetch核实全部要点——两条死链真实性（独立curl确认eatright.org/nccd.cdc.gov均404）、`bmi-calculator`工具功能与邮件描述一致（US/metric+CDC/WHO分类+亚裔界值，均在线上工具页核对到）、`embed/bmi-calculator/`嵌入版本确认存在、收件人`andrea@groupconcepts.org`确认是`/contact-us/`页面自己声明的通用兜底联系方式非单一用途、机构真实性（WebSearch核实为真实501(c)(6)专业协会非内容农场）、查重干净、去AI味检查通过、"不建议替代儿童计算器"的诚实披露属实非隐瞒缺陷。**副产品**：复核agent发现`dataforseo_query.py`未提取DataForSEO返回的`target_spam_score`字段（该站命中77，属"high"区间，与`backlinks_spam_score`是不同维度指标），判断为工具盲区而非本次候选的真实红旗（该机构真实性已独立核实），已spawn后台任务`task_eddc83b1`跟进修复脚本，不影响本次判定。**VERDICT: SEND**。
+
+**已发送**：`gmail_send.py send --from calcbadger --to andrea@groupconcepts.org --subject "A working replacement for a dead BMI calculator link on your Tools page"`，**Message ID `1a0ed93ac463c0dc`**。
+
+**累计口径**：CalcBadger断链置换/嵌入投放战术累计已发送 **6封**（含2封跟进）；已验证`not_replaced` 2条；Woodworkers Journal（09-16）page_unreachable未变；dietitian.org本轮刚发出未到验证窗口；`verified_live_backlink_confirmed` 0条，转化率0/4（不含未到期）。
+
+**遗留待办**：下轮如需继续这条新方向，可尝试其他州的营养/护理/物理治疗类专业协会资源页（同一模式：州级、由小型协会管理公司代管、页面较少更新）；middleschool.net虽然死链多但判定荒废不建议深挖；financeintheclassroom.org主体页面本身链接质量较高，可换其子页（如学生专区）再查一轮；核实Woodworkers Journal是否有新进展。

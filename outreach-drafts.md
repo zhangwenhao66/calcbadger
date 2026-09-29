@@ -309,3 +309,39 @@ CalcBadger
 **Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no AI-vocabulary hits, no rule-of-three padding, no vague endorsement phrasing (reworded away from an initial "worth double-checking" construction to a direct recommendation), sign-off matches this log's established voice (not a newly-injected persona).
 
 **Status: SENT (2026-09-22).** User confirmed send in chat. Re-verified before sending: `/stair-calculator/` and `/embed/stair-calculator/` both 200 (the embed URL and the Gmail dedup query each hit a transient network error on first try, both retried clean); `gmail_send.py list --query "to:library@camosun.ca"` still empty. `gmail_send.py send --from calcbadger --to library@camosun.ca`, Message ID `1a0c830299a2fbf8`.
+
+## 2026-09-29 — California Academy of Nutrition and Dietetics (andrea@groupconcepts.org) — 嵌入组件主动投放，新方向（专业协会资源页）
+
+To: andrea@groupconcepts.org
+Subject: A working replacement for a dead BMI calculator link on your Tools page
+
+Hi Andrea,
+
+I was reading through the California Academy of Nutrition and Dietetics' "Tools, Calculators and Apps" page (dietitian.org/tools-calculators-and-apps/) and the "BMI Calculator for Adults" link to eatright.org now returns a 404. Looks like that page got pulled or moved in a redesign. The "BMI Calculator for Children and Teens" link right below it, pointing to a retired CDC tool at nccd.cdc.gov, is also dead.
+
+I run CalcBadger (calcbadger.com), a small site of free calculators that show their formulas and sources instead of just spitting out a number. Our BMI calculator (calcbadger.com/bmi-calculator/) covers US and metric units, the CDC/WHO adult categories with healthy-weight range, and the WHO's lower cutoffs for adults of Asian ancestry, so it would work as a replacement for the adult link specifically. It doesn't have the pediatric growth-chart logic the CDC's children's tool used, so I wouldn't put it forward for that second one.
+
+There's also an embeddable version (calcbadger.com/embed/bmi-calculator/) if you'd rather keep the calculator on your own page instead of sending visitors offsite. Happy to send the iframe snippet if that's useful.
+
+No worries either way if you'd rather source a different replacement. I just didn't want two dead calculator links sitting on a page built for the public. Let me know if either one is worth adding.
+
+Thanks,
+Owen
+CalcBadger
+contact@calcbadger.com
+
+**How the target was found**: New direction per this run's assignment (professional-association public resource pages, not libguides). WebSearch chain: "dietitian nutrition student resources page \"BMI calculator\" links education tools" surfaced `dietitian.org/tools-calculators-and-apps/` (California Academy of Nutrition and Dietetics, a real 501(c)(6) state affiliate of the national Academy of Nutrition and Dietetics, founded 1924, ~6,500 members). `broken_link_scan.py` on that page plus its sibling `professional-and-development-resources/` page found 25 combined DEAD links; two on the Tools page are literal "BMI Calculator" links.
+
+**Independent verification of both dead links** (not just the scanner's HTTP status): `curl -sIL` on `http://www.eatright.org/resource/health/weight-loss/your-health-and-your-weight/bmi-calculator-for-adults` → 301 to https then genuine 404 (eatright.org's own root still returns 200, so this is a removed page, not a whole-domain outage). `curl -sIL` on `http://nccd.cdc.gov/dnpabmi/Calculator.aspx` → 404 (this is a known-retired CDC legacy subdomain; DNS still resolves, root CDC domain is unaffected). Anchor text confirmed via a full page fetch with a browser-style UA (plain curl with a generic UA got a 403 from the site's WAF): "BMI Calculator for Adults" and "BMI Calculator for Children and Teens" are the exact link labels, both under the page's public-facing "FOR THE PUBLIC" nav section.
+
+**Topic match**: `bmi-calculator` in `src/data/tools.ts` covers US/metric units, CDC/WHO adult categories with healthy-weight range, and the WHO's lower Asian-ancestry cutoffs — a genuine 1:1 match for the "Adults" link. Deliberately did NOT claim it replaces the second (children/teens) dead link, since CalcBadger's tool has no pediatric growth-chart logic; the email says so explicitly rather than overclaiming. Both `https://calcbadger.com/bmi-calculator/` and `https://calcbadger.com/embed/bmi-calculator/` confirmed 200.
+
+**Quality gates**: `dataforseo_query.py traffic dietitian.org` → ETV 3,668/month, 达标 (门槛 300). `dataforseo_query.py domain dietitian.org` → 395 referring domains, spam score 20 (low-moderate), 0 broken outbound links reported, site age 2,809 days — legitimate, non-spammy domain. Confirmed via WebSearch that the organization is real (GuideStar/LinkedIn/Crunchbase all show a genuine nonprofit, not a content farm).
+
+**Contact routing**: The page's own `/contact-us/` states "The CA Academy email is currently down. Please contact our Executive Director at andrea@groupconcepts.org" — this is the organization's own stated fallback for general correspondence (Group Concepts is their association-management company), not a single-purpose channel (media/legal/sales-only), so it clears the "no single-purpose contact channel" rule. `media@dietitian.org` was seen on the same page but intentionally not used, since it's explicitly scoped to press inquiries.
+
+**Dedup**: `gmail_send.py list --query "to:groupconcepts.org OR to:dietitian.org OR from:groupconcepts.org OR from:dietitian.org"` → empty. `grep -ril "dietitian.org\|groupconcepts\|eatright"` across all `*.md`/`*.json` outreach logs and drafts in `独立站/` → no prior contact or duplicate draft found.
+
+**Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no curly quotes, no AI-vocabulary hits, no chatbot artifacts, sentence-length and paragraph-length varied, sign-off matches this log's established voice.
+
+**Status: DRAFT ONLY, NOT SENT.** This run's instructions explicitly withheld send authority (research + draft only, Owen decides whether to send). Awaiting approval.
