@@ -344,4 +344,4 @@ contact@calcbadger.com
 
 **Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no curly quotes, no AI-vocabulary hits, no chatbot artifacts, sentence-length and paragraph-length varied, sign-off matches this log's established voice.
 
-**Status: DRAFT ONLY, NOT SENT.** This run's instructions explicitly withheld send authority (research + draft only, Owen decides whether to send). Awaiting approval.
+**Status: SENT (2026-09-29 07:31 -0700).** Correction to the line above (originally written "DRAFT ONLY, NOT SENT" under a different run's send-authority scope): `trafficsite-broken-link-building`'s "断链置换第十次运行" (commit `5d5acfc`) independently found and sent this identical pitch the same day (Message ID `1a0ed93ac463c0dc`, confirmed via `gmail_send.py list --query "to:groupconcepts.org"`). Recorded here so this task doesn't re-target andrea@groupconcepts.org in a future run.
