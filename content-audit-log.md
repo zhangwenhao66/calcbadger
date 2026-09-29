@@ -2905,3 +2905,34 @@
 - 去AI味：Skill(humanizer)→Skill(avoid-ai-writing) 已真实调用，数字核对。
 - 机检 check_prose_patterns.py（5个改动slug）：stair/date/wacc 初次FAQ与正文重合（我的新增），改写后全部退出码0。
 - 存量债务：本批未发现。npm run build 通过。
+
+```json
+{
+  "tool_slug": "cd-calculator",
+  "last_audited": "2026-09-29",
+  "published_date": "2026-08-02",
+  "site_context": "trafficsite-content-quality-audit：本站最久未审计的工具（2026-08-02上线首次审计以来首次复审）；index-coverage快照确认该页仍在索引，符合压制期'只碰已收录页'选文规则",
+  "checklist": [
+    "公式正确性回归：npm test是否仍全部通过，未在编辑过程中意外改动计算逻辑",
+    "新增段落的引用数字是否有官方一手来源支撑，不能编造",
+    "worked example/参考表现有数字是否仍与cd.ts实现一致（回归检查）"
+  ],
+  "findings": [
+    {"dimension": "公式正确性（最高优先级）", "status": "未发现问题（回归确认）", "detail": "npm test：74个测试文件1385个测试全部通过（cd.test.ts 11个）。本次未改动src/lib/cd.ts或组件代码，仅新增正文段落+参考表+sources；worked example($10,000×(1.045)³=$11,411.66等)与首次审计(2026-08-02)记录的独立复算结果一致，无回归。"},
+    {"dimension": "实质增强（CalcBadger压制期专属规则）", "status": "已完成", "detail": "新增'What the average bank is actually paying right now'小节+参考表'FDIC national average CD rate by term'。数据来源：直接下载解析FDIC官方Excel存档(fdic.gov/resources/bankers/national-rates/documents/archive-revised-rule.xlsx，用openpyxl读取二进制单元格值，非网页摘要转述或WebSearch AI归纳)，取2026-09-21发布批次'National Rate'列，1个月至60个月完整期限梯度(0.23%/1.13%/1.41%/1.73%/1.61%/1.36%/1.28%/1.38%)。文字说明National Rate与National Rate Cap监管用途的区别，避免误导读者以为这是'最优惠利率'。"},
+    {"dimension": "时效性", "status": "已更新", "detail": "published字段已存在(2026-08-02)，updated字段安全推进到2026-09-29；新增数据明确标注'2026-09-21发布批次'+'FDIC每月更新，查源链接获取当前数字'，不会因为数据本身会过期而误导读者。"},
+    {"dimension": "SEO技术审计", "status": "未发现问题", "detail": "check_seo_field_stats.py：title长度13字符z=-1.07，description长度164字符z=-0.33，均在正常范围内。"},
+    {"dimension": "机械散文四项检查", "status": "PASS", "detail": "check_prose_patterns.py四项全部通过，退出码0。"}
+  ],
+  "actions_taken": [
+    "新增1个正文小节+1个参考表(FDIC官方CD利率梯度)+1条sources引用",
+    "updated字段从2026-08-02更新到2026-09-29",
+    "seo_drift baseline已存；npm test 1385/1385通过；build成功；commit 37c6fff；push；CF Pages custom domain部署延迟，wrangler直传绕过；实测200且含新内容；seo_drift compare：WARNING(schema变化)+INFO(H2从8个到10个)，均为本次新增小节+表格标题的预期结果，非回归",
+    "IndexNow提交/cd-calculator/，Bing 200/Yandex 202"
+  ],
+  "seo_score": "未变动",
+  "geo_score": "未变动",
+  "escalation": null,
+  "diffusion_note": "扩散判定：单站（本次修复方式是CalcBadger压制期专属的'实质增强'规则，其余五个内容站无此规则，非可扩散的通用发现）"
+}
+```
