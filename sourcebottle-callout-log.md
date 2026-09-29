@@ -64,3 +64,14 @@
 - **Deadline**：2026-09-29 17:00（鼠标真实点击日历控件选中29日，未直接写文本框，符合SKILL.md第0条硬规则）。
 - **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `1f9034773ec1292c669d45539ad61467`。
 - **上线复核**：⏳ 待下次任务运行时补查。本次运行未做历史pending条目复核（时间所限），下次运行时应补做，包括08-25条目`2e82a30a4b3d7ea2f566a45c791b4379`。
+
+### 2026-09-29（周二，正常排期）
+
+- **问题标题**：College counselors and test-prep tutors: has a student's own SAT score math led to an application misstep?
+- **角度**：绑定`sat-score-calculator`工具页讲的真实换算机制——纸质SAT模拟测试的官方评分表给出的是分数区间而非单一确切分数（例如Reading & Writing原始分50对应610-630区间），因为真实数字SAT是自适应测试，同样的原始分在不同模块难度路径下会对应不同的真实分数，单纯把区间当成一个确切数字容易造成过度自信。征集升学顾问/备考老师举出真实案例——学生自己计算的SAT分数或superscore（拼分）导致了一次真实的申请误判（比如以为够某校门槛结果没够，或者漏算了某个学校的拼分政策）。与此前问过的楼梯施工计算错误角度（08-04）、实验室摩尔浓度计算错误角度（08-12）、房贷月供漏项角度（08-18）、导管填充违规角度（08-25）、减重平台期热量计算角度（09-15）均不重叠——这次首次切入教育/升学领域的工具页，也是CalcBadger首次用非施工/非健康类工具作绑定。
+- **绑定文章**：CalcBadger `sat-score-calculator`（SAT Score Calculator）。
+- **分类标签**：Topics = General + Parenting & Education（新组合，此前五条均未用过教育分类）；Countries = Australia + UK & Republic of Ireland + Canada + United States。
+- **表单设置**：Job title = Content Creator；Organisation = CalcBadger；Contact = Email；Unpaid；Email address 和 Contact email 均填 `contact@calcbadger.com`。
+- **Deadline**：2026-10-13 17:00（鼠标真实点击日历控件切换到10月并选中13日，未直接写文本框，符合SKILL.md第0条硬规则）。
+- **发布状态**：✅ 已提交，跳转到 thankyou.asp，提示 "Pending approval..."。提交回执 product id = `9fba501968efbe3eb472caf7d8fa06e5`。
+- **上线复核**：本次运行前已在四站侧顺带核对09-22三站流量站条目均已上线，但本站及其余09-15五站的历史pending条目本次仍未逐一复核（时间所限），下次运行时应补做，包括08-25条目`2e82a30a4b3d7ea2f566a45c791b4379`和09-15本条`1f9034773ec1292c669d45539ad61467`。
