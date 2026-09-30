@@ -566,5 +566,14 @@
     "already_indexed_no_action": [],
     "quota_exceeded_attempted": [],
     "quota_used": "1 of shared account-wide daily quota"
+  },
+  {
+    "date": "2026-09-30",
+    "urls_submitted": [
+      "https://calcbadger.com/mouse-test/"
+    ],
+    "status_before": "URL is not on Google",
+    "result": "Indexing requested",
+    "quota_note": "当天全矩阵配额在第5次提交(Hollowvane)命中Quota Exceeded"
   }
 ]
