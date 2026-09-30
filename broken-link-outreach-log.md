@@ -336,3 +336,6 @@ CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟�
 **累计口径**：CalcBadger断链置换/嵌入投放战术累计已发送 **6封**（含2封跟进）；已验证`not_replaced` 2条；Woodworkers Journal（09-16）page_unreachable未变；dietitian.org本轮刚发出未到验证窗口；`verified_live_backlink_confirmed` 0条，转化率0/4（不含未到期）。
 
 **遗留待办**：下轮如需继续这条新方向，可尝试其他州的营养/护理/物理治疗类专业协会资源页（同一模式：州级、由小型协会管理公司代管、页面较少更新）；middleschool.net虽然死链多但判定荒废不建议深挖；financeintheclassroom.org主体页面本身链接质量较高，可换其子页（如学生专区）再查一轮；核实Woodworkers Journal是否有新进展。
+
+## 2026-09-30 运行（固定名额：DialWick已冻结，名额给CalcBadger）
+第0步：dietitian.org（09-29）仅1天，Woodworkers Journal已判page_unreachable，本轮无可核实项。新挖掘：延续州级营养协会方向，扫描5页（eatrightwv.org/calcs、Bastyr LibGuide、Brigham Faulkner、BCM、nutrition.gov）；仅Bastyr页有DEAD，为已下线iTunes应用和内部联系表单，CalcBadger无对应工具。未发送。累计口径：已发送6封 / 到手0条 / 0%。
