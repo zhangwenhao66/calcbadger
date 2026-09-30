@@ -335,12 +335,18 @@
   "https://calcbadger.com/prorated-rent-calculator/": {
     "submitted_date": "2026-08-20",
     "last_submitted_date": "2026-08-20",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "note": "Indexed successfully",
+    "last_checked_date": "2026-09-30",
+    "verified_method": "bwt_url_inspection"
   },
   "https://calcbadger.com/conduit-fill-calculator/": {
     "submitted_date": "2026-08-20",
     "last_submitted_date": "2026-08-20",
-    "verified_status": "pending"
+    "verified_status": "verified_indexed",
+    "note": "Indexed successfully",
+    "last_checked_date": "2026-09-30",
+    "verified_method": "bwt_url_inspection"
   },
   "https://calcbadger.com/rounding-calculator/": {
     "submitted_date": "2026-08-20",

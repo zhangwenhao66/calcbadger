@@ -109,5 +109,14 @@
       "https://calcbadger.com/world-clock/"
     ],
     "method": "SubmitUrlBatch"
+  },
+  {
+    "date": "2026-09-29",
+    "site": "calcbadger.com",
+    "action": "submitted",
+    "submitted_urls": [
+      "https://calcbadger.com/mouse-test/"
+    ],
+    "method": "SubmitUrl"
   }
 ]
