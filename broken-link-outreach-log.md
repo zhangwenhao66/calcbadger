@@ -339,3 +339,41 @@ CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟�
 
 ## 2026-09-30 运行（固定名额：DialWick已冻结，名额给CalcBadger）
 第0步：dietitian.org（09-29）仅1天，Woodworkers Journal已判page_unreachable，本轮无可核实项。新挖掘：延续州级营养协会方向，扫描5页（eatrightwv.org/calcs、Bastyr LibGuide、Brigham Faulkner、BCM、nutrition.gov）；仅Bastyr页有DEAD，为已下线iTunes应用和内部联系表单，CalcBadger无对应工具。未发送。累计口径：已发送6封 / 到手0条 / 0%。
+
+
+## 2026-10-07 21:00 Codex正式运行（固定名额CalcBadger）
+
+固定名额CalcBadger；DialWick冻结、LingoGrove压制排除。GSC连接55秒超时、子进程已终止；应查11站、实查0站，常规前三站未选出，不沿用旧窗口。常规站的扫描及跟进未检查。
+
+域名池3个对标域名各100条、3/3返回，已追加外链目标池；关键词级未检查。资源页尝试25个、抓取24个、有外链22个；零外链2个和SSL超时1个属于未完整检查。原始DEAD46、SOFT49仅扫描候选，未独立确认，不等同合格机会。最接近候选northwiltswoodturners.co.uk/MoreLinks.html的triangle-angles旧工具，ETV=3低于300，本站无对应工具，淘汰。无已验证资产缺口，gap_pitch=0，不新增资产。实际费用$0.0949（域名池$0.0828、流量$0.0121）。
+
+本轮发出0、到手0、待批准邮件0，无合格草稿，邮件质量链及独立审查未触发。CalcBadger累计6/0；全任务历史日志累计79/0、转化0%，未重新验证邮箱投递，旧记录有Message ID缺口；MythCairn按7个唯一ID计。低转化已有待Owen处理事项，保留不重复新增。Calc旧pitch：09-29 dietitian.org仅8天未到复查期，其余已核条目不重复核。
+
+本地文本钩子未识别已读取的英文技能证据，远端同步受阻，未绕过。原Artifact网址不可发布，本地数据台另行更新，原网址未同步。无发布或部署动作。详细回执：/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-broken-link-building/20261007T2100/receipt.json
+
+扫描URL：
+- https://www.gorgewood.com/useful-links
+- https://www.wooduassemble.com/links/
+- https://castleusa.com/pages/resources.html
+- https://cormarkint.com/woodworking-resources/
+- https://timberinfo.com.au/links/
+- https://www.rth.org.uk/node/65
+- https://customstairsandmouldings.com/links.htm
+- https://www.apacad.org/additional-resources.html
+- https://hockeramerica.com/knowledge-hub/
+- https://woodworkersworkshop.com/Resources
+- https://www.epicwoodworking.com/resources/
+- https://aplanelife.us/useful-links
+- https://newwg.org/links/
+- https://lockportwoodworkers.com/links
+- https://coventrywoodcarvers.co.uk/useful-links/
+- https://www.northwiltswoodturners.co.uk/MoreLinks.html
+- https://womenzshed.org/useful-links/
+- https://instituteofcarpenters.com/students/useful-links/
+- https://www.rarewoodsusa.com/useful-links/
+- https://www.htpaa.org.au/resources/useful-links
+- https://firepsychat.com/resources/
+- https://trakngo.com.ph/tools/
+- https://www.epa.gov/burnwise/choosing-right-wood-burning-stove
+- https://mohcsr.gov.om/library-category/educationalsites/
+- https://lcarealtors.com/helpful-links/
