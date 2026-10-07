@@ -53,7 +53,8 @@ function updateSubmitLog(urls, note) {
 }
 
 async function fetchSitemapUrls(sitemapUrl) {
-  const res = await fetch(sitemapUrl);
+  const res = await fetch(sitemapUrl, { signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`Sitemap HTTP ${res.status}`);
   const xml = await res.text();
   const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
   return [...matches].map(m => m[1].trim());
@@ -66,15 +67,19 @@ function sleep(ms) {
 async function submitBatch(endpoint, body) {
   const res = await fetch(endpoint, {
     method: 'POST',
+    signal: AbortSignal.timeout(20000),
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify(body),
   });
-  return { status: res.status, ok: res.ok };
+  return { status: res.status, ok: res.status === 200 || res.status === 202 };
 }
 
 async function submitToIndexNow(site, urls) {
   const { host, key } = site;
   const BATCH_SIZE = 100;
+  const acceptedUrls = [];
+  const failures = [];
+  const receipts = [];
 
   const ENDPOINTS = [
     { name: 'Bing', url: 'https://api.indexnow.org/indexnow' },
@@ -95,16 +100,20 @@ async function submitToIndexNow(site, urls) {
       ENDPOINTS.map(async ep => {
         try {
           const { status, ok } = await submitBatch(ep.url, body);
-          return `${ep.name}: ${ok ? '✅' : '❌'} ${status}`;
+          return { endpoint: ep.name, accepted: ok, status };
         } catch (e) {
-          return `${ep.name}: ⚠️ timeout/error`;
+          return { endpoint: ep.name, accepted: false, status: null, error: 'timeout/error' };
         }
       })
     );
-    console.log(`  Batch ${batchNum} (${batch.length} URLs) → ${results.join('  ')}`);
+    receipts.push({ urls: batch, results });
+    if (results.some(r => r.accepted)) acceptedUrls.push(...batch);
+    if (results.some(r => !r.accepted)) failures.push(...results.filter(r => !r.accepted));
+    console.log(JSON.stringify({ batch: batchNum, urls: batch, results }));
 
     if (i + BATCH_SIZE < urls.length) await sleep(2000);
   }
+  return { acceptedUrls, failures, receipts };
 }
 
 async function run() {
@@ -141,9 +150,12 @@ async function run() {
     process.exit(1);
   }
 
-  await submitToIndexNow(SITE, urls);
-  updateSubmitLog(urls, note);
-  console.log(`  ✅ Done (indexnow-submit-log.json updated)`);
+  // 2026-10-07: rejected or unknown outcomes must not advance submission records.
+  const result = await submitToIndexNow(SITE, urls);
+  const receiptNote = [note, JSON.stringify(result.receipts)].filter(Boolean).join(' | ');
+  if (result.acceptedUrls.length) updateSubmitLog(result.acceptedUrls, receiptNote);
+  console.log(JSON.stringify({ accepted_urls: result.acceptedUrls, endpoint_failures: result.failures }));
+  if (result.failures.length || !result.acceptedUrls.length) process.exitCode = 1;
 }
 
-run().catch(console.error);
+run().catch(error => { console.error(error.message); process.exitCode = 1; });
