@@ -28,17 +28,18 @@ export interface MixedNumber {
 
 /** Euclidean algorithm (Euclid, Elements, Book VII, Prop. 2). Always returns a non-negative integer. */
 export function gcd(a: number, b: number): number {
-	a = Math.abs(Math.round(a));
-	b = Math.abs(Math.round(b));
+	if (!Number.isSafeInteger(a) || !Number.isSafeInteger(b)) return NaN;
+	a = Math.abs(a);
+	b = Math.abs(b);
 	while (b !== 0) {
 		[a, b] = [b, a % b];
 	}
 	return a;
 }
 
-/** Reduces a fraction to lowest terms with a positive denominator. Null if denominator is 0 or either term isn't a finite number (e.g. a blank/partial form field). */
+/** Reduces a fraction to lowest terms with a positive denominator. Null unless both terms are safe integers and the denominator is nonzero. */
 export function simplifyFraction(numerator: number, denominator: number): Fraction | null {
-	if (!Number.isFinite(numerator) || !Number.isFinite(denominator)) return null;
+	if (!Number.isSafeInteger(numerator) || !Number.isSafeInteger(denominator)) return null;
 	if (denominator === 0) return null;
 	if (numerator === 0) return { numerator: 0, denominator: 1 };
 	const sign = denominator < 0 ? -1 : 1;
@@ -48,30 +49,34 @@ export function simplifyFraction(numerator: number, denominator: number): Fracti
 	return { numerator: n / divisor, denominator: d / divisor };
 }
 
+function validFraction(f: Fraction): boolean {
+	return Number.isSafeInteger(f.numerator) && Number.isSafeInteger(f.denominator) && f.denominator !== 0;
+}
+
 export function addFractions(a: Fraction, b: Fraction): Fraction | null {
-	if (a.denominator === 0 || b.denominator === 0) return null;
+	if (!validFraction(a) || !validFraction(b)) return null;
 	return simplifyFraction(a.numerator * b.denominator + b.numerator * a.denominator, a.denominator * b.denominator);
 }
 
 export function subtractFractions(a: Fraction, b: Fraction): Fraction | null {
-	if (a.denominator === 0 || b.denominator === 0) return null;
+	if (!validFraction(a) || !validFraction(b)) return null;
 	return simplifyFraction(a.numerator * b.denominator - b.numerator * a.denominator, a.denominator * b.denominator);
 }
 
 export function multiplyFractions(a: Fraction, b: Fraction): Fraction | null {
-	if (a.denominator === 0 || b.denominator === 0) return null;
+	if (!validFraction(a) || !validFraction(b)) return null;
 	return simplifyFraction(a.numerator * b.numerator, a.denominator * b.denominator);
 }
 
 /** Dividing by a zero-valued fraction (numerator 0) is undefined -> null. */
 export function divideFractions(a: Fraction, b: Fraction): Fraction | null {
-	if (a.denominator === 0 || b.denominator === 0 || b.numerator === 0) return null;
+	if (!validFraction(a) || !validFraction(b) || b.numerator === 0) return null;
 	return simplifyFraction(a.numerator * b.denominator, a.denominator * b.numerator);
 }
 
 /** whole 2, num 3, denom 4 ("2 3/4") -> 11/4. Sign of `whole` governs the result; a negative whole with a positive numerator is still "negative and a bit more" (-2 3/4 = -11/4), matching how mixed numbers are read aloud. */
 export function mixedToImproper(whole: number, numerator: number, denominator: number): Fraction | null {
-	if (denominator === 0) return null;
+	if (!Number.isSafeInteger(whole) || !validFraction({ numerator, denominator })) return null;
 	const sign = whole < 0 ? -1 : 1;
 	const improperNumerator = Math.abs(whole) * denominator + numerator;
 	return simplifyFraction(sign * improperNumerator, denominator);
@@ -96,7 +101,7 @@ export function improperToMixed(numerator: number, denominator: number): MixedNu
 }
 
 export function fractionToDecimal(numerator: number, denominator: number): number | null {
-	if (denominator === 0) return null;
+	if (!validFraction({ numerator, denominator })) return null;
 	return numerator / denominator;
 }
 

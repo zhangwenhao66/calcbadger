@@ -262,3 +262,27 @@ describe('decimalStringToFraction', () => {
 		expect(decimalStringToFraction('3.')).toBeNull();
 	});
 });
+
+describe('fraction integer input contract', () => {
+ it.each([0.1, 2.5, NaN, Infinity, -Infinity, Number.MAX_SAFE_INTEGER + 1])('rejects invalid fraction term %s throughout integer entry points', (value) => {
+  expect(simplifyFraction(value, 2)).toBeNull();
+  expect(simplifyFraction(1, value)).toBeNull();
+  expect(mixedToImproper(value, 1, 2)).toBeNull();
+  expect(mixedToImproper(0, value, 2)).toBeNull();
+  expect(mixedToImproper(0, 1, value)).toBeNull();
+  expect(improperToMixed(value, 2)).toBeNull();
+  expect(fractionToDecimal(value, 2)).toBeNull();
+  expect(fractionToPercent(1, value)).toBeNull();
+  expect(gcd(value, 2)).toBeNaN();
+ });
+ it.each([addFractions, subtractFractions, multiplyFractions, divideFractions])('rejects noninteger operands before they can cancel into integers', (operation) => {
+  expect(operation({ numerator: 0.5, denominator: 2 }, { numerator: 0.5, denominator: 2 })).toBeNull();
+  expect(operation({ numerator: 1, denominator: 2 }, { numerator: 1, denominator: 2.5 })).toBeNull();
+  expect(operation({ numerator: 1, denominator: Infinity }, { numerator: 1, denominator: 2 })).toBeNull();
+ });
+ it('keeps decimal-to-fraction conversion explicit and exact for ordinary decimal input', () => {
+  expect(decimalStringToFraction('0.1')).toEqual({ numerator: 1, denominator: 10 });
+  expect(decimalStringToFraction('0.2')).toEqual({ numerator: 1, denominator: 5 });
+  expect(decimalStringToFraction('-2.5')).toEqual({ numerator: -5, denominator: 2 });
+ });
+});
