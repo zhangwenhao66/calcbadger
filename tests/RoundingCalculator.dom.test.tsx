@@ -91,3 +91,26 @@ describe('RoundingCalculator (DOM)', () => {
 		expect(screen.getByText(/sits exactly halfway at this precision/)).toBeTruthy();
 	});
 });
+
+describe('RoundingCalculator precision bounds', () => {
+ it.each(['', '-7', '11', '2.5', '1000000000'])('rejects invalid custom precision %s and recovers', (value) => {
+  render(<RoundingCalculator />); choosePreset(/Custom decimal places/);
+  const field = screen.getByRole('spinbutton', { name: 'Decimal places' });
+  fireEvent.input(field, { target: { value } }); expect(screen.queryByText('Rounded result')).toBeNull();
+  fireEvent.input(field, { target: { value: '2' } }); expect(primaryResult()).toBe('1.01');
+ });
+ it.each(['', '0', '16', '2.5', '1000000000'])('rejects invalid significant figures %s and recovers', (value) => {
+  render(<RoundingCalculator />); fireEvent.click(screen.getByRole('radio', { name: 'Significant figures' }));
+  const field = screen.getByRole('spinbutton', { name: 'Significant figures' });
+  fireEvent.input(field, { target: { value } }); expect(screen.queryByText('Rounded result')).toBeNull();
+  fireEvent.input(field, { target: { value: '3' } }); expect(primaryResult()).toBe('1.01');
+ });
+ it('accepts the documented precision endpoints', () => {
+  render(<RoundingCalculator />); choosePreset(/Custom decimal places/);
+  const field = screen.getByRole('spinbutton', { name: 'Decimal places' });
+  for (const value of ['-6', '10']) { fireEvent.input(field, { target: { value } }); expect(screen.getByText('Rounded result')).toBeTruthy(); }
+  fireEvent.click(screen.getByRole('radio', { name: 'Significant figures' }));
+  const sig = screen.getByRole('spinbutton', { name: 'Significant figures' });
+  for (const value of ['1', '15']) { fireEvent.input(sig, { target: { value } }); expect(screen.getByText('Rounded result')).toBeTruthy(); }
+ });
+});

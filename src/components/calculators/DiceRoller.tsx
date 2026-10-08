@@ -18,6 +18,11 @@ import Select from '../ui/Select';
 const MAX_DICE = 20;
 const MAX_TARGET = 2000;
 
+function boundedInteger(input: string, min: number, max: number): number | null {
+	const value = input.trim() === '' ? NaN : Number(input);
+	return Number.isInteger(value) && value >= min && value <= max ? value : null;
+}
+
 function pct(x: number): string {
 	return `${(x * 100).toFixed(x < 0.001 && x > 0 ? 4 : 2)}%`;
 }
@@ -35,13 +40,13 @@ export default function DiceRoller() {
 	const [result, setResult] = useState<RollResult | null>(null);
 
 	const sidesNum = parseInt(sides, 10) || 0;
-	const countNum = Math.round(parseFloat(count) || 0);
-	const modifierNum = Math.round(parseFloat(modifier) || 0);
+	const countNum = boundedInteger(count, 1, MAX_DICE);
+	const modifierNum = boundedInteger(modifier, -100, 100);
 	const isD20 = sidesNum === 20;
-	const validRoll = countNum >= 1 && countNum <= MAX_DICE && DICE_TYPES.includes(sidesNum as never);
+	const validRoll = countNum !== null && modifierNum !== null && DICE_TYPES.includes(sidesNum as never);
 
 	function roll() {
-		if (!validRoll) return;
+		if (!validRoll || countNum === null || modifierNum === null) return;
 		if (isD20 && rollMode !== 'normal') {
 			setResult(rollD20WithAdvantage(rollMode, modifierNum));
 		} else {
@@ -55,15 +60,13 @@ export default function DiceRoller() {
 	const [probModifier, setProbModifier] = useState('0');
 	const [target, setTarget] = useState('7');
 
-	const pCount = Math.round(parseFloat(probCount) || 0);
+	const pCount = boundedInteger(probCount, 1, MAX_DICE);
 	const pSides = parseInt(probSides, 10) || 0;
-	const pModifier = Math.round(parseFloat(probModifier) || 0);
-	const pTarget = Math.round(parseFloat(target) || 0);
+	const pModifier = boundedInteger(probModifier, -100, 100);
+	const pTarget = boundedInteger(target, -MAX_TARGET, MAX_TARGET);
 	const validProb =
-		pCount >= 1 &&
-		pCount <= MAX_DICE &&
-		DICE_TYPES.includes(pSides as never) &&
-		Math.abs(pTarget) <= MAX_TARGET;
+		pCount !== null && pModifier !== null && pTarget !== null &&
+		DICE_TYPES.includes(pSides as never);
 
 	const isD20Single = pSides === 20 && pCount === 1;
 
@@ -87,6 +90,7 @@ export default function DiceRoller() {
 							value={sides}
 							onChange={(v) => {
 								setSides(v);
+								setResult(null);
 								if (parseInt(v, 10) !== 20) setRollMode('normal');
 							}}
 							options={diceOptions}
@@ -94,7 +98,7 @@ export default function DiceRoller() {
 						<NumberField
 							label="Number of dice"
 							value={count}
-							onChange={setCount}
+							onChange={(v) => { setCount(v); setResult(null); }}
 							min={1}
 							max={MAX_DICE}
 							step={1}
@@ -103,7 +107,7 @@ export default function DiceRoller() {
 						<NumberField
 							label="Modifier"
 							value={modifier}
-							onChange={setModifier}
+							onChange={(v) => { setModifier(v); setResult(null); }}
 							min={-100}
 							max={100}
 							step={1}
@@ -115,7 +119,7 @@ export default function DiceRoller() {
 						<Segmented
 							label="Roll mode"
 							value={rollMode}
-							onChange={setRollMode}
+							onChange={(v) => { setRollMode(v); setResult(null); }}
 							options={[
 								{ value: 'normal', label: 'Normal' },
 								{ value: 'advantage', label: 'Advantage' },
@@ -126,13 +130,13 @@ export default function DiceRoller() {
 					)}
 
 					{!validRoll && (
-						<p class="calc-note">Enter between 1 and {MAX_DICE} dice of a supported type.</p>
+						<p class="calc-note">Enter a whole number of dice from 1 to {MAX_DICE} and a whole-number modifier from −100 to 100.</p>
 					)}
 
 					<button type="button" class="op-button" onClick={roll} disabled={!validRoll}>
 						{isD20 && rollMode !== 'normal'
 							? `Roll with ${rollMode}`
-							: `Roll ${countNum > 0 ? countNum : ''}d${sidesNum || ''}`}
+							: `Roll ${countNum !== null ? countNum : ''}d${sidesNum || ''}`}
 					</button>
 
 					{result && (
@@ -204,7 +208,7 @@ export default function DiceRoller() {
 						/>
 					</div>
 
-					{validProb ? (
+					{validProb && pCount !== null && pModifier !== null && pTarget !== null ? (
 						<>
 							<div class="calc-results" style="margin-top:0.9rem">
 								<div>
@@ -268,8 +272,7 @@ export default function DiceRoller() {
 						</>
 					) : (
 						<p class="calc-note">
-							Enter between 1 and {MAX_DICE} dice of a supported type, and a target total within
-							range.
+							Enter whole numbers: 1 to {MAX_DICE} dice, a modifier from −100 to 100, and a target from −{MAX_TARGET} to {MAX_TARGET}.
 						</p>
 					)}
 

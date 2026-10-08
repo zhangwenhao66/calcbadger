@@ -67,6 +67,7 @@ export default function MouseTest() {
 	}
 
 	function onWheel(e: WheelEvent) {
+		if (!Number.isFinite(e.deltaY) || e.deltaY === 0) return;
 		e.preventDefault();
 		setScrollTicks((prev) => (e.deltaY > 0 ? { ...prev, down: prev.down + 1 } : { ...prev, up: prev.up + 1 }));
 	}
