@@ -345,3 +345,42 @@ contact@calcbadger.com
 **Passed `Skill(humanizer)` + `Skill(avoid-ai-writing)`**: no em/en dashes, no curly quotes, no AI-vocabulary hits, no chatbot artifacts, sentence-length and paragraph-length varied, sign-off matches this log's established voice.
 
 **Status: SENT (2026-09-29 07:31 -0700).** Correction to the line above (originally written "DRAFT ONLY, NOT SENT" under a different run's send-authority scope): `trafficsite-broken-link-building`'s "断链置换第十次运行" (commit `5d5acfc`) independently found and sent this identical pitch the same day (Message ID `1a0ed93ac463c0dc`, confirmed via `gmail_send.py list --query "to:groupconcepts.org"`). Recorded here so this task doesn't re-target andrea@groupconcepts.org in a future run.
+
+
+## 2026-10-09 follow-up（run-id: 20261009T2100）
+
+STATUS: REVIEW PASSED / WAITING OWEN APPROVAL / NOT SENT
+
+From: CalcBadger <contact@calcbadger.com>
+
+To: andrea@groupconcepts.org
+
+Subject: Re: A working replacement for a dead BMI calculator link on your Tools page
+
+Reply to: 1a0ed93ac463c0dc
+
+Not before: 2026-10-09 22:41 Asia/Shanghai
+
+Hi Andrea,
+
+Following up once on my September 29 note: the adult BMI link on your Tools, Calculators and Apps page still returns a 404. If you're updating that link, the CalcBadger adult BMI calculator is at https://calcbadger.com/bmi-calculator/.
+
+Owen Zhang
+Publisher, CalcBadger
+contact@calcbadger.com
+
+On September 29, 2026, CalcBadger <contact@calcbadger.com> wrote:
+> Hi Andrea,
+>
+> I was reading through the California Academy of Nutrition and Dietetics' "Tools, Calculators and Apps" page (dietitian.org/tools-calculators-and-apps/) and the "BMI Calculator for Adults" link to eatright.org now returns a 404. Looks like that page got pulled or moved in a redesign. The "BMI Calculator for Children and Teens" link right below it, pointing to a retired CDC tool at nccd.cdc.gov, is also dead.
+>
+> I run CalcBadger (calcbadger.com), a small site of free calculators that show their formulas and sources instead of just spitting out a number. Our BMI calculator (calcbadger.com/bmi-calculator/) covers US and metric units, the CDC/WHO adult categories with healthy-weight range, and the WHO's lower cutoffs for adults of Asian ancestry, so it would work as a replacement for the adult link specifically. It doesn't have the pediatric growth-chart logic the CDC's children's tool used, so I wouldn't put it forward for that second one.
+>
+> There's also an embeddable version (calcbadger.com/embed/bmi-calculator/) if you'd rather keep the calculator on your own page instead of sending visitors offsite. Happy to send the iframe snippet if that's useful.
+>
+> No worries either way if you'd rather source a different replacement. I just didn't want two dead calculator links sitting on a page built for the public. Let me know if either one is worth adding.
+>
+> Thanks,
+> Owen
+> CalcBadger
+> contact@calcbadger.com

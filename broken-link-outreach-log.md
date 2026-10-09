@@ -377,3 +377,11 @@ CalcBadger断链置换/嵌入投放战术累计已发送 **5封**（含2封跟�
 - https://www.epa.gov/burnwise/choosing-right-wood-burning-stove
 - https://mohcsr.gov.om/library-category/educationalsites/
 - https://lcarealtors.com/helpful-links/
+
+
+## 2026-10-09 Codex正式运行（run-id: 20261009T2100）
+
+原任务源码SHA 0ba445bbeffccdc04fdb2129ec95cd04b96e56ce31153b420a2dd4a2e89ca61c，完整覆盖1–176行。先查旧账及全账号Gmail，再复查来源页HTTP200、未出现本站替换链接；DataForSEO未找到对应来源域名外链。本次0发送、0新提交、0获链。原十站累计原账口径79封/0确认获链（不同站日志计数存在历史ID差异，非新增投递）。成本全轮$0.1221。证据：/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-broken-link-building/20261009T2100/old-review.json、calcbadger-backlinks.txt。
+一次跟进稿已过humanizer→avoid-ai-writing与独立agent实审，可以发送；待Owen批准，满十天统一最早22:41后，发送前重新去重/检查回复。草稿不算提交，未新建Gmail已发回执。/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-broken-link-building/20261009T2100/independent-review.md。
+营养资源页应查20，原扫描完成15，curl备选补扫2（99出链），实际完成17，失败3（未检查），原扫描原始DEAD24/SOFT65、补扫原始DEAD7，逐项相关性筛选无有效新机会。Cornell BEE是Harris–Benedict，本站为Mifflin–St Jeor，不对等；机构/footer/社交/数据库无对应资源。旧BMI pitch不重投。失败页使用有界备选核查，仍不确认为死链。
+17站今日已确认新提交2/102、缺口100（alpha1、gamma1，其余0）；本专项0。公开上线本轮未重新验证，未检查不算完成。完整逐站表：/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-broken-link-building/20261009T2100/17站当日覆盖.md。外链范围最新覆盖17站，但专项仅真实适配子集；主执行器补缺。低转化79/0已登记原统一待办，不重复新增策略告警。
