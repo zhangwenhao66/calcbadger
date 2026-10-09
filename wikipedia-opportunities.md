@@ -26,3 +26,13 @@
 ## 2026-09-03 复查：结构未变，继续跳过
 
 实地检查`calcbadger/src/pages/`确认本站仍是纯工具站结构（计算器/单位换算/生成器页面+embed组件），没有新增文章型内容板块。08-03排查结论（WP:RS不适用+WP:ELNO排斥计算器类外链）不受影响，本次未做维基百科端排查。若本站将来加入文章型内容（如公式原理讲解类长文），下次应重新评估。
+
+
+<!-- run:20261009T141607+0800 -->
+## 2026-10-09 近期样本实查
+
+当前核查以词条修订和本站实际内容为准，历史站龄门槛、缺作者页或计算器一律禁止的推断不沿用。本轮是近期样本筛查，非全站穷尽审计；不推进最后有效提交日期。
+
+- CalcBadger：本站 `cd-calculator`；维基条目 [Certificate of deposit](https://en.wikipedia.org/w/index.php?oldid=1376817146)，修订 1376817146。结论：CN涉及条款/续存/法律效力，计算器本身不证明，EL资格另核。合格引用建议0、Talk留言0、新提交0、公开上线0。
+
+参考来源资格与外部资源价值分别判断；本站来源更详尽本身不构成可靠来源资格。独立审查已完成，无对外草稿，英文写作链不适用。未编辑维基正文、未新增机会键或虚构回执。证据：`/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-wikipedia-outreach/20261009T141607+0800/screening-results.json`、`/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-wikipedia-outreach/20261009T141607+0800/wiki-current.json`、`/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-wikipedia-outreach/20261009T141607+0800/followup-20261009T1515-receipt.json`。
