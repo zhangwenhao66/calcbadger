@@ -24,16 +24,33 @@ interface ParsedDecimal {
 	scale: number;
 }
 
+// Bound decimal allocations even when callers bypass the UI's input limits.
+const MAX_DECIMAL_DIGITS = 10_000;
+const MAX_SIGNIFICANT_FIGURES = 15;
+// Rounding may carry one digit or derive a finer exponent from valid input.
+const MAX_RESULT_DIGITS = MAX_DECIMAL_DIGITS + 1;
+const MAX_PLACE_EXPONENT = MAX_DECIMAL_DIGITS + MAX_SIGNIFICANT_FIGURES;
+const METHODS = new Set<RoundingMethod>(['half-up', 'half-down', 'half-away-from-zero', 'half-to-even', 'ceiling', 'floor', 'truncate']);
+
+function validSigFigs(value: number): boolean {
+	return Number.isInteger(value) && value >= 1 && value <= MAX_SIGNIFICANT_FIGURES;
+}
+
 const DECIMAL_PATTERN = /^([+-]?)(\d*)(?:\.(\d+))?$/;
 
 export function parseDecimalString(input: string): ParsedDecimal | null {
+	return parseBoundedDecimal(input, MAX_DECIMAL_DIGITS);
+}
+
+function parseBoundedDecimal(input: string, maxDigits: number): ParsedDecimal | null {
 	const trimmed = input.trim();
-	if (trimmed === '' || trimmed === '-' || trimmed === '+') return null;
+	if (trimmed === '' || trimmed === '-' || trimmed === '+' || trimmed.length > maxDigits + 2) return null;
 	const match = DECIMAL_PATTERN.exec(trimmed);
 	if (!match) return null;
 	const [, signStr, intPart, fracPart = ''] = match;
 	if (intPart === '' && fracPart === '') return null;
 	const digitsStr = (intPart || '0') + fracPart;
+	if (digitsStr.length > maxDigits) return null;
 	return {
 		negative: signStr === '-',
 		digits: BigInt(digitsStr),
@@ -69,6 +86,7 @@ function formatUnsigned(quotient: bigint, placeExponent: number): string {
  * input isn't a plain decimal number.
  */
 export function roundToPlaceValue(input: string, placeExponent: number, method: RoundingMethod): RoundResult | null {
+	if (!Number.isInteger(placeExponent) || Math.abs(placeExponent) > MAX_PLACE_EXPONENT || !METHODS.has(method)) return null;
 	const parsed = parseDecimalString(input);
 	if (!parsed) return null;
 
@@ -140,6 +158,7 @@ export function roundToPlaceValue(input: string, placeExponent: number, method: 
  * offers an exponential-form readout for this mode.
  */
 export function roundToSignificantFigures(input: string, sigFigs: number, method: RoundingMethod): RoundResult | null {
+	if (!validSigFigs(sigFigs) || !METHODS.has(method)) return null;
 	const parsed = parseDecimalString(input);
 	if (!parsed) return null;
 	if (parsed.digits === 0n) {
@@ -152,8 +171,11 @@ export function roundToSignificantFigures(input: string, sigFigs: number, method
 }
 
 /** "1.20 × 10^4"-style string, for showing significant-figure trailing zeros unambiguously. */
-export function toExponentialForm(result: RoundResult, sigFigs: number): string {
-	if (result.value === 0) return `0 × 10^0`;
+export function toExponentialForm(result: RoundResult, sigFigs: number): string | null {
+	if (!validSigFigs(sigFigs)) return null;
+	const parsed = parseBoundedDecimal(result.formatted, MAX_RESULT_DIGITS);
+	if (!parsed) return null;
+	if (parsed.digits === 0n) return `0 × 10^0`;
 	const negative = result.formatted.startsWith('-');
 	const digitsOnly = result.formatted.replace('-', '').replace('.', '');
 	const trimmedLeadingZeros = digitsOnly.replace(/^0+/, '') || '0';
@@ -162,7 +184,6 @@ export function toExponentialForm(result: RoundResult, sigFigs: number): string 
 	// Recompute the decimal exponent independently from the formatted string
 	// (not reused from the rounding step) so this stays correct even when
 	// rounding carried the value across a power of ten (e.g. 995 -> 1000).
-	const parsed = parseDecimalString(result.formatted)!;
 	const digitsStr = parsed.digits.toString();
 	const exponent = digitsStr.length - 1 - parsed.scale;
 	return `${negative ? '-' : ''}${mantissa} × 10^${exponent}`;

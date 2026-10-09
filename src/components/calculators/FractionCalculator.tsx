@@ -52,21 +52,19 @@ function fmtDecimal(n: number, digits = 6): string {
 	return n.toLocaleString('en-US', { maximumFractionDigits: digits });
 }
 
-function toFinite(value: string, fallback = 0): number {
-	const n = parseFloat(value);
-	return Number.isFinite(n) ? n : fallback;
+function toInteger(value: string): number {
+	const n = value.trim() === '' ? NaN : Number(value);
+	return Number.isSafeInteger(n) ? n : NaN;
 }
 
-/** For modes where a blank numerator is treated as invalid (not defaulted to 0), name whichever field is actually missing or invalid, rather than always blaming the denominator. */
-function fractionInputNote(numeratorStr: string, denominatorStr: string): string {
-	const numeratorOk = Number.isFinite(parseFloat(numeratorStr));
-	const denominator = parseFloat(denominatorStr);
-	const denominatorOk = Number.isFinite(denominator);
-	if (!numeratorOk && !denominatorOk) return 'Enter a numerator and a denominator.';
-	if (!numeratorOk) return 'Enter a numerator.';
-	if (!denominatorOk) return 'Enter a denominator.';
+/** Invalid fraction terms must not be silently defaulted, truncated, or blamed on zero. */
+function fractionInputNote(numeratorStr: string, denominatorStr: string, wholeStr?: string): string {
+	if (wholeStr !== undefined && !Number.isSafeInteger(toInteger(wholeStr))) return 'Enter an integer whole-number part.';
+	if (!Number.isSafeInteger(toInteger(numeratorStr))) return 'Enter an integer numerator.';
+	const denominator = toInteger(denominatorStr);
+	if (!Number.isSafeInteger(denominator)) return 'Enter an integer denominator.';
 	if (denominator === 0) return 'Denominator cannot be 0.';
-	return 'Enter a numerator and a denominator.';
+	return 'Values are too large for an exact fraction. Enter smaller integers.';
 }
 
 export default function FractionCalculator() {
@@ -96,8 +94,8 @@ export default function FractionCalculator() {
 	const [cDecimal, setCDecimal] = useState('0.75');
 
 	// --- Operate ---
-	const aFraction = mixedToImproper(toFinite(aWhole), toFinite(aNum), toFinite(aDenom, NaN));
-	const bFraction = mixedToImproper(toFinite(bWhole), toFinite(bNum), toFinite(bDenom, NaN));
+	const aFraction = mixedToImproper(toInteger(aWhole), toInteger(aNum), toInteger(aDenom));
+	const bFraction = mixedToImproper(toInteger(bWhole), toInteger(bNum), toInteger(bDenom));
 	let opResult: Fraction | null = null;
 	if (aFraction && bFraction) {
 		if (operator === 'add') opResult = addFractions(aFraction, bFraction);
@@ -109,15 +107,15 @@ export default function FractionCalculator() {
 	const opDecimal = opResult ? fractionToDecimal(opResult.numerator, opResult.denominator) : null;
 
 	// --- Simplify ---
-	const simplifyResult = simplifyFraction(toFinite(sNum, NaN), toFinite(sDenom, NaN));
+	const simplifyResult = simplifyFraction(toInteger(sNum), toInteger(sDenom));
 	const simplifyDecimal = simplifyResult ? fractionToDecimal(simplifyResult.numerator, simplifyResult.denominator) : null;
 	const simplifyPercent = simplifyResult ? fractionToPercent(simplifyResult.numerator, simplifyResult.denominator) : null;
 
 	// --- Convert ---
 	const mixedToImproperResult =
-		direction === 'mixedToImproper' ? mixedToImproper(toFinite(cWhole), toFinite(cNum), toFinite(cDenom, NaN)) : null;
+		direction === 'mixedToImproper' ? mixedToImproper(toInteger(cWhole), toInteger(cNum), toInteger(cDenom)) : null;
 	const improperToMixedResult =
-		direction === 'improperToMixed' ? improperToMixed(toFinite(cImpNum, NaN), toFinite(cImpDenom, NaN)) : null;
+		direction === 'improperToMixed' ? improperToMixed(toInteger(cImpNum), toInteger(cImpDenom)) : null;
 	const decimalResult = direction === 'decimalToFraction' ? decimalStringToFraction(cDecimal) : null;
 
 	return (
@@ -191,7 +189,9 @@ export default function FractionCalculator() {
 					<p class="calc-note">
 						{operator === 'divide' && bFraction?.numerator === 0
 							? 'Dividing by zero is undefined. Fraction B cannot equal 0.'
-							: 'Denominators cannot be 0. Enter a non-zero denominator for both fractions.'}
+							: !aFraction ? `Fraction A: ${fractionInputNote(aNum, aDenom, aWhole)}`
+							: !bFraction ? `Fraction B: ${fractionInputNote(bNum, bDenom, bWhole)}`
+							: 'Values are too large for an exact fraction. Enter smaller integers.'}
 					</p>
 				))}
 
@@ -230,7 +230,7 @@ export default function FractionCalculator() {
 								</div>
 							</div>
 						) : (
-							<p class="calc-note">Denominator cannot be 0.</p>
+							<p class="calc-note">{fractionInputNote(cNum, cDenom, cWhole)}</p>
 						))}
 					{direction === 'improperToMixed' &&
 						(improperToMixedResult ? (

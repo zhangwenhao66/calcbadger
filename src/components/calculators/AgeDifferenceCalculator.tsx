@@ -108,17 +108,17 @@ export default function AgeDifferenceCalculator() {
 					<div>
 						<p class="calc-result-label">Person 1's age today</p>
 						<p class="calc-result-value">
-							{formatAge(result.ageA)} {result.aIsOlder ? '(older)' : '(younger)'}
+							{formatAge(result.ageA)} {result.totalDaysGap === 0 ? '(same age)' : result.aIsOlder ? '(older)' : '(younger)'}
 						</p>
 					</div>
 					<div>
 						<p class="calc-result-label">Person 2's age today</p>
 						<p class="calc-result-value">
-							{formatAge(result.ageB)} {result.aIsOlder ? '(younger)' : '(older)'}
+							{formatAge(result.ageB)} {result.totalDaysGap === 0 ? '(same age)' : result.aIsOlder ? '(younger)' : '(older)'}
 						</p>
 					</div>
 					<div>
-						<p class="calc-result-label">Gap as % of the older person's age</p>
+						<p class="calc-result-label">{result.totalDaysGap === 0 ? "Gap as % of either person's age" : "Gap as % of the older person's age"}</p>
 						<p class="calc-result-value">{result.gapPercentOfOlder.toLocaleString('en-US', { maximumFractionDigits: 1 })}%</p>
 					</div>
 					<div>

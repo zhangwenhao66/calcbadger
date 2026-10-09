@@ -47,15 +47,18 @@ export default function RoundingCalculator() {
 	// PLACE_PRESETS values are already the target placeExponent (e.g. '-2' =
 	// "Nearest hundredth" = round to 10^-2). Only the Custom field is a
 	// decimal-places COUNT, which needs negating to become an exponent.
-	const placeExponent = placePreset === 'custom' ? -parseInt(customPlaces, 10) : parseInt(placePreset, 10);
-	const sigFigsNum = parseInt(sigFigs, 10);
+	const customPlacesNum = customPlaces.trim() === '' ? NaN : Number(customPlaces);
+	const placeExponent = placePreset === 'custom' ? -customPlacesNum : Number(placePreset);
+	const sigFigsNum = sigFigs.trim() === '' ? NaN : Number(sigFigs);
+	const validDecimalPrecision = Number.isInteger(placeExponent) && (placePreset !== 'custom' || (customPlacesNum >= -6 && customPlacesNum <= 10));
+	const validSigFigPrecision = Number.isInteger(sigFigsNum) && sigFigsNum >= 1 && sigFigsNum <= 15;
 
 	const result =
 		mode === 'decimal'
-			? Number.isFinite(placeExponent)
+			? validDecimalPrecision
 				? roundToPlaceValue(inputValue, placeExponent, method)
 				: null
-			: Number.isFinite(sigFigsNum) && sigFigsNum >= 1
+			: validSigFigPrecision
 				? roundToSignificantFigures(inputValue, sigFigsNum, method)
 				: null;
 
@@ -105,7 +108,7 @@ export default function RoundingCalculator() {
 					)}
 				</div>
 			) : (
-				<p class="calc-note">Enter a plain number (no scientific notation) and choose a precision above.</p>
+				<p class="calc-note">Enter a plain number (no scientific notation, at most 10,000 digits). Use a whole-number precision: −6 to 10 decimal places or 1 to 15 significant figures.</p>
 			)}
 
 			{result !== null && requestedButUnavailable && (

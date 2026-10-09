@@ -211,3 +211,41 @@ describe('parseDecimalString', () => {
 		expect(parseDecimalString('12.3.4')).toBeNull();
 	});
 });
+
+describe('rounding allocation and runtime argument boundaries', () => {
+ it.each([NaN, Infinity, -Infinity, 1.5, 1000000000, -1000000000])('rejects unsafe place exponent %s', (precision) => {
+  expect(roundToPlaceValue('1.005', precision, 'half-up')).toBeNull();
+ });
+ it.each([NaN, Infinity, -1, 0, 1.5, 16, 1000000000])('rejects unsafe significant-figure count %s at both library entry points', (precision) => {
+  expect(roundToSignificantFigures('1.005', precision, 'half-up')).toBeNull();
+  expect(toExponentialForm(roundToPlaceValue('1.005', -2, 'half-up')!, precision)).toBeNull();
+ });
+ it('rejects excessively long decimals and invalid runtime methods', () => {
+  expect(parseDecimalString('1'.repeat(10001))).toBeNull();
+  expect(roundToPlaceValue('2.5', 0, 'invalid' as RoundingMethod)).toBeNull();
+  expect(roundToSignificantFigures('0', 3, 'invalid' as RoundingMethod)).toBeNull();
+ });
+ it('retains tiny exact decimal significant figures even when Number underflows to zero', () => {
+  const input = `0.${'0'.repeat(330)}1234`;
+  const result = roundToSignificantFigures(input, 3, 'half-up')!;
+  expect(result.formatted).toBe(`0.${'0'.repeat(330)}123`);
+  expect(toExponentialForm(result, 3)).toBe('1.23 × 10^-331');
+ });
+});
+
+
+describe('rounding derived precision at the input digit limit', () => {
+ it('allows the one-digit carry in the rounded output without admitting longer input', () => {
+  const input = '9'.repeat(10000);
+  const result = roundToSignificantFigures(input, 1, 'half-up')!;
+  expect(result.formatted).toBe('1' + '0'.repeat(10000));
+  expect(toExponentialForm(result, 1)).toBe('1 × 10^10000');
+  expect(parseDecimalString(result.formatted)).toBeNull();
+ });
+ it('preserves a valid tiny input when 15 sig figs derive a finer exponent', () => {
+  const input = '0.' + '0'.repeat(9997) + '1';
+  const result = roundToSignificantFigures(input, 15, 'half-up')!;
+  expect(result.formatted).toBe(input);
+  expect(toExponentialForm(result, 15)).toBe('1.00000000000000 × 10^-9998');
+ });
+});
