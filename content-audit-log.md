@@ -2936,3 +2936,41 @@
   "diffusion_note": "扩散判定：单站（本次修复方式是CalcBadger压制期专属的'实质增强'规则，其余五个内容站无此规则，非可扩散的通用发现）"
 }
 ```
+
+```json
+{
+  "type": "PAA-FAQ批强(daily-task, 2026-10-10)",
+  "site": "calcbadger",
+  "run_id": "20261010T1100",
+  "scope": "压制期放开，仅新增FAQ，每站最多8页",
+  "slugs_reviewed": [
+    "weight-converter"
+  ],
+  "faq_added": 1,
+  "slugs_modified": [
+    "weight-converter"
+  ],
+  "rejections": [
+    {
+      "slug": "weight-converter",
+      "question": "How do you convert 1 kg to lbs?",
+      "reason": "已由How many pounds are in a kilogram及kg-to-lb公式FAQ实质覆盖"
+    },
+    {
+      "slug": "weight-converter",
+      "question": "How much is 70 kg in human weight?",
+      "reason": "既有公斤换磅FAQ已有70kg=154.32lb例子，实质重复"
+    }
+  ],
+  "mechanical": "每条新增后与commit前check_prose_patterns.py；baseline0/after0，证据运行目录",
+  "writing_chain": "kit唯一源humanizer→avoid-ai-writing按参考口径两轮执行；数字/语言例子/链接保真",
+  "sources": [
+    "https://www.nist.gov/system/files/documents/calibrations/sp250-31.pdf",
+    "https://www.legislation.gov.uk/ukpga/1985/72/schedule/1/part/VI/paragraph/wrapper1n2"
+  ],
+  "review": "独立父agent审查通过；回执traffic-b-review.json",
+  "not_reached": "其余页面未轮到，20分钟本轮有界收口",
+  "fairness": "无新增不推进最后实际处理日期；既有日志日期保留",
+  "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/paa-faq-gap-fill/20261010T1100/traffic-b-final.json"
+}
+```

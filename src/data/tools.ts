@@ -1409,6 +1409,10 @@ export const tools: Tool[] = [
 				question: 'How do I convert kilograms to stone and pounds?',
 				answer: 'Divide the kilogram figure by 6.35029318 to get decimal stone. The whole number is the stone count; multiply the remaining decimal by 14 to get the leftover pounds. For example, 70 kg ÷ 6.35029318 ≈ 11.02 stone, which is 11 stone plus 0.02 × 14 ≈ 0 lb, commonly written "11 stone."',
 			},
+			{
+				question: 'What is 62 kg in stones and pounds?',
+				answer: '62 kg comes to about 9 stone 10.7 pounds. Rounded to whole pounds, that is 9 stone 11 pounds. Dividing 62 by 0.45359237 gives about 136.687 pounds; nine stones account for 126 of them.',
+			},
 		],
 		sources: [
 			{
