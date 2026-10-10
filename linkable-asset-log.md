@@ -55,3 +55,13 @@ pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经�
 ## 2026-09-18 — 更正：9/15条目"未发送"状态已过期
 
 上面9/15条目记录的board-foot-calculator→Woodworkers Journal pitch，当时确实因ZeptoMail迁移窗口未发送，但迁移完成后已于**2026-09-16 13:17 UTC**补发成功（收件人`editor@woodworkersjournal.com`，Message ID `1a0aa5d40a324eeb`，详细verification notes见`outreach-drafts.md`对应条目，其Status字段已正确更新为SENT）。本条目补记是因为9/18的COO首轮分析报告只读了本文件的9/15条目就误判"仍未发送"，核实`gmail_send.py list`真实发信记录后发现9/16已经发出——本文件的历史条目不回改，仅在此追加订正，避免以后再被误读。
+
+
+## 2026-10-10 13:30 — Codex / run-id 20261010T1330
+
+- 当前任务源码SHA：98aea1a63cda47dc8bf7f5ccc15de79260112e2567762b2b83483512f801c018，完整覆盖1–248行。
+- GSC窗口2026-09-10至2026-10-07，应查17/实查17/未检查0；按固定首位及前三选CalcBadger、WageLark、alpha、UmberLore。其余13站本轮未轮到，不推进处理日期。
+- 固定首位按最久未成功处理顺序轮到CalcBadger；DialWick冻结排除。先分发现有公式索引/计算器；WoodworkersJournal已有9/16发送回执，未重复。公开资源页检索未确认新的未链提及或合格联系缺口；本轮无合格分发机会，处理日期不推进。既有同类反查标记保留。
+- 新资产0；本轮发送N=0，新增已验证dofollow M=0，不计算0/0成功率。有回执历史累计N=21，原日志已确认M=0，M/N=0%；不声称全量历史链接本轮实时复查。未到累计30触发线。
+- 证据：/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-linkable-asset-building/20261010T1330/receipt.json；现存资产未饱和且今天10号未触发15号兜底，本轮不制造资产；只改业务文档，无网站内容部署。
+- 下一步：UmberLore邮件精确草稿待Owen明确说“发”；其余未获新分发机会的对象保留原日期。共享work_journal保存本轮结果，不更新作战数据台。
