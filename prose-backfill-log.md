@@ -1,0 +1,9 @@
+# Prose gate backfill
+
+2026-10-11, batch calc-b1: 7 pages.
+
+CD/WACC distinction narrowed to weighted equity and debt costs; molarity bridge corrected to four variables. Prorated rent bridge, body and FAQ corrected: only actual-month and thirty-day methods coincide in a thirty-day month; annual uses 365/366. No FAQ removed. Updated dates changed for four edited pages.
+
+Verified cd-calculator, square-footage-calculator, temperature-converter, length-converter, mortgage-calculator, volume-converter, prorated-rent-calculator with prose and bridge gates (candidate notes where needed), each exit 0; seven individual builds exit 0.
+
+Evidence: /Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/calc-b1/final-checks.json; semantic notes: /Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b1; writing chain: /Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/calc-b1-semantic.json.

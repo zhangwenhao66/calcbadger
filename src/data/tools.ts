@@ -70,10 +70,10 @@ export const tools: Tool[] = [
 		shortTitle: 'CD Calculator',
 		description:
 			'Work out what a certificate of deposit will be worth at maturity: final balance, total interest, and the effective APY for any rate, compounding schedule, and term.',
-		updated: '2026-09-29',
+		updated: '2026-10-11',
 		published: '2026-08-02',
 		coreSummary:
-			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity. A company financing itself instead of a saver depositing cash faces the mirror-image question: [WACC](/wacc-calculator/) blends the cost of equity and after-tax cost of debt into one rate, the borrowing-side counterpart to the rate a CD pays a depositor.',
+			'A CD grows by compound interest: final balance = deposit × (1 + rate/n)^(n × years), where n is how often the bank compounds. If the bank quotes an APY, compounding is already baked in and the balance is simply deposit × (1 + APY)^years. This calculator handles both quote styles and shows the interest you actually walk away with at maturity. A company raising capital faces a different rate calculation: [WACC](/wacc-calculator/) combines the return required by equity investors with the after-tax cost of debt, weighted by how much funding each supplies.',
 		queries: ['cd calculator', 'certificate of deposit calculator', 'cd interest calculator'],
 		sections: [
 			{
@@ -867,10 +867,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Temperature Converter',
 		description:
 			'Convert between Celsius, Fahrenheit, and Kelvin instantly, with reference tables for oven temperatures, fever/body-temperature readings, and everyday weather values.',
-		updated: '2026-08-04',
+		updated: '2026-10-11',
 		published: '2026-08-04',
 		coreSummary:
-			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two. A chemistry lab reading a thermometer next to a solution is usually also working out concentration: [molarity](/molarity-calculator/) rearranges the same mass-molar mass-volume relationship to solve for whichever one of the three is unknown.',
+			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two. For a solution\'s concentration, [molarity](/molarity-calculator/) relates concentration to solute mass, molar mass, and solution volume, and can solve for any one when the other three are known.',
 		queries: [
 			'celsius to fahrenheit',
 			'fahrenheit to celsius',
@@ -1437,10 +1437,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Mortgage Calculator',
 		description:
 			'Estimate your monthly mortgage payment (principal, interest, taxes, insurance, PMI, HOA) and total interest, for any home price, down payment or rate.',
-		updated: '2026-08-17',
+		updated: '2026-10-11',
 		published: '2026-08-05',
 		coreSummary:
-			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment. Not every fixed financial product compounds the same way a mortgage amortizes, either: a [CD](/cd-calculator/) grows by straightforward compound interest on a lump sum, with no monthly payment schedule to amortize at all. A renter, not a mortgage-holder, still runs into a once-off calculation at move-in or move-out: [prorated rent](/prorated-rent-calculator/) depends entirely on which day-count convention the lease uses, actual days in the month, a flat 30-day banker\'s month, or the rent divided across a 365-day year, and the three methods give three different dollar answers for the same dates.',
+			'A fixed-rate mortgage payment is level for the life of the loan: M = P[r(1+r)^n]/[(1+r)^n−1], where P is the loan amount, r the monthly interest rate, and n the number of monthly payments. Early payments are mostly interest; later payments are mostly principal, even though the total check stays the same size every month. This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment. Not every fixed financial product compounds the same way a mortgage amortizes, either: a [CD](/cd-calculator/) grows by straightforward compound interest on a lump sum, with no monthly payment schedule to amortize at all. At move-in or move-out, a renter may need [prorated rent](/prorated-rent-calculator/): the lease may use actual days in the month, a flat 30-day banker\'s month, or annual rent divided by 365 (366 in a leap year). These methods can give different charges for the same occupancy dates.',
 		queries: [
 			'mortgage calculator',
 			'home loan calculator',
@@ -4406,7 +4406,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Prorated Rent',
 		description:
 			'Work out the partial-month rent for a mid-month move-in or move-out, and compare what the three common day-count methods (actual days in the month, a flat 30-day "banker\'s month," and the rent divided across a 365-day year) would each charge for the same dates.',
-		updated: '2026-08-20',
+		updated: '2026-10-11',
 		published: '2026-08-20',
 		coreSummary:
 			'Prorated rent = daily rate × days occupied, but the daily rate depends on which day-count convention sets it: "actual days" divides the monthly rent by that specific month\'s real length (28–31 days), "banker\'s month" always divides by 30 regardless of the month, and "annual (365)" divides the yearly rent (monthly × 12) by 365, or 366 in a leap year. On a $1,500/month lease with 12 days occupied in a 31-day month, that is $580.65 (actual), $600.00 (banker\'s), or $591.78 (annual). Three different answers for the identical move-in date, which is why the lease should say which method applies.',
@@ -4422,7 +4422,7 @@ export const tools: Tool[] = [
 				heading: 'Two conventions, borrowed from finance',
 				body: [
 					'There is no single method every lease uses. Landlords and property managers pick one of a small set of day-count conventions, the same choice bond and loan markets make when accruing interest for a period shorter than a full term. The "banker\'s month" convention treats every month as exactly 30 days, no matter how many days it actually has. This is the same 30/360 day-count convention the International Swaps and Derivatives Association formally defines in its 2006 ISDA Definitions for interest accrual, applied here to rent instead of a bond coupon. The "actual days" convention instead divides by the real number of days in that specific calendar month, so the daily rate is higher in February and lower in a 31-day month like January, March, May, July, August, October, or December.',
-					'A third option, sometimes called the "annual" or "365" method, skips the month entirely: it multiplies the monthly rent by 12 to get an annual figure, then divides by 365 (or 366 in a leap year) to get a daily rate that stays constant all year. All three agree exactly whenever the partial month itself has 30 days (April, June, September, and November) and diverge everywhere else. That is the reason a lease needs to say which method applies instead of just saying "prorated."',
+					'A third option, sometimes called the "annual" or "365" method, skips the month entirely: it multiplies the monthly rent by 12 to get an annual figure, then divides by 365 (or 366 in a leap year) to get a daily rate that stays constant all year. The actual-days and banker\'s-month methods agree in a 30-day month (April, June, September, and November). The annual method still uses 365 or 366 days, so its daily rate differs. That is the reason a lease needs to say which method applies instead of just saying "prorated."',
 				],
 			},
 			{
@@ -4471,7 +4471,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Why do I get a different prorated amount than my landlord calculated?',
 				answer:
-					'Almost always because you are using different day-count methods. The actual-days, banker\'s-month, and annual (365) conventions only agree exactly when the calendar hands you a genuinely 30-day-long month; any other month, they hand back three different totals for one single arrival or departure date. Check the lease for which method it specifies before assuming either number is wrong.',
+					'Check the day-count rule before treating either bill as a mistake. In the four months with thirty days, dividing monthly rent by the calendar length gives the same result as the flat-thirty rule. Spreading twelve rent payments over a whole year produces another rate, including during those months. A leap year uses 366 as that annual denominator; other years use 365.',
 			},
 			{
 				question: 'Is there a federal law that sets the prorated rent method?',
