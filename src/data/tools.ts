@@ -2176,10 +2176,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Date Calculator',
 		description:
 			'Find the number of days between two dates, add or subtract days from a date, or count down to New Year\'s Day, Halloween, Thanksgiving, and Christmas.',
-		updated: '2026-08-23',
+		updated: '2026-10-11',
 		published: '2026-08-06',
 		coreSummary:
-			'Every mode here runs on the proleptic Gregorian calendar, the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4), with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function. A date calculation that also needs to account for time zones, not just calendar dates, is a separate problem: [the world clock](/world-clock/) reads live offsets and daylight-saving transitions straight from the IANA time zone database rather than a stored table, so it stays correct through DST changes.',
+			'Every mode here runs on the proleptic Gregorian calendar, the same calendar rule ECMAScript\'s Date object uses (ECMA-262 §21.4), with no time-of-day component, so a "day" always means one full calendar date regardless of time zone. "Difference" reports both the exact total day count between two dates and a calendar-style years/months/days breakdown; the two can disagree by up to a day for an anniversary of February 29 measured against a non-leap year, because the breakdown follows the same "has the month-and-day been reached yet" rule Microsoft documents for Excel\'s DATEDIF function. For a date calculation that also needs time zones, [the world clock](/world-clock/) uses the browser\'s time zone data to calculate local times and daylight-saving offsets for the selected date. Newly changed government rules depend on the browser having an up-to-date database.',
 		queries: [
 			'date calculator',
 			'days between two dates',
@@ -2491,10 +2491,10 @@ export const tools: Tool[] = [
 		shortTitle: 'World Clock',
 		description:
 			'See the current time in dozens of cities worldwide, or convert a specific date and time from one time zone to another, including the day-of-week shift and daylight-saving status.',
-		updated: '2026-08-09',
+		updated: '2026-10-11',
 		published: '2026-08-09',
 		coreSummary:
-			'Every offset and daylight-saving transition here is read live from the IANA time zone database built into your browser (the same source every major OS uses) rather than a stored table of UTC offsets, so results stay correct through DST changes in either zone. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day. Working out elapsed time between two clock readings, rather than converting one moment across time zones, is its own calculation: [time duration](/time-duration-calculator/) handles the overnight-rollover case automatically, assuming an end time earlier than the start time falls on the next day.',
+			'Offsets and daylight-saving transitions here come from the IANA time zone data available to your browser through Intl.DateTimeFormat, rather than a site-maintained table of fixed UTC offsets. The result follows the rules in that installed database; recent government changes require an up-to-date browser or system database. World clock mode shows a live, second-by-second time for a chosen city; Convert a time takes a date and time in one city and returns the exact equivalent in another, including whether the calendar date shifts forward or back a day. Working out elapsed time between two clock readings, rather than converting one moment across time zones, is its own calculation: [time duration](/time-duration-calculator/) handles the overnight-rollover case automatically, assuming an end time earlier than the start time falls on the next day.',
 		queries: [
 			'world clock',
 			'time zone converter',
@@ -2519,7 +2519,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Where the numbers come from',
 				body: [
-					"Every offset and daylight-saving transition on this page comes from your browser's IANA time zone database (the Olson database), the same source Windows, macOS, iOS, Android, and every major browser read from. That's a different approach from storing a table of UTC offsets. A stored table goes stale the moment a country changes its daylight-saving rule, which happens most years somewhere in the world. Reading the offset live from the same database the operating system uses avoids that, with nothing to update by hand.",
+					"The tool asks Intl.DateTimeFormat for the local date and time in a named IANA zone. That uses the time zone rules installed in the browser or its runtime, including daylight-saving transitions for the selected date. It avoids maintaining a separate list of fixed offsets on this site. It does not fetch fresh rules from IANA on every conversion: when governments change the rules, the browser or its underlying time zone data needs an update.",
 				],
 			},
 			{
@@ -2543,7 +2543,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Daylight-saving rules can change',
 				body: [
-					'Iran ended its use of daylight saving time in September 2022 and has kept a single fixed offset of UTC+3:30 year round since, after decades of switching clocks twice a year like most of its neighbors. A government sets a zone\'s daylight-saving rule and can change it whenever it wants, which is why this page reads the rule live instead of storing it.',
+					'Iran ended its use of daylight saving time in September 2022 and has kept a single fixed offset of UTC+3:30 year round since, after decades of switching clocks twice a year like most of its neighbors. A government can change a zone\'s daylight-saving rule. This page uses the browser\'s rules for the date entered; their accuracy after a recent change depends on the installed time zone data being current.',
 				],
 			},
 		],
@@ -3397,10 +3397,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Steps to Miles',
 		description:
 			'Convert steps to miles or kilometers using a stride length estimated from your height and gender, not a flat 2,000-steps-per-mile guess. Also converts a distance back into steps.',
-		updated: '2026-08-12',
+		updated: '2026-10-11',
 		published: '2026-08-12',
 		coreSummary:
-			'Steps convert to distance through stride length, not a fixed ratio: distance = steps × step length. Step length itself is estimated from height using the regression Hoeger et al. (2008) fit across walking and running speeds: step length ≈ height × 0.415 for men or height × 0.413 for women. At the U.S. average adult height (68.9in men, 63.5in women, CDC NHANES), 10,000 steps works out to about 4.51 miles for men and 4.14 miles for women. The "10,000 steps ≈ 5 miles" rule of thumb only holds for someone near that average height and overshoots for a shorter stride. Height feeds into a very different clinical calculation elsewhere on this site: [body surface area](/body-surface-area-calculator/) combines height and weight through the Mosteller or Du Bois formula to estimate total skin surface, used to scale chemotherapy doses rather than to measure how far someone walked. A different sport-specific distance estimate on this site scales similarly from one known personal measurement: [golf club distances](/golf-club-distance-chart/) can be rescaled from a single known driver distance to estimate every other club in the bag, the same one-measurement-predicts-the-rest logic as using height to estimate stride length.',
+			'Steps convert to distance through stride length, not a fixed ratio: distance = steps × step length. Step length itself is estimated from height using the regression Hoeger et al. (2008) fit across walking and running speeds: step length ≈ height × 0.415 for men or height × 0.413 for women. At the U.S. average adult height (68.9in men, 63.5in women, CDC NHANES), 10,000 steps works out to about 4.51 miles for men and 4.14 miles for women. The "10,000 steps ≈ 5 miles" rule of thumb only holds for someone near that average height and overshoots for a shorter stride. Height feeds into a very different clinical calculation elsewhere on this site: [body surface area](/body-surface-area-calculator/) combines height and weight through the Mosteller or Du Bois formula to estimate total skin surface, used to scale chemotherapy doses rather than to measure how far someone walked. A sport-specific distance estimate also starts from one known personal measurement: [golf club distances](/golf-club-distance-chart/) scales the chart\'s nine anchor clubs from a known driver distance, within its half-to-1.8-times baseline limit, much as height can estimate stride length.',
 		queries: [
 			'how many miles is 10000 steps',
 			'steps to miles',
@@ -4306,11 +4306,11 @@ export const tools: Tool[] = [
 		title: 'Markup Calculator',
 		shortTitle: 'Markup Calculator',
 		description:
-			'Solve for selling price, cost, or markup percentage from the other two, and see the corresponding margin percentage every time, since the two are easy to mix up but never equal.',
-		updated: '2026-08-19',
+			'Solve for selling price, cost, or markup percentage from the other two, and see the corresponding margin percentage every time, since the two use different bases and are easy to mix up.',
+		updated: '2026-10-11',
 		published: '2026-08-19',
 		coreSummary:
-			'Markup% = (selling price − cost) / cost × 100. Margin% = (selling price − cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused. Percentage-of-a-total math shows up in a much more everyday setting too: a [tip](/tip-calculator/) is the same kind of percent-of-base calculation, though restaurant etiquette says the base should be the pre-tax subtotal, not the tax-inclusive total most people tip from.',
+			'Markup% = (selling price − cost) / cost × 100. Margin% = (selling price − cost) / selling price × 100. Both describe the same dollar of profit, but markup divides it by cost and margin divides it by the selling price, so margin is always the smaller number on a profitable sale (cost $70, price $100: 42.86% markup but only 30% margin). This calculator solves for whichever of cost, selling price, or markup percent you do not have yet, and always reports the matching margin percent alongside it so the two numbers are never confused. Percentage-of-a-total math shows up in a much more everyday setting too: a [tip](/tip-calculator/) is the same kind of percent-of-base calculation, with either the pre-tax subtotal or the tax-inclusive bill as its base; Emily Post accepts using the pre-tax amount.',
 		queries: ['markup calculator', 'markup percentage calculator', 'markup vs margin calculator', 'how to calculate markup', 'markup to margin converter'],
 		sections: [
 			{
@@ -4364,7 +4364,7 @@ export const tools: Tool[] = [
 			{
 				question: 'What is the difference between markup and margin?',
 				answer:
-					'Markup divides profit by cost; margin takes that identical profit dollar and sets it against what the customer actually paid. Run the numbers both ways and margin comes out smaller every time, since it\'s dividing the identical profit dollar by a bigger number.',
+					'Markup divides profit by cost; margin takes that identical profit dollar and sets it against what the customer actually paid. For a sale above a positive cost, the percentage measured against revenue is lower because the denominator is larger. At break-even, each rate is zero; on a loss-making sale, this smaller-margin comparison does not apply.',
 			},
 			{
 				question: 'How do I calculate markup percentage?',
@@ -5363,10 +5363,10 @@ export const tools: Tool[] = [
 		shortTitle: 'WACC',
 		description:
 			"Calculate a company's weighted average cost of capital from its equity and debt weights, cost of equity (CAPM or a direct rate), and after-tax cost of debt.",
-		updated: '2026-08-23',
+		updated: '2026-10-11',
 		published: '2026-08-23',
 		coreSummary:
-			'WACC = (E/V × Re) + (D/V × Rd × (1 − Tc)), where V = E + D is total capital, Re is the cost of equity, and Rd is the pre-tax cost of debt. A company with $600M equity at a 10% cost of equity and $400M debt at a 6% pre-tax cost of debt (21% tax rate) has a WACC of (0.6 × 10%) + (0.4 × 4.74%) = 7.90%. Once that cost-of-capital rate is set, a business still has to price what it sells above cost to actually earn a return on it: [markup and margin](/markup-calculator/) describe the same dollar of profit two different ways, and the two percentages are never equal.',
+			'WACC = (E/V × Re) + (D/V × Rd × (1 − Tc)), where V = E + D is total capital, Re is the cost of equity, and Rd is the pre-tax cost of debt. A company with $600M equity at a 10% cost of equity and $400M debt at a 6% pre-tax cost of debt (21% tax rate) has a WACC of (0.6 × 10%) + (0.4 × 4.74%) = 7.90%. After estimating that cost-of-capital rate, a business pricing a product can compare [markup and margin](/markup-calculator/): both use the profit on a sale, but divide it by cost and selling price respectively. With positive cost and price, the percentages coincide only when profit is zero.',
 		queries: [
 			'wacc calculator',
 			'weighted average cost of capital calculator',
