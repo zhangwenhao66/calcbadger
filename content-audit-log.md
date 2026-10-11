@@ -3018,3 +3018,13 @@
   "build": "npm run build 通过（127 页，1.7s）"
 }
 ```
+
+
+## PAA-FAQ批强(daily-task, 2026-10-11) — calcbadger
+
+- Run: 20261011T-paa-codex-2215
+- 压制期放开；核对5页，新增2页4条FAQ；11问因既有覆盖或泳池报价偏题登记90天冷却。
+- Slugs: number-base-converter, world-clock
+- 只新增FAQ，既有正文、FAQ、元数据、sources、更新时间不变。
+- humanizer → avoid-ai-writing已依次读取真实kit技能并执行；数字/专名/链接复核，来源与逐条检查见 /Users/zhangwh/.codex/automation-runtime/runs/paa-faq-gap-fill/20261011T-paa-codex-2215/root-additions.json。
+- 每次新增及提交前check_prose_patterns.py均退出0；独立内容审查pass，独立子模块/依赖build成功。

@@ -2614,6 +2614,14 @@ export const tools: Tool[] = [
 				answer:
 					'Yes. Converting a time near midnight between zones on opposite sides of the date line can push the calendar onto a different date entirely, a day earlier or later depending on direction. The "day difference" result reflects that automatically instead of only showing a clock face with no date.',
 			},
+		  {
+		    "question": "How many hours is India ahead of the US?",
+		    "answer": "Choose a US city and a date: there is no single national offset. India stays at UTC+5:30. Relative to New York, the gap is 10 hours 30 minutes during standard time and 9 hours 30 minutes during daylight time. For Los Angeles, those gaps are 13 hours 30 minutes and 12 hours 30 minutes."
+		  },
+		  {
+		    "question": "How many hours is India from Canada?",
+		    "answer": "For a clock comparison, specify the Canadian city and date. Delhi is 10 hours 30 minutes ahead of Toronto in winter and 9 hours 30 minutes ahead in summer. Against St. John's, Newfoundland, the corresponding gaps are 9 hours and 8 hours. A travel duration is a separate question that depends on the route."
+		  },
 		],
 		sources: [
 			{
@@ -6263,6 +6271,14 @@ export const tools: Tool[] = [
 				answer:
 					'Both exist as convenient stand-ins for binary, not as genuinely separate number systems people compute in day to day. Octal groups binary digits in threes (2^3 = 8 symbols), hexadecimal groups them in fours (2^4 = 16 symbols). Hex is far more common today; octal mainly survives in Unix file-permission notation like chmod 755.',
 			},
+		  {
+		    "question": "How to convert 0.7 to binary?",
+		    "answer": "Multiply the remaining fractional part by two repeatedly and write down each whole-number part. For 0.7, this produces 0.101100110011... in base 2: the 0110 block repeats after the first digit. The expansion never ends because 7/10 has a factor of five in its reduced denominator. This converter accepts integers, so it cannot take 0.7 as input."
+		  },
+		  {
+		    "question": "What is 224 in binary?",
+		    "answer": "224 becomes 11100000 in base 2. The three leading ones represent 128, 64 and 32; their sum is 224. Every smaller place contains a zero. Enter 224 with decimal selected as the input base to check the result."
+		  },
 		],
 		sources: [
 			{
