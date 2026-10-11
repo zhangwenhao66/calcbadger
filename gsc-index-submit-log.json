@@ -586,26 +586,36 @@
   "quota_exceeded_attempted": [],
   "quota_used": "1"
  },
-{
+ {
   "date": "2026-10-09",
   "run_id": "20261009T150500",
   "note": "老页巡检优先；真实CUA确认Indexing requested",
   "submitted_urls": [
-    "https://calcbadger.com/stair-calculator/"
+   "https://calcbadger.com/stair-calculator/"
   ],
   "status_before": "Crawled - currently not indexed",
   "result": "Indexing requested",
   "quota_exceeded_attempted": [],
   "quota_used": "1",
   "receipt": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-gsc-index-requests/20261009T150500/request-calcbadger-stair-calculator.json"
-},
-{
+ },
+ {
   "date": "2026-10-11",
   "note": "trafficsite-gsc-index-requests 轮换提交；URL Inspection 后 Request Indexing，成功",
   "submitted_urls": [
    "https://calcbadger.com/number-base-converter/"
   ],
   "status_before": "Discovered - currently not indexed",
+  "quota_exceeded_attempted": [],
+  "quota_used": "1"
+ },
+ {
+  "date": "2026-10-11",
+  "note": "trafficsite-gsc-index-requests 轮换提交；URL Inspection 后 Request Indexing，成功",
+  "submitted_urls": [
+   "https://calcbadger.com/stair-calculator/"
+  ],
+  "status_before": "Crawled - currently not indexed",
   "quota_exceeded_attempted": [],
   "quota_used": "1"
  }
