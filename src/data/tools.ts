@@ -5928,7 +5928,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Mouse Test',
 		description:
 			'Test all five common mouse buttons (right-click included), measure your double-click interval against the default Windows setting, estimate the report rate, and count scroll ticks.',
-		updated: '2026-09-29',
+		updated: '2026-10-11',
 		published: '2026-09-29',
 		coreSummary:
 			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks landing outside that range on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once.",
@@ -5965,7 +5965,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Worked examples',
 				body: [
-					'Two clicks land 340 ms apart: that\'s past the 500 ms default but still inside the 200-900 ms adjustable range, so it would only register as a double-click if that Windows setting had been loosened from its out-of-the-box value toward the slow end.',
+					'Two clicks land 340 ms apart: that interval is shorter than the 500 ms default window, so it is within the default double-click timing threshold. A user setting below 340 ms would instead treat that interval as too slow, and a larger window would accept it.',
 					'The report-rate reading in Chrome settles around 125 Hz on an ordinary office mouse: that matches an 8 ms interval between reports, consistent with the industry-standard 125 Hz baseline most non-gaming mice ship with.',
 					"The same test in a pre-18.2 copy of Safari shows a reading that won't climb past roughly 60-144 Hz even on a mouse known to support 1000 Hz: that's the display-refresh ceiling described above, not a fault with the mouse.",
 				],
@@ -6697,10 +6697,10 @@ export const tools: Tool[] = [
 		shortTitle: 'WPM Average',
 		description:
 			'Turn a word or character count, time taken, and error count into gross WPM, net WPM, and accuracy, then see it placed against published typing-speed research.',
-		updated: '2026-09-11',
+		updated: '2026-10-11',
 		published: '2026-09-11',
 		coreSummary:
-			'Gross WPM only measures how fast your fingers moved; net WPM subtracts your errors, prorated by time, which is the score typing certifications and employers actually use. Enter what you typed (in words or characters), how long it took, and how many mistakes went uncorrected, and this tool returns both numbers plus where they land against research-published typing-speed bands, from about 27 WPM for hunt-and-peck typing up to the 360 WPM stenotype world record. Once typed, that same text can be scored for how easy it is to read rather than how fast it was produced: [this site\'s sentence counter](/sentence-counter/) applies Flesch\'s 1948 Reading Ease formula and its 1975 grade-level version to count sentences, words, and estimated reading time.',
+			'Gross WPM only measures how fast your fingers moved; net WPM subtracts your errors, prorated by time, which is the score typing certifications and employers actually use. Enter what you typed (in words or characters), how long it took, and how many mistakes went uncorrected, and this tool returns both numbers plus where they land against research-published typing-speed bands, from about 27 WPM for hunt-and-peck typing up to the 360 WPM stenotype world record. Once typed, text can be checked with [this site\'s sentence counter](/sentence-counter/), which reports sentence and word counts, estimates reading time, and scores readability with Flesch\'s 1948 Reading Ease formula and the 1975 Flesch-Kincaid grade-level formula.',
 		queries: [
 			'words per minute average',
 			'average wpm',
