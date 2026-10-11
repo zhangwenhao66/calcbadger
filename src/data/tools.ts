@@ -3110,6 +3110,16 @@ export const tools: Tool[] = [
 				answer:
 					'Work out top divided by bottom to land on a decimal (3/4 = 0.75); multiply that decimal by 100 to get a percent (0.75 = 75%). A fraction whose denominator has prime factors other than 2 or 5 (like 1/3) produces a repeating decimal rather than a terminating one.',
 			},
+			{
+				question: 'How do you calculate fractions?',
+				answer:
+					'Match the operation to what you are doing with the fractions. Addition and subtraction need a shared bottom number first, because pieces of different sizes can\'t be combined until they\'re cut the same way. Multiplying skips that step and goes straight across: top times top, bottom times bottom. Dividing flips the divisor over, then multiplies. Whatever comes out gets simplified by dividing the top and bottom by their largest shared factor.',
+			},
+			{
+				question: 'How do you do fractions on a simple calculator?',
+				answer:
+					'A basic four-function calculator has no fraction button, so you work in decimals: divide the top number by the bottom (3 ÷ 4 = 0.75), run the arithmetic on those decimals, then convert back to a fraction at the end if you need one. Scientific calculators usually do have a fraction key, often labeled a b/c, which accepts a value such as 2 3/4 directly and returns the result as a fraction instead of a decimal.',
+			},
 		],
 		sources: [
 			{
@@ -3584,6 +3594,16 @@ export const tools: Tool[] = [
 				answer:
 					'Sheet goods are conventionally sold by the sheet or by square footage, not board feet, since their thickness is fixed and standardized (like 3/4" plywood). This calculator will still compute a mathematically correct board-foot figure if you enter a sheet\'s dimensions, but it isn\'t how sheet goods are normally priced.',
 			},
+			{
+				question: 'How many board feet is a 2x4x8?',
+				answer:
+					'It depends on which dimensions you use, and that gap is the catch. With the nominal size, a 2x4x8 works out to (2 × 4 × 8) ÷ 12 = 5.33 board feet. But a milled 2x4 actually measures 1.5 × 3.5 inches, which gives (1.5 × 3.5 × 8) ÷ 12 = 3.5 board feet. Framing lumber is sold by the piece rather than by board foot, so this nominal-versus-actual difference rarely comes up at the register.',
+			},
+			{
+				question: 'How many board feet is a 2x4x10?',
+				answer:
+					'Same split as the 8-foot case, scaled up. Using the nominal 2 × 4 dimensions: (2 × 4 × 10) ÷ 12 = 6.67 board feet. Using the actual 1.5 × 3.5 inch cross-section of a milled 2x4: (1.5 × 3.5 × 10) ÷ 12 = 4.38 board feet. Board feet is really meant for random-width hardwood, which is why dimensional framing lumber gives two different answers depending on the numbers you feed it.',
+			},
 		],
 		sources: [
 			{
@@ -3838,6 +3858,21 @@ export const tools: Tool[] = [
 				question: 'Can I use this BSA figure to calculate a medication dose?',
 				answer:
 					"Don't calculate your own dose from this number. BSA-based dosing, used for chemotherapy and some other drugs, is handled by a clinician with validated software and the patient's full chart, not a public calculator. Use this tool for reference only, never to determine or adjust a medication dose.",
+			},
+			{
+				question: 'How do I convert BMI to BSA?',
+				answer:
+					'You can\'t get there from BMI alone. BMI is a single ratio of weight to height squared, and every height-and-weight pair that produces the same BMI number still lands on a different surface-area figure. BSA needs the two figures separately: Mosteller\'s version is the square root of (height in cm × weight in kg ÷ 3600), so you need an actual height and an actual weight, not the ratio between them.',
+			},
+			{
+				question: 'What is a normal BSA for a woman?',
+				answer:
+					'There\'s no fixed normal, because BSA follows a person\'s own measurements rather than sorting people into categories the way BMI does. As a rough reference, EPA figures from U.S. survey data put the mean BSA for adult women around 1.81 to 1.89 m² through midlife, easing to about 1.69 m² by age 80 and up. A reading above or below that band isn\'t a red flag; it mostly reflects how tall and heavy that person is.',
+			},
+			{
+				question: 'What is the normal BSA by age?',
+				answer:
+					'BSA rises through early adulthood and drifts down after midlife, largely because average stature and build shift with age. In the EPA survey data, mean adult BSA climbs from about 2.05 m² (men) and 1.81 m² (women) in the 21-to-30 bracket to a peak near 2.15 m² and 1.88 m² in the 40s, then eases back to roughly 1.92 m² and 1.69 m² for the 80-and-over group. Those figures are averages across a population, not a target for any one person.',
 			},
 		],
 		sources: [
@@ -5855,6 +5890,16 @@ export const tools: Tool[] = [
 				answer:
 					"It depends on the physical layout standard: 104 for the US ANSI layout, 105 for the ISO layout common outside the US, and 109 for the Japanese JIS layout, which splits the space bar in half and tacks on extra keys for switching input modes. A few brands sell \"extended\" versions with extra keys thrown in for dedicated media or function controls.",
 			},
+			{
+				question: 'Can I test my keyboard online?',
+				answer:
+					'Yes. This page is a browser-based keyboard test, so there\'s nothing to install and no operating-system requirement beyond a modern browser. Press keys and watch the on-screen layout respond: a key that lights up is sending a signal, and one that never does isn\'t. Because it runs in the browser, it works the same on Windows, macOS, Linux, and ChromeOS.',
+			},
+			{
+				question: 'How do I test my keyboard?',
+				answer:
+					'Open the test, then press each key in turn and watch whether its spot on the on-screen keyboard lights up. Hold several keys together to see how many register at once, which is your keyboard\'s rollover. A key that stays dark however hard or often you press it is the clearest sign of a dead switch. Subtler problems, like a worn key double-firing, are harder to catch this way.',
+			},
 		],
 		sources: [
 			{
@@ -5967,6 +6012,16 @@ export const tools: Tool[] = [
 				question: "What's a good double-click speed?",
 				answer:
 					"There isn't a single universally 'good' number. It comes down to matching your own reflexes to a setting you're comfortable with, inside the roughly 200-900 ms range Windows allows. Landing consistently within Windows' 500 ms default with no adjustment needed is a reasonable sign of typical clicking speed; someone who needs the setting loosened toward 900 ms to reliably trigger double-clicks isn't doing anything wrong, that's exactly why the setting is adjustable.",
+			},
+			{
+				question: 'Is there a way to test my mouse?',
+				answer:
+					'Yes, and it needs no software. This page runs in the browser and looks at four things at once: whether each button fires at all, how long your double-clicks take against Windows\' default window, if the scroll wheel answers with a tick in each direction. It also tracks how frequently the mouse sends position updates. There\'s nothing to download, and it works across operating systems.',
+			},
+			{
+				question: 'Is 3 million clicks good for a mouse?',
+				answer:
+					'Yes, comfortably. The switches inside a mouse are rated for a set number of presses, and the low end of that range is about 5 million for the cheapest mechanical switches, with mainstream ones commonly rated 20 million and gaming switches running 60 to 100 million. Three million clicks sits well inside even the shortest rating, so it isn\'t a reason to expect a failure.',
 			},
 		],
 		sources: [
@@ -6333,6 +6388,11 @@ export const tools: Tool[] = [
 				question: 'Is watts the same as volt-amps (VA)?',
 				answer:
 					'Only for a circuit whose current tracks its voltage exactly in sync. Volt-amps (V x I, "apparent power") and watts (V x I x PF, "real power") match exactly for DC circuits and simple resistive loads; anywhere power factor drops below 1, VA comes out larger than watts, with the difference sitting in current that never turns into usable output.',
+			},
+			{
+				question: 'Is 30 amps 3000 watts?',
+				answer:
+					'Only at 100 volts. Watts equal amps times volts, so 30 A lands on 3,000 W only when the supply is 100 V. On a standard U.S. 120 V circuit it\'s 30 × 120 = 3,600 W, and on a 240 V supply it doubles to 7,200 W. That\'s the same reason amps alone can\'t be turned into watts without knowing the voltage.',
 			},
 		],
 		sources: [
@@ -6840,6 +6900,16 @@ export const tools: Tool[] = [
 				question: 'What does the modifier field actually change?',
 				answer:
 					"It's a flat bonus or penalty tacked onto the dice total afterward, the same way a character sheet adds a Strength bonus to a damage roll. Set a target of 15 with a +3 modifier, for instance, and the tool is really asking how often the dice alone land on 12 or above, since 12 plus that modifier clears 15.",
+			},
+			{
+				question: 'What does "roll a d20" mean?',
+				answer:
+					'It means rolling a 20-sided die, the die Dungeons & Dragons uses for almost every uncertain outcome. Each face from 1 to 20 has the same 1-in-20 chance, so a d20 roll comes out flat and uniform, with no weighting toward the middle the way a pair of dice would give. You add any modifier to whatever comes up, then compare the total against a target number to see whether the attempt succeeds.',
+			},
+			{
+				question: 'What is a d20 roll called?',
+				answer:
+					'Under the 2024 D&D rules, all of these rolls share one umbrella name: a D20 Test. That single term covers ability checks, saving throws, and attack rolls together, which is why an effect that modifies "a D20 Test" reaches all three at once. Earlier editions had no such label and just called each roll by what it was for.',
 			},
 		],
 		sources: [

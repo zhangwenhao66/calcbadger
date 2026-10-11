@@ -2974,3 +2974,47 @@
   "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/paa-faq-gap-fill/20261010T1100/traffic-b-final.json"
 }
 ```
+
+```json
+{
+  "type": "PAA-FAQ批强(daily-task, 2026-10-11)",
+  "site": "calcbadger",
+  "run_id": "20261011T2041",
+  "suppression_exception": "整站算法压制期放开（Owen 2026-09-24 批准），本次≤8页，只新增 FAQ，不动其他任何内容",
+  "slugs_processed": [
+    "fraction-calculator",
+    "dice-roller",
+    "board-foot-calculator",
+    "body-surface-area-calculator",
+    "electrical-converter",
+    "keyboard-test",
+    "mouse-test"
+  ],
+  "faq_added": 12,
+  "per_slug": {
+    "fraction-calculator": 2,
+    "dice-roller": 2,
+    "board-foot-calculator": 2,
+    "body-surface-area-calculator": 3,
+    "electrical-converter": 1,
+    "keyboard-test": 2,
+    "mouse-test": 2
+  },
+  "not_processed": {
+    "concrete-calculator": "清单里两条 PAA 都是地区性/时效性价格，无稳定权威来源，已登记 reject，未新增"
+  },
+  "rejections_registered": 11,
+  "rejection_notes": "concrete 两条价格类；fraction/dice/keyboard 各 1-2 条推荐或重复；board-foot/bsa/mouse 与既有 FAQ 重复。全部写入 research-db/paa_rejections.json（90 天冷却）",
+  "sources_verified": [
+    "D&D 2024 把 ability check/saving throw/attack roll 统称 'D20 Test' — WebSearch 2026-10-11",
+    "milled 2x4 实测 1.5 x 3.5 in（PS 20）；board-foot 算式本人重算 5.33/3.5/6.67/4.38",
+    "Omron D2FC 微动寿命：D2FC-7 5M、D2FC-F-7N(20M) 20M、60M/100M — Omron datasheet",
+    "30A x 120V=3600W；x100V=3000W；x240V=7200W — 本人算术",
+    "BSA 的 EPA/NHANES 均值来自本页已有表；BMI 不能单独推 BSA（需 height 与 weight 各自）"
+  ],
+  "mechanical": "check_prose_patterns.py 每条新增后与 commit 前逐 slug 运行；7 个 slug 全部退出码 0。首轮 L-0819-9 报出 FAQ 与正文 ≥20 字重合，逐条核对均落在本次新增条目上（边界①），改写至清零；无边界②存量债务",
+  "writing_chain": "Skill(humanizer) -> Skill(avoid-ai-writing) 真实调用后按规则过新增 FAQ；数字/公式/专名保真；新增文本无 em/en dash",
+  "scope": "只新增 FAQ；正文 / title / description / sources / 其他 FAQ / schema / updated / published 原样保留",
+  "build": "npm run build 通过（127 页，1.7s）"
+}
+```
