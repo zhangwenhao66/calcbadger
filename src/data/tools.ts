@@ -2654,10 +2654,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Tip Calculator',
 		description:
 			'Work out the tip and per-person total on a restaurant bill, with a toggle for tipping on the pre-tax subtotal vs. the tax-inclusive total and an even split across the table.',
-		updated: '2026-08-10',
+		updated: '2026-10-11',
 		published: '2026-08-10',
 		coreSummary:
-			'Tip = base amount × (tip percent / 100). The "base amount" is where most tip calculators quietly guess wrong: etiquette authorities like the Emily Post Institute recommend tipping on the pre-tax subtotal, not the tax-inclusive total printed at the bottom of the receipt, since sales tax is a government charge that has nothing to do with the service. This calculator backs the subtotal out of a tax-inclusive total, computes the tip both ways so you can see the actual dollar gap, and splits the resulting total evenly across the table. A monthly mortgage payment runs on the same idea of a recurring amount split into parts, just at a much larger scale and over a much longer schedule: [this site\'s mortgage calculator](/mortgage-calculator/) breaks a fixed-rate loan payment down into principal, interest, taxes, insurance, PMI, and HOA.',
+			'Tip = base amount × (tip percent / 100). The "base amount" is where most tip calculators quietly guess wrong: the Emily Post Institute says tipping on the pre-tax amount is acceptable, while using the tax-inclusive total produces a larger tip. This calculator backs the subtotal out of a tax-inclusive total, computes the tip both ways so you can see the actual dollar gap, and splits the resulting total evenly across the table. A monthly mortgage payment runs on the same idea of a recurring amount split into parts, just at a much larger scale and over a much longer schedule: [this site\'s mortgage calculator](/mortgage-calculator/) breaks a fixed-rate loan payment down into principal, interest, taxes, insurance, PMI, and HOA.',
 		queries: ['tip calculator', 'how much to tip', 'tip calculator split bill', 'do you tip before or after tax'],
 		sections: [
 			{
@@ -2670,7 +2670,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Pre-tax or post-tax: which base is correct',
 				body: [
-					"The etiquette convention favors tipping on the pre-tax subtotal. The Emily Post Institute's tipping guide treats sales tax as a government charge that has nothing to do with the quality of service, so it should not inflate the tip base. Servers themselves often prefer the opposite, tipping on the tax-inclusive total, since it pays out slightly more, though the published guidance still sides with the pre-tax convention over the server's preference.",
+					"The Emily Post Institute says using the pre-tax amount is acceptable. This calculator shows both bases: the subtotal and the tax-inclusive total. At the same percentage, the latter produces a larger tip because the base includes the tax.",
 					"In practice the dollar difference is small at typical US sales tax rates. Combined state and local rates run from 0% (five states charge no statewide sales tax at all) up to just over 10% in the highest-tax states, with a population-weighted national average around 7.5% (Tax Foundation). On a $106 tax-inclusive total with a 6% tax rate and a 20% tip, pre-tax tipping comes to $20.00 and post-tax tipping comes to $21.20, a $1.20 gap. It grows with the tax rate and the bill size, which is why this calculator shows both numbers so nothing gets picked for you silently.",
 				],
 			},
@@ -5931,7 +5931,7 @@ export const tools: Tool[] = [
 		updated: '2026-10-11',
 		published: '2026-09-29',
 		coreSummary:
-			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks landing outside that range on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once.",
+			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks more than 500 ms apart on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once.",
 		queries: [
 			'mouse test',
 			'mouse tester online',
