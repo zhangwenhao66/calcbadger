@@ -4494,10 +4494,10 @@ export const tools: Tool[] = [
 		shortTitle: 'Conduit Fill',
 		description:
 			'Check whether a set of THHN/THWN-2 conductors fits inside an EMT, IMC, RMC, or PVC conduit under the NEC Chapter 9 fill limits, and see the smallest size that would pass if it does not.',
-		updated: '2026-08-20',
+		updated: '2026-10-11',
 		published: '2026-08-20',
 		coreSummary:
-			'NEC Chapter 9 caps how much of a conduit\'s cross-section conductors may occupy: 53% for one conductor, 31% for exactly two, 40% for three or more (60% for a nipple 24 in. or shorter). Fill percent = total conductor area ÷ conduit\'s 100%-fill area from Table 4, compared against that cap. Three 12 AWG THHN wires in a 1/2 in. EMT use 0.0399 sq in. against a 0.1216 sq in. allowance at 40% fill, about 13% full and well within limits. Code limits show up just as directly in stair construction: [a stair\'s riser height is capped by the IRC](/stair-calculator/) at 7¾ inches, the same kind of fixed regulatory ceiling that governs how much a conduit may be filled.',
+			'NEC Chapter 9 caps how much of a conduit\'s cross-section conductors may occupy: 53% for one conductor, 31% for exactly two, 40% for three or more (60% for a nipple 24 in. or shorter). Fill percent = total conductor area ÷ conduit\'s 100%-fill area from Table 4, compared against that cap. Three 12 AWG THHN wires in a 1/2 in. EMT use 0.0399 sq in. against a 0.1216 sq in. allowance at 40% fill, about 13% full and well within limits. Residential stair code uses a fixed limit too: [the stair calculator](/stair-calculator/) uses the 2021 IRC maximum riser height of 7¾ inches. Commercial IBC limits and local amendments can differ, so the applicable code matters for that ceiling.',
 		queries: [
 			'conduit fill calculator',
 			'nec conduit fill chart',
