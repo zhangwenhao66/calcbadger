@@ -49,7 +49,11 @@
       "reason": "独立确认，按原审计允许范围窄修",
       "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
       "basis_type": "official",
-      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/NIST/NHS官方来源、independent-review.md",
+      "evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/independent-review.md",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/competitor-source-review.md",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent-addendum.md"
+      ],
       "review_status": "confirmed",
       "action_status": "verified",
       "verification_evidence": [
@@ -69,7 +73,10 @@
       "reason": "独立确认，按原审计允许范围窄修",
       "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
       "basis_type": "project_rule",
-      "evidence": "src/lib/temperature.ts",
+      "evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/worktrees/audit-calcbadger-20261012/src/lib/temperature.ts",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent.md"
+      ],
       "review_status": "confirmed",
       "action_status": "verified",
       "verification_evidence": [
