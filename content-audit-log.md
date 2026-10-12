@@ -3041,3 +3041,5 @@
 - **Bing 补段落核查结果（如实记录，未硬做）**：`bing_longtail_mine.py --site calcbadger` 产出 328 词/157 候选/35 补段落。逐条核对后**判定多数候选本体已被页面覆盖**（keg-calculator 已含 15.5gal→124 品脱与 50L 换算；time-duration 系列多为拼写变体），真正的增量集中在 golf-club-distance-chart（页面自陈跳过 5-wood/hybrid）等少数点，合计月曝光量级约 30-60 次。**本次未为这些做内容编辑**——量级不足以支撑一次带来源核实的内容改动，如实记录而非凑数。
 - **外链现状（如实记录）**：引荐域名 1→5，但质量差——stackscope.dev 垃圾分 10、nav-ai.net 5、launchsoar.com 5；learningcorner.co 是付费性质的自助目录（月度报告显示 30 天 36 次展示 / **1 次点击**）；三封高价值 pitch（Woodworkers Journal / Camosun College / dietitian.org）**全部无回信**。收到两封冷邮件推销：SellWithBoost 报价 $29 买 DR70 dofollow 外链、Learning Corner 邀请加钱提升目录排名——**均属矩阵明令不投的"付费 backlink / 徽章互换"类，不予采纳**。结论：真实 earned 编辑外链目前为 0。
 - **压制期时间线**：上次垃圾更新 8/18–8/21，按 2–3 个月节奏下一次约在 11 月；本次所有动作均为"存信任、不改结构"，未做任何不可逆变更。
+
+- **补充观察（同批数据，供下次复盘用）**：①Bing 查询报表里出现 `badger gpa calculator`（位置 1.0）——罕见的品牌词，说明名字开始被记住，量极小但方向对；②Bing 328 词里 62 条属"AI 超长检索"形态（关键词串式长查询，共 92 次曝光），其中多条位置在 1–5（如 `usda soil bulk density topsoil cubic yard weight` 位置 1、`for a 7 credit system, the impact of 88...` 位置 2）——即 AI 助手正通过 Bing 检索本站页面，按 R-seo-32 第 6 款属 AI 可见度信号，不单独成题、不做 GEO 改写，仅记录；③该 62 条若从分母剔除，Bing 人类可及曝光约 866 次/28 天，比表面的 958 更接近真实可转化口径。
