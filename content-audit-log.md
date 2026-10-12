@@ -3028,3 +3028,16 @@
 - 只新增FAQ，既有正文、FAQ、元数据、sources、更新时间不变。
 - humanizer → avoid-ai-writing已依次读取真实kit技能并执行；数字/专名/链接复核，来源与逐条检查见 /Users/zhangwh/.codex/automation-runtime/runs/paa-faq-gap-fill/20261011T-paa-codex-2215/root-additions.json。
 - 每次新增及提交前check_prose_patterns.py均退出0；独立内容审查pass，独立子模块/依赖build成功。
+
+## 2026-10-13 — 三周复盘后的结构性修复（COO 交互会话，Owen 批准）
+
+- **数据基线（本次实测）**：GSC 28天 2 点击/212 曝光/CTR 0.94%/均位 10.7；Bing 28天 5 点击/958 曝光/CTR 0.52%；GA4 与 Clarity 最近一次成功运行是 9/29（覆盖 9/22–9/28 周），GA4 23 个 session_start、Clarity 26 会话（剔 7 机器人）。压制未解除：8/15–8/17 日均 399 曝光 vs 10/1–10/10 日均 4.1，仍是压制前约 1%。
+- **关键订正**：28 天窗口的"曝光翻倍、位置 22.2→10.7"是假象——9/25–9/30 那波 119 次曝光里 72 次来自 weight-converter 单页（位置 6.0），10 月它塌回 1 次。不是趋势。
+- **根因一（发布停滞）**：站点选题规则（sites/003.md，9/11 写）要求"只用 A 层多输入计算器"，而页型闸门自 9/18 起一直 ⛔ 禁发 calculator（60-63%，连续四周）。两条规则直接冲突且从未裁决 → 9/22–10/12 三周只落地 2 个工具（dice-roller 9/22、mouse-test 9/29），且两次都靠临时绕开规则。**已在任务源修订：明确"页型闸门优先于只发计算器"**，压制期改发 non-calculator 页型。详见 kit commit 29765d3。
+- **根因二（点击不跟排名走）**：weight-converter 位置 6.0、75 曝光、0 点击，排的全是 `14 lb in kg`/`9 stone in kg`/`8 ounces to l`——Google 在结果页直接给出换算结果的直答型查询。**已在任务源加"点击理由"闸门**（R-seo-32 第 8 款落地）：单值换算查询不再作为选题。
+- **高曝光零点击扫描（R-seo-32 第 8 款要求的月度扫描，首次执行）**：≥30 曝光且 0 点击的页面只有 weight-converter 一个；**标题骨架 `-converter` 5 页累计 105 曝光 0 点击 → 按规则该骨架停止新增**（已写进任务源）。`-calculator` 骨架 17 页 1 点击（CTR 1.4%），未触发 0 点击条件。
+- **决策记录（Owen 批准）**：①CalcBadger **不接入长尾库存流程**（对工具站"弱SERP"判据会选出 0 点击的单值换算骨架），改用"点击理由"闸门；②页型闸门选 (a) 建非计算器候选管线，产能优先级 Bing 补段落 > 新页。理由与反方论据已在对话中列明。
+- **非计算器候选补充（写进词库）**：按 v2 开放位 + RDAP 年轻站证据筛出 3 个 test 页型 A 档候选——`touchscreen test`(5,400/月 KD0，开放位 avtestr.com 15.6mo、touchscreentester.com 2.1mo)、`refresh rate test`(2,900/KD3，touch-screen-test.com 11.6mo)、`scroll test`(1,600/KD5，scrollwheeltest.org 2.3mo、apexcheck.com 12.9mo)。三条均过点击理由闸门。同时记录 5 个未采纳候选的拒因。DataForSEO 实付约 $0.037。
+- **Bing 补段落核查结果（如实记录，未硬做）**：`bing_longtail_mine.py --site calcbadger` 产出 328 词/157 候选/35 补段落。逐条核对后**判定多数候选本体已被页面覆盖**（keg-calculator 已含 15.5gal→124 品脱与 50L 换算；time-duration 系列多为拼写变体），真正的增量集中在 golf-club-distance-chart（页面自陈跳过 5-wood/hybrid）等少数点，合计月曝光量级约 30-60 次。**本次未为这些做内容编辑**——量级不足以支撑一次带来源核实的内容改动，如实记录而非凑数。
+- **外链现状（如实记录）**：引荐域名 1→5，但质量差——stackscope.dev 垃圾分 10、nav-ai.net 5、launchsoar.com 5；learningcorner.co 是付费性质的自助目录（月度报告显示 30 天 36 次展示 / **1 次点击**）；三封高价值 pitch（Woodworkers Journal / Camosun College / dietitian.org）**全部无回信**。收到两封冷邮件推销：SellWithBoost 报价 $29 买 DR70 dofollow 外链、Learning Corner 邀请加钱提升目录排名——**均属矩阵明令不投的"付费 backlink / 徽章互换"类，不予采纳**。结论：真实 earned 编辑外链目前为 0。
+- **压制期时间线**：上次垃圾更新 8/18–8/21，按 2–3 个月节奏下一次约在 11 月；本次所有动作均为"存信任、不改结构"，未做任何不可逆变更。
