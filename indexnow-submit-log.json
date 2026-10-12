@@ -34,8 +34,8 @@
   "https://calcbadger.com/molarity-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "stale_not_indexed",
-    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202 | 2026-08-17: Discovered but not crawled，discovered 02 Aug 2026，账龄15天，超过14天阈值判定为stale",
-    "last_submitted_date": "2026-09-22",
+    "note": "launch batch (2026-08-02); Bing 202 / Yandex 202 | 2026-08-17: Discovered but not crawled，discovered 02 Aug 2026，账龄15天，超过14天阈值判定为stale | 20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]",
+    "last_submitted_date": "2026-10-12",
     "last_checked_date": "2026-08-17",
     "verified_method": "bwt_url_inspection"
   },
@@ -50,8 +50,8 @@
   "https://calcbadger.com/bmi-calculator/": {
     "submitted_date": "2026-08-02",
     "verified_status": "stale_not_indexed",
-    "note": "content-quality-audit fix resubmit (2026-08-03): meta description shortened from 220 to 153 chars; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202 | 2026-08-17: Discovered but not crawled，discovered 02 Aug 2026，账龄15天，超过14天阈值判定为stale",
-    "last_submitted_date": "2026-09-18",
+    "note": "content-quality-audit fix resubmit (2026-08-03): meta description shortened from 220 to 153 chars; supersedes launch-batch submission of 2026-08-02; Bing 200 / Yandex 202 | 2026-08-17: Discovered but not crawled，discovered 02 Aug 2026，账龄15天，超过14天阈值判定为stale | 20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]",
+    "last_submitted_date": "2026-10-12",
     "last_checked_date": "2026-08-17",
     "verified_method": "bwt_url_inspection"
   },
@@ -65,27 +65,27 @@
   },
   "https://calcbadger.com/temperature-converter/": {
     "submitted_date": "2026-08-03",
-    "last_submitted_date": "2026-08-11",
+    "last_submitted_date": "2026-10-12",
     "verified_status": "stale_not_indexed",
     "last_checked_date": "2026-08-20",
     "verified_method": "bwt_url_inspection",
-    "note": "discovered 04 Aug, account age exactly 14 days, boundary — near stale threshold"
+    "note": "discovered 04 Aug, account age exactly 14 days, boundary — near stale threshold | 20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/length-converter/": {
     "submitted_date": "2026-08-03",
-    "last_submitted_date": "2026-09-13",
+    "last_submitted_date": "2026-10-12",
     "verified_status": "stale_not_indexed",
     "last_checked_date": "2026-08-20",
     "verified_method": "bwt_url_inspection",
-    "note": "discovered 04 Aug, account age exactly 14 days, boundary — near stale threshold"
+    "note": "discovered 04 Aug, account age exactly 14 days, boundary — near stale threshold | 20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/weight-converter/": {
     "submitted_date": "2026-08-04",
-    "last_submitted_date": "2026-09-13",
+    "last_submitted_date": "2026-10-12",
     "verified_status": "verified_indexed",
     "last_checked_date": "2026-08-28",
     "verified_method": "bwt_url_inspection",
-    "note": "2026-08-24: 仍为 Blocked（has issues preventing indexation），discovered 06 Aug账龄18天，此前08-20标注\"逼近14天阈值\"，本次确认已转为持续Blocked状态 | 2026-08-28: Indexed successfully，No SEO/GEO issues found"
+    "note": "2026-08-24: 仍为 Blocked（has issues preventing indexation），discovered 06 Aug账龄18天，此前08-20标注\"逼近14天阈值\"，本次确认已转为持续Blocked状态 | 2026-08-28: Indexed successfully，No SEO/GEO issues found | 20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/mortgage-calculator/": {
     "submitted_date": "2026-08-04",
@@ -121,8 +121,9 @@
   },
   "https://calcbadger.com/volume-converter/": {
     "submitted_date": "2026-08-05",
-    "last_submitted_date": "2026-08-22",
-    "verified_status": "verified_indexed"
+    "last_submitted_date": "2026-10-12",
+    "verified_status": "verified_indexed",
+    "note": "20261012T2125 content-quality-audit verified corrections and inbound links | [{\"urls\":[\"https://calcbadger.com/weight-converter/\",\"https://calcbadger.com/temperature-converter/\",\"https://calcbadger.com/molarity-calculator/\",\"https://calcbadger.com/length-converter/\",\"https://calcbadger.com/volume-converter/\",\"https://calcbadger.com/bmi-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/date-calculator/": {
     "submitted_date": "2026-08-06",

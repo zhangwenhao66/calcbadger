@@ -76,9 +76,9 @@ export default function TemperatureConverter() {
 			)}
 
 			<p class="calc-note">
-				°F = °C × 9/5 + 32 and K = °C + 273.15 are exact by definition (NIST SP 811). There is no
-				rounding in the formula itself, only in the display above. Calculations run in your
-				browser; nothing you type is sent anywhere.
+				°F = °C × 9/5 + 32 and K = °C + 273.15 are exact by definition (NIST SP 811). This calculator uses
+				floating-point arithmetic, displays results to at most two decimal places, and writes a rounded value
+				into the input when you switch scales. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>
 	);

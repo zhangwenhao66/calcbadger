@@ -1,0 +1,230 @@
+{
+  "run_id": "20261012T2125",
+  "at": "2026-10-12T13:56:07.950172+00:00",
+  "coverage": {
+    "selected_url": "https://calcbadger.com/weight-converter/",
+    "changed_verified_urls": [
+      "https://calcbadger.com/bmi-calculator/",
+      "https://calcbadger.com/length-converter/",
+      "https://calcbadger.com/molarity-calculator/",
+      "https://calcbadger.com/temperature-converter/",
+      "https://calcbadger.com/volume-converter/",
+      "https://calcbadger.com/weight-converter/"
+    ],
+    "matrix": {
+      "expected_sites": 17,
+      "english_checked": 16,
+      "unchecked": [
+        "alpha Chinese precision detector uncalibrated"
+      ]
+    },
+    "not_reached": [
+      "DayAlmanac",
+      "LingoGrove",
+      "Hollowvane",
+      "MythCairn",
+      "Morningwit",
+      "CloverAcre",
+      "Burrowkin",
+      "FactCrumbs",
+      "WarCrumbs",
+      "WageLark",
+      "UmberLore"
+    ],
+    "excluded": [
+      "DialWick frozen"
+    ],
+    "complete_audit": false
+  },
+  "findings": [
+    {
+      "id": "F01",
+      "urls": [
+        "https://calcbadger.com/weight-converter/"
+      ],
+      "dimension": "事实与精度",
+      "current": "troy12oz分割、NHS口径、年代及零误差声明误导",
+      "replacement": "精确定义、明确口径/来源及浮点/切换舍入边界",
+      "source": "NIST/NHS官方来源、independent-review.md",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "official",
+      "evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/independent-review.md",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/competitor-source-review.md",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent-addendum.md"
+      ],
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F02",
+      "urls": [
+        "https://calcbadger.com/temperature-converter/"
+      ],
+      "dimension": "精度",
+      "current": "称公式零舍入误差/精确SI定义",
+      "replacement": "精确方程与JS浮点及切换输入舍入区分",
+      "source": "src/lib/temperature.ts",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/worktrees/audit-calcbadger-20261012/src/lib/temperature.ts",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent.md"
+      ],
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F03",
+      "urls": [
+        "https://calcbadger.com/molarity-calculator/"
+      ],
+      "dimension": "桥接精度",
+      "current": "同源零舍入误差承诺",
+      "replacement": "方程精确与浮点计算区分；保留结构/链接",
+      "source": "quality-independent.md",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent.md",
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F04",
+      "urls": [
+        "https://calcbadger.com/length-converter/"
+      ],
+      "dimension": "精度",
+      "current": "组件零舍入误差承诺",
+      "replacement": "浮点、显示/切换舍入披露",
+      "source": "quality-independent-addendum.md",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-independent-addendum.md",
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F05",
+      "urls": [
+        "https://calcbadger.com/volume-converter/"
+      ],
+      "dimension": "精度",
+      "current": "组件及正文仅显示舍入/底层无误差承诺",
+      "replacement": "限定US customary、JS浮点与切换舍入披露",
+      "source": "quality-inbound-volume-review.md",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-inbound-volume-review.md",
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F06",
+      "urls": [
+        "https://calcbadger.com/bmi-calculator/"
+      ],
+      "dimension": "正文入链",
+      "current": "目标weight只有length1正文来源",
+      "replacement": "BMI公式段新增自然pounds to kilograms锚",
+      "source": "internal-links-before.json",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/internal-links-before.json",
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F07",
+      "urls": [
+        "https://calcbadger.com/volume-converter/"
+      ],
+      "dimension": "正文入链",
+      "current": "目标weight只有length1正文来源",
+      "replacement": "既有unit of weight词组加锚；不添新事实",
+      "source": "quality-inbound-volume-review.md",
+      "reason": "独立确认，按原审计允许范围窄修",
+      "rule_ref": "R-seo-29 / audit步骤3–5；入链项9",
+      "basis_type": "project_rule",
+      "evidence": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/quality-inbound-volume-review.md",
+      "review_status": "confirmed",
+      "action_status": "verified",
+      "verification_evidence": [
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/live-verification-final.json",
+        "Cloudflare c72e27b ec3ef57d production；HTML绕缓存已核"
+      ]
+    },
+    {
+      "id": "F08",
+      "urls": [
+        "https://calcbadger.com/weight-converter/"
+      ],
+      "dimension": "线上隐私网络验证",
+      "current": "IAB已做weight有效/零/负值/小数/切换与390px；后续导航/清理连续30秒超时，线上第三方网络未检查",
+      "replacement": null,
+      "source": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/browser-production.json",
+      "reason": "检查证据不足；未判定内容缺陷",
+      "rule_ref": "R-core-02/03/09",
+      "basis_type": "project_rule",
+      "evidence": "IAB已做weight有效/零/负值/小数/切换与390px；后续导航/清理连续30秒超时，线上第三方网络未检查",
+      "review_status": "unverified",
+      "action_status": "blocked",
+      "verification_evidence": []
+    },
+    {
+      "id": "F09",
+      "urls": [
+        "https://calcbadger.com/weight-converter/"
+      ],
+      "dimension": "Hixec当前全文",
+      "current": "当前403；官方可用web备用仅去年抓取，不能当当前全文",
+      "replacement": null,
+      "source": "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261012T2125/competitor-source-review.md",
+      "reason": "检查证据不足；未判定内容缺陷",
+      "rule_ref": "R-core-02/03/09",
+      "basis_type": "project_rule",
+      "evidence": "当前403；官方可用web备用仅去年抓取，不能当当前全文",
+      "review_status": "unverified",
+      "action_status": "no_action",
+      "verification_evidence": []
+    }
+  ],
+  "counts": {
+    "candidate_rows": 9,
+    "confirmed_rows": 7,
+    "rejected_rows": 0,
+    "unverified_rows": 2,
+    "verified_repair_rows": 7,
+    "verified_repair_urls": 6
+  }
+}
