@@ -7,7 +7,10 @@ export const SITE_ORIGIN = 'https://calcbadger.com';
 // 改为站点自身作为 Organization 署名（真实、不虚构人物）。详见 独立站/网络指纹排查_20260825.md
 // 2026-09-01：从裸站名升级为团队署名——工具站用"Team"而非"Editorial Team"，跟"公式+单元测试"
 // 的产出形态更贴（这里做的是校验不是编辑），仍是 Organization 实体、不共用同一名字。
-export const AUTHOR_NAME = 'CalcBadger Team';
+// 2026-10-12：改回裸站名（Owen 决定，与 dayalmanac 同批修）。"Editorial Team" 在读者和算法看来都是
+// "有一支人类编辑部在写和审"的声明，而本站内容由 AI 撰写、审核是自动化的，属 R-writing-04 禁止的
+// 不可核实人类团队声明。署名回落到发布方本身（Organization 实体），反指纹原则（8/25）继续满足。
+export const AUTHOR_NAME = 'CalcBadger';
 export const ADSENSE_PUBLISHER_ID = 'pub-5245502795720653';
 export const GA4_ID = 'G-CETNHSCJG2';
 export const CLARITY_ID = 'y14zwvco3j';
