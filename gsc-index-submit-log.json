@@ -618,5 +618,18 @@
   "status_before": "Crawled - currently not indexed",
   "quota_exceeded_attempted": [],
   "quota_used": "1"
+ },
+ {
+  "date": "2026-10-12",
+  "run_id": "20261012T1523",
+  "note": "老页巡检命中 2 页（首次巡检 sitemap 拉取失败，单独重跑成功）；两页均 Request Indexing 成功",
+  "submitted_urls": [
+   "https://calcbadger.com/number-base-converter/",
+   "https://calcbadger.com/stair-calculator/"
+  ],
+  "status_before": "URL is unknown to Google / Crawled - currently not indexed",
+  "result": "Indexing requested",
+  "quota_exceeded_attempted": [],
+  "quota_used": "2"
  }
 ]
