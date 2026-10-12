@@ -617,7 +617,7 @@ export const tools: Tool[] = [
 		shortTitle: 'BMI Calculator',
 		description:
 			'Calculate BMI from weight and height in US or metric units, see your CDC/WHO category and healthy-weight range, plus an optional Asian-population cutoff.',
-		updated: '2026-08-02',
+		updated: '2026-10-12',
 		published: '2026-08-02',
 		coreSummary:
 			'BMI = weight(kg) ÷ height(m)², or 703 × weight(lb) ÷ height(in)² in US units. CDC/WHO categories for adults are underweight below 18.5, healthy weight 18.5–24.9, overweight 25–29.9, and obesity at 30 or above (split into Class 1, 2, and 3 at 35 and 40). The same formula and cutoffs apply to men and women; for adults of Asian ancestry, the WHO recommends lower cutoffs of 23 for overweight and 27.5 for obesity. BMI alone doesn\'t say how many calories a body needs to reach a different category: [this site\'s calorie calculator](/calorie-calculator/) works out BMR, maintenance calories, and a goal target using the Mifflin-St Jeor equation instead.',
@@ -626,7 +626,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'The formula, and why two unit systems don’t match exactly',
 				body: [
-					'BMI is defined as weight divided by height squared, using kilograms and meters: **BMI = kg ÷ m²**. A 70 kg adult who is 1.75 m tall has a BMI of 70 ÷ 1.75² = 22.9.',
+					'BMI is defined as weight divided by height squared, using kilograms and meters: **BMI = kg ÷ m²**. A 70 kg adult who is 1.75 m tall has a BMI of 70 ÷ 1.75² = 22.9. Convert [pounds to kilograms](/weight-converter/) before using the metric formula.',
 					'CDC’s US-units shortcut is **BMI = 703 × lb ÷ in²**, where 703 is a rounded conversion factor (the exact value is closer to 703.07). Run the same person through both formulas and the results differ by a few thousandths of a point. That gap is the rounding at work, and it never moves anyone across a category boundary.',
 					'The formula does not change for sex or age past 20; CDC states plainly that adults use "standard BMI categories regardless of age, sex, or race." What differs between a BMI calculator "for men" and "for women" online is almost always just which example numbers the page uses, not the math underneath.',
 				],
@@ -2044,13 +2044,13 @@ export const tools: Tool[] = [
 				heading: 'The exact chain this converter uses',
 				body: [
 					'Every other US customary volume unit here is defined as a whole-number fraction or multiple of the gallon, so once the gallon is exact, they all are: 1 gallon = 4 quarts, 1 quart = 2 pints, 1 pint = 2 cups, 1 cup = 8 fluid ounces, 1 fluid ounce = 2 tablespoons, 1 tablespoon = 3 teaspoons. Multiplying those ratios through gives 1 US fluid ounce = 29.5735295625 mL exactly, the number this tool, and every other US-to-metric kitchen conversion, ultimately rests on.',
-					"Metric liters and milliliters need no such chain: a liter is 1,000 mL by definition, since both are SI units related by a power of ten. The only genuinely uncertain step in the whole system is rounding for display. This converter carries full floating-point precision internally and rounds to 6 significant figures only when showing you a result, so copying a number for a recipe or a lab measurement doesn't compound a rounding error the underlying math never made.",
+					"Metric liters and milliliters differ by a factor of 1,000. This converter uses floating-point arithmetic and displays results to six significant figures. Switching units also rounds the new input, so re-enter the original measurement when precision matters.",
 				],
 			},
 			{
 				heading: "Fluid ounces measure volume, not weight, and that's where recipes go wrong",
 				body: [
-					'This is the single most common mix-up this converter exists to prevent. A "fluid ounce" (fl oz) is a unit of volume, 1/128 of a gallon, while a plain "ounce" (oz) is a unit of weight, 1/16 of a pound. They only agree for a substance with the same density as water, where 1 fl oz of water happens to weigh almost exactly 1 oz. That coincidence breaks down for anything else: 1 cup (8 fl oz) of all-purpose flour weighs roughly 4.25 oz, not 8, because flour is far less dense than water and packs with air between the grains. A recipe that says "8 oz flour" almost always means weight (usually from a scale-based, often UK-influenced recipe), while "1 cup flour" means volume, and converting one to the other by treating "oz" and "fl oz" as interchangeable will throw off a baking recipe\'s flour-to-liquid ratio. This tool only converts volume-to-volume (fl oz, cup, mL, etc.); it does not convert to or from weight ounces, because that conversion depends on the specific ingredient\'s density and has no single universal answer.',
+					'This is the single most common mix-up this converter exists to prevent. A "fluid ounce" (fl oz) is a unit of volume, 1/128 of a gallon, while a plain "ounce" (oz) is a [unit of weight](/weight-converter/), 1/16 of a pound. They only agree for a substance with the same density as water, where 1 fl oz of water happens to weigh almost exactly 1 oz. That coincidence breaks down for anything else: 1 cup (8 fl oz) of all-purpose flour weighs roughly 4.25 oz, not 8, because flour is far less dense than water and packs with air between the grains. A recipe that says "8 oz flour" almost always means weight (usually from a scale-based, often UK-influenced recipe), while "1 cup flour" means volume, and converting one to the other by treating "oz" and "fl oz" as interchangeable will throw off a baking recipe\'s flour-to-liquid ratio. This tool only converts volume-to-volume (fl oz, cup, mL, etc.); it does not convert to or from weight ounces, because that conversion depends on the specific ingredient\'s density and has no single universal answer.',
 				],
 			},
 			{
