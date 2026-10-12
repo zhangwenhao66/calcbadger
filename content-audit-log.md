@@ -3028,3 +3028,9 @@
 - 只新增FAQ，既有正文、FAQ、元数据、sources、更新时间不变。
 - humanizer → avoid-ai-writing已依次读取真实kit技能并执行；数字/专名/链接复核，来源与逐条检查见 /Users/zhangwh/.codex/automation-runtime/runs/paa-faq-gap-fill/20261011T-paa-codex-2215/root-additions.json。
 - 每次新增及提交前check_prose_patterns.py均退出0；独立内容审查pass，独立子模块/依赖build成功。
+
+## 2026-10-12 21:25 — 20261012T2125 局部事实修复
+
+本轮恢复weight-converter断点；weight/temperature/molarity/length/volume共5页仅修事实与精度声明，未改公式、slug、标题或首屏结构。published原值均保留，updated记录本轮真实修订。weight贵金属/troy、NHS口径及历史来源修正由独立复核确认，8条来源HTTP200；精确定义不保证JS浮点零舍入误差，切换单位写回舍入已明确。NIST Handbook130 §2.17.2原文短引语独审确认，GEO人工82/99（此前76）。109换算单测及127路由构建通过，5页机械检查通过。浏览器weight有效/负值/零/小数和390px检查已完成；随后线上网络检查超时，未检查。完整综合审计不记完成，不推进last_audited。当前竞品全文实查2/3，Hixec当前403及浏览器交互未检查；无确认需补内容缺口。
+
+扩散判定：通用 / 扫描范围：17站（英语16站实查，alpha中文未校准）/ 命中：1站5页 / 防复发：check_calculator_precision_claims.py及CHECKS.json已独立分支提交429de68，10组校准通过；草稿53条及53组件复扫无候选。详细现状/替换/来源/理由和逐URL发布验证见本轮audit-findings JSON与receipt；线上修复数以receipt实际验证为准，不以本地更改数冒充。无邮件、表单或新发布篇数。

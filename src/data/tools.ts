@@ -513,7 +513,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Molarity',
 		description:
 			'Convert between mass, molar mass, and volume to solve for molarity, grams of solute, solution volume, or molar mass, with compound values built in.',
-		updated: '2026-08-02',
+		updated: '2026-10-12',
 		published: '2026-08-02',
 		coreSummary:
 			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass. Once a solution is prepared at that molarity, its temperature often needs converting too: [Celsius, Fahrenheit, and Kelvin](/temperature-converter/) use exact conversion equations; browser calculations use floating-point arithmetic.',
@@ -867,7 +867,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Temperature Converter',
 		description:
 			'Convert between Celsius, Fahrenheit, and Kelvin instantly, with reference tables for oven temperatures, fever/body-temperature readings, and everyday weather values.',
-		updated: '2026-10-11',
+		updated: '2026-10-12',
 		published: '2026-08-04',
 		coreSummary:
 			'The equations °F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions (NIST SP 811). The calculator uses floating-point arithmetic, displays results to at most two decimal places, and writes a rounded value into the input when you switch scales. Enter a value on any of the three scales and this tool fills in the other two. For a solution\'s concentration, [molarity](/molarity-calculator/) relates concentration to solute mass, molar mass, and solution volume, and can solve for any one when the other three are known.',
@@ -1041,7 +1041,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Length Converter',
 		description:
 			'Convert millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles, with reference tables for heights, tool sizes, and race distances.',
-		updated: '2026-09-13',
+		updated: '2026-10-12',
 		published: '2026-08-04',
 		coreSummary:
 			'1 inch equals exactly 2.54 centimeters, 1 foot equals exactly 0.3048 meters, and 1 mile equals exactly 1,609.344 meters, fixed by international agreement in 1959, not rounded from a measurement. Enter a length in any of eight units and this tool converts it to the other seven at once. Mass conversions follow the identical exact-ratio logic, just with different fixed numbers: [a pound equals exactly 0.45359237 kilograms](/weight-converter/), fixed by the same 1959 international agreement that pinned down the inch and the mile.',
@@ -1201,7 +1201,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Weight Converter',
 		description:
 			'Convert between micrograms, milligrams, grams, kilograms, ounces, pounds, stone, and US tons instantly, with reference tables for body weight, cooking, and dosing.',
-		updated: '2026-09-13',
+		updated: '2026-10-12',
 		published: '2026-08-04',
 		coreSummary:
 			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once. The same exact-factor approach applies to volume: [a US gallon equals 3.785411784 liters](/volume-converter/) under NIST Handbook 44.',
@@ -1236,7 +1236,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Pounds and ounces use two systems',
 				body: [
-					'The metric units here scale by powers of ten: 1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg. The avoirdupois pound has 16 ounces; the separate troy pound has 12 troy ounces. A troy ounce (31.1034768 g) is about 9.7% heavier than an avoirdupois ounce. NIST states that precious-metal sales by weight use troy weight or SI units. This difference matters when a weight is stated without its system: a one-ounce gold coin and a one-ounce bag of flour do not have the same mass. An avoirdupois pound divides into whole-ounce halves, quarters, and eighths (8, 4, and 2 oz). A 12-ounce troy pound divides into whole-ounce halves and quarters (6 and 3 oz), while an eighth is 1.5 troy ounces.',
+					'The metric units here scale by powers of ten: 1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg. The avoirdupois pound has 16 ounces; the separate troy pound has 12 troy ounces. A troy ounce (31.1034768 g) is about 9.7% heavier than an avoirdupois ounce. For precious-metal sales based on weight, NIST Handbook 130 §2.17.2 states that the units "shall be either troy weight or SI units". This difference matters when a weight is stated without its system: a one-ounce gold coin and a one-ounce bag of flour do not have the same mass. An avoirdupois pound divides into whole-ounce halves, quarters, and eighths (8, 4, and 2 oz). A 12-ounce troy pound divides into whole-ounce halves and quarters (6 and 3 oz), while an eighth is 1.5 troy ounces.',
 					'The 1959 agreement among the standards laboratories of the US, UK, Canada, Australia, New Zealand, and South Africa set the international pound at exactly 0.45359237 kg. It replaced small differences among the earlier national standards, letting this converter use one figure for the avoirdupois pound. A US "short ton" (2,000 lb, the one this tool uses) and a British "long ton" (2,240 lb) are different units; neither equals a metric tonne (1,000 kg). Check which system a source document uses before comparing ton values.',
 				],
 			},
@@ -2006,7 +2006,7 @@ export const tools: Tool[] = [
 		shortTitle: 'Volume Converter',
 		description:
 			'Convert between teaspoons, tablespoons, fluid ounces, cups, pints, quarts, gallons, milliliters, and liters, plus kitchen and bottle-size reference tables.',
-		updated: '2026-08-22',
+		updated: '2026-10-12',
 		published: '2026-08-06',
 		coreSummary:
 			'1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C), and every other US customary volume unit here (quart, pint, cup, fluid ounce, tablespoon, teaspoon) is an exact legal ratio of that one figure, not a separately measured value. Enter a volume in any of nine units and this tool converts it to the other eight at once. A completely different kind of conversion, rewriting the same integer in a different counting system rather than a different physical unit, is what [the number base converter](/number-base-converter/) does, translating between binary, octal, decimal, and hexadecimal with exact integer arithmetic.',
