@@ -3034,3 +3034,7 @@
 本轮恢复weight-converter断点；weight/temperature/molarity/length/volume共5页仅修事实与精度声明，未改公式、slug、标题或首屏结构。published原值均保留，updated记录本轮真实修订。weight贵金属/troy、NHS口径及历史来源修正由独立复核确认，8条来源HTTP200；精确定义不保证JS浮点零舍入误差，切换单位写回舍入已明确。NIST Handbook130 §2.17.2原文短引语独审确认，GEO人工82/99（此前76）。109换算单测及127路由构建通过，5页机械检查通过。浏览器weight有效/负值/零/小数和390px检查已完成；随后线上网络检查超时，未检查。完整综合审计不记完成，不推进last_audited。当前竞品全文实查2/3，Hixec当前403及浏览器交互未检查；无确认需补内容缺口。
 
 扩散判定：通用 / 扫描范围：17站（英语16站实查，alpha中文未校准）/ 命中：1站5页 / 防复发：check_calculator_precision_claims.py及CHECKS.json已独立分支提交429de68，10组校准通过；草稿53条及53组件复扫无候选。详细现状/替换/来源/理由和逐URL发布验证见本轮audit-findings JSON与receipt；线上修复数以receipt实际验证为准，不以本地更改数冒充。无邮件、表单或新发布篇数。
+
+### 20261012T2125 实际发布收尾
+
+最终c72e27b/Cloudflare ec3ef57d：5页事实/精度修正与BMI入链来源，去重共6URL。weight正文来源length、volume、BMI共3来源；按原入链门槛新增2来源。应查/已核6URL，7确认修复行；2检查证据不足行不算内容缺陷。细目和Python计数见audit-findings-20261012T2125.json。127路由build、109换算测试、专项11校准测试与英文链保真通过；weightGEO82/99。seo_drift compare schema/同数H2变更均预期；6表/12FAQ未丢，正文删减为已确认错误/无依据陈述的纠正；无CRITICAL。线上robots/sitemap/ads/privacy/about/terms均200，ads账号正确；weight rawHTTP indexsignal PASS。IndexNow Bing200接受6URL，Yandex超时不记成功。完整审计日期未推进；浏览器线上网络/第三方隐私、本轮当前竞品Hixec全文未查，其余11对象未轮到。新增precision gate已合入kit远端3a9248d，本机原kit dirty未改动；该窄检测不证明全站数学精度正确。
