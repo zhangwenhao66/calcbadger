@@ -113,8 +113,8 @@ export default function WeightConverter() {
 			<p class="calc-note">
 				1 lb = 0.45359237 kg and 1 oz = 28.349523125 g are exact by international agreement (1959
 				International Yard and Pound Agreement / NIST Handbook 44), not measured approximations,
-				so there is no rounding error in the conversion itself, only in how many digits are
-				displayed above. Calculations run in your browser; nothing you type is sent anywhere.
+				but browser calculations use floating-point arithmetic. Results are displayed to six
+				significant figures; switching input units also rounds the new input. Calculations run in your browser; nothing you type is sent anywhere.
 			</p>
 		</div>
 	);

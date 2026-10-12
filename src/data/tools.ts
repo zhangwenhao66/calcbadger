@@ -516,7 +516,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-02',
 		published: '2026-08-02',
 		coreSummary:
-			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass. Once a solution is prepared at that molarity, its temperature often needs converting too: [Celsius, Fahrenheit, and Kelvin](/temperature-converter/) convert by exact SI-defined formulas, with zero rounding error in the conversion itself.',
+			'Molarity (M) is moles of solute per liter of solution: M = mass ÷ (molar mass × volume). Dissolving 58.44 g of NaCl (one mole) in water to a final volume of 1 L gives a 1.000 M solution. The same relation rearranges to find the mass to weigh out, the volume to dilute to, or an unknown molar mass. Once a solution is prepared at that molarity, its temperature often needs converting too: [Celsius, Fahrenheit, and Kelvin](/temperature-converter/) use exact conversion equations; browser calculations use floating-point arithmetic.',
 		queries: ['molarity calculator', 'molar concentration calculator', 'grams to moles to molarity'],
 		sections: [
 			{
@@ -870,7 +870,7 @@ export const tools: Tool[] = [
 		updated: '2026-10-11',
 		published: '2026-08-04',
 		coreSummary:
-			'°F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions by definition in the SI system (NIST SP 811), not measured approximations. There is no rounding error in the formula itself, only in how many decimal places you choose to display. Enter a value on any of the three scales and this tool fills in the other two. For a solution\'s concentration, [molarity](/molarity-calculator/) relates concentration to solute mass, molar mass, and solution volume, and can solve for any one when the other three are known.',
+			'The equations °F = °C × 9/5 + 32 and K = °C + 273.15 are exact conversions (NIST SP 811). The calculator uses floating-point arithmetic, displays results to at most two decimal places, and writes a rounded value into the input when you switch scales. Enter a value on any of the three scales and this tool fills in the other two. For a solution\'s concentration, [molarity](/molarity-calculator/) relates concentration to solute mass, molar mass, and solution volume, and can solve for any one when the other three are known.',
 		queries: [
 			'celsius to fahrenheit',
 			'fahrenheit to celsius',
@@ -1204,7 +1204,7 @@ export const tools: Tool[] = [
 		updated: '2026-09-13',
 		published: '2026-08-04',
 		coreSummary:
-			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once. Volume units are pinned down by an equally exact legal definition rather than a rounded measurement: [a US gallon equals exactly 3.785411784 liters](/volume-converter/), per NIST Handbook 44, with every other US customary volume unit defined as an exact ratio of that one figure.',
+			'1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959, not rounded from a measurement. A UK stone is exactly 14 of those pounds, or 6.35029318 kg. Enter a weight in any of eight units and this tool converts it to the other seven at once. The same exact-factor approach applies to volume: [a US gallon equals 3.785411784 liters](/volume-converter/) under NIST Handbook 44.',
 		queries: [
 			'kg to lbs',
 			'lbs to kg',
@@ -1234,48 +1234,47 @@ export const tools: Tool[] = [
 		],
 		sections: [
 			{
-				heading: 'Two systems, one exact bridge',
+				heading: 'Pounds and ounces use two systems',
 				body: [
-					'The metric side of this converter is pure arithmetic: a milligram is a thousandth of a gram and a kilogram is a thousand of them, so moving between mcg, mg, g, and kg is just sliding a decimal point. The pound and ounce come from a different lineage entirely: the avoirdupois system (from the French "aveir de pois," roughly "goods of weight"), which English wool and produce merchants adopted in the late Middle Ages for everyday trade goods. It is a separate system from troy weight, the older standard still used today only for precious metals: a troy ounce (31.1034768 g) is about 9.7% heavier than the avoirdupois ounce this converter uses, which is why a "one-ounce" gold coin is not the same mass as a "one-ounce" bag of flour. Avoirdupois displaced troy for general commerce partly because its 16-ounce pound splits evenly into halves, quarters, and eighths, where troy\'s 12-ounce pound does not.',
-					'The 1959 International Yard and Pound Agreement (US, UK, Canada, Australia, New Zealand, and South Africa) is why this converter can treat "pound" as one unambiguous number: it fixed the avoirdupois pound at exactly 0.45359237 kg in all six countries, replacing figures each had previously calibrated to its own physical standard weight. That agreement did not erase every US/UK mass difference, though: a US "short ton" (2,000 lb, the one this tool uses) and a British "long ton" (2,240 lb) remain genuinely different units today, and neither equals a metric tonne (1,000 kg). Mixing them up is a real source of errors in freight and shipping paperwork.',
+					'The metric units here scale by powers of ten: 1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg. The avoirdupois pound has 16 ounces; the separate troy pound has 12 troy ounces. A troy ounce (31.1034768 g) is about 9.7% heavier than an avoirdupois ounce. NIST states that precious-metal sales by weight use troy weight or SI units. This difference matters when a weight is stated without its system: a one-ounce gold coin and a one-ounce bag of flour do not have the same mass. An avoirdupois pound divides into whole-ounce halves, quarters, and eighths (8, 4, and 2 oz). A 12-ounce troy pound divides into whole-ounce halves and quarters (6 and 3 oz), while an eighth is 1.5 troy ounces.',
+					'The 1959 agreement among the standards laboratories of the US, UK, Canada, Australia, New Zealand, and South Africa set the international pound at exactly 0.45359237 kg. It replaced small differences among the earlier national standards, letting this converter use one figure for the avoirdupois pound. A US "short ton" (2,000 lb, the one this tool uses) and a British "long ton" (2,240 lb) are different units; neither equals a metric tonne (1,000 kg). Check which system a source document uses before comparing ton values.',
 				],
 			},
 			{
 				heading: 'The exact factors this converter uses',
 				body: [
 					'Micrograms, milligrams, grams, and kilograms convert to each other by exact powers of ten (1 kg = 1,000 g = 1,000,000 mg = 1,000,000,000 mcg), since that is how the SI system is built. The imperial bridge is fixed by legal definition rather than by measurement: 1 lb = 453.59237 g exactly (NIST Handbook 44, Appendix C, marks this "exact"). Neither the ounce nor the US ton has its own independent definition. Both are derived arithmetically from that same fixed pound: 1 oz = 1 lb ÷ 16 = 28.349523125 g, and 1 US ton = 2,000 lb = 907,184.74 g.',
-					"Because grams and pounds share no common round factor, most conversions land on a long decimal rather than a clean number (1 kg is 2.204623 lb, not 2.2). That matters more here than it might for a length or volume conversion: a nurse converting a dose between mg and mcg, or a lab weighing a reagent in g versus oz, is working with a figure where a rounding shortcut can shift the result by a meaningful margin. This tool carries the full floating-point calculation internally and rounds only for display, to 6 significant figures, so the number you copy is accurate even though the underlying arithmetic never actually stops at that many digits.",
+					"Because grams and pounds share no common round factor, pound conversions often need several decimal places: 1 kg is 2.204623 lb, while 2.2 is a rougher estimate. This tool uses standard floating-point arithmetic and displays results rounded to six significant figures, with trailing zeros omitted. Switching the input unit writes that rounded result into the input field. Repeated switches can therefore introduce small differences; enter the original measurement when precision matters.",
 				],
 			},
 			{
 				heading: 'Worked example: body weight',
 				body: [
-					'A gym scale reads 68 kg, and a US fitness app wants pounds. Converting: 68 × (1,000 ÷ 453.59237) = 149.914 lb, which most trackers round to 149.9 lb. Going the other way, a US doctor\'s chart listing 150 lb converts to 150 × 0.45359237 = 68.0389 kg, close to but not exactly the 68 kg the scale first showed. The two figures were never meant to round-trip to the same decimal.',
+					'A gym scale reads 68 kg, and a US fitness app wants pounds. Converting: 68 × (1,000 ÷ 453.59237) = 149.914 lb, which rounds to 149.9 lb at one decimal place. Going the other way, a US doctor\'s chart listing 150 lb converts to 150 × 0.45359237 = 68.0389 kg, close to but not exactly the 68 kg the scale first showed. The calculator rounds the converted result to six significant figures.',
 				],
 			},
 			{
 				heading: 'Worked example: a newborn\'s weight',
 				body: [
-					'A US hospital records a birth weight as 8 lb 6 oz, and a family abroad wants it in metric. Converting: 8 lb 6 oz is 134 oz total (8 × 16 + 6), and 134 × 28.349523125 = 3,798.84 g, or 3.799 kg. Baby-weight trackers usually show this as "3.8 kg," which is that figure rounded to one decimal place. Parents comparing weight against age in weeks versus months can switch between those units with the [time converter](/time-converter/).',
+					'Suppose a birth weight is 8 lb 6 oz and needs to be expressed in metric units. Converting: 8 lb 6 oz is 134 oz total (8 × 16 + 6), and 134 × 28.349523125 = 3,798.84 g, or 3.799 kg. Rounded to one decimal place, this is 3.8 kg. Parents comparing weight against age in weeks versus months can switch between those units with the [time converter](/time-converter/).',
 				],
 			},
 			{
 				heading: 'Worked example: a medication dose',
 				body: [
-					'A prescription label reads "levothyroxine 200 mcg," and a pharmacy reference lists the same drug in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams when the real value is in micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly; never assume the number carries over unchanged.',
+					'For example, a prescription may state a dose as 200 mcg while another reference gives the amount in milligrams. Since 1 mg = 1,000 mcg exactly, 200 mcg = 0.2 mg. That distinction matters clinically: typing "200" into a field expecting milligrams when the real value is in micrograms would be a 1,000-fold dosing error. Always convert dosing units explicitly; never assume the number carries over unchanged.',
 				],
 			},
 			{
-				heading: 'The stone: a UK and Ireland body-weight custom',
+				heading: 'The stone unit',
 				body: [
-					'The stone predates the 1959 pound by centuries as a medieval English trade weight, but its modern value is not a separate definition: the Weights and Measures Act 1985 (Schedule 1, Part VI) fixes it at exactly 14 avoirdupois pounds, so it inherits the same 0.45359237 kg pound as the rest of this converter. 14 × 0.45359237 kg = 6.35029318 kg exactly, with no independent rounding of its own.',
-					'That same Act pushed most UK goods sold by weight onto the metric kilogram for trade purposes. Body weight was never really part of that shift in everyday practice: bathroom scales, GP surgery records, and ordinary conversation across the UK and Ireland still run in stone and pounds (a person might be described as "11 stone 3," meaning 11 st plus 3 remaining lb), which is why this converter treats stone as a body-weight unit, not a general trade one.',
+					'The Weights and Measures Act 1985 (Schedule 1, Part VI) defines a stone as exactly 14 avoirdupois pounds. At 0.45359237 kg per pound, that is 6.35029318 kg.',
 				],
 			},
 			{
 				heading: 'Worked example: converting a UK body weight',
 				body: [
-					'A UK GP surgery records a patient at 11 st 3 lb, and a specialist clinic elsewhere needs the figure in kilograms. First convert to a single unit: 11 st 3 lb = (11 × 14) + 3 = 157 lb. Then apply the exact pound: 157 × 0.45359237 = 71.214 kg, which this converter rounds for display to 71.2140 kg.',
+					'A person reports a body weight of 11 st 3 lb and needs the figure in kilograms. First convert to a single unit: 11 st 3 lb = (11 × 14) + 3 = 157 lb. Then apply the exact pound: 157 × 0.45359237 = 71.21400209 kg, which this converter displays as 71.214 kg.',
 					'Going the other way, a 60 kg reading converts to 60 ÷ 6.35029318 = 9.4484 stone. Since stone readings are conventionally given as whole stone plus remaining pounds rather than a decimal, that splits into 9 st plus 0.4484 st × 14 lb/st = 6.28 lb, commonly rounded to "9 stone 6."',
 				],
 			},
@@ -1320,7 +1319,7 @@ export const tools: Tool[] = [
 					['12 oz', '340.19 g'],
 					['16 oz (1 lb)', '453.59 g'],
 				],
-				note: 'Exact conversion via 1 oz = 28.349523125 g, rounded to two decimal places. Common in recipes that mix US and metric measures.',
+				note: 'Exact conversion via 1 oz = 28.349523125 g, rounded to two decimal places.',
 			},
 			{
 				title: 'Newborn weight: ounces to pounds & ounces',
@@ -1334,7 +1333,7 @@ export const tools: Tool[] = [
 					['144 oz', '9 lb 0 oz'],
 					['160 oz', '10 lb 0 oz'],
 				],
-				note: 'Splits total ounces into whole pounds plus remaining ounces, the format most US birth records use.',
+				note: 'Splits total ounces into whole pounds plus remaining ounces.',
 			},
 			{
 				title: 'Stone to kilograms: body weight range',
@@ -1361,7 +1360,7 @@ export const tools: Tool[] = [
 					['90 kg', '14 st 2 lb'],
 					['100 kg', '15 st 10 lb'],
 				],
-				note: 'Splits the decimal stone figure into whole stone plus remaining pounds, the conventional UK format, rounded to the nearest pound.',
+				note: 'Splits decimal stone into whole stone and remaining pounds, rounded to the nearest pound.',
 			},
 		],
 		faq: [
@@ -1371,11 +1370,11 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many kilograms are in a pound?',
-				answer: 'One pound is fixed at 0.45359237 kg exactly, a figure locked in by an international standards treaty signed back in 1959.',
+				answer: 'A pound has a fixed value of 0.45359237 kg; that standard dates to 1959.',
 			},
 			{
 				question: 'How many ounces are in a pound?',
-				answer: 'There are exactly 16 ounces in an avoirdupois pound, a relationship that predates and is unchanged by the 1959 metric redefinition.',
+				answer: 'An ordinary pound contains 16 ounces. This uses avoirdupois weight; a troy pound contains 12 troy ounces.',
 			},
 			{
 				question: 'How do you convert kilograms to pounds?',
@@ -1383,11 +1382,11 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many grams are in an ounce?',
-				answer: 'One ounce comes to 28.349523125 grams down to the exact fraction (1 pound ÷ 16, with the pound itself fixed at 453.59237 g by the 1959 agreement).',
+				answer: 'An ounce is 28.349523125 g in the 16-ounce pound system and 31.1034768 g in troy weight.',
 			},
 			{
 				question: 'Is a US ton the same as a metric tonne?',
-				answer: 'No. A US (short) ton is exactly 2,000 pounds, or 907.18474 kg. A metric tonne is exactly 1,000 kg, about 10% heavier than a US ton. The short ton is the one built into this tool, matching US freight, agriculture, and construction usage.',
+				answer: 'No. A US (short) ton is exactly 2,000 pounds, or 907.18474 kg. A metric tonne is exactly 1,000 kg, about 10% heavier than a US ton. This tool uses the US short ton.',
 			},
 			{
 				question: 'How many milligrams are in a gram?',
@@ -1395,15 +1394,15 @@ export const tools: Tool[] = [
 			},
 			{
 				question: 'How many kilograms are in a stone?',
-				answer: '1 stone equals exactly 6.35029318 kilograms. A UK statute from that same year sets a stone at fourteen pounds avoirdupois, which multiplies out to that exact metric figure using the same pound-to-kilogram conversion this whole tool relies on.',
+				answer: 'A stone is 6.35029318 kilograms, based on its statutory definition as 14 pounds.',
 			},
 			{
 				question: 'How many pounds are in a stone?',
-				answer: 'There are exactly 14 pounds in a stone. It\'s set in UK statute, not an approximation someone settled on by convention.',
+				answer: 'The statutory value is 14 pounds.',
 			},
 			{
-				question: 'Why do UK and Irish scales show weight in stone instead of kilograms?',
-				answer: 'The same 1985 law that moved most UK retail weights over to the metric system never really touched how people talk about their own weight day to day, so people in both countries still get weighed, recorded, and give their own weight in stone-and-pounds terms even though the UK is otherwise metric.',
+				question: 'What units does the NHS data standard use for body weight?',
+				answer: 'The NHS Data Dictionary defines PERSON WEIGHT in kilograms. Follow the units requested by the clinic or form.',
 			},
 			{
 				question: 'How do I convert kilograms to stone and pounds?',
@@ -1416,8 +1415,28 @@ export const tools: Tool[] = [
 		],
 		sources: [
 			{
+				label: 'NHS Data Dictionary (May 2024), PERSON WEIGHT',
+				url: 'https://archive.datadictionary.nhs.uk/DD%20Release%20May%202024/data_elements/person_weight.html',
+			},
+			{
 				label: 'NIST, SI Units: Mass',
 				url: 'https://www.nist.gov/pml/owm/si-units-mass',
+			},
+			{
+				label: 'National Bureau of Standards, 1959 Annual Report: International Yard and Pound',
+				url: 'https://nvlpubs.nist.gov/nistpubs/Legacy/MP/nbsmiscellaneouspub229.pdf',
+			},
+			{
+				label: 'NIST Handbook 44 (2026), Appendix C: troy and avoirdupois units',
+				url: 'https://www.nist.gov/document/2026-nist-handbook-44-appendix-c',
+			},
+			{
+				label: 'NIST Museum: troy pound subdivision',
+				url: 'https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir76-1125.pdf',
+			},
+			{
+				label: 'NIST, Precious Metals Conversion Information (Handbook 130, Section 2.17)',
+				url: 'https://www.nist.gov/pml/owm/metric-si/unit-conversion/precious-metals-conversion-information',
 			},
 			{
 				label: 'NIST Handbook 44 (2026), Appendix C, General Tables of Units of Measurement',
