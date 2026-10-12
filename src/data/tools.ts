@@ -1878,15 +1878,15 @@ export const tools: Tool[] = [
 			{
 				heading: 'One formula, three questions',
 				body: [
-					'Every basic percentage question is the same equation — **part = (percent ÷ 100) × whole** — asked with a different piece missing. "What is 20% of 50?" gives you the percent and the whole, and asks for the part (20 ÷ 100 × 50 = 10). "10 is what percent of 40?" gives you the part and the whole, and asks for the percent (10 ÷ 40 × 100 = 25%). "10 is 20% of what number?" gives you the part and the percent, and asks for the whole (10 ÷ (20 ÷ 100) = 50). The "Basic percentage" mode above is exactly this triangle: pick which piece you are solving for, and the other two become the inputs.',
+					'Every basic percentage question is the same equation (**part = (percent ÷ 100) × whole**) asked with a different piece missing. "What is 20% of 50?" gives you the percent and the whole, and asks for the part (20 ÷ 100 × 50 = 10). "10 is what percent of 40?" gives you the part and the whole, and asks for the percent (10 ÷ 40 × 100 = 25%). "10 is 20% of what number?" gives you the part and the percent, and asks for the whole (10 ÷ (20 ÷ 100) = 50). The "Basic percentage" mode above is exactly this triangle: pick which piece you are solving for, and the other two become the inputs.',
 					'The word itself tells you why the formula works: "percent" comes from the Latin *per centum*, "by the hundred." The BIPM\'s own style guide for the SI confirms the modern usage: the % symbol is internationally recognized and, in running text, "generally takes the meaning of parts per hundred." A percentage is not a unit of anything on its own; it is always a percentage *of* some specific base number, which is the "whole" in the formula above.',
 				],
 			},
 			{
 				heading: 'Percentage change is not percentage difference',
 				body: [
-					'These two get mixed up constantly because they look almost identical, but they answer different questions and can give different numbers for the same pair of values. **Percentage change** — (new − old) ÷ |old| × 100 — always treats one value as the starting point. A stock at $80 that closes at $60 is down (60 − 80) ÷ 80 × 100 = −25%; the $80 is the anchor, so going back up from $60 to $80 would be a +33.3% change, not +25%, because the anchor itself moved from $80 to $60.',
-					'**Percentage difference** — |a − b| ÷ ((a + b) ÷ 2) × 100 — has no anchor. It is used to compare two independent measurements when neither one is the "correct" answer, so it divides by their average instead of by either value alone. Two lab scales reading 10 g and 12 g for the same object differ by |10 − 12| ÷ ((10 + 12) ÷ 2) × 100 = 18.18%, and it would come out exactly the same if the scales had reported 12 g and 10 g in the opposite order. Swap a and b in a percentage-change calculation, by contrast, and the answer changes sign and magnitude. If one of those two readings is actually the accepted or true value rather than a second independent measurement, that is a third, related calculation, percent error, which divides by the accepted value instead of the average: (12 − 10) ÷ 10 × 100 = 20%, a different number again for the same two readings.',
+					'These two get mixed up constantly because they look almost identical, but they answer different questions and can give different numbers for the same pair of values. **Percentage change** ((new − old) ÷ |old| × 100) always treats one value as the starting point. A stock at $80 that closes at $60 is down (60 − 80) ÷ 80 × 100 = −25%; the $80 is the anchor, so going back up from $60 to $80 would be a +33.3% change, not +25%, because the anchor itself moved from $80 to $60.',
+					'**Percentage difference** (|a − b| ÷ ((a + b) ÷ 2) × 100) has no anchor. It is used to compare two independent measurements when neither one is the "correct" answer, so it divides by their average instead of by either value alone. Two lab scales reading 10 g and 12 g for the same object differ by |10 − 12| ÷ ((10 + 12) ÷ 2) × 100 = 18.18%, and it would come out exactly the same if the scales had reported 12 g and 10 g in the opposite order. Swap a and b in a percentage-change calculation, by contrast, and the answer changes sign and magnitude. If one of those two readings is actually the accepted or true value rather than a second independent measurement, that is a third, related calculation, percent error, which divides by the accepted value instead of the average: (12 − 10) ÷ 10 × 100 = 20%, a different number again for the same two readings.',
 				],
 			},
 			{
@@ -5629,7 +5629,7 @@ export const tools: Tool[] = [
 			{
 				heading: 'Worked example',
 				body: [
-					'A 198 lb (90 kg), 5\'11" (180 cm) man at 12% body fat has 79.2 kg of fat-free mass (90 × 0.88). Dividing by height in meters squared (1.80² = 3.24) gives a raw FFMI of 24.4. Because 180 cm is exactly the reference height, the normalization term is zero, so normalized FFMI is also 24.4 — about 98% of the 25 natural-limit reference.',
+					'A 198 lb (90 kg), 5\'11" (180 cm) man at 12% body fat has 79.2 kg of fat-free mass (90 × 0.88). Dividing by height in meters squared (1.80² = 3.24) gives a raw FFMI of 24.4. Because 180 cm is exactly the reference height, the normalization term is zero, so normalized FFMI is also 24.4, about 98% of the 25 natural-limit reference.',
 				],
 			},
 			{
@@ -5679,7 +5679,7 @@ export const tools: Tool[] = [
 			{
 				question: 'Does this calculator estimate my body fat percentage?',
 				answer:
-					'No — you\'re the one plugging that number in. FFMI\'s accuracy depends entirely on how accurate that input is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
+					'No; you\'re the one plugging that number in. FFMI\'s accuracy depends entirely on how accurate that input is, so use a measurement method (calipers, a bioimpedance scale, or a DEXA scan) rather than a guess if the result needs to be reliable.',
 			},
 			{
 				question: 'Is FFMI a medical diagnostic tool?',
