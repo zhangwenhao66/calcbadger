@@ -89,14 +89,14 @@ export default function LengthConverter() {
 					))}
 				</div>
 			) : negative ? (
-				<p class="calc-note">A length can't be negative — enter a value of 0 or more.</p>
+				<p class="calc-note">A length can't be negative. Enter a value of 0 or more.</p>
 			) : (
 				<p class="calc-note">Enter a length to convert it to the other seven units.</p>
 			)}
 
 			<p class="calc-note">
 				1 in = 2.54 cm, 1 ft = 0.3048 m, and 1 mi = 1,609.344 m are exact by international
-				agreement (1959 International Yard and Pound Agreement / NIST Handbook 44) — not measured
+				agreement (1959 International Yard and Pound Agreement / NIST Handbook 44), not measured
 				approximations. Browser calculations use floating-point numbers, and the displayed
 				results are rounded. Switching units also rounds the new input. Calculations run in your browser; nothing you type is sent
 				anywhere.
