@@ -5725,7 +5725,7 @@ export const tools: Tool[] = [
 		updated: '2026-08-25',
 		published: '2026-08-25',
 		coreSummary:
-			'A dead pixel test fills the screen with solid colors, one at a time, so a defective pixel stands out against a flat background instead of getting lost inside a normal image. A dark dot on white reveals a dead (always-off) pixel; a bright dot on black reveals a hot (always-on) pixel; the pure red, green, and blue screens isolate each sub-pixel channel so a stuck one shows up as an off-color speck. This tool runs that cycle in your browser, plus a faster color-flashing mode sometimes reported to help dislodge a merely stuck (as opposed to physically dead) sub-pixel, and a reference table showing how many such defects the historical ISO 13406-2 classification allowed per resolution before a panel fell outside spec. Testing an input device instead of a display needs a different method entirely: [the keyboard test](/keyboard-test/) lights up a virtual layout as physical keys are pressed and tracks rollover, how many keys the keyboard can register held down at once.',
+			'A dead pixel test fills the screen with solid colors, one at a time, so a defective pixel stands out against a flat background instead of getting lost inside a normal image. A dark dot on white reveals a dead (always-off) pixel; a bright dot on black reveals a hot (always-on) pixel; the pure red, green, and blue screens isolate each sub-pixel channel so a stuck one shows up as an off-color speck. This tool runs that cycle in your browser, plus a faster color-flashing mode sometimes reported to help dislodge a merely stuck (as opposed to physically dead) sub-pixel, and a reference table showing how many such defects the historical ISO 13406-2 classification allowed per resolution before a panel fell outside spec. Testing an input device instead of a display needs a different method entirely: [the keyboard test](/keyboard-test/) lights up a virtual layout as physical keys are pressed and tracks rollover, how many keys the keyboard can register held down at once. A screen that lights up correctly but no longer answers to touch has a different fault again, and [a touchscreen test](/touchscreen-test/) sweeps the panel to show which regions have stopped reporting contact.',
 		queries: ['dead pixel test', 'dead pixel test online', 'stuck pixel test', 'how to check for dead pixels'],
 		sections: [
 			{
@@ -5950,7 +5950,7 @@ export const tools: Tool[] = [
 		updated: '2026-10-11',
 		published: '2026-09-29',
 		coreSummary:
-			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks more than 500 ms apart on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once.",
+			"A mouse test checks four things a manufacturer's driver software won't show you plainly: whether every physical button actually sends a signal, how fast your two clicks land compared to the operating system's double-click window, roughly how often the mouse reports its position (report rate, commonly called polling rate), and whether the scroll wheel ticks cleanly in both directions. The double-click number matters because it's compared against a documented default: Windows ships with a 500 ms window (adjustable from 200 to 900 ms), so two clicks more than 500 ms apart on default settings would register as two separate single clicks, not one double-click. The report-rate estimate carries a real caveat covered below: most browsers batch, or coalesce, mouse-movement events before handing them to a page, which caps a naive reading near your monitor's refresh rate, not the mouse's true hardware rate. For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once. A phone or tablet screen asks the same question about its own surface, and [a touchscreen test](/touchscreen-test/) sweeps the glass to show which regions stop reporting a finger.",
 		queries: [
 			'mouse test',
 			'mouse tester online',
@@ -6958,5 +6958,217 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 760,
+	},
+	{
+		slug: 'touchscreen-test',
+		category: 'Tech',
+		title: 'Touchscreen Test: Find Dead Zones',
+		shortTitle: 'Touchscreen Test',
+		description:
+			'Sweep a finger across a 12x18 grid to find dead spots, press several fingers at once to see how many touches register, and watch a live log of every touch event.',
+		updated: '2026-10-13',
+		published: '2026-10-13',
+		coreSummary:
+			"A touchscreen test shows what a settings menu keeps quiet about: whether every part of the glass still reports a touch, and how many fingers the panel can track at once. It also catches the opposite fault, where the screen fires inputs nobody made. The grid above is the countable version of the two tests the platform vendors describe by hand. Google's Android help page tells you to drag slowly from the top-left corner to the bottom-right without lifting and to note where the drag releases, and Samsung's *#0*# hardware menu draws a box and an X that only color in where your finger is detected. Counting simultaneous touches is compared against navigator.maxTouchPoints, the browser's own report of the device's contact-point ceiling, which reads 0 on a machine with no touchscreen and commonly 5 on a phone. For the other two input devices on the same desk, [a mouse test](/mouse-test/) and [a keyboard test](/keyboard-test/) ask the same question about buttons that never register.",
+		queries: [
+			'touchscreen test',
+			'touch screen test online',
+			'multi touch screen test',
+			'multi touch screen test online',
+			'ghost touch screen test',
+			'finger touch screen test',
+		],
+		sections: [
+			{
+				heading: 'What the grid coverage number tells you',
+				body: [
+					'Each cell lights up once when a drag crosses it, and the readout counts how many of the 216 cells have been touched so far. The number only means something after a deliberate sweep: drag across the whole surface slowly, covering every row, and watch for a cell that stays dark even though your finger passed over it. A dark cell inside a swept area is the signature of a dead zone, a spot where the digitizer stops reporting contact.',
+					"That is the same test Google's Android help page describes for a phone screen that is behaving oddly. Touch the top-left corner, drag slowly toward the bottom-right without lifting, and move slowly enough to count to 10 on the way across. If the notification shade releases partway, repeat the drag and note whether it releases in the same place. Google's instruction at that point is to contact the manufacturer, not to change a setting. Samsung's built-in *#0*# hardware menu asks for the same thing with a box and an X that only color in where your finger is detected.",
+					'One caveat about the count itself: a cell stays lit once it has been touched, so the percentage is a record of where you have been rather than a live map of what is working right now. Sweeping twice over the same strip tells you nothing new. To re-test one region, reset and sweep that region again.',
+				],
+			},
+			{
+				heading: 'How many fingers the screen can track at once',
+				body: [
+					'The multi-touch counter watches every pointer the browser reports, keyed by its pointerId, which stays with a single finger for as long as that finger rests on the glass. Press two, three or four fingers down together and the peak reading records the highest number that were active at the same moment.',
+					"That peak is compared against navigator.maxTouchPoints, which MDN defines as \"the maximum number of simultaneous touch contact points that are supported by the current device\". Desktop machines with no touchscreen report 0. Phones commonly report 5, though the exact figure depends on the hardware and some panels report more. A peak below the reported ceiling usually just means fewer fingers were used, so press more at once before drawing a conclusion. A device that reports 10 points but never registers more than 2, however many fingers you press, is a more interesting result.",
+					'The number matters because gestures are built on it: a pinch needs 2 contacts and a three-finger swipe needs 3. When a gesture that should work never fires, the peak reading separates two possibilities. Either the panel is failing to report the extra contacts, or the contacts are fine and something else is blocking the gesture.',
+				],
+			},
+			{
+				heading: 'The event log, and what ghost touch looks like',
+				body: [
+					'The log lists the most recent touch events with a timestamp, the event kind, the pointer type and the pointer id. It exists for the opposite problem to a dead zone. Ghost touch, also called phantom touch, is a screen reporting taps and swipes that nobody made, and it is hard to catch because the stray input usually lands while you are looking at something else. Use the log passively: leave the page open with your hands off the glass and watch the counters. On a healthy screen the "down" count only moves when you touch it, and a count that keeps climbing while nothing is touching the screen is the phenomenon people mean by ghost touch.',
+					"Not every cause is hardware. Google's Android troubleshooting page and Apple's iPhone screen guide both open with the same non-hardware steps: remove the case and any screen protector, clean the glass, unplug accessories and chargers, then restart. Samsung's guidance adds that non-genuine screen protectors and cases can interfere with touch near the edges, and that a Touch sensitivity setting under Settings > Display exists for screens with a protector fitted. A screen that only misbehaves while one particular charger is plugged in points at electrical noise in the ground path. When ghost touches continue across a restart, in safe mode, and with no accessories attached, the digitizer is what remains, and replacing the screen assembly is the usual outcome.",
+				],
+			},
+			{
+				heading: 'What this test cannot tell you',
+				body: [
+					'The grid measures whether touches arrive, not where the operating system thinks they landed. A screen that registers every touch but acts on the wrong spot, which is a calibration offset, will sweep cleanly and still be wrong. On Windows that offset is corrected through Control Panel > Hardware and Sound > Tablet PC Settings > Calibrate; phones handle it in firmware.',
+					'A browser also sees touches only after the operating system has processed them. Touch sampling rate, the rate at which the panel itself scans for contact, is a hardware figure that no web page can read. A panel with a low sampling rate can light every cell here and still feel sluggish in a fast game.',
+					'The grid is coarse on purpose. Each cell covers a few millimeters of the surface, which is the right scale for locating a dead region and far too coarse for measuring a single pixel. A dead-pixel test is the tool for that job.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					'Sweep the whole surface and the readout lands on 216 / 216 (100%): every cell reported a touch, so nothing inside the swept area is failing to register. That is the pass condition.',
+					'Sweep the same way and the readout stops at 205 / 216 (94.9%) with a dark run of cells down one side: your finger crossed those cells, so the panel did not report contact there. Sweep that strip again. If the same cells stay dark, it is a repeatable dead zone.',
+					'Press three fingers down and the peak reads 3 while the device reports 5. The panel can track more contacts than were used, so nothing is wrong yet. Press five and the peak still reads 3, and the panel is dropping two contacts, which is the pattern behind a multi-finger gesture that refuses to fire.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'What each reading points at',
+				headers: ['Reading', 'What it suggests', 'What to try next'],
+				rows: [
+					[
+						'Dark cells after a full sweep',
+						'Contact not reported in that region',
+						'Sweep the same strip again; if the same cells stay dark, treat it as a hardware fault',
+					],
+					[
+						'Peak below the device ceiling',
+						'Fewer fingers used than the panel supports',
+						'Press more fingers at once before drawing any conclusion',
+					],
+					[
+						'Peak stuck at 2 however many fingers you press',
+						'Panel dropping contacts, or a gesture limit elsewhere',
+						'Try the same gesture in a system app; if it also fails, the panel is the likely cause',
+					],
+					[
+						'"Down" count rising with nothing touching',
+						'Ghost touch (phantom input)',
+						'Remove case and protector, clean the glass, unplug the charger, restart, retest',
+					],
+					[
+						'Every cell lights, but taps land in the wrong place',
+						'Calibration offset, not a dead digitizer',
+						'Recalibrate (Windows: Tablet PC Settings); a dead digitizer cannot produce this pattern',
+					],
+				],
+				note: 'A single dark cell during a quick swipe is usually a missed cell, not a fault. Only a repeatable dark region after a slow, deliberate sweep counts as evidence.',
+			},
+			{
+				title: 'Where each platform hides its own touch test',
+				headers: ['Platform', 'How to open it', 'What it does'],
+				rows: [
+					[
+						'Samsung Galaxy',
+						'Open the Phone app and dial *#0*#, or use Samsung Members > Support > Phone diagnostics > Touch screen',
+						'Hardware test mode with a Touch entry: drag to fill a box and an X, and any area that stays uncolored marks a problem spot',
+					],
+					[
+						'Google Pixel',
+						'Settings > Display & touch > Touch diagnostics',
+						'Built-in touch diagnostics on Pixel 9 series and later; earlier models rely on Touch sensitivity and Screen protector mode',
+					],
+					[
+						'Android (any brand)',
+						'Drag from the top-left corner to the bottom-right without lifting, counting to 10',
+						"Google's own dead-zone test: if the notification shade releases and repeats in the same place, contact the manufacturer",
+					],
+					[
+						'iPhone / iPad',
+						'No dial code; Apple directs users to restart, clean the glass and remove accessories',
+						'Apple routes persistent touch faults to service rather than exposing a user-facing test',
+					],
+					[
+						'Windows touch PC',
+						'Control Panel > Hardware and Sound > Tablet PC Settings > Calibrate',
+						'Crosshair calibration routine; it corrects an offset, not a dead zone',
+					],
+				],
+				note: 'Dial codes vary by model and carrier, and some carriers block them outright. Samsung\'s own guidance is to turn Auto Blocker off under Settings > Security and privacy if *#0*# does not open the test mode.',
+			},
+		],
+		faq: [
+			{
+				question: 'Is there a code to test a touchscreen?',
+				answer:
+					'On many Samsung Galaxy phones, yes. Dialing *#0*# from the Phone app opens a hardware menu holding a Touch entry. Select it, then drag a finger to complete a box and an X; any part that never fills in marks a spot the panel is not detecting. Other Android brands generally do not expose an equivalent menu, which is why a browser page is the more portable option.',
+			},
+			{
+				question: 'How do I test the touchscreen on an Android phone?',
+				answer:
+					"Two ways to do it. Sweep the grid above, or run Google's own manual check: put a finger in the upper-left corner and slide it to the lower-right in one motion, taking roughly ten seconds to cross. Should the shade drop before you reach the far side, run it again and note where that happened. A release that comes back in one fixed spot is the pattern Google's help page sends to the manufacturer.",
+			},
+			{
+				question: 'How do I test an iPhone or iPad touchscreen?',
+				answer:
+					'Apple does not ship a user-facing touch test, and its guidance for a misbehaving screen is to reboot the device, wipe the display, disconnect any accessories and take off the case or screen protector before considering service. The grid on this page works in Safari on iOS, so you can sweep it to check whether one region of the screen has stopped answering to touch.',
+			},
+			{
+				question: 'What is a multi-touch test?',
+				answer:
+					'It checks how many separate contact points a screen can report at one instant. A pinch takes two contacts, swiping with three fingers takes three, and panels differ in how many they can track. The counter here records the largest count of pointers seen at once, then compares it with the contact ceiling your device claims.',
+			},
+			{
+				question: 'How can I tell whether I have ghost touch?',
+				answer:
+					'Open this page, set the device down with your hands away from it, and watch the event counters for a minute. If touch-down events keep piling up with nothing on the glass, the display is reporting contact that is not there, which is what people describe as ghost touch. Before you assume the panel has failed, strip off the case and any protector, wipe the display, pull the charger, and reboot.',
+			},
+			{
+				question: 'Why is part of my screen not responding to touch?',
+				answer:
+					'The usual explanations, roughly in order of how often they apply, are a screen protector or case interfering with the panel, dirt or moisture on the glass, a software fault that a restart clears, and physical damage to the digitizer underneath the glass. Sweeping the grid narrows this down: if the same patch stays dark every time you sweep it, the digitizer is the likelier explanation, while a clean sweep points back at software or an offset that needs recalibrating.',
+			},
+			{
+				question: 'Does this test work on a laptop or Windows tablet?',
+				answer:
+					'Yes, on any device with a touchscreen, and the page also responds to a mouse or trackpad so you can see how it behaves without one. A Windows desktop reporting 0 touch points has no touch digitizer at all, and the readout says so outright. Windows handles offset problems separately, with its own display calibration tool.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'MDN Web Docs: Navigator.maxTouchPoints (maximum number of simultaneous touch contact points the device supports; 0 without a touchscreen, commonly 5 on phones)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/maxTouchPoints',
+			},
+			{
+				label:
+					'MDN Web Docs: Touch events (Touch, TouchList and TouchEvent; Touch.identifier stays consistent for the duration of each finger contact)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/Touch_events',
+			},
+			{
+				label:
+					'MDN Web Docs: TouchEvent.changedTouches (which touch points became active, moved, or were removed for each event type)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/changedTouches',
+			},
+			{
+				label:
+					'Google Android Help: "Fix a screen that isn\'t working right on Android" (the drag-from-corner dead-zone test, and the instruction to contact the manufacturer when it repeats in the same place)',
+				url: 'https://support.google.com/android/answer/7666942',
+			},
+			{
+				label:
+					'Google Pixel Help: "Fix touch & response issues on your Pixel screen" (Touch diagnostics on Pixel 9 and later; Touch sensitivity and Screen protector mode on earlier models)',
+				url: 'https://support.google.com/pixelphone/answer/6010316',
+			},
+			{
+				label:
+					'Samsung Support: "How to solve the touchscreen issue on your Samsung Galaxy device" (screen protectors and cases affecting touch, and the Touch sensitivity setting)',
+				url: 'https://www.samsung.com/in/support/mobile-devices/galaxy-device-touchscreen-issue/',
+			},
+			{
+				label:
+					'Samsung Support (Spanish-language page): "Que hacer si la pantalla tactil de mi Galaxy no funciona" (documents the *#0*# hardware test mode, its Touch entry, and the box-and-X drag whose uncoloured areas mark a fault)',
+				url: 'https://www.samsung.com/co/support/mobile-devices/what-to-do-if-your-touch-screen-is-not-working-properly/',
+			},
+			{
+				label:
+					'Samsung Support: "How to fix display issues on your Samsung Galaxy device" (the no-dial-code alternative: Samsung Members > Support > Phone diagnostics > Touch screen, then touch every empty area and read the result)',
+				url: 'https://www.samsung.com/in/support/mobile-devices/fixing-galaxy-device-display-issues/',
+			},
+			{
+				label:
+					'Apple Support: "If the screen isn\'t working on your iPhone or iPad" (restart, clean the glass, disconnect accessories, remove cases and screen protectors before service)',
+				url: 'https://support.apple.com/en-us/102567',
+			},
+		],
+		embedHeight: 700,
 	},
 ];
