@@ -351,9 +351,10 @@
   },
   "https://calcbadger.com/rounding-calculator/": {
     "submitted_date": "2026-08-20",
-    "last_submitted_date": "2026-08-20",
+    "last_submitted_date": "2026-10-13",
     "verified_status": "verified_indexed",
-    "verified_date": "2026-10-08"
+    "verified_date": "2026-10-08",
+    "note": "[{\"urls\":[\"https://calcbadger.com/rounding-calculator/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/wingdings-translator/": {
     "submitted_date": "2026-08-21",
@@ -410,8 +411,9 @@
   },
   "https://calcbadger.com/dead-pixel-test/": {
     "submitted_date": "2026-08-25",
-    "last_submitted_date": "2026-08-25",
-    "verified_status": "pending"
+    "last_submitted_date": "2026-10-13",
+    "verified_status": "pending",
+    "note": "[{\"urls\":[\"https://calcbadger.com/dead-pixel-test/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   },
   "https://calcbadger.com/keyboard-test/": {
     "submitted_date": "2026-08-26",
