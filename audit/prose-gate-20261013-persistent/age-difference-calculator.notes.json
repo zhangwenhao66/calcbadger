@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言date工具计算总天数、years/months/days及倒数。目标原文\"Difference reports both the exact total day count between two dates and a calendar-style years/months/days breakdown\"，并写\"countdown\"模式；三项功能在完整目标正文及FAQ一致，年龄差桥接未混用百分比基准。"
+  }
+]

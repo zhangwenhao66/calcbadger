@@ -1,0 +1,14 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "The mouse test checks “whether every physical button actually sends a signal,” supporting the bridge’s reference to unregistered mouse controls.",
+    "sentence": "For the other two input devices on the same desk, [a mouse test](/mouse-test/) and [a keyboard test](/keyboard-test/) ask the same question about controls that never register."
+  },
+  {
+    "index": 2,
+    "verdict": "CONFIRMED",
+    "note": "The keyboard test says users can “confirm a key registers at all,” supporting the same registration question for keyboard controls.",
+    "sentence": "For the other two input devices on the same desk, [a mouse test](/mouse-test/) and [a keyboard test](/keyboard-test/) ask the same question about controls that never register."
+  }
+]

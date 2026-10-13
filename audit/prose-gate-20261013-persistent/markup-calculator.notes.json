@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言tip是百分比乘基数，并可用税前subtotal。目标原文\"Tip = base amount × (tip percent / 100)\"及\"this calculator ... computes the tip both ways\"；Emily Post官方 https://emilypost.com/advice/finer-points-of-tipping 写\"It is acceptable to tip on the pre-tax amount of the bill\"，故当前桥接应只说可用税前额，不声称大多数人习惯。"
+  }
+]

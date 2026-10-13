@@ -26,7 +26,7 @@
       "candidate_sha256": "d691d5fdb89c72a76e344b69f89e7195dc3844bf1e8cfa88efe5d7f2793c92aa",
       "notes_sha256": "7d5083058398e1a1d891db8c7e08e62a2e42232f405d34fc4901d265653b92c4",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b1/square-footage-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/square-footage-calculator.notes.json"
     },
     {
       "slug": "length-converter",
@@ -34,7 +34,7 @@
       "candidate_sha256": "8d21eb28c78ed92ab317f88064f0baaaa1fabcb93a35e70bcd5f1e00ab8e4790",
       "notes_sha256": "235c419e284a84ee34e5594b5abba1affd443ea1857d4df013e03d0f48e510e6",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b1/length-converter.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/length-converter.notes.json"
     },
     {
       "slug": "weight-converter",
@@ -42,7 +42,7 @@
       "candidate_sha256": "ba41d18847982a53939906dc4458116acf9567d1376848f49021b9279216dcce",
       "notes_sha256": "3e377806cbdf118bd7b2a5a2819f05bcb26eab20688a10b964e9b45027b3971f",
       "verification_basis": "exact_sentence_match",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-prose-gate-backfill/20261013/recheck/calcbadger/weight-converter.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/weight-converter.notes.json"
     },
     {
       "slug": "mortgage-calculator",
@@ -50,7 +50,7 @@
       "candidate_sha256": "2f60763de502c58c5f4b095c103d793c33b24fd56e9fd580a39101c6cf2d8661",
       "notes_sha256": "65c9f2d2d91c6a6d1b1438c89e28856a897ceabfdefeb53b7e6b37ab6aaaecb6",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b1/mortgage-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/mortgage-calculator.notes.json"
     },
     {
       "slug": "volume-converter",
@@ -58,7 +58,7 @@
       "candidate_sha256": "b2a81addf1c359b94223afca3a8f0e53ba5766dd8fb4f786772cd84addc322f6",
       "notes_sha256": "7767506117f83b1152b3ad501f3ec819ce0395cd3f52df991cee4f43f81e20b8",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b1/volume-converter.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/volume-converter.notes.json"
     },
     {
       "slug": "date-calculator",
@@ -66,7 +66,7 @@
       "candidate_sha256": "d713dcfd5b0be3f494df63b574df6aeb55712c2d5e2631e0c5a449e15ced0442",
       "notes_sha256": "5550ee1c16aa6d4dc9b96a51dcc65f20bb73c4dba236dc2e43da9ec1e5623c3f",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b2/date-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/date-calculator.notes.json"
     },
     {
       "slug": "tip-calculator",
@@ -74,7 +74,7 @@
       "candidate_sha256": "35a2aff559c565411020f23b62590b713ffb107e8cd1d1c5003438dc02b61081",
       "notes_sha256": "6e54924fcc36fb9b96ea8814dfef5f25fd095fc4e9c1e8cfa47467c9be15ea24",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b2/tip-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/tip-calculator.notes.json"
     },
     {
       "slug": "fraction-calculator",
@@ -82,7 +82,7 @@
       "candidate_sha256": "8c524a7d3527f2c312861ca2466a8890dae8ec5c237f0fd440a5c74bf05cb28a",
       "notes_sha256": "5d98ba6c5e181536120429ea0552d319c6a2df2b659fb744662eb797239f0e7c",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b2/fraction-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/fraction-calculator.notes.json"
     },
     {
       "slug": "keg-calculator",
@@ -90,7 +90,7 @@
       "candidate_sha256": "e6b3d21cadbda6da0412d11fb7a09ffa83a65b80d91b73a56475f2c66221b641",
       "notes_sha256": "bf274ba109f0d3940235e74ea572a8a125c17d5a772617a61a77daf76f36695e",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b3/keg-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/keg-calculator.notes.json"
     },
     {
       "slug": "markup-calculator",
@@ -98,7 +98,7 @@
       "candidate_sha256": "3a5c5bc58aa2bbd0f966aac58272ba6dabcd1dfd41264ad3afb25c211f6a1d57",
       "notes_sha256": "acf507be1df4ad9e3fdea86c213bcfad6c7fa7dbb5ac079dbf9cf9cd0a90df6b",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b2/markup-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/markup-calculator.notes.json"
     },
     {
       "slug": "click-speed-test",
@@ -106,7 +106,7 @@
       "candidate_sha256": "5e58d2a0d46e1c840b5ead2f97901c9f822e159f11a3838747e774fdec865c44",
       "notes_sha256": "437d2def71d763dd41f9919d0a572a81fe3d4b0aec273754767e637208da3854",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b3/click-speed-test.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/click-speed-test.notes.json"
     },
     {
       "slug": "pizza-calculator",
@@ -114,7 +114,7 @@
       "candidate_sha256": "a55c60378bb83647a096120d8f685b51dd5e1a159f18529106ab17b0beff797f",
       "notes_sha256": "acfbc0fdc82f1af98e528acc5b59bb2f9d203a3b766e98613ab56dc168c18f5d",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b3/pizza-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/pizza-calculator.notes.json"
     },
     {
       "slug": "age-difference-calculator",
@@ -122,7 +122,7 @@
       "candidate_sha256": "19342d3b4446491302d79b0324f14416474fbb3216503e8d56ce014f730a7399",
       "notes_sha256": "0cc7f928300bea942b8539f495fc2532f7ff77415f12ff22e0cfa833941e44e3",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b3/age-difference-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/age-difference-calculator.notes.json"
     },
     {
       "slug": "ffmi-calculator",
@@ -130,7 +130,7 @@
       "candidate_sha256": "629dc2c6a51ce75825b96d55b3ee1ede6c1877dc8ee3e87babf3b1e908e12352",
       "notes_sha256": "b5203ad87e87d48b4f1c31367172a47ff6fc8f8babfed77f5d60419c27ca36dd",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b4/ffmi-calculator.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/ffmi-calculator.notes.json"
     },
     {
       "slug": "keyboard-test",
@@ -138,7 +138,7 @@
       "candidate_sha256": "29b1cc9a1aba8effaa9a45cc448a7909bb518845b15261d4bb31865cf72ac643",
       "notes_sha256": "1c80aaa240393d6733f053acbd239f67ea435c6e07c42557825ff91ca3c6e456",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b3/keyboard-test.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/keyboard-test.notes.json"
     },
     {
       "slug": "mouse-test",
@@ -146,7 +146,7 @@
       "candidate_sha256": "b54a5df27d3861376b9254e4beb29c75399666f86cd6220d3453f5fbba1e637c",
       "notes_sha256": "d17068cf7c56cb5201d6c2ca3283e83eeb0f3fe84fefc029582a7f138de3a494",
       "verification_basis": "exact_sentence_match",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-prose-gate-backfill/20261013/recheck/calcbadger/mouse-test.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/mouse-test.notes.json"
     },
     {
       "slug": "system-of-equations-solver",
@@ -154,7 +154,7 @@
       "candidate_sha256": "7a402fddf3509498b50fd3f4d6f61d13cfc2ab842c8c947c17405230273593a9",
       "notes_sha256": "e65bb85290dffd0ac8923937de190e8e6dc9dfbb3f5c2351723c4c2311a10f11",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b4/system-of-equations-solver.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/system-of-equations-solver.notes.json"
     },
     {
       "slug": "electrical-converter",
@@ -162,7 +162,7 @@
       "candidate_sha256": "c9dcc4fcb1ea5a69194d5d452482ed82a8297acf5637f265287687da7e364f1b",
       "notes_sha256": "c49d10a6b334ba0d8e966153513d4c10aaacacf6e4d67401efd48fd7eaab97dc",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b4/electrical-converter.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/electrical-converter.notes.json"
     },
     {
       "slug": "dice-roller",
@@ -170,7 +170,7 @@
       "candidate_sha256": "8d1f1503ef7f711ae1adf7b1b92734121bb39d59a078b44fd8576467c5095778",
       "notes_sha256": "0d4ec27fdf15a5a19e4cfb8c7a395ef0cfb1314338276842cc1b2484738f2eaf",
       "verification_basis": "prior_confirmed_notes_without_sentence_field",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-backfill-20261011/root/notes/calc-b4/dice-roller.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/dice-roller.notes.json"
     },
     {
       "slug": "touchscreen-test",
@@ -178,7 +178,7 @@
       "candidate_sha256": "33ec76e14d8323471cb860ceb28801ff5664439bca8b276f82f6525e71e7af56",
       "notes_sha256": "e53972931112db41d7856a96e7c116718928dab6de2ee91fb048047614bd764b",
       "verification_basis": "exact_sentence_match",
-      "notes_path_at_generation": "/Users/zhangwh/.codex/automation-runtime/runs/matrix-prose-gate-backfill/20261013/recheck/calcbadger/touchscreen-test.notes.json"
+      "notes_path": "audit/prose-gate-20261013-persistent/touchscreen-test.notes.json"
     }
   ]
 }

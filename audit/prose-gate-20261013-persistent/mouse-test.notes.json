@@ -1,0 +1,14 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "The keyboard guide says, “confirm a key registers at all and see exactly which ones you have and have not tried yet,” and explains rollover counts, supporting the registration and simultaneous-key checks.",
+    "sentence": "For the keyboard side of the same input setup, [a keyboard test](/keyboard-test/) checks every key against the same kind of silent-failure question: does it register at all, and how many at once."
+  },
+  {
+    "index": 2,
+    "verdict": "CONFIRMED",
+    "note": "The touchscreen guide checks “whether every part of the glass still reports a touch” and identifies dead zones as regions where contact is not reported, supporting the description of its screen sweep.",
+    "sentence": "A phone or tablet screen asks the same question about its own surface, and [a touchscreen test](/touchscreen-test/) sweeps the glass to show which regions stop reporting a finger."
+  }
+]

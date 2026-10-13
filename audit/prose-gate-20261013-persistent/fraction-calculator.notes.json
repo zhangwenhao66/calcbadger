@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言四形体由相同尺寸分别算体积和表面积。目标原文\"Volume and surface area both come from the same handful of dimensions\"，接着逐项Rectangular prism/Cylinder/Sphere/Cone公式，确认所有四种几何对象及维度关系。"
+  }
+]

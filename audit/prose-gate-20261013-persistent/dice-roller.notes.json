@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言公平硬币是骰子卷积的binary简例，二项公式替完整sum distribution。目标原文\"P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k)\"及\"A single fair coin flip is 50/50\"；独立Bernoulli求头数与二项分布吻合，不是说weighted模式也50/50。"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "The volume converter states, “1 US gallon equals exactly 3.785411784 liters (NIST Handbook 44, Appendix C),” and says other customary units use exact legal ratios, supporting the exact-factor reference.",
+    "sentence": "The same exact-factor approach applies to volume: [a US gallon equals 3.785411784 liters](/volume-converter/) under NIST Handbook 44."
+  }
+]

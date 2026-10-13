@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言房贷工具分解本金/利息/税/保险/PMI/HOA。目标原文\"This calculator solves that formula for principal & interest, then adds taxes, insurance, PMI and HOA as flat monthly amounts on top to show the full payment\"，支持列举六项；不是把餐厅账单称为真的贷款。"
+  }
+]

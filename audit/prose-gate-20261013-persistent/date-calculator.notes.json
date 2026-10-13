@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "原句reads live可能误导实时取网络新版，已基于源码与ECMA-402限定installed数据库。目标改后原文\"Offsets and daylight-saving transitions here come from the IANA time zone data available to your browser through Intl.DateTimeFormat\"；源码getPartsFormatter使用Intl.DateTimeFormat(timeZone)与formatToParts；支持所选日期本地offset，数据库新规仍需浏览器更新。"
+  }
+]

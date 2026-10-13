@@ -16,3 +16,6 @@ node_modules/
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# 2026-10-13：仓库内长期核对证据可入库
+!audit/prose-gate-20261013-persistent/*.notes.json

@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言模拟硬币结果与二项分布精确概率比较。目标原文\"P(exactly k heads in n flips) = C(n,k) × p^k × (1−p)^(n−k)\"，正文有实际run与\"Expected vs. actual\"解释；目标区分随机实际与理论预测，桥接没有保证某次必达理论数。"
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言mouse工具观察按钮、双击间隔和报告频率。目标原文\"whether every physical button actually sends a signal\"、\"how fast your two clicks land compared to the operating system's double-click window\"、\"roughly how often the mouse reports its position (report rate, commonly called polling rate)\"；这是浏览器estimate（coalesced caveat），桥接只说观察，没有声称硬件精密真值。"
+  }
+]

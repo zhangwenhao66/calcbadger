@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言BMI根据height+weight不能区分肌肉脂肪。目标FAQ逐字\"BMI only relates total body weight to height, so it cannot separate muscle from fat\"，正文CDC one potential indicator且承认肌肉分类限制；FFMI引出不同指标不保证医疗诊断准确，无新分类阈值。"
+  }
+]

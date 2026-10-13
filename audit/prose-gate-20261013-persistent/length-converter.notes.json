@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言1959协议精确定义磅为0.45359237kg，与长度常量类似。目标原文：\"1 pound equals exactly 0.45359237 kilograms and 1 ounce equals exactly 28.349523125 grams, fixed by international agreement in 1959\"；正文写\"The 1959 International Yard and Pound Agreement\"，具体年份/常量/协议吻合。"
+  }
+]

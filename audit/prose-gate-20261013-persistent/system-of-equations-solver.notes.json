@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言pct change有旧值基准，pct difference两数无基准。目标原文\"Percentage change ... always uses the old value as the base\"和\"Percent difference ... used when comparing two values where neither one is the reference\"，正文对称公式平均分母及旧新值分别说明，吻合桥接。"
+  }
+]

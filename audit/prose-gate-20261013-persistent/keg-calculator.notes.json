@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言pizza从人数/胃口取每人片数，再按pizza大小片数相除。目标原文\"multiplying adults by a slices-per-adult figure for the selected appetite (2 light, 3 average, 4 hearty) and children by 2 slices each, then adding the two together\"和\"divided by however many slices your chosen size holds\"；planning estimate非物理常数，桥接comparably specific reference未保证精确。"
+  }
+]

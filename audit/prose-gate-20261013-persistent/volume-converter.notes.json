@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言binary/octal/decimal/hex是同整数的四种表示，区别物理单位。目标原文：\"Binary, octal, decimal, and hexadecimal are four ways of writing the same integer using 2, 8, 10, or 16 symbols per digit\"及\"using exact integer arithmetic so results never lose precision\"，支持桥接四进制及精确运算。"
+  }
+]

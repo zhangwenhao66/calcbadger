@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言inch精确2.54cm且1959yard/pound协议也定mile。目标原文\"The 1959 International Yard and Pound Agreement ... fixed the international yard at exactly 0.9144 meters\"，随后inch yard/36得0.0254m及mile1760yard；target coreSummary\"1 inch equals exactly 2.54 centimeters\"，数值年份均支持。"
+  }
+]

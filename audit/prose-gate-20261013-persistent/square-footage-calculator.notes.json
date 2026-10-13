@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言矩形/圆形泳池从面积乘平均深度再换加仑。目标coreSummary原文：\"Pool volume is length x width x average depth (rectangular), pi x radius squared x average depth (round)\"；正文\"1 cubic foot to 7.480519 US gallons\"说明转换单位；桥接使用同面积公式增加深度，吻合。"
+  }
+]

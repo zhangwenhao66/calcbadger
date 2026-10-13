@@ -1,0 +1,452 @@
+{
+  "repository": "calcbadger",
+  "data_path": "src/data/tools.ts",
+  "data_sha256": "fbe97dddb1c351f6b2c682c3c9a590681ed5e774912404312256f7313a5478d5",
+  "scripts_sha256": {
+    "check_prose_patterns.py": "839e4077688cbf644f8fbab26c27bcc9a18e8e9c508344cda996b1fa23631a37",
+    "check_bridge_sentences.py": "c6cb21d4d00fdfa46c2dd0106f92b2ded62f9bafb365ff46ab6c8b75c622734e"
+  },
+  "expected": 54,
+  "checked": 54,
+  "unexamined": 0,
+  "failed": 0,
+  "candidate_slugs": 20,
+  "candidate_sentences": 22,
+  "manifest_coverage_matches": true,
+  "stale_manifest_slugs": [],
+  "results": [
+    {
+      "slug": "cd-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "square-footage-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "stair-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "sat-score-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "molarity-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "bmi-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "coin-flip-simulator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "temperature-converter",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "length-converter",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "weight-converter",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "mortgage-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "time-converter",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "concrete-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "percentage-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "volume-converter",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "date-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "calorie-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "world-clock",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "tip-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "gpa-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "reaction-time-test",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "fraction-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "time-duration-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "shape-volume-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "steps-to-miles-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "board-foot-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "asphalt-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "body-surface-area-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "topsoil-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "keg-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "sentence-counter",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "markup-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "prorated-rent-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "conduit-fill-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "rounding-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "wingdings-translator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "click-speed-test",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "pool-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "pizza-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "age-difference-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "wacc-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "words-to-pages-calculator",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "ffmi-calculator",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "dead-pixel-test",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "keyboard-test",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "mouse-test",
+      "status": "passed",
+      "candidates": 2,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "system-of-equations-solver",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "number-base-converter",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "electrical-converter",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "golf-club-distance-chart",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "rice-to-water-ratio",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "words-per-minute-average",
+      "status": "passed",
+      "candidates": 0,
+      "prose_exit": 0,
+      "bridge_scan_exit": 0,
+      "bridge_verify": "not_required_zero_candidates"
+    },
+    {
+      "slug": "dice-roller",
+      "status": "passed",
+      "candidates": 1,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    },
+    {
+      "slug": "touchscreen-test",
+      "status": "passed",
+      "candidates": 2,
+      "prose_exit": 0,
+      "bridge_scan_exit": 1,
+      "bridge_verify_exit": 0
+    }
+  ],
+  "source_commit": "28351bd354b1c803d92eba7782865e37956c4853"
+}

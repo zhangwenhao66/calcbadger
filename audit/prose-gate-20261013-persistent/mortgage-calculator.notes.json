@@ -1,0 +1,7 @@
+[
+  {
+    "index": 1,
+    "verdict": "CONFIRMED",
+    "note": "断言CD一次存款复利增长，区别于房贷的月供摊还。目标原文：\"final balance = deposit × (1 + rate/n)^(n × years)\"及\"the balance is simply deposit × (1 + APY)^years\"，完整目标是deposit累积利息，无房贷式月供还款表。"
+  }
+]
