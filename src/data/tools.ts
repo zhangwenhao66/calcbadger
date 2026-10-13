@@ -6965,7 +6965,7 @@ export const tools: Tool[] = [
 		title: 'Touchscreen Test: Find Dead Zones',
 		shortTitle: 'Touchscreen Test',
 		description:
-			'Sweep a finger across a 12x18 grid to find dead spots, press several fingers at once to see how many touches register, and watch a live log of every touch event.',
+			'Touchscreen test: sweep a finger over a 12x18 grid to spot dead zones, press several fingers to see how many register, and watch a live log of every touch event.',
 		updated: '2026-10-13',
 		published: '2026-10-13',
 		coreSummary:
