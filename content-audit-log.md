@@ -3059,3 +3059,7 @@
 重量工具33单测、机械散文及HTTP索引信号通过；browser DOM读取超时，真实交互/隐私网络未检查，不推进last_audited。独立复核确认旧cb-consent=granted优先于GPC与隐私页承诺不一致。仅修Layout初始状态及选择处理器的GPC优先级，未改文章、公式、日期或元数据。实际inline脚本VM场景7项通过，含旧同意+GPC与再次点击同意；非GPC原行为保留。129路由构建通过。
 
 扩散判定：通用 / 扫描范围：17站源码17实查 / 命中：12站共享模板 / 修复：CalcBadger及两批10站，实际线上状态见当前run的batch及receipt；DialWick冻结只记录 / 防复发：check_gpc_precedence.py和CHECKS登记提交待集成，独立复核修正注释/模板误通过后回归。网络实测未验，源码修复不证明完整隐私合规。详细逐条证据：audit-findings-20261013T184950.json。
+
+### 20261013T184950 实际验收收尾
+
+CalcBadger内容commit2b47eff，Pages4326c735-578b-4ab6-8cee-66530e4c4cd0已success；weight-converter与privacy两URL绕缓存实查HTTP200，初始state及choose两处修复均上线。两批10站同样逐站build/VM/Pages及生产HTML核验；通用缺陷12站中11可编辑站代码修复已验证，DialWick冻结不编辑。防复发kit eb8aeb7已合入远端main，独立审查accepted；原本机kit checkout/index保留，不冒充已同步。实际浏览器网络/广告动态行为未检查，完整审计日期不推进。本轮无新文、IndexNow、邮件或付费查询。当前run完整证据见共享工作日志及receipt。

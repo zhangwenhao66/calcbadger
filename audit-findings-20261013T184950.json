@@ -34,9 +34,11 @@
       "replacement": "GPC-first initial state and acceptance guard",
       "reason": "Preserve explicit policy promise when existing consent was granted",
       "review_status": "confirmed",
-      "action_status": "changed",
+      "action_status": "verified",
       "verification_evidence": [
-        "VM consent7/weight33 pass; build129routes; independent-fix-review.json"
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261013T184950/site-deploy-verification.json",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261013T184950/cloudflare-check-runs.json",
+        "/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-content-quality-audit/20261013T184950/independent-fix-review.json"
       ],
       "diffusion": "17/17 source scan,12hits; frozenDialWick read-only;11editable sites including current remediate in batches"
     }
