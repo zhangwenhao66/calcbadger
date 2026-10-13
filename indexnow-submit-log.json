@@ -458,5 +458,11 @@
     "submitted_date": "2026-09-29",
     "last_submitted_date": "2026-09-29",
     "verified_status": "pending"
+  },
+  "https://calcbadger.com/touchscreen-test/": {
+    "submitted_date": "2026-10-13",
+    "last_submitted_date": "2026-10-13",
+    "verified_status": "pending",
+    "note": "[{\"urls\":[\"https://calcbadger.com/touchscreen-test/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}] | [{\"urls\":[\"https://calcbadger.com/touchscreen-test/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}] | [{\"urls\":[\"https://calcbadger.com/touchscreen-test/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}] | [{\"urls\":[\"https://calcbadger.com/touchscreen-test/\"],\"results\":[{\"endpoint\":\"Bing\",\"accepted\":true,\"status\":200},{\"endpoint\":\"Yandex\",\"accepted\":false,\"status\":null,\"error\":\"timeout/error\"}]}]"
   }
 }
