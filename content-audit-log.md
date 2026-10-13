@@ -3063,3 +3063,13 @@
 ### 20261013T184950 实际验收收尾
 
 CalcBadger内容commit2b47eff，Pages4326c735-578b-4ab6-8cee-66530e4c4cd0已success；weight-converter与privacy两URL绕缓存实查HTTP200，初始state及choose两处修复均上线。两批10站同样逐站build/VM/Pages及生产HTML核验；通用缺陷12站中11可编辑站代码修复已验证，DialWick冻结不编辑。防复发kit eb8aeb7已合入远端main，独立审查accepted；原本机kit checkout/index保留，不冒充已同步。实际浏览器网络/广告动态行为未检查，完整审计日期不推进。本轮无新文、IndexNow、邮件或付费查询。当前run完整证据见共享工作日志及receipt。
+
+## Wikipedia attribution backfill — 2026-10-13
+
+扩散判定：通用 / 扫描范围：17 站（未检查：0）/ 命中：2 篇 2 处 / 修复：当场 2 篇，派发 0 / 防复发：check_wikipedia_attribution_drift.py 已入 CHECKS.json 第 54 项 | 教训 L-1012-2 + 发布共用块 B-129 第 15 项。
+
+CalcBadger 仍处于 August 2026 spam update 压制期；本批只改事实归因，不变更工具 URL、标题、结构或交互。基线 `check_wikipedia_attribution_drift.py --guides src/data/tools.ts --all` 命中 2 处/2 篇，窄扫描 0 处；相关条目为 `rounding-calculator` 与 `dead-pixel-test`。原文按 `curl -sS -m 40 -A 'Mozilla/5.0 (research)' 'https://en.wikipedia.org/w/index.php?title=<条目>&action=raw' -o <receipt>` 抓取，文件在 `/Users/zhangwh/.codex/receipts/wikipedia-calcbadger-20261013/raw/`：Rounding、IEEE_754、ISO_13406-2、Defective_pixel。
+
+逐项结论：`rounding-calculator` 的四种 tie-breaking 定义仍在 Rounding 条目，正文以 checked 日期记录；该条目紧邻的“widely used”主张本身标为 citation needed，正文未重复该普遍性主张。文中另一个“Java/Python 对 half up 的用法”仍在同页，保留并标注当天核对日期。`dead-pixel-test` 原称 Wikipedia 标准摘要说制造商据此拒绝正常面板的论断不在当前 ISO 13406-2 页面，判为已漂移并删除；当前页面只写“多数制造商指定 Class II”，而支撑它的引文带有 Failed verification 标记。正文已改为明示该来源状态，不把未核实内容当作事实；return eligibility 指回具体制造商保修条款。结果：仍在 1 处，已漂移 1 处，未检查 0；dated citations 2 处，漂移论断 1 处改为来源缺陷披露。
+
+改后宽、窄扫描均退出码 0（0 候选）。`run_checks.py` 对两篇分别运行：各 40 通过 / 0 不通过 / 15 未检查（应跑 55 / 实跑 40）；未检查项是 CHECKS.json 未配置的单篇模式，未计为通过。构建、提交、绕缓存线上核验与 IndexNow 回执在部署后补记。
