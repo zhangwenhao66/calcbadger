@@ -1,0 +1,44 @@
+{
+  "run_id": "20261013T184950",
+  "coverage": {
+    "planned_urls": [
+      "https://calcbadger.com/weight-converter/"
+    ],
+    "actual_static_urls": [
+      "https://calcbadger.com/weight-converter/",
+      "https://calcbadger.com/privacy/",
+      "https://calcbadger.com/about/",
+      "https://calcbadger.com/ads.txt",
+      "https://calcbadger.com/robots.txt"
+    ],
+    "not_checked": [
+      "real browser interaction/network/privacy: IAB timeout; no Chrome used",
+      "competitor refresh/full SEO+GEO/spam/CWV not completed in partial run"
+    ]
+  },
+  "findings": [
+    {
+      "id": "gpc-saved-grant",
+      "rule_ref": "project privacy GPC denial promise; R-seo-29",
+      "basis_type": "project_rule",
+      "urls": [
+        "https://calcbadger.com/weight-converter/",
+        "https://calcbadger.com/privacy/"
+      ],
+      "evidence": [
+        "live-weight-converter.html",
+        "live-privacy.html",
+        "independent-review.json"
+      ],
+      "current": "stored grant takes precedence over GPC",
+      "replacement": "GPC-first initial state and acceptance guard",
+      "reason": "Preserve explicit policy promise when existing consent was granted",
+      "review_status": "confirmed",
+      "action_status": "changed",
+      "verification_evidence": [
+        "VM consent7/weight33 pass; build129routes; independent-fix-review.json"
+      ],
+      "diffusion": "17/17 source scan,12hits; frozenDialWick read-only;11editable sites including current remediate in batches"
+    }
+  ]
+}
