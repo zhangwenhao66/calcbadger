@@ -6998,8 +6998,8 @@ export const tools: Tool[] = [
 			{
 				heading: 'The event log, and what ghost touch looks like',
 				body: [
-					'The log lists the most recent touch events with a timestamp, the event kind, the pointer type and the pointer id. It exists for the opposite problem to a dead zone. Ghost touch, also called phantom touch, is a screen reporting taps and swipes that nobody made, and it is hard to catch because the stray input usually lands while you are looking at something else. Use the log passively: leave the page open with your hands off the glass and watch the counters. On a healthy screen the "down" count only moves when you touch it, and a count that keeps climbing while nothing is touching the screen is the phenomenon people mean by ghost touch.',
-					"Not every cause is hardware. Google's Android troubleshooting page and Apple's iPhone screen guide both open with the same non-hardware steps: remove the case and any screen protector, clean the glass, unplug accessories and chargers, then restart. Samsung's guidance adds that non-genuine screen protectors and cases can interfere with touch near the edges, and that a Touch sensitivity setting under Settings > Display exists for screens with a protector fitted. A screen that only misbehaves while one particular charger is plugged in points at electrical noise in the ground path. When ghost touches continue across a restart, in safe mode, and with no accessories attached, the digitizer is what remains, and replacing the screen assembly is the usual outcome.",
+					"The log lists the most recent touch events with a timestamp, the event kind, the pointer type and the pointer id. It exists for the opposite problem to a dead zone: a screen registering contact that nobody made. Google's Android troubleshooting page lists a screen that \"jumps\" among the faults it covers, which is the same family of behavior, and the informal name for it is ghost touch, or phantom touch. It is hard to catch because the stray input usually lands while you are looking at something else. Use the log passively: leave the page open with your hands off the glass and watch the counters. On a healthy screen the \"down\" count only moves when you touch it, and a count that keeps climbing while nothing is touching the screen is the phenomenon people mean by ghost touch.",
+					"Not every cause is hardware. Google's Android troubleshooting page and Apple's iPhone screen guide both open with the same non-hardware steps: remove the case and any screen protector, clean the glass, disconnect accessories, then restart. Samsung's guidance adds that non-genuine screen protectors and cases can interfere with touch near the edges, and that a Touch sensitivity setting under Settings > Display exists for screens with a protector fitted. When the problem survives a restart, safe mode, and the removal of every accessory, Google's page and Apple's both stop offering user-side fixes and send the owner to service.",
 				],
 			},
 			{
@@ -7042,7 +7042,7 @@ export const tools: Tool[] = [
 					[
 						'"Down" count rising with nothing touching',
 						'Ghost touch (phantom input)',
-						'Remove case and protector, clean the glass, unplug the charger, restart, retest',
+						'Remove case and protector, clean the glass, disconnect accessories, restart, retest',
 					],
 					[
 						'Every cell lights, but taps land in the wrong place',
@@ -7155,7 +7155,7 @@ export const tools: Tool[] = [
 			},
 			{
 				label:
-					'Samsung Support (Spanish-language page): "Que hacer si la pantalla tactil de mi Galaxy no funciona" (documents the *#0*# hardware test mode, its Touch entry, and the box-and-X drag whose uncoloured areas mark a fault)',
+					'Samsung Support (Spanish-language page): "Que hacer si la pantalla tactil de mi Galaxy no funciona" (documents the *#0*# hardware test mode, its Touch entry, and the box-and-X drag whose uncolored areas mark a fault)',
 				url: 'https://www.samsung.com/co/support/mobile-devices/what-to-do-if-your-touch-screen-is-not-working-properly/',
 			},
 			{
