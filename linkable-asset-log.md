@@ -65,3 +65,15 @@ pitch 邮件过 `Skill(humanizer)` + `Skill(avoid-ai-writing)` 后判定已经�
 - 新资产0；本轮发送N=0，新增已验证dofollow M=0，不计算0/0成功率。有回执历史累计N=21，原日志已确认M=0，M/N=0%；不声称全量历史链接本轮实时复查。未到累计30触发线。
 - 证据：/Users/zhangwh/.codex/automation-runtime/runs/trafficsite-linkable-asset-building/20261010T1330/receipt.json；现存资产未饱和且今天10号未触发15号兜底，本轮不制造资产；只改业务文档，无网站内容部署。
 - 下一步：UmberLore邮件精确草稿待Owen明确说“发”；其余未获新分发机会的对象保留原日期。共享work_journal保存本轮结果，不更新作战数据台。
+
+## 2026-10-13 — fixed priority slot (embed outreach) — no qualified target this run
+
+**Site selection**: CalcBadger took this run's fixed priority slot (per the 2026-09-04 revision); DialWick remains frozen (2026-09-13) and is excluded entirely.
+
+**Order of work**: per the fixed-slot rule, the angle stays embed-component outreach to education/DIY/engineering resource pages (no new-asset creation — the site is still in its August-2026-spam-update suppression window, publishing 2 tools/week).
+
+**Search result — no qualified target**: searched for (a) DIY/woodworking pages discussing board-foot or lumber math without an inline tool, and (b) education/teacher resource pages for a matching calculator. Board-foot and concrete/topsoil calculator space is saturated with competing embeddable tools (Lumdera, TableSawGuide, board-footcalculator.com, HowMuchStuff, MrCalcu, realwoodworkplans, ProBuilderCalc, Calc.Cards, BuildItCalc), so per the "同类对比" build rule there is no differentiated presentation point. The two education candidates found (instructorweb.com fractions resources; kbcabinetmaking.com.au volume-measurement lesson) returned HTTP 200 but publish no verifiable contact email (forms only), so they fail the "verifiable, non-single-purpose contact" requirement. No pitch drafted, nothing sent.
+
+**Distribution count**: unchanged — `formula-standards-index` at 1 sent (surgepv.com 9/16). No new target this run.
+
+**Step 2 / 3.5**: not run this pass (the fixed-slot search consumed the budget).
