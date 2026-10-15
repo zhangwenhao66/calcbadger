@@ -884,6 +884,132 @@ h3 {
 	}
 }
 
+/* ---------- Refresh Rate Test ---------- */
+.rr-stage {
+	position: relative;
+	border: 1px solid var(--chassis-rule);
+	border-radius: 12px;
+	background: var(--chassis);
+	padding: 1.4rem 1rem 1rem;
+	overflow: hidden;
+}
+.rr-readout {
+	text-align: center;
+}
+.rr-hz {
+	margin: 0.15rem 0 0;
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: clamp(2.6rem, 11vw, 3.6rem);
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+	color: var(--chassis-text);
+}
+.rr-unit {
+	margin: 0.15rem 0 0;
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--chassis-muted);
+}
+.rr-status {
+	margin: 1rem 0 0;
+	text-align: center;
+	min-height: 2.6em;
+}
+.rr-progress {
+	margin-top: 0.9rem;
+	height: 3px;
+	border-radius: 2px;
+	background: var(--chassis-raised);
+	overflow: hidden;
+}
+.rr-progress > span {
+	display: block;
+	height: 100%;
+	background: var(--op);
+	transition: width 120ms linear;
+}
+.rr-btn {
+	cursor: pointer;
+	padding: 0.55rem 1.1rem;
+	border-radius: 8px;
+	border: 1px solid var(--chassis-rule);
+	background: var(--chassis-raised);
+	color: var(--chassis-text);
+	font-size: 0.85rem;
+	font-weight: 600;
+	transition:
+		background-color 120ms ease,
+		border-color 120ms ease;
+}
+.rr-btn:active:not(:disabled) {
+	background: var(--op);
+	border-color: var(--op-dark);
+	color: #fff;
+}
+.rr-btn:focus-visible {
+	outline: 2px solid var(--op);
+	outline-offset: 2px;
+}
+.rr-btn:disabled {
+	opacity: 0.55;
+	cursor: default;
+}
+.rr-btn-quiet {
+	background: transparent;
+	color: var(--chassis-muted);
+}
+.rr-dist {
+	margin-top: 1rem;
+	border-top: 1px solid var(--chassis-rule);
+	padding-top: 0.8rem;
+}
+.rr-dist-row {
+	display: grid;
+	grid-template-columns: 5.5rem 1fr auto;
+	align-items: center;
+	gap: 0.6rem;
+	margin-bottom: 0.35rem;
+}
+.rr-dist-ms {
+	font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.78rem;
+	color: var(--chassis-text);
+}
+.rr-dist-bar {
+	display: block;
+	height: 8px;
+	border-radius: 4px;
+	background: var(--chassis-raised);
+	overflow: hidden;
+}
+.rr-dist-bar > span {
+	display: block;
+	height: 100%;
+	background: var(--op);
+}
+.rr-dist-count {
+	font-size: 0.74rem;
+	color: var(--chassis-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 420px) {
+	.rr-dist-row {
+		grid-template-columns: 4.5rem 1fr auto;
+		gap: 0.45rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rr-btn,
+	.rr-progress > span {
+		transition: none;
+	}
+}
+
 /* ---------- Cursive Alphabet Generator ---------- */
 /* Page pruned in c3635a1 (spam-update page-mix cleanup) — kept intentionally, see src/data/tools.ts import comment. */
 .cursive-text-input {

@@ -63,6 +63,7 @@ import RandomAnimalGenerator from './calculators/RandomAnimalGenerator';
 import RandomLetterGenerator from './calculators/RandomLetterGenerator';
 import RandomObjectGenerator from './calculators/RandomObjectGenerator';
 import ReactionTimeTest from './calculators/ReactionTimeTest';
+import RefreshRateTest from './calculators/RefreshRateTest';
 import RoundingCalculator from './calculators/RoundingCalculator';
 import SatScoreCalculator from './calculators/SatScoreCalculator';
 import SentenceCounter from './calculators/SentenceCounter';
@@ -160,3 +161,4 @@ const { slug } = Astro.props;
 {slug === 'words-to-pages-calculator' && <WordsToPagesCalculator client:load />}
 {slug === 'keyboard-test' && <KeyboardTest client:load />}
 {slug === 'system-of-equations-solver' && <SystemOfEquationsSolver client:load />}
+{slug === 'refresh-rate-test' && <RefreshRateTest client:load />}

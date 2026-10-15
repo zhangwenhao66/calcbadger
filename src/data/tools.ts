@@ -6033,7 +6033,7 @@ export const tools: Tool[] = [
 			{
 				question: "Why does my report-rate reading stay around 60-144 Hz even though my mouse supports 1000 Hz?",
 				answer:
-					"That 60-144 Hz range is a strong match for common display refresh rates rather than for the mouse itself, which points at the browser rather than the hardware. Your browser most likely can't unpack the batched movement samples this tool needs for a finer reading, either because it never added that ability or because it's running a build from before Apple shipped it to Safari in late 2024. This tool reports which of the two methods it managed to use, so a 'raw' result in that range reflects a real technical limit, not a broken mouse.",
+					"That 60-144 Hz range is a strong match for common display refresh rates rather than for the mouse itself, which points at the browser rather than the hardware. Your browser most likely can't unpack the batched movement samples this tool needs for a finer reading, either because it never added that ability or because it's running a build from before Apple shipped it to Safari in late 2024. This tool reports which of the two methods it managed to use, so a 'raw' result in that range reflects a real technical limit, not a broken mouse. That ceiling belongs to the display and not to the mouse, and [a refresh rate test](/refresh-rate-test/) measures the same ceiling from the other side.",
 			},
 			{
 				question: "What's a good double-click speed?",
@@ -7170,5 +7170,178 @@ export const tools: Tool[] = [
 			},
 		],
 		embedHeight: 700,
+	},
+	{
+		slug: 'refresh-rate-test',
+		category: 'Tech',
+		title: "Refresh Rate Test: Check Your Screen's Real Hz",
+		shortTitle: 'Refresh Rate Test',
+		description:
+			'Refresh rate test: measure the Hz your display is actually presenting at right now, with the frame-period spread and slow-frame count behind the number.',
+		updated: '2026-10-16',
+		published: '2026-10-16',
+		coreSummary:
+			'A refresh rate test has to watch the screen itself, because the number in the display menu describes what the panel was asked to do. This page asks the browser for animation frames for four seconds and times the gaps between them, which MDN says will generally match the display refresh rate. The median gap becomes the rate: 16.7 ms is 60Hz, 6.9 ms is 144Hz. The closest standard rate is printed beside the raw reading, along with the spread of frame periods, so a steady screen and a lumpy one do not produce the same answer. The other screen measurements on this desk are a [touchscreen test](/touchscreen-test/) for dead zones, a [dead pixel test](/dead-pixel-test/) for stuck pixels, and a [mouse test](/mouse-test/) for a click that never lands.',
+		queries: [
+			'refresh rate test',
+			'monitor refresh rate test',
+			'screen refresh rate test',
+			'120hz refresh rate test',
+			'refresh rate test 144hz',
+		],
+		sections: [
+			{
+				heading: 'What the four seconds are measuring',
+				body: [
+					"Press start and the page asks the browser for animation frames, then times the gaps between the timestamps the browser hands to each callback. MDN describes that argument as a DOMHighResTimeStamp, 'a decimal number, in milliseconds, but with a minimal precision of 1 millisecond', on the same time origin that performance.now() reports. The same page explains what requestAnimationFrame does with the callback: it asks the browser to call it 'before the next repaint', and 'the frequency of calls to the callback function will generally match the display refresh rate'. One callback therefore arrives for each screen refresh, so the gap between two of them is one frame period. A 60Hz panel hands out a callback about every 16.7 ms and a 144Hz panel about every 6.9 ms, and a 1 ms floor on the timestamp is small next to either.",
+					'The reading is the median of those gaps, converted with rate = 1000 / period. Frame gaps have a long tail on one side and none on the other, because a browser can present a frame late but never before the panel is ready for it. A mean would let a handful of late frames pull the number down, so the tool goes with the median, drops any frame arriving later than 2.5 times it, and counts those separately as slow frames. Nothing is averaged across page loads or stored: the four-second window runs once, in this tab, and the numbers are gone when it closes.',
+				],
+			},
+			{
+				heading: 'Why the reading can sit below the number on the box',
+				body: [
+					"What the browser receives is the mode the operating system is driving at that moment, which is not automatically the panel's ceiling. MDN's wording leaves room for that: the callback frequency will 'generally' match the display refresh rate, not always. If the system is running a 165Hz panel in a 60Hz mode, the browser gets 60Hz callbacks and this page reports 60. A reading under the specification therefore describes the mode in force, and says nothing about the hardware's ceiling. Telling those two apart is a job for the operating system's display settings, which this page never sees.",
+					'That is why the closest standard rate is printed alongside the raw figure, which stays visible. A reading of 59.8 Hz against a 60Hz setting is measurement noise, and the tool says so by flagging it a match. A reading of 47 Hz is not close to anything, and the flags say that too.',
+					'One case the tool handles and does not report: if the tab is not in front, MDN notes that "requestAnimationFrame() calls are paused in most browsers when running in background tabs or hidden iframes". A paused stream of callbacks would look like a catastrophically slow display, so the measurement is abandoned if the tab goes to the background, and it will not start at all in a hidden tab.',
+				],
+			},
+			{
+				heading: 'Reading the spread, not just the headline number',
+				body: [
+					'A single rate hides the shape of the frame stream, and two displays can produce the same median from very different streams. The table under the reading lists the most common frame periods in the sample, rounded to a tenth of a millisecond. An alternating pattern is visible there: a display presenting at 120Hz while the browser acts on roughly half of those refreshes shows up as 8.3 ms and 16.7 ms gaps in roughly equal numbers.',
+					'The 95th percentile fills in the other half. On a steady display it sits close to the median and the flag reads steady; when it is well above the median, frames are arriving unevenly, and the tool reports the ratio so the size of that gap is a number you can read. Uneven frames have more than one cause, and the page does not pretend to settle which one applies. A variable refresh display produces them by design when the rendered content needs less than the maximum rate, and a machine that cannot keep up produces them too. The dropped-frame count separates the two: a steady median with a growing pile of dropped frames points at the machine, while a median that never settles on a tenth of a millisecond points at the display.',
+				],
+			},
+			{
+				heading: 'What this page cannot measure',
+				body: [
+					'The panel ceiling is out of reach. The browser is told what mode it is in, never the highest one the hardware supports, so a 240Hz monitor running at 60 looks exactly like a 60Hz monitor from in here.',
+					'Frame rate is a different figure, and also invisible from here. Wikipedia\'s entry on refresh rate defines the term as "the number of times per second that a raster-based display device displays a new image" and adds that it "can be independent of frame rate", which describes how many images the device driving the display generates each second. A game rendered at 40 frames per second on a 144Hz panel produces 144 refreshes and 40 new images, and a web page has no window into the second number.',
+					'The reading also describes the browser rather than the whole machine. If the browser is limited by its own throttling while another program hogs the processor, the gaps grow and the measurement says so. That is a real observation about the frame stream, but it is not a statement about the panel, which is why the tool counts the slow frames out loud and shows that count beside the rate.',
+				],
+			},
+			{
+				heading: 'Worked examples',
+				body: [
+					'A median gap of 16.67 ms gives 1000 / 16.67 = 60.0 Hz, which lands on the 60Hz standard rate and is flagged a match. The same conversion runs the other way in Wikipedia\'s "Refresh rate" article, checked 2026-10-16, which records one monitor at 144 Hz reducing frame persistence to approximately 6.9 ms against 16.7 ms at 60 Hz.',
+					'Medians of 13.33 ms, 8.33 ms and 6.94 ms come out at 75.0, 120.0 and 144.1 Hz. The last of those sits 0.06% above 144, which is inside the tolerance the tool allows before it stops calling a reading a match.',
+					'A 60Hz display that misses one refresh in three hands the browser gaps of about 16.7 ms and 33.3 ms in equal numbers. The median of that mix is 25 ms, so the page reports 40 Hz, and the 95th percentile lands at 33.3 ms. That reading is not an error even though the panel is running at 60Hz: 40 frames per second is what the browser is actually being given.',
+				],
+			},
+		],
+		referenceTables: [
+			{
+				title: 'Frame period for the rates displays ship with',
+				headers: ['Frame period', 'Implied rate'],
+				rows: [
+					['41.7 ms', '24 Hz'],
+					['33.3 ms', '30 Hz'],
+					['20.0 ms', '50 Hz'],
+					['16.7 ms', '60 Hz'],
+					['13.3 ms', '75 Hz'],
+					['11.1 ms', '90 Hz'],
+					['10.0 ms', '100 Hz'],
+					['8.3 ms', '120 Hz'],
+					['6.9 ms', '144 Hz'],
+					['6.1 ms', '165 Hz'],
+					['5.6 ms', '180 Hz'],
+					['4.2 ms', '240 Hz'],
+					['2.8 ms', '360 Hz'],
+				],
+				note: 'Frame periods are 1000 divided by the rate. MDN names 60 Hz as the most common display refresh rate and lists 75, 120 and 144 as widely used; Wikipedia\'s "Refresh rate" article covers the rates past those and gives frame persistence of about 16.7 ms at 60 Hz and 6.9 ms at 144 Hz (checked 2026-10-16). The remaining rates in the list are ones the tool can name as the nearest match, and no source on this page ties them to a particular panel or era.',
+			},
+			{
+				title: 'What each reading points at',
+				headers: ['Reading', 'What it suggests', 'What to try next'],
+				rows: [
+					[
+						'Within 3% of a standard rate',
+						'A normal measurement of that mode',
+						'Nothing. The number is the rate the browser is being given',
+					],
+					[
+						'Roughly half a standard rate, with matching periods in the distribution',
+						'The display runs at the higher rate but the browser acts on about half the refreshes',
+						'Close other tabs and programs, then run it again to see whether the pattern holds',
+					],
+					[
+						'Median and 95th percentile far apart',
+						'Frames arriving unevenly',
+						'Check whether a frame limiter is set, then re-run with the machine otherwise idle',
+					],
+					[
+						'A pile of slow frames dropped',
+						'The browser stalled; the panel did not slow',
+						'Re-run on an idle machine; the dropped frames are excluded from the rate itself',
+					],
+					[
+						'No number at all',
+						'The tab was hidden, or the sample never settled',
+						'Keep the tab in front for the whole four seconds and start again',
+					],
+				],
+				note: 'The tool reports what the browser is being handed. It cannot see the panel specification, so it will not tell you a display is failing to reach a rate it was never being asked for.',
+			},
+		],
+		faq: [
+			{
+				question: 'How do I test my monitor refresh rate?',
+				answer:
+					'Press start and leave this tab in the foreground until the countdown finishes. There is nothing to set up first: the figure comes from frame timings taken here, so it describes the frames this browser receives during the run. A 60Hz screen lands near 16.7 ms per frame, a 144Hz screen near 6.9 ms. Windows and macOS display settings answer the separate question of what was requested of the panel.',
+			},
+			{
+				question: 'Why does the test read 60Hz when my monitor is 120Hz or 144Hz?',
+				answer:
+					'A web page can only observe what it is given. When the active display mode is 60Hz, frames arrive on a 16.7 ms cadence and the figure comes out at 60, however capable the hardware is. The active mode is the one chosen in the system display settings.',
+			},
+			{
+				question: 'Is refresh rate the same as frame rate?',
+				answer:
+					'No. They count different things: the display presents a new image at its own cadence, while the program driving it generates images at a different one. Wikipedia\'s definition of refresh rate notes that the two need not be tied to each other. A game rendering 40 images each second on a 144Hz screen therefore still gets 144 screen updates, and this page can only observe the updates.',
+			},
+			{
+				question: 'Can I test the refresh rate on a phone or tablet?',
+				answer:
+					'Yes. Handsets expose the same frame-timing interface, so opening this page on one reports the cadence that device presents at, including the high-refresh modes phones switch in and out of depending on what is on screen. Keep it in the foreground for the whole run: sending it to the background suspends frame delivery, and the reading is thrown away.',
+			},
+			{
+				question: 'What does a 120Hz refresh rate test show?',
+				answer:
+					'On a screen running at 120Hz the frames land roughly 8.3 ms apart, and the figure matches 120 as the nearest standard step. The frame period is what tells a 120Hz screen apart from a 60Hz panel that could have run faster; the label in the settings does not. Phones and laptops sometimes drop to 60Hz to save power, which shows up as a 16.7 ms period.',
+			},
+			{
+				question: 'Why did the test not give me a number?',
+				answer:
+					'The run needs four uninterrupted seconds of frames. If the tab is pushed to the background the run ends, because browsers suspend frame callbacks while a page is not visible, and if the frame stream refuses to hold a steady period, which a machine under heavy load can cause, the sample is thrown out and nothing is printed. Free up what you can and start again.',
+			},
+			{
+				question: 'Does the refresh rate test work in a background tab?',
+				answer:
+					'No. A page that is not visible receives no frame callbacks at all, so a run started there would measure the silence, not the screen. Bring the tab forward before pressing start and leave it there until the countdown ends.',
+			},
+		],
+		sources: [
+			{
+				label:
+					'MDN Web Docs: Window.requestAnimationFrame() (callback runs "before the next repaint"; its frequency "will generally match the display refresh rate"; 60Hz named as the most common rate with 75, 120 and 144 widely used; calls are paused in background tabs and hidden iframes)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame',
+			},
+			{
+				label:
+					'MDN Web Docs: Performance.now() (returns a DOMHighResTimeStamp in milliseconds, "not limited to one-millisecond resolution", unlike Date.now())',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/Performance/now',
+			},
+			{
+				label:
+					'MDN Web Docs: Document.visibilityState (the "visible" and "hidden" states this page checks before and during a measurement)',
+				url: 'https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState',
+			},
+			{
+				label:
+					'Wikipedia: "Refresh rate" (defines refresh rate as the number of times per second a raster display shows a new image, notes it "can be independent of frame rate", and records the frame persistence figures of about 16.7 ms at 60 Hz and 6.9 ms at 144 Hz; checked 2026-10-16)',
+				url: 'https://en.wikipedia.org/wiki/Refresh_rate',
+			},
+		],
+		embedHeight: 520,
 	},
 ];
